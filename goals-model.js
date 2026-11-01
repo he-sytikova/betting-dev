@@ -250,7 +250,7 @@ function render() {
       r.fixture.league,r.fixture.home+' — '+r.fixture.away,
        'П1: '+pct(r.outcome.home)+'\nX: '+pct(r.outcome.draw)+'\nП2: '+pct(r.outcome.away),
       '1X: '+pct(r.doubleChance.homeDraw)+'\nX2: '+pct(r.doubleChance.drawAway)+'\n12: '+pct(r.doubleChance.homeAway),
-      'П1: '+pct(r.dnb.home)+'\nП2: '+pct(r.dnb.away)+'\nВозврат X: '+pct(r.dnb.refund)',
+      'П1: '+pct(r.dnb.home)+'\nП2: '+pct(r.dnb.away)+'\nВозврат X: '+pct(r.dnb.refund),
       formatLines(r.totals,x=>'ТБ '+x.line+': '+pct(x.over)+' / ТМ '+pct(1-x.over)),
       formatLines(r.homeTotals,x=>'ТБ '+x.line+': '+pct(x.over)),
       formatLines(r.awayTotals,x=>'ТБ '+x.line+': '+pct(x.over)),
