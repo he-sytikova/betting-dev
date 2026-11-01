@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reviewedAt": "2026-11-01",
-  "policy": "A source may be used for model training only after its current terms, upstream rights, attribution requirements, storage, and redistribution restrictions have been reviewed and explicitly approved.",
+  "policy": "A source may be used for model training only after its current terms, upstream rights, attribution requirements, storage, and redistribution restrictions have been reviewed and explicitly approved. Keep similarly named providers distinct: FB_DATA is football-data.org; FOOTBALL_DATA_CO_UK is football-data.co.uk.",
   "sources": [
     {
       "id": "BSD",
@@ -21,7 +21,7 @@
       ],
       "trainingUse": "terms_not_found",
       "termsUrl": "https://api.sstats.net/docs/",
-      "notes": "Official API documentation describes football match data and request limits (including 300 requests/minute globally or 30/minute per IP without an API key), but no public license or terms were located that grant historical retention, dataset construction or model training. Obtain written permission or published terms before any training use."
+      "notes": "Official API documentation describes football match data and request limits (300 requests/minute globally or 30/minute per IP without an API key), but no public license or terms were located that grant historical retention, dataset construction or model training. Obtain written permission or published terms before any training use."
     },
     {
       "id": "Euro365",
@@ -41,7 +41,27 @@
       ],
       "trainingUse": "not_explicitly_granted",
       "termsUrl": "https://www.football-data.org/about",
-      "notes": "Published General Terms (last updated 2018-06-01) require one application/domain and visible attribution, and restrict referencing football data on the user's site/service after subscription cancellation; cancellation also deletes stored/indexed account data. No express grant for historical dataset retention or ML training was found. Obtain written clarification before training use."
+      "notes": "This id refers to football-data.org API, not football-data.co.uk. Published General Terms (last updated 2018-06-01) require one application/domain and visible attribution, and restrict referencing football data on the user's site/service after subscription cancellation; cancellation also deletes stored/indexed account data. No express grant for historical dataset retention or ML training was found. Obtain written clarification before training use."
+    },
+    {
+      "id": "FOOTBALL_DATA_CO_UK",
+      "purpose": [
+        "historical_match_results",
+        "historical_corners",
+        "historical_yellow_cards"
+      ],
+      "trainingUse": "not_permitted_for_current_automated_training_pipeline",
+      "termsUrl": "https://www.football-data.co.uk/contact.php",
+      "notes": "This is the actual source used by scripts/predictions/build-dataset.py for the corners/cards historical CSV dataset (football-data.co.uk/mmz4281). The provider's current Fair Data Usage Policy says free files are intended for private individuals for personal betting and/or academic research via manual or at most light downloads (maximum twice weekly), and are NOT intended for commercial or data-training projects using heavy repeated automated downloads. It says permission requests of this type should assume no permission is granted. Do not run automated downloads or train on this source in the current pipeline."
+    },
+    {
+      "id": "OPEN_MATCHDAY",
+      "purpose": [
+        "candidate_current_season_history"
+      ],
+      "trainingUse": "not_explicitly_granted",
+      "termsUrl": "https://github.com/oladeeayo/open-matchday",
+      "notes": "The repository allows informational non-commercial use with attribution, but explicitly says upstream provider rights remain with each provider. Its statistics are uneven and the README attributes shots/fouls/cards/corners in about 19% of result rows to football-data.co.uk; therefore rows with those upstream rights cannot be assumed usable for training. It is a candidate only after per-row provenance and each upstream license are checked; it is not part of the current historical training CSV."
     }
   ]
 }
