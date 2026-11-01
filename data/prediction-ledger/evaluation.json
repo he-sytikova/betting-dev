@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-01T21:32:55.565149Z",
+  "generatedAt": "2026-11-01T22:17:20.024393Z",
   "source": "football-data.co.uk historical CSVs",
   "sourceFiles": 262,
   "ledgerFiles": 1,
-  "ledgerRecords": 1,
+  "ledgerRecords": 3,
   "matchedFixtures": 0,
   "unmatchedFixtures": [
     {
@@ -11,6 +11,18 @@
       "date": "2026-11-01",
       "home": "Juventus",
       "away": "Napoli"
+    },
+    {
+      "model": "corners-cards",
+      "date": "2026-11-02",
+      "home": "Sassuolo",
+      "away": "Fiorentina"
+    },
+    {
+      "model": "corners-cards",
+      "date": "2026-11-02",
+      "home": "Atalanta",
+      "away": "Parma"
     }
   ],
   "metrics": {},
