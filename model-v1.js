@@ -381,7 +381,7 @@ async function load() {
         .sort((a,b)=>b[1]-a[1]).map(([reason,count])=>count+' — '+reason);
       const samples = modelDiagnostics.excludedSamples.map(x =>
         x.time+' | '+x.league+' | '+x.home+' — '+x.away+' | '+x.reason);
-      diagnostics.textContent = [...reasons,'',...samples].join('\\n') || 'Исключённых матчей нет.';
+      diagnostics.textContent = [...reasons,'',...samples].join('\n') || 'Исключённых матчей нет.';
     }
     render();
   } catch (e) {
