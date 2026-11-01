@@ -89,8 +89,7 @@ def main():
    r={"date":day.isoformat(),"season":m["season"],"league":league,"home_team":m["home"],"away_team":m["away"],
       "home_matches_before":len(histories[hk]["matches"]),"away_matches_before":len(histories[ak]["matches"]),
       "league_matches_before":len(league_hist[(league,"matches")]),"home_advantage":1,
-      "referee_available":int(bool(m["referee"])),"referee_matches_before":len(refs[(league,m["referee"])]) if m["referee"] else 0,
-      "corners_model_eligible":int(league in CORNERS),"cards_model_eligible":int(league in CARDS)}
+      "referee_available":int(bool(m["referee"])),"referee_matches_before":len(refs[(league,m["referee"])]) if m["referee"] else 0}
    for g,p in PREFIX.items():
     r.update({"home_"+k:v for k,v in features(histories[hk][g],p).items()})
     r.update({"away_"+k:v for k,v in features(histories[ak][g],p).items()})
@@ -104,6 +103,9 @@ def main():
    r["target_home_yellow"],r["target_away_yellow"]=m["cards_h"],m["cards_a"]
    r["corners_available"]=int(m["corners_h"] is not None and m["corners_a"] is not None)
    r["cards_available"]=int(m["cards_h"] is not None and m["cards_a"] is not None)
+   # A row is trainable only when both sides of the target are present.
+   r["corners_model_eligible"]=int(league in CORNERS and r["corners_available"] == 1)
+   r["cards_model_eligible"]=int(league in CARDS and r["cards_available"] == 1)
    r["corners_total"]=m["corners_h"]+m["corners_a"] if r["corners_available"] else ""
    r["cards_total"]=m["cards_h"]+m["cards_a"] if r["cards_available"] else ""
    out.append(r);pending.append(m)
@@ -129,10 +131,19 @@ def main():
  for c,n in LEAGUES.items():
   rs=[r for r in out if r["league"]==c]
   by[c]={"name":n,"rows":len(rs),"cornersRows":sum(r["corners_available"] for r in rs),
-   "cardsRows":sum(r["cards_available"] for r in rs),"cornersEligible":c in CORNERS,"cardsEligible":c in CARDS,
+   "cardsRows":sum(r["cards_available"] for r in rs),
+   "cornersEligible":c in CORNERS,"cardsEligible":c in CARDS,
+   "cornersEligibleRows":sum(r["corners_model_eligible"] for r in rs),
+   "cardsEligibleRows":sum(r["cards_model_eligible"] for r in rs),
+   "cornersCoveragePct":round(100*sum(r["corners_available"] for r in rs)/len(rs),2) if rs else 0,
+   "cardsCoveragePct":round(100*sum(r["cards_available"] for r in rs)/len(rs),2) if rs else 0,
    "from":min((r["date"] for r in rs),default=None),"through":max((r["date"] for r in rs),default=None)}
  report={"generatedAt":datetime.utcnow().isoformat()+"Z","sourceFiles":len(files),"rows":len(out),
   "invalidRows":invalid,"duplicatesRemoved":duplicates,"leagues":by,"files":errors,"output":str(OUT),
+  "cornersAvailableRows":sum(r["corners_available"] for r in out),
+  "cardsAvailableRows":sum(r["cards_available"] for r in out),
+  "cornersEligibleRows":sum(r["corners_model_eligible"] for r in out),
+  "cardsEligibleRows":sum(r["cards_model_eligible"] for r in out),
   "note":"Features use strictly prior match dates; all matches on a given date are added to histories only after that date is processed."}
  REPORT.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
  print(json.dumps({"rows":len(out),"sourceFiles":len(files),"duplicatesRemoved":duplicates,"report":str(REPORT)},indent=2))
