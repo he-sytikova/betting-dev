@@ -18,14 +18,14 @@ class RuntimeModelExportTests(unittest.TestCase):
     def test_runtime_state_uses_latest_pre_match_team_features(self):
         rows = [
             {
-                "date": "2024-01-01", "league": "E0", "home": "Alpha FC", "away": "Beta",
+                "date": "2024-01-01", "league": "E0", "home_team": "Alpha FC", "away_team": "Beta",
                 "home_matches_before": 4, "away_matches_before": 5, "league_matches_before": 99,
                 "home_team_for_avg5": 3.0, "away_team_for_avg5": 4.0,
                 "league_corners_avg": 9.2, "league_cards_avg": 3.1,
                 "league_goals_avg": 2.4, "league_fouls_avg": 21.0,
             },
             {
-                "date": "2024-01-10", "league": "E0", "home": "Alpha FC", "away": "Gamma",
+                "date": "2024-01-10", "league": "E0", "home_team": "Alpha FC", "away_team": "Gamma",
                 "home_matches_before": 5, "away_matches_before": 2, "league_matches_before": 100,
                 "home_team_for_avg5": 4.2, "away_team_for_avg5": 2.0,
                 "league_corners_avg": 9.4, "league_cards_avg": 3.2,
