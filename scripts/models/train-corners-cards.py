@@ -69,13 +69,13 @@ def estimate_alpha(y, mu):
     return float(np.clip(raw, 0.005, 2.0))
 
 
-def make_pipeline(numeric):
+def make_pipeline(numeric, alpha=0.15):
     prep = ColumnTransformer([
         ("num", Pipeline([("impute", SimpleImputer(strategy="median", add_indicator=True)),
                           ("scale", StandardScaler())]), numeric),
         ("league", OneHotEncoder(handle_unknown="ignore"), ["league"]),
     ])
-    return Pipeline([("prep", prep), ("model", PoissonRegressor(alpha=0.15, max_iter=500, tol=1e-7))])
+    return Pipeline([("prep", prep), ("model", PoissonRegressor(alpha=alpha, max_iter=500, tol=1e-7))])
 
 
 def score(y, mean, lines, distribution="poisson", alpha=None):
@@ -126,6 +126,38 @@ def main():
         model = make_pipeline(numeric).fit(x_train, y_train)
         p_valid = np.clip(model.predict(x_valid), 0.01, None)
         p_test = np.clip(model.predict(x_test), 0.01, None)
+
+        # Tune regularization and a small, predeclared feature ablation on validation only.
+        # The final test period is never consulted when selecting a candidate.
+        referee_features = {"referee_available", "referee_matches_before", "referee_yellows_avg10", "referee_fouls_avg10"}
+        candidate_sets = {
+            "full": numeric,
+            "without_referee": [c for c in numeric if c not in referee_features],
+        }
+        tuning = []
+        best = None
+        for feature_set, candidate_features in candidate_sets.items():
+            for regularization in (0.03, 0.15, 0.5, 1.5):
+                candidate = make_pipeline(candidate_features, alpha=regularization)
+                candidate.fit(train[candidate_features + ["league"]], y_train)
+                candidate_prediction = np.clip(candidate.predict(valid[candidate_features + ["league"]]), 0.01, None)
+                candidate_metrics = score(y_valid, candidate_prediction, lines)
+                item = {"featureSet": feature_set, "alpha": regularization,
+                        "validationMae": candidate_metrics["mae"],
+                        "validationPoissonDeviance": candidate_metrics["poissonDeviance"],
+                        "validationMeanBrier": float(np.mean([x["brier"] for x in candidate_metrics["lines"]])),
+                        "validationMeanLogLoss": float(np.mean([x["logLoss"] for x in candidate_metrics["lines"]]))}
+                tuning.append(item)
+                if best is None or item["validationPoissonDeviance"] < best["validationPoissonDeviance"]:
+                    best = {**item, "model": candidate, "features": candidate_features}
+        tuned_model = best["model"]
+        tuned_valid = np.clip(tuned_model.predict(valid[best["features"] + ["league"]]), 0.01, None)
+        tuned_test = np.clip(tuned_model.predict(test[best["features"] + ["league"]]), 0.01, None)
+        tuned_test_by_league = {}
+        for league_code, group in test.assign(_league=test["league"].astype(str)).groupby("_league"):
+            ix = test.index.get_indexer(group.index)
+            tuned_test_by_league[league_code] = score(group[target].to_numpy(float), tuned_test[ix], lines)
+
         prep = model.named_steps["prep"]
         z_train = sm.add_constant(np.asarray(prep.transform(x_train)), has_constant="add")
         z_valid = sm.add_constant(np.asarray(prep.transform(x_valid)), has_constant="add")
@@ -155,6 +187,15 @@ def main():
                 "negativeBinomial": score(y_test, nb_test, lines, "nb", alpha),
             },
             "negativeBinomialAlpha": alpha,
+            "poissonTuning": {
+                "selectionMetric": "validation Poisson deviance (lower is better)",
+                "candidates": tuning,
+                "selected": {k: v for k, v in best.items() if k != "model" and k != "features"},
+                "selectedValidation": score(y_valid, tuned_valid, lines),
+                "selectedTest": score(y_test, tuned_test, lines),
+                "selectedTestByLeague": tuned_test_by_league,
+            },
+            "testByLeague": {},
             "testBySeason": {},
             "notes": [
                 "Chronological split; no random shuffling.",
@@ -163,6 +204,14 @@ def main():
                 "Netherlands Eredivisie excluded due to 34.75% target coverage.",
             ],
         }
+        for league_code, group in test.assign(_league=test["league"].astype(str)).groupby("_league"):
+            positions = test.index.get_indexer(group.index)
+            reports[market]["testByLeague"][league_code] = {
+                "rows": int(len(group)),
+                "leagueRollingMeanBaseline": score(group[target].to_numpy(float), base_test[positions], lines),
+                "poissonRegression": score(group[target].to_numpy(float), p_test[positions], lines),
+                "negativeBinomial": score(group[target].to_numpy(float), nb_test[positions], lines, "nb", alpha),
+            }
         for season, group in test.assign(_season=test["season"].astype(str)).groupby("_season"):
             positions = test.index.get_indexer(group.index)
             reports[market]["testBySeason"][season] = {
