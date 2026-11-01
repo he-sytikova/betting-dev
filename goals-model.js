@@ -4,6 +4,7 @@ const $ = (id) => document.getElementById(id);
 let rows = [];
 let modelConfig = null;
 let report = null;
+let fixtureDiagnostics = {excluded:0,duplicates:0};
 
 function normalize(value) {
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -110,9 +111,7 @@ function resolveLeague(name, config) {
     if (normalize(alias) === n) candidates.add(code);
   }
   if (candidates.size !== 1) return null;
-  const code = candidates.values().next().value;
-  if (!config.teams?.[code] || !config.leagueStats?.[code]) return null;
-  return code;
+  return candidates.values().next().value;
 }
 function findTeamMatch(leagueTeams, name) {
   if (!leagueTeams || !name) return null;
@@ -197,7 +196,7 @@ function predictFixture(fixture,config) {
   const leagueCode=resolveLeague(fixture.league,config);
   if(!leagueCode) return {skip:'Лига не распознана однозначно или нет полной истории'};
   const teams=config.teams?.[leagueCode];
-  if(!teams) return {skip:'Нет командной истории для лиги'};
+  if(!teams) return {skip:'Нет исторической базы команд лиги'};
   const homeMatch=findTeamMatch(teams,fixture.home);
   const awayMatch=findTeamMatch(teams,fixture.away);
   if(!homeMatch) return {skip:'Домашняя команда не сопоставлена однозначно'};
@@ -283,7 +282,7 @@ function render() {
     highlightProbabilityCells(tr);
     body.appendChild(tr);
   }
-  $('markets-count').textContent='Матчей с расчётом: '+visible.length+' из '+rows.length;
+  $('markets-count').textContent='Прогнозы: '+visible.length+' из '+rows.length+' уникальных матчей · исключено: '+fixtureDiagnostics.excluded+' · дубликатов источников: '+fixtureDiagnostics.duplicates;
   $('markets-empty').classList.toggle('hidden',visible.length>0);
 }
 async function load() {
@@ -314,6 +313,7 @@ async function load() {
       matchedFixtures.set(key,result);
     }
     rows=Array.from(matchedFixtures.values());
+    fixtureDiagnostics={excluded:excluded.length,duplicates};
     const reasonCounts=excluded.reduce((acc,item)=>{acc[item.reason]=(acc[item.reason]||0)+1;return acc;},{});
     $('markets-date').textContent='Расписание: '+(data.date||'—')+' · модель: '+(modelConfig.generatedAt||'—')+' · обучение по '+(modelConfig.trainingThrough||'—');
     $('markets-count').textContent='Прогнозы: '+rows.length+' уникальных матчей · исключено: '+excluded.length+' · дубликатов источников: '+duplicates;
