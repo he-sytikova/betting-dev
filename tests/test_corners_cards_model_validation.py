@@ -28,6 +28,28 @@ class ModelValidationTests(unittest.TestCase):
         self.assertLess(loss, 0.2)
         self.assertLess(brier, 0.01)
 
+
+    def test_reliability_bins_report_counts_and_observed_frequency(self):
+        bins = MODEL.reliability_bins(
+            [0, 1, 1, 0, 1],
+            [0.05, 0.12, 0.18, 0.42, 0.99],
+            threshold=0,
+        )
+        self.assertEqual(sum(item["count"] for item in bins), 5)
+        low = next(item for item in bins if item["bin"] == "0.0-0.1")
+        self.assertEqual(low["count"], 1)
+        self.assertEqual(low["observedFrequency"], 0.0)
+        middle = next(item for item in bins if item["bin"] == "0.1-0.2")
+        self.assertEqual(middle["count"], 2)
+        self.assertEqual(middle["observedFrequency"], 1.0)
+        self.assertAlmostEqual(low["calibrationGap"], -low["meanPredicted"])
+
+    def test_reliability_bins_include_probability_one(self):
+        bins = MODEL.reliability_bins([1], [1.0], threshold=0)
+        self.assertEqual(len(bins), 1)
+        self.assertEqual(bins[0]["count"], 1)
+        self.assertEqual(bins[0]["observedFrequency"], 1.0)
+
     def test_negative_binomial_dispersion_is_bounded_and_positive(self):
         alpha = MODEL.estimate_alpha([0, 2, 4, 8], [1, 2, 3, 4])
         self.assertGreaterEqual(alpha, 0.005)
