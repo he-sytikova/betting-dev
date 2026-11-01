@@ -159,7 +159,8 @@ def main():
     template = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.exists() else {}
     models = {}
     for market, (target, eligible, lines) in MARKETS.items():
-        selected = report["markets"][market]["poissonTuning"]["selected"]
+        report_market = "corners" if market == "corners" else "cards"
+        selected = report["markets"][report_market]["poissonTuning"]["selected"]
         models[market] = export_model(df, market, target, eligible, lines, selected)
     teams, league_stats, aliases, names = build_runtime_state(df, template)
     payload = {
