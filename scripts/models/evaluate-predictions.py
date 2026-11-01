@@ -2,7 +2,8 @@
 """Evaluate archived internal forecasts against completed football-data.co.uk results."""
 import csv, json, math, re
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -25,7 +26,10 @@ def parse_date(s):
   except ValueError:pass
  return ""
 def parse_kickoff(s):
- try:return datetime.fromisoformat(s.replace("Z","+00:00")).date().isoformat()
+ try:
+  dt=datetime.fromisoformat(s.replace("Z","+00:00"))
+  if dt.tzinfo is None:dt=dt.replace(tzinfo=timezone.utc)
+  return dt.astimezone(ZoneInfo("Europe/Moscow")).date().isoformat()
  except Exception:return ""
 def avg(xs):return sum(xs)/len(xs) if xs else None
 def safe_log(p):return -math.log(max(1e-6,min(1-1e-6,p)))
@@ -99,7 +103,7 @@ def main():
  for market,items in metrics.items():
   for league in sorted(set(x["league"] for x in items)):
    by_league.setdefault(market,{})[league]=summarize([x for x in items if x["league"]==league])
- report={"generatedAt":datetime.utcnow().isoformat()+"Z","source":"football-data.co.uk historical CSVs","sourceFiles":len(files),"ledgerFiles":len(list(LEDGER.glob("*.jsonl"))),"ledgerRecords":ledger_count,"matchedFixtures":matched,"unmatchedFixtures":unmatched,"metrics":{k:summarize(v) for k,v in metrics.items()},"byLeague":by_league,"evaluated":evaluated,"limitations":"Evaluation is available only where a completed fixture matches the archived prediction and the historical CSV includes the relevant market statistics. It is an offline monitoring sample, not evidence of profitability."}
+ report={"generatedAt":datetime.now(timezone.utc).isoformat().replace("+00:00","Z"),"source":"football-data.co.uk historical CSVs","sourceFiles":len(files),"ledgerFiles":len(list(LEDGER.glob("*.jsonl"))),"ledgerRecords":ledger_count,"matchedFixtures":matched,"unmatchedFixtures":unmatched,"metrics":{k:summarize(v) for k,v in metrics.items()},"byLeague":by_league,"evaluated":evaluated,"limitations":"Evaluation is available only where a completed fixture matches the archived prediction and the historical CSV includes the relevant market statistics. It is an offline monitoring sample, not evidence of profitability."}
  (LEDGER/"evaluation.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
  print(json.dumps({"ledgerRecords":ledger_count,"matchedFixtures":matched,"metrics":report["metrics"],"unmatched":len(unmatched),"sourceFiles":len(files)},ensure_ascii=False))
 if __name__=="__main__":main()
