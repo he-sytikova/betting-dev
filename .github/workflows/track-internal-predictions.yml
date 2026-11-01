@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "scripts/models/capture-predictions.mjs"
+      - "scripts/models/evaluate-predictions.mjs"
       - ".github/workflows/track-internal-predictions.yml"
   schedule:
     - cron: "*/15 * * * *"
@@ -15,16 +16,17 @@ permissions:
 
 concurrency:
   group: internal-model-prediction-ledger
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   snapshot:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -35,14 +37,22 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Capture pre-match internal model forecasts
         run: node scripts/models/capture-predictions.mjs
-      - name: Commit prediction ledger
+      - name: Evaluate forecasts against completed results
+        run: node scripts/models/evaluate-predictions.mjs
+      - name: Commit prediction ledger and evaluation
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/prediction-ledger/
           if git diff --cached --quiet; then
-            echo "No new forecast records."
-          else
-            git commit -m "chore: archive internal model predictions"
-            git push
+            echo "No new forecast or evaluation changes."
+            exit 0
           fi
+          git commit -m "chore: update internal prediction ledger"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          echo "Push failed after three rebase attempts."
+          exit 1
