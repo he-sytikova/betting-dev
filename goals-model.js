@@ -255,8 +255,10 @@ function render() {
       formatLines(r.ah,x=>(x.line>0?'+':'')+x.line+'\nВыигрыш '+pct(x.win)+' · Возврат '+pct(x.push)+'\nПроигрыш '+pct(x.lose)),
       formatLines(r.awayAh,x=>(x.line>0?'+':'')+x.line+'\nВыигрыш '+pct(x.win)+' · Возврат '+pct(x.push)+'\nПроигрыш '+pct(x.lose))
     ];
+    // Asian handicap probabilities remain calculated in r.ah/r.awayAh, but are hidden from this table.
+    cells.length = 10;
     for(let i=0;i<cells.length;i++){
-      const td=document.createElement('td'); td.textContent=cells[i]; if(i>=3) td.className='probability-cell'; if(i>=10) td.classList.add('handicap-cell'); tr.appendChild(td);
+      const td=document.createElement('td'); td.textContent=cells[i]; if(i>=3) td.className='probability-cell'; tr.appendChild(td);
     }
     highlightProbabilityCells(tr);
     body.appendChild(tr);
