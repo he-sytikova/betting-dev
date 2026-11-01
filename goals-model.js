@@ -7,7 +7,7 @@ let report = null;
 
 function normalize(value) {
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toLocaleLowerCase('ru').replace(/\b(fc|afc|cf|sc|sv|fk|sk|club|the)\b/g, ' ')
+    .toLocaleLowerCase('ru').replace(/ı/g, 'i').replace(/\b(fc|afc|cf|sc|sv|fk|sk|club|the)\b/g, ' ')
     .replace(/[^\p{L}\p{N}]+/gu, ' ').trim().replace(/\s+/g, ' ');
 }
 const TEAM_ALIASES = {
@@ -99,19 +99,32 @@ const LEAGUE_ALIASES = {
 };
 function resolveLeague(name, config) {
   const n = normalize(name);
-  const aliases = new Map(Object.entries(config.leagueAliases || {}).map(([k,v]) => [normalize(k),v]));
-  for (const [code, title] of Object.entries(config.leagueNames || {})) aliases.set(normalize(title), code);
-  for (const [alias, code] of Object.entries(LEAGUE_ALIASES)) if (!aliases.has(normalize(alias))) aliases.set(normalize(alias),code);
-  return aliases.get(n) || null;
+  const candidates = new Set();
+  for (const [alias, code] of Object.entries(config.leagueAliases || {})) {
+    if (normalize(alias) === n) candidates.add(code);
+  }
+  for (const [code, title] of Object.entries(config.leagueNames || {})) {
+    if (normalize(title) === n) candidates.add(code);
+  }
+  for (const [alias, code] of Object.entries(LEAGUE_ALIASES)) {
+    if (normalize(alias) === n) candidates.add(code);
+  }
+  if (candidates.size !== 1) return null;
+  const code = candidates.values().next().value;
+  if (!config.teams?.[code] || !config.leagueStats?.[code]) return null;
+  return code;
 }
-function findTeam(leagueTeams, name) {
+function findTeamMatch(leagueTeams, name) {
   if (!leagueTeams || !name) return null;
   const n = normalize(name);
   const target = TEAM_ALIASES[n] || n;
   const matches = Object.entries(leagueTeams).filter(([key,team]) =>
     normalize(key) === target || normalize(team?.name) === target
   );
-  return matches.length === 1 ? matches[0][1] : null;
+  return matches.length === 1 ? {key:matches[0][0],team:matches[0][1]} : null;
+}
+function findTeam(leagueTeams, name) {
+  return findTeamMatch(leagueTeams, name)?.team || null;
 }
 function predictMean(model, features) {
   if (!model || model.type !== 'poisson') throw new Error('Неподдерживаемый тип модели.');
@@ -182,11 +195,15 @@ function buildFeatures(home,away,league) {
 }
 function predictFixture(fixture,config) {
   const leagueCode=resolveLeague(fixture.league,config);
-  if(!leagueCode) return {skip:'Лига не найдена в исторической базе'};
+  if(!leagueCode) return {skip:'Лига не распознана однозначно или нет полной истории'};
   const teams=config.teams?.[leagueCode];
-  const home=findTeam(teams,fixture.home), away=findTeam(teams,fixture.away);
-  if(!home || !away) return {skip:'Одна или обе команды не сопоставлены'};
-  const league=config.leagueStats?.[leagueCode] || config.leagueStats?.[config.leagueNames?.[leagueCode]];
+  if(!teams) return {skip:'Нет командной истории для лиги'};
+  const homeMatch=findTeamMatch(teams,fixture.home);
+  const awayMatch=findTeamMatch(teams,fixture.away);
+  if(!homeMatch) return {skip:'Домашняя команда не сопоставлена однозначно'};
+  if(!awayMatch) return {skip:'Гостевая команда не сопоставлена однозначно'};
+  const home=homeMatch.team, away=awayMatch.team;
+  const league=config.leagueStats?.[leagueCode];
   if(!league) return {skip:'Нет статистики лиги'};
   const features=buildFeatures(home,away,league);
   const homeMean=predictMean(config.models.homeGoals,features);
@@ -201,7 +218,7 @@ function predictFixture(fixture,config) {
   const ah=ahLines.map(line=>({line,...asianOutcome(dist,line)}));
   const awayAh=ahLines.map(line=>({line,...asianOutcome(dist,-line)}));
   return {
-    fixture,leagueCode,homeMean,awayMean,
+    fixture,leagueCode,homeTeamKey:homeMatch.key,awayTeamKey:awayMatch.key,homeMean,awayMean,
     outcome:{home:dist.home,draw:dist.draw,away:dist.away},
     doubleChance:{homeDraw:dist.home+dist.draw,drawAway:dist.draw+dist.away,homeAway:dist.home+dist.away},
     dnb:{home:dist.home/(dist.home+dist.away),away:dist.away/(dist.home+dist.away),refund:dist.draw},
@@ -286,19 +303,26 @@ async function load() {
     const now=Date.now(), rawFixtures=(Array.isArray(data.predictions)?data.predictions:[])
       .filter(x=>Number.isFinite(Date.parse(x.time)) && Date.parse(x.time)>now)
       .sort((a,b)=>Date.parse(a.time)-Date.parse(b.time));
-    const fixtureMap=new Map();
+    const matchedFixtures=new Map();
+    const excluded=[];
+    let duplicates=0;
     for(const fixture of rawFixtures){
-      const leagueKey=resolveLeague(fixture.league,modelConfig)||normalize(fixture.league);
-      const homeKey=TEAM_ALIASES[normalize(fixture.home)]||normalize(fixture.home);
-      const awayKey=TEAM_ALIASES[normalize(fixture.away)]||normalize(fixture.away);
-      const key=[Date.parse(fixture.time),leagueKey,homeKey,awayKey].join('|');
-      if(!fixtureMap.has(key)) fixtureMap.set(key,fixture);
+      const result=predictFixture(fixture,modelConfig);
+      if(result.skip){excluded.push({fixture,reason:result.skip});continue;}
+      const key=[Date.parse(fixture.time),result.leagueCode,result.homeTeamKey,result.awayTeamKey].join('|');
+      if(matchedFixtures.has(key)){duplicates++;continue;}
+      matchedFixtures.set(key,result);
     }
-    const fixtures=Array.from(fixtureMap.values());
-    let unmatched=0;
-    rows=fixtures.map(f=>predictFixture(f,modelConfig)).filter(r=>{if(r.skip){unmatched++;return false;}return true;});
+    rows=Array.from(matchedFixtures.values());
+    const reasonCounts=excluded.reduce((acc,item)=>{acc[item.reason]=(acc[item.reason]||0)+1;return acc;},{});
     $('markets-date').textContent='Расписание: '+(data.date||'—')+' · модель: '+(modelConfig.generatedAt||'—')+' · обучение по '+(modelConfig.trainingThrough||'—');
-    $('markets-count').textContent='Сопоставлено '+rows.length+' из '+fixtures.length+' уникальных будущих матчей; пропущено без полной истории: '+unmatched;
+    $('markets-count').textContent='Прогнозы: '+rows.length+' уникальных матчей · исключено: '+excluded.length+' · дубликатов источников: '+duplicates;
+    const diagnostics=$('markets-diagnostics');
+    if(diagnostics){
+      const summary=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]).map(([reason,count])=>count+' — '+reason);
+      const samples=excluded.slice(0,100).map(x=>x.fixture.time+' | '+x.fixture.league+' | '+x.fixture.home+' — '+x.fixture.away+' | '+x.reason);
+      diagnostics.textContent=[...summary,'',...samples].join('\\n') || 'Исключённых матчей нет.';
+    }
     $('model-status').textContent='Статус: '+modelConfig.status+' · '+modelConfig.trainingRows+' исторических матчей';
     if(report?.markets){
       const h=report.markets.homeGoals,a=report.markets.awayGoals;
@@ -325,4 +349,4 @@ if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded
   $('refresh-btn').addEventListener('click',load);
   load();
 });
-if(typeof module!=='undefined' && module.exports) module.exports={normalize,resolveLeague,findTeam,predictMean,poissonPmf,scoreDistribution,jointTotalOver,totalOver,asianOutcome,buildFeatures,predictFixture};
+if(typeof module!=='undefined' && module.exports) module.exports={normalize,resolveLeague,findTeam,findTeamMatch,predictMean,poissonPmf,scoreDistribution,jointTotalOver,totalOver,asianOutcome,buildFeatures,predictFixture};
