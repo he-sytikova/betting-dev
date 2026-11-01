@@ -18,6 +18,8 @@ jobs:
           python-version: "3.12"
       - name: Validate builder syntax
         run: python -m py_compile scripts/models/build-historical-dataset.py
+      - name: Run dataset builder unit tests
+        run: python -m unittest discover -s tests -p "test_historical_dataset_builder.py" -v
       - name: Build dataset from local CSV files
         run: python scripts/models/build-historical-dataset.py
       - name: Upload dataset and coverage report
