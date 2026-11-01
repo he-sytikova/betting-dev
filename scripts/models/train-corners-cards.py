@@ -123,6 +123,7 @@ def main():
         numeric = feature_columns(df.columns, market)
         x_train, x_valid, x_test = train[numeric + ["league"]], valid[numeric + ["league"]], test[numeric + ["league"]]
         y_train, y_valid, y_test = (part[target].to_numpy(float) for part in (train, valid, test))
+        lines = LINES[market]
         model = make_pipeline(numeric).fit(x_train, y_train)
         p_valid = np.clip(model.predict(x_valid), 0.01, None)
         p_test = np.clip(model.predict(x_test), 0.01, None)
@@ -168,7 +169,6 @@ def main():
         nb_test = np.clip(nb.predict(z_test), 0.01, None)
         base_valid = pd.to_numeric(valid[league_avg], errors="coerce").fillna(float(np.mean(y_train))).clip(lower=0.01).to_numpy()
         base_test = pd.to_numeric(test[league_avg], errors="coerce").fillna(float(np.mean(y_train))).clip(lower=0.01).to_numpy()
-        lines = LINES[market]
         reports[market] = {
             "eligibleRows": int(len(sub)), "trainRows": int(len(train)),
             "validationRows": int(len(valid)), "testRows": int(len(test)),
