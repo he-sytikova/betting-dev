@@ -6,7 +6,7 @@ on:
     branches: [main]
     paths:
       - "scripts/models/capture-predictions.mjs"
-      - "scripts/models/evaluate-predictions.mjs"
+      - "scripts/models/evaluate-predictions.mjs"\n      - "scripts/models/evaluate-predictions.py"
       - ".github/workflows/track-internal-predictions.yml"
   schedule:
     - cron: "*/15 * * * *"
