@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "version": "hybrid-distribution-v1",
+  "generatedAt": "2026-10-31",
+  "validationReport": "data/corners_cards_probability_report.json",
+  "validationDatasetRows": 42851,
+  "validationMatchesPerMarket": 11825,
+  "alphaMethod": "Arithmetic mean of the three expanding-window training-fold dispersion estimates; same feature-model mean is used for Poisson and NB2, matching the paired validation design.",
+  "markets": {
+    "corners": {
+      "alpha": 0.0148932,
+      "lines": {
+        "7.5": "negativeBinomial",
+        "8.5": "negativeBinomial",
+        "9.5": "negativeBinomial",
+        "10.5": "poisson",
+        "11.5": "poisson",
+        "12.5": "poisson"
+      }
+    },
+    "yellowCards": {
+      "alpha": 0.00790825,
+      "lines": {
+        "0.5": "negativeBinomial",
+        "1.5": "poisson",
+        "2.5": "poisson",
+        "3.5": "poisson",
+        "4.5": "negativeBinomial",
+        "5.5": "negativeBinomial"
+      }
+    }
+  },
+  "notes": [
+    "Distribution selection is line-specific and based on Holm-adjusted paired walk-forward tests.",
+    "For lines without a statistically clear NB2 advantage, Poisson is retained as the simpler distribution.",
+    "NB2 dispersion alpha is the arithmetic mean of the three training-fold estimates; it is a fixed v1 deployment approximation, not a newly fitted full-sample alpha.",
+    "Research validation is not an ROI or profitability test."
+  ]
+}
