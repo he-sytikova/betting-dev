@@ -2,6 +2,11 @@ name: Download historical football CSVs
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/models/download-football-data-csvs.py"
+      - ".github/workflows/download-historical-csvs.yml"
   schedule:
     - cron: "17 5 * * 1"
 
