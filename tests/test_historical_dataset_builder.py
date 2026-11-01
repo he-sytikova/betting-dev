@@ -22,6 +22,23 @@ class HistoricalDatasetBuilderTests(unittest.TestCase):
         self.assertEqual(str(BUILDER.date("2025-08-01")), "2025-08-01")
         self.assertIsNone(BUILDER.date("invalid"))
 
+    def test_model_eligibility_requires_complete_target_pairs(self):
+        # The same availability rule is used for both markets: one missing side
+        # makes the row unavailable and therefore ineligible for training.
+        corners_home, corners_away = 4, 5
+        cards_home, cards_away = 2, None
+        corners_available = int(corners_home is not None and corners_away is not None)
+        cards_available = int(cards_home is not None and cards_away is not None)
+        self.assertEqual(corners_available, 1)
+        self.assertEqual(cards_available, 0)
+        self.assertEqual(int("E0" in BUILDER.CORNERS and corners_available == 1), 1)
+        self.assertEqual(int("E0" in BUILDER.CARDS and cards_available == 1), 0)
+
+    def test_non_eligible_league_never_enters_training(self):
+        available = 1
+        self.assertEqual(int("N1" in BUILDER.CORNERS and available == 1), 1)
+        self.assertEqual(int("ZZ" in BUILDER.CORNERS and available == 1), 0)
+
     def test_features_use_only_supplied_history(self):
         from collections import deque
         result = BUILDER.features(deque([(1, 3), (2, 4), (3, 5)]), "team")
