@@ -130,7 +130,8 @@ def build_runtime_state(df, template):
         }
         for _, row in group.iterrows():
             for side in ("home", "away"):
-                team_name = str(row.get(side, "")).strip()
+                team_column = "home_team" if side == "home" else "away_team"
+                team_name = str(row.get(team_column, "")).strip()
                 if not team_name:
                     continue
                 stats = {}
