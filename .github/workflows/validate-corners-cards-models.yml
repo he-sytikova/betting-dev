@@ -7,6 +7,9 @@ on:
     paths:
       - "scripts/models/build-historical-dataset.py"
       - "scripts/models/train-corners-cards.py"
+      - "scripts/models/export-corners-cards-runtime.py"
+      - "model-v1.js"
+      - "tests/test_runtime_model_export.py"
       - "tests/test_historical_dataset_builder.py"
       - "tests/test_corners_cards_model_validation.py"
       - "requirements-models.txt"
@@ -42,6 +45,10 @@ jobs:
         run: python scripts/models/build-historical-dataset.py
       - name: Train and evaluate experimental count models
         run: python scripts/models/train-corners-cards.py
+      - name: Export runtime models and latest team state
+        run: |
+          python -m py_compile scripts/models/export-corners-cards-runtime.py
+          python scripts/models/export-corners-cards-runtime.py
       - name: Upload validation report
         uses: actions/upload-artifact@v4
         with:
