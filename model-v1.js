@@ -167,7 +167,7 @@ function predictMean(model, featureValues) {
   return Math.max(0.05, Math.min(30, Math.exp(Math.max(-5, Math.min(5, eta)))));
 }
 function formatTotals(mean, market) {
-  const marketConfig = distributionConfig.markets[market];
+  const marketConfig = distributionConfig?.markets?.[market] || {lines:{},alpha:0.01};
   const lines = productionModels.marketLines?.[market] || productionModels.lines;
   return lines.map(line => {
     const distribution = productionModels.schemaVersion >= 2 ? 'poisson' : (marketConfig.lines[String(line)] || 'poisson');
@@ -364,14 +364,19 @@ async function load() {
       try { distributionConfig = await distributionResponse.json(); }
       catch (_) { distributionConfig = null; }
     }
-    if (!productionModels?.models || !productionModels?.teams || !distributionConfig?.markets?.corners || !distributionConfig?.markets?.yellowCards) {
-      throw new Error('Не удалось загрузить конфигурацию гибридного распределения v1.');
+    if (!productionModels?.models || !productionModels?.teams || !productionModels?.leagueNames) {
+      throw new Error('Не удалось загрузить runtime-модель угловых и жёлтых карточек.');
     }
-    for (const market of ['corners', 'yellowCards']) {
-      const policy = distributionConfig.markets[market];
-      if (!Number.isFinite(policy.alpha) || policy.alpha <= 0 ||
-          !policy.lines || Object.values(policy.lines).some(value => !['poisson', 'negativeBinomial'].includes(value))) {
-        throw new Error('Некорректная конфигурация распределения для рынка: ' + market);
+    if (productionModels.schemaVersion < 2) {
+      if (!distributionConfig?.markets?.corners || !distributionConfig?.markets?.yellowCards) {
+        throw new Error('Не удалось загрузить конфигурацию распределения v1.');
+      }
+      for (const market of ['corners', 'yellowCards']) {
+        const policy = distributionConfig.markets[market];
+        if (!Number.isFinite(policy.alpha) || policy.alpha <= 0 ||
+            !policy.lines || Object.values(policy.lines).some(value => !['poisson', 'negativeBinomial'].includes(value))) {
+          throw new Error('Некорректная конфигурация распределения для рынка: ' + market);
+        }
       }
     }
     const now = Date.now();
