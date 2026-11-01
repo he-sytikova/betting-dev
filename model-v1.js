@@ -165,8 +165,8 @@ function formatTotals(mean, market) {
     const over = countOver(mean, line, distribution, marketConfig.alpha);
     if (over === null) return '';
     const label = distribution === 'negativeBinomial' ? 'NB2' : 'Poisson';
-    return 'ТБ ' + line + ': ' + (over * 100).toFixed(1) + '% / ТМ: ' + ((1 - over) * 100).toFixed(1) + '% (' + label + ')';
-  }).join(' · ');
+    return 'ТБ ' + line + ': ' + (over * 100).toFixed(1) + '%\nТМ ' + line + ': ' + ((1 - over) * 100).toFixed(1) + '% (' + label + ')';
+  }).join('\n');
 }
 function makeModelRows(fixtures) {
   if (!productionModels?.models || !productionModels?.teams || !productionModels?.leagueNames) return [];
