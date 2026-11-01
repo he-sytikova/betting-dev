@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Угловые и жёлтые карточки — футбольные прогнозы</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .markets-title { margin: 0 0 8px; }
+    .markets-controls { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; align-items:center; }
+    .markets-controls select, .markets-controls input {
+      padding:8px 10px; border:1px solid var(--border); border-radius:8px;
+      background:var(--surface); color:var(--text); font:inherit;
+    }
+    .markets-note { color:var(--text-muted); font-size:.85rem; margin:8px 0 12px; }
+    .markets-table { min-width:900px; }
+    .markets-table th, .markets-table td { width:auto; }
+    .markets-table th:nth-child(1) { width:10%; }
+    .markets-table th:nth-child(2) { width:13%; }
+    .markets-table th:nth-child(3), .markets-table th:nth-child(4) { width:15%; }
+    .markets-table th:nth-child(5) { width:12%; }
+    .markets-table th:nth-child(6), .markets-table th:nth-child(7) { width:17.5%; }
+    .market-value { white-space:normal; }
+    .markets-back { display:inline-block; margin-bottom:10px; color:var(--accent); text-decoration:none; font-weight:600; }
+    @media (max-width:700px) { .markets-controls select,.markets-controls input { max-width:100%; } }
+  
+    /* Match the main page's probability heatmap and readable table cells. */
+    .markets-table td { background:#fff; color:#000; }
+    .markets-table th { color:#fff; }
+    #refresh-btn { margin-left:auto; padding:6px 14px; background:var(--accent); color:#0f172a; border:0; border-radius:8px; font-weight:600; cursor:pointer; }
+    #refresh-btn:hover { background:var(--accent-hover); }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="markets-title">⚽ Прогнозы: угловые и жёлтые карточки</h1>
+    <p class="subtitle" id="markets-date">Загрузка данных…</p>
+    <div class="status-bar"><div class="source-status"><span id="status-bsd" class="status-badge">BSD: загрузка…</span><span id="status-sstats" class="status-badge">SStats: загрузка…</span><span id="status-euro365" class="status-badge">Euro365: загрузка…</span><span id="status-fbdata" class="status-badge">FB_DATA: загрузка…</span></div><button id="refresh-btn" type="button">Обновить</button></div>
+    <a class="markets-back" href="./">← На главную страницу прогнозов</a>
+    <a class="markets-back" href="./model-v1.html">Открыть внутреннюю модель v1 (Poisson / NB2)</a>
+    <a class="markets-back" href="./goals-model.html">Открыть dev-модель голов и рынков</a>
+  </header>
+  <main>
+    <div id="markets-error" class="error-container hidden"></div>
+    <div class="markets-controls">
+      <select id="market-type" aria-label="Тип прогноза">
+        <option value="all">Все рынки</option>
+        <option value="corners">Угловые</option>
+        <option value="cards">Жёлтые карточки</option>
+      </select>
+      <select id="market-source" aria-label="Источник">
+        <option value="all">Все источники</option>
+        <option value="BSD">BSD</option>
+        <option value="SStats">SStats</option>
+        <option value="Euro365">Euro365</option>
+        <option value="FB_DATA">FB_DATA</option>
+        <option value="Модель">Внутренняя модель</option>
+        
+      </select>
+      <input id="market-search" type="search" placeholder="Поиск команды или лиги…" aria-label="Поиск команды или лиги" />
+    </div>
+    <p class="markets-note" id="markets-count"></p>
+    <p class="markets-note">Внутренняя модель экспериментальная. Прогнозы строятся только при точном совпадении лиги и обеих команд с исторической базой; отсутствие прогноза означает, что данных для надёжного расчёта недостаточно.</p>
+    <div class="table-wrapper">
+      <table class="markets-table">
+        <thead>
+          <tr>
+            <th>Дата и время</th><th>Лига</th><th>Хозяева</th><th>Гости</th><th>Источник</th><th>Угловые</th><th>Жёлтые карточки</th>
+          </tr>
+        </thead>
+        <tbody id="markets-body"></tbody>
+      </table>
+    </div>
+    <p id="markets-empty" class="empty-state hidden">Прогнозы по выбранным фильтрам не найдены.</p>
+  </main>
+  <footer><p>Данные обновляются вместе с основным приложением.</p></footer>
+  <script src="markets.js"></script>
+</body>
+</html>
