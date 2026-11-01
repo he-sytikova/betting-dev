@@ -2,6 +2,7 @@ const $ = (id) => document.getElementById(id);
 let allMarkets = [];
 let productionModels = null;
 let distributionConfig = null;
+let modelDiagnostics = {total:0,generated:0,duplicates:0,excludedByReason:{},excludedSamples:[]};
 function val(v) { return v === null || v === undefined || v === '' || v === '—' ? '—' : String(v); }
 function fmtTime(v) {
   if (!v) return '—';
@@ -10,7 +11,7 @@ function fmtTime(v) {
 }
 function normalize(value) {
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .normalize('NFKC').toLocaleLowerCase('ru')
+    .normalize('NFKC').toLocaleLowerCase('ru').replace(/ı/g, 'i')
     .replace(/\b(fc|afc|cf|sc|sv|fk|sk|club|the)\b/g, ' ')
     .replace(/[^\p{L}\p{N}]+/gu, ' ').trim().replace(/\s+/g, ' ');
 }
@@ -169,13 +170,21 @@ function formatTotals(mean, market) {
   }).join('\n');
 }
 function makeModelRows(fixtures) {
-  if (!productionModels?.models || !productionModels?.teams || !productionModels?.leagueNames) return [];
-  const leagueCodeByName = new Map(Object.entries(productionModels.leagueAliases || {})
-    .map(([name, code]) => [normalize(name), code]));
-  for (const [code, name] of Object.entries(productionModels.leagueNames || {})) {
-    leagueCodeByName.set(normalize(name), code);
+  modelDiagnostics = {total:fixtures.length,generated:0,duplicates:0,excludedByReason:{},excludedSamples:[]};
+  if (!productionModels?.models || !productionModels?.teams || !productionModels?.leagueNames) {
+    modelDiagnostics.excludedByReason['Конфигурация модели неполная'] = fixtures.length;
+    return [];
   }
-  // Fixture feeds often prefix the same competition with its country.
+  const leagueCandidates = new Map();
+  const addLeagueCandidate = (name, code) => {
+    const key = normalize(name);
+    if (!key || !code) return;
+    if (!leagueCandidates.has(key)) leagueCandidates.set(key, new Set());
+    leagueCandidates.get(key).add(code);
+  };
+  for (const [name, code] of Object.entries(productionModels.leagueAliases || {})) addLeagueCandidate(name, code);
+  for (const [code, name] of Object.entries(productionModels.leagueNames || {})) addLeagueCandidate(name, code);
+  // Explicit competition aliases only; no partial-name or fuzzy league matching.
   const leagueAliases = {
     'germany bundesliga': 'D1',
     'germany 2 bundesliga': 'D2',
@@ -191,23 +200,54 @@ function makeModelRows(fixtures) {
     'england league one': 'E2',
     'england league two': 'E3',
   };
-  for (const [name, code] of Object.entries(leagueAliases)) {
-    if (!leagueCodeByName.has(name)) leagueCodeByName.set(name, code);
-  }
+  for (const [name, code] of Object.entries(leagueAliases)) addLeagueCandidate(name, code);
   const seen = new Set(), output = [];
+  const exclude = (fixture, reason) => {
+    modelDiagnostics.excludedByReason[reason] = (modelDiagnostics.excludedByReason[reason] || 0) + 1;
+    if (modelDiagnostics.excludedSamples.length < 100) {
+      modelDiagnostics.excludedSamples.push({
+        time:fixture.time,league:fixture.league,home:fixture.home,away:fixture.away,reason
+      });
+    }
+  };
   for (const fixture of fixtures) {
-    const leagueCode = leagueCodeByName.get(normalize(fixture.league));
-    if (!leagueCode) continue;
+    const candidates = leagueCandidates.get(normalize(fixture.league));
+    if (!candidates || candidates.size !== 1) {
+      exclude(fixture, candidates?.size > 1 ? 'Неоднозначное название лиги' : 'Лига не распознана');
+      continue;
+    }
+    const leagueCode = candidates.values().next().value;
     const leagueTeams = productionModels.teams[leagueCode];
+    if (!leagueTeams) {
+      exclude(fixture, 'Нет исторической базы команд лиги');
+      continue;
+    }
+    const league = productionModels.leagueStats?.[leagueCode];
+    if (!league) {
+      exclude(fixture, 'Нет статистики лиги');
+      continue;
+    }
     const homeMatch = findTeam(leagueCode, leagueTeams, fixture.home);
     const awayMatch = findTeam(leagueCode, leagueTeams, fixture.away);
-    const home = homeMatch?.team;
-    const away = awayMatch?.team;
-    const league = productionModels.leagueStats?.[leagueCode];
-    if (!home || !away || !league) continue;
-    // Deduplicate by the matched historical team IDs, not by provider display names.
+    if (!homeMatch) {
+      exclude(fixture, 'Домашняя команда не сопоставлена однозначно');
+      continue;
+    }
+    if (!awayMatch) {
+      exclude(fixture, 'Гостевая команда не сопоставлена однозначно');
+      continue;
+    }
+    const home = homeMatch.team, away = awayMatch.team;
+    if (!home?.stats || !away?.stats) {
+      exclude(fixture, 'Нет командной статистики');
+      continue;
+    }
+    // Deduplicate only after league and both historical team IDs are verified.
     const key = [Date.parse(fixture.time), leagueCode, homeMatch.key, awayMatch.key].join('|');
-    if (seen.has(key)) continue;
+    if (seen.has(key)) {
+      modelDiagnostics.duplicates++;
+      continue;
+    }
     seen.add(key);
     const features = {
       home_team_for_avg5: home.stats.team_for_avg5,
@@ -239,6 +279,7 @@ function makeModelRows(fixtures) {
       yellowCards: formatTotals(cardMean, 'yellowCards'),
     });
   }
+  modelDiagnostics.generated = output.length;
   return output;
 }
 function colorMarketCells(row) {
@@ -328,8 +369,18 @@ async function load() {
     const generated = data.generatedAt ? new Date(data.generatedAt) : null;
     $('markets-date').textContent = 'Матчи на ' + (data.date || 'сегодня') + (generated && !Number.isNaN(generated.getTime()) ? ' · обновлено ' + generated.toLocaleString('ru-RU') : '');
     $('markets-count').textContent = productionModels
-      ? 'Модель v1: ' + modelRows.length + ' сопоставленных матчей · гибрид Poisson/NB2'
+      ? 'Прогнозы: ' + modelRows.length + ' уникальных матчей · исключено: ' +
+        Object.values(modelDiagnostics.excludedByReason).reduce((a,b)=>a+b,0) +
+        ' · дубликатов источников: ' + modelDiagnostics.duplicates
       : 'Модель не загружена';
+    const diagnostics = $('markets-diagnostics');
+    if (diagnostics) {
+      const reasons = Object.entries(modelDiagnostics.excludedByReason)
+        .sort((a,b)=>b[1]-a[1]).map(([reason,count])=>count+' — '+reason);
+      const samples = modelDiagnostics.excludedSamples.map(x =>
+        x.time+' | '+x.league+' | '+x.home+' — '+x.away+' | '+x.reason);
+      diagnostics.textContent = [...reasons,'',...samples].join('\\n') || 'Исключённых матчей нет.';
+    }
     render();
   } catch (e) {
     $('markets-error').textContent = e.message || 'Ошибка загрузки данных.';
