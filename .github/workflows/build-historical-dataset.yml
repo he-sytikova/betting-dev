@@ -1,0 +1,28 @@
+name: Build experimental historical dataset
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build dataset from local CSV files
+        run: python scripts/models/build-historical-dataset.py
+      - name: Upload dataset and coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: experimental-historical-dataset
+          path: |
+            data/corners_cards_training.csv
+            data/historical_dataset_report.json
+          retention-days: 30
