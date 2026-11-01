@@ -51,7 +51,7 @@ def main():
  if not files:raise SystemExit(f"No CSV files found in {RAW}. Add source files before running.")
  matches=[]; errors=[]; invalid=0
  for file in files:
-  code=file.stem.upper()
+  code=file.stem.split("_",1)[0].upper()
   if code not in LEAGUES:
    errors.append({"file":file.name,"reason":"unknown league code"});continue
   with file.open(encoding="utf-8-sig",newline="") as f:
@@ -62,7 +62,7 @@ def main():
    dt=date(r.get("Date"));h=(r.get("HomeTeam") or "").strip();a=(r.get("AwayTeam") or "").strip()
    hg,ag=num(r.get("FTHG")),num(r.get("FTAG"))
    if not dt or not h or not a or hg is None or ag is None:invalid+=1;continue
-   m={"date":dt,"season":file.name[:4] if len(file.name)>=4 else "",
+   m={"date":dt,"season":file.stem.split("_",1)[1] if "_" in file.stem else "",
       "league":code,"home":h,"away":a,"hg":hg,"ag":ag,
       "referee":(r.get("Referee") or "").strip()}
    for g,(hk,ak) in GROUPS.items():m[g+"_h"],m[g+"_a"]=num(r.get(hk)),num(r.get(ak))
