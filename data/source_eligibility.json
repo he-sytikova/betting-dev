@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "policy": "A source may be used for model training only after its current terms, upstream rights, attribution requirements, storage, and redistribution restrictions have been reviewed and explicitly approved.",
+  "sources": [
+    {
+      "id": "BSD",
+      "purpose": ["fixtures", "predictions"],
+      "trainingUse": "unverified",
+      "termsUrl": "https://sports.bzzoiro.com/",
+      "notes": "Access token and API availability do not establish permission to retain or use historical data for model training."
+    },
+    {
+      "id": "SStats",
+      "purpose": ["fixtures", "predictions"],
+      "trainingUse": "unverified",
+      "termsUrl": "https://sstats.net/",
+      "notes": "Current terms and rights to underlying statistics require review."
+    },
+    {
+      "id": "Euro365",
+      "purpose": ["fixtures", "predictions"],
+      "trainingUse": "unverified",
+      "termsUrl": null,
+      "notes": "Identify the exact data provider, contract, and applicable terms before any training use."
+    },
+    {
+      "id": "FB_DATA",
+      "purpose": ["fixtures", "derived_predictions"],
+      "trainingUse": "unverified",
+      "termsUrl": "https://www.football-data.org/",
+      "notes": "Review current API terms, plan restrictions, storage, and derived-data permissions."
+    }
+  ]
+}
