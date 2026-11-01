@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "reviewedAt": "2026-11-01",
   "policy": "A source may be used for model training only after its current terms, upstream rights, attribution requirements, storage, and redistribution restrictions have been reviewed and explicitly approved.",
   "sources": [
     {
@@ -10,7 +11,7 @@
       ],
       "trainingUse": "conditional_review",
       "termsUrl": "https://sports.bzzoiro.com/docs/api-license/",
-      "notes": "Version 4.0 effective 2026-10-01 expressly permits internal research, backtesting, model development/evaluation and ML training, and permits derived outputs if raw data cannot be reconstructed. Still requires review of upstream third-party rights and applicable jurisdiction; do not mark approved yet."
+      "notes": "API Data Usage and License v4.0 (effective 2026-10-01) expressly permits internal storage, historical snapshots, research, backtesting, model development/evaluation and ML training; derived outputs may be distributed if raw data cannot reasonably be reconstructed. However, Bzzoiro states that data is compiled from public and third-party sources, does not warrant that third-party rights are cleared, and places compliance responsibility on the user. Keep conditional until upstream rights and jurisdiction-specific use are reviewed."
     },
     {
       "id": "SStats",
@@ -20,7 +21,7 @@
       ],
       "trainingUse": "terms_not_found",
       "termsUrl": "https://api.sstats.net/docs/",
-      "notes": "Public API docs describe access and rate limits but do not establish a training/data-retention license. Obtain written permission or published terms covering historical storage and model training."
+      "notes": "Official API documentation describes football match data and request limits (including 300 requests/minute globally or 30/minute per IP without an API key), but no public license or terms were located that grant historical retention, dataset construction or model training. Obtain written permission or published terms before any training use."
     },
     {
       "id": "Euro365",
@@ -28,9 +29,9 @@
         "fixtures",
         "predictions"
       ],
-      "trainingUse": "provider_unidentified",
-      "termsUrl": null,
-      "notes": "Exact provider, API host and governing terms are not identified in repository metadata. No training use until provider identity and terms are documented."
+      "trainingUse": "not_explicitly_granted",
+      "termsUrl": "https://api.euro365.bet/terms/",
+      "notes": "The integration uses api.euro365.bet. Terms last updated 2026-05-21 license returned data for display, transformation and embedding during an active subscription, prohibit raw-feed resale/sublicensing, and say odds/event data is aggregated from third parties. They do not expressly grant historical retention after cancellation, historical dataset construction or ML training; the operator's legal entity/jurisdiction and upstream data rights are not identified in the reviewed terms. Obtain written permission covering storage and model training before use."
     },
     {
       "id": "FB_DATA",
@@ -40,7 +41,7 @@
       ],
       "trainingUse": "not_explicitly_granted",
       "termsUrl": "https://www.football-data.org/about",
-      "notes": "Published terms require one application/domain and attribution, and restrict use after cancellation; they do not expressly grant historical dataset retention or model training. Obtain written clarification before training use."
+      "notes": "Published General Terms (last updated 2018-06-01) require one application/domain and visible attribution, and restrict referencing football data on the user's site/service after subscription cancellation; cancellation also deletes stored/indexed account data. No express grant for historical dataset retention or ML training was found. Obtain written clarification before training use."
     }
   ]
 }
