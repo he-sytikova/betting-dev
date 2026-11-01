@@ -18,7 +18,7 @@ function parseMoscowDate(value, dateHint) {
   let match = text.match(/^(\d{2})\.(\d{2})\.(\d{4})[ ,]+(\d{2}):(\d{2})$/);
   if (match) {
     const [, d, m, y, hh, mm] = match;
-    return new Date(Number(y), Number(m)-1, Number(d), Number(hh), Number(mm)).getTime() - 0; 
+    return Date.UTC(Number(y), Number(m)-1, Number(d), Number(hh)-3, Number(mm)); 
   }
   match = text.match(/^(\d{2})\.(\d{2})[ ,]+(\d{2}):(\d{2})$/);
   if (!match || !dateHint) return NaN;
