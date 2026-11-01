@@ -124,6 +124,8 @@ def build_runtime_state(df, template):
         league_stats[str(league_code)] = {
             "league_corners_avg": clean_number(latest_league.get("league_corners_avg")),
             "league_cards_avg": clean_number(latest_league.get("league_cards_avg")),
+            "league_goals_avg": clean_number(latest_league.get("league_goals_avg")),
+            "league_fouls_avg": clean_number(latest_league.get("league_fouls_avg")),
             "league_matches_before": int(clean_number(latest_league.get("league_matches_before")) or 0) + 1,
         }
         for _, row in group.iterrows():
