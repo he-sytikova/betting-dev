@@ -1,25 +1,20 @@
 {
-  "generatedAt": "2026-11-01T19:36:07.870Z",
-  "sourceDataGeneratedAt": "2026-11-01T07:46:50.177Z",
+  "generatedAt": "2026-11-01T19:40:54.566617Z",
+  "source": "football-data.co.uk historical CSVs",
+  "sourceFiles": 262,
   "ledgerFiles": 1,
   "ledgerRecords": 1,
-  "matchedFinishedFixtures": 0,
-  "unresolved": {
-    "noResult": 1,
-    "cornersCardsAwaitingResultFeed": 0,
-    "matched": 0
-  },
-  "metrics": {
-    "oneXtwo": {
-      "n": 0,
-      "brier": null,
-      "logLoss": null
-    },
-    "goalTotals": {
-      "n": 0,
-      "brier": null,
-      "logLoss": null
+  "matchedFixtures": 0,
+  "unmatchedFixtures": [
+    {
+      "model": "corners-cards",
+      "date": "2026-11-01",
+      "home": "Juventus",
+      "away": "Napoli"
     }
-  },
-  "evaluated": []
+  ],
+  "metrics": {},
+  "byLeague": {},
+  "evaluated": [],
+  "limitations": "Evaluation is available only where a completed fixture matches the archived prediction and the historical CSV includes the relevant market statistics. It is an offline monitoring sample, not evidence of profitability."
 }
