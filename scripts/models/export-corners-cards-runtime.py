@@ -126,8 +126,8 @@ def build_runtime_state(df, template):
             "league_cards_avg": clean_number(latest_league.get("league_cards_avg")),
             "league_matches_before": int(clean_number(latest_league.get("league_matches_before")) or 0) + 1,
         }
-        for side in ("home", "away"):
-            for _, row in group.iterrows():
+        for _, row in group.iterrows():
+            for side in ("home", "away"):
                 team_name = str(row.get(side, "")).strip()
                 if not team_name:
                     continue
