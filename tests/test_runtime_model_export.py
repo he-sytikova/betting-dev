@@ -42,6 +42,27 @@ class RuntimeModelExportTests(unittest.TestCase):
         self.assertEqual(leagues["E0"]["league_corners_avg"], 9.4)
         self.assertEqual(leagues["E0"]["league_matches_before"], 101)
 
+    def test_exported_model_has_aligned_browser_inference_vectors(self):
+        frame = pd.DataFrame({
+            "date": pd.date_range("2020-01-01", periods=600, freq="D"),
+            "league": ["E0"] * 600,
+            "corners_model_eligible": [1] * 600,
+            "corners_total": [int(8 + (i % 5)) for i in range(600)],
+            "home_matches_before": [10] * 600,
+            "away_matches_before": [10] * 600,
+            "league_matches_before": list(range(600)),
+            "home_advantage": [1] * 600,
+            "league_corners_avg": [10.0 + (i % 3) / 10 for i in range(600)],
+        })
+        model = runtime_export.export_model(
+            frame, "corners", "corners_total", "corners_model_eligible",
+            [7.5, 8.5], {"featureSet": "full", "alpha": 0.15},
+        )
+        lengths = {len(model[key]) for key in ("features", "imputerMedian", "scalerMean", "scalerScale", "coefficients")}
+        self.assertEqual(lengths, {len(model["features"])})
+        self.assertIn("league__E0", model["features"])
+        self.assertEqual(model["type"], "poisson")
+
     def test_market_feature_columns_match_historical_schema(self):
         columns = {
             "home_matches_before", "away_matches_before", "league_matches_before",
