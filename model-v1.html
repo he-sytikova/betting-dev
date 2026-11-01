@@ -35,7 +35,7 @@
   <header class="app-header">
     <h1 class="markets-title">⚽ Внутренняя модель v1 — угловые и жёлтые карточки</h1>
     <p class="subtitle" id="markets-date">Загрузка данных…</p>
-    <div class="status-bar"><span class="status-badge">Гибридное распределение Poisson / NB2</span><button id="refresh-btn" type="button">Обновить</button></div>
+    <div class="status-bar"><span class="status-badge">Poisson regression · runtime v2</span><button id="refresh-btn" type="button">Обновить</button></div>
     
     <a class="markets-back" href="./goals-model.html">Dev-модель голов и рынков →</a>
     <a class="markets-back" href="./">← Dev-панель</a>
@@ -53,7 +53,7 @@
     </div>
     <p class="markets-note" id="markets-count"></p>
     <details class="markets-note"><summary>Причины исключения матчей</summary><pre id="markets-diagnostics" style="white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;font-size:.8rem"></pre></details>
-    <p class="markets-note">Версия v1 использует распределение отдельно для каждой линии. NB2 применяется только там, где он статистически лучше Poisson; на остальных линиях сохранён Poisson. Расчёт доступен только для поддерживаемых лиг и команд, сопоставленных с исторической базой.</p>
+    <p class="markets-note">Runtime v2 использует заново обученную Poisson-регрессию и актуальные предматчевые признаки команд. NB2 пока не включён в расчёт до отдельной проверки на той же версии признаков. Прогнозы доступны только для поддерживаемых лиг и команд с достаточной историей.</p>
     <div class="table-wrapper">
       <table class="markets-table">
         <thead><tr><th>Дата и время</th><th>Лига</th><th>Хозяева</th><th>Гости</th><th>Модель</th><th>Угловые</th><th>Жёлтые карточки</th></tr></thead>
