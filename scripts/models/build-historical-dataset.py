@@ -28,16 +28,20 @@ GROUPS={"goals":("FTHG","FTAG"),"corners":("HC","AC"),"cards":("HY","AY"),
  "fouls":("HF","AF"),"shots":("HS","AS"),"shots_on_target":("HST","AST"),"red_cards":("HR","AR")}
 PREFIX={"goals":"goal_team","corners":"team","cards":"card_team","fouls":"foul_team",
  "shots":"shots_team","shots_on_target":"shots_on_target_team","red_cards":"red_card_team"}
+
 def num(v):
  try:
   x=float(str(v).strip()); return x if x>=0 else None
  except (ValueError,TypeError): return None
+
 def date(v):
  for f in ("%d/%m/%y","%d/%m/%Y","%Y-%m-%d"):
   try:return datetime.strptime((v or "").strip(),f).date()
   except ValueError:pass
  return None
+
 def avg(xs):return sum(xs)/len(xs) if xs else None
+
 def features(hist,prefix):
  d={}
  for n in (5,10):
@@ -46,10 +50,11 @@ def features(hist,prefix):
   d[f"{prefix}_against_avg{n}"]=avg([x[1] for x in xs])
   d[f"{prefix}_n{n}"]=len(xs)
  return d
+
 def main():
  files=sorted(RAW.glob("*.csv"))
  if not files:raise SystemExit(f"No CSV files found in {RAW}. Add source files before running.")
- matches=[]; errors=[]; invalid=0
+ matches=[]; errors=[]; invalid=0; duplicates=0; seen=set()
  for file in files:
   code=file.stem.split("_",1)[0].upper()
   if code not in LEAGUES:
@@ -57,17 +62,21 @@ def main():
   with file.open(encoding="utf-8-sig",newline="") as f:
    try:rows=list(csv.DictReader(f))
    except Exception as e:errors.append({"file":file.name,"reason":str(e)});continue
-  accepted=0
+  accepted=0; file_duplicates=0
   for r in rows:
    dt=date(r.get("Date"));h=(r.get("HomeTeam") or "").strip();a=(r.get("AwayTeam") or "").strip()
    hg,ag=num(r.get("FTHG")),num(r.get("FTAG"))
    if not dt or not h or not a or hg is None or ag is None:invalid+=1;continue
+   key=(code,dt.isoformat(),h.casefold(),a.casefold())
+   if key in seen:
+    duplicates+=1;file_duplicates+=1;continue
+   seen.add(key)
    m={"date":dt,"season":file.stem.split("_",1)[1] if "_" in file.stem else "",
       "league":code,"home":h,"away":a,"hg":hg,"ag":ag,
       "referee":(r.get("Referee") or "").strip()}
    for g,(hk,ak) in GROUPS.items():m[g+"_h"],m[g+"_a"]=num(r.get(hk)),num(r.get(ak))
    matches.append(m);accepted+=1
-  errors.append({"file":file.name,"rows":len(rows),"accepted":accepted})
+  errors.append({"file":file.name,"rows":len(rows),"accepted":accepted,"duplicates":file_duplicates})
  matches.sort(key=lambda x:(x["league"],x["date"],x["home"],x["away"]))
  histories=defaultdict(lambda:{**{g:deque(maxlen=10) for g in GROUPS},"matches":deque(maxlen=10)})
  league_hist=defaultdict(lambda:deque(maxlen=100)); refs=defaultdict(lambda:deque(maxlen=20)); out=[];i=0
@@ -123,8 +132,8 @@ def main():
    "cardsRows":sum(r["cards_available"] for r in rs),"cornersEligible":c in CORNERS,"cardsEligible":c in CARDS,
    "from":min((r["date"] for r in rs),default=None),"through":max((r["date"] for r in rs),default=None)}
  report={"generatedAt":datetime.utcnow().isoformat()+"Z","sourceFiles":len(files),"rows":len(out),
-  "invalidRows":invalid,"leagues":by,"files":errors,"output":str(OUT),
+  "invalidRows":invalid,"duplicatesRemoved":duplicates,"leagues":by,"files":errors,"output":str(OUT),
   "note":"Features use strictly prior match dates; all matches on a given date are added to histories only after that date is processed."}
  REPORT.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
- print(json.dumps({"rows":len(out),"sourceFiles":len(files),"report":str(REPORT)},indent=2))
+ print(json.dumps({"rows":len(out),"sourceFiles":len(files),"duplicatesRemoved":duplicates,"report":str(REPORT)},indent=2))
 if __name__=="__main__":main()
