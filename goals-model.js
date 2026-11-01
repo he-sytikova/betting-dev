@@ -92,7 +92,10 @@ const LEAGUE_ALIASES = {
   'england championship':'E1','england league one':'E2','england league two':'E3',
   'belgium jupiler league':'B1','greece superleague':'G1',
   'greece super league':'G1','stoiximan super league':'G1',
-  'liga portugal betclic':'P1'
+  'liga portugal betclic':'P1',
+  'spain segunda division':'SP2',
+  'turkey superliga':'T1','turkey super league':'T1',
+  'trendyol super lig':'T1','turkish super league':'T1'
 };
 function resolveLeague(name, config) {
   const n = normalize(name);
