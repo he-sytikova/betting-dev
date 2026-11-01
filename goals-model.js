@@ -209,7 +209,7 @@ function predictFixture(fixture,config) {
   };
 }
 function formatLines(items, label) {
-  return items.map(x=>label(x)).join(' · ');
+  return items.map(x=>label(x)).join('\n');
 }
 const MIN_DISPLAY_PROBABILITY = 80;
 
@@ -248,13 +248,13 @@ function render() {
     const cells=[
       new Date(r.fixture.time).toLocaleString('ru-RU',{timeZone:'Europe/Moscow',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),
       r.fixture.league,r.fixture.home+' — '+r.fixture.away,
-      pct(r.outcome.home)+' / '+pct(r.outcome.draw)+' / '+pct(r.outcome.away),
-      pct(r.doubleChance.homeDraw)+' / '+pct(r.doubleChance.drawAway)+' / '+pct(r.doubleChance.homeAway),
-      pct(r.dnb.home)+' / '+pct(r.dnb.away)+' (X возврат '+pct(r.dnb.refund)+')',
+       'П1: '+pct(r.outcome.home)+'\nX: '+pct(r.outcome.draw)+'\nП2: '+pct(r.outcome.away),
+      '1X: '+pct(r.doubleChance.homeDraw)+'\nX2: '+pct(r.doubleChance.drawAway)+'\n12: '+pct(r.doubleChance.homeAway),
+      'П1: '+pct(r.dnb.home)+'\nП2: '+pct(r.dnb.away)+'\nВозврат X: '+pct(r.dnb.refund)',
       formatLines(r.totals,x=>'ТБ '+x.line+': '+pct(x.over)+' / ТМ '+pct(1-x.over)),
       formatLines(r.homeTotals,x=>'ТБ '+x.line+': '+pct(x.over)),
       formatLines(r.awayTotals,x=>'ТБ '+x.line+': '+pct(x.over)),
-      'Обе: '+pct(r.btts.yes)+' / Нет: '+pct(r.btts.no),
+      'Обе забьют — Да: '+pct(r.btts.yes)+'\nОбе забьют — Нет: '+pct(r.btts.no),
       formatLines(r.ah,x=>(x.line>0?'+':'')+x.line+'\nВыигрыш '+pct(x.win)+' · Возврат '+pct(x.push)+'\nПроигрыш '+pct(x.lose)),
       formatLines(r.awayAh,x=>(x.line>0?'+':'')+x.line+'\nВыигрыш '+pct(x.win)+' · Возврат '+pct(x.push)+'\nПроигрыш '+pct(x.lose))
     ];
