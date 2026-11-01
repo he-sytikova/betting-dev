@@ -78,6 +78,31 @@ def make_pipeline(numeric, alpha=0.15):
     return Pipeline([("prep", prep), ("model", PoissonRegressor(alpha=alpha, max_iter=500, tol=1e-7))])
 
 
+def reliability_bins(y, probability, threshold, bins=10):
+    """Fixed-width reliability bins; empty bins are omitted."""
+    y = np.asarray(y, dtype=float)
+    p = np.clip(np.asarray(probability, dtype=float), 0.0, 1.0)
+    event = (y > threshold).astype(float)
+    edges = np.linspace(0.0, 1.0, bins + 1)
+    output = []
+    for index in range(bins):
+        mask = ((p >= edges[index]) & (p < edges[index + 1]))
+        if index == bins - 1:
+            mask |= (p == 1.0)
+        if not np.any(mask):
+            continue
+        predicted = float(np.mean(p[mask]))
+        observed = float(np.mean(event[mask]))
+        output.append({
+            "bin": f"{edges[index]:.1f}-{edges[index + 1]:.1f}",
+            "count": int(np.sum(mask)),
+            "meanPredicted": predicted,
+            "observedFrequency": observed,
+            "calibrationGap": observed - predicted,
+        })
+    return output
+
+
 def score(y, mean, lines, distribution="poisson", alpha=None):
     result = {"n": int(len(y)), "mae": mae(y, mean), "poissonDeviance": poisson_deviance(y, mean)}
     result["lines"] = []
@@ -90,8 +115,11 @@ def score(y, mean, lines, distribution="poisson", alpha=None):
             size = 1 / a
             prob = 1 - nbinom.cdf(threshold, size, size / (size + mean))
         ll, brier = probability_scores(y, prob, threshold)
-        result["lines"].append({"line": line, "overCount": int(np.sum(np.asarray(y) > line)),
-                                "logLoss": ll, "brier": brier})
+        result["lines"].append({
+            "line": line, "overCount": int(np.sum(np.asarray(y) > line)),
+            "logLoss": ll, "brier": brier,
+            "reliabilityBins": reliability_bins(y, prob, threshold),
+        })
     return result
 
 
@@ -201,7 +229,7 @@ def main():
                 "Chronological split; no random shuffling.",
                 "Predictors are pre-match rolling/history features only.",
                 "League rolling-average baseline uses prior matches only.",
-                "Netherlands Eredivisie excluded due to 34.75% target coverage.",
+                "Netherlands Eredivisie excluded due to 34.75% target coverage.",\n                "Reliability bins are fixed-width 10-point probability bins; empty bins omitted.",\n                "No probability calibrator is fitted in this stage; diagnostics are out-of-sample on validation/test.",
             ],
         }
         for league_code, group in test.assign(_league=test["league"].astype(str)).groupby("_league"):
