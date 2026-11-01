@@ -2,6 +2,8 @@ name: Validate corners and yellow-card models
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "31 4 * * 2"
   push:
     branches: [main]
     paths:
@@ -9,6 +11,14 @@ on:
       - "scripts/models/train-corners-cards.py"
       - "scripts/models/export-corners-cards-runtime.py"
       - "model-v1.js"
+      - "model-v1.html"
+      - "index.html"
+      - "goals-model.html"
+      - "goals-model.js"
+      - "styles.css"
+      - "data.json"
+      - "data/corners_cards_distribution_v1.json"
+      - "data/raw/football-data/**"
       - "tests/test_runtime_model_export.py"
       - "tests/test_historical_dataset_builder.py"
       - "tests/test_corners_cards_model_validation.py"
@@ -53,17 +63,10 @@ jobs:
         run: |
           python -m py_compile scripts/models/export-corners-cards-runtime.py
           python scripts/models/export-corners-cards-runtime.py
-      - name: Commit refreshed runtime model
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/corners_cards_models.json
-          if ! git diff --cached --quiet; then
-            git commit -m "models: refresh corners and cards runtime export"
-            git push
-          else
-            echo "Runtime model export is unchanged."
-          fi
+      - name: Upload GitHub Pages site with refreshed runtime model
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
       - name: Upload validation and runtime artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -72,3 +75,14 @@ jobs:
             data/corners_cards_model_validation.json
             data/corners_cards_models.json
           retention-days: 30
+
+  deploy:
+    needs: validate
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy development preview
+        id: deployment
+        uses: actions/deploy-pages@v4
