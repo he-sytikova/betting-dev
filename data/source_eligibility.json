@@ -4,31 +4,43 @@
   "sources": [
     {
       "id": "BSD",
-      "purpose": ["fixtures", "predictions"],
-      "trainingUse": "unverified",
-      "termsUrl": "https://sports.bzzoiro.com/",
-      "notes": "Access token and API availability do not establish permission to retain or use historical data for model training."
+      "purpose": [
+        "fixtures",
+        "predictions"
+      ],
+      "trainingUse": "conditional_review",
+      "termsUrl": "https://sports.bzzoiro.com/docs/api-license/",
+      "notes": "Version 4.0 effective 2026-10-01 expressly permits internal research, backtesting, model development/evaluation and ML training, and permits derived outputs if raw data cannot be reconstructed. Still requires review of upstream third-party rights and applicable jurisdiction; do not mark approved yet."
     },
     {
       "id": "SStats",
-      "purpose": ["fixtures", "predictions"],
-      "trainingUse": "unverified",
-      "termsUrl": "https://sstats.net/",
-      "notes": "Current terms and rights to underlying statistics require review."
+      "purpose": [
+        "fixtures",
+        "predictions"
+      ],
+      "trainingUse": "terms_not_found",
+      "termsUrl": "https://api.sstats.net/docs/",
+      "notes": "Public API docs describe access and rate limits but do not establish a training/data-retention license. Obtain written permission or published terms covering historical storage and model training."
     },
     {
       "id": "Euro365",
-      "purpose": ["fixtures", "predictions"],
-      "trainingUse": "unverified",
+      "purpose": [
+        "fixtures",
+        "predictions"
+      ],
+      "trainingUse": "provider_unidentified",
       "termsUrl": null,
-      "notes": "Identify the exact data provider, contract, and applicable terms before any training use."
+      "notes": "Exact provider, API host and governing terms are not identified in repository metadata. No training use until provider identity and terms are documented."
     },
     {
       "id": "FB_DATA",
-      "purpose": ["fixtures", "derived_predictions"],
-      "trainingUse": "unverified",
-      "termsUrl": "https://www.football-data.org/",
-      "notes": "Review current API terms, plan restrictions, storage, and derived-data permissions."
+      "purpose": [
+        "fixtures",
+        "derived_predictions"
+      ],
+      "trainingUse": "not_explicitly_granted",
+      "termsUrl": "https://www.football-data.org/about",
+      "notes": "Published terms require one application/domain and attribution, and restrict use after cancellation; they do not expressly grant historical dataset retention or model training. Obtain written clarification before training use."
     }
   ]
 }
