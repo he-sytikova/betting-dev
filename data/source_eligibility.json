@@ -62,6 +62,17 @@
       "trainingUse": "not_explicitly_granted",
       "termsUrl": "https://github.com/oladeeayo/open-matchday",
       "notes": "The repository allows informational non-commercial use with attribution, but explicitly says upstream provider rights remain with each provider. Its statistics are uneven and the README attributes shots/fouls/cards/corners in about 19% of result rows to football-data.co.uk; therefore rows with those upstream rights cannot be assumed usable for training. It is a candidate only after per-row provenance and each upstream license are checked; it is not part of the current historical training CSV."
+    },
+    {
+      "id": "THESTATSAPI",
+      "purpose": [
+        "candidate_historical_match_stats",
+        "candidate_fixtures",
+        "candidate_odds"
+      ],
+      "trainingUse": "not_explicitly_granted",
+      "termsUrl": "https://www.thestatsapi.com/terms",
+      "notes": "Potential paid alternative: provider advertises 10 years of historical match data, match statistics including corners/cards, 150 competitions by default, and a Starter plan at USD 50/month. However, Terms of Service (last updated 2026-04-01) license data for use within the customer's own applications during an active subscription and prohibit caching/storing data beyond what is reasonably necessary to operate the application; they do not expressly grant bulk historical retention or ML model training. Do not subscribe or ingest training data until the provider confirms in writing that historical backfill, long-term storage, model training/evaluation, derived model outputs and retention after cancellation are permitted."
     }
   ]
 }
