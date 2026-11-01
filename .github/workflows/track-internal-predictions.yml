@@ -2,6 +2,11 @@ name: Track internal model predictions
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/models/capture-predictions.mjs"
+      - ".github/workflows/track-internal-predictions.yml"
   schedule:
     - cron: "*/15 * * * *"
 
