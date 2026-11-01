@@ -23,21 +23,19 @@ class HistoricalDatasetBuilderTests(unittest.TestCase):
         self.assertIsNone(BUILDER.date("invalid"))
 
     def test_model_eligibility_requires_complete_target_pairs(self):
-        # The same availability rule is used for both markets: one missing side
-        # makes the row unavailable and therefore ineligible for training.
-        corners_home, corners_away = 4, 5
-        cards_home, cards_away = 2, None
-        corners_available = int(corners_home is not None and corners_away is not None)
-        cards_available = int(cards_home is not None and cards_away is not None)
-        self.assertEqual(corners_available, 1)
-        self.assertEqual(cards_available, 0)
-        self.assertEqual(int("E0" in BUILDER.CORNERS and corners_available == 1), 1)
-        self.assertEqual(int("E0" in BUILDER.CARDS and cards_available == 1), 0)
+        eligible = BUILDER.model_eligibility("E0", True, False)
+        self.assertEqual(eligible["corners_model_eligible"], 1)
+        self.assertEqual(eligible["cards_model_eligible"], 0)
 
-    def test_non_eligible_league_never_enters_training(self):
-        available = 1
-        self.assertEqual(int("N1" in BUILDER.CORNERS and available == 1), 1)
-        self.assertEqual(int("ZZ" in BUILDER.CORNERS and available == 1), 0)
+    def test_model_eligibility_rejects_missing_targets_and_unknown_leagues(self):
+        self.assertEqual(
+            BUILDER.model_eligibility("E0", False, False),
+            {"corners_model_eligible": 0, "cards_model_eligible": 0},
+        )
+        self.assertEqual(
+            BUILDER.model_eligibility("ZZ", True, True),
+            {"corners_model_eligible": 0, "cards_model_eligible": 0},
+        )
 
     def test_features_use_only_supplied_history(self):
         from collections import deque
