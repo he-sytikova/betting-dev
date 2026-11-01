@@ -11,7 +11,7 @@
       ],
       "trainingUse": "conditional_review",
       "termsUrl": "https://sports.bzzoiro.com/docs/api-license/",
-      "notes": "API Data Usage and License v4.0 (effective 2026-10-01) expressly permits internal storage, historical snapshots, research, backtesting, model development/evaluation and ML training; derived outputs may be distributed if raw data cannot reasonably be reconstructed. However, Bzzoiro states that data is compiled from public and third-party sources, does not warrant that third-party rights are cleared, and places compliance responsibility on the user. Keep conditional until upstream rights and jurisdiction-specific use are reviewed."
+      "notes": "API Data Usage and License v4.0 (effective 2026-10-01) expressly permits internal storage, historical snapshots, research, backtesting, model development/evaluation and ML training; derived outputs may be distributed if raw data cannot reasonably be reconstructed. However, Bzzoiro states that data is compiled from public and third-party sources, does not warrant that third-party rights are cleared, and places compliance responsibility on the user. Keep conditional until upstream rights and jurisdiction-specific use are reviewed. Current published free-football API limits: 7,500 requests/account/day (reset midnight UTC) and 25 requests/second per client IP (burst 110) on cached read endpoints; 429 responses distinguish daily quota exhaustion from burst throttling and provide Retry-After. Historical audit requests must be paced and must not bypass either limit."
     },
     {
       "id": "SStats",
