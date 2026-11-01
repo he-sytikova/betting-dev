@@ -48,7 +48,7 @@ for (const file of files) {
         scores.oneXtwo.push({brier:Object.entries(probs).reduce((sum,[k,v])=>sum+(v-(k===actual?1:0))**2,0),logLoss:-Math.log(Math.max(1e-6,p)),league:forecast.league});
         row.markets.push({market:"1X2",actual,predicted:probs});
       }
-      for(const cell of cells.slice(4)) {
+      for(const cell of [cells[6] || ""]) {
         for(const m of String(cell).matchAll(/ТБ\s*([0-9]+(?:[.,][0-9]+)?)\s*:\s*([0-9]+(?:[.,][0-9]+)?)\s*%/g)){
           const line=Number(m[1].replace(",",".")), p=Number(m[2].replace(",","."))/100;
           const over=totalGoals>line?1:0;
