@@ -230,7 +230,8 @@ def main():
                 "Predictors are pre-match rolling/history features only.",
                 "League rolling-average baseline uses prior matches only.",
                 "Netherlands Eredivisie excluded due to 34.75% target coverage.",
-                "Reliability bins are fixed-width 10-point probability bins; empty bins omitted.",\n                "No probability calibrator is fitted in this stage; diagnostics are out-of-sample on validation/test.",
+                "Reliability bins are fixed-width 10-point probability bins; empty bins omitted.",
+                "No probability calibrator is fitted in this stage; diagnostics are out-of-sample on validation/test.",
             ],
         }
         for league_code, group in test.assign(_league=test["league"].astype(str)).groupby("_league"):
