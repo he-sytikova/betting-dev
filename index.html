@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прогнозы на футбол — сегодня</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="app-header">
+        <h1>⚽ Прогнозы на футбольные матчи</h1>
+        <p class="subtitle" id="current-date"></p>
+        <div class="status-bar">
+            <span id="status-bsd" class="status-badge">BSD: ожидание…</span>
+            <span id="status-sstats" class="status-badge">SStats: ожидание…</span>
+            <span id="status-euro365" class="status-badge">Euro365: ожидание…</span>
+            <span id="status-fbdata" class="status-badge">FB_DATA: ожидание…</span>
+            <button id="refresh-btn" class="refresh-btn">Обновить</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Загрузка прогнозов…</p>
+        </div>
+
+        <div id="error-container" class="error-container hidden">
+            <p id="error-message"></p>
+        </div>
+
+        <nav class="source-filter-bar" aria-label="Выбор источника прогнозов">
+            <a class="source-filter-btn" href="./markets.html">Угловые и жёлтые карточки</a>
+            <a class="source-filter-btn" href="./goals-model.html">Dev-модель голов и рынков</a>
+            <button type="button" class="source-filter-btn active" data-source="summary" aria-pressed="true">Свод</button>
+            <button type="button" class="source-filter-btn" data-source="BSD" aria-pressed="false">Прогнозы BSD</button>
+            <button type="button" class="source-filter-btn" data-source="SStats" aria-pressed="false">Прогнозы S-Stats</button>
+            <button type="button" class="source-filter-btn" data-source="Euro365" aria-pressed="false">Прогнозы Euro365</button>
+            <button type="button" class="source-filter-btn" data-source="FB_DATA" aria-pressed="false">Прогнозы FB_DATA</button>        </nav>
+
+        <div class="table-wrapper">
+            <table id="predictions-table">
+                <thead>
+                    <tr>
+                        <th data-sort="time">Дата и время</th>
+                        <th data-sort="league">Лига</th>
+                        <th data-sort="home">Хозяева</th>
+                        <th data-sort="away">Гости</th>
+                        <th data-sort="probabilityOutcome">Вер. исхода (П1/X/П2)</th>
+                        <th>1X (П1 или X)</th>
+                        <th>12 (П1 или П2)</th>
+                        <th>X2 (X или П2)</th>
+                        <th>ТБ (голы)</th>
+                        <th>ТМ (голы)</th>
+                        <th>Результат матча</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Строки добавляются динамически -->
+                </tbody>
+            </table>
+        </div>
+
+        <p id="empty-state" class="empty-state hidden">На сегодня прогнозов не найдено.</p>
+    </main>
+
+    <footer>
+        <p>Данные предоставлены <a href="https://sports.bzzoiro.com" target="_blank">Bzzoiro Sports Data</a>, <a href="https://sstats.net" target="_blank">SStats.net</a> и <a href="https://api.euro365.bet/docs/" target="_blank" rel="noopener">Euro365</a> и <a href="https://docs.football-data.org/general/v4/index.html" target="_blank" rel="noopener">football-data.org</a></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
