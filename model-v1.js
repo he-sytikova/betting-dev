@@ -325,7 +325,9 @@ function render() {
     colorMarketCells(tr);
     tbody.appendChild(tr);
   }
-  $('markets-count').textContent = 'Матчей с прогнозами: ' + rows.length;
+  const excludedCount = Object.values(modelDiagnostics.excludedByReason).reduce((a,b)=>a+b,0);
+  $('markets-count').textContent = 'Прогнозы: ' + rows.length + ' из ' + allMarkets.length +
+    ' уникальных матчей · исключено: ' + excludedCount + ' · дубликатов источников: ' + modelDiagnostics.duplicates;
   $('markets-empty').classList.toggle('hidden', rows.length > 0);
 }
 async function load() {
