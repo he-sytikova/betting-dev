@@ -59,7 +59,7 @@ function countOver(mean, line, distribution, alpha) {
     const p = size / (size + mean);
     let term = Math.pow(p, size);
     cumulative = term;
-    for (let k = 0; k <= limit; k++) {
+    for (let k = 0; k < limit; k++) {
       term *= ((k + size) / (k + 1)) * (1 - p);
       cumulative += term;
     }
