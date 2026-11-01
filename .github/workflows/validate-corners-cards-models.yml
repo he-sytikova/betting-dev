@@ -1,0 +1,50 @@
+name: Validate corners and yellow-card models
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/models/build-historical-dataset.py"
+      - "scripts/models/train-corners-cards.py"
+      - "tests/test_historical_dataset_builder.py"
+      - "tests/test_corners_cards_model_validation.py"
+      - "requirements-models.txt"
+      - ".github/workflows/validate-corners-cards-models.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-models.txt
+      - name: Install model dependencies
+        run: python -m pip install -r requirements-models.txt
+      - name: Validate Python syntax
+        run: |
+          python -m py_compile scripts/models/build-historical-dataset.py
+          python -m py_compile scripts/models/train-corners-cards.py
+      - name: Run dataset builder tests
+        run: python -m unittest discover -s tests -p "test_historical_dataset_builder.py" -v
+      - name: Run model validation tests
+        run: python -m unittest discover -s tests -p "test_corners_cards_model_validation.py" -v
+      - name: Build leakage-safe historical dataset
+        run: python scripts/models/build-historical-dataset.py
+      - name: Train and evaluate experimental count models
+        run: python scripts/models/train-corners-cards.py
+      - name: Upload validation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: corners-cards-model-validation
+          path: data/corners_cards_model_validation.json
+          retention-days: 30
