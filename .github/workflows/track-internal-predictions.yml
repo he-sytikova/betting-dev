@@ -6,7 +6,7 @@ on:
     branches: [main]
     paths:
       - "scripts/models/capture-predictions.mjs"
-      - "scripts/models/evaluate-predictions.mjs"\n      - "scripts/models/evaluate-predictions.py"
+      - "scripts/models/evaluate-predictions.py"
       - ".github/workflows/track-internal-predictions.yml"
   schedule:
     - cron: "*/15 * * * *"
@@ -37,8 +37,12 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Capture pre-match internal model forecasts
         run: node scripts/models/capture-predictions.mjs
+      - name: Set up Python for results evaluation
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Evaluate forecasts against completed results
-        run: node scripts/models/evaluate-predictions.mjs
+        run: python scripts/models/evaluate-predictions.py
       - name: Commit prediction ledger and evaluation
         run: |
           git config user.name "github-actions[bot]"
