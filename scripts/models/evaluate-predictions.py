@@ -68,7 +68,7 @@ def main():
    if fc.get("model")=="goals":
     alltext="\n".join(cells)
     probs={}
-    for m in re.finditer(r"(П1|П2|X)\\s*:?\\s*([0-9]+(?:[.,][0-9]+)?)\\s*%",alltext):
+    for m in re.finditer(r"(П1|П2|X)\s*:?\s*([0-9]+(?:[.,][0-9]+)?)\s*%",alltext):
      probs[m.group(1)]=float(m.group(2).replace(",","."))/100
     if all(k in probs for k in ("П1","X","П2")):
      actual="П1" if result["homeGoals"]>result["awayGoals"] else "П2" if result["homeGoals"]<result["awayGoals"] else "X"
@@ -76,7 +76,7 @@ def main():
      metrics["oneXtwo"].append({"brier":brier,"logLoss":safe_log(p),"league":fc.get("league")})
      row["markets"].append({"market":"1X2","actual":actual,"probabilities":probs})
     seen=set()
-    for m in re.finditer(r"ТБ\\s*([0-9]+(?:[.,][0-9]+)?)\\s*:\\s*([0-9]+(?:[.,][0-9]+)?)\\s*%",alltext):
+    for m in re.finditer(r"ТБ\s*([0-9]+(?:[.,][0-9]+)?)\s*:\s*([0-9]+(?:[.,][0-9]+)?)\s*%",alltext):
      threshold=float(m.group(1).replace(",",".")); p=float(m.group(2).replace(",","."))/100
      if threshold in seen:continue
      seen.add(threshold); actual=int(result["homeGoals"]+result["awayGoals"]>threshold)
@@ -87,7 +87,7 @@ def main():
      actual_total=result.get(result_key)
      if idx>=len(cells) or actual_total is None:continue
      textcell=cells[idx]
-     for m in re.finditer(r"ТБ\\s*([0-9]+(?:[.,][0-9]+)?)\\s*:\\s*([0-9]+(?:[.,][0-9]+)?)\\s*%",textcell):
+     for m in re.finditer(r"ТБ\s*([0-9]+(?:[.,][0-9]+)?)\s*:\s*([0-9]+(?:[.,][0-9]+)?)\s*%",textcell):
       threshold=float(m.group(1).replace(",",".")); p=float(m.group(2).replace(",","."))/100
       outcome=int(actual_total>threshold)
       add_binary(metrics[market],p,outcome,fc.get("league"),threshold)
