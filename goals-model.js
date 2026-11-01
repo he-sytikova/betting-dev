@@ -252,11 +252,11 @@ function render() {
       formatLines(r.homeTotals,x=>'ТБ '+x.line+': '+pct(x.over)),
       formatLines(r.awayTotals,x=>'ТБ '+x.line+': '+pct(x.over)),
       'Обе: '+pct(r.btts.yes)+' / Нет: '+pct(r.btts.no),
-      formatLines(r.ah,x=>(x.line>0?'+':'')+x.line+': '+pct(x.win)+' / возврат '+pct(x.push)+' / проигрыш '+pct(x.lose)),
-      formatLines(r.awayAh,x=>(x.line>0?'+':'')+x.line+': '+pct(x.win)+' / возврат '+pct(x.push)+' / проигрыш '+pct(x.lose))
+      formatLines(r.ah,x=>(x.line>0?'+':'')+x.line+'\nВыигрыш '+pct(x.win)+' · Возврат '+pct(x.push)+'\nПроигрыш '+pct(x.lose)),
+      formatLines(r.awayAh,x=>(x.line>0?'+':'')+x.line+'\nВыигрыш '+pct(x.win)+' · Возврат '+pct(x.push)+'\nПроигрыш '+pct(x.lose))
     ];
     for(let i=0;i<cells.length;i++){
-      const td=document.createElement('td'); td.textContent=cells[i]; if(i>=3) td.className='probability-cell'; tr.appendChild(td);
+      const td=document.createElement('td'); td.textContent=cells[i]; if(i>=3) td.className='probability-cell'; if(i>=10) td.classList.add('handicap-cell'); tr.appendChild(td);
     }
     highlightProbabilityCells(tr);
     body.appendChild(tr);
