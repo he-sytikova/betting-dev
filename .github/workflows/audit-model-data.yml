@@ -1,0 +1,31 @@
+name: Audit experimental model data
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "data/*_models.json"
+      - "data/source_eligibility.json"
+      - "data.json"
+      - "scripts/audit-model-data.py"
+      - ".github/workflows/audit-model-data.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run read-only audit
+        run: python scripts/audit-model-data.py
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: experimental-model-data-audit
+          path: data/historical_data_audit.json
+          if-no-files-found: error
+          retention-days: 30
