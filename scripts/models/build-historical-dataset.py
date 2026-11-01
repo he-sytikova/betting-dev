@@ -42,6 +42,12 @@ def date(v):
 
 def avg(xs):return sum(xs)/len(xs) if xs else None
 
+def model_eligibility(league, corners_available, cards_available):
+ return {
+  "corners_model_eligible": int(league in CORNERS and bool(corners_available)),
+  "cards_model_eligible": int(league in CARDS and bool(cards_available)),
+ }
+
 def features(hist,prefix):
  d={}
  for n in (5,10):
@@ -104,8 +110,7 @@ def main():
    r["corners_available"]=int(m["corners_h"] is not None and m["corners_a"] is not None)
    r["cards_available"]=int(m["cards_h"] is not None and m["cards_a"] is not None)
    # A row is trainable only when both sides of the target are present.
-   r["corners_model_eligible"]=int(league in CORNERS and r["corners_available"] == 1)
-   r["cards_model_eligible"]=int(league in CARDS and r["cards_available"] == 1)
+   r.update(model_eligibility(league, r["corners_available"], r["cards_available"]))
    r["corners_total"]=m["corners_h"]+m["corners_a"] if r["corners_available"] else ""
    r["cards_total"]=m["cards_h"]+m["cards_a"] if r["cards_available"] else ""
    out.append(r);pending.append(m)
