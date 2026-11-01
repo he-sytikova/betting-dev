@@ -151,7 +151,15 @@ function countOver(mean, line, distribution, alpha) {
 }
 function predictMean(model, featureValues) {
   const z = model.features.map((name, i) => {
-    const raw = featureValues[name];
+    let raw;
+    if (name.startsWith('league__')) {
+      raw = featureValues.league === name.slice('league__'.length) ? 1 : 0;
+    } else if (name.endsWith('__missing')) {
+      const base = name.slice(0, -'__missing'.length);
+      raw = Number.isFinite(featureValues[base]) ? 0 : 1;
+    } else {
+      raw = featureValues[name];
+    }
     const value = Number.isFinite(raw) ? raw : model.imputerMedian[i];
     return (value - model.scalerMean[i]) / (model.scalerScale[i] || 1);
   });
@@ -162,7 +170,7 @@ function formatTotals(mean, market) {
   const marketConfig = distributionConfig.markets[market];
   const lines = productionModels.marketLines?.[market] || productionModels.lines;
   return lines.map(line => {
-    const distribution = marketConfig.lines[String(line)] || 'poisson';
+    const distribution = productionModels.schemaVersion >= 2 ? 'poisson' : (marketConfig.lines[String(line)] || 'poisson');
     const over = countOver(mean, line, distribution, marketConfig.alpha);
     if (over === null) return '';
     const label = distribution === 'negativeBinomial' ? 'NB2' : 'Poisson';
@@ -242,6 +250,11 @@ function makeModelRows(fixtures) {
       exclude(fixture, 'Нет командной статистики');
       continue;
     }
+    const minimumMatches = Number(productionModels.runtimePolicy?.minimumTeamMatches || 5);
+    if (Number(home.matchesBefore || 0) < minimumMatches || Number(away.matchesBefore || 0) < minimumMatches) {
+      exclude(fixture, 'Недостаточно исторических матчей у одной из команд');
+      continue;
+    }
     // Deduplicate only after league and both historical team IDs are verified.
     const key = [Date.parse(fixture.time), leagueCode, homeMatch.key, awayMatch.key].join('|');
     if (seen.has(key)) {
@@ -250,26 +263,30 @@ function makeModelRows(fixtures) {
     }
     seen.add(key);
     const features = {
-      home_team_for_avg5: home.stats.team_for_avg5,
-      home_team_against_avg5: home.stats.team_against_avg5,
-      home_team_for_avg10: home.stats.team_for_avg10,
-      home_team_against_avg10: home.stats.team_against_avg10,
-      away_team_for_avg5: away.stats.team_for_avg5,
-      away_team_against_avg5: away.stats.team_against_avg5,
-      away_team_for_avg10: away.stats.team_for_avg10,
-      away_team_against_avg10: away.stats.team_against_avg10,
-      home_card_team_for_avg5: home.stats.card_team_for_avg5,
-      home_card_team_against_avg5: home.stats.card_team_against_avg5,
-      home_card_team_for_avg10: home.stats.card_team_for_avg10,
-      home_card_team_against_avg10: home.stats.card_team_against_avg10,
-      away_card_team_for_avg5: away.stats.card_team_for_avg5,
-      away_card_team_against_avg5: away.stats.card_team_against_avg5,
-      away_card_team_for_avg10: away.stats.card_team_for_avg10,
-      away_card_team_against_avg10: away.stats.card_team_against_avg10,
+      league: leagueCode,
+      home_matches_before: home.matchesBefore,
+      away_matches_before: away.matchesBefore,
+      league_matches_before: league.league_matches_before,
+      home_advantage: 1,
+      referee_available: 0,
+      referee_matches_before: 0,
+      referee_yellows_avg10: null,
+      referee_fouls_avg10: null,
       league_corners_avg: league.league_corners_avg,
       league_cards_avg: league.league_cards_avg,
-      home_advantage: 1,
+      league_goals_avg: league.league_goals_avg,
+      league_fouls_avg: league.league_fouls_avg,
     };
+    for (const [side, team] of [['home', home], ['away', away]]) {
+      for (const prefix of ['goal_team', 'team', 'card_team', 'foul_team', 'shots_team', 'shots_on_target_team']) {
+        for (const kind of ['for', 'against']) {
+          for (const window of [5, 10]) {
+            const key = prefix + '_' + kind + '_avg' + window;
+            features[side + '_' + key] = team.stats[key];
+          }
+        }
+      }
+    }
     const cornerMean = predictMean(productionModels.models.corners, features);
     const cardMean = predictMean(productionModels.models.yellowCards, features);
     output.push({
