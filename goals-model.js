@@ -321,7 +321,7 @@ async function load() {
     if(diagnostics){
       const summary=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]).map(([reason,count])=>count+' — '+reason);
       const samples=excluded.slice(0,100).map(x=>x.fixture.time+' | '+x.fixture.league+' | '+x.fixture.home+' — '+x.fixture.away+' | '+x.reason);
-      diagnostics.textContent=[...summary,'',...samples].join('\\n') || 'Исключённых матчей нет.';
+      diagnostics.textContent=[...summary,'',...samples].join('\n') || 'Исключённых матчей нет.';
     }
     $('model-status').textContent='Статус: '+modelConfig.status+' · '+modelConfig.trainingRows+' исторических матчей';
     if(report?.markets){
