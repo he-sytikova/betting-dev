@@ -137,5 +137,105 @@ class CrossDivisionContinuityTest(unittest.TestCase):
         self.assertEqual(d1_row["referee_available"], "1")
 
 
+class EloRatingsTest(unittest.TestCase):
+    def test_new_teams_start_at_1500(self):
+        rows = {"E1_2526.csv": [match_row("E1", "01/08/25", "Alpha", "Beta", 1, 0)]}
+        tmp, out_rows, _ = run_builder(rows)
+        self.addCleanup(tmp.cleanup)
+        self.assertEqual(out_rows[0]["home_elo"], "1500.0")
+        self.assertEqual(out_rows[0]["away_elo"], "1500.0")
+
+    def test_home_winner_gains_elo(self):
+        rows = {"E1_2526.csv": [
+            match_row("E1", "01/08/25", "Alpha", "Beta", 2, 0),
+            match_row("E1", "08/08/25", "Alpha", "Gamma", 1, 1),
+            match_row("E1", "08/08/25", "Delta", "Beta", 0, 0),
+        ]}
+        tmp, out_rows, _ = run_builder(rows)
+        self.addCleanup(tmp.cleanup)
+        alpha = next(r for r in out_rows if r["date"] == "2025-08-08" and r["home_team"] == "Alpha")
+        beta = next(r for r in out_rows if r["date"] == "2025-08-08" and r["away_team"] == "Beta")
+        # Expected home win prob at 1500 vs 1500 with HFA 65 is ~0.5925;
+        # 2-0 win has margin multiplier 1.5: 1500 + 20*1.5*(1-0.5925) ~ 1512.2.
+        self.assertAlmostEqual(float(alpha["home_elo"]), 1512.2, places=1)
+        self.assertAlmostEqual(float(beta["away_elo"]), 1487.8, places=1)
+
+    def test_same_day_matches_do_not_leak_elo(self):
+        rows = {"E1_2526.csv": [
+            match_row("E1", "01/08/25", "Alpha", "Beta", 5, 0),
+            match_row("E1", "01/08/25", "Alpha2", "Alpha", 0, 0),
+        ]}
+        tmp, out_rows, _ = run_builder(rows)
+        self.addCleanup(tmp.cleanup)
+        second = next(r for r in out_rows if r["home_team"] == "Alpha2")
+        self.assertEqual(second["away_elo"], "1500.0")  # Alpha's same-day win not counted
+
+    def test_elo_spans_family_across_divisions(self):
+        rows_d2 = [match_row("D2", "01/08/25", "TestClub", "Alpha", 2, 0)]
+        rows_d1 = [match_row("D1", "01/09/25", "TestClub", "Delta", 0, 0)]
+        tmp, out_rows, _ = run_builder({"D2_2526.csv": rows_d2, "D1_2526.csv": rows_d1})
+        self.addCleanup(tmp.cleanup)
+        debut = next(r for r in out_rows if r["league"] == "D1")
+        self.assertAlmostEqual(float(debut["home_elo"]), 1512.2, places=1)
+
+    def test_elo_isolated_between_countries(self):
+        rows_d1 = [match_row("D1", "01/08/25", "TestClub", "Alpha", 5, 0)]
+        rows_sp1 = [match_row("SP1", "02/08/25", "TestClub", "Beta", 0, 0)]
+        tmp, out_rows, _ = run_builder({"D1_2526.csv": rows_d1, "SP1_2526.csv": rows_sp1})
+        self.addCleanup(tmp.cleanup)
+        sp_row = next(r for r in out_rows if r["league"] == "SP1")
+        self.assertEqual(sp_row["home_elo"], "1500.0")
+
+
+class DecayedRatingsTest(unittest.TestCase):
+    def test_new_team_has_no_decayed_ratings(self):
+        rows = {"E1_2526.csv": [match_row("E1", "01/08/25", "Alpha", "Beta", 3, 1)]}
+        tmp, out_rows, _ = run_builder(rows)
+        self.addCleanup(tmp.cleanup)
+        self.assertEqual(out_rows[0]["home_att_decay"], "")
+        self.assertEqual(out_rows[0]["home_def_decay"], "")
+        self.assertEqual(out_rows[0]["away_att_decay"], "")
+        self.assertEqual(out_rows[0]["away_def_decay"], "")
+
+    def test_recency_weighting(self):
+        # Alpha scored 4 goals 150 days ago (two half-lives) and 0 recently.
+        # Beta scored 0 long ago and 4 recently. Beta's attack rating must win.
+        rows = {"E1_2526.csv": [
+            match_row("E1", "01/01/25", "Alpha", "X1", 4, 0),
+            match_row("E1", "01/01/25", "Beta", "X2", 0, 0),
+            match_row("E1", "31/05/25", "Alpha", "Y1", 0, 0),
+            match_row("E1", "31/05/25", "Beta", "Y2", 4, 0),
+            match_row("E1", "07/06/25", "Alpha", "Beta", 1, 1),
+        ]}
+        tmp, out_rows, _ = run_builder(rows)
+        self.addCleanup(tmp.cleanup)
+        final = next(r for r in out_rows if r["date"] == "2025-06-07")
+        # w = 0.5^(150/75) + 1 = 1.25 for both. Alpha gf = 4*0.25 + 0 = 1 -> 0.8;
+        # Beta gf = 0*0.25 + 4 = 4 -> 3.2.
+        self.assertAlmostEqual(float(final["home_att_decay"]), 0.8, places=4)
+        self.assertAlmostEqual(float(final["away_att_decay"]), 3.2, places=4)
+        self.assertAlmostEqual(float(final["home_def_decay"]), 0.0, places=4)
+
+    def test_same_day_matches_do_not_leak_decay(self):
+        rows = {"E1_2526.csv": [
+            match_row("E1", "01/08/25", "Alpha", "Beta", 5, 0),
+            match_row("E1", "01/08/25", "Alpha2", "Alpha", 0, 0),
+        ]}
+        tmp, out_rows, _ = run_builder(rows)
+        self.addCleanup(tmp.cleanup)
+        second = next(r for r in out_rows if r["home_team"] == "Alpha2")
+        self.assertEqual(second["away_att_decay"], "")  # Alpha's same-day match not counted
+
+    def test_decay_spans_family_across_divisions(self):
+        rows_d2 = [match_row("D2", "01/08/25", "TestClub", "Alpha", 3, 0)]
+        rows_d1 = [match_row("D1", "01/09/25", "TestClub", "Delta", 0, 0)]
+        tmp, out_rows, _ = run_builder({"D2_2526.csv": rows_d2, "D1_2526.csv": rows_d1})
+        self.addCleanup(tmp.cleanup)
+        debut = next(r for r in out_rows if r["league"] == "D1")
+        # One 3-0 match 31 days ago: att = 3 regardless of decay (single observation).
+        self.assertAlmostEqual(float(debut["home_att_decay"]), 3.0, places=4)
+        self.assertAlmostEqual(float(debut["home_def_decay"]), 0.0, places=4)
+
+
 if __name__ == "__main__":
     unittest.main()
