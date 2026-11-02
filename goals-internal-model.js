@@ -208,6 +208,9 @@
       league_fouls_avg: leagueStats.league_fouls_avg,
     };
     for (const [side, stats] of [['home', hs], ['away', as]]) {
+      ctx[`${side}_elo`] = stats.elo;
+      ctx[`${side}_att_decay`] = stats.att_decay;
+      ctx[`${side}_def_decay`] = stats.def_decay;
       for (const prefix of ['goal_team', 'team', 'card_team', 'foul_team', 'shots_team', 'shots_on_target_team']) {
         for (const kind of ['for', 'against']) {
           for (const window of [5, 10]) {
@@ -259,14 +262,26 @@
     return y[lo] + t * (y[hi] - y[lo]);
   }
 
-  function deriveMarkets(homeLambda, awayLambda, totalLines, teamLines, maxGoals, totalsCalibration) {
+  // Dixon-Coles low-score adjustment factor for one scoreline cell.
+  function dcTau(x, y, homeLambda, awayLambda, rho) {
+    if (x === 0 && y === 0) return 1 - homeLambda * awayLambda * rho;
+    if (x === 0 && y === 1) return 1 + homeLambda * rho;
+    if (x === 1 && y === 0) return 1 + awayLambda * rho;
+    if (x === 1 && y === 1) return 1 - rho;
+    return 1;
+  }
+
+  function deriveMarkets(homeLambda, awayLambda, totalLines, teamLines, maxGoals, totalsCalibration, dcRho) {
+    const rho = Number.isFinite(dcRho) ? dcRho : 0;
     const matrix = [];
     let total = 0;
     for (let i = 0; i <= maxGoals; i++) {
       matrix[i] = [];
       for (let j = 0; j <= maxGoals; j++) {
-        matrix[i][j] = poissonPmf(i, homeLambda) * poissonPmf(j, awayLambda);
-        total += matrix[i][j];
+        let p = poissonPmf(i, homeLambda) * poissonPmf(j, awayLambda);
+        if (rho && i <= 1 && j <= 1) p *= Math.max(dcTau(i, j, homeLambda, awayLambda, rho), 1e-12);
+        matrix[i][j] = p;
+        total += p;
       }
     }
     let p1 = 0, x = 0, p2 = 0;
@@ -321,7 +336,8 @@
       lines.totalGoals || [1.5, 2.5, 3.5, 4.5],
       lines.teamGoals || [0.5, 1.5, 2.5],
       (model.runtimePolicy && model.runtimePolicy.maxGoals) || 10,
-      model.totalsCalibration || null);
+      model.totalsCalibration || null,
+      model.dcRho || 0);
     return {
       league: code,
       leagueLabel: (model.leagueNames || {})[code] || code,
@@ -362,7 +378,7 @@
     return [...map.values()].sort((a, b) => a.time - b.time);
   }
 
-  const api = { norm, poissonPmf, calibrate, resolveLeague, resolveTeam, buildFeatureContext, predictLambda, deriveMarkets, predict, canonicalFixtureKey, uniqueFixtures, TEAM_ALIASES };
+  const api = { norm, poissonPmf, calibrate, dcTau, resolveLeague, resolveTeam, buildFeatureContext, predictLambda, deriveMarkets, predict, canonicalFixtureKey, uniqueFixtures, TEAM_ALIASES };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 
   // ---- Browser rendering on goals-model.html ----
@@ -438,7 +454,11 @@
         ]));
         host.append(tr);
       }
-      const note = 'Модель: две независимые Poisson-регрессии ожидаемых голов по историческим данным football-data.co.uk, обучена по ' +
+      const dcNote = model.dcRho
+        ? ' с поправкой Dixon–Coles на низкие счета (ρ=' + model.dcRho + ')'
+        : '';
+      const note = 'Модель: две Poisson-регрессии ожидаемых голов' + dcNote + ' по историческим данным football-data.co.uk ' +
+        '(среди признаков — Elo и затухающие рейтинги атаки/защиты), обучена по ' +
         (model.trainingThrough || '—') + '. Все рынки выводятся из одной матрицы счёта. Экспериментальная оценка, не рекомендация. ' +
         'Прогноз выводится только для матчей, где лига и обе команды найдены в обучающих данных.';
       $('goals-internal-count').textContent = 'Матчей с прогнозом внутренней модели: ' + scored + '. ' + note;
