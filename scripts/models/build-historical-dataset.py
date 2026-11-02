@@ -22,7 +22,18 @@ LEAGUES={
  "SP1":"Spain La Liga","SP2":"Spain Segunda","F1":"France Ligue 1","F2":"France Ligue 2",
  "N1":"Netherlands Eredivisie","B1":"Belgium First Division","P1":"Portugal Primeira Liga",
  "T1":"Turkey Super Lig","G1":"Greece Super League"}
-CORNERS={"E0","E1","E2","E3","SC0","D1","I1","SP1","F1","N1"}
+# Country family: clubs move between divisions of the same country (promotion/
+# relegation), so rolling team histories are keyed by (family, team), not by
+# (league, team). A promoted club keeps its second-division form instead of
+# starting from zero history. League averages and referee histories stay per
+# league on purpose.
+FAMILY={
+ "E0":"ENG","E1":"ENG","E2":"ENG","E3":"ENG",
+ "SC0":"SCO","SC1":"SCO","SC2":"SCO","SC3":"SCO",
+ "D1":"GER","D2":"GER","I1":"ITA","I2":"ITA",
+ "SP1":"ESP","SP2":"ESP","F1":"FRA","F2":"FRA",
+ "N1":"NED","B1":"BEL","P1":"POR","T1":"TUR","G1":"GRE"}
+CORNERS={"E0","E1","E2","E3","SC0","SC1","D1","D2","I1","I2","SP1","SP2","F1","F2","B1","P1","T1","G1"}
 CARDS=set(CORNERS)
 GROUPS={"goals":("FTHG","FTAG"),"corners":("HC","AC"),"cards":("HY","AY"),
  "fouls":("HF","AF"),"shots":("HS","AS"),"shots_on_target":("HST","AST"),"red_cards":("HR","AR")}
@@ -83,15 +94,16 @@ def main():
    for g,(hk,ak) in GROUPS.items():m[g+"_h"],m[g+"_a"]=num(r.get(hk)),num(r.get(ak))
    matches.append(m);accepted+=1
   errors.append({"file":file.name,"rows":len(rows),"accepted":accepted,"duplicates":file_duplicates})
- matches.sort(key=lambda x:(x["league"],x["date"],x["home"],x["away"]))
+ matches.sort(key=lambda x:(x["date"],x["league"],x["home"],x["away"]))
  histories=defaultdict(lambda:{**{g:deque(maxlen=10) for g in GROUPS},"matches":deque(maxlen=10)})
  league_hist=defaultdict(lambda:deque(maxlen=100)); refs=defaultdict(lambda:deque(maxlen=20)); out=[];i=0
  while i<len(matches):
-  league=matches[i]["league"];day=matches[i]["date"];j=i
-  while j<len(matches) and matches[j]["league"]==league and matches[j]["date"]==day:j+=1
+  day=matches[i]["date"];j=i
+  while j<len(matches) and matches[j]["date"]==day:j+=1
   pending=[]
   for m in matches[i:j]:
-   hk,ak=(league,m["home"]),(league,m["away"])
+   league=m["league"];family=FAMILY[league]
+   hk,ak=(family,m["home"]),(family,m["away"])
    r={"date":day.isoformat(),"season":m["season"],"league":league,"home_team":m["home"],"away_team":m["away"],
       "home_matches_before":len(histories[hk]["matches"]),"away_matches_before":len(histories[ak]["matches"]),
       "league_matches_before":len(league_hist[(league,"matches")]),"home_advantage":1,
@@ -124,7 +136,8 @@ def main():
    r["sot_total"]=m["shots_on_target_h"]+m["shots_on_target_a"] if r["sot_available"] else ""
    out.append(r);pending.append(m)
   for m in pending:
-   hk,ak=(league,m["home"]),(league,m["away"])
+   league=m["league"];family=FAMILY[league]
+   hk,ak=(family,m["home"]),(family,m["away"])
    histories[hk]["matches"].append(1);histories[ak]["matches"].append(1)
    for g in GROUPS:
     hv,av=m[g+"_h"],m[g+"_a"]
@@ -161,7 +174,7 @@ def main():
   "cardsAvailableRows":sum(r["cards_available"] for r in out),
   "cornersEligibleRows":sum(r["corners_model_eligible"] for r in out),
   "cardsEligibleRows":sum(r["cards_model_eligible"] for r in out),
-  "note":"Features use strictly prior match dates; all matches on a given date are added to histories only after that date is processed."}
+  "note":"Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories are keyed by country family, so clubs keep their form across promotion/relegation between divisions of the same country; league averages and referee histories remain per league."}
  REPORT.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
  print(json.dumps({"rows":len(out),"sourceFiles":len(files),"duplicatesRemoved":duplicates,"report":str(REPORT)},indent=2))
 if __name__=="__main__":main()
