@@ -90,5 +90,8 @@
       $('status').textContent='Обновлено: '+new Date(d.generatedAt||Date.now()).toLocaleString('ru-RU');
     }catch(e){$('status').textContent='Ошибка загрузки: '+e.message;}
   }
-  $('refresh').addEventListener('click',load);load();
+  const api={norm,parse1x2,parseLines,aggregate,pct};
+  if(typeof module!=='undefined'&&module.exports)module.exports=api;
+  if(typeof window!=='undefined')window.ApiConsensus=api;
+  if(typeof document!=='undefined'&&$('refresh')){$('refresh').addEventListener('click',load);load();}
 })();
