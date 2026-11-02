@@ -165,6 +165,43 @@
     return Math.min(1, Math.max(0, 1 - cumulative));
   }
 
+  // NB2 (negative binomial) tail: Var = mean + alpha * mean^2, size r = 1/alpha.
+  // PMF recurrence matches scipy nbinom with n = r, p = r / (r + mean).
+  function nbOver(lambda, line, alpha) {
+    const a = Math.max(alpha || 0.01, 0.0001);
+    const r = 1 / a;
+    const p0 = r / (r + lambda);
+    let pmf = Math.pow(p0, r);
+    let cumulative = pmf;
+    const k = Math.floor(line);
+    for (let i = 1; i <= k; i++) {
+      pmf *= (r + i - 1) / i * (1 - p0);
+      cumulative += pmf;
+    }
+    return Math.min(1, Math.max(0, 1 - cumulative));
+  }
+
+  function overProbability(spec, lambda, line) {
+    return spec && spec.type === 'nb2' ? nbOver(lambda, line, spec.nbAlpha) : poissonOver(lambda, line);
+  }
+
+  // Isotonic calibrator knots: piecewise-linear interpolation, clamped outside.
+  function calibrate(p, knots) {
+    if (!knots || !knots.x || !knots.x.length) return p;
+    const x = knots.x, y = knots.y;
+    if (p <= x[0]) return y[0];
+    const last = x.length - 1;
+    if (p >= x[last]) return y[last];
+    let lo = 0, hi = last;
+    while (hi - lo > 1) {
+      const mid = (lo + hi) >> 1;
+      if (x[mid] <= p) lo = mid; else hi = mid;
+    }
+    const span = x[hi] - x[lo];
+    const t = span > 1e-12 ? (p - x[lo]) / span : 0;
+    return y[lo] + t * (y[hi] - y[lo]);
+  }
+
   function resolveLeague(model, leagueName) {
     const key = norm(leagueName);
     if (!key) return null;
@@ -266,10 +303,14 @@
     };
     for (const [market, spec] of Object.entries(model.models)) {
       const lambda = predictLambda(spec, ctx, code);
+      const calibrators = spec.calibration || null;
       out[market] = {
         lambda,
+        distribution: spec.type === 'nb2' ? 'nb2' : 'poisson',
         lines: (spec.lines || []).map(line => {
-          const over = poissonOver(lambda, line);
+          let over = overProbability(spec, lambda, line);
+          if (calibrators && calibrators[String(line)]) over = calibrate(over, calibrators[String(line)]);
+          over = Math.min(1, Math.max(0, over));
           return { line, over, under: 1 - over };
         }),
       };
@@ -306,7 +347,7 @@
     return [...map.values()].sort((a, b) => a.time - b.time);
   }
 
-  const api = { norm, poissonOver, resolveLeague, resolveTeam, buildFeatureContext, predictLambda, predict, canonicalFixtureKey, uniqueFixtures, TEAM_ALIASES };
+  const api = { norm, poissonOver, nbOver, overProbability, calibrate, resolveLeague, resolveTeam, buildFeatureContext, predictLambda, predict, canonicalFixtureKey, uniqueFixtures, TEAM_ALIASES };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 
   // ---- Browser rendering on model-v1.html ----
@@ -370,7 +411,10 @@
         ]));
         host.append(tr);
       }
-      const note = 'Модель: Poisson-регрессия по историческим данным football-data.co.uk, обучена по ' +
+      const distLabels = Object.entries(model.models || {})
+        .map(([market, spec]) => (market === 'corners' ? 'угловые' : 'ЖК') + ' — ' + (spec.type === 'nb2' ? 'NB2' : 'Poisson'))
+        .join(', ');
+      const note = 'Модель: регрессия по историческим данным football-data.co.uk (' + distLabels + '), обучена по ' +
         (model.trainingThrough || '—') + '. Экспериментальная оценка, не рекомендация. ' +
         'Прогноз выводится только для матчей, где лига и обе команды найдены в обучающих данных.';
       $('internal-count').textContent = 'Матчей с прогнозом внутренней модели: ' + scored + '. ' + note;
