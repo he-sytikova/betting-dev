@@ -53,7 +53,8 @@ def feature_columns(columns, market):
     return list(dict.fromkeys(c for c in common + target_history + [league_avg] if c in columns))
 
 
-def export_model(df, market, target, available, lines, selected):
+def export_model(df, market, target, available, lines, report_market):
+    selected = report_market["poissonTuning"]["selected"]
     feature_set = selected.get("featureSet", "full")
     numeric = feature_columns(df.columns, market)
     if feature_set == "without_referee":
@@ -78,18 +79,31 @@ def export_model(df, market, target, available, lines, selected):
     medians = list(map(float, imputer.statistics_)) + [0.0] * (len(missing_indices) + len(categories))
     means = list(map(float, scaler.mean_)) + [0.0] * len(categories)
     scales = list(map(float, scaler.scale_)) + [1.0] * len(categories)
-    coefficients = list(map(float, pipeline.named_steps["model"].coef_))
+    distribution = report_market.get("distributionSelection", {}).get("selected", "poisson")
+    model_type, nb_alpha = "poisson", None
+    if distribution == "nb":
+        intercept, coefficients, nb_alpha = corners_export.fit_nb2_coefficients(prep, x, y, pipeline)
+        model_type = "nb2"
+    else:
+        coefficients = list(map(float, pipeline.named_steps["model"].coef_))
+        intercept = float(pipeline.named_steps["model"].intercept_)
     if not (len(expanded) == len(medians) == len(means) == len(scales) == len(coefficients)):
         raise RuntimeError(f"Export dimensions mismatch for {market}")
-    return {
-        "type": "poisson", "features": expanded, "imputerMedian": medians,
+    exported = {
+        "type": model_type, "features": expanded, "imputerMedian": medians,
         "scalerMean": means, "scalerScale": scales, "coefficients": coefficients,
-        "intercept": float(pipeline.named_steps["model"].intercept_),
+        "intercept": intercept,
         "trainingRows": int(len(subset)), "trainingFrom": str(subset.date.min().date()),
         "trainingThrough": str(subset.date.max().date()), "selectedFeatureSet": feature_set,
         "regularizationAlpha": alpha, "missingIndicatorFeatures": [numeric[i] for i in missing_indices],
         "leagueCategories": categories, "lines": lines,
     }
+    if nb_alpha is not None:
+        exported["nbAlpha"] = nb_alpha
+    calibration_lines = (report_market.get("calibration") or {}).get("lines") or {}
+    if calibration_lines:
+        exported["calibration"] = calibration_lines
+    return exported
 
 
 def main():
@@ -102,18 +116,19 @@ def main():
     template = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.exists() else {}
     models = {}
     for market, (target, available, _prefix, _league_avg, lines) in MARKETS.items():
-        selected = report["markets"][market]["poissonTuning"]["selected"]
-        models[market] = export_model(df, market, target, available, lines, selected)
+        models[market] = export_model(df, market, target, available, lines, report["markets"][market])
     teams, league_stats, aliases, names = corners_export.build_runtime_state(df, template)
+    distributions = sorted({model["type"] for model in models.values()})
     payload = {
         "schemaVersion": 2, "generatedAt": pd.Timestamp.utcnow().isoformat(),
-        "status": "experimental_runtime_model", "disclaimer": "Experimental out-of-sample validated Poisson models. Not betting advice.",
+        "status": "experimental_runtime_model", "disclaimer": "Experimental out-of-sample validated count models. Not betting advice.",
         "trainingDatasetRows": int(len(df)), "trainingThrough": str(df.date.max().date()),
         "marketLines": {key: value[4] for key, value in MARKETS.items()},
         "models": models,
         "leagueNames": names, "leagueAliases": aliases, "leagueStats": league_stats, "teams": teams,
         "runtimePolicy": {
-            "distribution": "Poisson", "reason": "Runtime exports the validated Poisson regression selected using validation data.",
+            "distribution": "+".join(distributions),
+            "reason": "Each market exports the distribution (Poisson or NB2) selected on validation mean line logLoss with a 0.0005 deadband; NB2 coefficients come from a GLM refit of the tuned pipeline. Isotonic line calibrators are embedded only when their cross-fitted within-validation gain clears the same deadband.",
             "minimumTeamMatches": 5, "refereeFeatures": "Missing referee-at-fixture data are imputed from training medians.",
         },
     }
