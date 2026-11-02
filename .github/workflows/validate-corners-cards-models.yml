@@ -15,6 +15,8 @@ on:
       - "tests/goals-internal-model.test.cjs"
       - "tests/stats-internal-model.test.cjs"
       - "tests/test_build_historical_dataset.py"
+      - "scripts/models/capture-predictions.mjs"
+      - "scripts/models/evaluate-ledger-vs-dataset.mjs"
       - "model-v1.js"
       - "goals-model.js"
       - ".github/workflows/validate-corners-cards-models.yml"
@@ -44,6 +46,8 @@ jobs:
           node --check model-v1.js
           node --check goals-model.js
           node --check scripts/models/archive-provider-results.mjs
+          node --check scripts/models/capture-predictions.mjs
+          node --check scripts/models/evaluate-ledger-vs-dataset.mjs
       - name: Validate dataset builder (stdlib-only Python)
         run: python3 tests/test_build_historical_dataset.py
       - name: Confirm CSV pipelines are not used
