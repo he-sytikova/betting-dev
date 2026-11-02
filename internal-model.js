@@ -210,7 +210,10 @@
       const lambda = predictLambda(spec, ctx, code);
       out[market] = {
         lambda,
-        lines: (spec.lines || []).map(line => ({ line, over: poissonOver(lambda, line) })),
+        lines: (spec.lines || []).map(line => {
+          const over = poissonOver(lambda, line);
+          return { line, over, under: 1 - over };
+        }),
       };
     }
     return out;
@@ -294,8 +297,14 @@
         cell(tr, fmtTime(fixture.time));
         cell(tr, fixture.league);
         cell(tr, fixture.home + ' — ' + fixture.away);
-        stackedCell(tr, prediction.corners.lines.map(x => ({ label: 'ТБ угл. ' + x.line, value: x.over })));
-        stackedCell(tr, prediction.yellowCards.lines.map(x => ({ label: 'ТБ ЖК ' + x.line, value: x.over })));
+        stackedCell(tr, prediction.corners.lines.flatMap(x => [
+          { label: 'ТБ угл. ' + x.line, value: x.over },
+          { label: 'ТМ угл. ' + x.line, value: x.under },
+        ]));
+        stackedCell(tr, prediction.yellowCards.lines.flatMap(x => [
+          { label: 'ТБ ЖК ' + x.line, value: x.over },
+          { label: 'ТМ ЖК ' + x.line, value: x.under },
+        ]));
         cell(tr, prediction.homeModel + ' — ' + prediction.awayModel);
         host.append(tr);
       }
