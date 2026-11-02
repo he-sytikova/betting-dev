@@ -59,6 +59,11 @@ test('deriveMarkets: outcomes are consistent and cover the matrix', () => {
   // Over probabilities decrease with the line.
   const overs = m.totalGoals.map(t => t.over);
   assert.ok(overs[0] > overs[1] && overs[1] > overs[2]);
+  // Half lines cannot push: under is exactly the complement of over.
+  for (const t of m.totalGoals) assert.ok(Math.abs(t.under - (1 - t.over)) < 1e-12);
+  for (const side of ['home', 'away']) {
+    for (const t of m.teamGoals[side]) assert.ok(Math.abs(t.under - (1 - t.over)) < 1e-12);
+  }
   // Team total over 0.5 is just 1 - P(0 goals).
   assert.ok(Math.abs(m.teamGoals.home[0].over - (1 - poissonPmf(0, 1.6))) < 1e-12);
   assert.ok(Math.abs(m.teamGoals.away[0].over - (1 - poissonPmf(0, 1.1))) < 1e-12);
@@ -94,7 +99,15 @@ test('predict scores a fully matched fixture with all requested markets', () => 
   assert.deepEqual(result.totalGoals.map(t => t.line), [1.5, 2.5, 3.5]);
   assert.deepEqual(result.teamGoals.home.map(t => t.line), [0.5, 1.5]);
   assert.deepEqual(result.teamGoals.away.map(t => t.line), [0.5, 1.5]);
-  for (const t of result.totalGoals) assert.ok(t.over > 0 && t.over < 1);
+  for (const t of result.totalGoals) {
+    assert.ok(t.over > 0 && t.over < 1);
+    assert.ok(Math.abs(t.over + t.under - 1) < 1e-12);
+  }
+  for (const side of ['home', 'away']) {
+    for (const t of result.teamGoals[side]) {
+      assert.ok(Math.abs(t.over + t.under - 1) < 1e-12);
+    }
+  }
 });
 
 test('never invents probabilities for unknown leagues, teams or thin history', () => {
