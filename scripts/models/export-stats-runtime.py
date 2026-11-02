@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DATASET = ROOT / "data/corners_cards_training.csv"
 REPORT = ROOT / "data/stats_markets_model_validation.json"
 OUTPUT = ROOT / "data/stats_markets_models.json"
-LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "D1", "I1", "SP1", "F1"]
+LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2", "SP1", "SP2", "F1", "F2", "B1", "P1", "T1", "G1"]
 # Market -> (target column, availability flag, team-history prefix, league average column, lines)
 MARKETS = {
     "fouls": ("fouls_total", "fouls_available", "foul_team", "league_fouls_avg",
