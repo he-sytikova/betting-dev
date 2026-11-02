@@ -94,6 +94,7 @@ def main():
         alpha = float(report["selected"][key]["alpha"])
         models[key] = export_model(df, target, alpha)
     teams, league_stats, aliases, names = corners_export.build_runtime_state(df, template)
+    totals_calibration = ((report.get("totalsCalibration") or {}).get("calibrators")) or {}
     payload = {
         "schemaVersion": 2, "generatedAt": pd.Timestamp.utcnow().isoformat(),
         "status": "experimental_runtime_model",
@@ -107,9 +108,12 @@ def main():
             "distribution": "independent Poisson scoreline matrix",
             "maxGoals": MAX_GOALS,
             "reason": "Home/away goals are modelled as independent Poisson counts; all markets derive from the same scoreline matrix so probabilities stay mutually consistent. Dixon-Coles adjustment is not deployed until separately validated.",
+            "totalsCalibration": "Isotonic match-totals calibrators are embedded only when their cross-fitted within-validation logLoss gain clears the 0.0005 deadband.",
             "minimumTeamMatches": 5,
         },
     }
+    if totals_calibration:
+        payload["totalsCalibration"] = totals_calibration
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(json.dumps({
         "output": str(OUTPUT), "trainingRows": len(df), "trainingThrough": payload["trainingThrough"],
