@@ -1,68 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Модель v1 — угловые и жёлтые карточки</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .markets-title { margin: 0 0 8px; }
-    .markets-controls { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; align-items:center; }
-    .markets-controls select, .markets-controls input { padding:8px 10px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); font:inherit; }
-    .markets-note { color:var(--text-muted); font-size:.85rem; margin:8px 0 12px; }
-    .table-wrapper{overflow-x:auto;overflow-y:visible;border-radius:8px}
-    .markets-table{min-width:1080px;table-layout:fixed;font-size:12px}
-    .markets-table th,.markets-table td{width:auto;padding:6px 7px}
-    .markets-table th{color:#fff;white-space:normal;font-size:11px;line-height:1.2;vertical-align:bottom}
-    .markets-table td{background:#fff;color:#000;vertical-align:middle;font-size:11px;line-height:1.4;overflow-wrap:anywhere;white-space:pre-line}
-    .markets-table th:nth-child(1),.markets-table td:nth-child(1){width:13%;white-space:nowrap}
-    .markets-table th:nth-child(2),.markets-table td:nth-child(2){width:16%}
-    .markets-table th:nth-child(3),.markets-table td:nth-child(3),
-    .markets-table th:nth-child(4),.markets-table td:nth-child(4){width:13%}
-    .markets-table th:nth-child(5),.markets-table td:nth-child(5){width:10%}
-    .markets-table th:nth-child(6),.markets-table td:nth-child(6),
-    .markets-table th:nth-child(7),.markets-table td:nth-child(7){width:17.5%}
-    .markets-table td:nth-child(6),.markets-table td:nth-child(7){font-size:10.5px;line-height:1.3;font-variant-numeric:tabular-nums}
-    .markets-table tbody tr:nth-child(even) td{background:#f1f5f9}
-    .markets-table tbody tr:hover td{background:#e2e8f0}
-    @media(max-width:700px){.markets-table{font-size:10.5px}.markets-table th,.markets-table td{padding:4px}.markets-table th{font-size:10px}.markets-table td:nth-child(6),.markets-table td:nth-child(7){font-size:10px}}
-    .markets-back { display:inline-block; margin:8px 14px 10px 0; color:var(--accent); text-decoration:none; font-weight:600; }
-    #refresh-btn { margin-left:auto; padding:6px 14px; background:var(--accent); color:#0f172a; border:0; border-radius:8px; font-weight:600; cursor:pointer; }
-    @media (max-width:700px) { .markets-controls select,.markets-controls input { max-width:100%; } }
-  </style>
-</head>
-<body>
-  <header class="app-header">
-    <h1 class="markets-title">⚽ Внутренняя модель v1 — угловые и жёлтые карточки</h1>
-    <p class="subtitle" id="markets-date">Загрузка данных…</p>
-    <div class="status-bar"><span class="status-badge">Poisson regression · runtime v2</span><button id="refresh-btn" type="button">Обновить</button></div>
-    
-    <a class="markets-back" href="./goals-model.html">Dev-модель голов и рынков →</a>
-    <a class="markets-back" href="./">← Dev-панель</a>
-  </header>
-  <main>
-    <div id="markets-error" class="error-container hidden"></div>
-    <div class="markets-controls">
-      <select id="market-type" aria-label="Тип прогноза">
-        <option value="all">Все рынки</option>
-        <option value="corners">Угловые</option>
-        <option value="cards">Жёлтые карточки</option>
-      </select>
-      <select id="market-source" aria-label="Источник"><option value="all">Внутренняя модель v1</option></select>
-      <input id="market-search" type="search" placeholder="Поиск команды или лиги…" aria-label="Поиск команды или лиги" />
-    </div>
-    <p class="markets-note" id="markets-count"></p>
-
-    <p class="markets-note">Runtime v2 использует заново обученную Poisson-регрессию и актуальные предматчевые признаки команд. NB2 пока не включён в расчёт до отдельной проверки на той же версии признаков. Прогнозы доступны только для поддерживаемых лиг и команд с достаточной историей.</p>
-    <div class="table-wrapper">
-      <table class="markets-table">
-        <thead><tr><th>Дата и время</th><th>Лига</th><th>Хозяева</th><th>Гости</th><th>Модель</th><th>Угловые</th><th>Жёлтые карточки</th></tr></thead>
-        <tbody id="markets-body"></tbody>
-      </table>
-    </div>
-    <p id="markets-empty" class="empty-state hidden">Предстоящих матчей с достаточными историческими данными не найдено.</p>
-  </main>
-  <footer><p>Экспериментальная исследовательская версия. Не является рекомендацией для ставок и не подтверждает доходность.</p></footer>
-  <script src="model-v1.js"></script>
-</body>
-</html>
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>API-данные — угловые и карточки</title><link rel="stylesheet" href="styles.css">
+<style>
+main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:760px;border-collapse:collapse;font-size:12px}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:8px;white-space:pre-line;overflow-wrap:anywhere}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl td.probability-cell{padding:4px 6px;font-variant-numeric:tabular-nums;white-space:normal}
+.tbl .probability-line{display:block;padding:2px 5px;margin:1px 0;border-radius:3px;line-height:1.35;white-space:nowrap}
+.tbl .probability-line.is-highlighted{font-weight:650}
+.tbl tbody tr:hover td{background:#e2e8f0}
+.tbl th{white-space:normal;line-height:1.25}
+.note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
+</style></head><body data-mode="special">
+<header class="app-header"><h1>⚽ Угловые и жёлтые карточки — API-данные</h1><p id="status" class="subtitle">Загрузка…</p><button id="refresh" type="button">Обновить</button><a class="back" href="./goals-model.html">← Основные рынки</a><a class="back" href="./">Dev-панель</a></header>
+<main><p class="note">Угловые показываются только там, где источник действительно передал вероятность. Сейчас покрытие ограничено BSD; это прогноз одного источника, не межисточниковый консенсус. Жёлтые карточки не рассчитываются: в текущем наборе данных нет их вероятностей. Вымышленные значения не подставляются.</p><p id="count" class="note"></p><div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Лига</th><th>Матч</th><th>Угловые</th><th>Источники</th></tr></thead><tbody id="rows"></tbody></table></div><p id="empty" class="note" hidden>Нет предстоящих матчей с вероятностями угловых.</p></main><script src="api-consensus.js"></script></body></html>
