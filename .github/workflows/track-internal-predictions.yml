@@ -1,16 +1,50 @@
-name: Track internal model predictions (paused)
+name: Track internal model predictions
 
 on:
   workflow_dispatch:
+  schedule:
+    # Capture pre-kickoff predictions from the live model pages several times a
+    # day so the ledger keeps every published fixture. Evaluation against
+    # realised stats happens in the weekly retrain workflow.
+    - cron: '23 5,11,17,23 * * *'
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: track-internal-predictions
+  cancel-in-progress: false
 
 jobs:
-  paused:
+  capture:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - name: Explain pause
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright
         run: |
-          echo "Capturing predictions from the previous CSV-trained experimental models is disabled."
-          echo "Forward testing will resume only after a model trained exclusively on non-CSV data is available."
+          npm install --no-save playwright
+          npx playwright install chromium --with-deps
+
+      - name: Capture predictions from the live internal-model pages
+        run: node scripts/models/capture-predictions.mjs
+
+      - name: Commit new ledger records
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/prediction-ledger/*.jsonl
+          if git diff --cached --quiet; then
+            echo "No new predictions to record"
+          else
+            git commit -m "chore: record internal model predictions"
+            git pull --rebase origin main
+            git push
+          fi
