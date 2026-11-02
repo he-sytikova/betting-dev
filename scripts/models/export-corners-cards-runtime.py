@@ -42,6 +42,8 @@ DEFAULT_LEAGUE_NAMES = {
     "N1": "Netherlands - Eredivisie", "B1": "Belgium - First Division",
     "P1": "Portugal - Primeira Liga", "T1": "Turkey - Super Lig",
     "G1": "Greece - Super League",
+    "RUS": "Russia - Premier League", "BRA": "Brazil - Serie A",
+    "USA": "USA - MLS", "NOR": "Norway - Eliteserien", "SWE": "Sweden - Allsvenskan",
 }
 DEFAULT_LEAGUE_ALIASES = {
     "england premier league": "E0", "england championship": "E1",
@@ -83,6 +85,18 @@ DEFAULT_LEAGUE_ALIASES = {
     # FB_DATA (football-data.org) naming variants; team-level matching inside the
     # resolved league protects against cross-league collisions.
     "primera division": "SP1", "spain laliga": "SP1",
+    # Goals-model results-only leagues (normalized provider spellings).
+    "russia premier league": "RUS", "russian premier league": "RUS",
+    "russia rpl": "RUS",
+    "brasileirao serie a": "BRA", "campeonato brasileiro serie a": "BRA",
+    "brazil serie a": "BRA", "brazil brasileirao serie a": "BRA",
+    "brazil campeonato brasileiro serie a": "BRA",
+    "mls": "USA", "usa mls": "USA", "major league soccer": "USA",
+    "usa major league soccer": "USA",
+    "norway eliteserien": "NOR", "eliteserien": "NOR",
+    "norwegian eliteserien": "NOR",
+    "sweden allsvenskan": "SWE", "allsvenskan": "SWE",
+    "swedish allsvenskan": "SWE",
 }
 
 
