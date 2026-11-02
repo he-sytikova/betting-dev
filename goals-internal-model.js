@@ -151,6 +151,44 @@
     'greenock morton': 'morton',
     'queen s park': 'queens park',
     'raith rovers': 'raith rvs',
+    // Results-only leagues + Netherlands (2026-11, stage 4): feed/provider
+    // spellings -> normalized football-data.co.uk keys. Verified against the
+    // fixture feed audit; lookalike leagues stay unresolved on purpose.
+    // Netherlands N1
+    'psv': 'psv eindhoven',
+    'az': 'az alkmaar',
+    'nec': 'nijmegen',
+    'nec nijmegen': 'nijmegen',
+    'fortuna sittard': 'for sittard',
+    // Russia RUS
+    'krylia sovetov': 'krylya sovetov',
+    'cska moskva': 'cska moscow',
+    'spartak moskva': 'spartak moscow',
+    'lokomotiv moskva': 'lokomotiv moscow',
+    'dinamo moscow': 'dynamo moscow',
+    'dinamo moskva': 'dynamo moscow',
+    'dynamo moskva': 'dynamo moscow',
+    'torpedo moskva': 'torpedo moscow',
+    'nizhny novgorod': 'pari nn',
+    'pari nizhny novgorod': 'pari nn',
+    'zenit st petersburg': 'zenit',
+    'zenit saint petersburg': 'zenit',
+    'zenit sankt petersburg': 'zenit',
+    // Brazil BRA
+    'atletico mineiro': 'atletico mg',
+    'atletico paranaense': 'athletico pr',
+    'athletico paranaense': 'athletico pr',
+    'america mineiro': 'america mg',
+    'atletico goianiense': 'atletico go',
+    // USA MLS (identity alias for LA Galaxy avoids the "los angeles"
+    // substring ambiguity with Los Angeles FC)
+    'la galaxy': 'los angeles galaxy',
+    'los angeles galaxy': 'los angeles galaxy',
+    'lafc': 'los angeles',
+    'ny red bulls': 'new york red bulls',
+    'sporting kc': 'sporting kansas city',
+    // Norway NOR
+    'odds bk': 'odd',
   };
 
   const factorial = [1];
