@@ -22,7 +22,10 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_INPUT = ROOT / "data/corners_cards_training.csv"
 DEFAULT_REPORT = ROOT / "data/goals_markets_model_validation.json"
-LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2", "SP1", "SP2", "F1", "F2", "B1", "P1", "T1", "G1"]
+# 18 stats leagues plus N1 (results complete; stats coverage too low for the
+# corners/cards/fouls models) and the results-only leagues (RUS/BRA/USA/NOR/SWE).
+LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2", "SP1", "SP2", "F1", "F2", "B1", "P1", "T1", "G1",
+           "N1", "RUS", "BRA", "USA", "NOR", "SWE"]
 SPLITS = {"train_end": "2022-06-30", "validation_start": "2022-07-01",
           "validation_end": "2024-06-30", "test_start": "2024-07-01"}
 TOTAL_LINES = [1.5, 2.5, 3.5, 4.5]
