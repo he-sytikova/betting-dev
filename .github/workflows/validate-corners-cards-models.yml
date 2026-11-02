@@ -14,6 +14,7 @@ on:
       - "tests/internal-model.test.cjs"
       - "tests/goals-internal-model.test.cjs"
       - "tests/stats-internal-model.test.cjs"
+      - "tests/test_build_historical_dataset.py"
       - "model-v1.js"
       - "goals-model.js"
       - ".github/workflows/validate-corners-cards-models.yml"
@@ -43,6 +44,8 @@ jobs:
           node --check model-v1.js
           node --check goals-model.js
           node --check scripts/models/archive-provider-results.mjs
+      - name: Validate dataset builder (stdlib-only Python)
+        run: python3 tests/test_build_historical_dataset.py
       - name: Confirm CSV pipelines are not used
         run: |
           if find . -type f -name '*.csv' -not -path './.git/*' | grep -q .; then
