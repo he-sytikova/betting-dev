@@ -18,7 +18,8 @@ test('keeps totals separated by direction and exact line',()=>{
 });
 test('parses corner lines with abbreviated prefix',()=>{
  const p=parseLines('ТБ угл. 8.5: 59.7% / 9.5: 47.9% / 10.5: 36.2%','corners');
- assert.deepEqual(Object.keys(p),['8.5','9.5','10.5']);\n assert.ok(Math.abs(p['10.5']-.362)<1e-12);
+ assert.deepEqual(Object.keys(p),['8.5','9.5','10.5']);
+ assert.ok(Math.abs(p['10.5']-.362)<1e-12);
 });
 test('aggregates exact fixture from multiple providers and derives double chance',()=>{
  const future='2099-01-01T12:00:00Z';
@@ -27,8 +28,8 @@ test('aggregates exact fixture from multiple providers and derives double chance
   {source:'B',time:future,home:'Alpha',away:'Beta',probabilityOutcome:'П1 40% / X 30% / П2 30%',totalGoals:'ТБ 2.5: 80%'}
  ]);
  assert.equal(rows.length,1);assert.equal(rows[0].sourceCount,2);
- assert.equal(rows[0].derived.oneX,.725);
- assert.equal(rows[0].totals['ТБ 2.5'],.7);
+ assert.ok(Math.abs(rows[0].derived.oneX-.725)<1e-12);
+ assert.ok(Math.abs(rows[0].totals['ТБ 2.5']-.7)<1e-12);
 });
 test('does not invent corners or cards when providers omit them',()=>{
  const rows=aggregate([{source:'A',time:'2099-01-01T12:00:00Z',home:'Alpha',away:'Beta',probabilityOutcome:'П1 50% / X 25% / П2 25%'}]);
