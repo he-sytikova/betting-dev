@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>API-данные — угловые и карточки</title><link rel="stylesheet" href="styles.css">
+<style>
+main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:760px;border-collapse:collapse;font-size:12px}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:8px;white-space:pre-line;overflow-wrap:anywhere}.tbl tr:nth-child(even) td{background:#f1f5f9}.note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
+</style></head><body data-mode="special">
+<header class="app-header"><h1>⚽ Угловые и жёлтые карточки — API-данные</h1><p id="status" class="subtitle">Загрузка…</p><button id="refresh" type="button">Обновить</button><a class="back" href="./api-consensus.html">← Основные рынки</a><a class="back" href="./">Dev-панель</a></header>
+<main><p class="note">Угловые показываются только там, где источник действительно передал вероятность. Сейчас покрытие ограничено BSD; это прогноз одного источника, не межисточниковый консенсус. Жёлтые карточки не рассчитываются: в текущем наборе данных нет их вероятностей. Вымышленные значения не подставляются.</p><p id="count" class="note"></p><div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Лига</th><th>Матч</th><th>Угловые</th><th>Источники</th></tr></thead><tbody id="rows"></tbody></table></div><p id="empty" class="note" hidden>Нет предстоящих матчей с вероятностями угловых.</p></main><script src="api-consensus.js"></script></body></html>
