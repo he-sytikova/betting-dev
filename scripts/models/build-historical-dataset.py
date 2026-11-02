@@ -107,12 +107,21 @@ def main():
    r["target_home_goals"],r["target_away_goals"]=m["hg"],m["ag"];r["goals_total"]=m["hg"]+m["ag"]
    r["target_home_corners"],r["target_away_corners"]=m["corners_h"],m["corners_a"]
    r["target_home_yellow"],r["target_away_yellow"]=m["cards_h"],m["cards_a"]
+   r["target_home_fouls"],r["target_away_fouls"]=m["fouls_h"],m["fouls_a"]
+   r["target_home_shots"],r["target_away_shots"]=m["shots_h"],m["shots_a"]
+   r["target_home_sot"],r["target_away_sot"]=m["shots_on_target_h"],m["shots_on_target_a"]
    r["corners_available"]=int(m["corners_h"] is not None and m["corners_a"] is not None)
    r["cards_available"]=int(m["cards_h"] is not None and m["cards_a"] is not None)
+   r["fouls_available"]=int(m["fouls_h"] is not None and m["fouls_a"] is not None)
+   r["shots_available"]=int(m["shots_h"] is not None and m["shots_a"] is not None)
+   r["sot_available"]=int(m["shots_on_target_h"] is not None and m["shots_on_target_a"] is not None)
    # A row is trainable only when both sides of the target are present.
    r.update(model_eligibility(league, r["corners_available"], r["cards_available"]))
    r["corners_total"]=m["corners_h"]+m["corners_a"] if r["corners_available"] else ""
    r["cards_total"]=m["cards_h"]+m["cards_a"] if r["cards_available"] else ""
+   r["fouls_total"]=m["fouls_h"]+m["fouls_a"] if r["fouls_available"] else ""
+   r["shots_total"]=m["shots_h"]+m["shots_a"] if r["shots_available"] else ""
+   r["sot_total"]=m["shots_on_target_h"]+m["shots_on_target_a"] if r["sot_available"] else ""
    out.append(r);pending.append(m)
   for m in pending:
    hk,ak=(league,m["home"]),(league,m["away"])
@@ -142,6 +151,9 @@ def main():
    "cardsEligibleRows":sum(r["cards_model_eligible"] for r in rs),
    "cornersCoveragePct":round(100*sum(r["corners_available"] for r in rs)/len(rs),2) if rs else 0,
    "cardsCoveragePct":round(100*sum(r["cards_available"] for r in rs)/len(rs),2) if rs else 0,
+   "foulsCoveragePct":round(100*sum(r["fouls_available"] for r in rs)/len(rs),2) if rs else 0,
+   "shotsCoveragePct":round(100*sum(r["shots_available"] for r in rs)/len(rs),2) if rs else 0,
+   "sotCoveragePct":round(100*sum(r["sot_available"] for r in rs)/len(rs),2) if rs else 0,
    "from":min((r["date"] for r in rs),default=None),"through":max((r["date"] for r in rs),default=None)}
  report={"generatedAt":datetime.utcnow().isoformat()+"Z","sourceFiles":len(files),"rows":len(out),
   "invalidRows":invalid,"duplicatesRemoved":duplicates,"leagues":by,"files":errors,"output":str(OUT),
