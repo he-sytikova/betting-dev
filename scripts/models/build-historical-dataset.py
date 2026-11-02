@@ -53,6 +53,32 @@ def date(v):
 
 def avg(xs):return sum(xs)/len(xs) if xs else None
 
+# Elo ratings (per country family) and exponentially time-decayed attack/defence
+# goal ratings. Both are updated strictly after a match date is processed, so
+# features never see same-day results.
+ELO_START=1500.0;ELO_K=20.0;ELO_HFA=65.0
+DECAY_HALFLIFE_DAYS=75.0
+
+def elo_expected(rh,ra):
+ return 1.0/(1.0+10.0**(-((rh+ELO_HFA)-ra)/400.0))
+
+def margin_multiplier(diff):
+ n=abs(int(diff))
+ if n<=1:return 1.0
+ if n==2:return 1.5
+ return 1.5+(n-2)*0.25
+
+def decayed_ratings(state):
+ # state = [last_date, w_sum, gf_sum, ga_sum] already decayed to last_date;
+ # the ratio gf/w is invariant to further common decay, so reading is O(1).
+ if not state or state[1]<=1e-9:return (None,None)
+ return (state[2]/state[1],state[3]/state[1])
+
+def decayed_update(state,day,goals_for,goals_against):
+ if state is None:return [day,1.0,goals_for,goals_against]
+ f=0.5**((day-state[0]).days/DECAY_HALFLIFE_DAYS)
+ return [day,state[1]*f+1.0,state[2]*f+goals_for,state[3]*f+goals_against]
+
 def model_eligibility(league, corners_available, cards_available):
  return {
   "corners_model_eligible": int(league in CORNERS and bool(corners_available)),
@@ -97,6 +123,7 @@ def main():
  matches.sort(key=lambda x:(x["date"],x["league"],x["home"],x["away"]))
  histories=defaultdict(lambda:{**{g:deque(maxlen=10) for g in GROUPS},"matches":deque(maxlen=10)})
  league_hist=defaultdict(lambda:deque(maxlen=100)); refs=defaultdict(lambda:deque(maxlen=20)); out=[];i=0
+ elo=defaultdict(lambda:ELO_START); decay={}
  while i<len(matches):
   day=matches[i]["date"];j=i
   while j<len(matches) and matches[j]["date"]==day:j+=1
@@ -107,7 +134,13 @@ def main():
    r={"date":day.isoformat(),"season":m["season"],"league":league,"home_team":m["home"],"away_team":m["away"],
       "home_matches_before":len(histories[hk]["matches"]),"away_matches_before":len(histories[ak]["matches"]),
       "league_matches_before":len(league_hist[(league,"matches")]),"home_advantage":1,
-      "referee_available":int(bool(m["referee"])),"referee_matches_before":len(refs[(league,m["referee"])]) if m["referee"] else 0}
+      "referee_available":int(bool(m["referee"])),"referee_matches_before":len(refs[(league,m["referee"])]) if m["referee"] else 0,
+      "home_elo":round(elo[hk],3),"away_elo":round(elo[ak],3)}
+   h_att,h_def=decayed_ratings(decay.get(hk));a_att,a_def=decayed_ratings(decay.get(ak))
+   r["home_att_decay"]=round(h_att,5) if h_att is not None else None
+   r["home_def_decay"]=round(h_def,5) if h_def is not None else None
+   r["away_att_decay"]=round(a_att,5) if a_att is not None else None
+   r["away_def_decay"]=round(a_def,5) if a_def is not None else None
    for g,p in PREFIX.items():
     r.update({"home_"+k:v for k,v in features(histories[hk][g],p).items()})
     r.update({"away_"+k:v for k,v in features(histories[ak][g],p).items()})
@@ -139,6 +172,15 @@ def main():
    league=m["league"];family=FAMILY[league]
    hk,ak=(family,m["home"]),(family,m["away"])
    histories[hk]["matches"].append(1);histories[ak]["matches"].append(1)
+   rh,ra=elo[hk],elo[ak]
+   exp_home=elo_expected(rh,ra)
+   goal_diff=m["hg"]-m["ag"]
+   score_home=1.0 if goal_diff>0 else (0.5 if goal_diff==0 else 0.0)
+   mult=margin_multiplier(goal_diff)
+   elo[hk]=rh+ELO_K*mult*(score_home-exp_home)
+   elo[ak]=ra+ELO_K*mult*((1.0-score_home)-(1.0-exp_home))
+   decay[hk]=decayed_update(decay.get(hk),day,m["hg"],m["ag"])
+   decay[ak]=decayed_update(decay.get(ak),day,m["ag"],m["hg"])
    for g in GROUPS:
     hv,av=m[g+"_h"],m[g+"_a"]
     if hv is not None and av is not None:
@@ -174,7 +216,7 @@ def main():
   "cardsAvailableRows":sum(r["cards_available"] for r in out),
   "cornersEligibleRows":sum(r["corners_model_eligible"] for r in out),
   "cardsEligibleRows":sum(r["cards_model_eligible"] for r in out),
-  "note":"Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories are keyed by country family, so clubs keep their form across promotion/relegation between divisions of the same country; league averages and referee histories remain per league."}
+  "note":"Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories, Elo ratings and time-decayed attack/defence goal ratings are keyed by country family, so clubs keep their form and ratings across promotion/relegation between divisions of the same country; league averages and referee histories remain per league. Elo: start 1500, K=20, home advantage 65 points, margin multiplier 1/1.5/1.5+0.25*(N-2). Decayed ratings use a 75-day half-life over goals for/against."}
  REPORT.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
  print(json.dumps({"rows":len(out),"sourceFiles":len(files),"duplicatesRemoved":duplicates,"report":str(REPORT)},indent=2))
 if __name__=="__main__":main()
