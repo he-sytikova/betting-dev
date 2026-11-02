@@ -215,10 +215,10 @@
         p1, x, p2,
         dc1x: p1 + x, dc12: p1 + p2, dcx2: x + p2,
       },
-      totalGoals: totalLines.map(line => ({ line, over: over.get(line) })),
+      totalGoals: totalLines.map(line => ({ line, over: over.get(line), under: 1 - over.get(line) })),
       teamGoals: {
-        home: teamLines.map(line => ({ line, over: tail(homeLambda, line) })),
-        away: teamLines.map(line => ({ line, over: tail(awayLambda, line) })),
+        home: teamLines.map(line => { const p = tail(homeLambda, line); return { line, over: p, under: 1 - p }; }),
+        away: teamLines.map(line => { const p = tail(awayLambda, line); return { line, over: p, under: 1 - p }; }),
       },
     };
   }
@@ -337,9 +337,18 @@
           { label: '12', value: prediction.outcomes.dc12 },
           { label: 'X2', value: prediction.outcomes.dcx2 },
         ]);
-        stackedCell(tr, prediction.totalGoals.map(t => ({ label: 'ТБ ' + t.line, value: t.over })));
-        stackedCell(tr, prediction.teamGoals.home.map(t => ({ label: 'ИТБ1 ' + t.line, value: t.over })));
-        stackedCell(tr, prediction.teamGoals.away.map(t => ({ label: 'ИТБ2 ' + t.line, value: t.over })));
+        stackedCell(tr, prediction.totalGoals.flatMap(t => [
+          { label: 'ТБ ' + t.line, value: t.over },
+          { label: 'ТМ ' + t.line, value: t.under },
+        ]));
+        stackedCell(tr, prediction.teamGoals.home.flatMap(t => [
+          { label: 'ИТБ1 ' + t.line, value: t.over },
+          { label: 'ИТМ1 ' + t.line, value: t.under },
+        ]));
+        stackedCell(tr, prediction.teamGoals.away.flatMap(t => [
+          { label: 'ИТБ2 ' + t.line, value: t.over },
+          { label: 'ИТМ2 ' + t.line, value: t.under },
+        ]));
         cell(tr, prediction.homeModel + ' — ' + prediction.awayModel);
         host.append(tr);
       }
