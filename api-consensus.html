@@ -2,7 +2,12 @@
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>API-консенсус — основные рынки</title><link rel="stylesheet" href="styles.css">
 <style>
-main{max-width:1500px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:1050px;border-collapse:collapse;font-size:12px;table-layout:fixed}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:7px;white-space:pre-line;overflow-wrap:anywhere;vertical-align:middle}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl th:nth-child(1){width:9%}.tbl th:nth-child(2){width:12%}.tbl th:nth-child(3){width:19%}.tbl th:nth-child(4){width:17%}.tbl th:nth-child(5){width:18%}.tbl th:nth-child(6){width:17%}.note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
+main{max-width:1500px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:1050px;border-collapse:collapse;font-size:12px;table-layout:fixed}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:7px;white-space:pre-line;overflow-wrap:anywhere;vertical-align:middle}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl th:nth-child(1){width:9%}.tbl th:nth-child(2){width:12%}.tbl th:nth-child(3){width:19%}.tbl th:nth-child(4){width:17%}.tbl th:nth-child(5){width:18%}.tbl th:nth-child(6){width:17%}.tbl td.probability-cell{padding:4px 6px;font-variant-numeric:tabular-nums;white-space:normal}
+.tbl .probability-line{display:block;padding:2px 5px;margin:1px 0;border-radius:3px;line-height:1.35;white-space:nowrap}
+.tbl .probability-line.is-highlighted{font-weight:650}
+.tbl tbody tr:hover td{background:#e2e8f0}
+.tbl th{white-space:normal;line-height:1.25}
+.note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
 </style></head><body data-mode="main">
 <header class="app-header"><h1>⚽ API-консенсус — основные рынки</h1><p id="status" class="subtitle">Загрузка…</p><button id="refresh" type="button">Обновить</button><a class="back" href="./">← Dev-панель</a><a class="back" href="./api-special.html">Угловые и карточки →</a></header>
 <main><p class="note">Расчёт на основе уже доступных прогнозов API. Для 1X2 усредняются нормализованные вероятности источников; 1X, X2, 12 и DNB выводятся математически из них. Тоталы усредняются только при совпадении линии и направления. Это API-консенсус, а не независимо обученная модель. Красные карточки, точный счёт и форы не выводятся.</p>
