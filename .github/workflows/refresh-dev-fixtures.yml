@@ -1,0 +1,54 @@
+name: Refresh dev fixture schedule
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Keep the dev model's fixture calendar in sync with the public production snapshot.
+    - cron: '17 */2 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-dev-fixtures
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dev repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download latest production fixture snapshot
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location \
+            --retry 4 --retry-delay 5 \
+            https://raw.githubusercontent.com/he-sytikova/betting/main/data.json \
+            --output data.json
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+            if (!data.date || !Array.isArray(data.matches)) {
+              throw new Error('Production data.json has an unexpected format');
+            }
+            console.log('Snapshot date:', data.date);
+            console.log('Generated at:', data.generatedAt || 'unknown');
+            console.log('Match count:', data.matches.length);
+          "
+
+      - name: Commit refreshed schedule
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          if git diff --cached --quiet; then
+            echo "Fixture snapshot is already current"
+          else
+            git commit -m "chore: refresh dev fixture schedule"
+            git pull --rebase origin main
+            git push
+          fi
