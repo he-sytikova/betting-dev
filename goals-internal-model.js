@@ -242,7 +242,24 @@
   }
 
   // Scoreline matrix over 0..maxGoals for each side, renormalized.
-  function deriveMarkets(homeLambda, awayLambda, totalLines, teamLines, maxGoals) {
+  // Isotonic calibrator knots: piecewise-linear interpolation, clamped outside.
+  function calibrate(p, knots) {
+    if (!knots || !knots.x || !knots.x.length) return p;
+    const x = knots.x, y = knots.y;
+    if (p <= x[0]) return y[0];
+    const last = x.length - 1;
+    if (p >= x[last]) return y[last];
+    let lo = 0, hi = last;
+    while (hi - lo > 1) {
+      const mid = (lo + hi) >> 1;
+      if (x[mid] <= p) lo = mid; else hi = mid;
+    }
+    const span = x[hi] - x[lo];
+    const t = span > 1e-12 ? (p - x[lo]) / span : 0;
+    return y[lo] + t * (y[hi] - y[lo]);
+  }
+
+  function deriveMarkets(homeLambda, awayLambda, totalLines, teamLines, maxGoals, totalsCalibration) {
     const matrix = [];
     let total = 0;
     for (let i = 0; i <= maxGoals; i++) {
@@ -273,7 +290,13 @@
         p1, x, p2,
         dc1x: p1 + x, dc12: p1 + p2, dcx2: x + p2,
       },
-      totalGoals: totalLines.map(line => ({ line, over: over.get(line), under: 1 - over.get(line) })),
+      totalGoals: totalLines.map(line => {
+        let p = over.get(line);
+        if (totalsCalibration && totalsCalibration[String(line)]) {
+          p = Math.min(1, Math.max(0, calibrate(p, totalsCalibration[String(line)])));
+        }
+        return { line, over: p, under: 1 - p };
+      }),
       teamGoals: {
         home: teamLines.map(line => { const p = tail(homeLambda, line); return { line, over: p, under: 1 - p }; }),
         away: teamLines.map(line => { const p = tail(awayLambda, line); return { line, over: p, under: 1 - p }; }),
@@ -297,7 +320,8 @@
     const markets = deriveMarkets(homeLambda, awayLambda,
       lines.totalGoals || [1.5, 2.5, 3.5, 4.5],
       lines.teamGoals || [0.5, 1.5, 2.5],
-      (model.runtimePolicy && model.runtimePolicy.maxGoals) || 10);
+      (model.runtimePolicy && model.runtimePolicy.maxGoals) || 10,
+      model.totalsCalibration || null);
     return {
       league: code,
       leagueLabel: (model.leagueNames || {})[code] || code,
@@ -338,7 +362,7 @@
     return [...map.values()].sort((a, b) => a.time - b.time);
   }
 
-  const api = { norm, poissonPmf, resolveLeague, resolveTeam, buildFeatureContext, predictLambda, deriveMarkets, predict, canonicalFixtureKey, uniqueFixtures, TEAM_ALIASES };
+  const api = { norm, poissonPmf, calibrate, resolveLeague, resolveTeam, buildFeatureContext, predictLambda, deriveMarkets, predict, canonicalFixtureKey, uniqueFixtures, TEAM_ALIASES };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 
   // ---- Browser rendering on goals-model.html ----
