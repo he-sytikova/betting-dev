@@ -165,3 +165,43 @@ test('extended league set: sponsored names resolve, lookalike divisions stay nul
   assert.equal(resolveTeam(extended, 'T1', 'İstanbul Başakşehir').key, 'buyuksehyr');
   assert.equal(resolveTeam(extended, 'SC1', 'Raith Rovers').key, 'raith rvs');
 });
+
+// --- Totals line calibration (stage 2, 2026-11) ---
+const { calibrate } = require('../goals-internal-model.js');
+
+test('calibrate interpolates linearly and clamps outside knots', () => {
+  const knots = { x: [0.2, 0.5, 0.8], y: [0.15, 0.5, 0.9] };
+  assert.equal(calibrate(0.1, knots), 0.15);
+  assert.equal(calibrate(0.9, knots), 0.9);
+  assert.ok(Math.abs(calibrate(0.65, knots) - 0.7) < 1e-12);
+  assert.equal(calibrate(0.5, null), 0.5);
+  assert.equal(calibrate(0.5, { x: [], y: [] }), 0.5);
+});
+
+test('deriveMarkets applies totals calibration only to calibrated lines', () => {
+  const raw = deriveMarkets(1.6, 1.1, [1.5, 2.5, 3.5], [0.5, 1.5], 10);
+  const calibrated = deriveMarkets(1.6, 1.1, [1.5, 2.5, 3.5], [0.5, 1.5], 10, {
+    '2.5': { x: [0, 1], y: [0, 1] }, // identity on 2.5 only
+  });
+  for (let i = 0; i < raw.totalGoals.length; i++) {
+    assert.ok(Math.abs(raw.totalGoals[i].over - calibrated.totalGoals[i].over) < 1e-12,
+      'identity calibrator must not change the probability');
+    assert.ok(Math.abs(calibrated.totalGoals[i].under - (1 - calibrated.totalGoals[i].over)) < 1e-12);
+  }
+  const shifted = deriveMarkets(1.6, 1.1, [2.5], [0.5], 10, { '2.5': { x: [0, 1], y: [0.2, 0.2] } });
+  assert.ok(Math.abs(shifted.totalGoals[0].over - 0.2) < 1e-12, 'flat calibrator must pin the probability');
+  // 1X2 and team totals are never touched by totals calibration.
+  assert.ok(Math.abs(shifted.outcomes.p1 - raw.outcomes.p1) < 1e-12);
+  assert.ok(Math.abs(shifted.teamGoals.home[0].over - raw.teamGoals.home[0].over) < 1e-12);
+});
+
+test('predict passes model.totalsCalibration into totals only', () => {
+  const model = JSON.parse(JSON.stringify(sampleModel));
+  model.totalsCalibration = { '2.5': { x: [0, 1], y: [0.3, 0.3] } };
+  const prediction = predict(model, 'Premier League', 'Newcastle', 'Everton');
+  const line25 = prediction.totalGoals.find(x => x.line === 2.5);
+  assert.ok(Math.abs(line25.over - 0.3) < 1e-12);
+  const line15 = prediction.totalGoals.find(x => x.line === 1.5);
+  const raw = deriveMarkets(prediction.homeLambda, prediction.awayLambda, [1.5], [0.5], 10);
+  assert.ok(Math.abs(line15.over - raw.totalGoals[0].over) < 1e-12, 'uncalibrated line keeps the matrix value');
+});
