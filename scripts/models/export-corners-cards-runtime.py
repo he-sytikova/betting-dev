@@ -126,6 +126,22 @@ def clean_number(value):
         return None
 
 
+def estimate_alpha(y, mu):
+    y, mu = np.asarray(y, float), np.asarray(mu, float)
+    raw = np.sum((y - mu) ** 2 - y) / max(np.sum(mu ** 2), 1e-9)
+    return float(np.clip(raw, 0.005, 2.0))
+
+
+def fit_nb2_coefficients(prep, x, y, pipeline):
+    """Refit the exported pipeline as a negative-binomial GLM in the same
+    transformed feature space; returns (intercept, coefficients, alpha)."""
+    import statsmodels.api as sm
+    z = sm.add_constant(np.asarray(prep.transform(x)), has_constant="add")
+    nb_alpha = estimate_alpha(y, np.clip(pipeline.predict(x), 0.01, None))
+    nb = sm.GLM(y, z, family=sm.families.NegativeBinomial(alpha=nb_alpha)).fit(maxiter=15)
+    return float(nb.params[0]), list(map(float, nb.params[1:])), nb_alpha
+
+
 def normalize_name(value):
     value = unicodedata.normalize("NFKD", str(value or ""))
     value = "".join(ch for ch in value if not unicodedata.combining(ch)).lower().replace("ı", "i")
@@ -134,7 +150,8 @@ def normalize_name(value):
     return " ".join(value.split())
 
 
-def export_model(df, market, target, eligible, lines, selected):
+def export_model(df, market, target, eligible, lines, report_market):
+    selected = report_market["poissonTuning"]["selected"]
     feature_set = selected.get("featureSet", "full")
     numeric = feature_columns(df.columns, "corners" if market == "corners" else "cards")
     if feature_set == "without_referee":
@@ -159,18 +176,31 @@ def export_model(df, market, target, eligible, lines, selected):
     medians = list(map(float, imputer.statistics_)) + [0.0] * (len(missing_indices) + len(categories))
     means = list(map(float, scaler.mean_)) + [0.0] * len(categories)
     scales = list(map(float, scaler.scale_)) + [1.0] * len(categories)
-    coefficients = list(map(float, pipeline.named_steps["model"].coef_))
+    distribution = report_market.get("distributionSelection", {}).get("selected", "poisson")
+    model_type, nb_alpha = "poisson", None
+    if distribution == "nb":
+        intercept, coefficients, nb_alpha = fit_nb2_coefficients(prep, x, y, pipeline)
+        model_type = "nb2"
+    else:
+        coefficients = list(map(float, pipeline.named_steps["model"].coef_))
+        intercept = float(pipeline.named_steps["model"].intercept_)
     if not (len(expanded) == len(medians) == len(means) == len(scales) == len(coefficients)):
         raise RuntimeError(f"Export dimensions mismatch for {market}")
-    return {
-        "type": "poisson", "features": expanded, "imputerMedian": medians,
+    exported = {
+        "type": model_type, "features": expanded, "imputerMedian": medians,
         "scalerMean": means, "scalerScale": scales, "coefficients": coefficients,
-        "intercept": float(pipeline.named_steps["model"].intercept_),
+        "intercept": intercept,
         "trainingRows": int(len(subset)), "trainingFrom": str(subset.date.min().date()),
         "trainingThrough": str(subset.date.max().date()), "selectedFeatureSet": feature_set,
         "regularizationAlpha": alpha, "missingIndicatorFeatures": [numeric[i] for i in missing_indices],
         "leagueCategories": categories, "lines": lines,
     }
+    if nb_alpha is not None:
+        exported["nbAlpha"] = nb_alpha
+    calibration_lines = (report_market.get("calibration") or {}).get("lines") or {}
+    if calibration_lines:
+        exported["calibration"] = calibration_lines
+    return exported
 
 
 def build_runtime_state(df, template):
@@ -220,18 +250,19 @@ def main():
     models = {}
     for market, (target, eligible, lines) in MARKETS.items():
         report_market = "corners" if market == "corners" else "cards"
-        selected = report["markets"][report_market]["poissonTuning"]["selected"]
-        models[market] = export_model(df, market, target, eligible, lines, selected)
+        models[market] = export_model(df, market, target, eligible, lines, report["markets"][report_market])
     teams, league_stats, aliases, names = build_runtime_state(df, template)
+    distributions = sorted({model["type"] for model in models.values()})
     payload = {
         "schemaVersion": 2, "generatedAt": pd.Timestamp.utcnow().isoformat(),
-        "status": "experimental_runtime_model", "disclaimer": "Experimental out-of-sample validated Poisson models. Not betting advice.",
+        "status": "experimental_runtime_model", "disclaimer": "Experimental out-of-sample validated count models. Not betting advice.",
         "trainingDatasetRows": int(len(df)), "trainingThrough": str(df.date.max().date()),
         "marketLines": {key: value[2] for key, value in MARKETS.items()},
         "lines": MARKETS["corners"][2], "models": models,
         "leagueNames": names, "leagueAliases": aliases, "leagueStats": league_stats, "teams": teams,
         "runtimePolicy": {
-            "distribution": "Poisson", "reason": "Runtime exports the validated Poisson regression selected using validation data; NB2 is not deployed until separately validated for this exact feature pipeline.",
+            "distribution": "+".join(distributions),
+            "reason": "Each market exports the distribution (Poisson or NB2) selected on validation mean line logLoss with a 0.0005 deadband; NB2 coefficients come from a GLM refit of the tuned pipeline. Isotonic line calibrators are embedded only when their cross-fitted within-validation gain clears the same deadband.",
             "minimumTeamMatches": 5, "refereeFeatures": "Missing referee-at-fixture data are imputed from training medians.",
         },
     }
