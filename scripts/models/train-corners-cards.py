@@ -8,6 +8,7 @@ import pandas as pd
 from scipy.stats import poisson, nbinom
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
+from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import PoissonRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -103,17 +104,22 @@ def reliability_bins(y, probability, threshold, bins=10):
     return output
 
 
+def over_probability(mean, line, distribution="poisson", alpha=None):
+    """P(count > line) under the chosen count distribution (vectorized)."""
+    threshold = math.floor(line)
+    if distribution == "poisson":
+        return 1 - poisson.cdf(threshold, mean)
+    a = max(alpha or 0.01, 0.0001)
+    size = 1 / a
+    return 1 - nbinom.cdf(threshold, size, size / (size + mean))
+
+
 def score(y, mean, lines, distribution="poisson", alpha=None):
     result = {"n": int(len(y)), "mae": mae(y, mean), "poissonDeviance": poisson_deviance(y, mean)}
     result["lines"] = []
     for line in lines:
         threshold = math.floor(line)
-        if distribution == "poisson":
-            prob = 1 - poisson.cdf(threshold, mean)
-        else:
-            a = max(alpha or 0.01, 0.0001)
-            size = 1 / a
-            prob = 1 - nbinom.cdf(threshold, size, size / (size + mean))
+        prob = over_probability(mean, line, distribution, alpha)
         ll, brier = probability_scores(y, prob, threshold)
         result["lines"].append({
             "line": line, "overCount": int(np.sum(np.asarray(y) > line)),
@@ -121,6 +127,44 @@ def score(y, mean, lines, distribution="poisson", alpha=None):
             "reliabilityBins": reliability_bins(y, prob, threshold),
         })
     return result
+
+
+def mean_line_logloss(scored):
+    return float(np.mean([x["logLoss"] for x in scored["lines"]]))
+
+
+def fit_line_calibrators(y, mean, lines, distribution="poisson", alpha=None):
+    """One isotonic calibrator per line, fitted on the rows passed in."""
+    calibrators = {}
+    y = np.asarray(y, dtype=float)
+    for line in lines:
+        raw = np.asarray(over_probability(mean, line, distribution, alpha), dtype=float)
+        event = (y > line).astype(float)
+        calibrators[line] = IsotonicRegression(out_of_bounds="clip").fit(raw, event)
+    return calibrators
+
+
+def calibrated_scores(y, mean, lines, calibrators, distribution="poisson", alpha=None):
+    """Score line probabilities after applying the fitted calibrators."""
+    result = {"n": int(len(y)), "lines": []}
+    y = np.asarray(y, dtype=float)
+    for line in lines:
+        threshold = math.floor(line)
+        raw = np.asarray(over_probability(mean, line, distribution, alpha), dtype=float)
+        prob = np.clip(calibrators[line].predict(raw), 0.0, 1.0)
+        ll, brier = probability_scores(y, prob, threshold)
+        result["lines"].append({"line": line, "logLoss": ll, "brier": brier})
+    return result
+
+
+def serialize_calibrator(iso, max_points=60):
+    """Compact the isotonic step function to monotone knots for the runtime JSON."""
+    xs = np.asarray(iso.X_thresholds_, dtype=float)
+    ys = np.asarray(iso.y_thresholds_, dtype=float)
+    if len(xs) > max_points:
+        keep = np.unique(np.linspace(0, len(xs) - 1, max_points).round().astype(int))
+        xs, ys = xs[keep], ys[keep]
+    return {"x": [round(float(v), 5) for v in xs], "y": [round(float(v), 5) for v in ys]}
 
 
 def main():
@@ -187,14 +231,41 @@ def main():
             ix = test.index.get_indexer(group.index)
             tuned_test_by_league[league_code] = score(group[target].to_numpy(float), tuned_test[ix], lines)
 
-        prep = model.named_steps["prep"]
-        z_train = sm.add_constant(np.asarray(prep.transform(x_train)), has_constant="add")
-        z_valid = sm.add_constant(np.asarray(prep.transform(x_valid)), has_constant="add")
-        z_test = sm.add_constant(np.asarray(prep.transform(x_test)), has_constant="add")
-        alpha = estimate_alpha(y_train, np.clip(model.predict(x_train), 0.01, None))
+        # NB2 refit of the tuned pipeline: dispersion from train residuals of the
+        # tuned model, GLM refit in the tuned pipeline's transformed feature space.
+        prep = tuned_model.named_steps["prep"]
+        x_tuned_train = train[best["features"] + ["league"]]
+        x_tuned_valid = valid[best["features"] + ["league"]]
+        x_tuned_test = test[best["features"] + ["league"]]
+        z_train = sm.add_constant(np.asarray(prep.transform(x_tuned_train)), has_constant="add")
+        z_valid = sm.add_constant(np.asarray(prep.transform(x_tuned_valid)), has_constant="add")
+        z_test = sm.add_constant(np.asarray(prep.transform(x_tuned_test)), has_constant="add")
+        alpha = estimate_alpha(y_train, np.clip(tuned_model.predict(x_tuned_train), 0.01, None))
         nb = sm.GLM(y_train, z_train, family=sm.families.NegativeBinomial(alpha=alpha)).fit(maxiter=15)
         nb_valid = np.clip(nb.predict(z_valid), 0.01, None)
         nb_test = np.clip(nb.predict(z_test), 0.01, None)
+        # Distribution deployment is pre-registered: NB2 ships only when its
+        # validation mean line logLoss beats Poisson by at least the deadband.
+        deadband = 0.0005
+        p_ll = mean_line_logloss(score(y_valid, tuned_valid, lines))
+        n_ll = mean_line_logloss(score(y_valid, nb_valid, lines, "nb", alpha))
+        distribution = "nb" if n_ll < p_ll - deadband else "poisson"
+        # Isotonic line calibration. Deployment is decided inside validation only:
+        # fit on the earlier validation half, evaluate honestly on the later half;
+        # ship only if the cross-fitted improvement clears the deadband, then refit
+        # on full validation. Test metrics (raw vs calibrated) are reported either way.
+        selected_valid = nb_valid if distribution == "nb" else tuned_valid
+        selected_test = nb_test if distribution == "nb" else tuned_test
+        selected_alpha = alpha if distribution == "nb" else None
+        cal_mid = v0 + (v1 - v0) / 2
+        early_mask = (valid.date <= cal_mid).to_numpy()
+        late_mask = ~early_mask
+        cal_early = fit_line_calibrators(y_valid[early_mask], selected_valid[early_mask], lines, distribution, selected_alpha)
+        raw_late = score(y_valid[late_mask], selected_valid[late_mask], lines, distribution, selected_alpha)
+        cal_late = calibrated_scores(y_valid[late_mask], selected_valid[late_mask], lines, cal_early, distribution, selected_alpha)
+        crossfit_gain = mean_line_logloss(raw_late) - mean_line_logloss(cal_late)
+        deploy_calibration = crossfit_gain > deadband
+        calibrators = fit_line_calibrators(y_valid, selected_valid, lines, distribution, selected_alpha)
         base_valid = pd.to_numeric(valid[league_avg], errors="coerce").fillna(float(np.mean(y_train))).clip(lower=0.01).to_numpy()
         base_test = pd.to_numeric(test[league_avg], errors="coerce").fillna(float(np.mean(y_train))).clip(lower=0.01).to_numpy()
         reports[market] = {
@@ -213,8 +284,30 @@ def main():
                 "leagueRollingMeanBaseline": score(y_test, base_test, lines),
                 "poissonRegression": score(y_test, p_test, lines),
                 "negativeBinomial": score(y_test, nb_test, lines, "nb", alpha),
+                "calibratedSelected": calibrated_scores(y_test, selected_test, lines, calibrators, distribution, selected_alpha),
             },
             "negativeBinomialAlpha": alpha,
+            "distributionSelection": {
+                "metric": "validation mean logLoss across lines",
+                "deadband": deadband,
+                "poissonMeanLogLoss": p_ll,
+                "negativeBinomialMeanLogLoss": n_ll,
+                "selected": distribution,
+            },
+            "calibration": {
+                "method": "isotonic (out_of_bounds=clip), fitted on validation only, applied to the selected distribution",
+                "deploymentRule": "deploy only if cross-fitted within-validation logLoss gain (early half fit, late half evaluation) exceeds 0.0005; deployed calibrator refit on full validation",
+                "crossFitGain": crossfit_gain,
+                "crossFitRawLateMeanLogLoss": mean_line_logloss(raw_late),
+                "crossFitCalibratedLateMeanLogLoss": mean_line_logloss(cal_late),
+                "deployed": bool(deploy_calibration),
+                "lines": ({str(line): serialize_calibrator(calibrators[line]) for line in lines}
+                          if deploy_calibration else {}),
+                "testMeanLogLossRaw": mean_line_logloss(
+                    score(y_test, selected_test, lines, distribution, selected_alpha)),
+                "testMeanLogLossCalibrated": mean_line_logloss(
+                    calibrated_scores(y_test, selected_test, lines, calibrators, distribution, selected_alpha)),
+            },
             "poissonTuning": {
                 "selectionMetric": "validation Poisson deviance (lower is better)",
                 "candidates": tuning,
@@ -231,7 +324,8 @@ def main():
                 "League rolling-average baseline uses prior matches only.",
                 "Netherlands Eredivisie excluded due to 34.75% target coverage.",
                 "Reliability bins are fixed-width 10-point probability bins; empty bins omitted.",
-                "No probability calibrator is fitted in this stage; diagnostics are out-of-sample on validation/test.",
+                "NB2 deployment is selected on validation mean line logLoss with a 0.0005 deadband in favour of Poisson.",
+                "Calibration deployment is selected on cross-fitted within-validation logLoss gain (early half fit, late half evaluated) with the same deadband; test raw-vs-calibrated is reported either way.",
             ],
         }
         for league_code, group in test.assign(_league=test["league"].astype(str)).groupby("_league"):
@@ -255,9 +349,16 @@ def main():
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({m: {"train": r["trainRows"], "validation": r["validationRows"],
-                          "test": r["testRows"], "testMetrics": {
+                          "test": r["testRows"],
+                          "distribution": r["distributionSelection"]["selected"],
+                          "nbAlpha": round(r["negativeBinomialAlpha"], 4),
+                          "calibrationDeployed": r["calibration"]["deployed"],
+                          "crossFitGain": round(r["calibration"]["crossFitGain"], 5),
+                          "testMeanLL": {"rawSelected": round(r["calibration"]["testMeanLogLossRaw"], 4),
+                                         "calibrated": round(r["calibration"]["testMeanLogLossCalibrated"], 4)},
+                          "testMetrics": {
                               k: {"mae": v["mae"], "poissonDeviance": v["poissonDeviance"]}
-                              for k, v in r["test"].items()}}
+                              for k, v in r["test"].items() if "poissonDeviance" in v}}
                       for m, r in reports.items()}, indent=2))
 
 
