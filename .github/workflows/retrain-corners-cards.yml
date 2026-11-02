@@ -67,11 +67,18 @@ jobs:
       - name: Export fouls/shots browser runtime model JSON
         run: python scripts/models/export-stats-runtime.py
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Evaluate captured predictions against the refreshed dataset
+        run: node scripts/models/evaluate-ledger-vs-dataset.mjs
+
       - name: Commit refreshed model artifacts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/stats_markets_models.json data/stats_markets_model_validation.json data/historical_dataset_report.json
+          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/stats_markets_models.json data/stats_markets_model_validation.json data/historical_dataset_report.json data/prediction-ledger/evaluation-internal.json
           if git diff --cached --quiet; then
             echo "Model artifacts are already current"
           else
