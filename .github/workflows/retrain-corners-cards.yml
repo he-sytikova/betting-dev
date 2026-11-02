@@ -66,8 +66,11 @@ jobs:
 
       - name: Confirm no CSV files are committed
         run: |
-          if find . -type f -name '*.csv' -not -path './.git/*' | grep -q .; then
+          # Downloaded raw CSVs exist only in the runner workspace and are never
+          # committed; verify tracked files instead of the working tree.
+          if git ls-files -- '*.csv' | grep -q .; then
             echo "CSV files must not be committed to the repository."
+            git ls-files -- '*.csv'
             exit 1
           fi
-          echo "No CSV files in the working tree."
+          echo "No CSV files are tracked by git."
