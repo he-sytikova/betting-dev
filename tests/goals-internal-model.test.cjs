@@ -133,3 +133,35 @@ test('norm strips club prefixes like the export normalizer', () => {
   assert.equal(norm('FC Koln'), 'koln');
   assert.equal(norm('RC Deportivo La Coruña'), 'rc deportivo la coruna');
 });
+
+test('extended league set: sponsored names resolve, lookalike divisions stay null', () => {
+  const extended = {
+    leagueNames: {},
+    leagueAliases: {
+      'liga portugal betclic': 'P1', 'portugal primeira liga': 'P1',
+      'trendyol super lig': 'T1', 'turkey superliga': 'T1', 'turkey super lig': 'T1',
+      'greece superleague': 'G1', 'segunda division': 'SP2', 'ligue 2': 'F2',
+      'belgium pro league': 'B1', 'scotland championship': 'SC1',
+    },
+    leagueStats: {},
+    teams: {
+      P1: { guimaraes: { name: 'Guimaraes', matchesBefore: 100, stats: {} } },
+      B1: { 'st gilloise': { name: 'St. Gilloise', matchesBefore: 100, stats: {} } },
+      T1: { buyuksehyr: { name: 'Buyuksehyr', matchesBefore: 100, stats: {} } },
+      SC1: { 'raith rvs': { name: 'Raith Rvs', matchesBefore: 100, stats: {} } },
+    },
+  };
+  assert.equal(resolveLeague(extended, 'Liga Portugal Betclic'), 'P1');
+  assert.equal(resolveLeague(extended, 'Trendyol Super Lig'), 'T1');
+  assert.equal(resolveLeague(extended, 'Turkey. SuperLiga'), 'T1');
+  // Second divisions with lookalike names must NOT resolve to our leagues.
+  assert.equal(resolveLeague(extended, 'Greece. SuperLeague 2'), null);
+  assert.equal(resolveLeague(extended, 'Liga Portugal 2'), null);
+  assert.equal(resolveLeague(extended, 'Senegal. Ligue 2'), null);
+  assert.equal(resolveLeague(extended, 'Turkey. TFF 1. Lig'), null);
+  // Curated team aliases for the extended leagues.
+  assert.equal(resolveTeam(extended, 'P1', 'Vitória SC').key, 'guimaraes');
+  assert.equal(resolveTeam(extended, 'B1', 'Union SG').key, 'st gilloise');
+  assert.equal(resolveTeam(extended, 'T1', 'İstanbul Başakşehir').key, 'buyuksehyr');
+  assert.equal(resolveTeam(extended, 'SC1', 'Raith Rovers').key, 'raith rvs');
+});
