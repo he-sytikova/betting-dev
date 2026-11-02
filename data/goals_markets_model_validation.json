@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-02T16:21:54.422084+00:00",
-  "dataset": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
+  "generatedAt": "2026-11-02T16:53:31.723700+00:00",
+  "dataset": "/tmp/g/repo/data/corners_cards_training.csv",
   "splitPolicy": {
     "train_end": "2022-06-30",
     "validation_start": "2022-07-01",
@@ -27,6 +27,72 @@
     "SP2",
     "T1"
   ],
+  "maxGoals": 10,
+  "rows": {
+    "train": 138608,
+    "validation": 13193,
+    "test": 14604
+  },
+  "targets": {
+    "homeGoals": {
+      "target": "target_home_goals",
+      "regularizationAlpha": 0.03,
+      "tuning": [
+        {
+          "alpha": 0.03,
+          "validationPoissonDeviance": 1.1052595800549876
+        },
+        {
+          "alpha": 0.15,
+          "validationPoissonDeviance": 1.1073029389842055
+        },
+        {
+          "alpha": 0.5,
+          "validationPoissonDeviance": 1.11225536192331
+        },
+        {
+          "alpha": 1.5,
+          "validationPoissonDeviance": 1.120556564631804
+        }
+      ],
+      "validationMae": 0.9413808306458027,
+      "testMae": 0.9418126061115739
+    },
+    "awayGoals": {
+      "target": "target_away_goals",
+      "regularizationAlpha": 0.03,
+      "tuning": [
+        {
+          "alpha": 0.03,
+          "validationPoissonDeviance": 1.1359248419653054
+        },
+        {
+          "alpha": 0.15,
+          "validationPoissonDeviance": 1.138124582565255
+        },
+        {
+          "alpha": 0.5,
+          "validationPoissonDeviance": 1.142714938616734
+        },
+        {
+          "alpha": 1.5,
+          "validationPoissonDeviance": 1.1503366664305519
+        }
+      ],
+      "validationMae": 0.8460252047727705,
+      "testMae": 0.842161110312744
+    }
+  },
+  "notes": [
+    "Chronological split; no random shuffling.",
+    "Predictors are pre-match rolling/history features only.",
+    "Feature set is selected on combined validation Poisson deviance (home + away): a candidate with extra features must beat the current best by more than the 0.0005 deadband.",
+    "Home and away goals are modelled as independent Poisson counts; an optional Dixon-Coles low-score adjustment (rho) is fitted on train predictions and deployed only if it improves validation 1X2 logLoss beyond the deadband.",
+    "All markets (1X2, double chance, totals, team totals) derive from the same scoreline matrix, so probabilities are mutually consistent.",
+    "Baseline: independent Poisson with league rolling means for home and away goals.",
+    "Dixon-Coles rho is fitted by grid search on train predictions and deployed only when it clears the validation 1X2 logLoss deadband; test is reported either way.",
+    "Match-totals calibration deployment is selected on cross-fitted within-validation logLoss gain (deadband 0.0005); test raw-vs-calibrated is reported either way."
+  ],
   "features": [
     "home_matches_before",
     "away_matches_before",
@@ -51,122 +117,302 @@
     "away_team_for_avg5",
     "away_team_against_avg5",
     "league_goals_avg",
-    "league_corners_avg"
+    "league_corners_avg",
+    "home_elo",
+    "away_elo",
+    "home_att_decay",
+    "home_def_decay",
+    "away_att_decay",
+    "away_def_decay"
   ],
-  "maxGoals": 10,
-  "rows": {
-    "train": 138608,
-    "validation": 13193,
-    "test": 14686
-  },
-  "targets": {
-    "homeGoals": {
-      "target": "target_home_goals",
-      "regularizationAlpha": 0.03,
-      "tuning": [
-        {
-          "alpha": 0.03,
-          "validationPoissonDeviance": 1.127688158214271
-        },
-        {
-          "alpha": 0.15,
-          "validationPoissonDeviance": 1.1285600642810534
-        },
-        {
-          "alpha": 0.5,
-          "validationPoissonDeviance": 1.1310472507686145
-        },
-        {
-          "alpha": 1.5,
-          "validationPoissonDeviance": 1.1379508558112583
+  "featureSelection": {
+    "rule": "candidate must beat the current best combined validation Poisson deviance (home + away) by more than 0.0005",
+    "deadband": 0.0005,
+    "selected": "base+elo+decay",
+    "candidates": {
+      "base": {
+        "addedFeatures": [],
+        "combinedValidationPoissonDeviance": 2.2816551992700553,
+        "targets": {
+          "homeGoals": {
+            "regularizationAlpha": 0.03,
+            "validationPoissonDeviance": 1.1276881582142735,
+            "tuning": [
+              {
+                "alpha": 0.03,
+                "validationPoissonDeviance": 1.1276881582142735
+              },
+              {
+                "alpha": 0.15,
+                "validationPoissonDeviance": 1.1285600642811129
+              },
+              {
+                "alpha": 0.5,
+                "validationPoissonDeviance": 1.1310472507685567
+              },
+              {
+                "alpha": 1.5,
+                "validationPoissonDeviance": 1.1379508558112583
+              }
+            ]
+          },
+          "awayGoals": {
+            "regularizationAlpha": 0.03,
+            "validationPoissonDeviance": 1.1539670410557819,
+            "tuning": [
+              {
+                "alpha": 0.03,
+                "validationPoissonDeviance": 1.1539670410557819
+              },
+              {
+                "alpha": 0.15,
+                "validationPoissonDeviance": 1.1540508737529873
+              },
+              {
+                "alpha": 0.5,
+                "validationPoissonDeviance": 1.1558965348787038
+              },
+              {
+                "alpha": 1.5,
+                "validationPoissonDeviance": 1.1627121733780865
+              }
+            ]
+          }
         }
-      ],
-      "validationMae": 0.954752332640641,
-      "testMae": 0.9532999965796477
-    },
-    "awayGoals": {
-      "target": "target_away_goals",
-      "regularizationAlpha": 0.03,
-      "tuning": [
-        {
-          "alpha": 0.03,
-          "validationPoissonDeviance": 1.1539670403106725
-        },
-        {
-          "alpha": 0.15,
-          "validationPoissonDeviance": 1.154050873753172
-        },
-        {
-          "alpha": 0.5,
-          "validationPoissonDeviance": 1.1558965348787038
-        },
-        {
-          "alpha": 1.5,
-          "validationPoissonDeviance": 1.1627121733780865
+      },
+      "base+elo": {
+        "addedFeatures": [
+          "home_elo",
+          "away_elo"
+        ],
+        "combinedValidationPoissonDeviance": 2.2424877157768854,
+        "targets": {
+          "homeGoals": {
+            "regularizationAlpha": 0.03,
+            "validationPoissonDeviance": 1.106535318502106,
+            "tuning": [
+              {
+                "alpha": 0.03,
+                "validationPoissonDeviance": 1.106535318502106
+              },
+              {
+                "alpha": 0.15,
+                "validationPoissonDeviance": 1.108606617993605
+              },
+              {
+                "alpha": 0.5,
+                "validationPoissonDeviance": 1.11464509973078
+              },
+              {
+                "alpha": 1.5,
+                "validationPoissonDeviance": 1.125286018959089
+              }
+            ]
+          },
+          "awayGoals": {
+            "regularizationAlpha": 0.03,
+            "validationPoissonDeviance": 1.1359523972747791,
+            "tuning": [
+              {
+                "alpha": 0.03,
+                "validationPoissonDeviance": 1.1359523972747791
+              },
+              {
+                "alpha": 0.15,
+                "validationPoissonDeviance": 1.1383316191502255
+              },
+              {
+                "alpha": 0.5,
+                "validationPoissonDeviance": 1.1440678654062824
+              },
+              {
+                "alpha": 1.5,
+                "validationPoissonDeviance": 1.1539551748116166
+              }
+            ]
+          }
         }
-      ],
-      "validationMae": 0.8541885256598132,
-      "testMae": 0.8480975879351303
+      },
+      "base+decay": {
+        "addedFeatures": [
+          "home_att_decay",
+          "home_def_decay",
+          "away_att_decay",
+          "away_def_decay"
+        ],
+        "combinedValidationPoissonDeviance": 2.2631505330242296,
+        "targets": {
+          "homeGoals": {
+            "regularizationAlpha": 0.03,
+            "validationPoissonDeviance": 1.1164990265929433,
+            "tuning": [
+              {
+                "alpha": 0.03,
+                "validationPoissonDeviance": 1.1164990265929433
+              },
+              {
+                "alpha": 0.15,
+                "validationPoissonDeviance": 1.117927143971924
+              },
+              {
+                "alpha": 0.5,
+                "validationPoissonDeviance": 1.1215250384597255
+              },
+              {
+                "alpha": 1.5,
+                "validationPoissonDeviance": 1.128276323404262
+              }
+            ]
+          },
+          "awayGoals": {
+            "regularizationAlpha": 0.03,
+            "validationPoissonDeviance": 1.146651506431286,
+            "tuning": [
+              {
+                "alpha": 0.03,
+                "validationPoissonDeviance": 1.146651506431286
+              },
+              {
+                "alpha": 0.15,
+                "validationPoissonDeviance": 1.14743289526207
+              },
+              {
+                "alpha": 0.5,
+                "validationPoissonDeviance": 1.1499161948764003
+              },
+              {
+                "alpha": 1.5,
+                "validationPoissonDeviance": 1.1558935123090057
+              }
+            ]
+          }
+        }
+      },
+      "base+elo+decay": {
+        "addedFeatures": [
+          "home_elo",
+          "away_elo",
+          "home_att_decay",
+          "home_def_decay",
+          "away_att_decay",
+          "away_def_decay"
+        ],
+        "combinedValidationPoissonDeviance": 2.241184422020293,
+        "targets": {
+          "homeGoals": {
+            "regularizationAlpha": 0.03,
+            "validationPoissonDeviance": 1.1052595800549876,
+            "tuning": [
+              {
+                "alpha": 0.03,
+                "validationPoissonDeviance": 1.1052595800549876
+              },
+              {
+                "alpha": 0.15,
+                "validationPoissonDeviance": 1.1073029389842055
+              },
+              {
+                "alpha": 0.5,
+                "validationPoissonDeviance": 1.11225536192331
+              },
+              {
+                "alpha": 1.5,
+                "validationPoissonDeviance": 1.120556564631804
+              }
+            ]
+          },
+          "awayGoals": {
+            "regularizationAlpha": 0.03,
+            "validationPoissonDeviance": 1.1359248419653054,
+            "tuning": [
+              {
+                "alpha": 0.03,
+                "validationPoissonDeviance": 1.1359248419653054
+              },
+              {
+                "alpha": 0.15,
+                "validationPoissonDeviance": 1.138124582565255
+              },
+              {
+                "alpha": 0.5,
+                "validationPoissonDeviance": 1.142714938616734
+              },
+              {
+                "alpha": 1.5,
+                "validationPoissonDeviance": 1.1503366664305519
+              }
+            ]
+          }
+        }
+      }
     }
   },
-  "notes": [
-    "Chronological split; no random shuffling.",
-    "Predictors are pre-match rolling/history features only.",
-    "Home and away goals are modelled as independent Poisson counts; the independence assumption is a documented simplification (no Dixon-Coles adjustment yet).",
-    "All markets (1X2, double chance, totals, team totals) derive from the same scoreline matrix, so probabilities are mutually consistent.",
-    "Baseline: independent Poisson with league rolling means for home and away goals.",
-    "Match-totals calibration deployment is selected on cross-fitted within-validation logLoss gain (deadband 0.0005); test raw-vs-calibrated is reported either way."
-  ],
+  "dixonColes": {
+    "rhoGrid": {
+      "min": -0.3,
+      "max": 0.1,
+      "step": 0.005
+    },
+    "selectedRho": -0.055,
+    "trainAdjustedLogLikelihood": 125.0795973206898,
+    "deploymentRule": "deploy only if validation 1X2 logLoss improves by more than 0.0005 over the independent-Poisson matrix",
+    "validation1x2LogLossRaw": 1.0078810375764928,
+    "validation1x2LogLossDc": 1.0071243626303896,
+    "deployed": true,
+    "deployedRho": -0.055,
+    "test1x2LogLossRaw": 1.0132666870600278,
+    "test1x2LogLossDc": 1.0123333174766542
+  },
   "markets": {
     "validation": {
       "n": 13193,
-      "homeMae": 0.954752332640641,
-      "awayMae": 0.8541885256598132,
+      "homeMae": 0.9413808306458027,
+      "awayMae": 0.8460252047727705,
       "model": {
-        "1x2LogLoss": 1.0235230152320842,
-        "1x2Brier": 0.6134255747362966,
+        "1x2LogLoss": 1.0071243626303896,
+        "1x2Brier": 0.6022305541974803,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.5595410075579779,
-            "brier": 0.18691301078379885
+            "logLoss": 0.557817944908643,
+            "brier": 0.1863337611746631
           },
           "total_2.5": {
-            "logLoss": 0.6813284818491108,
-            "brier": 0.24411788480603672
+            "logLoss": 0.679448955837317,
+            "brier": 0.24318826080178588
           },
           "total_3.5": {
-            "logLoss": 0.5822052225538247,
-            "brier": 0.19728593289000085
+            "logLoss": 0.5806624573771603,
+            "brier": 0.1966585193383686
           },
           "total_4.5": {
-            "logLoss": 0.3903921705897261,
-            "brier": 0.11603545317555122
+            "logLoss": 0.38962985549203705,
+            "brier": 0.11586712825642942
           }
         },
         "teamTotals": {
           "home_0.5": {
-            "logLoss": 0.5280603673626437,
-            "brier": 0.17405391852548607
+            "logLoss": 0.5231976424754601,
+            "brier": 0.17236655508773865
           },
           "home_1.5": {
-            "logLoss": 0.6533715382595277,
-            "brier": 0.23061559581260993
+            "logLoss": 0.6448562311569912,
+            "brier": 0.22671757032391
           },
           "home_2.5": {
-            "logLoss": 0.4555505630510155,
-            "brier": 0.1436193654210997
+            "logLoss": 0.4494559183433555,
+            "brier": 0.14145866426622364
           },
           "away_0.5": {
-            "logLoss": 0.6078689735624279,
-            "brier": 0.20961002408305607
+            "logLoss": 0.6038301064911927,
+            "brier": 0.20799488335198
           },
           "away_1.5": {
-            "logLoss": 0.6127896397298312,
-            "brier": 0.21167503227658574
+            "logLoss": 0.6056486986045502,
+            "brier": 0.20847960805428747
           },
           "away_2.5": {
-            "logLoss": 0.36127811221321326,
-            "brier": 0.1059481436760661
+            "logLoss": 0.3567078030953471,
+            "brier": 0.10484542009135188
           }
         }
       },
@@ -176,7 +422,7 @@
         "totals": {
           "total_1.5": {
             "logLoss": 0.5627427988753633,
-            "brier": 0.18812888209874717
+            "brier": 0.18812888209874723
           },
           "total_2.5": {
             "logLoss": 0.6868099803223189,
@@ -220,102 +466,102 @@
       }
     },
     "test": {
-      "n": 14686,
-      "homeMae": 0.9532999965796477,
-      "awayMae": 0.8480975879351303,
+      "n": 14604,
+      "homeMae": 0.9418126061115739,
+      "awayMae": 0.842161110312744,
       "model": {
-        "1x2LogLoss": 1.0282166659515413,
-        "1x2Brier": 0.6170910905049961,
+        "1x2LogLoss": 1.0123333174766542,
+        "1x2Brier": 0.6062507595595726,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.5572728090381535,
-            "brier": 0.18574437859191295
+            "logLoss": 0.5569126535433407,
+            "brier": 0.1856687877419365
           },
           "total_2.5": {
-            "logLoss": 0.6861425224497305,
-            "brier": 0.24656196284823803
+            "logLoss": 0.68440823005016,
+            "brier": 0.2457217594450472
           },
           "total_3.5": {
-            "logLoss": 0.5904271032948352,
-            "brier": 0.20076549562781607
+            "logLoss": 0.5887778190363541,
+            "brier": 0.20006686197155288
           },
           "total_4.5": {
-            "logLoss": 0.3874769622825226,
-            "brier": 0.11439208055551235
+            "logLoss": 0.3858820937938406,
+            "brier": 0.11395247954818633
           }
         },
         "teamTotals": {
           "home_0.5": {
-            "logLoss": 0.5242005978724799,
-            "brier": 0.1722004250592639
+            "logLoss": 0.5190201783104401,
+            "brier": 0.17053128173868934
           },
           "home_1.5": {
-            "logLoss": 0.6584863431501672,
-            "brier": 0.23318169177171982
+            "logLoss": 0.6513429405541855,
+            "brier": 0.2298171804219025
           },
           "home_2.5": {
-            "logLoss": 0.4655726174805236,
-            "brier": 0.14711318704115967
+            "logLoss": 0.45712272391391495,
+            "brier": 0.14429841901202126
           },
           "away_0.5": {
-            "logLoss": 0.6033140701381129,
-            "brier": 0.20731438807914263
+            "logLoss": 0.5976701084194692,
+            "brier": 0.20504143074362044
           },
           "away_1.5": {
-            "logLoss": 0.6209154712741501,
-            "brier": 0.21530805058544542
+            "logLoss": 0.6167394437166529,
+            "brier": 0.21336785456490595
           },
           "away_2.5": {
-            "logLoss": 0.3544937613733297,
-            "brier": 0.10332144164632107
+            "logLoss": 0.351083924161872,
+            "brier": 0.10247254419998209
           }
         }
       },
       "baseline": {
-        "1x2LogLoss": 1.0756264056054903,
-        "1x2Brier": 0.6509347455950405,
+        "1x2LogLoss": 1.0761175728861982,
+        "1x2Brier": 0.6512774752497561,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.5633703993729995,
-            "brier": 0.18791553702658947
+            "logLoss": 0.5640758833185335,
+            "brier": 0.18822870206299525
           },
           "total_2.5": {
-            "logLoss": 0.6930989331882145,
-            "brier": 0.2499556023890302
+            "logLoss": 0.6930929562290392,
+            "brier": 0.2499534494028951
           },
           "total_3.5": {
-            "logLoss": 0.5966344456410562,
-            "brier": 0.20332783156233342
+            "logLoss": 0.5961729003150105,
+            "brier": 0.20311140561633495
           },
           "total_4.5": {
-            "logLoss": 0.3918470846605885,
-            "brier": 0.1155454843933605
+            "logLoss": 0.3912125457742151,
+            "brier": 0.11529484847886867
           }
         },
         "teamTotals": {
           "home_0.5": {
-            "logLoss": 0.543545490523206,
-            "brier": 0.1787590092791021
+            "logLoss": 0.5440014306203305,
+            "brier": 0.1789587768463016
           },
           "home_1.5": {
-            "logLoss": 0.6843778851443137,
-            "brier": 0.24563533512397628
+            "logLoss": 0.6842918919975951,
+            "brier": 0.24559258627404426
           },
           "home_2.5": {
-            "logLoss": 0.4869420242566857,
-            "brier": 0.1544111221417903
+            "logLoss": 0.48613303716227224,
+            "brier": 0.15406207518421672
           },
           "away_0.5": {
-            "logLoss": 0.6173555338076315,
-            "brier": 0.2130397908547779
+            "logLoss": 0.6173138575041693,
+            "brier": 0.21302263049270248
           },
           "away_1.5": {
-            "logLoss": 0.6417987910255769,
-            "brier": 0.22466572803422052
+            "logLoss": 0.6419143849094179,
+            "brier": 0.22472150569689475
           },
           "away_2.5": {
-            "logLoss": 0.371018411563522,
-            "brier": 0.10722827372974457
+            "logLoss": 0.37113963105964326,
+            "brier": 0.10727631216687256
           }
         }
       }
@@ -338,12 +584,12 @@
       3.5,
       4.5
     ],
-    "crossFitGain": -0.0025900973294359364,
-    "crossFitRawLateMeanLogLoss": 0.5590773532712443,
-    "crossFitCalibratedLateMeanLogLoss": 0.5616674506006802,
+    "crossFitGain": -0.0032266292219862575,
+    "crossFitRawLateMeanLogLoss": 0.5574302316844206,
+    "crossFitCalibratedLateMeanLogLoss": 0.5606568609064069,
     "deployed": false,
     "calibrators": {},
-    "testMeanLogLossRaw": 0.5553297747660839,
-    "testMeanLogLossCalibrated": 0.5559879037063259
+    "testMeanLogLossRaw": 0.554033584874195,
+    "testMeanLogLossCalibrated": 0.5545825172739887
   }
 }
