@@ -1,0 +1,2164 @@
+{
+  "generatedAt": "2026-11-02T10:43:18.888938+00:00",
+  "dataset": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
+  "splitPolicy": {
+    "train_end": "2022-06-30",
+    "validation_start": "2022-07-01",
+    "validation_end": "2024-06-30",
+    "test_start": "2024-07-01"
+  },
+  "excludedLeagues": [
+    "N1"
+  ],
+  "markets": {
+    "fouls": {
+      "targetColumn": "fouls_total",
+      "lines": [
+        20.5,
+        22.5,
+        24.5,
+        26.5,
+        28.5
+      ],
+      "eligibleRows": 86839,
+      "trainRows": 71314,
+      "validationRows": 7346,
+      "testRows": 8179,
+      "trainDateRange": [
+        "2000-07-29",
+        "2022-05-22"
+      ],
+      "validationDateRange": [
+        "2022-07-29",
+        "2024-06-02"
+      ],
+      "testDateRange": [
+        "2024-08-03",
+        "2026-10-29"
+      ],
+      "leagues": [
+        "D1",
+        "E0",
+        "E1",
+        "E2",
+        "E3",
+        "F1",
+        "I1",
+        "SC0",
+        "SP1"
+      ],
+      "features": [
+        "home_matches_before",
+        "away_matches_before",
+        "league_matches_before",
+        "home_advantage",
+        "referee_available",
+        "referee_matches_before",
+        "home_goal_team_for_avg5",
+        "home_goal_team_against_avg5",
+        "away_goal_team_for_avg5",
+        "away_goal_team_against_avg5",
+        "home_goal_team_for_avg10",
+        "home_goal_team_against_avg10",
+        "away_goal_team_for_avg10",
+        "away_goal_team_against_avg10",
+        "home_foul_team_for_avg5",
+        "home_foul_team_against_avg5",
+        "away_foul_team_for_avg5",
+        "away_foul_team_against_avg5",
+        "home_shots_team_for_avg5",
+        "home_shots_team_against_avg5",
+        "away_shots_team_for_avg5",
+        "away_shots_team_against_avg5",
+        "home_shots_on_target_team_for_avg5",
+        "away_shots_on_target_team_for_avg5",
+        "league_goals_avg",
+        "league_fouls_avg",
+        "referee_yellows_avg10",
+        "referee_fouls_avg10",
+        "home_foul_team_for_avg10",
+        "home_foul_team_against_avg10",
+        "away_foul_team_for_avg10",
+        "away_foul_team_against_avg10"
+      ],
+      "validation": {
+        "leagueRollingMeanBaseline": {
+          "n": 7346,
+          "mae": 4.194846174789001,
+          "poissonDeviance": 1.2096276697573893,
+          "lines": [
+            {
+              "line": 20.5,
+              "overCount": 4821,
+              "logLoss": 0.6278797186396471,
+              "brier": 0.21862605423637133
+            },
+            {
+              "line": 22.5,
+              "overCount": 3774,
+              "logLoss": 0.6742328944953276,
+              "brier": 0.24053159039439304
+            },
+            {
+              "line": 24.5,
+              "overCount": 2703,
+              "logLoss": 0.6352138152876317,
+              "brier": 0.2219514754232409
+            },
+            {
+              "line": 26.5,
+              "overCount": 1834,
+              "logLoss": 0.5416091564353076,
+              "brier": 0.17929676510972017
+            },
+            {
+              "line": 28.5,
+              "overCount": 1133,
+              "logLoss": 0.4139372377097738,
+              "brier": 0.12549471155751915
+            }
+          ]
+        },
+        "poissonRegression": {
+          "n": 7346,
+          "mae": 4.040135622120241,
+          "poissonDeviance": 1.1207480513951427,
+          "lines": [
+            {
+              "line": 20.5,
+              "overCount": 4821,
+              "logLoss": 0.6068816790943296,
+              "brier": 0.20930871608252827
+            },
+            {
+              "line": 22.5,
+              "overCount": 3774,
+              "logLoss": 0.6485888539848892,
+              "brier": 0.22837804816604007
+            },
+            {
+              "line": 24.5,
+              "overCount": 2703,
+              "logLoss": 0.6126195368752936,
+              "brier": 0.21215240580988176
+            },
+            {
+              "line": 26.5,
+              "overCount": 1834,
+              "logLoss": 0.5209884585659977,
+              "brier": 0.1720515388037718
+            },
+            {
+              "line": 28.5,
+              "overCount": 1133,
+              "logLoss": 0.39330612264596954,
+              "brier": 0.11998605357302794
+            }
+          ]
+        }
+      },
+      "test": {
+        "leagueRollingMeanBaseline": {
+          "n": 8179,
+          "mae": 4.223394057953295,
+          "poissonDeviance": 1.2187521020341314,
+          "lines": [
+            {
+              "line": 20.5,
+              "overCount": 5560,
+              "logLoss": 0.6186319699443914,
+              "brier": 0.21388293005961456
+            },
+            {
+              "line": 22.5,
+              "overCount": 4376,
+              "logLoss": 0.6793937689412178,
+              "brier": 0.24306591456296991
+            },
+            {
+              "line": 24.5,
+              "overCount": 3153,
+              "logLoss": 0.6539306606494167,
+              "brier": 0.23070327418396355
+            },
+            {
+              "line": 26.5,
+              "overCount": 2133,
+              "logLoss": 0.5600501877465341,
+              "brier": 0.1870608544073797
+            },
+            {
+              "line": 28.5,
+              "overCount": 1360,
+              "logLoss": 0.4394872957062286,
+              "brier": 0.1353632976444499
+            }
+          ]
+        },
+        "poissonRegression": {
+          "n": 8179,
+          "mae": 4.066551427479624,
+          "poissonDeviance": 1.1318686942189986,
+          "lines": [
+            {
+              "line": 20.5,
+              "overCount": 5560,
+              "logLoss": 0.5975184889366738,
+              "brier": 0.20503661700964365
+            },
+            {
+              "line": 22.5,
+              "overCount": 4376,
+              "logLoss": 0.6578998469007167,
+              "brier": 0.23301711432223227
+            },
+            {
+              "line": 24.5,
+              "overCount": 3153,
+              "logLoss": 0.6306510686105298,
+              "brier": 0.22016783192877318
+            },
+            {
+              "line": 26.5,
+              "overCount": 2133,
+              "logLoss": 0.5339268337872519,
+              "brier": 0.17702910639751832
+            },
+            {
+              "line": 28.5,
+              "overCount": 1360,
+              "logLoss": 0.41603584745192884,
+              "brier": 0.12844822252713914
+            }
+          ]
+        }
+      },
+      "poissonTuning": {
+        "selectionMetric": "validation Poisson deviance (lower is better)",
+        "candidates": [
+          {
+            "featureSet": "full",
+            "alpha": 0.03,
+            "validationMae": 4.040135622120241,
+            "validationPoissonDeviance": 1.1207480513951427,
+            "validationMeanBrier": 0.18837535248704995,
+            "validationMeanLogLoss": 0.5564769302332959
+          },
+          {
+            "featureSet": "full",
+            "alpha": 0.15,
+            "validationMae": 4.040609467890268,
+            "validationPoissonDeviance": 1.120908562475039,
+            "validationMeanBrier": 0.18838778983930107,
+            "validationMeanLogLoss": 0.5564965820799281
+          },
+          {
+            "featureSet": "full",
+            "alpha": 0.5,
+            "validationMae": 4.041745082600112,
+            "validationPoissonDeviance": 1.1213222155136051,
+            "validationMeanBrier": 0.1884180973699444,
+            "validationMeanLogLoss": 0.556545975550102
+          },
+          {
+            "featureSet": "full",
+            "alpha": 1.5,
+            "validationMae": 4.044697956466308,
+            "validationPoissonDeviance": 1.1226072348057232,
+            "validationMeanBrier": 0.18852059292223086,
+            "validationMeanLogLoss": 0.5567561197882707
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.03,
+            "validationMae": 4.0531483324005535,
+            "validationPoissonDeviance": 1.1295001979646708,
+            "validationMeanBrier": 0.18906844069823547,
+            "validationMeanLogLoss": 0.5581888549652645
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.15,
+            "validationMae": 4.053177346734586,
+            "validationPoissonDeviance": 1.1296091717249142,
+            "validationMeanBrier": 0.18906564644825338,
+            "validationMeanLogLoss": 0.558174509396404
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.5,
+            "validationMae": 4.0538039194263105,
+            "validationPoissonDeviance": 1.1300891686980503,
+            "validationMeanBrier": 0.18908486569517832,
+            "validationMeanLogLoss": 0.558206975533892
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 1.5,
+            "validationMae": 4.056440759395887,
+            "validationPoissonDeviance": 1.1315223985938474,
+            "validationMeanBrier": 0.18917926250226225,
+            "validationMeanLogLoss": 0.5584183209807725
+          }
+        ],
+        "selected": {
+          "featureSet": "full",
+          "alpha": 0.03,
+          "validationMae": 4.040135622120241,
+          "validationPoissonDeviance": 1.1207480513951427,
+          "validationMeanBrier": 0.18837535248704995,
+          "validationMeanLogLoss": 0.5564769302332959
+        },
+        "selectedValidation": {
+          "n": 7346,
+          "mae": 4.040135622120241,
+          "poissonDeviance": 1.1207480513951427,
+          "lines": [
+            {
+              "line": 20.5,
+              "overCount": 4821,
+              "logLoss": 0.6068816790943296,
+              "brier": 0.20930871608252827
+            },
+            {
+              "line": 22.5,
+              "overCount": 3774,
+              "logLoss": 0.6485888539848892,
+              "brier": 0.22837804816604007
+            },
+            {
+              "line": 24.5,
+              "overCount": 2703,
+              "logLoss": 0.6126195368752936,
+              "brier": 0.21215240580988176
+            },
+            {
+              "line": 26.5,
+              "overCount": 1834,
+              "logLoss": 0.5209884585659977,
+              "brier": 0.1720515388037718
+            },
+            {
+              "line": 28.5,
+              "overCount": 1133,
+              "logLoss": 0.39330612264596954,
+              "brier": 0.11998605357302794
+            }
+          ]
+        },
+        "selectedTest": {
+          "n": 8179,
+          "mae": 4.066551427479624,
+          "poissonDeviance": 1.1318686942189986,
+          "lines": [
+            {
+              "line": 20.5,
+              "overCount": 5560,
+              "logLoss": 0.5975184889366738,
+              "brier": 0.20503661700964365
+            },
+            {
+              "line": 22.5,
+              "overCount": 4376,
+              "logLoss": 0.6578998469007167,
+              "brier": 0.23301711432223227
+            },
+            {
+              "line": 24.5,
+              "overCount": 3153,
+              "logLoss": 0.6306510686105298,
+              "brier": 0.22016783192877318
+            },
+            {
+              "line": 26.5,
+              "overCount": 2133,
+              "logLoss": 0.5339268337872519,
+              "brier": 0.17702910639751832
+            },
+            {
+              "line": 28.5,
+              "overCount": 1360,
+              "logLoss": 0.41603584745192884,
+              "brier": 0.12844822252713914
+            }
+          ]
+        },
+        "selectedTestByLeague": {
+          "D1": {
+            "n": 674,
+            "mae": 4.248688861467769,
+            "poissonDeviance": 1.3058350889344021,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 372,
+                "logLoss": 0.6998166274583737,
+                "brier": 0.2516749328335243
+              },
+              {
+                "line": 22.5,
+                "overCount": 266,
+                "logLoss": 0.6883712014740522,
+                "brier": 0.24707557465090027
+              },
+              {
+                "line": 24.5,
+                "overCount": 175,
+                "logLoss": 0.5868577346178702,
+                "brier": 0.19918762904007944
+              },
+              {
+                "line": 26.5,
+                "overCount": 104,
+                "logLoss": 0.444218470806665,
+                "brier": 0.13670456275262327
+              },
+              {
+                "line": 28.5,
+                "overCount": 56,
+                "logLoss": 0.2986642737342381,
+                "brier": 0.08046989522402344
+              }
+            ]
+          },
+          "E0": {
+            "n": 840,
+            "mae": 3.990721649089959,
+            "poissonDeviance": 1.148049561972905,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 507,
+                "logLoss": 0.6435874359998333,
+                "brier": 0.2263035801237007
+              },
+              {
+                "line": 22.5,
+                "overCount": 371,
+                "logLoss": 0.659573450902991,
+                "brier": 0.23382480245590848
+              },
+              {
+                "line": 24.5,
+                "overCount": 249,
+                "logLoss": 0.5865885784015746,
+                "brier": 0.20013106091931446
+              },
+              {
+                "line": 26.5,
+                "overCount": 167,
+                "logLoss": 0.4833877800911266,
+                "brier": 0.15454932444118438
+              },
+              {
+                "line": 28.5,
+                "overCount": 96,
+                "logLoss": 0.34884425931361135,
+                "brier": 0.10012799470206948
+              }
+            ]
+          },
+          "E1": {
+            "n": 1248,
+            "mae": 3.749072432043554,
+            "poissonDeviance": 1.0045324031352052,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 774,
+                "logLoss": 0.6522584504133961,
+                "brier": 0.23000234744535575
+              },
+              {
+                "line": 22.5,
+                "overCount": 576,
+                "logLoss": 0.6857814162973057,
+                "brier": 0.24616999025510047
+              },
+              {
+                "line": 24.5,
+                "overCount": 387,
+                "logLoss": 0.6086151373120803,
+                "brier": 0.20922746589506763
+              },
+              {
+                "line": 26.5,
+                "overCount": 218,
+                "logLoss": 0.4538109051740041,
+                "brier": 0.14161590690463713
+              },
+              {
+                "line": 28.5,
+                "overCount": 113,
+                "logLoss": 0.2966766860547059,
+                "brier": 0.0811443943224119
+              }
+            ]
+          },
+          "E2": {
+            "n": 1247,
+            "mae": 3.8471443031032084,
+            "poissonDeviance": 1.0228853969164133,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 879,
+                "logLoss": 0.5903707281132398,
+                "brier": 0.20123778752382168
+              },
+              {
+                "line": 22.5,
+                "overCount": 685,
+                "logLoss": 0.6720325924507549,
+                "brier": 0.23974731553313955
+              },
+              {
+                "line": 24.5,
+                "overCount": 480,
+                "logLoss": 0.6446575631149014,
+                "brier": 0.22661151225881423
+              },
+              {
+                "line": 26.5,
+                "overCount": 296,
+                "logLoss": 0.5326452244488883,
+                "brier": 0.17588291913473864
+              },
+              {
+                "line": 28.5,
+                "overCount": 191,
+                "logLoss": 0.41139993425909166,
+                "brier": 0.12560746300550335
+              }
+            ]
+          },
+          "E3": {
+            "n": 1255,
+            "mae": 3.971709717119009,
+            "poissonDeviance": 1.0724863306758285,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 877,
+                "logLoss": 0.5888198472079704,
+                "brier": 0.20014938397324378
+              },
+              {
+                "line": 22.5,
+                "overCount": 687,
+                "logLoss": 0.6641354711075682,
+                "brier": 0.2357382059459626
+              },
+              {
+                "line": 24.5,
+                "overCount": 500,
+                "logLoss": 0.6526854899323955,
+                "brier": 0.2305176186306607
+              },
+              {
+                "line": 26.5,
+                "overCount": 327,
+                "logLoss": 0.5484392482364282,
+                "brier": 0.1834827174890782
+              },
+              {
+                "line": 28.5,
+                "overCount": 214,
+                "logLoss": 0.4356828370872767,
+                "brier": 0.13586618187078675
+              }
+            ]
+          },
+          "F1": {
+            "n": 684,
+            "mae": 4.468530246466291,
+            "poissonDeviance": 1.3172133226707463,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 500,
+                "logLoss": 0.5589327103102573,
+                "brier": 0.186575006624974
+              },
+              {
+                "line": 22.5,
+                "overCount": 411,
+                "logLoss": 0.6424208884754108,
+                "brier": 0.22472677928717202
+              },
+              {
+                "line": 24.5,
+                "overCount": 312,
+                "logLoss": 0.6669989561051047,
+                "brier": 0.23723234310127989
+              },
+              {
+                "line": 26.5,
+                "overCount": 228,
+                "logLoss": 0.6190553436581975,
+                "brier": 0.2152960249271295
+              },
+              {
+                "line": 28.5,
+                "overCount": 160,
+                "logLoss": 0.5192450787239846,
+                "brier": 0.17137502863426632
+              }
+            ]
+          },
+          "I1": {
+            "n": 850,
+            "mae": 4.400329950527829,
+            "poissonDeviance": 1.2202906961028608,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 646,
+                "logLoss": 0.5159217844328788,
+                "brier": 0.17026009208532286
+              },
+              {
+                "line": 22.5,
+                "overCount": 533,
+                "logLoss": 0.6262661714703004,
+                "brier": 0.21886992915068973
+              },
+              {
+                "line": 24.5,
+                "overCount": 419,
+                "logLoss": 0.6378335847853673,
+                "brier": 0.22346155466315223
+              },
+              {
+                "line": 26.5,
+                "overCount": 333,
+                "logLoss": 0.6090162656491183,
+                "brier": 0.20985370822339336
+              },
+              {
+                "line": 28.5,
+                "overCount": 225,
+                "logLoss": 0.5345435708771636,
+                "brier": 0.17801855372072847
+              }
+            ]
+          },
+          "SC0": {
+            "n": 522,
+            "mae": 4.079618019505543,
+            "poissonDeviance": 1.1820638455234795,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 338,
+                "logLoss": 0.6124333074912667,
+                "brier": 0.2117104011995776
+              },
+              {
+                "line": 22.5,
+                "overCount": 280,
+                "logLoss": 0.6516852833154634,
+                "brier": 0.2296328283608583
+              },
+              {
+                "line": 24.5,
+                "overCount": 198,
+                "logLoss": 0.6099570743086862,
+                "brier": 0.21177663162940982
+              },
+              {
+                "line": 26.5,
+                "overCount": 132,
+                "logLoss": 0.5130010736922577,
+                "brier": 0.16983209569159882
+              },
+              {
+                "line": 28.5,
+                "overCount": 83,
+                "logLoss": 0.41587500531087895,
+                "brier": 0.12751484251051529
+              }
+            ]
+          },
+          "SP1": {
+            "n": 859,
+            "mae": 4.257810079898842,
+            "poissonDeviance": 1.14393057298605,
+            "lines": [
+              {
+                "line": 20.5,
+                "overCount": 667,
+                "logLoss": 0.5181611623009502,
+                "brier": 0.16908665741275283
+              },
+              {
+                "line": 22.5,
+                "overCount": 567,
+                "logLoss": 0.6096242623122269,
+                "brier": 0.21099862011480153
+              },
+              {
+                "line": 24.5,
+                "overCount": 433,
+                "logLoss": 0.6641154632226468,
+                "brier": 0.2358945910819864
+              },
+              {
+                "line": 26.5,
+                "overCount": 328,
+                "logLoss": 0.621418494217393,
+                "brier": 0.21575879392501088
+              },
+              {
+                "line": 28.5,
+                "overCount": 222,
+                "logLoss": 0.5259204812130969,
+                "brier": 0.17313385372494106
+              }
+            ]
+          }
+        }
+      },
+      "notes": [
+        "Chronological split; no random shuffling.",
+        "Predictors are pre-match rolling/history features only.",
+        "League rolling-average baseline uses prior matches only.",
+        "Early-2000s rows without foul/shot coverage drop out via the availability flags."
+      ]
+    },
+    "shots": {
+      "targetColumn": "shots_total",
+      "lines": [
+        19.5,
+        21.5,
+        23.5,
+        25.5,
+        27.5
+      ],
+      "eligibleRows": 87595,
+      "trainRows": 72070,
+      "validationRows": 7346,
+      "testRows": 8179,
+      "trainDateRange": [
+        "2000-07-29",
+        "2022-05-22"
+      ],
+      "validationDateRange": [
+        "2022-07-29",
+        "2024-06-02"
+      ],
+      "testDateRange": [
+        "2024-08-03",
+        "2026-10-29"
+      ],
+      "leagues": [
+        "D1",
+        "E0",
+        "E1",
+        "E2",
+        "E3",
+        "F1",
+        "I1",
+        "SC0",
+        "SP1"
+      ],
+      "features": [
+        "home_matches_before",
+        "away_matches_before",
+        "league_matches_before",
+        "home_advantage",
+        "referee_available",
+        "referee_matches_before",
+        "home_goal_team_for_avg5",
+        "home_goal_team_against_avg5",
+        "away_goal_team_for_avg5",
+        "away_goal_team_against_avg5",
+        "home_goal_team_for_avg10",
+        "home_goal_team_against_avg10",
+        "away_goal_team_for_avg10",
+        "away_goal_team_against_avg10",
+        "home_foul_team_for_avg5",
+        "home_foul_team_against_avg5",
+        "away_foul_team_for_avg5",
+        "away_foul_team_against_avg5",
+        "home_shots_team_for_avg5",
+        "home_shots_team_against_avg5",
+        "away_shots_team_for_avg5",
+        "away_shots_team_against_avg5",
+        "home_shots_on_target_team_for_avg5",
+        "away_shots_on_target_team_for_avg5",
+        "league_goals_avg",
+        "league_fouls_avg",
+        "referee_yellows_avg10",
+        "referee_fouls_avg10",
+        "home_shots_team_for_avg10",
+        "home_shots_team_against_avg10",
+        "away_shots_team_for_avg10",
+        "away_shots_team_against_avg10",
+        "league_shots_avg"
+      ],
+      "validation": {
+        "leagueRollingMeanBaseline": {
+          "n": 7346,
+          "mae": 4.593275251837734,
+          "poissonDeviance": 1.3595508865464143,
+          "lines": [
+            {
+              "line": 19.5,
+              "overCount": 6006,
+              "logLoss": 0.4753959499172357,
+              "brier": 0.14861979411393672
+            },
+            {
+              "line": 21.5,
+              "overCount": 5179,
+              "logLoss": 0.6018843640268735,
+              "brier": 0.2056443831759693
+            },
+            {
+              "line": 23.5,
+              "overCount": 4241,
+              "logLoss": 0.671786996774708,
+              "brier": 0.2394061114920326
+            },
+            {
+              "line": 25.5,
+              "overCount": 3211,
+              "logLoss": 0.6756428493390387,
+              "brier": 0.24139604696798628
+            },
+            {
+              "line": 27.5,
+              "overCount": 2272,
+              "logLoss": 0.6128885337807624,
+              "brier": 0.21096326617523564
+            }
+          ]
+        },
+        "poissonRegression": {
+          "n": 7346,
+          "mae": 4.493602715716286,
+          "poissonDeviance": 1.2980818997219674,
+          "lines": [
+            {
+              "line": 19.5,
+              "overCount": 6006,
+              "logLoss": 0.4632443466234157,
+              "brier": 0.14568393819261868
+            },
+            {
+              "line": 21.5,
+              "overCount": 5179,
+              "logLoss": 0.5871284779007243,
+              "brier": 0.2000529516707918
+            },
+            {
+              "line": 23.5,
+              "overCount": 4241,
+              "logLoss": 0.654723953361848,
+              "brier": 0.2316806196767097
+            },
+            {
+              "line": 25.5,
+              "overCount": 3211,
+              "logLoss": 0.6618111086488048,
+              "brier": 0.23476640782886804
+            },
+            {
+              "line": 27.5,
+              "overCount": 2272,
+              "logLoss": 0.6028302951683309,
+              "brier": 0.20647682070614357
+            }
+          ]
+        }
+      },
+      "test": {
+        "leagueRollingMeanBaseline": {
+          "n": 8179,
+          "mae": 4.626777112116396,
+          "poissonDeviance": 1.3837805256810816,
+          "lines": [
+            {
+              "line": 19.5,
+              "overCount": 6629,
+              "logLoss": 0.48439951748779253,
+              "brier": 0.1527451972872323
+            },
+            {
+              "line": 21.5,
+              "overCount": 5701,
+              "logLoss": 0.6031685858152722,
+              "brier": 0.2068555957571619
+            },
+            {
+              "line": 23.5,
+              "overCount": 4654,
+              "logLoss": 0.6722992866726574,
+              "brier": 0.23970825284097103
+            },
+            {
+              "line": 25.5,
+              "overCount": 3503,
+              "logLoss": 0.6750786141737052,
+              "brier": 0.2408536294889589
+            },
+            {
+              "line": 27.5,
+              "overCount": 2489,
+              "logLoss": 0.6066586138397924,
+              "brier": 0.20789831486154917
+            }
+          ]
+        },
+        "poissonRegression": {
+          "n": 8179,
+          "mae": 4.525959724766966,
+          "poissonDeviance": 1.3260148880391367,
+          "lines": [
+            {
+              "line": 19.5,
+              "overCount": 6629,
+              "logLoss": 0.47031912535007325,
+              "brier": 0.1485829351397839
+            },
+            {
+              "line": 21.5,
+              "overCount": 5701,
+              "logLoss": 0.5888091816179581,
+              "brier": 0.20075135792341253
+            },
+            {
+              "line": 23.5,
+              "overCount": 4654,
+              "logLoss": 0.6589543255977199,
+              "brier": 0.23325640592367805
+            },
+            {
+              "line": 25.5,
+              "overCount": 3503,
+              "logLoss": 0.6611823223560478,
+              "brier": 0.23417979324971486
+            },
+            {
+              "line": 27.5,
+              "overCount": 2489,
+              "logLoss": 0.5951938611155462,
+              "brier": 0.20323476731022125
+            }
+          ]
+        }
+      },
+      "poissonTuning": {
+        "selectionMetric": "validation Poisson deviance (lower is better)",
+        "candidates": [
+          {
+            "featureSet": "full",
+            "alpha": 0.03,
+            "validationMae": 4.501025443660546,
+            "validationPoissonDeviance": 1.3026696901280372,
+            "validationMeanBrier": 0.2042137613239821,
+            "validationMeanLogLoss": 0.5951288150535073
+          },
+          {
+            "featureSet": "full",
+            "alpha": 0.15,
+            "validationMae": 4.4994518871512605,
+            "validationPoissonDeviance": 1.3020310617683626,
+            "validationMeanBrier": 0.20413897979255405,
+            "validationMeanLogLoss": 0.5949361009054289
+          },
+          {
+            "featureSet": "full",
+            "alpha": 0.5,
+            "validationMae": 4.496973433970867,
+            "validationPoissonDeviance": 1.3007041653581966,
+            "validationMeanBrier": 0.2039912371502465,
+            "validationMeanLogLoss": 0.5945581384863766
+          },
+          {
+            "featureSet": "full",
+            "alpha": 1.5,
+            "validationMae": 4.493804284642919,
+            "validationPoissonDeviance": 1.2991570952984584,
+            "validationMeanBrier": 0.20379800031288026,
+            "validationMeanLogLoss": 0.5940505999506336
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.03,
+            "validationMae": 4.501115975733851,
+            "validationPoissonDeviance": 1.3014342681786097,
+            "validationMeanBrier": 0.20412761479184774,
+            "validationMeanLogLoss": 0.5949768957985977
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.15,
+            "validationMae": 4.499498763300825,
+            "validationPoissonDeviance": 1.3006538289821652,
+            "validationMeanBrier": 0.2040454168642572,
+            "validationMeanLogLoss": 0.5947696458267242
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.5,
+            "validationMae": 4.4967421268649215,
+            "validationPoissonDeviance": 1.2993428222459251,
+            "validationMeanBrier": 0.2039016810786968,
+            "validationMeanLogLoss": 0.5944030317061555
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 1.5,
+            "validationMae": 4.493602715716286,
+            "validationPoissonDeviance": 1.2980818997219674,
+            "validationMeanBrier": 0.20373214761502637,
+            "validationMeanLogLoss": 0.5939476363406246
+          }
+        ],
+        "selected": {
+          "featureSet": "without_referee",
+          "alpha": 1.5,
+          "validationMae": 4.493602715716286,
+          "validationPoissonDeviance": 1.2980818997219674,
+          "validationMeanBrier": 0.20373214761502637,
+          "validationMeanLogLoss": 0.5939476363406246
+        },
+        "selectedValidation": {
+          "n": 7346,
+          "mae": 4.493602715716286,
+          "poissonDeviance": 1.2980818997219674,
+          "lines": [
+            {
+              "line": 19.5,
+              "overCount": 6006,
+              "logLoss": 0.4632443466234157,
+              "brier": 0.14568393819261868
+            },
+            {
+              "line": 21.5,
+              "overCount": 5179,
+              "logLoss": 0.5871284779007243,
+              "brier": 0.2000529516707918
+            },
+            {
+              "line": 23.5,
+              "overCount": 4241,
+              "logLoss": 0.654723953361848,
+              "brier": 0.2316806196767097
+            },
+            {
+              "line": 25.5,
+              "overCount": 3211,
+              "logLoss": 0.6618111086488048,
+              "brier": 0.23476640782886804
+            },
+            {
+              "line": 27.5,
+              "overCount": 2272,
+              "logLoss": 0.6028302951683309,
+              "brier": 0.20647682070614357
+            }
+          ]
+        },
+        "selectedTest": {
+          "n": 8179,
+          "mae": 4.525959724766966,
+          "poissonDeviance": 1.3260148880391367,
+          "lines": [
+            {
+              "line": 19.5,
+              "overCount": 6629,
+              "logLoss": 0.47031912535007325,
+              "brier": 0.1485829351397839
+            },
+            {
+              "line": 21.5,
+              "overCount": 5701,
+              "logLoss": 0.5888091816179581,
+              "brier": 0.20075135792341253
+            },
+            {
+              "line": 23.5,
+              "overCount": 4654,
+              "logLoss": 0.6589543255977199,
+              "brier": 0.23325640592367805
+            },
+            {
+              "line": 25.5,
+              "overCount": 3503,
+              "logLoss": 0.6611823223560478,
+              "brier": 0.23417979324971486
+            },
+            {
+              "line": 27.5,
+              "overCount": 2489,
+              "logLoss": 0.5951938611155462,
+              "brier": 0.20323476731022125
+            }
+          ]
+        },
+        "selectedTestByLeague": {
+          "D1": {
+            "n": 674,
+            "mae": 4.665628419984535,
+            "poissonDeviance": 1.2984090987854235,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 594,
+                "logLoss": 0.3520747229166666,
+                "brier": 0.10109347465764439
+              },
+              {
+                "line": 21.5,
+                "overCount": 545,
+                "logLoss": 0.46182162944679894,
+                "brier": 0.1457227726532148
+              },
+              {
+                "line": 23.5,
+                "overCount": 466,
+                "logLoss": 0.6022805913214344,
+                "brier": 0.20629943036252824
+              },
+              {
+                "line": 25.5,
+                "overCount": 359,
+                "logLoss": 0.6801622527095877,
+                "brier": 0.24328649365843197
+              },
+              {
+                "line": 27.5,
+                "overCount": 278,
+                "logLoss": 0.6641821896972879,
+                "brier": 0.235180374460801
+              }
+            ]
+          },
+          "E0": {
+            "n": 840,
+            "mae": 4.468119296567,
+            "poissonDeviance": 1.2546344712964237,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 706,
+                "logLoss": 0.4427696869534275,
+                "brier": 0.1334820389317683
+              },
+              {
+                "line": 21.5,
+                "overCount": 647,
+                "logLoss": 0.5339404473803812,
+                "brier": 0.17437234331361456
+              },
+              {
+                "line": 23.5,
+                "overCount": 537,
+                "logLoss": 0.6476930855561651,
+                "brier": 0.22653798897694805
+              },
+              {
+                "line": 25.5,
+                "overCount": 414,
+                "logLoss": 0.6890603492276925,
+                "brier": 0.24735636515381768
+              },
+              {
+                "line": 27.5,
+                "overCount": 295,
+                "logLoss": 0.6512594696663774,
+                "brier": 0.22893907796085983
+              }
+            ]
+          },
+          "E1": {
+            "n": 1248,
+            "mae": 4.456775258841876,
+            "poissonDeviance": 1.2708670340585841,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 1018,
+                "logLoss": 0.4773185160920637,
+                "brier": 0.14985171139952252
+              },
+              {
+                "line": 21.5,
+                "overCount": 876,
+                "logLoss": 0.6004299797574739,
+                "brier": 0.20551410569159487
+              },
+              {
+                "line": 23.5,
+                "overCount": 703,
+                "logLoss": 0.6725357974582112,
+                "brier": 0.24000972145276878
+              },
+              {
+                "line": 25.5,
+                "overCount": 531,
+                "logLoss": 0.6556123832386516,
+                "brier": 0.2318220943416522
+              },
+              {
+                "line": 27.5,
+                "overCount": 375,
+                "logLoss": 0.594109964654308,
+                "brier": 0.20266432396932849
+              }
+            ]
+          },
+          "E2": {
+            "n": 1247,
+            "mae": 4.514101245044298,
+            "poissonDeviance": 1.3579545224510303,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 938,
+                "logLoss": 0.5364721204658569,
+                "brier": 0.17888490797581102
+              },
+              {
+                "line": 21.5,
+                "overCount": 763,
+                "logLoss": 0.6390529210891023,
+                "brier": 0.2246187422262966
+              },
+              {
+                "line": 23.5,
+                "overCount": 599,
+                "logLoss": 0.6615946507267317,
+                "brier": 0.23442138430074677
+              },
+              {
+                "line": 25.5,
+                "overCount": 459,
+                "logLoss": 0.6422392431254055,
+                "brier": 0.22482773233221767
+              },
+              {
+                "line": 27.5,
+                "overCount": 310,
+                "logLoss": 0.5405460940983682,
+                "brier": 0.17810373611275673
+              }
+            ]
+          },
+          "E3": {
+            "n": 1255,
+            "mae": 4.46444543582734,
+            "poissonDeviance": 1.3378585343412843,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 971,
+                "logLoss": 0.5183145347339958,
+                "brier": 0.16933385350473495
+              },
+              {
+                "line": 21.5,
+                "overCount": 802,
+                "logLoss": 0.6347187219470264,
+                "brier": 0.22186631480466776
+              },
+              {
+                "line": 23.5,
+                "overCount": 637,
+                "logLoss": 0.6755153974653371,
+                "brier": 0.24130566290464833
+              },
+              {
+                "line": 25.5,
+                "overCount": 457,
+                "logLoss": 0.6433802245818812,
+                "brier": 0.22581910626837598
+              },
+              {
+                "line": 27.5,
+                "overCount": 316,
+                "logLoss": 0.5527770735095457,
+                "brier": 0.18395441225139195
+              }
+            ]
+          },
+          "F1": {
+            "n": 684,
+            "mae": 4.460583479657913,
+            "poissonDeviance": 1.3637613432843125,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 569,
+                "logLoss": 0.4362780977116377,
+                "brier": 0.1352972198692765
+              },
+              {
+                "line": 21.5,
+                "overCount": 499,
+                "logLoss": 0.5732366292450545,
+                "brier": 0.193183853002974
+              },
+              {
+                "line": 23.5,
+                "overCount": 411,
+                "logLoss": 0.6602493306522004,
+                "brier": 0.23452225838218319
+              },
+              {
+                "line": 25.5,
+                "overCount": 302,
+                "logLoss": 0.6681362437648131,
+                "brier": 0.2373715982220732
+              },
+              {
+                "line": 27.5,
+                "overCount": 213,
+                "logLoss": 0.6038140158417741,
+                "brier": 0.20679699638079338
+              }
+            ]
+          },
+          "I1": {
+            "n": 850,
+            "mae": 4.579331605932729,
+            "poissonDeviance": 1.356025305673813,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 695,
+                "logLoss": 0.47465036557185,
+                "brier": 0.1478429825328224
+              },
+              {
+                "line": 21.5,
+                "overCount": 590,
+                "logLoss": 0.6114917588045287,
+                "brier": 0.2088532381004517
+              },
+              {
+                "line": 23.5,
+                "overCount": 489,
+                "logLoss": 0.673709017341868,
+                "brier": 0.23980278573491204
+              },
+              {
+                "line": 25.5,
+                "overCount": 360,
+                "logLoss": 0.6726827185870556,
+                "brier": 0.2396315650048299
+              },
+              {
+                "line": 27.5,
+                "overCount": 256,
+                "logLoss": 0.5906431930668009,
+                "brier": 0.20104899188566816
+              }
+            ]
+          },
+          "SC0": {
+            "n": 522,
+            "mae": 4.657992226162102,
+            "poissonDeviance": 1.4030626035386617,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 450,
+                "logLoss": 0.39756091449468894,
+                "brier": 0.11896263279290138
+              },
+              {
+                "line": 21.5,
+                "overCount": 399,
+                "logLoss": 0.5467742718179048,
+                "brier": 0.18136769046194942
+              },
+              {
+                "line": 23.5,
+                "overCount": 330,
+                "logLoss": 0.6470907377084786,
+                "brier": 0.22797490460662406
+              },
+              {
+                "line": 25.5,
+                "overCount": 252,
+                "logLoss": 0.6820084902785052,
+                "brier": 0.24379735835117342
+              },
+              {
+                "line": 27.5,
+                "overCount": 187,
+                "logLoss": 0.6561200172461796,
+                "brier": 0.23006963950029066
+              }
+            ]
+          },
+          "SP1": {
+            "n": 859,
+            "mae": 4.599544959172875,
+            "poissonDeviance": 1.3273554418224416,
+            "lines": [
+              {
+                "line": 19.5,
+                "overCount": 688,
+                "logLoss": 0.48074786451628915,
+                "brier": 0.15377320349719803
+              },
+              {
+                "line": 21.5,
+                "overCount": 580,
+                "logLoss": 0.6007065422016854,
+                "brier": 0.2070955721818069
+              },
+              {
+                "line": 23.5,
+                "overCount": 482,
+                "logLoss": 0.6582520583845474,
+                "brier": 0.2334385551695176
+              },
+              {
+                "line": 25.5,
+                "overCount": 369,
+                "logLoss": 0.6510564110635675,
+                "brier": 0.22958524646524145
+              },
+              {
+                "line": 27.5,
+                "overCount": 259,
+                "logLoss": 0.5897302063556941,
+                "brier": 0.20153248066162824
+              }
+            ]
+          }
+        }
+      },
+      "notes": [
+        "Chronological split; no random shuffling.",
+        "Predictors are pre-match rolling/history features only.",
+        "League rolling-average baseline uses prior matches only.",
+        "Early-2000s rows without foul/shot coverage drop out via the availability flags."
+      ]
+    },
+    "shotsOnTarget": {
+      "targetColumn": "sot_total",
+      "lines": [
+        7.5,
+        8.5,
+        9.5,
+        10.5,
+        11.5
+      ],
+      "eligibleRows": 86677,
+      "trainRows": 71152,
+      "validationRows": 7346,
+      "testRows": 8179,
+      "trainDateRange": [
+        "2000-07-29",
+        "2022-05-22"
+      ],
+      "validationDateRange": [
+        "2022-07-29",
+        "2024-06-02"
+      ],
+      "testDateRange": [
+        "2024-08-03",
+        "2026-10-29"
+      ],
+      "leagues": [
+        "D1",
+        "E0",
+        "E1",
+        "E2",
+        "E3",
+        "F1",
+        "I1",
+        "SC0",
+        "SP1"
+      ],
+      "features": [
+        "home_matches_before",
+        "away_matches_before",
+        "league_matches_before",
+        "home_advantage",
+        "referee_available",
+        "referee_matches_before",
+        "home_goal_team_for_avg5",
+        "home_goal_team_against_avg5",
+        "away_goal_team_for_avg5",
+        "away_goal_team_against_avg5",
+        "home_goal_team_for_avg10",
+        "home_goal_team_against_avg10",
+        "away_goal_team_for_avg10",
+        "away_goal_team_against_avg10",
+        "home_foul_team_for_avg5",
+        "home_foul_team_against_avg5",
+        "away_foul_team_for_avg5",
+        "away_foul_team_against_avg5",
+        "home_shots_team_for_avg5",
+        "home_shots_team_against_avg5",
+        "away_shots_team_for_avg5",
+        "away_shots_team_against_avg5",
+        "home_shots_on_target_team_for_avg5",
+        "away_shots_on_target_team_for_avg5",
+        "league_goals_avg",
+        "league_fouls_avg",
+        "referee_yellows_avg10",
+        "referee_fouls_avg10",
+        "home_shots_on_target_team_for_avg10",
+        "home_shots_on_target_team_against_avg5",
+        "home_shots_on_target_team_against_avg10",
+        "away_shots_on_target_team_for_avg10",
+        "away_shots_on_target_team_against_avg5",
+        "away_shots_on_target_team_against_avg10",
+        "league_shots_on_target_avg"
+      ],
+      "validation": {
+        "leagueRollingMeanBaseline": {
+          "n": 7346,
+          "mae": 2.430626191124422,
+          "poissonDeviance": 1.1356447788654145,
+          "lines": [
+            {
+              "line": 7.5,
+              "overCount": 4434,
+              "logLoss": 0.6602293424497323,
+              "brier": 0.23393948175096688
+            },
+            {
+              "line": 8.5,
+              "overCount": 3466,
+              "logLoss": 0.681371773488382,
+              "brier": 0.2441236245860028
+            },
+            {
+              "line": 9.5,
+              "overCount": 2546,
+              "logLoss": 0.6339500445459134,
+              "brier": 0.22132307356573094
+            },
+            {
+              "line": 10.5,
+              "overCount": 1784,
+              "logLoss": 0.544241103128888,
+              "brier": 0.18005247965136661
+            },
+            {
+              "line": 11.5,
+              "overCount": 1182,
+              "logLoss": 0.4346037081552219,
+              "brier": 0.1330414905825484
+            }
+          ]
+        },
+        "poissonRegression": {
+          "n": 7346,
+          "mae": 2.404419802289585,
+          "poissonDeviance": 1.1066714124718542,
+          "lines": [
+            {
+              "line": 7.5,
+              "overCount": 4434,
+              "logLoss": 0.6527548615315136,
+              "brier": 0.23055599747369798
+            },
+            {
+              "line": 8.5,
+              "overCount": 3466,
+              "logLoss": 0.6726926469426663,
+              "brier": 0.2399155798332069
+            },
+            {
+              "line": 9.5,
+              "overCount": 2546,
+              "logLoss": 0.6254476262222572,
+              "brier": 0.21742729611816347
+            },
+            {
+              "line": 10.5,
+              "overCount": 1784,
+              "logLoss": 0.5360346013934896,
+              "brier": 0.17701490836883488
+            },
+            {
+              "line": 11.5,
+              "overCount": 1182,
+              "logLoss": 0.42787311889623403,
+              "brier": 0.1311845225833058
+            }
+          ]
+        }
+      },
+      "test": {
+        "leagueRollingMeanBaseline": {
+          "n": 8179,
+          "mae": 2.4374801320454824,
+          "poissonDeviance": 1.1427846158451647,
+          "lines": [
+            {
+              "line": 7.5,
+              "overCount": 4785,
+              "logLoss": 0.6723349077596635,
+              "brier": 0.23962981373967673
+            },
+            {
+              "line": 8.5,
+              "overCount": 3744,
+              "logLoss": 0.6824402835662278,
+              "brier": 0.24462029935046692
+            },
+            {
+              "line": 9.5,
+              "overCount": 2725,
+              "logLoss": 0.6292494623105744,
+              "brier": 0.21883287192532488
+            },
+            {
+              "line": 10.5,
+              "overCount": 1907,
+              "logLoss": 0.5376042415724108,
+              "brier": 0.17661086455817815
+            },
+            {
+              "line": 11.5,
+              "overCount": 1264,
+              "logLoss": 0.42351620578861926,
+              "brier": 0.12856937229951046
+            }
+          ]
+        },
+        "poissonRegression": {
+          "n": 8179,
+          "mae": 2.415940127166858,
+          "poissonDeviance": 1.1163772077572451,
+          "lines": [
+            {
+              "line": 7.5,
+              "overCount": 4785,
+              "logLoss": 0.6656372110637314,
+              "brier": 0.23660533159521258
+            },
+            {
+              "line": 8.5,
+              "overCount": 3744,
+              "logLoss": 0.6747532421449866,
+              "brier": 0.24092651431707782
+            },
+            {
+              "line": 9.5,
+              "overCount": 2725,
+              "logLoss": 0.6221172221581905,
+              "brier": 0.21573347929401404
+            },
+            {
+              "line": 10.5,
+              "overCount": 1907,
+              "logLoss": 0.5295609541094575,
+              "brier": 0.17372663843937092
+            },
+            {
+              "line": 11.5,
+              "overCount": 1264,
+              "logLoss": 0.41618758948903906,
+              "brier": 0.12660635535859424
+            }
+          ]
+        }
+      },
+      "poissonTuning": {
+        "selectionMetric": "validation Poisson deviance (lower is better)",
+        "candidates": [
+          {
+            "featureSet": "full",
+            "alpha": 0.03,
+            "validationMae": 2.40458917199599,
+            "validationPoissonDeviance": 1.106855841959877,
+            "validationMeanBrier": 0.199271340699603,
+            "validationMeanLogLoss": 0.5830622121700181
+          },
+          {
+            "featureSet": "full",
+            "alpha": 0.15,
+            "validationMae": 2.4044509908802243,
+            "validationPoissonDeviance": 1.1067262059111747,
+            "validationMeanBrier": 0.19924632170748716,
+            "validationMeanLogLoss": 0.5830099830737968
+          },
+          {
+            "featureSet": "full",
+            "alpha": 0.5,
+            "validationMae": 2.404419802289585,
+            "validationPoissonDeviance": 1.1066714124718542,
+            "validationMeanBrier": 0.1992196608754418,
+            "validationMeanLogLoss": 0.5829605709972322
+          },
+          {
+            "featureSet": "full",
+            "alpha": 1.5,
+            "validationMae": 2.4065730643339083,
+            "validationPoissonDeviance": 1.1074833375777615,
+            "validationMeanBrier": 0.19929696379107764,
+            "validationMeanLogLoss": 0.5831639112309273
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.03,
+            "validationMae": 2.405470465533683,
+            "validationPoissonDeviance": 1.107425297043676,
+            "validationMeanBrier": 0.19932109419818222,
+            "validationMeanLogLoss": 0.5831882374882034
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.15,
+            "validationMae": 2.4052135162347863,
+            "validationPoissonDeviance": 1.107276042390516,
+            "validationMeanBrier": 0.19929249497348944,
+            "validationMeanLogLoss": 0.5831272511944132
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 0.5,
+            "validationMae": 2.4052984757582463,
+            "validationPoissonDeviance": 1.1072488447350457,
+            "validationMeanBrier": 0.19927089129515885,
+            "validationMeanLogLoss": 0.5830899479850001
+          },
+          {
+            "featureSet": "without_referee",
+            "alpha": 1.5,
+            "validationMae": 2.407675612838668,
+            "validationPoissonDeviance": 1.1081112475927617,
+            "validationMeanBrier": 0.19935949039553216,
+            "validationMeanLogLoss": 0.5833199113412758
+          }
+        ],
+        "selected": {
+          "featureSet": "full",
+          "alpha": 0.5,
+          "validationMae": 2.404419802289585,
+          "validationPoissonDeviance": 1.1066714124718542,
+          "validationMeanBrier": 0.1992196608754418,
+          "validationMeanLogLoss": 0.5829605709972322
+        },
+        "selectedValidation": {
+          "n": 7346,
+          "mae": 2.404419802289585,
+          "poissonDeviance": 1.1066714124718542,
+          "lines": [
+            {
+              "line": 7.5,
+              "overCount": 4434,
+              "logLoss": 0.6527548615315136,
+              "brier": 0.23055599747369798
+            },
+            {
+              "line": 8.5,
+              "overCount": 3466,
+              "logLoss": 0.6726926469426663,
+              "brier": 0.2399155798332069
+            },
+            {
+              "line": 9.5,
+              "overCount": 2546,
+              "logLoss": 0.6254476262222572,
+              "brier": 0.21742729611816347
+            },
+            {
+              "line": 10.5,
+              "overCount": 1784,
+              "logLoss": 0.5360346013934896,
+              "brier": 0.17701490836883488
+            },
+            {
+              "line": 11.5,
+              "overCount": 1182,
+              "logLoss": 0.42787311889623403,
+              "brier": 0.1311845225833058
+            }
+          ]
+        },
+        "selectedTest": {
+          "n": 8179,
+          "mae": 2.415940127166858,
+          "poissonDeviance": 1.1163772077572451,
+          "lines": [
+            {
+              "line": 7.5,
+              "overCount": 4785,
+              "logLoss": 0.6656372110637314,
+              "brier": 0.23660533159521258
+            },
+            {
+              "line": 8.5,
+              "overCount": 3744,
+              "logLoss": 0.6747532421449866,
+              "brier": 0.24092651431707782
+            },
+            {
+              "line": 9.5,
+              "overCount": 2725,
+              "logLoss": 0.6221172221581905,
+              "brier": 0.21573347929401404
+            },
+            {
+              "line": 10.5,
+              "overCount": 1907,
+              "logLoss": 0.5295609541094575,
+              "brier": 0.17372663843937092
+            },
+            {
+              "line": 11.5,
+              "overCount": 1264,
+              "logLoss": 0.41618758948903906,
+              "brier": 0.12660635535859424
+            }
+          ]
+        },
+        "selectedTestByLeague": {
+          "D1": {
+            "n": 674,
+            "mae": 2.5731144215815425,
+            "poissonDeviance": 1.0891030273772622,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 471,
+                "logLoss": 0.6090981316561,
+                "brier": 0.2089649073650279
+              },
+              {
+                "line": 8.5,
+                "overCount": 396,
+                "logLoss": 0.6677091777845762,
+                "brier": 0.23755762724003723
+              },
+              {
+                "line": 9.5,
+                "overCount": 321,
+                "logLoss": 0.6804692638261755,
+                "brier": 0.24360011112174756
+              },
+              {
+                "line": 10.5,
+                "overCount": 233,
+                "logLoss": 0.6301463259469456,
+                "brier": 0.21908349911016897
+              },
+              {
+                "line": 11.5,
+                "overCount": 174,
+                "logLoss": 0.5534281377246352,
+                "brier": 0.1840709172982068
+              }
+            ]
+          },
+          "E0": {
+            "n": 840,
+            "mae": 2.368115723684758,
+            "poissonDeviance": 1.0144171882319248,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 536,
+                "logLoss": 0.6550051661588955,
+                "brier": 0.23115988296041223
+              },
+              {
+                "line": 8.5,
+                "overCount": 423,
+                "logLoss": 0.6932442589949567,
+                "brier": 0.24995235420552786
+              },
+              {
+                "line": 9.5,
+                "overCount": 315,
+                "logLoss": 0.6654026339563243,
+                "brier": 0.23612349240393232
+              },
+              {
+                "line": 10.5,
+                "overCount": 216,
+                "logLoss": 0.5748179939248007,
+                "brier": 0.1931897294202881
+              },
+              {
+                "line": 11.5,
+                "overCount": 153,
+                "logLoss": 0.47842187809743336,
+                "brier": 0.15017236556513947
+              }
+            ]
+          },
+          "E1": {
+            "n": 1248,
+            "mae": 2.3910508256586063,
+            "poissonDeviance": 1.1417858555205487,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 676,
+                "logLoss": 0.6849622810853597,
+                "brier": 0.24602245325245514
+              },
+              {
+                "line": 8.5,
+                "overCount": 505,
+                "logLoss": 0.6699334523349615,
+                "brier": 0.23852215358848433
+              },
+              {
+                "line": 9.5,
+                "overCount": 355,
+                "logLoss": 0.5920890214841982,
+                "brier": 0.20143941934474394
+              },
+              {
+                "line": 10.5,
+                "overCount": 252,
+                "logLoss": 0.4990174535103893,
+                "brier": 0.15964583439923918
+              },
+              {
+                "line": 11.5,
+                "overCount": 155,
+                "logLoss": 0.37261577335929774,
+                "brier": 0.10813103510848364
+              }
+            ]
+          },
+          "E2": {
+            "n": 1247,
+            "mae": 2.4290987417809116,
+            "poissonDeviance": 1.1830492726747572,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 648,
+                "logLoss": 0.6880945902149039,
+                "brier": 0.2475425464959277
+              },
+              {
+                "line": 8.5,
+                "overCount": 495,
+                "logLoss": 0.6689972843073072,
+                "brier": 0.23799649381719948
+              },
+              {
+                "line": 9.5,
+                "overCount": 357,
+                "logLoss": 0.5938202781426359,
+                "brier": 0.2021726806810714
+              },
+              {
+                "line": 10.5,
+                "overCount": 238,
+                "logLoss": 0.483933034502276,
+                "brier": 0.15322561571500695
+              },
+              {
+                "line": 11.5,
+                "overCount": 144,
+                "logLoss": 0.3515109204624685,
+                "brier": 0.10085157666768114
+              }
+            ]
+          },
+          "E3": {
+            "n": 1255,
+            "mae": 2.3400875891053308,
+            "poissonDeviance": 1.1314926645074634,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 650,
+                "logLoss": 0.6969768258173994,
+                "brier": 0.2517048844106758
+              },
+              {
+                "line": 8.5,
+                "overCount": 485,
+                "logLoss": 0.6686227998283212,
+                "brier": 0.2379351661541544
+              },
+              {
+                "line": 9.5,
+                "overCount": 318,
+                "logLoss": 0.5684713374858844,
+                "brier": 0.1905417893714145
+              },
+              {
+                "line": 10.5,
+                "overCount": 218,
+                "logLoss": 0.4578376513298137,
+                "brier": 0.142634175468534
+              },
+              {
+                "line": 11.5,
+                "overCount": 135,
+                "logLoss": 0.3391611067940931,
+                "brier": 0.09569323257522035
+              }
+            ]
+          },
+          "F1": {
+            "n": 684,
+            "mae": 2.567103987895161,
+            "poissonDeviance": 1.161748088102834,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 450,
+                "logLoss": 0.6312398111801191,
+                "brier": 0.22034153553244926
+              },
+              {
+                "line": 8.5,
+                "overCount": 369,
+                "logLoss": 0.6802884229581406,
+                "brier": 0.2437027600357246
+              },
+              {
+                "line": 9.5,
+                "overCount": 291,
+                "logLoss": 0.6730088549169769,
+                "brier": 0.2398304373119282
+              },
+              {
+                "line": 10.5,
+                "overCount": 215,
+                "logLoss": 0.6137187110224943,
+                "brier": 0.21141800349284717
+              },
+              {
+                "line": 11.5,
+                "overCount": 150,
+                "logLoss": 0.5166661237589352,
+                "brier": 0.16761496909203602
+              }
+            ]
+          },
+          "I1": {
+            "n": 850,
+            "mae": 2.3416801771111198,
+            "poissonDeviance": 1.0568957602539404,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 505,
+                "logLoss": 0.6662771573972935,
+                "brier": 0.23675354830138556
+              },
+              {
+                "line": 8.5,
+                "overCount": 392,
+                "logLoss": 0.6773010061115835,
+                "brier": 0.24219418833424922
+              },
+              {
+                "line": 9.5,
+                "overCount": 271,
+                "logLoss": 0.6188600339048647,
+                "brier": 0.21412651451110537
+              },
+              {
+                "line": 10.5,
+                "overCount": 183,
+                "logLoss": 0.5140110465685397,
+                "brier": 0.16652136478624913
+              },
+              {
+                "line": 11.5,
+                "overCount": 122,
+                "logLoss": 0.39857510126730583,
+                "brier": 0.11964072046015159
+              }
+            ]
+          },
+          "SC0": {
+            "n": 522,
+            "mae": 2.4413772591575467,
+            "poissonDeviance": 1.1011691141463757,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 322,
+                "logLoss": 0.6567590194212041,
+                "brier": 0.23217978277916634
+              },
+              {
+                "line": 8.5,
+                "overCount": 257,
+                "logLoss": 0.6842340987307655,
+                "brier": 0.24560433319207942
+              },
+              {
+                "line": 9.5,
+                "overCount": 185,
+                "logLoss": 0.6533803130161516,
+                "brier": 0.2305054141118236
+              },
+              {
+                "line": 10.5,
+                "overCount": 136,
+                "logLoss": 0.5718314249731951,
+                "brier": 0.19223037484265765
+              },
+              {
+                "line": 11.5,
+                "overCount": 90,
+                "logLoss": 0.4607935823881285,
+                "brier": 0.14350772223061406
+              }
+            ]
+          },
+          "SP1": {
+            "n": 859,
+            "mae": 2.404917670269692,
+            "poissonDeviance": 1.1136687461523724,
+            "lines": [
+              {
+                "line": 7.5,
+                "overCount": 527,
+                "logLoss": 0.6460834097956409,
+                "brier": 0.22749147592606153
+              },
+              {
+                "line": 8.5,
+                "overCount": 422,
+                "logLoss": 0.6738231574572943,
+                "brier": 0.24055299585587658
+              },
+              {
+                "line": 9.5,
+                "overCount": 312,
+                "logLoss": 0.64078712515946,
+                "brier": 0.22461334365023036
+              },
+              {
+                "line": 10.5,
+                "overCount": 216,
+                "logLoss": 0.5444700639037308,
+                "brier": 0.1806227709163655
+              },
+              {
+                "line": 11.5,
+                "overCount": 141,
+                "logLoss": 0.42768899333176846,
+                "brier": 0.13183475912442857
+              }
+            ]
+          }
+        }
+      },
+      "notes": [
+        "Chronological split; no random shuffling.",
+        "Predictors are pre-match rolling/history features only.",
+        "League rolling-average baseline uses prior matches only.",
+        "Early-2000s rows without foul/shot coverage drop out via the availability flags."
+      ]
+    }
+  }
+}
