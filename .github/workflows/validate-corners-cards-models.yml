@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "scripts/models/**"
+      - "scripts/models/**"\n      - "api-consensus.js"\n      - "tests/api-consensus.test.cjs"
       - "model-v1.js"
       - "goals-model.js"
       - ".github/workflows/validate-corners-cards-models.yml"
@@ -24,7 +24,7 @@ jobs:
           node-version: "22"
       - name: Validate active JavaScript
         run: |
-          node --check model-v1.js
+          node --check api-consensus.js\n          node --test tests/api-consensus.test.cjs\n          node --check model-v1.js
           node --check goals-model.js
           node --check scripts/models/archive-provider-results.mjs
       - name: Confirm CSV pipelines are not used
