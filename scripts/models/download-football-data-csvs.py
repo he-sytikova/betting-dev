@@ -65,8 +65,18 @@ def main() -> None:
                 continue
 
             url = BASE_URL.format(season=season, league=league)
+            payload = None
             try:
-                payload = download(url)
+                # A few attempts with backoff: the source host occasionally
+                # stalls a single connection for tens of seconds.
+                for attempt in range(3):
+                    try:
+                        payload = download(url)
+                        break
+                    except Exception:
+                        if attempt == 2:
+                            raise
+                        time.sleep(5 * (attempt + 1))
             except Exception as exc:
                 failures.append(f"{league}_{season}: {type(exc).__name__}: {exc}")
                 continue
@@ -84,9 +94,13 @@ def main() -> None:
         f"Download complete: downloaded={downloaded}, existing_valid={skipped}, "
         f"unavailable={unavailable}, errors={len(failures)}"
     )
-    if failures:
-        for failure in failures:
-            print(f"ERROR: {failure}")
+    # Transient network errors on pre-2020 seasons are tolerated with a warning:
+    # those rows add little signal for current predictions, and the dataset
+    # builder simply skips missing files. Recent seasons stay fatal.
+    hard_failures = [f for f in failures if int(f.split("_")[1][:2]) >= 20]
+    for failure in failures:
+        print(f"{'ERROR' if failure in hard_failures else 'WARNING'}: {failure}")
+    if hard_failures:
         raise SystemExit(1)
 
 
