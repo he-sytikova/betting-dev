@@ -7,7 +7,7 @@
   // scores upcoming fixtures from data.json. Unknown leagues/teams never get an
   // invented probability.
 
-  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
     .replace(/&/g, ' and ').replace(/\b(fc|afc|cf|sc|sv|fk|sk|club|the)\b/g, ' ')
     .replace(/[^\p{L}\p{N}]+/gu, ' ').trim().replace(/\s+/g, ' ');
 
@@ -291,7 +291,7 @@
 
   const $ = id => document.getElementById(id);
   const pct = n => Number.isFinite(n) ? (n * 100).toFixed(1) + '%' : '—';
-  const heat = p => { const x = Math.max(0, Math.min(1, (p - 65) / 35)), a = [220, 252, 231], b = [20, 83, 45]; return 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * x)).join(', ') + ')'; };
+  const heat = p => { const x = Math.max(0, Math.min(1, p)), a = [240, 253, 244], b = [20, 83, 45]; return 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * x)).join(', ') + ')'; };
   const fmtTime = t => new Date(t).toLocaleString('ru-RU', { timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
 
   function cell(tr, value) { const td = document.createElement('td'); td.textContent = value; tr.append(td); return td; }
@@ -301,7 +301,12 @@
     for (const item of items) {
       const line = document.createElement('div'); line.className = 'probability-line';
       line.textContent = item.label + ': ' + pct(item.value);
-      if (Number.isFinite(item.value) && item.value > .65) { line.style.backgroundColor = heat(item.value); line.classList.add('is-highlighted'); line.title = 'Вероятность: ' + pct(item.value); }
+      if (Number.isFinite(item.value)) {
+        // Continuous gradient: the higher the probability, the stronger the color.
+        line.style.backgroundColor = heat(item.value);
+        line.title = 'Вероятность: ' + pct(item.value);
+        if (item.value > .65) line.classList.add('is-highlighted');
+      }
       td.append(line);
     }
     tr.append(td); return td;
@@ -349,7 +354,6 @@
           { label: 'ИТБ2 ' + t.line, value: t.over },
           { label: 'ИТМ2 ' + t.line, value: t.under },
         ]));
-        cell(tr, prediction.homeModel + ' — ' + prediction.awayModel);
         host.append(tr);
       }
       const note = 'Модель: две независимые Poisson-регрессии ожидаемых голов по историческим данным football-data.co.uk, обучена по ' +
