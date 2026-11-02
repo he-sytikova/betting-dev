@@ -14,6 +14,7 @@ import pandas as pd
 from scipy.stats import poisson
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
+from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import PoissonRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -125,6 +126,22 @@ def evaluate(frame, home_pred, away_pred, base_home, base_away):
     return out
 
 
+def serialize_calibrator(iso, max_points=60):
+    """Compact the isotonic step function to monotone knots for the runtime JSON."""
+    xs = np.asarray(iso.X_thresholds_, dtype=float)
+    ys = np.asarray(iso.y_thresholds_, dtype=float)
+    if len(xs) > max_points:
+        keep = np.unique(np.linspace(0, len(xs) - 1, max_points).round().astype(int))
+        xs, ys = xs[keep], ys[keep]
+    return {"x": [round(float(v), 5) for v in xs], "y": [round(float(v), 5) for v in ys]}
+
+
+def binary_logloss(prob, event):
+    p = np.clip(np.asarray(prob, dtype=float), 1e-9, 1 - 1e-9)
+    e = np.asarray(event, dtype=float)
+    return float(-np.mean(e * np.log(p) + (1 - e) * np.log(1 - p)))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
@@ -197,6 +214,65 @@ def main():
         p_away = np.clip(selection["awayGoals"]["model"].predict(part[numeric + ["league"]]), 0.01, None)
         report.setdefault("markets", {})[name] = evaluate(part, p_home, p_away, base_home, base_away)
     report["selected"] = {k: {"alpha": v["alpha"]} for k, v in selection.items()}
+
+    # --- Match-totals line calibration (1X2 and team totals stay matrix-derived) ---
+    # Raw over-probabilities use the Poisson-sum identity: home+away goals are
+    # independent Poisson, so the total is Poisson(home_mu + away_mu); this equals
+    # the truncated scoreline-matrix total to numerical precision.
+    deadband = 0.0005
+    p_home = {name: np.clip(selection["homeGoals"]["model"].predict(part[numeric + ["league"]]), 0.01, None)
+              for part, name in ((valid, "validation"), (test, "test"))}
+    p_away = {name: np.clip(selection["awayGoals"]["model"].predict(part[numeric + ["league"]]), 0.01, None)
+              for part, name in ((valid, "validation"), (test, "test"))}
+    totals_actual = {name: (part["target_home_goals"] + part["target_away_goals"]).to_numpy(float)
+                     for part, name in ((valid, "validation"), (test, "test"))}
+    total_mu = {name: p_home[name] + p_away[name] for name in ("validation", "test")}
+    # Deployment decided inside validation only: fit on the earlier half, evaluate
+    # honestly on the later half; ship only if the gain clears the deadband, then
+    # refit on full validation. Test raw-vs-calibrated is reported either way.
+    cal_mid = v0 + (v1 - v0) / 2
+    early = (valid.date <= cal_mid).to_numpy()
+    late = ~early
+    gains, late_raw_lls, late_cal_lls = [], [], []
+    early_calibrators = {}
+    for line in TOTAL_LINES:
+        threshold = math.floor(line)
+        raw = 1 - poisson.cdf(threshold, total_mu["validation"])
+        event = (totals_actual["validation"] > line).astype(float)
+        iso = IsotonicRegression(out_of_bounds="clip").fit(raw[early], event[early])
+        early_calibrators[line] = iso
+        late_raw_lls.append(binary_logloss(raw[late], event[late]))
+        late_cal_lls.append(binary_logloss(iso.predict(raw[late]), event[late]))
+        gains.append(late_raw_lls[-1] - late_cal_lls[-1])
+    crossfit_gain = float(np.mean(gains))
+    deploy_calibration = crossfit_gain > deadband
+    full_calibrators = {}
+    test_raw_lls, test_cal_lls = [], []
+    for line in TOTAL_LINES:
+        threshold = math.floor(line)
+        raw_v = 1 - poisson.cdf(threshold, total_mu["validation"])
+        event_v = (totals_actual["validation"] > line).astype(float)
+        iso_full = IsotonicRegression(out_of_bounds="clip").fit(raw_v, event_v)
+        full_calibrators[line] = iso_full
+        raw_t = 1 - poisson.cdf(threshold, total_mu["test"])
+        event_t = (totals_actual["test"] > line).astype(float)
+        test_raw_lls.append(binary_logloss(raw_t, event_t))
+        test_cal_lls.append(binary_logloss(iso_full.predict(raw_t), event_t))
+    report["totalsCalibration"] = {
+        "method": "isotonic (out_of_bounds=clip) on match-total over probabilities, fitted on validation only",
+        "deploymentRule": "deploy only if cross-fitted within-validation logLoss gain (early half fit, late half evaluation) exceeds 0.0005; deployed calibrator refit on full validation",
+        "lines": TOTAL_LINES,
+        "crossFitGain": crossfit_gain,
+        "crossFitRawLateMeanLogLoss": float(np.mean(late_raw_lls)),
+        "crossFitCalibratedLateMeanLogLoss": float(np.mean(late_cal_lls)),
+        "deployed": bool(deploy_calibration),
+        "calibrators": ({str(line): serialize_calibrator(full_calibrators[line]) for line in TOTAL_LINES}
+                        if deploy_calibration else {}),
+        "testMeanLogLossRaw": float(np.mean(test_raw_lls)),
+        "testMeanLogLossCalibrated": float(np.mean(test_cal_lls)),
+    }
+    report["notes"].append(
+        "Match-totals calibration deployment is selected on cross-fitted within-validation logLoss gain (deadband 0.0005); test raw-vs-calibrated is reported either way.")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     summary = {part: {"1x2LogLoss": report["markets"][part]["model"]["1x2LogLoss"],
