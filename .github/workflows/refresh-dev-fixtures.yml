@@ -2,6 +2,10 @@ name: Refresh dev fixture schedule
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/refresh-dev-fixtures.yml"
   schedule:
     # Keep the dev model's fixture calendar in sync with the public production snapshot.
     - cron: '17 */2 * * *'
