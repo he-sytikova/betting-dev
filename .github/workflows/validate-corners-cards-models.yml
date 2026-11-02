@@ -2,6 +2,13 @@ name: Validate dev model code and tests
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/models/**"
+      - "model-v1.js"
+      - "goals-model.js"
+      - ".github/workflows/validate-corners-cards-models.yml"
 
 permissions:
   contents: read
@@ -32,6 +39,7 @@ jobs:
           python -m py_compile scripts/models/export-corners-cards-runtime.py
           node --check model-v1.js
           node --check goals-model.js
+          node --check scripts/models/archive-provider-results.mjs
       - name: Run dataset builder tests (code only; no source data ingestion)
         run: python -m unittest discover -s tests -p "test_historical_dataset_builder.py" -v
       - name: Run model validation tests
