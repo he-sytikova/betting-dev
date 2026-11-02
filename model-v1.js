@@ -348,6 +348,12 @@ function render() {
   $('markets-empty').classList.toggle('hidden', rows.length > 0);
 }
 async function load() {
+  $('markets-error').textContent = 'Модель временно отключена: прежняя версия обучалась на CSV. CSV-данные не используются. Идёт накопление результатов из API-источников для новой независимой модели.';
+  $('markets-error').classList.remove('hidden');
+  $('markets-body').replaceChildren();
+  $('markets-empty').classList.add('hidden');
+  $('markets-count').textContent = 'Модель приостановлена до обучения на данных API';
+  return;
   try {
     const [response, modelResponse, distributionResponse] = await Promise.all([
       fetch('./data.json?t=' + Date.now(), {cache:'no-store'}),
