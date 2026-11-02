@@ -216,7 +216,36 @@
     return out;
   }
 
-  const api = { norm, poissonOver, resolveLeague, resolveTeam, buildFeatureContext, predictLambda, predict, TEAM_ALIASES };
+  // Dedupe key: provider name variants of the same match collapse to the
+  // model-resolved identity (league code + historical team keys). Raw names are
+  // used only when the match is outside the model's coverage.
+  function canonicalFixtureKey(model, leagueName, homeName, awayName) {
+    const code = model ? resolveLeague(model, leagueName) : null;
+    if (code) {
+      const home = resolveTeam(model, code, homeName);
+      const away = resolveTeam(model, code, awayName);
+      if (home && away) return 'model|' + code + '|' + home.key + '|' + away.key;
+    }
+    return 'raw|' + norm(homeName) + '|' + norm(awayName);
+  }
+
+  function uniqueFixtures(predictions, model) {
+    const map = new Map();
+    for (const p of predictions || []) {
+      const time = Date.parse(p.time);
+      if (!Number.isFinite(time) || time <= Date.now()) continue;
+      const home = norm(p.home), away = norm(p.away);
+      if (!home || !away) continue;
+      const key = canonicalFixtureKey(model, p.league, p.home, p.away);
+      // Same match from several sources collapses to the earliest kickoff.
+      if (!map.has(key) || time < map.get(key).time) {
+        map.set(key, { time, home: p.home, away: p.away, league: p.league || '—' });
+      }
+    }
+    return [...map.values()].sort((a, b) => a.time - b.time);
+  }
+
+  const api = { norm, poissonOver, resolveLeague, resolveTeam, buildFeatureContext, predictLambda, predict, canonicalFixtureKey, uniqueFixtures, TEAM_ALIASES };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 
   // ---- Browser rendering on model-v1.html ----
@@ -243,22 +272,6 @@
     tr.append(td); return td;
   }
 
-  function uniqueFixtures(predictions) {
-    const map = new Map();
-    for (const p of predictions || []) {
-      const time = Date.parse(p.time);
-      if (!Number.isFinite(time) || time <= Date.now()) continue;
-      const home = norm(p.home), away = norm(p.away);
-      if (!home || !away) continue;
-      const key = [home, away].join('|');
-      // Same match from several sources collapses to the earliest kickoff.
-      if (!map.has(key) || time < map.get(key).time) {
-        map.set(key, { time, home: p.home, away: p.away, league: p.league || '—' });
-      }
-    }
-    return [...map.values()].sort((a, b) => a.time - b.time);
-  }
-
   async function load() {
     $('internal-status').textContent = 'Загрузка внутренней модели…';
     try {
@@ -270,7 +283,7 @@
       if (!dataResponse.ok) throw Error('data.json: HTTP ' + dataResponse.status);
       const model = await modelsResponse.json();
       const data = await dataResponse.json();
-      const fixtures = uniqueFixtures(data.predictions);
+      const fixtures = uniqueFixtures(data.predictions, model);
       host.replaceChildren();
       let scored = 0;
       for (const fixture of fixtures) {

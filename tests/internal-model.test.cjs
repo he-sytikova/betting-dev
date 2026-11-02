@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { poissonOver, predict, resolveLeague, resolveTeam, predictLambda, norm } = require('../internal-model.js');
+const { poissonOver, predict, resolveLeague, resolveTeam, predictLambda, norm, uniqueFixtures } = require('../internal-model.js');
 
 // Minimal synthetic model that mirrors the schemaVersion 2 export format.
 const sampleModel = {
@@ -95,4 +95,17 @@ test('unique substring fallback is applied only when unambiguous', () => {
 test('norm strips club prefixes like the export normalizer', () => {
   assert.equal(norm('FC Koln'), 'koln');
   assert.equal(norm('RC Deportivo La Coruña'), 'rc deportivo la coruna');
+});
+
+test('uniqueFixtures collapses provider naming variants via model identity', () => {
+  const future = Date.now() + 3600e3;
+  const iso = new Date(future).toISOString();
+  const fixtures = uniqueFixtures([
+    { time: iso, league: 'Premier League', home: 'Newcastle United', away: 'Everton' },
+    { time: iso, league: 'England. Premier League', home: 'Newcastle', away: 'Everton FC' },
+    { time: iso, league: 'MLS', home: 'Inter Miami', away: 'LA Galaxy' },
+  ], sampleModel);
+  // The two Premier League records are one match; the MLS fixture stays as-is.
+  assert.equal(fixtures.length, 2);
+  assert.equal(fixtures.filter(f => f.league !== 'MLS').length, 1);
 });
