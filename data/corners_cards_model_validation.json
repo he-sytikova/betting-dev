@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T16:20:49.673928+00:00",
+  "generatedAt": "2026-11-02T17:49:32.167666+00:00",
   "dataset": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
   "splitPolicy": {
     "train_end": "2022-06-30",

@@ -1,94 +1,94 @@
 {
-  "generatedAt": "2026-11-02T16:47:17.077596Z",
-  "sourceFiles": 505,
-  "rows": 174377,
+  "generatedAt": "2026-11-02T17:48:33.688267Z",
+  "sourceFiles": 497,
+  "rows": 174468,
   "invalidRows": 128,
   "duplicatesRemoved": 0,
   "leagues": {
     "E0": {
       "name": "England Premier League",
-      "rows": 9580,
-      "cornersRows": 9580,
-      "cardsRows": 9580,
+      "rows": 9589,
+      "cornersRows": 9589,
+      "cardsRows": 9589,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 9580,
-      "cardsEligibleRows": 9580,
+      "cornersEligibleRows": 9589,
+      "cardsEligibleRows": 9589,
       "cornersCoveragePct": 100.0,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 100.0,
       "shotsCoveragePct": 100.0,
       "sotCoveragePct": 100.0,
       "from": "2000-08-19",
-      "through": "2026-10-25"
+      "through": "2026-11-01"
     },
     "E1": {
       "name": "England Championship",
-      "rows": 13944,
-      "cornersRows": 13943,
-      "cardsRows": 13943,
+      "rows": 13956,
+      "cornersRows": 13955,
+      "cardsRows": 13955,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13943,
-      "cardsEligibleRows": 13943,
+      "cornersEligibleRows": 13955,
+      "cardsEligibleRows": 13955,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 99.99,
       "foulsCoveragePct": 99.99,
       "shotsCoveragePct": 99.99,
       "sotCoveragePct": 99.99,
       "from": "2000-08-12",
-      "through": "2026-10-24"
+      "through": "2026-10-31"
     },
     "E2": {
       "name": "England League One",
-      "rows": 13791,
-      "cornersRows": 13790,
-      "cardsRows": 13791,
+      "rows": 13803,
+      "cornersRows": 13802,
+      "cardsRows": 13803,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13790,
-      "cardsEligibleRows": 13791,
+      "cornersEligibleRows": 13802,
+      "cardsEligibleRows": 13803,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 99.99,
       "shotsCoveragePct": 99.99,
       "sotCoveragePct": 99.99,
       "from": "2000-08-12",
-      "through": "2026-10-27"
+      "through": "2026-11-01"
     },
     "E3": {
       "name": "England League Two",
-      "rows": 13839,
-      "cornersRows": 13837,
-      "cardsRows": 13838,
+      "rows": 13851,
+      "cornersRows": 13849,
+      "cardsRows": 13850,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13837,
-      "cardsEligibleRows": 13838,
+      "cornersEligibleRows": 13849,
+      "cardsEligibleRows": 13850,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 99.99,
       "foulsCoveragePct": 99.97,
       "shotsCoveragePct": 99.97,
       "sotCoveragePct": 99.97,
       "from": "2000-08-12",
-      "through": "2026-10-27"
+      "through": "2026-10-31"
     },
     "SC0": {
       "name": "Scotland Premiership",
-      "rows": 5489,
-      "cornersRows": 5487,
-      "cardsRows": 5489,
+      "rows": 5492,
+      "cornersRows": 5490,
+      "cardsRows": 5492,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 5487,
-      "cardsEligibleRows": 5489,
+      "cornersEligibleRows": 5490,
+      "cardsEligibleRows": 5492,
       "cornersCoveragePct": 99.96,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 99.96,
       "shotsCoveragePct": 99.96,
       "sotCoveragePct": 99.96,
       "from": "2000-07-29",
-      "through": "2026-10-28"
+      "through": "2026-11-01"
     },
     "SC1": {
       "name": "Scotland Championship",
@@ -143,20 +143,20 @@
     },
     "D1": {
       "name": "Germany Bundesliga",
-      "rows": 7407,
-      "cornersRows": 7100,
-      "cardsRows": 7100,
+      "rows": 7416,
+      "cornersRows": 7109,
+      "cardsRows": 7109,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 7100,
-      "cardsEligibleRows": 7100,
+      "cornersEligibleRows": 7109,
+      "cardsEligibleRows": 7109,
       "cornersCoveragePct": 95.86,
       "cardsCoveragePct": 95.86,
       "foulsCoveragePct": 95.86,
       "shotsCoveragePct": 95.86,
-      "sotCoveragePct": 83.46,
+      "sotCoveragePct": 83.48,
       "from": "2002-08-09",
-      "through": "2026-10-25"
+      "through": "2026-11-01"
     },
     "D2": {
       "name": "Germany 2 Bundesliga",
@@ -177,20 +177,20 @@
     },
     "I1": {
       "name": "Italy Serie A",
-      "rows": 9674,
-      "cornersRows": 8059,
-      "cardsRows": 8068,
+      "rows": 9682,
+      "cornersRows": 8067,
+      "cardsRows": 8076,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 8059,
-      "cardsEligibleRows": 8068,
-      "cornersCoveragePct": 83.31,
-      "cardsCoveragePct": 83.4,
-      "foulsCoveragePct": 83.31,
-      "shotsCoveragePct": 83.26,
-      "sotCoveragePct": 83.26,
+      "cornersEligibleRows": 8067,
+      "cardsEligibleRows": 8076,
+      "cornersCoveragePct": 83.32,
+      "cardsCoveragePct": 83.41,
+      "foulsCoveragePct": 83.32,
+      "shotsCoveragePct": 83.28,
+      "sotCoveragePct": 83.28,
       "from": "2000-09-30",
-      "through": "2026-10-29"
+      "through": "2026-11-01"
     },
     "I2": {
       "name": "Italy Serie B",
@@ -211,20 +211,20 @@
     },
     "SP1": {
       "name": "Spain La Liga",
-      "rows": 9979,
-      "cornersRows": 8079,
-      "cardsRows": 8079,
+      "rows": 9988,
+      "cornersRows": 8088,
+      "cardsRows": 8088,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 8079,
-      "cardsEligibleRows": 8079,
-      "cornersCoveragePct": 80.96,
-      "cardsCoveragePct": 80.96,
-      "foulsCoveragePct": 80.96,
-      "shotsCoveragePct": 80.96,
-      "sotCoveragePct": 80.96,
+      "cornersEligibleRows": 8088,
+      "cardsEligibleRows": 8088,
+      "cornersCoveragePct": 80.98,
+      "cardsCoveragePct": 80.98,
+      "foulsCoveragePct": 80.98,
+      "shotsCoveragePct": 80.98,
+      "sotCoveragePct": 80.98,
       "from": "2000-09-09",
-      "through": "2026-10-26"
+      "through": "2026-11-01"
     },
     "SP2": {
       "name": "Spain Segunda",
@@ -245,20 +245,20 @@
     },
     "F1": {
       "name": "France Ligue 1",
-      "rows": 9481,
-      "cornersRows": 7348,
-      "cardsRows": 7728,
+      "rows": 9489,
+      "cornersRows": 7356,
+      "cardsRows": 7736,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 7348,
-      "cardsEligibleRows": 7728,
-      "cornersCoveragePct": 77.5,
-      "cardsCoveragePct": 81.51,
-      "foulsCoveragePct": 73.47,
-      "shotsCoveragePct": 81.5,
-      "sotCoveragePct": 81.5,
+      "cornersEligibleRows": 7356,
+      "cardsEligibleRows": 7736,
+      "cornersCoveragePct": 77.52,
+      "cardsCoveragePct": 81.53,
+      "foulsCoveragePct": 73.5,
+      "shotsCoveragePct": 81.52,
+      "sotCoveragePct": 81.52,
       "from": "2000-07-28",
-      "through": "2026-10-26"
+      "through": "2026-11-01"
     },
     "F2": {
       "name": "France Ligue 2",
@@ -279,20 +279,20 @@
     },
     "N1": {
       "name": "Netherlands Eredivisie",
-      "rows": 7972,
-      "cornersRows": 2770,
-      "cardsRows": 2770,
+      "rows": 7981,
+      "cornersRows": 2779,
+      "cardsRows": 2779,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 34.75,
-      "cardsCoveragePct": 34.75,
-      "foulsCoveragePct": 34.75,
-      "shotsCoveragePct": 34.75,
-      "sotCoveragePct": 34.75,
+      "cornersCoveragePct": 34.82,
+      "cardsCoveragePct": 34.82,
+      "foulsCoveragePct": 34.82,
+      "shotsCoveragePct": 34.82,
+      "sotCoveragePct": 34.82,
       "from": "2000-08-18",
-      "through": "2026-10-25"
+      "through": "2026-11-01"
     },
     "B1": {
       "name": "Belgium First Division",
@@ -527,14 +527,6 @@
       "duplicates": 0
     },
     {
-      "file": "D1_0001.csv",
-      "reason": "'utf-8' codec can't decode byte 0xf6 in position 249: invalid start byte"
-    },
-    {
-      "file": "D1_0102.csv",
-      "reason": "'utf-8' codec can't decode byte 0xfc in position 1505: invalid start byte"
-    },
-    {
       "file": "D1_0203.csv",
       "rows": 307,
       "accepted": 306,
@@ -680,8 +672,8 @@
     },
     {
       "file": "D1_2627.csv",
-      "rows": 63,
-      "accepted": 63,
+      "rows": 72,
+      "accepted": 72,
       "duplicates": 0
     },
     {
@@ -859,10 +851,6 @@
       "duplicates": 0
     },
     {
-      "file": "E0_0405.csv",
-      "reason": "'utf-8' codec can't decode byte 0xa0 in position 1886: invalid start byte"
-    },
-    {
       "file": "E0_0506.csv",
       "rows": 380,
       "accepted": 380,
@@ -990,8 +978,8 @@
     },
     {
       "file": "E0_2627.csv",
-      "rows": 80,
-      "accepted": 80,
+      "rows": 89,
+      "accepted": 89,
       "duplicates": 0
     },
     {
@@ -1017,10 +1005,6 @@
       "rows": 552,
       "accepted": 552,
       "duplicates": 0
-    },
-    {
-      "file": "E1_0405.csv",
-      "reason": "'utf-8' codec can't decode byte 0xa0 in position 1609: invalid start byte"
     },
     {
       "file": "E1_0506.csv",
@@ -1150,8 +1134,8 @@
     },
     {
       "file": "E1_2627.csv",
-      "rows": 144,
-      "accepted": 144,
+      "rows": 156,
+      "accepted": 156,
       "duplicates": 0
     },
     {
@@ -1177,10 +1161,6 @@
       "rows": 552,
       "accepted": 552,
       "duplicates": 0
-    },
-    {
-      "file": "E2_0405.csv",
-      "reason": "'utf-8' codec can't decode byte 0xa0 in position 7132: invalid start byte"
     },
     {
       "file": "E2_0506.csv",
@@ -1310,8 +1290,8 @@
     },
     {
       "file": "E2_2627.csv",
-      "rows": 143,
-      "accepted": 143,
+      "rows": 155,
+      "accepted": 155,
       "duplicates": 0
     },
     {
@@ -1337,10 +1317,6 @@
       "rows": 552,
       "accepted": 552,
       "duplicates": 0
-    },
-    {
-      "file": "E3_0405.csv",
-      "reason": "'utf-8' codec can't decode byte 0xa0 in position 6957: invalid start byte"
     },
     {
       "file": "E3_0506.csv",
@@ -1470,8 +1446,8 @@
     },
     {
       "file": "E3_2627.csv",
-      "rows": 151,
-      "accepted": 151,
+      "rows": 163,
+      "accepted": 163,
       "duplicates": 0
     },
     {
@@ -1632,8 +1608,8 @@
     },
     {
       "file": "F1_2627.csv",
-      "rows": 72,
-      "accepted": 72,
+      "rows": 80,
+      "accepted": 80,
       "duplicates": 0
     },
     {
@@ -2088,8 +2064,8 @@
     },
     {
       "file": "I1_2627.csv",
-      "rows": 90,
-      "accepted": 90,
+      "rows": 98,
+      "accepted": 98,
       "duplicates": 0
     },
     {
@@ -2406,8 +2382,8 @@
     },
     {
       "file": "N1_2627.csv",
-      "rows": 90,
-      "accepted": 90,
+      "rows": 99,
+      "accepted": 99,
       "duplicates": 0
     },
     {
@@ -2597,10 +2573,6 @@
       "duplicates": 0
     },
     {
-      "file": "SC0_0405.csv",
-      "reason": "'utf-8' codec can't decode byte 0xa0 in position 1971: invalid start byte"
-    },
-    {
       "file": "SC0_0506.csv",
       "rows": 228,
       "accepted": 228,
@@ -2679,10 +2651,6 @@
       "duplicates": 0
     },
     {
-      "file": "SC0_1819.csv",
-      "reason": "'utf-8' codec can't decode byte 0xa0 in position 1749: invalid start byte"
-    },
-    {
       "file": "SC0_1920.csv",
       "rows": 179,
       "accepted": 179,
@@ -2726,8 +2694,8 @@
     },
     {
       "file": "SC0_2627.csv",
-      "rows": 66,
-      "accepted": 66,
+      "rows": 69,
+      "accepted": 69,
       "duplicates": 0
     },
     {
@@ -3050,8 +3018,8 @@
     },
     {
       "file": "SP1_2627.csv",
-      "rows": 99,
-      "accepted": 99,
+      "rows": 108,
+      "accepted": 108,
       "duplicates": 0
     },
     {
@@ -3379,10 +3347,10 @@
       "duplicates": 0
     }
   ],
-  "output": "/tmp/g/repo/data/corners_cards_training.csv",
-  "cornersAvailableRows": 116680,
-  "cardsAvailableRows": 117081,
-  "cornersEligibleRows": 113910,
-  "cardsEligibleRows": 114311,
+  "output": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
+  "cornersAvailableRows": 116771,
+  "cardsAvailableRows": 117172,
+  "cornersEligibleRows": 113992,
+  "cardsEligibleRows": 114393,
   "note": "Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories, Elo ratings and time-decayed attack/defence goal ratings are keyed by country family, so clubs keep their form and ratings across promotion/relegation between divisions of the same country; league averages and referee histories remain per league. Elo: start 1500, K=20, home advantage 65 points, margin multiplier 1/1.5/1.5+0.25*(N-2). Decayed ratings use a 75-day half-life over goals for/against."
 }
