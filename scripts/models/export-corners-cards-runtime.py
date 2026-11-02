@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DATASET = ROOT / "data/corners_cards_training.csv"
 REPORT = ROOT / "data/corners_cards_model_validation.json"
 OUTPUT = ROOT / "data/corners_cards_models.json"
-LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "D1", "I1", "SP1", "F1"]
+LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2", "SP1", "SP2", "F1", "F2", "B1", "P1", "T1", "G1"]
 MARKETS = {
     "corners": ("corners_total", "corners_model_eligible", [7.5, 8.5, 9.5, 10.5, 11.5, 12.5]),
     "yellowCards": ("cards_total", "cards_model_eligible", [1.5, 2.5, 3.5, 4.5, 5.5, 6.5]),
@@ -57,9 +57,29 @@ DEFAULT_LEAGUE_ALIASES = {
     "greece super league": "G1",
     "premier league": "E0", "championship": "E1",
     "league one": "E2", "league two": "E3",
-    "scottish premiership": "SC0", "eredivisie": "N1",
-    "bundesliga": "D1", "2 bundesliga": "D2",
-    "serie a": "I1", "la liga": "SP1", "ligue 1": "F1",
+    "scottish premiership": "SC0", "scottish championship": "SC1", "eredivisie": "N1",
+    "bundesliga": "D1", "2 bundesliga": "D2", "bundesliga 2": "D2",
+    "germany bundesliga 2": "D2",
+    "serie a": "I1", "serie b": "I2", "la liga": "SP1", "ligue 1": "F1",
+    "ligue 2": "F2",
+    # Provider naming variants for the extended league set. Aliases are exact-match
+    # on normalized names, so lookalikes of other divisions stay unresolved:
+    # "spain segunda division rfef ..." (3rd tier), "belgium first division b"
+    # (2nd tier) and "greece superleague 2" (2nd tier) never map to SP2/B1/G1.
+    "segunda division": "SP2", "spain segunda division": "SP2",
+    "laliga 2": "SP2", "la liga 2": "SP2", "spain laliga 2": "SP2",
+    "spain la liga 2": "SP2",
+    "belgium pro league": "B1", "belgian pro league": "B1",
+    "jupiler pro league": "B1", "belgium jupiler pro league": "B1",
+    "belgium first division a": "B1",
+    "primeira liga": "P1", "liga portugal": "P1",
+    "portugal liga portugal": "P1", "portugal liga": "P1",
+    "liga portugal betclic": "P1",
+    "super lig": "T1", "turkish super lig": "T1", "turkiye super lig": "T1",
+    "turkey superleague": "T1", "trendyol super lig": "T1",
+    "turkey superliga": "T1",
+    "greece superleague": "G1", "greek super league": "G1",
+    "greece super league 1": "G1", "super league greece": "G1",
     # FB_DATA (football-data.org) naming variants; team-level matching inside the
     # resolved league protects against cross-league collisions.
     "primera division": "SP1", "spain laliga": "SP1",
