@@ -21,7 +21,14 @@ LEAGUES={
  "D1":"Germany Bundesliga","D2":"Germany 2 Bundesliga","I1":"Italy Serie A","I2":"Italy Serie B",
  "SP1":"Spain La Liga","SP2":"Spain Segunda","F1":"France Ligue 1","F2":"France Ligue 2",
  "N1":"Netherlands Eredivisie","B1":"Belgium First Division","P1":"Portugal Primeira Liga",
- "T1":"Turkey Super Lig","G1":"Greece Super League"}
+ "T1":"Turkey Super Lig","G1":"Greece Super League",
+ "RUS":"Russia Premier League","BRA":"Brazil Serie A","USA":"USA MLS",
+ "NOR":"Norway Eliteserien","SWE":"Sweden Allsvenskan"}
+# Results-only leagues come from single-file-per-country CSVs (football-data
+# /new/{CODE}.csv) with a different schema (Home/Away/HG/AG, Season column) and
+# no match statistics. They feed the goals model only; all stats-availability
+# flags are zero for them, so corners/cards/fouls/shots models never see them.
+RESULTS_ONLY={"RUS","BRA","USA","NOR","SWE"}
 # Country family: clubs move between divisions of the same country (promotion/
 # relegation), so rolling team histories are keyed by (family, team), not by
 # (league, team). A promoted club keeps its second-division form instead of
@@ -32,7 +39,8 @@ FAMILY={
  "SC0":"SCO","SC1":"SCO","SC2":"SCO","SC3":"SCO",
  "D1":"GER","D2":"GER","I1":"ITA","I2":"ITA",
  "SP1":"ESP","SP2":"ESP","F1":"FRA","F2":"FRA",
- "N1":"NED","B1":"BEL","P1":"POR","T1":"TUR","G1":"GRE"}
+ "N1":"NED","B1":"BEL","P1":"POR","T1":"TUR","G1":"GRE",
+ "RUS":"RUS","BRA":"BRA","USA":"USA","NOR":"NOR","SWE":"SWE"}
 CORNERS={"E0","E1","E2","E3","SC0","SC1","D1","D2","I1","I2","SP1","SP2","F1","F2","B1","P1","T1","G1"}
 CARDS=set(CORNERS)
 GROUPS={"goals":("FTHG","FTAG"),"corners":("HC","AC"),"cards":("HY","AY"),
@@ -102,28 +110,49 @@ def main():
   code=file.stem.split("_",1)[0].upper()
   if code not in LEAGUES:
    errors.append({"file":file.name,"reason":"unknown league code"});continue
-  with file.open(encoding="utf-8-sig",newline="") as f:
-   try:rows=list(csv.DictReader(f))
+  with file.open(encoding="utf-8-sig",errors="replace",newline="") as f:
+   try:
+    reader=csv.DictReader(f)
+    results_only=code in RESULTS_ONLY or (reader.fieldnames and "HomeTeam" not in reader.fieldnames)
+    rows=list(reader)
    except Exception as e:errors.append({"file":file.name,"reason":str(e)});continue
   accepted=0; file_duplicates=0
   for r in rows:
-   dt=date(r.get("Date"));h=(r.get("HomeTeam") or "").strip();a=(r.get("AwayTeam") or "").strip()
-   hg,ag=num(r.get("FTHG")),num(r.get("FTAG"))
+   if results_only:
+    h=(r.get("Home") or "").strip();a=(r.get("Away") or "").strip()
+    hg,ag=num(r.get("HG")),num(r.get("AG"))
+    season=(r.get("Season") or "").strip()
+    referee=""
+   else:
+    h=(r.get("HomeTeam") or "").strip();a=(r.get("AwayTeam") or "").strip()
+    hg,ag=num(r.get("FTHG")),num(r.get("FTAG"))
+    season=file.stem.split("_",1)[1] if "_" in file.stem else ""
+    referee=(r.get("Referee") or "").strip()
+   dt=date(r.get("Date"))
    if not dt or not h or not a or hg is None or ag is None:invalid+=1;continue
    key=(code,dt.isoformat(),h.casefold(),a.casefold())
    if key in seen:
     duplicates+=1;file_duplicates+=1;continue
    seen.add(key)
-   m={"date":dt,"season":file.stem.split("_",1)[1] if "_" in file.stem else "",
+   m={"date":dt,"season":season,
       "league":code,"home":h,"away":a,"hg":hg,"ag":ag,
-      "referee":(r.get("Referee") or "").strip()}
+      "referee":referee}
    for g,(hk,ak) in GROUPS.items():m[g+"_h"],m[g+"_a"]=num(r.get(hk)),num(r.get(ak))
    matches.append(m);accepted+=1
   errors.append({"file":file.name,"rows":len(rows),"accepted":accepted,"duplicates":file_duplicates})
  matches.sort(key=lambda x:(x["date"],x["league"],x["home"],x["away"]))
  histories=defaultdict(lambda:{**{g:deque(maxlen=10) for g in GROUPS},"matches":deque(maxlen=10)})
- league_hist=defaultdict(lambda:deque(maxlen=100)); refs=defaultdict(lambda:deque(maxlen=20)); out=[];i=0
+ league_hist=defaultdict(lambda:deque(maxlen=100)); refs=defaultdict(lambda:deque(maxlen=20)); i=0
  elo=defaultdict(lambda:ELO_START); decay={}
+ # Streaming writer: rows are written as they are produced (no giant list in RAM);
+ # per-league and global aggregates are accumulated on the fly for the report.
+ OUT.parent.mkdir(parents=True,exist_ok=True)
+ out_f=OUT.open("w",newline="",encoding="utf-8")
+ writer=None;total_rows=0
+ AGG_KEYS=("corners_available","cards_available","fouls_available","shots_available","sot_available",
+  "corners_model_eligible","cards_model_eligible")
+ def new_agg():return {"rows":0,**{k:0 for k in AGG_KEYS},"from":None,"through":None}
+ agg=defaultdict(new_agg);tot=new_agg()
  while i<len(matches):
   day=matches[i]["date"];j=i
   while j<len(matches) and matches[j]["date"]==day:j+=1
@@ -167,7 +196,15 @@ def main():
    r["fouls_total"]=m["fouls_h"]+m["fouls_a"] if r["fouls_available"] else ""
    r["shots_total"]=m["shots_h"]+m["shots_a"] if r["shots_available"] else ""
    r["sot_total"]=m["shots_on_target_h"]+m["shots_on_target_a"] if r["sot_available"] else ""
-   out.append(r);pending.append(m)
+   if writer is None:
+    writer=csv.DictWriter(out_f,fieldnames=list(r.keys()));writer.writeheader()
+   writer.writerow(r);total_rows+=1
+   a=agg[league];a["rows"]+=1;tot["rows"]+=1
+   for k in AGG_KEYS:a[k]+=r[k];tot[k]+=r[k]
+   d=r["date"]
+   if a["from"] is None or d<a["from"]:a["from"]=d
+   if a["through"] is None or d>a["through"]:a["through"]=d
+   pending.append(m)
   for m in pending:
    league=m["league"];family=FAMILY[league]
    hk,ak=(family,m["home"]),(family,m["away"])
@@ -192,31 +229,30 @@ def main():
     fouls=m["fouls_h"]+m["fouls_a"] if m["fouls_h"] is not None and m["fouls_a"] is not None else None
     refs[(league,m["referee"])].append((y,rc,fouls))
   i=j
- if not out:raise SystemExit("No valid match rows found.")
- OUT.parent.mkdir(parents=True,exist_ok=True)
- with OUT.open("w",newline="",encoding="utf-8") as f:
-  w=csv.DictWriter(f,fieldnames=list(out[0].keys()));w.writeheader();w.writerows(out)
+ out_f.close()
+ if writer is None:raise SystemExit("No valid match rows found.")
  by={}
  for c,n in LEAGUES.items():
-  rs=[r for r in out if r["league"]==c]
-  by[c]={"name":n,"rows":len(rs),"cornersRows":sum(r["corners_available"] for r in rs),
-   "cardsRows":sum(r["cards_available"] for r in rs),
+  a=agg.get(c,new_agg());rs=a["rows"]
+  by[c]={"name":n,"rows":rs,"cornersRows":a["corners_available"],
+   "cardsRows":a["cards_available"],
    "cornersEligible":c in CORNERS,"cardsEligible":c in CARDS,
-   "cornersEligibleRows":sum(r["corners_model_eligible"] for r in rs),
-   "cardsEligibleRows":sum(r["cards_model_eligible"] for r in rs),
-   "cornersCoveragePct":round(100*sum(r["corners_available"] for r in rs)/len(rs),2) if rs else 0,
-   "cardsCoveragePct":round(100*sum(r["cards_available"] for r in rs)/len(rs),2) if rs else 0,
-   "foulsCoveragePct":round(100*sum(r["fouls_available"] for r in rs)/len(rs),2) if rs else 0,
-   "shotsCoveragePct":round(100*sum(r["shots_available"] for r in rs)/len(rs),2) if rs else 0,
-   "sotCoveragePct":round(100*sum(r["sot_available"] for r in rs)/len(rs),2) if rs else 0,
-   "from":min((r["date"] for r in rs),default=None),"through":max((r["date"] for r in rs),default=None)}
- report={"generatedAt":datetime.utcnow().isoformat()+"Z","sourceFiles":len(files),"rows":len(out),
+   "resultsOnly":c in RESULTS_ONLY,
+   "cornersEligibleRows":a["corners_model_eligible"],
+   "cardsEligibleRows":a["cards_model_eligible"],
+   "cornersCoveragePct":round(100*a["corners_available"]/rs,2) if rs else 0,
+   "cardsCoveragePct":round(100*a["cards_available"]/rs,2) if rs else 0,
+   "foulsCoveragePct":round(100*a["fouls_available"]/rs,2) if rs else 0,
+   "shotsCoveragePct":round(100*a["shots_available"]/rs,2) if rs else 0,
+   "sotCoveragePct":round(100*a["sot_available"]/rs,2) if rs else 0,
+   "from":a["from"],"through":a["through"]}
+ report={"generatedAt":datetime.utcnow().isoformat()+"Z","sourceFiles":len(files),"rows":total_rows,
   "invalidRows":invalid,"duplicatesRemoved":duplicates,"leagues":by,"files":errors,"output":str(OUT),
-  "cornersAvailableRows":sum(r["corners_available"] for r in out),
-  "cardsAvailableRows":sum(r["cards_available"] for r in out),
-  "cornersEligibleRows":sum(r["corners_model_eligible"] for r in out),
-  "cardsEligibleRows":sum(r["cards_model_eligible"] for r in out),
-  "note":"Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories, Elo ratings and time-decayed attack/defence goal ratings are keyed by country family, so clubs keep their form and ratings across promotion/relegation between divisions of the same country; league averages and referee histories remain per league. Elo: start 1500, K=20, home advantage 65 points, margin multiplier 1/1.5/1.5+0.25*(N-2). Decayed ratings use a 75-day half-life over goals for/against."}
+  "cornersAvailableRows":tot["corners_available"],
+  "cardsAvailableRows":tot["cards_available"],
+  "cornersEligibleRows":tot["corners_model_eligible"],
+  "cardsEligibleRows":tot["cards_model_eligible"],
+  "note":"Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories, Elo ratings and time-decayed attack/defence goal ratings are keyed by country family, so clubs keep their form and ratings across promotion/relegation between divisions of the same country; league averages and referee histories remain per league. Elo: start 1500, K=20, home advantage 65 points, margin multiplier 1/1.5/1.5+0.25*(N-2). Decayed ratings use a 75-day half-life over goals for/against. Results-only leagues (RUS/BRA/USA/NOR/SWE, /new/ single-file CSVs) carry results only: all stats-availability flags are zero, so they train the goals model but never the stats models."}
  REPORT.write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
- print(json.dumps({"rows":len(out),"sourceFiles":len(files),"duplicatesRemoved":duplicates,"report":str(REPORT)},indent=2))
+ print(json.dumps({"rows":total_rows,"sourceFiles":len(files),"duplicatesRemoved":duplicates,"report":str(REPORT)},indent=2))
 if __name__=="__main__":main()
