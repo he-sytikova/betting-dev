@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-02T13:01:48.135752+00:00",
-  "dataset": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
+  "generatedAt": "2026-11-02T14:04:54.055808+00:00",
+  "dataset": "/tmp/g/repo/data/corners_cards_training.csv",
   "splitPolicy": {
     "train_end": "2022-06-30",
     "validation_start": "2022-07-01",
@@ -57,7 +57,7 @@
   "rows": {
     "train": 138608,
     "validation": 13193,
-    "test": 14686
+    "test": 14604
   },
   "targets": {
     "homeGoals": {
@@ -66,7 +66,7 @@
       "tuning": [
         {
           "alpha": 0.03,
-          "validationPoissonDeviance": 1.1276881582142162
+          "validationPoissonDeviance": 1.1276881582142735
         },
         {
           "alpha": 0.15,
@@ -74,15 +74,15 @@
         },
         {
           "alpha": 0.5,
-          "validationPoissonDeviance": 1.1310472507686147
+          "validationPoissonDeviance": 1.1310472507685567
         },
         {
           "alpha": 1.5,
           "validationPoissonDeviance": 1.1379508558112583
         }
       ],
-      "validationMae": 0.9547523325636719,
-      "testMae": 0.9532999964774597
+      "validationMae": 0.9547523326785822,
+      "testMae": 0.95231976815363
     },
     "awayGoals": {
       "target": "target_away_goals",
@@ -90,11 +90,11 @@
       "tuning": [
         {
           "alpha": 0.03,
-          "validationPoissonDeviance": 1.1539670380016032
+          "validationPoissonDeviance": 1.1539670410557819
         },
         {
           "alpha": 0.15,
-          "validationPoissonDeviance": 1.154050873752975
+          "validationPoissonDeviance": 1.1540508737529873
         },
         {
           "alpha": 0.5,
@@ -105,8 +105,8 @@
           "validationPoissonDeviance": 1.1627121733780865
         }
       ],
-      "validationMae": 0.8541885281671046,
-      "testMae": 0.8480975926452351
+      "validationMae": 0.8541885295396212,
+      "testMae": 0.8481196265090841
     }
   },
   "notes": [
@@ -114,58 +114,59 @@
     "Predictors are pre-match rolling/history features only.",
     "Home and away goals are modelled as independent Poisson counts; the independence assumption is a documented simplification (no Dixon-Coles adjustment yet).",
     "All markets (1X2, double chance, totals, team totals) derive from the same scoreline matrix, so probabilities are mutually consistent.",
-    "Baseline: independent Poisson with league rolling means for home and away goals."
+    "Baseline: independent Poisson with league rolling means for home and away goals.",
+    "Match-totals calibration deployment is selected on cross-fitted within-validation logLoss gain (deadband 0.0005); test raw-vs-calibrated is reported either way."
   ],
   "markets": {
     "validation": {
       "n": 13193,
-      "homeMae": 0.9547523325636719,
-      "awayMae": 0.8541885281671046,
+      "homeMae": 0.9547523326785822,
+      "awayMae": 0.8541885295396212,
       "model": {
-        "1x2LogLoss": 1.0235230153248667,
-        "1x2Brier": 0.613425574750954,
+        "1x2LogLoss": 1.023523015912542,
+        "1x2Brier": 0.6134255750440618,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.5595410067940703,
-            "brier": 0.18691301053145548
+            "logLoss": 0.5595410080502767,
+            "brier": 0.186913010975561
           },
           "total_2.5": {
-            "logLoss": 0.6813284810330703,
-            "brier": 0.2441178844224164
+            "logLoss": 0.6813284818975966,
+            "brier": 0.24411788482201263
           },
           "total_3.5": {
-            "logLoss": 0.5822052217432212,
-            "brier": 0.1972859325456449
+            "logLoss": 0.5822052225936746,
+            "brier": 0.19728593289563923
           },
           "total_4.5": {
-            "logLoss": 0.39039217025249207,
-            "brier": 0.11603545306194822
+            "logLoss": 0.39039217057069503,
+            "brier": 0.11603545314984673
           }
         },
         "teamTotals": {
           "home_0.5": {
-            "logLoss": 0.528060367371289,
-            "brier": 0.1740539185307944
+            "logLoss": 0.5280603673583992,
+            "brier": 0.17405391852288504
           },
           "home_1.5": {
-            "logLoss": 0.6533715382520999,
-            "brier": 0.2306155958085452
+            "logLoss": 0.653371538263136,
+            "brier": 0.23061559581458413
           },
           "home_2.5": {
-            "logLoss": 0.4555505630448998,
-            "brier": 0.14361936541822687
+            "logLoss": 0.4555505630540496,
+            "brier": 0.14361936542251938
           },
           "away_0.5": {
-            "logLoss": 0.6078689726501162,
-            "brier": 0.20961002381478258
+            "logLoss": 0.6078689745723531,
+            "brier": 0.2096100244969106
           },
           "away_1.5": {
-            "logLoss": 0.6127896391780604,
-            "brier": 0.21167503204694543
+            "logLoss": 0.6127896400116867,
+            "brier": 0.21167503237969745
           },
           "away_2.5": {
-            "logLoss": 0.36127811115124586,
-            "brier": 0.1059481434876131
+            "logLoss": 0.36127811148156,
+            "brier": 0.1059481434595089
           }
         }
       },
@@ -219,102 +220,102 @@
       }
     },
     "test": {
-      "n": 14686,
-      "homeMae": 0.9532999964774597,
-      "awayMae": 0.8480975926452351,
+      "n": 14604,
+      "homeMae": 0.95231976815363,
+      "awayMae": 0.8481196265090841,
       "model": {
-        "1x2LogLoss": 1.0282166676554285,
-        "1x2Brier": 0.6170910916819398,
+        "1x2LogLoss": 1.0286530651679597,
+        "1x2Brier": 0.6174031776987167,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.557272808851621,
-            "brier": 0.18574437847776137
+            "logLoss": 0.5579505179183188,
+            "brier": 0.18604530423899732
           },
           "total_2.5": {
-            "logLoss": 0.6861425220741252,
-            "brier": 0.2465619626500488
+            "logLoss": 0.6861241310427165,
+            "brier": 0.24655018226619116
           },
           "total_3.5": {
-            "logLoss": 0.5904271025125872,
-            "brier": 0.20076549533779875
+            "logLoss": 0.5898562814516785,
+            "brier": 0.2005070288040473
           },
           "total_4.5": {
-            "logLoss": 0.38747696191336134,
-            "brier": 0.11439208052960466
+            "logLoss": 0.3868171876252921,
+            "brier": 0.11413977725576328
           }
         },
         "teamTotals": {
           "home_0.5": {
-            "logLoss": 0.5242005978634882,
-            "brier": 0.17220042505602326
+            "logLoss": 0.5246518386585639,
+            "brier": 0.1723919270198887
           },
           "home_1.5": {
-            "logLoss": 0.6584863431387272,
-            "brier": 0.23318169176574616
+            "logLoss": 0.6583052801145843,
+            "brier": 0.23308924665050218
           },
           "home_2.5": {
-            "logLoss": 0.46557261747485007,
-            "brier": 0.14711318703686446
+            "logLoss": 0.464526862064016,
+            "brier": 0.14668773763038617
           },
           "away_0.5": {
-            "logLoss": 0.603314070997894,
-            "brier": 0.20731438834072777
+            "logLoss": 0.6031854572967531,
+            "brier": 0.2072593149129666
           },
           "away_1.5": {
-            "logLoss": 0.6209154723976247,
-            "brier": 0.21530805116965446
+            "logLoss": 0.6210432208545138,
+            "brier": 0.21536789368343606
           },
           "away_2.5": {
-            "logLoss": 0.3544937614943475,
-            "brier": 0.10332144168693873
+            "logLoss": 0.35471445113885597,
+            "brier": 0.10339220820382906
           }
         }
       },
       "baseline": {
-        "1x2LogLoss": 1.0756264056054903,
-        "1x2Brier": 0.6509347455950405,
+        "1x2LogLoss": 1.0761175728861982,
+        "1x2Brier": 0.6512774752497561,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.5633703993729995,
-            "brier": 0.18791553702658953
+            "logLoss": 0.5640758833185335,
+            "brier": 0.18822870206299525
           },
           "total_2.5": {
-            "logLoss": 0.6930989331882145,
-            "brier": 0.2499556023890302
+            "logLoss": 0.6930929562290392,
+            "brier": 0.2499534494028951
           },
           "total_3.5": {
-            "logLoss": 0.5966344456410562,
-            "brier": 0.20332783156233342
+            "logLoss": 0.5961729003150105,
+            "brier": 0.20311140561633495
           },
           "total_4.5": {
-            "logLoss": 0.3918470846605885,
-            "brier": 0.1155454843933605
+            "logLoss": 0.3912125457742151,
+            "brier": 0.11529484847886867
           }
         },
         "teamTotals": {
           "home_0.5": {
-            "logLoss": 0.543545490523206,
-            "brier": 0.1787590092791021
+            "logLoss": 0.5440014306203305,
+            "brier": 0.1789587768463016
           },
           "home_1.5": {
-            "logLoss": 0.6843778851443137,
-            "brier": 0.24563533512397628
+            "logLoss": 0.6842918919975951,
+            "brier": 0.24559258627404426
           },
           "home_2.5": {
-            "logLoss": 0.4869420242566857,
-            "brier": 0.1544111221417903
+            "logLoss": 0.48613303716227224,
+            "brier": 0.15406207518421672
           },
           "away_0.5": {
-            "logLoss": 0.6173555338076315,
-            "brier": 0.2130397908547779
+            "logLoss": 0.6173138575041693,
+            "brier": 0.21302263049270248
           },
           "away_1.5": {
-            "logLoss": 0.6417987910255769,
-            "brier": 0.22466572803422052
+            "logLoss": 0.6419143849094179,
+            "brier": 0.22472150569689475
           },
           "away_2.5": {
-            "logLoss": 0.371018411563522,
-            "brier": 0.10722827372974457
+            "logLoss": 0.37113963105964326,
+            "brier": 0.10727631216687256
           }
         }
       }
@@ -327,5 +328,22 @@
     "awayGoals": {
       "alpha": 0.03
     }
+  },
+  "totalsCalibration": {
+    "method": "isotonic (out_of_bounds=clip) on match-total over probabilities, fitted on validation only",
+    "deploymentRule": "deploy only if cross-fitted within-validation logLoss gain (early half fit, late half evaluation) exceeds 0.0005; deployed calibrator refit on full validation",
+    "lines": [
+      1.5,
+      2.5,
+      3.5,
+      4.5
+    ],
+    "crossFitGain": -0.002590061801628449,
+    "crossFitRawLateMeanLogLoss": 0.5590773533488838,
+    "crossFitCalibratedLateMeanLogLoss": 0.5616674151505122,
+    "deployed": false,
+    "calibrators": {},
+    "testMeanLogLossRaw": 0.5551869906745928,
+    "testMeanLogLossCalibrated": 0.5558116083719506
   }
 }
