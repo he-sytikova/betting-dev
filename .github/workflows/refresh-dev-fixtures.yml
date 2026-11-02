@@ -22,7 +22,7 @@ jobs:
         with:
           ref: main
 
-      - name: Download latest production fixture snapshot
+      - name: Download latest production prediction snapshot
         run: |
           set -euo pipefail
           curl --fail --silent --show-error --location \
@@ -32,12 +32,20 @@ jobs:
           node -e "
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
-            if (!data.date || !Array.isArray(data.matches)) {
-              throw new Error('Production data.json has an unexpected format');
+            if (!data.date || !Array.isArray(data.predictions)) {
+              throw new Error('Production data.json must contain date and predictions[]');
+            }
+            const future = data.predictions.filter(item => {
+              const time = Date.parse(item.time);
+              return Number.isFinite(time) && time > Date.now();
+            });
+            if (future.length === 0) {
+              throw new Error('Production snapshot has no upcoming fixtures; refusing to replace dev data');
             }
             console.log('Snapshot date:', data.date);
             console.log('Generated at:', data.generatedAt || 'unknown');
-            console.log('Match count:', data.matches.length);
+            console.log('Prediction records:', data.predictions.length);
+            console.log('Upcoming fixture records:', future.length);
           "
 
       - name: Commit refreshed schedule
