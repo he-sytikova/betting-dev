@@ -16,7 +16,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw" / "football-data"
 BASE_URL = "https://www.football-data.co.uk/mmz4281/{season}/{league}.csv"
-LEAGUES = ("E0", "E1", "E2", "E3", "SC0", "D1", "I1", "SP1", "F1", "N1")
+# 18 model leagues plus N1 (kept in the dataset for goals/outcomes research; its
+# match-statistics coverage of 34.75% keeps it out of corners/cards/fouls models).
+LEAGUES = ("E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2",
+           "SP1", "SP2", "F1", "F2", "B1", "P1", "T1", "G1", "N1")
 # 2000/01 through the current 2026/27 season; unavailable files are skipped.
 SEASONS = tuple(f"{year % 100:02d}{(year + 1) % 100:02d}" for year in range(2000, 2027))
 REQUIRED = {"Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"}
