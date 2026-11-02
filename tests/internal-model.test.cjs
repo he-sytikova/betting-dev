@@ -76,6 +76,10 @@ test('scores a fully matched fixture and keeps line order', () => {
     const overs = result[market].lines.map(x => x.over);
     assert.ok(overs.every(p => p > 0 && p < 1));
     assert.ok(overs[0] > overs[1]);
+    // Half lines cannot push: under is exactly the complement of over.
+    for (const x of result[market].lines) {
+      assert.ok(Math.abs(x.over + x.under - 1) < 1e-12);
+    }
   }
 });
 
