@@ -1,4 +1,4 @@
-name: Retrain corners and cards model
+name: Retrain internal models
 
 on:
   workflow_dispatch:
@@ -9,7 +9,9 @@ on:
       - "scripts/models/download-football-data-csvs.py"
       - "scripts/models/build-historical-dataset.py"
       - "scripts/models/train-corners-cards.py"
+      - "scripts/models/train-goals-markets.py"
       - "scripts/models/export-corners-cards-runtime.py"
+      - "scripts/models/export-goals-runtime.py"
       - "requirements-models.txt"
       - ".github/workflows/retrain-corners-cards.yml"
   schedule:
@@ -45,21 +47,27 @@ jobs:
       - name: Build training dataset
         run: python scripts/models/build-historical-dataset.py
 
-      - name: Train and validate models (chronological split)
+      - name: Train and validate corners/cards models (chronological split)
         run: python scripts/models/train-corners-cards.py
 
-      - name: Export browser runtime model JSON
+      - name: Export corners/cards browser runtime model JSON
         run: python scripts/models/export-corners-cards-runtime.py
+
+      - name: Train and validate goals/outcomes models (chronological split)
+        run: python scripts/models/train-goals-markets.py
+
+      - name: Export goals/outcomes browser runtime model JSON
+        run: python scripts/models/export-goals-runtime.py
 
       - name: Commit refreshed model artifacts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/historical_dataset_report.json
+          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/historical_dataset_report.json
           if git diff --cached --quiet; then
             echo "Model artifacts are already current"
           else
-            git commit -m "chore: retrain corners/cards internal model"
+            git commit -m "chore: retrain internal models"
             git pull --rebase origin main
             git push
           fi
