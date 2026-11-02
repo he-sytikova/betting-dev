@@ -26,6 +26,45 @@ MARKETS = {
 }
 REFEREE_FEATURES = {"referee_available", "referee_matches_before", "referee_yellows_avg10", "referee_fouls_avg10"}
 
+# Built-in league metadata. The browser runtime (internal-model.js) resolves provider
+# league names through these aliases, so CI must never lose them when no previous
+# corners_cards_models.json exists to serve as a template. Template values, when
+# present, are merged on top of these defaults.
+DEFAULT_LEAGUE_NAMES = {
+    "E0": "England - Premier League", "E1": "England - Championship",
+    "E2": "England - League One", "E3": "England - League Two",
+    "SC0": "Scotland - Premiership", "SC1": "Scotland - Championship",
+    "SC2": "Scotland - League One", "SC3": "Scotland - League Two",
+    "D1": "Germany - Bundesliga", "D2": "Germany - 2. Bundesliga",
+    "I1": "Italy - Serie A", "I2": "Italy - Serie B",
+    "SP1": "Spain - La Liga", "SP2": "Spain - Segunda",
+    "F1": "France - Ligue 1", "F2": "France - Ligue 2",
+    "N1": "Netherlands - Eredivisie", "B1": "Belgium - First Division",
+    "P1": "Portugal - Primeira Liga", "T1": "Turkey - Super Lig",
+    "G1": "Greece - Super League",
+}
+DEFAULT_LEAGUE_ALIASES = {
+    "england premier league": "E0", "england championship": "E1",
+    "england league one": "E2", "england league two": "E3",
+    "scotland premiership": "SC0", "scotland championship": "SC1",
+    "scotland league one": "SC2", "scotland league two": "SC3",
+    "germany bundesliga": "D1", "germany 2 bundesliga": "D2",
+    "italy serie a": "I1", "italy serie b": "I2",
+    "spain la liga": "SP1", "spain segunda": "SP2",
+    "france ligue 1": "F1", "france ligue 2": "F2",
+    "netherlands eredivisie": "N1", "belgium first division": "B1",
+    "portugal primeira liga": "P1", "turkey super lig": "T1",
+    "greece super league": "G1",
+    "premier league": "E0", "championship": "E1",
+    "league one": "E2", "league two": "E3",
+    "scottish premiership": "SC0", "eredivisie": "N1",
+    "bundesliga": "D1", "2 bundesliga": "D2",
+    "serie a": "I1", "la liga": "SP1", "ligue 1": "F1",
+    # FB_DATA (football-data.org) naming variants; team-level matching inside the
+    # resolved league protects against cross-league collisions.
+    "primera division": "SP1", "spain laliga": "SP1",
+}
+
 
 def feature_columns(columns, market):
     common = [
@@ -116,8 +155,8 @@ def export_model(df, market, target, eligible, lines, selected):
 
 def build_runtime_state(df, template):
     prefixes = ["goal_team", "team", "card_team", "foul_team", "shots_team", "shots_on_target_team"]
-    teams, league_stats, aliases = {}, {}, dict(template.get("leagueAliases", {}))
-    names = dict(template.get("leagueNames", {}))
+    teams, league_stats, aliases = {}, {}, {**DEFAULT_LEAGUE_ALIASES, **template.get("leagueAliases", {})}
+    names = {**DEFAULT_LEAGUE_NAMES, **template.get("leagueNames", {})}
     for league_code, group in df.sort_values("date").groupby("league"):
         league_teams = {}
         latest_league = group.iloc[-1]
