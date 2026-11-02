@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { poissonPmf, deriveMarkets, predict, resolveLeague, resolveTeam, predictLambda, norm, uniqueFixtures } = require('../goals-internal-model.js');
+const { poissonPmf, deriveMarkets, predict, resolveLeague, resolveTeam, predictLambda, norm, uniqueFixtures, buildFeatureContext } = require('../goals-internal-model.js');
 
 // Minimal synthetic model that mirrors the schemaVersion 2 goals export format.
 const sampleModel = {
@@ -204,4 +204,68 @@ test('predict passes model.totalsCalibration into totals only', () => {
   const line15 = prediction.totalGoals.find(x => x.line === 1.5);
   const raw = deriveMarkets(prediction.homeLambda, prediction.awayLambda, [1.5], [0.5], 10);
   assert.ok(Math.abs(line15.over - raw.totalGoals[0].over) < 1e-12, 'uncalibrated line keeps the matrix value');
+});
+
+// --- Dixon-Coles low-score adjustment (stage 3, 2026-11) ---
+const { dcTau } = require('../goals-internal-model.js');
+
+test('dcTau matches the Dixon-Coles tau definition', () => {
+  assert.equal(dcTau(2, 0, 1.6, 1.1, -0.055), 1);
+  assert.equal(dcTau(0, 2, 1.6, 1.1, -0.055), 1);
+  assert.ok(Math.abs(dcTau(0, 0, 1.6, 1.1, -0.055) - (1 - 1.6 * 1.1 * -0.055)) < 1e-12);
+  assert.ok(Math.abs(dcTau(0, 1, 1.6, 1.1, -0.055) - (1 + 1.6 * -0.055)) < 1e-12);
+  assert.ok(Math.abs(dcTau(1, 0, 1.6, 1.1, -0.055) - (1 + 1.1 * -0.055)) < 1e-12);
+  assert.ok(Math.abs(dcTau(1, 1, 1.6, 1.1, -0.055) - (1 - -0.055)) < 1e-12);
+});
+
+test('deriveMarkets with negative rho raises draw probability, keeps sums at 1', () => {
+  const raw = deriveMarkets(1.6, 1.1, [1.5, 2.5], [0.5], 10);
+  const dc = deriveMarkets(1.6, 1.1, [1.5, 2.5], [0.5], 10, null, -0.055);
+  assert.ok(dc.outcomes.x > raw.outcomes.x, 'negative rho must increase draw probability');
+  for (const mk of [raw, dc]) {
+    assert.ok(Math.abs(mk.outcomes.p1 + mk.outcomes.x + mk.outcomes.p2 - 1) < 1e-9,
+      'matrix must be renormalized');
+  }
+  // Reference values computed with scipy (scoreline matrix 0..10, renormalized).
+  assert.ok(Math.abs(dc.outcomes.p1 - 0.4830675263) < 1e-9);
+  assert.ok(Math.abs(dc.outcomes.x - 0.2619222432) < 1e-9);
+  assert.ok(Math.abs(dc.outcomes.p2 - 0.2550102305) < 1e-9);
+});
+
+test('deriveMarkets with positive rho lowers draw probability', () => {
+  const raw = deriveMarkets(1.6, 1.1, [2.5], [0.5], 10);
+  const dc = deriveMarkets(1.6, 1.1, [2.5], [0.5], 10, null, 0.08);
+  assert.ok(dc.outcomes.x < raw.outcomes.x);
+  assert.ok(Math.abs(dc.outcomes.p1 - 0.4990355729) < 1e-9);
+});
+
+test('deriveMarkets without rho is identical to rho=0', () => {
+  const a = deriveMarkets(1.6, 1.1, [1.5, 2.5], [0.5], 10);
+  const b = deriveMarkets(1.6, 1.1, [1.5, 2.5], [0.5], 10, null, 0);
+  const c = deriveMarkets(1.6, 1.1, [1.5, 2.5], [0.5], 10, null, undefined);
+  assert.ok(Math.abs(a.outcomes.x - b.outcomes.x) < 1e-15);
+  assert.ok(Math.abs(a.outcomes.x - c.outcomes.x) < 1e-15);
+  assert.ok(Math.abs(a.totalGoals[1].over - b.totalGoals[1].over) < 1e-15);
+});
+
+test('predict applies model.dcRho to the scoreline matrix', () => {
+  const model = JSON.parse(JSON.stringify(sampleModel));
+  model.dcRho = -0.055;
+  const withDc = predict(model, 'Premier League', 'Newcastle', 'Everton');
+  const expected = deriveMarkets(withDc.homeLambda, withDc.awayLambda, [2.5], [0.5], 10, null, -0.055);
+  assert.ok(Math.abs(withDc.outcomes.x - expected.outcomes.x) < 1e-12);
+  delete model.dcRho;
+  const withoutDc = predict(model, 'Premier League', 'Newcastle', 'Everton');
+  assert.ok(withDc.outcomes.x > withoutDc.outcomes.x, 'negative rho must raise the draw probability');
+});
+
+test('buildFeatureContext exposes elo and decayed ratings', () => {
+  const model = JSON.parse(JSON.stringify(sampleModel));
+  const home = { entry: { name: 'Newcastle', matchesBefore: 100, stats: { elo: 1650.5, att_decay: 1.42, def_decay: 0.98 } }, via: 'exact' };
+  const away = { entry: { name: 'Everton', matchesBefore: 100, stats: { elo: 1490.25, att_decay: 1.01, def_decay: 1.3 } }, via: 'exact' };
+  const ctx = buildFeatureContext(model, 'E0', home, away);
+  assert.equal(ctx.home_elo, 1650.5);
+  assert.equal(ctx.away_elo, 1490.25);
+  assert.equal(ctx.home_att_decay, 1.42);
+  assert.equal(ctx.away_def_decay, 1.3);
 });
