@@ -1,111 +1,111 @@
 {
-  "generatedAt": "2026-11-02T10:53:23.355025Z",
-  "sourceFiles": 262,
-  "rows": 101156,
-  "invalidRows": 27,
+  "generatedAt": "2026-11-02T12:40:48.754711Z",
+  "sourceFiles": 497,
+  "rows": 174468,
+  "invalidRows": 128,
   "duplicatesRemoved": 0,
   "leagues": {
     "E0": {
       "name": "England Premier League",
-      "rows": 9580,
-      "cornersRows": 9580,
-      "cardsRows": 9580,
+      "rows": 9589,
+      "cornersRows": 9589,
+      "cardsRows": 9589,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 9580,
-      "cardsEligibleRows": 9580,
+      "cornersEligibleRows": 9589,
+      "cardsEligibleRows": 9589,
       "cornersCoveragePct": 100.0,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 100.0,
       "shotsCoveragePct": 100.0,
       "sotCoveragePct": 100.0,
       "from": "2000-08-19",
-      "through": "2026-10-25"
+      "through": "2026-11-01"
     },
     "E1": {
       "name": "England Championship",
-      "rows": 13944,
-      "cornersRows": 13943,
-      "cardsRows": 13943,
+      "rows": 13956,
+      "cornersRows": 13955,
+      "cardsRows": 13955,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13943,
-      "cardsEligibleRows": 13943,
+      "cornersEligibleRows": 13955,
+      "cardsEligibleRows": 13955,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 99.99,
       "foulsCoveragePct": 99.99,
       "shotsCoveragePct": 99.99,
       "sotCoveragePct": 99.99,
       "from": "2000-08-12",
-      "through": "2026-10-24"
+      "through": "2026-10-31"
     },
     "E2": {
       "name": "England League One",
-      "rows": 13791,
-      "cornersRows": 13790,
-      "cardsRows": 13791,
+      "rows": 13803,
+      "cornersRows": 13802,
+      "cardsRows": 13803,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13790,
-      "cardsEligibleRows": 13791,
+      "cornersEligibleRows": 13802,
+      "cardsEligibleRows": 13803,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 99.99,
       "shotsCoveragePct": 99.99,
       "sotCoveragePct": 99.99,
       "from": "2000-08-12",
-      "through": "2026-10-27"
+      "through": "2026-11-01"
     },
     "E3": {
       "name": "England League Two",
-      "rows": 13839,
-      "cornersRows": 13837,
-      "cardsRows": 13838,
+      "rows": 13851,
+      "cornersRows": 13849,
+      "cardsRows": 13850,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13837,
-      "cardsEligibleRows": 13838,
+      "cornersEligibleRows": 13849,
+      "cardsEligibleRows": 13850,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 99.99,
       "foulsCoveragePct": 99.97,
       "shotsCoveragePct": 99.97,
       "sotCoveragePct": 99.97,
       "from": "2000-08-12",
-      "through": "2026-10-27"
+      "through": "2026-10-31"
     },
     "SC0": {
       "name": "Scotland Premiership",
-      "rows": 5489,
-      "cornersRows": 5487,
-      "cardsRows": 5489,
+      "rows": 5492,
+      "cornersRows": 5490,
+      "cardsRows": 5492,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 5487,
-      "cardsEligibleRows": 5489,
+      "cornersEligibleRows": 5490,
+      "cardsEligibleRows": 5492,
       "cornersCoveragePct": 99.96,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 99.96,
       "shotsCoveragePct": 99.96,
       "sotCoveragePct": 99.96,
       "from": "2000-07-29",
-      "through": "2026-10-28"
+      "through": "2026-11-01"
     },
     "SC1": {
       "name": "Scotland Championship",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 4656,
+      "cornersRows": 1946,
+      "cardsRows": 1953,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 41.8,
+      "cardsCoveragePct": 41.95,
+      "foulsCoveragePct": 41.8,
+      "shotsCoveragePct": 41.8,
+      "sotCoveragePct": 41.8,
+      "from": "2000-08-05",
+      "through": "2026-10-31"
     },
     "SC2": {
       "name": "Scotland League One",
@@ -143,227 +143,389 @@
     },
     "D1": {
       "name": "Germany Bundesliga",
-      "rows": 7407,
-      "cornersRows": 7100,
-      "cardsRows": 7100,
+      "rows": 7416,
+      "cornersRows": 7109,
+      "cardsRows": 7109,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 7100,
-      "cardsEligibleRows": 7100,
+      "cornersEligibleRows": 7109,
+      "cardsEligibleRows": 7109,
       "cornersCoveragePct": 95.86,
       "cardsCoveragePct": 95.86,
       "foulsCoveragePct": 95.86,
       "shotsCoveragePct": 95.86,
-      "sotCoveragePct": 83.46,
+      "sotCoveragePct": 83.48,
       "from": "2002-08-09",
-      "through": "2026-10-25"
+      "through": "2026-11-01"
     },
     "D2": {
       "name": "Germany 2 Bundesliga",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 7434,
+      "cornersRows": 3150,
+      "cardsRows": 3150,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 42.37,
+      "cardsCoveragePct": 42.37,
+      "foulsCoveragePct": 42.37,
+      "shotsCoveragePct": 42.37,
+      "sotCoveragePct": 42.37,
+      "from": "2002-08-10",
+      "through": "2026-11-01"
     },
     "I1": {
       "name": "Italy Serie A",
-      "rows": 9674,
-      "cornersRows": 8059,
-      "cardsRows": 8068,
+      "rows": 9682,
+      "cornersRows": 8067,
+      "cardsRows": 8076,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 8059,
-      "cardsEligibleRows": 8068,
-      "cornersCoveragePct": 83.31,
-      "cardsCoveragePct": 83.4,
-      "foulsCoveragePct": 83.31,
-      "shotsCoveragePct": 83.26,
-      "sotCoveragePct": 83.26,
+      "cornersEligibleRows": 8067,
+      "cardsEligibleRows": 8076,
+      "cornersCoveragePct": 83.32,
+      "cardsCoveragePct": 83.41,
+      "foulsCoveragePct": 83.32,
+      "shotsCoveragePct": 83.28,
+      "sotCoveragePct": 83.28,
       "from": "2000-09-30",
-      "through": "2026-10-29"
+      "through": "2026-11-01"
     },
     "I2": {
       "name": "Italy Serie B",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 10920,
+      "cornersRows": 3221,
+      "cardsRows": 3221,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 29.5,
+      "cardsCoveragePct": 29.5,
+      "foulsCoveragePct": 29.5,
+      "shotsCoveragePct": 29.5,
+      "sotCoveragePct": 29.5,
+      "from": "2000-09-01",
+      "through": "2026-11-01"
     },
     "SP1": {
       "name": "Spain La Liga",
-      "rows": 9979,
-      "cornersRows": 8079,
-      "cardsRows": 8079,
+      "rows": 9988,
+      "cornersRows": 8088,
+      "cardsRows": 8088,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 8079,
-      "cardsEligibleRows": 8079,
-      "cornersCoveragePct": 80.96,
-      "cardsCoveragePct": 80.96,
-      "foulsCoveragePct": 80.96,
-      "shotsCoveragePct": 80.96,
-      "sotCoveragePct": 80.96,
+      "cornersEligibleRows": 8088,
+      "cardsEligibleRows": 8088,
+      "cornersCoveragePct": 80.98,
+      "cardsCoveragePct": 80.98,
+      "foulsCoveragePct": 80.98,
+      "shotsCoveragePct": 80.98,
+      "sotCoveragePct": 80.98,
       "from": "2000-09-09",
-      "through": "2026-10-26"
+      "through": "2026-11-01"
     },
     "SP2": {
       "name": "Spain Segunda",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 12140,
+      "cornersRows": 4265,
+      "cardsRows": 4265,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 35.13,
+      "cardsCoveragePct": 35.13,
+      "foulsCoveragePct": 35.13,
+      "shotsCoveragePct": 35.13,
+      "sotCoveragePct": 35.13,
+      "from": "2000-09-02",
+      "through": "2026-11-01"
     },
     "F1": {
       "name": "France Ligue 1",
-      "rows": 9481,
-      "cornersRows": 7348,
-      "cardsRows": 7728,
+      "rows": 9489,
+      "cornersRows": 7356,
+      "cardsRows": 7736,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 7348,
-      "cardsEligibleRows": 7728,
-      "cornersCoveragePct": 77.5,
-      "cardsCoveragePct": 81.51,
-      "foulsCoveragePct": 73.47,
-      "shotsCoveragePct": 81.5,
-      "sotCoveragePct": 81.5,
+      "cornersEligibleRows": 7356,
+      "cardsEligibleRows": 7736,
+      "cornersCoveragePct": 77.52,
+      "cardsCoveragePct": 81.53,
+      "foulsCoveragePct": 73.5,
+      "shotsCoveragePct": 81.52,
+      "sotCoveragePct": 81.52,
       "from": "2000-07-28",
-      "through": "2026-10-26"
+      "through": "2026-11-01"
     },
     "F2": {
       "name": "France Ligue 2",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 9727,
+      "cornersRows": 3264,
+      "cardsRows": 3264,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 33.56,
+      "cardsCoveragePct": 33.56,
+      "foulsCoveragePct": 29.65,
+      "shotsCoveragePct": 33.56,
+      "sotCoveragePct": 33.56,
+      "from": "2000-07-28",
+      "through": "2026-10-31"
     },
     "N1": {
       "name": "Netherlands Eredivisie",
-      "rows": 7972,
-      "cornersRows": 2770,
-      "cardsRows": 2770,
+      "rows": 7981,
+      "cornersRows": 2779,
+      "cardsRows": 2779,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 2770,
-      "cardsEligibleRows": 2770,
-      "cornersCoveragePct": 34.75,
-      "cardsCoveragePct": 34.75,
-      "foulsCoveragePct": 34.75,
-      "shotsCoveragePct": 34.75,
-      "sotCoveragePct": 34.75,
+      "cornersEligibleRows": 2779,
+      "cardsEligibleRows": 2779,
+      "cornersCoveragePct": 34.82,
+      "cardsCoveragePct": 34.82,
+      "foulsCoveragePct": 34.82,
+      "shotsCoveragePct": 34.82,
+      "sotCoveragePct": 34.82,
       "from": "2000-08-18",
-      "through": "2026-10-25"
+      "through": "2026-11-01"
     },
     "B1": {
       "name": "Belgium First Division",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 7264,
+      "cornersRows": 2648,
+      "cardsRows": 2649,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 36.45,
+      "cardsCoveragePct": 36.47,
+      "foulsCoveragePct": 29.85,
+      "shotsCoveragePct": 36.45,
+      "sotCoveragePct": 36.45,
+      "from": "2000-08-12",
+      "through": "2026-11-01"
     },
     "P1": {
       "name": "Portugal Primeira Liga",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 7516,
+      "cornersRows": 2842,
+      "cardsRows": 2842,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 37.81,
+      "cardsCoveragePct": 37.81,
+      "foulsCoveragePct": 37.81,
+      "shotsCoveragePct": 37.81,
+      "sotCoveragePct": 37.81,
+      "from": "2000-08-18",
+      "through": "2026-11-01"
     },
     "T1": {
       "name": "Turkey Super Lig",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 8345,
+      "cornersRows": 3146,
+      "cardsRows": 3146,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 37.7,
+      "cardsCoveragePct": 37.7,
+      "foulsCoveragePct": 37.7,
+      "shotsCoveragePct": 37.7,
+      "sotCoveragePct": 37.7,
+      "from": "2000-08-11",
+      "through": "2026-11-01"
     },
     "G1": {
       "name": "Greece Super League",
-      "rows": 0,
-      "cornersRows": 0,
-      "cardsRows": 0,
+      "rows": 5219,
+      "cornersRows": 2205,
+      "cardsRows": 2205,
       "cornersEligible": false,
       "cardsEligible": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
-      "cornersCoveragePct": 0,
-      "cardsCoveragePct": 0,
-      "foulsCoveragePct": 0,
-      "shotsCoveragePct": 0,
-      "sotCoveragePct": 0,
-      "from": null,
-      "through": null
+      "cornersCoveragePct": 42.25,
+      "cardsCoveragePct": 42.25,
+      "foulsCoveragePct": 33.11,
+      "shotsCoveragePct": 42.25,
+      "sotCoveragePct": 42.25,
+      "from": "2005-08-27",
+      "through": "2026-11-01"
     }
   },
   "files": [
+    {
+      "file": "B1_0001.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0102.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0203.csv",
+      "rows": 274,
+      "accepted": 272,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0304.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0405.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0506.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0607.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0708.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0809.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_0910.csv",
+      "rows": 210,
+      "accepted": 210,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1011.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1112.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1213.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1314.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1415.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1516.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1617.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1718.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1819.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_1920.csv",
+      "rows": 232,
+      "accepted": 232,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_2021.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_2122.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_2223.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_2324.csv",
+      "rows": 312,
+      "accepted": 312,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_2425.csv",
+      "rows": 312,
+      "accepted": 312,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_2526.csv",
+      "rows": 311,
+      "accepted": 311,
+      "duplicates": 0
+    },
+    {
+      "file": "B1_2627.csv",
+      "rows": 89,
+      "accepted": 89,
+      "duplicates": 0
+    },
     {
       "file": "D1_0203.csv",
       "rows": 307,
@@ -510,8 +672,158 @@
     },
     {
       "file": "D1_2627.csv",
-      "rows": 63,
-      "accepted": 63,
+      "rows": 72,
+      "accepted": 72,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0203.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0304.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0405.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0506.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0607.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0708.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0809.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0910.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1011.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1112.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1213.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1314.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1415.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1516.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1617.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1718.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1819.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_1920.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_2021.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_2122.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_2223.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_2324.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_2425.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_2526.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_2627.csv",
+      "rows": 90,
+      "accepted": 90,
       "duplicates": 0
     },
     {
@@ -666,8 +978,8 @@
     },
     {
       "file": "E0_2627.csv",
-      "rows": 80,
-      "accepted": 80,
+      "rows": 89,
+      "accepted": 89,
       "duplicates": 0
     },
     {
@@ -822,8 +1134,8 @@
     },
     {
       "file": "E1_2627.csv",
-      "rows": 144,
-      "accepted": 144,
+      "rows": 156,
+      "accepted": 156,
       "duplicates": 0
     },
     {
@@ -978,8 +1290,8 @@
     },
     {
       "file": "E2_2627.csv",
-      "rows": 143,
-      "accepted": 143,
+      "rows": 155,
+      "accepted": 155,
       "duplicates": 0
     },
     {
@@ -1134,8 +1446,8 @@
     },
     {
       "file": "E3_2627.csv",
-      "rows": 151,
-      "accepted": 151,
+      "rows": 163,
+      "accepted": 163,
       "duplicates": 0
     },
     {
@@ -1296,8 +1608,302 @@
     },
     {
       "file": "F1_2627.csv",
-      "rows": 72,
-      "accepted": 72,
+      "rows": 80,
+      "accepted": 80,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0001.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0102.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0203.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0304.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0405.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0506.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0607.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0708.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0809.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_0910.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1011.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1112.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1213.csv",
+      "rows": 381,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1314.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1415.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1516.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1617.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1718.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1819.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_1920.csv",
+      "rows": 280,
+      "accepted": 280,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_2021.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_2122.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_2223.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_2324.csv",
+      "rows": 379,
+      "accepted": 379,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_2425.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_2526.csv",
+      "rows": 306,
+      "accepted": 305,
+      "duplicates": 0
+    },
+    {
+      "file": "F2_2627.csv",
+      "rows": 97,
+      "accepted": 97,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_0506.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_0607.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_0708.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_0809.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_0910.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1011.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1112.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1213.csv",
+      "rows": 241,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1314.csv",
+      "rows": 314,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1415.csv",
+      "rows": 352,
+      "accepted": 305,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1516.csv",
+      "rows": 252,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1617.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1718.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1819.csv",
+      "rows": 240,
+      "accepted": 239,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_1920.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_2021.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_2122.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_2223.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_2324.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_2425.csv",
+      "rows": 233,
+      "accepted": 233,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_2526.csv",
+      "rows": 236,
+      "accepted": 236,
+      "duplicates": 0
+    },
+    {
+      "file": "G1_2627.csv",
+      "rows": 60,
+      "accepted": 60,
       "duplicates": 0
     },
     {
@@ -1458,8 +2064,164 @@
     },
     {
       "file": "I1_2627.csv",
-      "rows": 90,
-      "accepted": 90,
+      "rows": 98,
+      "accepted": 98,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0001.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0102.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0203.csv",
+      "rows": 381,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0304.csv",
+      "rows": 552,
+      "accepted": 552,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0405.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0506.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0607.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0708.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0809.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_0910.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1011.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1112.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1213.csv",
+      "rows": 467,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1314.csv",
+      "rows": 463,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1415.csv",
+      "rows": 464,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1516.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1617.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1718.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_1920.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_2021.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_2122.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_2223.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_2324.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_2425.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_2526.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "I2_2627.csv",
+      "rows": 100,
+      "accepted": 100,
       "duplicates": 0
     },
     {
@@ -1620,8 +2382,170 @@
     },
     {
       "file": "N1_2627.csv",
-      "rows": 90,
-      "accepted": 90,
+      "rows": 99,
+      "accepted": 99,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0001.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0102.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0203.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0304.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0405.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0506.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0607.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0708.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0809.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_0910.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1011.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1112.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1213.csv",
+      "rows": 241,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1314.csv",
+      "rows": 240,
+      "accepted": 240,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1415.csv",
+      "rows": 307,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1516.csv",
+      "rows": 307,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1617.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1718.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1819.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_1920.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_2021.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_2122.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_2223.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_2324.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_2425.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_2526.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "P1_2627.csv",
+      "rows": 88,
+      "accepted": 88,
       "duplicates": 0
     },
     {
@@ -1770,8 +2694,170 @@
     },
     {
       "file": "SC0_2627.csv",
-      "rows": 66,
-      "accepted": 66,
+      "rows": 69,
+      "accepted": 69,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0001.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0102.csv",
+      "rows": 181,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0203.csv",
+      "rows": 181,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0304.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0405.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0506.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0607.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0708.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0809.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_0910.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1011.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1112.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1213.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1314.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1415.csv",
+      "rows": 182,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1516.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1617.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1718.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1819.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_1920.csv",
+      "rows": 137,
+      "accepted": 137,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_2021.csv",
+      "rows": 135,
+      "accepted": 135,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_2122.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_2223.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_2324.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_2425.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_2526.csv",
+      "rows": 180,
+      "accepted": 180,
+      "duplicates": 0
+    },
+    {
+      "file": "SC1_2627.csv",
+      "rows": 64,
+      "accepted": 64,
       "duplicates": 0
     },
     {
@@ -1932,15 +3018,339 @@
     },
     {
       "file": "SP1_2627.csv",
-      "rows": 99,
-      "accepted": 99,
+      "rows": 108,
+      "accepted": 108,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0001.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0102.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0203.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0304.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0405.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0506.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0607.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0708.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0809.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_0910.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1011.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1112.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1213.csv",
+      "rows": 464,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1314.csv",
+      "rows": 463,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1415.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1516.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1617.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1718.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1819.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_1920.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_2021.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_2122.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_2223.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_2324.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_2425.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_2526.csv",
+      "rows": 462,
+      "accepted": 462,
+      "duplicates": 0
+    },
+    {
+      "file": "SP2_2627.csv",
+      "rows": 128,
+      "accepted": 128,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0001.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0102.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0203.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0304.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0405.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0506.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0607.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0708.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0809.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_0910.csv",
+      "rows": 272,
+      "accepted": 272,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1011.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1112.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1213.csv",
+      "rows": 307,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1314.csv",
+      "rows": 308,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1415.csv",
+      "rows": 307,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1516.csv",
+      "rows": 311,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1617.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1718.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1819.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_1920.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_2021.csv",
+      "rows": 420,
+      "accepted": 420,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_2122.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_2223.csv",
+      "rows": 342,
+      "accepted": 342,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_2324.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_2425.csv",
+      "rows": 342,
+      "accepted": 342,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_2526.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "T1_2627.csv",
+      "rows": 89,
+      "accepted": 89,
       "duplicates": 0
     }
   ],
   "output": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
-  "cornersAvailableRows": 89993,
-  "cardsAvailableRows": 90386,
-  "cornersEligibleRows": 89993,
-  "cardsEligibleRows": 90386,
+  "cornersAvailableRows": 116771,
+  "cardsAvailableRows": 117172,
+  "cornersEligibleRows": 90084,
+  "cardsEligibleRows": 90477,
   "note": "Features use strictly prior match dates; all matches on a given date are added to histories only after that date is processed."
 }
