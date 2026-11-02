@@ -20,7 +20,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_INPUT = ROOT / "data/corners_cards_training.csv"
 DEFAULT_REPORT = ROOT / "data/stats_markets_model_validation.json"
-LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "D1", "I1", "SP1", "F1"]
+LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2", "SP1", "SP2", "F1", "F2", "B1", "P1", "T1", "G1"]
 SPLITS = {"train_end": "2022-06-30", "validation_start": "2022-07-01",
           "validation_end": "2024-06-30", "test_start": "2024-07-01"}
 # Market -> (target column, availability flag, team-history prefix, league average column, lines)
