@@ -230,6 +230,10 @@ def build_runtime_state(df, template):
                             col = f"{side}_{prefix}_{kind}_avg{window}"
                             if col in row.index:
                                 stats[f"{prefix}_{kind}_avg{window}"] = clean_number(row[col])
+                for extra in ("elo", "att_decay", "def_decay"):
+                    col = f"{side}_{extra}"
+                    if col in row.index:
+                        stats[extra] = clean_number(row[col])
                 count_col = f"{side}_matches_before"
                 matches_before = int(clean_number(row.get(count_col)) or 0) + 1
                 league_teams[normalize_name(team_name)] = {
