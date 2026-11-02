@@ -1,44 +1,11 @@
 {
-  "generatedAt": "2026-11-02T03:51:45.779165Z",
-  "source": "football-data.co.uk historical CSVs",
-  "sourceFiles": 262,
+  "status": "paused",
+  "generatedAt": "2026-11-02T03:56:12.664Z",
   "ledgerFiles": 2,
   "ledgerRecords": 5,
   "matchedFixtures": 0,
-  "unmatchedFixtures": [
-    {
-      "model": "corners-cards",
-      "date": "2026-11-01",
-      "home": "Juventus",
-      "away": "Napoli"
-    },
-    {
-      "model": "corners-cards",
-      "date": "2026-11-02",
-      "home": "Sassuolo",
-      "away": "Fiorentina"
-    },
-    {
-      "model": "corners-cards",
-      "date": "2026-11-02",
-      "home": "Atalanta",
-      "away": "Parma"
-    },
-    {
-      "model": "corners-cards",
-      "date": "2026-11-02",
-      "home": "Sassuolo",
-      "away": "Fiorentina"
-    },
-    {
-      "model": "corners-cards",
-      "date": "2026-11-02",
-      "home": "Atalanta",
-      "away": "Parma"
-    }
-  ],
   "metrics": {},
   "byLeague": {},
   "evaluated": [],
-  "limitations": "Evaluation is available only where a completed fixture matches the archived prediction and the historical CSV includes the relevant market statistics. It is an offline monitoring sample, not evidence of profitability."
+  "limitations": "Outcome evaluation is paused because the previous evaluator depended on football-data.co.uk CSV data, whose current fair-use policy does not permit this automated training/evaluation pipeline. Forward prediction snapshots continue to be collected; no performance or profitability claim is made."
 }
