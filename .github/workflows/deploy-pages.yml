@@ -8,6 +8,7 @@ on:
       - "index.html"
       - "goals-model.html"
       - "model-v1.html"
+      - "stats-model.html"
       - "markets.html"
       - "*.js"
       - "styles.css"
