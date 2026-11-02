@@ -141,3 +141,65 @@ test('extended league set: sponsored names resolve, lookalike divisions stay nul
   assert.equal(resolveTeam(extended, 'T1', 'İstanbul Başakşehir').key, 'buyuksehyr');
   assert.equal(resolveTeam(extended, 'SC1', 'Raith Rovers').key, 'raith rvs');
 });
+
+// --- NB2 distribution and line calibration (stage 2, 2026-11) ---
+const { nbOver, overProbability, calibrate } = require('../stats-internal-model.js');
+
+test('nbOver matches scipy nbinom reference values', () => {
+  // References: 1 - scipy.stats.nbinom.cdf(floor(line), 1/alpha, (1/alpha)/(1/alpha+lambda))
+  const cases = [
+    [10.0, 9.5, 0.015326579065490254, 0.533229],
+    [25.0, 24.5, 0.00979110038167496, 0.518026],
+    [3.0, 2.5, 0.05, 0.561210],
+    [1.2, 0.5, 0.2, 0.658892],
+  ];
+  for (const [lambda, line, alpha, expected] of cases) {
+    assert.ok(Math.abs(nbOver(lambda, line, alpha) - expected) < 1e-5,
+      `nbOver(${lambda}, ${line}, ${alpha}) should be ${expected}, got ${nbOver(lambda, line, alpha)}`);
+  }
+});
+
+test('overProbability picks NB2 only for nb2 specs', () => {
+  const nbSpec = { type: 'nb2', nbAlpha: 0.05 };
+  const poissonSpec = { type: 'poisson' };
+  assert.equal(overProbability(nbSpec, 3.0, 2.5), nbOver(3.0, 2.5, 0.05));
+  assert.equal(overProbability(poissonSpec, 3.0, 2.5), poissonOver(3.0, 2.5));
+  assert.ok(nbOver(3.0, 4.5, 0.2) > poissonOver(3.0, 4.5));
+});
+
+test('calibrate interpolates linearly and clamps outside knots', () => {
+  const knots = { x: [0.2, 0.5, 0.8], y: [0.15, 0.5, 0.9] };
+  assert.equal(calibrate(0.1, knots), 0.15);
+  assert.equal(calibrate(0.9, knots), 0.9);
+  assert.ok(Math.abs(calibrate(0.65, knots) - 0.7) < 1e-12);
+  assert.equal(calibrate(0.5, null), 0.5);
+  assert.equal(calibrate(0.5, { x: [], y: [] }), 0.5);
+});
+
+test('predict uses NB2 tail and applies embedded line calibrators', () => {
+  const model = JSON.parse(JSON.stringify(sampleModel));
+  model.models.fouls.type = 'nb2';
+  model.models.fouls.nbAlpha = 0.02;
+  model.models.fouls.calibration = { '24.5': { x: [0, 1], y: [0.1, 0.9] } };
+  const prediction = predict(model, 'Premier League', 'Newcastle United', 'Everton FC');
+  assert.equal(prediction.fouls.distribution, 'nb2');
+  const lambda = prediction.fouls.lambda;
+  for (const entry of prediction.fouls.lines) {
+    const raw = nbOver(lambda, entry.line, 0.02);
+    const knots = model.models.fouls.calibration[String(entry.line)];
+    const expected = knots ? calibrate(raw, knots) : raw;
+    assert.ok(Math.abs(entry.over - expected) < 1e-9, `line ${entry.line}: ${entry.over} != ${expected}`);
+    assert.ok(Math.abs(entry.under - (1 - entry.over)) < 1e-12);
+  }
+  const poissonLine = prediction.fouls.lines.find(x => x.line === 24.5);
+  assert.ok(Math.abs(poissonLine.over - poissonOver(lambda, 24.5)) > 1e-6);
+});
+
+test('predict stays Poisson and uncalibrated without nb2/calibration fields', () => {
+  const prediction = predict(sampleModel, 'Premier League', 'Newcastle United', 'Everton FC');
+  assert.equal(prediction.fouls.distribution, 'poisson');
+  const lambda = prediction.fouls.lambda;
+  for (const entry of prediction.fouls.lines) {
+    assert.ok(Math.abs(entry.over - poissonOver(lambda, entry.line)) < 1e-9);
+  }
+});
