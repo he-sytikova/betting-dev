@@ -1,4 +1,4 @@
-name: Validate dev model code and tests
+name: Validate non-CSV dev pipeline
 
 on:
   workflow_dispatch:
@@ -13,38 +13,25 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: dev-model-code-validation
-  cancel-in-progress: true
-
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
-          cache: pip
-          cache-dependency-path: requirements-models.txt
-      - name: Install model dependencies
-        run: python -m pip install -r requirements-models.txt
-      - name: Validate Python and browser syntax
+          node-version: "22"
+      - name: Validate active JavaScript
         run: |
-          python -m py_compile scripts/models/build-historical-dataset.py
-          python -m py_compile scripts/models/train-corners-cards.py
-          python -m py_compile scripts/models/export-corners-cards-runtime.py
           node --check model-v1.js
           node --check goals-model.js
           node --check scripts/models/archive-provider-results.mjs
-      - name: Run dataset builder tests (code only; no source data ingestion)
-        run: python -m unittest discover -s tests -p "test_historical_dataset_builder.py" -v
-      - name: Run model validation tests
-        run: python -m unittest discover -s tests -p "test_corners_cards_model_validation.py" -v
-      - name: Run runtime export tests
-        run: python -m unittest discover -s tests -p "test_runtime_model_export.py" -v
-      - name: Confirm historical training is intentionally paused
-        run: echo "Training/export/deployment is paused pending a source that expressly permits historical retention and model training."
+      - name: Confirm CSV pipelines are not used
+        run: |
+          test ! -d data/raw/football-data
+          if find data -type f -name '*.csv' | grep -q .; then
+            echo "CSV files are not allowed in the active dev dataset."
+            exit 1
+          fi
+          echo "No CSV dataset files are present.";
