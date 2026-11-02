@@ -59,7 +59,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data.json data/results-ledger/*.jsonl
+          git add data.json
+          if [ -d data/results-ledger ]; then git add -A data/results-ledger; fi
           if git diff --cached --quiet; then
             echo "Fixture snapshot and completed-results archive are already current"
           else
