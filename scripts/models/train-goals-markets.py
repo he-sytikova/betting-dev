@@ -28,43 +28,126 @@ SPLITS = {"train_end": "2022-06-30", "validation_start": "2022-07-01",
 TOTAL_LINES = [1.5, 2.5, 3.5, 4.5]
 TEAM_LINES = [0.5, 1.5, 2.5]
 MAX_GOALS = 10
+ALPHAS = (0.03, 0.15, 0.5, 1.5)
+DEADBAND = 0.0005
+BASE_FEATURES = [
+    "home_matches_before", "away_matches_before", "league_matches_before", "home_advantage",
+    "home_goal_team_for_avg5", "home_goal_team_against_avg5",
+    "away_goal_team_for_avg5", "away_goal_team_against_avg5",
+    "home_goal_team_for_avg10", "home_goal_team_against_avg10",
+    "away_goal_team_for_avg10", "away_goal_team_against_avg10",
+    "home_shots_team_for_avg5", "home_shots_team_against_avg5",
+    "away_shots_team_for_avg5", "away_shots_team_against_avg5",
+    "home_shots_on_target_team_for_avg5", "away_shots_on_target_team_for_avg5",
+    "home_team_for_avg5", "home_team_against_avg5",
+    "away_team_for_avg5", "away_team_against_avg5",
+    "league_goals_avg", "league_corners_avg",
+]
+ELO_FEATURES = ["home_elo", "away_elo"]
+DECAY_FEATURES = ["home_att_decay", "home_def_decay", "away_att_decay", "away_def_decay"]
+FEATURE_CANDIDATES = [
+    ("base", []),
+    ("base+elo", ELO_FEATURES),
+    ("base+decay", DECAY_FEATURES),
+    ("base+elo+decay", ELO_FEATURES + DECAY_FEATURES),
+]
+DC_RHO_GRID = (-0.30, 0.10, 0.005)
 
 
-def feature_columns(columns):
-    wanted = [
-        "home_matches_before", "away_matches_before", "league_matches_before", "home_advantage",
-        "home_goal_team_for_avg5", "home_goal_team_against_avg5",
-        "away_goal_team_for_avg5", "away_goal_team_against_avg5",
-        "home_goal_team_for_avg10", "home_goal_team_against_avg10",
-        "away_goal_team_for_avg10", "away_goal_team_against_avg10",
-        "home_shots_team_for_avg5", "home_shots_team_against_avg5",
-        "away_shots_team_for_avg5", "away_shots_team_against_avg5",
-        "home_shots_on_target_team_for_avg5", "away_shots_on_target_team_for_avg5",
-        "home_team_for_avg5", "home_team_against_avg5",
-        "away_team_for_avg5", "away_team_against_avg5",
-        "league_goals_avg", "league_corners_avg",
-    ]
+def feature_columns(columns, extra=()):
+    wanted = BASE_FEATURES + list(extra)
     return [c for c in wanted if c in columns]
 
 
-def make_pipeline(numeric, alpha):
-    prep = ColumnTransformer([
+def make_prep(numeric):
+    return ColumnTransformer([
         ("num", Pipeline([("impute", SimpleImputer(strategy="median", add_indicator=True)),
                           ("scale", StandardScaler())]), numeric),
         ("league", OneHotEncoder(handle_unknown="ignore"), ["league"]),
     ])
-    return Pipeline([("prep", prep), ("model", PoissonRegressor(alpha=alpha, max_iter=500, tol=1e-7))])
 
 
-def scoreline_matrix(home_mu, away_mu, max_goals=MAX_GOALS):
+def make_pipeline(numeric, alpha):
+    return Pipeline([("prep", make_prep(numeric)),
+                     ("model", PoissonRegressor(alpha=alpha, max_iter=500, tol=1e-7))])
+
+
+def dc_tau_factor(x, y, lam, mu, rho):
+    """Dixon-Coles low-score adjustment factor for a single scoreline cell."""
+    if x == 0 and y == 0:
+        return 1 - lam * mu * rho
+    if x == 0 and y == 1:
+        return 1 + lam * rho
+    if x == 1 and y == 0:
+        return 1 + mu * rho
+    if x == 1 and y == 1:
+        return 1 - rho
+    return 1.0
+
+
+def fit_dc_rho(y_h, y_a, lam, mu, grid=DC_RHO_GRID):
+    """Grid-search the Dixon-Coles rho that maximizes the adjusted likelihood.
+
+    Only the tau factors depend on rho (the independent-Poisson part is
+    constant), so the objective reduces to the sum of log tau over the four
+    low-score cells. Cells whose tau would go non-positive reject the rho.
+    """
+    y_h = np.asarray(y_h, dtype=float)
+    y_a = np.asarray(y_a, dtype=float)
+    lam = np.asarray(lam, dtype=float)
+    mu = np.asarray(mu, dtype=float)
+    masks = {(x, y): (y_h == x) & (y_a == y) for x in (0, 1) for y in (0, 1)}
+    lo, hi, step = grid
+    best_rho, best_ll = 0.0, -np.inf
+    rho = lo
+    while rho <= hi + 1e-12:
+        t00 = 1 - lam * mu * rho
+        t01 = 1 + lam * rho
+        t10 = 1 + mu * rho
+        t11 = 1 - rho
+        ok = (t11 > 0 and t00[masks[(0, 0)]].min(initial=1.0) > 0
+              and t01[masks[(0, 1)]].min(initial=1.0) > 0
+              and t10[masks[(1, 0)]].min(initial=1.0) > 0)
+        if ok:
+            ll = (float(np.log(t00[masks[(0, 0)]]).sum())
+                  + float(np.log(t01[masks[(0, 1)]]).sum())
+                  + float(np.log(t10[masks[(1, 0)]]).sum())
+                  + float(masks[(1, 1)].sum()) * math.log(t11))
+            if ll > best_ll:
+                best_rho, best_ll = round(float(rho), 6), ll
+        rho += step
+    return best_rho, best_ll
+
+
+def logloss_1x2(frame, home_pred, away_pred, rho=0.0):
+    y_h = frame["target_home_goals"].to_numpy(float)
+    y_a = frame["target_away_goals"].to_numpy(float)
+    total = 0.0
+    for k in range(len(frame)):
+        mk = derive_markets(home_pred[k], away_pred[k], rho=rho)
+        probs = np.clip([mk["p1"], mk["x"], mk["p2"]], 1e-9, 1.0)
+        probs = probs / probs.sum()
+        if y_h[k] > y_a[k]:
+            total += -math.log(probs[0])
+        elif y_h[k] == y_a[k]:
+            total += -math.log(probs[1])
+        else:
+            total += -math.log(probs[2])
+    return total / len(frame)
+
+
+def scoreline_matrix(home_mu, away_mu, max_goals=MAX_GOALS, rho=0.0):
     hg = poisson.pmf(np.arange(max_goals + 1), home_mu)
     ag = poisson.pmf(np.arange(max_goals + 1), away_mu)
     m = np.outer(hg, ag)
+    if rho:
+        for x, y in ((0, 0), (0, 1), (1, 0), (1, 1)):
+            m[x, y] *= max(dc_tau_factor(x, y, home_mu, away_mu, rho), 1e-12)
     return m / m.sum()
 
 
-def derive_markets(home_mu, away_mu):
-    m = scoreline_matrix(home_mu, away_mu)
+def derive_markets(home_mu, away_mu, rho=0.0):
+    m = scoreline_matrix(home_mu, away_mu, rho=rho)
     idx = np.arange(m.shape[0])
     p_home = float(np.tril(m, -1).sum())
     p_draw = float(np.trace(m))
@@ -83,18 +166,19 @@ def derive_markets(home_mu, away_mu):
             "totals": totals, "team": team}
 
 
-def evaluate(frame, home_pred, away_pred, base_home, base_away):
+def evaluate(frame, home_pred, away_pred, base_home, base_away, rho=0.0):
     y_h = frame["target_home_goals"].to_numpy(float)
     y_a = frame["target_away_goals"].to_numpy(float)
     out = {"n": int(len(frame)), "homeMae": float(np.mean(np.abs(y_h - home_pred))),
            "awayMae": float(np.mean(np.abs(y_a - away_pred)))}
-    for label, (hm, am) in {"model": (home_pred, away_pred), "baseline": (base_home, base_away)}.items():
+    for label, (hm, am, r) in {"model": (home_pred, away_pred, rho),
+                               "baseline": (base_home, base_away, 0.0)}.items():
         logloss = brier = 0.0
         line_metrics = {f"total_{l}": {"logLoss": 0.0, "brier": 0.0} for l in TOTAL_LINES}
         team_metrics = {f"{side}_{l}": {"logLoss": 0.0, "brier": 0.0}
                         for side in ("home", "away") for l in TEAM_LINES}
         for k in range(len(frame)):
-            mk = derive_markets(hm[k], am[k])
+            mk = derive_markets(hm[k], am[k], rho=r)
             actual = np.array([1.0 if y_h[k] > y_a[k] else 0.0,
                                1.0 if y_h[k] == y_a[k] else 0.0,
                                1.0 if y_h[k] < y_a[k] else 0.0])
@@ -163,67 +247,139 @@ def main():
     test = df[df.date >= t0]
     if min(len(train), len(valid), len(test)) < 500:
         raise SystemExit(f"Insufficient split rows: {len(train)}/{len(valid)}/{len(test)}")
-    numeric = feature_columns(df.columns)
     report = {"generatedAt": datetime.now(timezone.utc).isoformat(), "dataset": str(args.input),
               "splitPolicy": SPLITS, "leagues": sorted(df.league.unique().tolist()),
-              "features": numeric, "maxGoals": MAX_GOALS,
+              "maxGoals": MAX_GOALS,
               "rows": {"train": int(len(train)), "validation": int(len(valid)), "test": int(len(test))},
               "targets": {}, "notes": [
                   "Chronological split; no random shuffling.",
                   "Predictors are pre-match rolling/history features only.",
-                  "Home and away goals are modelled as independent Poisson counts; the independence assumption is a documented simplification (no Dixon-Coles adjustment yet).",
+                  "Feature set is selected on combined validation Poisson deviance (home + away): a candidate with extra features must beat the current best by more than the 0.0005 deadband.",
+                  "Home and away goals are modelled as independent Poisson counts; an optional Dixon-Coles low-score adjustment (rho) is fitted on train predictions and deployed only if it improves validation 1X2 logLoss beyond the deadband.",
                   "All markets (1X2, double chance, totals, team totals) derive from the same scoreline matrix, so probabilities are mutually consistent.",
                   "Baseline: independent Poisson with league rolling means for home and away goals.",
               ]}
-    selection = {}
-    for target, key in (("target_home_goals", "homeGoals"), ("target_away_goals", "awayGoals")):
-        y_train = train[target].to_numpy(float)
-        y_valid = valid[target].to_numpy(float)
-        best = None
-        tuning = []
-        for alpha in (0.03, 0.15, 0.5, 1.5):
-            candidate = make_pipeline(numeric, alpha)
-            candidate.fit(train[numeric + ["league"]], y_train)
-            pred = np.clip(candidate.predict(valid[numeric + ["league"]]), 0.01, None)
-            dev = float(2 * np.mean(np.where(y_valid > 0,
-                y_valid * np.log(np.maximum(y_valid, 1e-12) / pred) - (y_valid - pred), pred)))
-            tuning.append({"alpha": alpha, "validationPoissonDeviance": dev})
-            if best is None or dev < best["validationPoissonDeviance"]:
-                best = {"alpha": alpha, "validationPoissonDeviance": dev, "model": candidate}
-        model = best["model"]
-        p_valid = np.clip(model.predict(valid[numeric + ["league"]]), 0.01, None)
-        p_test = np.clip(model.predict(test[numeric + ["league"]]), 0.01, None)
-        report["targets"][key] = {
-            "target": target, "regularizationAlpha": best["alpha"],
-            "tuning": tuning,
-            "validationMae": float(np.mean(np.abs(y_valid - p_valid))),
-            "testMae": float(np.mean(np.abs(test[target].to_numpy(float) - p_test))),
+    # --- Feature-set selection: {base, +elo, +decay, +both} x alpha tuning ---
+    candidate_scores, candidate_selection, candidate_details = {}, {}, {}
+    for cand_name, extra in FEATURE_CANDIDATES:
+        numeric = feature_columns(df.columns, extra)
+        missing_cols = [c for c in extra if c not in df.columns]
+        if missing_cols:
+            candidate_details[cand_name] = {"skipped": f"missing columns: {missing_cols}"}
+            candidate_scores[cand_name] = np.inf
+            continue
+        prep = make_prep(numeric)
+        z_train = prep.fit_transform(train[numeric + ["league"]])
+        z_valid = prep.transform(valid[numeric + ["league"]])
+        per_target, combined = {}, 0.0
+        for target, key in (("target_home_goals", "homeGoals"), ("target_away_goals", "awayGoals")):
+            y_train = train[target].to_numpy(float)
+            y_valid = valid[target].to_numpy(float)
+            best, tuning = None, []
+            for alpha in ALPHAS:
+                reg = PoissonRegressor(alpha=alpha, max_iter=500, tol=1e-7).fit(z_train, y_train)
+                pred = np.clip(reg.predict(z_valid), 0.01, None)
+                dev = float(2 * np.mean(np.where(y_valid > 0,
+                    y_valid * np.log(np.maximum(y_valid, 1e-12) / pred) - (y_valid - pred), pred)))
+                tuning.append({"alpha": alpha, "validationPoissonDeviance": dev})
+                if best is None or dev < best["validationPoissonDeviance"]:
+                    best = {"alpha": alpha, "validationPoissonDeviance": dev, "reg": reg}
+            per_target[key] = {"target": target, "regularizationAlpha": best["alpha"],
+                               "tuning": tuning, "validationPoissonDeviance": best["validationPoissonDeviance"],
+                               "reg": best["reg"]}
+            combined += best["validationPoissonDeviance"]
+        candidate_scores[cand_name] = combined
+        candidate_selection[cand_name] = {"numeric": numeric, "prep": prep, "targets": per_target}
+        candidate_details[cand_name] = {
+            "addedFeatures": list(extra),
+            "combinedValidationPoissonDeviance": combined,
+            "targets": {key: {"regularizationAlpha": t["regularizationAlpha"],
+                              "validationPoissonDeviance": t["validationPoissonDeviance"],
+                              "tuning": t["tuning"]} for key, t in per_target.items()},
         }
-        selection[key] = {"alpha": best["alpha"], "model": model}
+    selected_candidate = "base"
+    for cand_name, _ in FEATURE_CANDIDATES[1:]:
+        if candidate_scores[cand_name] < candidate_scores[selected_candidate] - DEADBAND:
+            selected_candidate = cand_name
+    chosen = candidate_selection[selected_candidate]
+    numeric = chosen["numeric"]
+    prep = chosen["prep"]
+    report["features"] = numeric
+    report["featureSelection"] = {
+        "rule": "candidate must beat the current best combined validation Poisson deviance (home + away) by more than 0.0005",
+        "deadband": DEADBAND,
+        "selected": selected_candidate,
+        "candidates": candidate_details,
+    }
+    selection = {}
+    for key, info in chosen["targets"].items():
+        z_valid = prep.transform(valid[numeric + ["league"]])
+        z_test = prep.transform(test[numeric + ["league"]])
+        y_valid = valid[info["target"]].to_numpy(float)
+        p_valid = np.clip(info["reg"].predict(z_valid), 0.01, None)
+        p_test = np.clip(info["reg"].predict(z_test), 0.01, None)
+        report["targets"][key] = {
+            "target": info["target"], "regularizationAlpha": info["regularizationAlpha"],
+            "tuning": info["tuning"],
+            "validationMae": float(np.mean(np.abs(y_valid - p_valid))),
+            "testMae": float(np.mean(np.abs(test[info["target"]].to_numpy(float) - p_test))),
+        }
+        selection[key] = {"alpha": info["regularizationAlpha"], "reg": info["reg"]}
+
+    def predict_part(part, key):
+        z = prep.transform(part[numeric + ["league"]])
+        return np.clip(selection[key]["reg"].predict(z), 0.01, None)
     league_home = pd.to_numeric(df.get("league_goals_avg"), errors="coerce")
     # Split the league rolling total into home/away using the train-period home share.
     train_home = train["target_home_goals"].to_numpy(float)
     train_away = train["target_away_goals"].to_numpy(float)
     home_share = float(train_home.sum() / max(train_home.sum() + train_away.sum(), 1e-9))
+
+    # --- Dixon-Coles rho: grid-search on train predictions, deploy by validation ---
+    p_home_train = predict_part(train, "homeGoals")
+    p_away_train = predict_part(train, "awayGoals")
+    dc_rho, dc_train_ll = fit_dc_rho(train_home, train_away, p_home_train, p_away_train)
+    p_home_valid = predict_part(valid, "homeGoals")
+    p_away_valid = predict_part(valid, "awayGoals")
+    valid_ll_raw = logloss_1x2(valid, p_home_valid, p_away_valid, rho=0.0)
+    valid_ll_dc = logloss_1x2(valid, p_home_valid, p_away_valid, rho=dc_rho)
+    deploy_dc = (valid_ll_raw - valid_ll_dc) > DEADBAND and dc_rho != 0.0
+    deployed_rho = dc_rho if deploy_dc else 0.0
+    p_home_test = predict_part(test, "homeGoals")
+    p_away_test = predict_part(test, "awayGoals")
+    report["dixonColes"] = {
+        "rhoGrid": {"min": DC_RHO_GRID[0], "max": DC_RHO_GRID[1], "step": DC_RHO_GRID[2]},
+        "selectedRho": dc_rho,
+        "trainAdjustedLogLikelihood": dc_train_ll,
+        "deploymentRule": "deploy only if validation 1X2 logLoss improves by more than 0.0005 over the independent-Poisson matrix",
+        "validation1x2LogLossRaw": valid_ll_raw,
+        "validation1x2LogLossDc": valid_ll_dc,
+        "deployed": bool(deploy_dc),
+        "deployedRho": deployed_rho,
+        "test1x2LogLossRaw": logloss_1x2(test, p_home_test, p_away_test, rho=0.0),
+        "test1x2LogLossDc": logloss_1x2(test, p_home_test, p_away_test, rho=deployed_rho),
+    }
+    report["notes"].append(
+        "Dixon-Coles rho is fitted by grid search on train predictions and deployed only when it clears the validation 1X2 logLoss deadband; test is reported either way.")
+
     for part, name in ((valid, "validation"), (test, "test")):
         lg = pd.to_numeric(part["league_goals_avg"], errors="coerce").fillna(
             float(np.mean(train_home + train_away))).clip(lower=0.02).to_numpy()
         base_home = lg * home_share
         base_away = lg * (1 - home_share)
-        p_home = np.clip(selection["homeGoals"]["model"].predict(part[numeric + ["league"]]), 0.01, None)
-        p_away = np.clip(selection["awayGoals"]["model"].predict(part[numeric + ["league"]]), 0.01, None)
-        report.setdefault("markets", {})[name] = evaluate(part, p_home, p_away, base_home, base_away)
+        p_home = p_home_valid if name == "validation" else p_home_test
+        p_away = p_away_valid if name == "validation" else p_away_test
+        report.setdefault("markets", {})[name] = evaluate(part, p_home, p_away, base_home, base_away,
+                                                          rho=deployed_rho)
     report["selected"] = {k: {"alpha": v["alpha"]} for k, v in selection.items()}
 
     # --- Match-totals line calibration (1X2 and team totals stay matrix-derived) ---
     # Raw over-probabilities use the Poisson-sum identity: home+away goals are
     # independent Poisson, so the total is Poisson(home_mu + away_mu); this equals
     # the truncated scoreline-matrix total to numerical precision.
-    deadband = 0.0005
-    p_home = {name: np.clip(selection["homeGoals"]["model"].predict(part[numeric + ["league"]]), 0.01, None)
-              for part, name in ((valid, "validation"), (test, "test"))}
-    p_away = {name: np.clip(selection["awayGoals"]["model"].predict(part[numeric + ["league"]]), 0.01, None)
-              for part, name in ((valid, "validation"), (test, "test"))}
+    deadband = DEADBAND
+    p_home = {"validation": p_home_valid, "test": p_home_test}
+    p_away = {"validation": p_away_valid, "test": p_away_test}
     totals_actual = {name: (part["target_home_goals"] + part["target_away_goals"]).to_numpy(float)
                      for part, name in ((valid, "validation"), (test, "test"))}
     total_mu = {name: p_home[name] + p_away[name] for name in ("validation", "test")}
