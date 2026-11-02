@@ -28,6 +28,30 @@ def match_row(div, date_str, home, away, hg, ag, ref=""):
             f"10,8,4,3,11,12,9,7,2,3,0,0,{ref}")
 
 
+RESULTS_ONLY_HEADER = "Country,League,Season,Date,Time,Home,Away,HG,AG,Res"
+
+
+def results_only_row(country, season, date_str, home, away, hg, ag):
+    return f"{country},Premier League,{season},{date_str},15:00,{home},{away},{hg},{ag},H"
+
+
+def run_builder_mixed(files):
+    """files: {name: (header, [rows])} — supports both CSV schemas."""
+    tmp = tempfile.TemporaryDirectory()
+    raw = Path(tmp.name) / "raw"
+    raw.mkdir()
+    for name, (header, rows) in files.items():
+        (raw / name).write_text(header + "\n" + "\n".join(rows) + "\n", encoding="utf-8")
+    out_csv = Path(tmp.name) / "out.csv"
+    report_json = Path(tmp.name) / "report.json"
+    module = load_builder(raw, out_csv, report_json)
+    module.main()
+    with out_csv.open(encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    report = json.loads(report_json.read_text(encoding="utf-8"))
+    return tmp, rows, report
+
+
 def load_builder(raw_dir: Path, out_csv: Path, report_json: Path):
     spec = importlib.util.spec_from_file_location("builder_under_test", BUILDER)
     module = importlib.util.module_from_spec(spec)
@@ -235,6 +259,59 @@ class DecayedRatingsTest(unittest.TestCase):
         # One 3-0 match 31 days ago: att = 3 regardless of decay (single observation).
         self.assertAlmostEqual(float(debut["home_att_decay"]), 3.0, places=4)
         self.assertAlmostEqual(float(debut["home_def_decay"]), 0.0, places=4)
+
+
+class ResultsOnlyLeaguesTest(unittest.TestCase):
+    def test_results_only_schema_parsed(self):
+        rows = [results_only_row("Russia", "2024/2025", "20/07/2024", "Zenit", "Spartak", 2, 1)]
+        tmp, out_rows, report = run_builder_mixed({"RUS_results.csv": (RESULTS_ONLY_HEADER, rows)})
+        self.addCleanup(tmp.cleanup)
+        self.assertEqual(len(out_rows), 1)
+        row = out_rows[0]
+        self.assertEqual(row["league"], "RUS")
+        self.assertEqual(row["season"], "2024/2025")  # from the Season column, not the file name
+        self.assertEqual(row["home_team"], "Zenit")
+        self.assertEqual(row["target_home_goals"], "2.0")
+        self.assertEqual(row["target_away_goals"], "1.0")
+        self.assertEqual(report["leagues"]["RUS"]["resultsOnly"], True)
+
+    def test_results_only_never_stats_eligible(self):
+        rows = [results_only_row("Brazil", "2024", "15/05/2024", "Flamengo", "Palmeiras", 1, 0)]
+        tmp, out_rows, _ = run_builder_mixed({"BRA_results.csv": (RESULTS_ONLY_HEADER, rows)})
+        self.addCleanup(tmp.cleanup)
+        row = out_rows[0]
+        for flag in ("corners_available", "cards_available", "fouls_available",
+                     "shots_available", "sot_available",
+                     "corners_model_eligible", "cards_model_eligible"):
+            self.assertEqual(row[flag], "0", flag)
+        self.assertEqual(row["corners_total"], "")
+
+    def test_results_only_elo_and_decay_tracked(self):
+        rows = [
+            results_only_row("Russia", "2024/2025", "20/07/2024", "Zenit", "Spartak", 2, 0),
+            results_only_row("Russia", "2024/2025", "27/07/2024", "Zenit", "CSKA", 1, 1),
+        ]
+        tmp, out_rows, _ = run_builder_mixed({"RUS_results.csv": (RESULTS_ONLY_HEADER, rows)})
+        self.addCleanup(tmp.cleanup)
+        second = out_rows[1]
+        # Zenit won 2-0 at home in round 1: elo above 1500, attack rating 2.0.
+        self.assertGreater(float(second["home_elo"]), 1500.0)
+        self.assertAlmostEqual(float(second["home_att_decay"]), 2.0, places=4)
+        self.assertAlmostEqual(float(second["home_def_decay"]), 0.0, places=4)
+
+    def test_results_only_mixed_with_standard_schema(self):
+        standard = [match_row("E0", "01/08/25", "Alpha", "Beta", 1, 0)]
+        results_only = [results_only_row("Sweden", "2025", "02/08/2025", "Malmo FF", "AIK", 3, 1)]
+        tmp, out_rows, _ = run_builder_mixed({
+            "E0_2526.csv": (HEADER, standard),
+            "SWE_results.csv": (RESULTS_ONLY_HEADER, results_only),
+        })
+        self.addCleanup(tmp.cleanup)
+        self.assertEqual(len(out_rows), 2)
+        swe = next(r for r in out_rows if r["league"] == "SWE")
+        self.assertEqual(swe["season"], "2025")
+        e0 = next(r for r in out_rows if r["league"] == "E0")
+        self.assertEqual(e0["season"], "2526")
 
 
 if __name__ == "__main__":
