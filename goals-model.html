@@ -1,66 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Экспериментальная модель голов и рынков</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .markets-title{margin:0 0 8px}
-    .markets-back{display:inline-block;margin:8px 14px 10px 0;color:var(--accent);text-decoration:none;font-weight:600}
-    .markets-controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-    .markets-controls input{padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font:inherit;min-width:260px}
-    .markets-note{color:var(--text-muted);font-size:.85rem;margin:8px 0 12px}
-    .table-wrapper{overflow-x:auto;overflow-y:visible;border-radius:8px}
-    .markets-table{min-width:1480px;table-layout:fixed;font-size:11.5px}
-    .markets-table th{color:#fff;white-space:normal;min-width:0;padding:7px 5px;font-size:11px;line-height:1.2;vertical-align:bottom}
-    .markets-table td{background:#fff;color:#000;vertical-align:middle;min-width:0;padding:5px 6px;line-height:1.35;font-size:11px;overflow-wrap:anywhere;white-space:pre-line}
-    .markets-table th:nth-child(1),.markets-table td:nth-child(1){width:7%;white-space:nowrap}
-    .markets-table th:nth-child(2),.markets-table td:nth-child(2){width:9%}
-    .markets-table th:nth-child(3),.markets-table td:nth-child(3){width:11%}
-    .markets-table th:nth-child(n+4),.markets-table td:nth-child(n+4){width:10.43%}
-    .markets-table tbody tr:nth-child(even) td{background:#f1f5f9}
-    .markets-table tbody tr:hover td{background:#e2e8f0}
-    .probability-cell{white-space:pre-line;line-height:1.35;font-variant-numeric:tabular-nums}
-    @media(max-width:700px){.markets-table{font-size:10.5px}.markets-table th,.markets-table td{padding:4px}.markets-table th{font-size:10px}}
-    #refresh-btn{margin-left:auto;padding:6px 14px;background:var(--accent);color:#0f172a;border:0;border-radius:8px;font-weight:600;cursor:pointer}
-    .model-warning{padding:10px 12px;border:1px solid var(--warning);border-radius:8px;color:var(--text);margin:10px 0}
-    @media(max-width:700px){.markets-controls input{max-width:100%;min-width:0}}
-  </style>
-</head>
-<body>
-<header class="app-header">
-  <h1 class="markets-title">⚽ Dev-модель голов и футбольных рынков</h1>
-  <p class="subtitle" id="markets-date">Загрузка расписания и модели…</p>
-  <div class="status-bar">
-    <span class="status-badge">Независимая модель Poisson</span>
-    <span class="status-badge" id="model-status">Статус: загрузка…</span>
-    <button id="refresh-btn" type="button">Обновить</button>
-  </div>
-  <a class="markets-back" href="./model-v1.html">Dev-модель угловых и жёлтых карточек →</a>
-  <a class="markets-back" href="./">← Dev-панель</a>
-</header>
-<main>
-  <div id="markets-error" class="error-container hidden"></div>
-  <div class="model-warning">Экспериментальная исследовательская версия. Вероятности рассчитываются самостоятельно по историческим данным. Красные карточки и рынок точного счёта исключены. Матрица счёта используется только внутри для суммирования вероятностей других рынков.</div>
-  <div class="markets-controls"><input id="market-search" type="search" placeholder="Поиск команды или лиги…" aria-label="Поиск команды или лиги" /></div>
-  <p class="markets-note" id="markets-count"></p>
-
-  <p class="markets-note" id="model-metrics"></p>
-  <div class="table-wrapper">
-    <table class="markets-table">
-      <thead><tr>
-        <th>Время (МСК)</th><th>Лига</th><th>Матч</th><th>П1 / X / П2</th>
-        <th>1X / X2 / 12</th><th>DNB: П1 / П2 / возврат X</th>
-        <th>Тотал матча: ТБ / ТМ</th><th>Тотал хозяев: ТБ</th><th>Тотал гостей: ТБ</th>
-        <th>Обе забьют: Да / Нет</th>
-      </tr></thead>
-      <tbody id="markets-body"></tbody>
-    </table>
-  </div>
-  <p id="markets-empty" class="empty-state hidden">Нет предстоящих матчей, для которых сопоставлены лига и обе команды с историческими данными.</p>
-</main>
-<footer><p>Модель не является рекомендацией для ставок. Метрики MAE/Poisson deviance оценивают прогноз числа голов и не заменяют проверку Brier Score, Log Loss и калибровки вероятностей рынков.</p></footer>
-<script src="goals-model.js"></script>
-</body>
-</html>
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Голы и основные рынки — API-консенсус</title><link rel="stylesheet" href="styles.css">
+<style>
+main{max-width:1500px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:1050px;border-collapse:collapse;font-size:12px;table-layout:fixed}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:7px;white-space:pre-line;overflow-wrap:anywhere;vertical-align:middle}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl th:nth-child(1){width:9%}.tbl th:nth-child(2){width:12%}.tbl th:nth-child(3){width:19%}.tbl th:nth-child(4){width:17%}.tbl th:nth-child(5){width:18%}.tbl th:nth-child(6){width:17%}.tbl td.probability-cell{padding:4px 6px;font-variant-numeric:tabular-nums;white-space:normal}
+.tbl .probability-line{display:block;padding:2px 5px;margin:1px 0;border-radius:3px;line-height:1.35;white-space:nowrap}
+.tbl .probability-line.is-highlighted{font-weight:650}
+.tbl tbody tr:hover td{background:#e2e8f0}
+.tbl th{white-space:normal;line-height:1.25}
+.note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
+</style></head><body data-mode="main">
+<header class="app-header"><h1>⚽ Голы и основные рынки — API-консенсус</h1><p id="status" class="subtitle">Загрузка…</p><button id="refresh" type="button">Обновить</button><a class="back" href="./">← Dev-панель</a><a class="back" href="./model-v1.html">Угловые и карточки →</a></header>
+<main><p class="note">Расчёт на основе уже доступных прогнозов API. Для 1X2 усредняются нормализованные вероятности источников; 1X, X2, 12 и DNB выводятся математически из них. Тоталы усредняются только при совпадении линии и направления. Это API-консенсус, а не независимо обученная модель. Красные карточки, точный счёт и форы не выводятся.</p>
+<p id="count" class="note"></p><div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Лига</th><th>Матч</th><th>1X2</th><th>Двойной шанс / DNB</th><th>Тоталы голов</th><th>Источники</th></tr></thead><tbody id="rows"></tbody></table></div><p id="empty" class="note" hidden>Нет предстоящих матчей с доступными вероятностями.</p></main><script src="api-consensus.js"></script></body></html>
