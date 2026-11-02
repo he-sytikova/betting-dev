@@ -1,19 +1,20 @@
 {
-  "generatedAt": "2026-11-02T17:48:33.688267Z",
-  "sourceFiles": 497,
-  "rows": 174468,
-  "invalidRows": 128,
+  "generatedAt": "2026-11-02T19:59:09.079539Z",
+  "sourceFiles": 513,
+  "rows": 201050,
+  "invalidRows": 129,
   "duplicatesRemoved": 0,
   "leagues": {
     "E0": {
       "name": "England Premier League",
-      "rows": 9589,
-      "cornersRows": 9589,
-      "cardsRows": 9589,
+      "rows": 9969,
+      "cornersRows": 9969,
+      "cardsRows": 9969,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 9589,
-      "cardsEligibleRows": 9589,
+      "resultsOnly": false,
+      "cornersEligibleRows": 9969,
+      "cardsEligibleRows": 9969,
       "cornersCoveragePct": 100.0,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 100.0,
@@ -24,13 +25,14 @@
     },
     "E1": {
       "name": "England Championship",
-      "rows": 13956,
-      "cornersRows": 13955,
-      "cardsRows": 13955,
+      "rows": 14508,
+      "cornersRows": 14507,
+      "cardsRows": 14507,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13955,
-      "cardsEligibleRows": 13955,
+      "resultsOnly": false,
+      "cornersEligibleRows": 14507,
+      "cardsEligibleRows": 14507,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 99.99,
       "foulsCoveragePct": 99.99,
@@ -41,13 +43,14 @@
     },
     "E2": {
       "name": "England League One",
-      "rows": 13803,
-      "cornersRows": 13802,
-      "cardsRows": 13803,
+      "rows": 14355,
+      "cornersRows": 14354,
+      "cardsRows": 14355,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13802,
-      "cardsEligibleRows": 13803,
+      "resultsOnly": false,
+      "cornersEligibleRows": 14354,
+      "cardsEligibleRows": 14355,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 99.99,
@@ -58,13 +61,14 @@
     },
     "E3": {
       "name": "England League Two",
-      "rows": 13851,
-      "cornersRows": 13849,
-      "cardsRows": 13850,
+      "rows": 14403,
+      "cornersRows": 14401,
+      "cardsRows": 14402,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 13849,
-      "cardsEligibleRows": 13850,
+      "resultsOnly": false,
+      "cornersEligibleRows": 14401,
+      "cardsEligibleRows": 14402,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 99.99,
       "foulsCoveragePct": 99.97,
@@ -75,18 +79,19 @@
     },
     "SC0": {
       "name": "Scotland Premiership",
-      "rows": 5492,
-      "cornersRows": 5490,
-      "cardsRows": 5492,
+      "rows": 5948,
+      "cornersRows": 5946,
+      "cardsRows": 5948,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 5490,
-      "cardsEligibleRows": 5492,
-      "cornersCoveragePct": 99.96,
+      "resultsOnly": false,
+      "cornersEligibleRows": 5946,
+      "cardsEligibleRows": 5948,
+      "cornersCoveragePct": 99.97,
       "cardsCoveragePct": 100.0,
-      "foulsCoveragePct": 99.96,
-      "shotsCoveragePct": 99.96,
-      "sotCoveragePct": 99.96,
+      "foulsCoveragePct": 99.97,
+      "shotsCoveragePct": 99.97,
+      "sotCoveragePct": 99.97,
       "from": "2000-07-29",
       "through": "2026-11-01"
     },
@@ -97,6 +102,7 @@
       "cardsRows": 1953,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 1946,
       "cardsEligibleRows": 1953,
       "cornersCoveragePct": 41.8,
@@ -114,6 +120,7 @@
       "cardsRows": 0,
       "cornersEligible": false,
       "cardsEligible": false,
+      "resultsOnly": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
       "cornersCoveragePct": 0,
@@ -131,6 +138,7 @@
       "cardsRows": 0,
       "cornersEligible": false,
       "cardsEligible": false,
+      "resultsOnly": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
       "cornersCoveragePct": 0,
@@ -143,36 +151,38 @@
     },
     "D1": {
       "name": "Germany Bundesliga",
-      "rows": 7416,
-      "cornersRows": 7109,
-      "cardsRows": 7109,
+      "rows": 8028,
+      "cornersRows": 7721,
+      "cardsRows": 7721,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 7109,
-      "cardsEligibleRows": 7109,
-      "cornersCoveragePct": 95.86,
-      "cardsCoveragePct": 95.86,
-      "foulsCoveragePct": 95.86,
-      "shotsCoveragePct": 95.86,
-      "sotCoveragePct": 83.48,
-      "from": "2002-08-09",
+      "resultsOnly": false,
+      "cornersEligibleRows": 7721,
+      "cardsEligibleRows": 7721,
+      "cornersCoveragePct": 96.18,
+      "cardsCoveragePct": 96.18,
+      "foulsCoveragePct": 96.18,
+      "shotsCoveragePct": 96.18,
+      "sotCoveragePct": 84.74,
+      "from": "2000-08-11",
       "through": "2026-11-01"
     },
     "D2": {
       "name": "Germany 2 Bundesliga",
-      "rows": 7434,
-      "cornersRows": 3150,
-      "cardsRows": 3150,
+      "rows": 8046,
+      "cornersRows": 3597,
+      "cardsRows": 3760,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 3150,
-      "cardsEligibleRows": 3150,
-      "cornersCoveragePct": 42.37,
-      "cardsCoveragePct": 42.37,
-      "foulsCoveragePct": 42.37,
-      "shotsCoveragePct": 42.37,
-      "sotCoveragePct": 42.37,
-      "from": "2002-08-10",
+      "resultsOnly": false,
+      "cornersEligibleRows": 3597,
+      "cardsEligibleRows": 3760,
+      "cornersCoveragePct": 44.71,
+      "cardsCoveragePct": 46.73,
+      "foulsCoveragePct": 44.71,
+      "shotsCoveragePct": 44.71,
+      "sotCoveragePct": 44.71,
+      "from": "2000-08-11",
       "through": "2026-11-01"
     },
     "I1": {
@@ -182,6 +192,7 @@
       "cardsRows": 8076,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 8067,
       "cardsEligibleRows": 8076,
       "cornersCoveragePct": 83.32,
@@ -194,18 +205,19 @@
     },
     "I2": {
       "name": "Italy Serie B",
-      "rows": 10920,
-      "cornersRows": 3221,
-      "cardsRows": 3221,
+      "rows": 11262,
+      "cornersRows": 3562,
+      "cardsRows": 3562,
       "cornersEligible": true,
       "cardsEligible": true,
-      "cornersEligibleRows": 3221,
-      "cardsEligibleRows": 3221,
-      "cornersCoveragePct": 29.5,
-      "cardsCoveragePct": 29.5,
-      "foulsCoveragePct": 29.5,
-      "shotsCoveragePct": 29.5,
-      "sotCoveragePct": 29.5,
+      "resultsOnly": false,
+      "cornersEligibleRows": 3562,
+      "cardsEligibleRows": 3562,
+      "cornersCoveragePct": 31.63,
+      "cardsCoveragePct": 31.63,
+      "foulsCoveragePct": 31.62,
+      "shotsCoveragePct": 31.63,
+      "sotCoveragePct": 31.63,
       "from": "2000-09-01",
       "through": "2026-11-01"
     },
@@ -216,6 +228,7 @@
       "cardsRows": 8088,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 8088,
       "cardsEligibleRows": 8088,
       "cornersCoveragePct": 80.98,
@@ -233,6 +246,7 @@
       "cardsRows": 4265,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 4265,
       "cardsEligibleRows": 4265,
       "cornersCoveragePct": 35.13,
@@ -250,6 +264,7 @@
       "cardsRows": 7736,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 7356,
       "cardsEligibleRows": 7736,
       "cornersCoveragePct": 77.52,
@@ -267,6 +282,7 @@
       "cardsRows": 3264,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 3264,
       "cardsEligibleRows": 3264,
       "cornersCoveragePct": 33.56,
@@ -284,6 +300,7 @@
       "cardsRows": 2779,
       "cornersEligible": false,
       "cardsEligible": false,
+      "resultsOnly": false,
       "cornersEligibleRows": 0,
       "cardsEligibleRows": 0,
       "cornersCoveragePct": 34.82,
@@ -301,6 +318,7 @@
       "cardsRows": 2649,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 2648,
       "cardsEligibleRows": 2649,
       "cornersCoveragePct": 36.45,
@@ -318,6 +336,7 @@
       "cardsRows": 2842,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 2842,
       "cardsEligibleRows": 2842,
       "cornersCoveragePct": 37.81,
@@ -335,6 +354,7 @@
       "cardsRows": 3146,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 3146,
       "cardsEligibleRows": 3146,
       "cornersCoveragePct": 37.7,
@@ -352,6 +372,7 @@
       "cardsRows": 2205,
       "cornersEligible": true,
       "cardsEligible": true,
+      "resultsOnly": false,
       "cornersEligibleRows": 2205,
       "cardsEligibleRows": 2205,
       "cornersCoveragePct": 42.25,
@@ -361,6 +382,96 @@
       "sotCoveragePct": 42.25,
       "from": "2005-08-27",
       "through": "2026-11-01"
+    },
+    "RUS": {
+      "name": "Russia Premier League",
+      "rows": 3416,
+      "cornersRows": 0,
+      "cardsRows": 0,
+      "cornersEligible": false,
+      "cardsEligible": false,
+      "resultsOnly": true,
+      "cornersEligibleRows": 0,
+      "cardsEligibleRows": 0,
+      "cornersCoveragePct": 0.0,
+      "cardsCoveragePct": 0.0,
+      "foulsCoveragePct": 0.0,
+      "shotsCoveragePct": 0.0,
+      "sotCoveragePct": 0.0,
+      "from": "2012-07-20",
+      "through": "2026-08-02"
+    },
+    "BRA": {
+      "name": "Brazil Serie A",
+      "rows": 5646,
+      "cornersRows": 0,
+      "cardsRows": 0,
+      "cornersEligible": false,
+      "cardsEligible": false,
+      "resultsOnly": true,
+      "cornersEligibleRows": 0,
+      "cardsEligibleRows": 0,
+      "cornersCoveragePct": 0.0,
+      "cardsCoveragePct": 0.0,
+      "foulsCoveragePct": 0.0,
+      "shotsCoveragePct": 0.0,
+      "sotCoveragePct": 0.0,
+      "from": "2012-05-19",
+      "through": "2026-10-30"
+    },
+    "USA": {
+      "name": "USA MLS",
+      "rows": 6296,
+      "cornersRows": 0,
+      "cardsRows": 0,
+      "cornersEligible": false,
+      "cardsEligible": false,
+      "resultsOnly": true,
+      "cornersEligibleRows": 0,
+      "cardsEligibleRows": 0,
+      "cornersCoveragePct": 0.0,
+      "cardsCoveragePct": 0.0,
+      "foulsCoveragePct": 0.0,
+      "shotsCoveragePct": 0.0,
+      "sotCoveragePct": 0.0,
+      "from": "2012-03-10",
+      "through": "2026-10-29"
+    },
+    "NOR": {
+      "name": "Norway Eliteserien",
+      "rows": 3574,
+      "cornersRows": 0,
+      "cardsRows": 0,
+      "cornersEligible": false,
+      "cardsEligible": false,
+      "resultsOnly": true,
+      "cornersEligibleRows": 0,
+      "cardsEligibleRows": 0,
+      "cornersCoveragePct": 0.0,
+      "cardsCoveragePct": 0.0,
+      "foulsCoveragePct": 0.0,
+      "shotsCoveragePct": 0.0,
+      "sotCoveragePct": 0.0,
+      "from": "2012-03-23",
+      "through": "2026-10-25"
+    },
+    "SWE": {
+      "name": "Sweden Allsvenskan",
+      "rows": 3592,
+      "cornersRows": 0,
+      "cardsRows": 0,
+      "cornersEligible": false,
+      "cardsEligible": false,
+      "resultsOnly": true,
+      "cornersEligibleRows": 0,
+      "cardsEligibleRows": 0,
+      "cornersCoveragePct": 0.0,
+      "cardsCoveragePct": 0.0,
+      "foulsCoveragePct": 0.0,
+      "shotsCoveragePct": 0.0,
+      "sotCoveragePct": 0.0,
+      "from": "2012-03-31",
+      "through": "2026-10-29"
     }
   },
   "files": [
@@ -527,6 +638,24 @@
       "duplicates": 0
     },
     {
+      "file": "BRA_results.csv",
+      "rows": 5647,
+      "accepted": 5646,
+      "duplicates": 0
+    },
+    {
+      "file": "D1_0001.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D1_0102.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
       "file": "D1_0203.csv",
       "rows": 307,
       "accepted": 306,
@@ -674,6 +803,18 @@
       "file": "D1_2627.csv",
       "rows": 72,
       "accepted": 72,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0001.csv",
+      "rows": 306,
+      "accepted": 306,
+      "duplicates": 0
+    },
+    {
+      "file": "D2_0102.csv",
+      "rows": 306,
+      "accepted": 306,
       "duplicates": 0
     },
     {
@@ -851,6 +992,12 @@
       "duplicates": 0
     },
     {
+      "file": "E0_0405.csv",
+      "rows": 380,
+      "accepted": 380,
+      "duplicates": 0
+    },
+    {
       "file": "E0_0506.csv",
       "rows": 380,
       "accepted": 380,
@@ -1002,6 +1149,12 @@
     },
     {
       "file": "E1_0304.csv",
+      "rows": 552,
+      "accepted": 552,
+      "duplicates": 0
+    },
+    {
+      "file": "E1_0405.csv",
       "rows": 552,
       "accepted": 552,
       "duplicates": 0
@@ -1163,6 +1316,12 @@
       "duplicates": 0
     },
     {
+      "file": "E2_0405.csv",
+      "rows": 552,
+      "accepted": 552,
+      "duplicates": 0
+    },
+    {
       "file": "E2_0506.csv",
       "rows": 552,
       "accepted": 552,
@@ -1314,6 +1473,12 @@
     },
     {
       "file": "E3_0304.csv",
+      "rows": 552,
+      "accepted": 552,
+      "duplicates": 0
+    },
+    {
+      "file": "E3_0405.csv",
       "rows": 552,
       "accepted": 552,
       "duplicates": 0
@@ -2177,6 +2342,12 @@
       "duplicates": 0
     },
     {
+      "file": "I2_1819.csv",
+      "rows": 342,
+      "accepted": 342,
+      "duplicates": 0
+    },
+    {
       "file": "I2_1920.csv",
       "rows": 380,
       "accepted": 380,
@@ -2387,6 +2558,12 @@
       "duplicates": 0
     },
     {
+      "file": "NOR_results.csv",
+      "rows": 3574,
+      "accepted": 3574,
+      "duplicates": 0
+    },
+    {
       "file": "P1_0001.csv",
       "rows": 306,
       "accepted": 306,
@@ -2549,6 +2726,12 @@
       "duplicates": 0
     },
     {
+      "file": "RUS_results.csv",
+      "rows": 3416,
+      "accepted": 3416,
+      "duplicates": 0
+    },
+    {
       "file": "SC0_0001.csv",
       "rows": 228,
       "accepted": 228,
@@ -2568,6 +2751,12 @@
     },
     {
       "file": "SC0_0304.csv",
+      "rows": 228,
+      "accepted": 228,
+      "duplicates": 0
+    },
+    {
+      "file": "SC0_0405.csv",
       "rows": 228,
       "accepted": 228,
       "duplicates": 0
@@ -2646,6 +2835,12 @@
     },
     {
       "file": "SC0_1718.csv",
+      "rows": 228,
+      "accepted": 228,
+      "duplicates": 0
+    },
+    {
+      "file": "SC0_1819.csv",
       "rows": 228,
       "accepted": 228,
       "duplicates": 0
@@ -3185,6 +3380,12 @@
       "duplicates": 0
     },
     {
+      "file": "SWE_results.csv",
+      "rows": 3592,
+      "accepted": 3592,
+      "duplicates": 0
+    },
+    {
       "file": "T1_0001.csv",
       "rows": 306,
       "accepted": 306,
@@ -3345,12 +3546,18 @@
       "rows": 89,
       "accepted": 89,
       "duplicates": 0
+    },
+    {
+      "file": "USA_results.csv",
+      "rows": 6296,
+      "accepted": 6296,
+      "duplicates": 0
     }
   ],
-  "output": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
-  "cornersAvailableRows": 116771,
-  "cardsAvailableRows": 117172,
-  "cornersEligibleRows": 113992,
-  "cardsEligibleRows": 114393,
-  "note": "Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories, Elo ratings and time-decayed attack/defence goal ratings are keyed by country family, so clubs keep their form and ratings across promotion/relegation between divisions of the same country; league averages and referee histories remain per league. Elo: start 1500, K=20, home advantage 65 points, margin multiplier 1/1.5/1.5+0.25*(N-2). Decayed ratings use a 75-day half-life over goals for/against."
+  "output": "/mnt/agents/work/repo/data/corners_cards_training.csv",
+  "cornersAvailableRows": 120663,
+  "cardsAvailableRows": 121227,
+  "cornersEligibleRows": 117884,
+  "cardsEligibleRows": 118448,
+  "note": "Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories, Elo ratings and time-decayed attack/defence goal ratings are keyed by country family, so clubs keep their form and ratings across promotion/relegation between divisions of the same country; league averages and referee histories remain per league. Elo: start 1500, K=20, home advantage 65 points, margin multiplier 1/1.5/1.5+0.25*(N-2). Decayed ratings use a 75-day half-life over goals for/against. Results-only leagues (RUS/BRA/USA/NOR/SWE, /new/ single-file CSVs) carry results only: all stats-availability flags are zero, so they train the goals model but never the stats models."
 }
