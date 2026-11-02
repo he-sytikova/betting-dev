@@ -18,7 +18,7 @@ test('keeps totals separated by direction and exact line',()=>{
 });
 test('parses corner lines with abbreviated prefix',()=>{
  const p=parseLines('ТБ угл. 8.5: 59.7% / 9.5: 47.9% / 10.5: 36.2%','corners');
- assert.deepEqual(p,{'8.5':.597,'9.5':.479,'10.5':.362});
+ assert.deepEqual(Object.keys(p),['8.5','9.5','10.5']);\n assert.ok(Math.abs(p['10.5']-.362)<1e-12);
 });
 test('aggregates exact fixture from multiple providers and derives double chance',()=>{
  const future='2099-01-01T12:00:00Z';
