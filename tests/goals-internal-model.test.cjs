@@ -269,3 +269,70 @@ test('buildFeatureContext exposes elo and decayed ratings', () => {
   assert.equal(ctx.home_att_decay, 1.42);
   assert.equal(ctx.away_def_decay, 1.3);
 });
+
+// --- Stage 4 (2026-11): N1 + results-only leagues (RUS/BRA/USA/NOR/SWE) ---
+test('resolveLeague/resolveTeam cover N1 and results-only leagues', () => {
+  const team = (name) => ({ name, matchesBefore: 100, stats: {} });
+  const stage4 = {
+    leagueNames: {
+      N1: 'Netherlands - Eredivisie',
+      RUS: 'Russia - Premier League', BRA: 'Brazil - Serie A',
+      USA: 'USA - MLS', NOR: 'Norway - Eliteserien', SWE: 'Sweden - Allsvenskan',
+    },
+    leagueAliases: {
+      'netherlands eredivisie': 'N1', 'eredivisie': 'N1',
+      'russia premier league': 'RUS', 'russian premier league': 'RUS', 'russia rpl': 'RUS',
+      'brasileirao serie a': 'BRA', 'campeonato brasileiro serie a': 'BRA',
+      'brazil serie a': 'BRA', 'brazil brasileirao serie a': 'BRA',
+      'brazil campeonato brasileiro serie a': 'BRA',
+      'mls': 'USA', 'usa mls': 'USA', 'major league soccer': 'USA',
+      'usa major league soccer': 'USA',
+      'norway eliteserien': 'NOR', 'eliteserien': 'NOR', 'norwegian eliteserien': 'NOR',
+      'sweden allsvenskan': 'SWE', 'allsvenskan': 'SWE', 'swedish allsvenskan': 'SWE',
+    },
+    teams: {
+      N1: { 'psv eindhoven': team('PSV Eindhoven'), 'az alkmaar': team('AZ Alkmaar'), nijmegen: team('Nijmegen'), 'for sittard': team('For Sittard') },
+      RUS: { zenit: team('Zenit'), 'krylya sovetov': team('Krylya Sovetov'), 'cska moscow': team('CSKA Moscow'), 'dynamo moscow': team('Dynamo Moscow'), 'pari nn': team('Pari NN'), 'spartak moscow': team('Spartak Moscow') },
+      BRA: { 'atletico mg': team('Atletico-MG'), 'athletico pr': team('Athletico-PR'), 'america mg': team('America MG'), 'atletico go': team('Atletico GO'), flamengo: team('Flamengo RJ') },
+      USA: { 'los angeles galaxy': team('Los Angeles Galaxy'), 'los angeles': team('Los Angeles FC'), 'new york red bulls': team('New York Red Bulls'), 'sporting kansas city': team('Sporting Kansas City') },
+      NOR: { odd: team('Odd'), 'bodo glimt': team('Bodo/Glimt'), rosenborg: team('Rosenborg') },
+      SWE: { 'malmo ff': team('Malmo FF'), aik: team('AIK'), hammarby: team('Hammarby') },
+    },
+  };
+  // League resolution: provider spellings.
+  assert.equal(resolveLeague(stage4, 'Russia. Premier League'), 'RUS');
+  assert.equal(resolveLeague(stage4, 'Russia. RPL'), 'RUS');
+  assert.equal(resolveLeague(stage4, 'Brazil. Brasileirão Série A'), 'BRA');
+  assert.equal(resolveLeague(stage4, 'USA. MLS'), 'USA');
+  assert.equal(resolveLeague(stage4, 'Norway. Eliteserien'), 'NOR');
+  assert.equal(resolveLeague(stage4, 'Sweden. Allsvenskan'), 'SWE');
+  assert.equal(resolveLeague(stage4, 'Netherlands. Eredivisie'), 'N1');
+  // Lookalike competitions must NOT resolve to our leagues.
+  assert.equal(resolveLeague(stage4, 'Sweden. Superettan'), null);
+  assert.equal(resolveLeague(stage4, 'Brazil. Serie B'), null);
+  assert.equal(resolveLeague(stage4, 'Netherlands. Eerste Divisie'), null);
+  assert.equal(resolveLeague(stage4, 'Norway. Adeccoligaen'), null);
+  assert.equal(resolveLeague(stage4, 'USA. USL Championship'), null);
+  assert.equal(resolveLeague(stage4, 'Romania. Superliga'), null);
+  assert.equal(resolveLeague(stage4, 'Denmark. Superliga'), null);
+  // Team aliases observed in the fixture feed.
+  assert.equal(resolveTeam(stage4, 'N1', 'PSV').key, 'psv eindhoven');
+  assert.equal(resolveTeam(stage4, 'N1', 'AZ').key, 'az alkmaar');
+  assert.equal(resolveTeam(stage4, 'N1', 'NEC').key, 'nijmegen');
+  assert.equal(resolveTeam(stage4, 'N1', 'Fortuna Sittard').key, 'for sittard');
+  assert.equal(resolveTeam(stage4, 'RUS', 'Krylia Sovetov').key, 'krylya sovetov');
+  assert.equal(resolveTeam(stage4, 'RUS', 'CSKA Moskva').key, 'cska moscow');
+  assert.equal(resolveTeam(stage4, 'RUS', 'Dinamo Moskva').key, 'dynamo moscow');
+  assert.equal(resolveTeam(stage4, 'RUS', 'Zenit Saint Petersburg').key, 'zenit');
+  assert.equal(resolveTeam(stage4, 'RUS', 'Nizhny Novgorod').key, 'pari nn');
+  assert.equal(resolveTeam(stage4, 'BRA', 'Atlético Mineiro').key, 'atletico mg');
+  assert.equal(resolveTeam(stage4, 'BRA', 'Athletico Paranaense').key, 'athletico pr');
+  assert.equal(resolveTeam(stage4, 'BRA', 'América Mineiro').key, 'america mg');
+  assert.equal(resolveTeam(stage4, 'USA', 'LA Galaxy').key, 'los angeles galaxy');
+  assert.equal(resolveTeam(stage4, 'USA', 'LAFC').key, 'los angeles');
+  assert.equal(resolveTeam(stage4, 'USA', 'NY Red Bulls').key, 'new york red bulls');
+  assert.equal(resolveTeam(stage4, 'USA', 'Sporting KC').key, 'sporting kansas city');
+  assert.equal(resolveTeam(stage4, 'NOR', 'Odds BK').key, 'odd');
+  // Identity alias keeps LA Galaxy unambiguous despite the LAFC substring clash.
+  assert.equal(resolveTeam(stage4, 'USA', 'Los Angeles Galaxy').key, 'los angeles galaxy');
+});
