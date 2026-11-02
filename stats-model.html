@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Фолы и удары — внутренняя модель</title><link rel="stylesheet" href="styles.css">
+<style>
+main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:760px;border-collapse:collapse;font-size:12px}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:8px;white-space:pre-line;overflow-wrap:anywhere}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl td.probability-cell{padding:4px 6px;font-variant-numeric:tabular-nums;white-space:normal}
+.tbl .probability-line{display:block;padding:2px 5px;margin:1px 0;border-radius:3px;line-height:1.35;white-space:nowrap}
+.tbl .probability-line.is-highlighted{font-weight:650}
+.tbl tbody tr:hover td{background:#e2e8f0}
+.tbl th{white-space:normal;line-height:1.25}
+.note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
+</style></head><body data-mode="special">
+<header class="app-header"><h1>⚽ Фолы, удары, удары в створ — внутренняя модель</h1><p id="stats-internal-status" class="subtitle">Загрузка внутренней модели…</p><button id="refresh" type="button">Обновить</button><a class="back" href="./goals-model.html">← Основные рынки</a><a class="back" href="./model-v1.html">Угловые и карточки</a><a class="back" href="./">Dev-панель</a></header>
+<main><p class="note">Собственная Poisson-регрессия по историческим поматчевым данным football-data.co.uk (фолы, удары и удары в створ с 2000/01 по текущий сезон; полное покрытие этих полей — примерно с сезона 2010/11). Прогноз рассчитывается только если лига и обе команды найдены в обучающих данных с достаточной историей; иначе строка не выводится. Это исследовательская оценка вероятностей, а не рекомендация к ставке.</p><p id="stats-internal-count" class="note"></p><div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Лига</th><th>Матч</th><th>Фолы (внутр. модель)</th><th>Удары (внутр. модель)</th><th>Удары в створ (внутр. модель)</th></tr></thead><tbody id="stats-internal-rows"></tbody></table></div><p id="stats-internal-empty" class="note" hidden>Нет предстоящих матчей, которые внутренняя модель может оценить.</p>
+</main><script src="stats-internal-model.js"></script></body></html>
