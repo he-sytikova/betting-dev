@@ -9,9 +9,11 @@ on:
       - "api-consensus.js"
       - "internal-model.js"
       - "goals-internal-model.js"
+      - "stats-internal-model.js"
       - "tests/api-consensus.test.cjs"
       - "tests/internal-model.test.cjs"
       - "tests/goals-internal-model.test.cjs"
+      - "tests/stats-internal-model.test.cjs"
       - "model-v1.js"
       - "goals-model.js"
       - ".github/workflows/validate-corners-cards-models.yml"
@@ -36,6 +38,8 @@ jobs:
           node --test tests/internal-model.test.cjs
           node --check goals-internal-model.js
           node --test tests/goals-internal-model.test.cjs
+          node --check stats-internal-model.js
+          node --test tests/stats-internal-model.test.cjs
           node --check model-v1.js
           node --check goals-model.js
           node --check scripts/models/archive-provider-results.mjs
