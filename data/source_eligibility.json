@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-01",
+  "reviewedAt": "2026-11-02",
   "policy": "A source may be used for model training only after its current terms, upstream rights, attribution requirements, storage, and redistribution restrictions have been reviewed and explicitly approved. Keep similarly named providers distinct: FB_DATA is football-data.org; FOOTBALL_DATA_CO_UK is football-data.co.uk.",
   "sources": [
     {
@@ -50,9 +50,9 @@
         "historical_corners",
         "historical_yellow_cards"
       ],
-      "trainingUse": "not_permitted_for_current_automated_training_pipeline",
+      "trainingUse": "permitted_by_owner_decision_with_restrictions",
       "termsUrl": "https://www.football-data.co.uk/contact.php",
-      "notes": "This is the actual source used by scripts/predictions/build-dataset.py for the corners/cards historical CSV dataset (football-data.co.uk/mmz4281). The provider's current Fair Data Usage Policy says free files are intended for private individuals for personal betting and/or academic research via manual or at most light downloads (maximum twice weekly), and are NOT intended for commercial or data-training projects using heavy repeated automated downloads. It says permission requests of this type should assume no permission is granted. Do not run automated downloads or train on this source in the current pipeline. Both scripts/predictions/train-models.py (corners/cards) and scripts/predictions/train-goals-markets.py (goals markets) consume the same data/corners_cards_training.csv built from this source. Therefore the existing exported goals and corners/cards model files in the development copy share this provenance; no new training or refreshed model exports should be produced from this source without a rights change."
+      "notes": "Source of the corners/cards historical dataset (football-data.co.uk/mmz4281) consumed by scripts/models/build-historical-dataset.py, train-corners-cards.py and export-corners-cards-runtime.py. The provider's Fair Data Usage Policy intends the free files for private individuals (personal betting and/or academic research) via manual or light downloads (at most twice weekly) and does not permit heavy repeated automated downloads or commercial data-training products; the provider asks to assume no permission for such requests. On 2026-11-02 the repository owner explicitly decided to use this source for the dev corners/cards training pipeline as a personal research project, accepting the responsibility for this interpretation. Mitigations adopted: downloads are limited to a light once-weekly cadence with a polite delay between requests and a descriptive User-Agent; raw CSV files are never committed to the repository (CI fails if a .csv appears); only derived model coefficients and aggregated statistics are published. If the provider objects or the project scope changes beyond personal research, this decision must be revisited and the pipeline stopped."
     },
     {
       "id": "OPEN_MATCHDAY",

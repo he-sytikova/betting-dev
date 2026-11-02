@@ -1,0 +1,73 @@
+name: Retrain corners and cards model
+
+on:
+  workflow_dispatch:
+  # Regenerate artifacts automatically when the training pipeline changes on main.
+  push:
+    branches: [main]
+    paths:
+      - "scripts/models/download-football-data-csvs.py"
+      - "scripts/models/build-historical-dataset.py"
+      - "scripts/models/train-corners-cards.py"
+      - "scripts/models/export-corners-cards-runtime.py"
+      - "requirements-models.txt"
+      - ".github/workflows/retrain-corners-cards.yml"
+  schedule:
+    # Weekly retrain keeps rolling team features current for the internal model.
+    - cron: '41 3 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: retrain-corners-cards
+  cancel-in-progress: false
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements-models.txt
+
+      - name: Download historical season CSVs (light, at most weekly)
+        run: python scripts/models/download-football-data-csvs.py
+
+      - name: Build training dataset
+        run: python scripts/models/build-historical-dataset.py
+
+      - name: Train and validate models (chronological split)
+        run: python scripts/models/train-corners-cards.py
+
+      - name: Export browser runtime model JSON
+        run: python scripts/models/export-corners-cards-runtime.py
+
+      - name: Commit refreshed model artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/historical_dataset_report.json
+          if git diff --cached --quiet; then
+            echo "Model artifacts are already current"
+          else
+            git commit -m "chore: retrain corners/cards internal model"
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Confirm no CSV files are committed
+        run: |
+          if find . -type f -name '*.csv' -not -path './.git/*' | grep -q .; then
+            echo "CSV files must not be committed to the repository."
+            exit 1
+          fi
+          echo "No CSV files in the working tree."
