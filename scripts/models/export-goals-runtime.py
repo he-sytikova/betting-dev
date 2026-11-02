@@ -46,8 +46,11 @@ def feature_columns(columns):
     return [c for c in wanted if c in columns]
 
 
-def export_model(df, target, alpha):
-    numeric = feature_columns(df.columns)
+def export_model(df, target, alpha, numeric=None):
+    if numeric is None:
+        numeric = feature_columns(df.columns)
+    else:
+        numeric = [c for c in numeric if c in df.columns]
     subset = df[df[target].notna()].copy()
     subset[target] = pd.to_numeric(subset[target], errors="coerce")
     subset = subset[subset[target].notna()].sort_values("date")
@@ -89,12 +92,16 @@ def main():
     df = df[df["league"].isin(LEAGUES) & df["date"].notna() & (df["date"].dt.date < date.today())].copy()
     report = json.loads(REPORT.read_text(encoding="utf-8"))
     template = json.loads(OUTPUT.read_text(encoding="utf-8")) if OUTPUT.exists() else {}
+    # Use the feature set selected on validation during training, when recorded.
+    selected_features = report.get("features") or None
     models = {}
     for key, target in TARGETS.items():
         alpha = float(report["selected"][key]["alpha"])
-        models[key] = export_model(df, target, alpha)
+        models[key] = export_model(df, target, alpha, selected_features)
     teams, league_stats, aliases, names = corners_export.build_runtime_state(df, template)
     totals_calibration = ((report.get("totalsCalibration") or {}).get("calibrators")) or {}
+    dc = report.get("dixonColes") or {}
+    dc_rho = float(dc.get("deployedRho") or 0.0) if dc.get("deployed") else 0.0
     payload = {
         "schemaVersion": 2, "generatedAt": pd.Timestamp.utcnow().isoformat(),
         "status": "experimental_runtime_model",
@@ -105,13 +112,17 @@ def main():
         "leagueNames": names, "leagueAliases": aliases,
         "leagueStats": league_stats, "teams": teams,
         "runtimePolicy": {
-            "distribution": "independent Poisson scoreline matrix",
+            "distribution": "independent Poisson scoreline matrix" + (
+                f" with Dixon-Coles low-score adjustment (rho={dc_rho})" if dc_rho else ""),
             "maxGoals": MAX_GOALS,
-            "reason": "Home/away goals are modelled as independent Poisson counts; all markets derive from the same scoreline matrix so probabilities stay mutually consistent. Dixon-Coles adjustment is not deployed until separately validated.",
+            "reason": "Home/away goals are modelled as Poisson counts; all markets derive from the same scoreline matrix so probabilities stay mutually consistent. The Dixon-Coles low-score adjustment (rho) ships only when it improves validation 1X2 logLoss beyond the 0.0005 deadband.",
+            "featureSet": report.get("featureSelection", {}).get("selected", "base"),
             "totalsCalibration": "Isotonic match-totals calibrators are embedded only when their cross-fitted within-validation logLoss gain clears the 0.0005 deadband.",
             "minimumTeamMatches": 5,
         },
     }
+    if dc_rho:
+        payload["dcRho"] = dc_rho
     if totals_calibration:
         payload["totalsCalibration"] = totals_calibration
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
