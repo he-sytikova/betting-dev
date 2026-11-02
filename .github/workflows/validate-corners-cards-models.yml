@@ -29,8 +29,7 @@ jobs:
           node --check scripts/models/archive-provider-results.mjs
       - name: Confirm CSV pipelines are not used
         run: |
-          test ! -d data/raw/football-data
-          if find data -type f -name '*.csv' | grep -q .; then
+          if find . -type f -name '*.csv' -not -path './.git/*' | grep -q .; then
             echo "CSV files are not allowed in the active dev dataset."
             exit 1
           fi
