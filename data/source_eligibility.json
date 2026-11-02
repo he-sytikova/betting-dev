@@ -48,11 +48,13 @@
       "purpose": [
         "historical_match_results",
         "historical_corners",
-        "historical_yellow_cards"
+        "historical_yellow_cards",
+        "historical_goals",
+        "historical_match_outcomes"
       ],
       "trainingUse": "permitted_by_owner_decision_with_restrictions",
       "termsUrl": "https://www.football-data.co.uk/contact.php",
-      "notes": "Source of the corners/cards historical dataset (football-data.co.uk/mmz4281) consumed by scripts/models/build-historical-dataset.py, train-corners-cards.py and export-corners-cards-runtime.py. The provider's Fair Data Usage Policy intends the free files for private individuals (personal betting and/or academic research) via manual or light downloads (at most twice weekly) and does not permit heavy repeated automated downloads or commercial data-training products; the provider asks to assume no permission for such requests. On 2026-11-02 the repository owner explicitly decided to use this source for the dev corners/cards training pipeline as a personal research project, accepting the responsibility for this interpretation. Mitigations adopted: downloads are limited to a light once-weekly cadence with a polite delay between requests and a descriptive User-Agent; raw CSV files are never committed to the repository (CI fails if a .csv appears); only derived model coefficients and aggregated statistics are published. If the provider objects or the project scope changes beyond personal research, this decision must be revisited and the pipeline stopped."
+      "notes": "Source of the historical dataset (football-data.co.uk/mmz4281) consumed by scripts/models/build-historical-dataset.py, train-corners-cards.py, train-goals-markets.py, export-corners-cards-runtime.py and export-goals-runtime.py. The provider's Fair Data Usage Policy intends the free files for private individuals (personal betting and/or academic research) via manual or light downloads (at most twice weekly) and does not permit heavy repeated automated downloads or commercial data-training products; the provider asks to assume no permission for such requests. On 2026-11-02 the repository owner explicitly decided to use this source for the dev corners/cards and goals/outcomes training pipelines as a personal research project, accepting the responsibility for this interpretation. Mitigations adopted: downloads are limited to a light once-weekly cadence with a polite delay between requests and a descriptive User-Agent; raw CSV files are never committed to the repository (CI fails if a .csv appears); only derived model coefficients and aggregated statistics are published. If the provider objects or the project scope changes beyond personal research, this decision must be revisited and the pipeline stopped."
     },
     {
       "id": "OPEN_MATCHDAY",
