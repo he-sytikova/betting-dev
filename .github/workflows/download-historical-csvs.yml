@@ -1,44 +1,17 @@
-name: Download historical football CSVs
+name: Historical CSV download (paused)
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/models/download-football-data-csvs.py"
-      - ".github/workflows/download-historical-csvs.yml"
-  schedule:
-    - cron: "17 5 * * 1"
 
 permissions:
-  contents: write
-
-concurrency:
-  group: historical-football-csv-download
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  download:
+  paused:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Validate downloader syntax
-        run: python -m py_compile scripts/models/download-football-data-csvs.py
-      - name: Download available historical CSVs
-        run: python scripts/models/download-football-data-csvs.py
-      - name: Commit downloaded data
+      - name: Explain pause
         run: |
-          if git status --short data/raw/football-data | grep -q .; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/raw/football-data/*.csv
-            git commit -m "data: update historical football CSVs"
-            git push
-          else
-            echo "No new or changed CSV files."
-          fi
+          echo "Automated downloads from football-data.co.uk are paused."
+          echo "The provider's current fair-use policy does not permit this automated training pipeline."
+          echo "No download or dataset modification was performed."
