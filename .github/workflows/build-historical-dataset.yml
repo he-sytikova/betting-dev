@@ -1,4 +1,4 @@
-name: Build experimental historical dataset
+name: Build historical dataset (paused)
 
 on:
   workflow_dispatch:
@@ -7,26 +7,11 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  paused:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Validate builder syntax
-        run: python -m py_compile scripts/models/build-historical-dataset.py
-      - name: Run dataset builder unit tests
-        run: python -m unittest discover -s tests -p "test_historical_dataset_builder.py" -v
-      - name: Build dataset from local CSV files
-        run: python scripts/models/build-historical-dataset.py
-      - name: Upload dataset and coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: experimental-historical-dataset
-          path: |
-            data/corners_cards_training.csv
-            data/historical_dataset_report.json
-          retention-days: 30
+      - name: Explain pause
+        run: |
+          echo "Historical dataset construction and model training are paused."
+          echo "The current CSV provenance does not permit this automated model-training workflow."
+          echo "Use only a separately approved source with explicit historical storage and model-training permission."
