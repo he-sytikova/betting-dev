@@ -286,6 +286,13 @@ function render() {
   $('markets-empty').classList.toggle('hidden',visible.length>0);
 }
 async function load() {
+  $('markets-error').textContent='Модель временно отключена: прежняя версия обучалась на CSV. CSV-данные не используются. Идёт накопление результатов из API-источников для новой независимой модели.';
+  $('markets-error').classList.remove('hidden');
+  $('markets-body').replaceChildren();
+  $('markets-empty').classList.add('hidden');
+  $('model-status').textContent='Статус: приостановлена — готовится независимая версия';
+  $('model-metrics').textContent='Метрики предыдущей CSV-версии не используются.';
+  return;
   $('markets-error').classList.add('hidden');
   try {
     const [dataResponse,modelResponse,reportResponse]=await Promise.all([
