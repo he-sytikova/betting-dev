@@ -57,8 +57,20 @@
     }).sort((a,b)=>a.time-b.time);
   }
   const fmtTime=t=>new Date(t).toLocaleString('ru-RU',{timeZone:'Europe/Moscow',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-  const cell=(tr,value)=>{const td=document.createElement('td');td.textContent=value;tr.append(td);};
-  const lineText=o=>Object.entries(o).sort((a,b)=>a[0].localeCompare(b[0],undefined,{numeric:true})).map(([k,v])=>k+': '+pct(v)).join('\n')||'—';
+  const heat=p=>{const x=Math.max(0,Math.min(1,(p-65)/35)),a=[220,252,231],b=[20,83,45];return 'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*x)).join(', ')+')';};
+  const cell=(tr,value)=>{const td=document.createElement('td');td.textContent=value;tr.append(td);return td;};
+  function stackedCell(tr,items){
+    const td=document.createElement('td');td.className='probability-cell';
+    if(!items.length){td.textContent='—';tr.append(td);return td;}
+    for(const item of items){
+      const line=document.createElement('div');line.className='probability-line';
+      line.textContent=item.label+': '+pct(item.value);
+      if(Number.isFinite(item.value)&&item.value>.65){line.style.backgroundColor=heat(item.value);line.classList.add('is-highlighted');line.title='Вероятность: '+pct(item.value);}
+      td.append(line);
+    }
+    tr.append(td);return td;
+  }
+  const sorted=o=>Object.entries(o).sort((a,b)=>a[0].localeCompare(b[0],undefined,{numeric:true})).map(([label,value])=>({label,value}));
   function render(fixtures,mode){
     const body=$('rows');body.replaceChildren();
     let visible=0;
@@ -69,16 +81,18 @@
       cell(tr,fmtTime(f.time));cell(tr,f.league);cell(tr,f.home+' — '+f.away);
       if(mode==='main'){
         const o=f.outcome;
-        cell(tr,o?'П1 '+pct(o.home)+' / X '+pct(o.draw)+' / П2 '+pct(o.away):'нет данных');
+        stackedCell(tr,o?[{label:'П1',value:o.home},{label:'X',value:o.draw},{label:'П2',value:o.away}]:[]);
         const d=f.derived;
-        cell(tr,d?'1X '+pct(d.oneX)+' / X2 '+pct(d.xTwo)+' / 12 '+pct(d.twelve)+'\nDNB '+pct(d.dnbHome)+' / '+pct(d.dnbAway):'—');
-        cell(tr,lineText(f.totals));cell(tr,f.sourceNames.join(', ')+' ('+f.sourceCount+')');
+        stackedCell(tr,d?[{label:'1X',value:d.oneX},{label:'X2',value:d.xTwo},{label:'12',value:d.twelve},{label:'DNB П1',value:d.dnbHome},{label:'DNB П2',value:d.dnbAway}]:[]);
+        stackedCell(tr,sorted(f.totals));
+        cell(tr,f.sourceNames.join(', ')+' ('+f.sourceCount+')');
       } else {
-        cell(tr,lineText(f.corners));cell(tr,f.sourceNames.join(', ')+' ('+f.sourceCount+')');
+        stackedCell(tr,sorted(f.corners).map(x=>({label:'ТБ угл. '+x.label,value:x.value})));
+        cell(tr,f.sourceNames.join(', ')+' ('+f.sourceCount+')');
       }
       body.append(tr);visible++;
     }
-    $('count').textContent='Предстоящих матчей: '+visible+'. Значения — среднее арифметическое доступных вероятностей источников; число источников указано в последнем столбце.';
+    $('count').textContent='Предстоящих матчей: '+visible+'. Каждая вероятность показана отдельной строкой; ячейки с вероятностью выше 65% подсвечены. Значения усредняются только по доступным данным и совпадающим линиям.';
     $('empty').hidden=visible>0;
   }
   async function load(){
