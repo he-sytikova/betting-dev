@@ -17,7 +17,9 @@ ROOT = Path(__file__).resolve().parents[2]
 DATASET = ROOT / "data/corners_cards_training.csv"
 REPORT = ROOT / "data/goals_markets_model_validation.json"
 OUTPUT = ROOT / "data/goals_markets_models.json"
-LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2", "SP1", "SP2", "F1", "F2", "B1", "P1", "T1", "G1"]
+# Goals model covers the 18 stats leagues plus N1 and the results-only leagues.
+LEAGUES = ["E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2", "SP1", "SP2", "F1", "F2", "B1", "P1", "T1", "G1",
+           "N1", "RUS", "BRA", "USA", "NOR", "SWE"]
 TARGETS = {"homeGoals": "target_home_goals", "awayGoals": "target_away_goals"}
 TOTAL_LINES = [1.5, 2.5, 3.5, 4.5]
 TEAM_LINES = [0.5, 1.5, 2.5]
