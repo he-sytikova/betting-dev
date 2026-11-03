@@ -1,0 +1,6 @@
+# Raw provider data and training CSVs never leave the local workspace.
+data/raw/
+data/raw-fdo/
+data/*.csv
+__pycache__/
+*.pyc
