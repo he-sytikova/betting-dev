@@ -273,10 +273,13 @@ def main():
             team_variants[key].add(dom_name)
 
     # Варианты из фидов, ключевые по legacy FDO-именам -> канонический ключ.
+    # Само FDO-имя тоже алиас: для euro-only команд оно иначе нигде не
+    # регистрируется (fdoName ставится только через BSD_TO_FDO/домашний маппинг).
     for fdo_name, variants in FEED_VARIANTS.items():
         key = builder.norm_name(canonical_of_fdo(fdo_name))
         if key not in teams:
             continue
+        team_variants[key].add(fdo_name)
         if isinstance(variants, str):
             variants = [variants]
         team_variants[key].update(variants)

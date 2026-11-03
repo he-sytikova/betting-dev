@@ -209,7 +209,7 @@ FDO_TEAM_ALIASES = {
     "Club Atlético de Madrid": "Ath Madrid", "Como 1907": "Como",
     "Eintracht Frankfurt": "Ein Frankfurt", "FC Bayern München": "Bayern Munich",
     "FC Internazionale Milano": "Inter", "Feyenoord Rotterdam": "Feyenoord",
-    "FK Bodø/Glimt": "Bodo/Glimt", "Lille OSC": "Lille",
+    "FK Bodø/Glimt": None, "Lille OSC": "Lille",
     "Manchester City FC": "Man City", "Manchester United FC": "Man United",
     "PSV": "PSV Eindhoven", "Paris Saint-Germain FC": "Paris SG",
     "Real Betis Balompié": "Betis", "Real Sociedad de Fútbol": "Sociedad",
@@ -241,6 +241,7 @@ FDO_TEAM_ALIASES = {
 # вариантов фида FB_DATA в экспортёте; на канонические имена не влияет).
 BSD_TO_FDO = {
     "AC Sparta Praha": "AC Sparta Praha", "BSC Young Boys": "BSC Young Boys",
+    "Bodø/Glimt": "FK Bodø/Glimt",
     "FC København": "FC København", "FK Crvena zvezda": "FK Crvena Zvezda",
     "GNK Dinamo Zagreb": "GNK Dinamo Zagreb", "Kairat Almaty": "FK Kairat",
     "LASK": "LASK Linz", "Pafos FC": "Paphos FC", "Qarabağ FK": "Qarabağ Ağdam FK",
