@@ -368,6 +368,16 @@ API-консенсус не является внутренней моделью
 
 **Эксперимент с градиентным бустингом (3 ноября 2026 г., отрицательный результат).** Скрипт `scripts/models/experiment-goals-gb.py` проверяет HistGradientBoostingRegressor (loss=poisson) на том же наборе признаков, сплите и мёртвой зоне: сетка из четырёх конфигураций, выбор на validation. Все конфигурации проигрывают линейной Poisson-регрессии (лучшая комбинированная deviance 2,2539 против 2,2488 у baseline; validation 1X2 logLoss 1,0079 против 1,0065). По протоколу мёртвой зоны бустинг отклонён, бэктест против коэффициентов для него не запускался, продакшен-модель не менялась. Вывод: на текущих признаках нелинейности не дают выигрыша — узкое место модели в данных (составы, травмы, xG), а не в алгоритме. Отчёт: `data/goals_markets_gb_experiment.json`.
 
+### 7.11. Еврокубковый этап — Лига чемпионов (с 3 ноября 2026 г.)
+
+**Назначение.** Отдельная модель для матчей ЛЧ: чемпионатные признаки не переносятся напрямую, потому что Elo изолирован по странам, а контекст лиги у еврокубков отсутствует. Решение владельца от 3 ноября 2026 г.: начать с ЛЧ; TheStatsAPI (триал 7 дней, затем возможная месячная подписка) — отложено до возвращения клубных турниров и рассматривается отдельно.
+
+**Данные.** football-data.org API v4 (сборщик `scripts/models/download-fdo-cl.py`, токен только в env `FDO_TOKEN` / GitHub Actions Secrets; сырые JSON не коммитятся, как и CSV). Free-тариф отдаёт ЛЧ за сезоны 2023–2026 (557 завершённых матчей на момент сборки); более старые сезоны недоступны (403). Котировок у источника нет — ROI-бэктест для ЛЧ невозможен, качество оценивается out-of-sample logLoss/Brier против базового среднего ЛЧ.
+
+**Пайплайн.** `scripts/models/build-euro-dataset.py` строит датасет: для каждой команды ЛЧ домашние признаки — состояние на день последнего матча чемпионата строго до даты матча ЛЧ (без утечки), команды стран вне наших 24 лиг получают только euro-признаки с индикаторами пропуска (ничего не выдумывается). Кросс-страновая сравнимость — через отдельный euro Elo (ведётся только по матчам ЛЧ, старт 1500, K=24 с множителем разницы голов, регрессия 25% к среднему между сезонами) и затухающие euro-рейтинги голов (полураспад 75 дней). `scripts/models/train-euro-cl.py` обучает Poisson-регрессию: сплит по сезонам (train 2023+2024, validation 2025, test — завершённые матчи 2026), alpha и развёртывание Dixon–Coles по тем же правилам мёртвой зоны. Отчёт: `data/euro_cl_model_validation.json`.
+
+**Результат валидации.** Модель уверенно лучше базового среднего ЛЧ: validation logLoss 0,932 против 1,024 (Brier 0,552 против 0,617), test logLoss 0,894 против 0,964 (Brier 0,518 против 0,576). Предостережения: выборка тонкая (557 матчей, test ~50 матчей — метрики шумные), Dixon–Coles выбрал ρ=+0,10 (верх границы сетки, отличается от чемпионатного −0,055 — следствие малой выборки). Публикация на страницах сайта — только после отдельного решения владельца: вероятности снабжаются пометкой о тонкой выборке, обещания преимущества над рынком быть не может (коэффициентов для проверки нет).
+
 ## 8. Архив результатов без CSV
 
 Скрипт `scripts/models/archive-provider-results.mjs` сохраняет завершённые результаты в JSONL:
@@ -564,6 +574,7 @@ node --test tests/express-model.test.cjs
 node --check scripts/models/archive-provider-results.mjs
 python3 tests/test_build_historical_dataset.py
 python3 -m unittest tests.test_backtest_closing_odds
+python3 -m unittest tests.test_euro_cl
 ```
 
 Проверка отсутствия CSV:
@@ -619,6 +630,7 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │   ├── goals_markets_model_validation.json
 │   ├── goals_markets_backtest.json
 │   ├── goals_markets_gb_experiment.json
+│   ├── euro_cl_model_validation.json
 │   ├── stats_markets_models.json
 │   ├── stats_markets_model_validation.json
 │   ├── historical_dataset_report.json
@@ -637,6 +649,9 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │       ├── train-stats-markets.py
 │       ├── backtest-closing-odds.py
 │       ├── experiment-goals-gb.py
+│       ├── download-fdo-cl.py
+│       ├── build-euro-dataset.py
+│       ├── train-euro-cl.py
 │       ├── export-corners-cards-runtime.py
 │       ├── export-goals-runtime.py
 │       ├── export-stats-runtime.py
@@ -650,7 +665,8 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │   ├── stats-internal-model.test.cjs
 │   ├── express-model.test.cjs
 │   ├── test_build_historical_dataset.py
-│   └── test_backtest_closing_odds.py
+│   ├── test_backtest_closing_odds.py
+│   └── test_euro_cl.py
 └── .github/
     └── workflows/
         ├── deploy-pages.yml
