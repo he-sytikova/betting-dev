@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T18:44:52.042793+00:00",
+  "generatedAt": "2026-11-03T19:28:19.022082+00:00",
   "dataset": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
   "splitPolicy": {
     "train_end": "2022-06-30",
@@ -47,32 +47,32 @@
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.109377083751747
+          "validationPoissonDeviance": 1.109377083530901
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.1107869298651818
+          "validationPoissonDeviance": 1.1107869298602298
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.1098586113742552
+          "validationPoissonDeviance": 1.1098586086445164
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.1114980567660104
+          "validationPoissonDeviance": 1.1114980567663373
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.1121355032578488
+          "validationPoissonDeviance": 1.1121355032579772
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.1114361847594096
+          "validationPoissonDeviance": 1.1114361847593437
         },
         {
           "alpha": 0.5,
@@ -87,7 +87,7 @@
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.1161465715933512
+          "validationPoissonDeviance": 1.116146571593271
         },
         {
           "alpha": 1.5,
@@ -97,7 +97,7 @@
         {
           "alpha": 1.5,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.1249710998836384
+          "validationPoissonDeviance": 1.1249710998836386
         },
         {
           "alpha": 1.5,
@@ -105,8 +105,8 @@
           "validationPoissonDeviance": 1.1248157583042018
         }
       ],
-      "validationMae": 0.9567534506916262,
-      "testMae": 0.9532832954061066
+      "validationMae": 0.9567534512506521,
+      "testMae": 0.9532832958696975
     },
     "awayGoals": {
       "target": "target_away_goals",
@@ -115,32 +115,32 @@
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.1394433416932483
+          "validationPoissonDeviance": 1.13944334169277
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.1380752195933896
+          "validationPoissonDeviance": 1.1380752197116404
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.1379143481623966
+          "validationPoissonDeviance": 1.1379143481419707
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.141801386346431
+          "validationPoissonDeviance": 1.1418013863475798
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.1404586829452261
+          "validationPoissonDeviance": 1.140458682945467
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.1402594095977698
+          "validationPoissonDeviance": 1.140259409607987
         },
         {
           "alpha": 0.5,
@@ -150,12 +150,12 @@
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.144736124948481
+          "validationPoissonDeviance": 1.1447361249483632
         },
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.1447097082634266
+          "validationPoissonDeviance": 1.1447097082655608
         },
         {
           "alpha": 1.5,
@@ -173,8 +173,8 @@
           "validationPoissonDeviance": 1.1519302227545625
         }
       ],
-      "validationMae": 0.8510877795901196,
-      "testMae": 0.8517737814201796
+      "validationMae": 0.8510877795877609,
+      "testMae": 0.85177378142863
     }
   },
   "notes": [
@@ -226,62 +226,62 @@
     "candidates": {
       "base": {
         "addedFeatures": [],
-        "combinedValidationPoissonDeviance": 2.304535043156308,
+        "combinedValidationPoissonDeviance": 2.3045350431907514,
         "targets": {
           "homeGoals": {
             "regularizationAlpha": 0.03,
             "recencyHalfLifeDays": null,
-            "validationPoissonDeviance": 1.1424454401118718,
+            "validationPoissonDeviance": 1.1424454401212936,
             "tuning": [
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1424454401118718
+                "validationPoissonDeviance": 1.1424454401212936
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1434439478344138
+                "validationPoissonDeviance": 1.1434439478119836
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.142667990075659
+                "validationPoissonDeviance": 1.142667987353722
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.144105664075144
+                "validationPoissonDeviance": 1.1441056640751401
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1446310817813388
+                "validationPoissonDeviance": 1.1446310817808028
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1439818620133761
+                "validationPoissonDeviance": 1.143981862013375
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.146657307772494
+                "validationPoissonDeviance": 1.146657307772421
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1468498484386784
+                "validationPoissonDeviance": 1.1468498484420004
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1462946986674798
+                "validationPoissonDeviance": 1.1462946986674796
               },
               {
                 "alpha": 1.5,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1526989910988827
+                "validationPoissonDeviance": 1.1526989910988836
               },
               {
                 "alpha": 1.5,
@@ -298,42 +298,42 @@
           "awayGoals": {
             "regularizationAlpha": 0.03,
             "recencyHalfLifeDays": 1100,
-            "validationPoissonDeviance": 1.162089603044436,
+            "validationPoissonDeviance": 1.1620896030694579,
             "tuning": [
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1639661446223346
+                "validationPoissonDeviance": 1.1639661446276273
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1620968445721052
+                "validationPoissonDeviance": 1.1620968445673994
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.162089603044436
+                "validationPoissonDeviance": 1.1620896030694579
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.165042469089516
+                "validationPoissonDeviance": 1.1650424690895154
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.163126991602881
+                "validationPoissonDeviance": 1.1631269916028486
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1631812049108168
+                "validationPoissonDeviance": 1.1631812049101968
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1671866530955637
+                "validationPoissonDeviance": 1.1671866530955635
               },
               {
                 "alpha": 0.5,
@@ -358,7 +358,7 @@
               {
                 "alpha": 1.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1694369945110799
+                "validationPoissonDeviance": 1.1694369945112157
               }
             ]
           }
@@ -369,42 +369,42 @@
           "home_elo",
           "away_elo"
         ],
-        "combinedValidationPoissonDeviance": 2.252301512868166,
+        "combinedValidationPoissonDeviance": 2.252301512877452,
         "targets": {
           "homeGoals": {
             "regularizationAlpha": 0.03,
             "recencyHalfLifeDays": null,
-            "validationPoissonDeviance": 1.113376637100351,
+            "validationPoissonDeviance": 1.113376637103813,
             "tuning": [
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.113376637100351
+                "validationPoissonDeviance": 1.113376637103813
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.114300945431523
+                "validationPoissonDeviance": 1.1143009624802813
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1135520960958776
+                "validationPoissonDeviance": 1.1135520918756268
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1164601925829836
+                "validationPoissonDeviance": 1.1164601925829831
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1165982623555448
+                "validationPoissonDeviance": 1.1165982624106996
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1159778707631642
+                "validationPoissonDeviance": 1.1159778707623762
               },
               {
                 "alpha": 0.5,
@@ -414,12 +414,12 @@
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1231171863163874
+                "validationPoissonDeviance": 1.1231171863163871
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.122664809626759
+                "validationPoissonDeviance": 1.1226648096267593
               },
               {
                 "alpha": 1.5,
@@ -434,64 +434,64 @@
               {
                 "alpha": 1.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1339424555684197
+                "validationPoissonDeviance": 1.1339424555727877
               }
             ]
           },
           "awayGoals": {
             "regularizationAlpha": 0.03,
             "recencyHalfLifeDays": 1100,
-            "validationPoissonDeviance": 1.1389248757678145,
+            "validationPoissonDeviance": 1.1389248757736392,
             "tuning": [
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1406393484543491
+                "validationPoissonDeviance": 1.1406393484546498
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1392327048736453
+                "validationPoissonDeviance": 1.139232704874583
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1389248757678145
+                "validationPoissonDeviance": 1.1389248757736392
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1439434334975116
+                "validationPoissonDeviance": 1.1439434334975107
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1423588917383345
+                "validationPoissonDeviance": 1.1423588917358585
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1420483459557542
+                "validationPoissonDeviance": 1.142048345956138
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.151004377450222
+                "validationPoissonDeviance": 1.1510043774502223
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1483060411578583
+                "validationPoissonDeviance": 1.1483060411579675
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.148311995903168
+                "validationPoissonDeviance": 1.1483119959031676
               },
               {
                 "alpha": 1.5,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1620762953448336
+                "validationPoissonDeviance": 1.1620762953438308
               },
               {
                 "alpha": 1.5,
@@ -501,7 +501,7 @@
               {
                 "alpha": 1.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.157834417930595
+                "validationPoissonDeviance": 1.157834417930179
               }
             ]
           }
@@ -514,47 +514,47 @@
           "away_att_decay",
           "away_def_decay"
         ],
-        "combinedValidationPoissonDeviance": 2.2692898163180617,
+        "combinedValidationPoissonDeviance": 2.269289816462167,
         "targets": {
           "homeGoals": {
             "regularizationAlpha": 0.03,
             "recencyHalfLifeDays": null,
-            "validationPoissonDeviance": 1.1202041170986181,
+            "validationPoissonDeviance": 1.1202041172430635,
             "tuning": [
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1202041170986181
+                "validationPoissonDeviance": 1.1202041172430635
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1217458035791734
+                "validationPoissonDeviance": 1.1217458035611543
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1207798379351719
+                "validationPoissonDeviance": 1.1207798386591046
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1219315386214663
+                "validationPoissonDeviance": 1.121931538621307
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1224909582839435
+                "validationPoissonDeviance": 1.1224909582828575
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1218250193633268
+                "validationPoissonDeviance": 1.121825019363327
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.126798213584491
+                "validationPoissonDeviance": 1.1267982135766543
               },
               {
                 "alpha": 0.5,
@@ -564,12 +564,12 @@
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1256933417713229
+                "validationPoissonDeviance": 1.1256933417713226
               },
               {
                 "alpha": 1.5,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1354730846428376
+                "validationPoissonDeviance": 1.1354730846430947
               },
               {
                 "alpha": 1.5,
@@ -586,7 +586,7 @@
           "awayGoals": {
             "regularizationAlpha": 0.03,
             "recencyHalfLifeDays": 1100,
-            "validationPoissonDeviance": 1.1490856992194438,
+            "validationPoissonDeviance": 1.1490856992191032,
             "tuning": [
               {
                 "alpha": 0.03,
@@ -596,17 +596,17 @@
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1491978361732802
+                "validationPoissonDeviance": 1.149197836219347
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1490856992194438
+                "validationPoissonDeviance": 1.1490856992191032
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1513544664826583
+                "validationPoissonDeviance": 1.1513544664887247
               },
               {
                 "alpha": 0.15,
@@ -616,12 +616,12 @@
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1500110068099267
+                "validationPoissonDeviance": 1.150011006809814
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.154855539116463
+                "validationPoissonDeviance": 1.1548555391164628
               },
               {
                 "alpha": 0.5,
@@ -661,42 +661,42 @@
           "away_att_decay",
           "away_def_decay"
         ],
-        "combinedValidationPoissonDeviance": 2.2472914319141433,
+        "combinedValidationPoissonDeviance": 2.2472914316728714,
         "targets": {
           "homeGoals": {
             "regularizationAlpha": 0.03,
             "recencyHalfLifeDays": null,
-            "validationPoissonDeviance": 1.109377083751747,
+            "validationPoissonDeviance": 1.109377083530901,
             "tuning": [
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.109377083751747
+                "validationPoissonDeviance": 1.109377083530901
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1107869298651818
+                "validationPoissonDeviance": 1.1107869298602298
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1098586113742552
+                "validationPoissonDeviance": 1.1098586086445164
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1114980567660104
+                "validationPoissonDeviance": 1.1114980567663373
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1121355032578488
+                "validationPoissonDeviance": 1.1121355032579772
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1114361847594096
+                "validationPoissonDeviance": 1.1114361847593437
               },
               {
                 "alpha": 0.5,
@@ -711,7 +711,7 @@
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1161465715933512
+                "validationPoissonDeviance": 1.116146571593271
               },
               {
                 "alpha": 1.5,
@@ -721,7 +721,7 @@
               {
                 "alpha": 1.5,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1249710998836384
+                "validationPoissonDeviance": 1.1249710998836386
               },
               {
                 "alpha": 1.5,
@@ -733,37 +733,37 @@
           "awayGoals": {
             "regularizationAlpha": 0.03,
             "recencyHalfLifeDays": 1100,
-            "validationPoissonDeviance": 1.1379143481623966,
+            "validationPoissonDeviance": 1.1379143481419707,
             "tuning": [
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.1394433416932483
+                "validationPoissonDeviance": 1.13944334169277
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1380752195933896
+                "validationPoissonDeviance": 1.1380752197116404
               },
               {
                 "alpha": 0.03,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1379143481623966
+                "validationPoissonDeviance": 1.1379143481419707
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": null,
-                "validationPoissonDeviance": 1.141801386346431
+                "validationPoissonDeviance": 1.1418013863475798
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.1404586829452261
+                "validationPoissonDeviance": 1.140458682945467
               },
               {
                 "alpha": 0.15,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1402594095977698
+                "validationPoissonDeviance": 1.140259409607987
               },
               {
                 "alpha": 0.5,
@@ -773,12 +773,12 @@
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 550,
-                "validationPoissonDeviance": 1.144736124948481
+                "validationPoissonDeviance": 1.1447361249483632
               },
               {
                 "alpha": 0.5,
                 "recencyHalfLifeDays": 1100,
-                "validationPoissonDeviance": 1.1447097082634266
+                "validationPoissonDeviance": 1.1447097082655608
               },
               {
                 "alpha": 1.5,
@@ -808,65 +808,65 @@
       "step": 0.005
     },
     "selectedRho": -0.05,
-    "trainAdjustedLogLikelihood": 137.72952820049818,
+    "trainAdjustedLogLikelihood": 137.7295277561251,
     "deploymentRule": "deploy only if validation 1X2 logLoss improves by more than 0.0005 over the independent-Poisson matrix",
-    "validation1x2LogLossRaw": 1.0071899314556385,
-    "validation1x2LogLossDc": 1.0064940075981694,
+    "validation1x2LogLossRaw": 1.0071899315093595,
+    "validation1x2LogLossDc": 1.0064940076359947,
     "deployed": true,
     "deployedRho": -0.05,
-    "test1x2LogLossRaw": 1.011306571813935,
-    "test1x2LogLossDc": 1.0104517840457694
+    "test1x2LogLossRaw": 1.0113065718850691,
+    "test1x2LogLossDc": 1.010451784100937
   },
   "markets": {
     "validation": {
       "n": 17090,
-      "homeMae": 0.9567534506916262,
-      "awayMae": 0.8510877795901196,
+      "homeMae": 0.9567534512506521,
+      "awayMae": 0.8510877795877609,
       "model": {
-        "1x2LogLoss": 1.0064940075981694,
-        "1x2Brier": 0.6018157976398503,
+        "1x2LogLoss": 1.0064940076359947,
+        "1x2Brier": 0.601815797672296,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.5490346282793773,
-            "brier": 0.1823778246598007
+            "logLoss": 0.5490346282422573,
+            "brier": 0.18237782464681068
           },
           "total_2.5": {
-            "logLoss": 0.6785383773811646,
-            "brier": 0.2427498800846572
+            "logLoss": 0.6785383772344323,
+            "brier": 0.24274988001455042
           },
           "total_3.5": {
-            "logLoss": 0.5884464531833126,
-            "brier": 0.200270724289999
+            "logLoss": 0.5884464531116681,
+            "brier": 0.2002707242565778
           },
           "total_4.5": {
-            "logLoss": 0.40038248102298335,
-            "brier": 0.12013810992663303
+            "logLoss": 0.40038248094668,
+            "brier": 0.12013810989846722
           }
         },
         "teamTotals": {
           "home_0.5": {
-            "logLoss": 0.5153275514824065,
-            "brier": 0.16904326841968864
+            "logLoss": 0.515327551423768,
+            "brier": 0.16904326839675016
           },
           "home_1.5": {
-            "logLoss": 0.6491100126894326,
-            "brier": 0.22873555111276864
+            "logLoss": 0.6491100126049334,
+            "brier": 0.228735551077539
           },
           "home_2.5": {
-            "logLoss": 0.4615978730917816,
-            "brier": 0.14644545535056272
+            "logLoss": 0.46159787308177586,
+            "brier": 0.1464454553513747
           },
           "away_0.5": {
-            "logLoss": 0.6025208737831053,
-            "brier": 0.2072938417560645
+            "logLoss": 0.6025208737802005,
+            "brier": 0.2072938417550065
           },
           "away_1.5": {
-            "logLoss": 0.6084707986662798,
-            "brier": 0.20977698594759153
+            "logLoss": 0.6084707986582085,
+            "brier": 0.20977698594457028
           },
           "away_2.5": {
-            "logLoss": 0.35903478547096446,
-            "brier": 0.10582515347207046
+            "logLoss": 0.3590347854643465,
+            "brier": 0.10582515347006058
           }
         }
       },
@@ -875,12 +875,12 @@
         "1x2Brier": 0.6480895627757817,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.5552598444955248,
+            "logLoss": 0.5552598444955247,
             "brier": 0.1846356245920189
           },
           "total_2.5": {
             "logLoss": 0.6881147481333744,
-            "brier": 0.24748453874434345
+            "brier": 0.2474845387443434
           },
           "total_3.5": {
             "logLoss": 0.5977524481165175,
@@ -921,58 +921,58 @@
     },
     "test": {
       "n": 19320,
-      "homeMae": 0.9532832954061066,
-      "awayMae": 0.8517737814201796,
+      "homeMae": 0.9532832958696975,
+      "awayMae": 0.85177378142863,
       "model": {
-        "1x2LogLoss": 1.0104517840457694,
-        "1x2Brier": 0.6046848127735978,
+        "1x2LogLoss": 1.010451784100937,
+        "1x2Brier": 0.6046848128095664,
         "totals": {
           "total_1.5": {
-            "logLoss": 0.5435561317012281,
-            "brier": 0.17984240173692714
+            "logLoss": 0.5435561315826851,
+            "brier": 0.17984240169748228
           },
           "total_2.5": {
-            "logLoss": 0.6819808690346006,
-            "brier": 0.24452381831818834
+            "logLoss": 0.6819808688775679,
+            "brier": 0.24452381824340685
           },
           "total_3.5": {
-            "logLoss": 0.5970135226671076,
-            "brier": 0.20392411643289476
+            "logLoss": 0.5970135225382442,
+            "brier": 0.20392411637368568
           },
           "total_4.5": {
-            "logLoss": 0.40195340662128165,
-            "brier": 0.12049356331361913
+            "logLoss": 0.40195340652910977,
+            "brier": 0.12049356328183669
           }
         },
         "teamTotals": {
           "home_0.5": {
-            "logLoss": 0.5075966993755463,
-            "brier": 0.1656141022344835
+            "logLoss": 0.5075966992760343,
+            "brier": 0.1656141021957811
           },
           "home_1.5": {
-            "logLoss": 0.6533002720997522,
-            "brier": 0.23076340645758187
+            "logLoss": 0.653300271947118,
+            "brier": 0.23076340639167264
           },
           "home_2.5": {
-            "logLoss": 0.4675300535218704,
-            "brier": 0.14876769854370883
+            "logLoss": 0.46753005346749876,
+            "brier": 0.1487676985149633
           },
           "away_0.5": {
-            "logLoss": 0.5938989741542609,
-            "brier": 0.20337381708514546
+            "logLoss": 0.5938989741484958,
+            "brier": 0.20337381708239172
           },
           "away_1.5": {
-            "logLoss": 0.6193712808999519,
-            "brier": 0.21463764383867842
+            "logLoss": 0.6193712809036421,
+            "brier": 0.2146376438403746
           },
           "away_2.5": {
-            "logLoss": 0.36027537322767506,
-            "brier": 0.10609940133370008
+            "logLoss": 0.3602753732324375,
+            "brier": 0.10609940133492325
           }
         }
       },
       "baseline": {
-        "1x2LogLoss": 1.073584445911146,
+        "1x2LogLoss": 1.0735844459111463,
         "1x2Brier": 0.6495002880700224,
         "totals": {
           "total_1.5": {
@@ -1052,12 +1052,12 @@
       3.5,
       4.5
     ],
-    "crossFitGain": -0.0077828528948587355,
-    "crossFitRawLateMeanLogLoss": 0.5581468503384059,
-    "crossFitCalibratedLateMeanLogLoss": 0.5659297032332646,
+    "crossFitGain": -0.007782852403260973,
+    "crossFitRawLateMeanLogLoss": 0.5581468502051274,
+    "crossFitCalibratedLateMeanLogLoss": 0.5659297026083885,
     "deployed": false,
     "calibrators": {},
-    "testMeanLogLossRaw": 0.5561720451618424,
-    "testMeanLogLossCalibrated": 0.5569158658422829
+    "testMeanLogLossRaw": 0.556172045030367,
+    "testMeanLogLossCalibrated": 0.556915866649508
   }
 }
