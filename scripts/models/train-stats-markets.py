@@ -8,7 +8,7 @@ evaluates a negative-binomial (NB2) refit of the tuned pipeline and isotonic
 line calibration fitted on validation only; both deployment decisions are made
 on validation metrics and merely reported on test.
 """
-import argparse, json, math
+import argparse, importlib.util, json, math
 from datetime import datetime, timezone
 from pathlib import Path
 import numpy as np
@@ -21,6 +21,12 @@ from sklearn.linear_model import PoissonRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 import statsmodels.api as sm
+
+_spec = importlib.util.spec_from_file_location(
+    "recency", Path(__file__).with_name("recency.py"))
+recency = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(recency)
+HALF_LIFE_GRID = recency.HALF_LIFE_GRID
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_INPUT = ROOT / "data/corners_cards_training.csv"
@@ -183,29 +189,48 @@ def main():
         numeric = feature_columns(df.columns, market)
         y_train, y_valid, y_test = (part[target].to_numpy(float) for part in (train, valid, test))
 
-        # Tune regularization and the referee-feature ablation on validation only.
+        # Tune regularization, the referee-feature ablation and recency weighting
+        # (sample weights halving every half-life days) on validation only.
         referee_features = {"referee_available", "referee_matches_before", "referee_yellows_avg10", "referee_fouls_avg10"}
         candidate_sets = {
             "full": numeric,
             "without_referee": [c for c in numeric if c not in referee_features],
         }
+        if "referee_red_cards_avg10" in df.columns and "referee_red_cards_avg10" not in numeric:
+            candidate_sets["full_plus_referee_red"] = numeric + ["referee_red_cards_avg10"]
         tuning = []
-        best = None
+        deadband = 0.0005
+        best, best_unweighted = None, None
         for feature_set, candidate_features in candidate_sets.items():
             for regularization in (0.03, 0.15, 0.5, 1.5):
-                candidate = make_pipeline(candidate_features, alpha=regularization)
-                candidate.fit(train[candidate_features + ["league"]], y_train)
-                candidate_prediction = np.clip(candidate.predict(valid[candidate_features + ["league"]]), 0.01, None)
-                candidate_metrics = score(y_valid, candidate_prediction, lines)
-                item = {"featureSet": feature_set, "alpha": regularization,
-                        "validationMae": candidate_metrics["mae"],
-                        "validationPoissonDeviance": candidate_metrics["poissonDeviance"],
-                        "validationMeanBrier": float(np.mean([x["brier"] for x in candidate_metrics["lines"]])),
-                        "validationMeanLogLoss": float(np.mean([x["logLoss"] for x in candidate_metrics["lines"]]))}
-                tuning.append(item)
-                if best is None or item["validationPoissonDeviance"] < best["validationPoissonDeviance"]:
-                    best = {**item, "model": candidate, "features": candidate_features}
+                for half_life in HALF_LIFE_GRID:
+                    w = recency.recency_weights(train["date"], half_life, reference=v0)
+                    candidate = make_pipeline(candidate_features, alpha=regularization)
+                    candidate.fit(train[candidate_features + ["league"]], y_train,
+                                  model__sample_weight=w)
+                    candidate_prediction = np.clip(candidate.predict(valid[candidate_features + ["league"]]), 0.01, None)
+                    candidate_metrics = score(y_valid, candidate_prediction, lines)
+                    item = {"featureSet": feature_set, "alpha": regularization,
+                            "recencyHalfLifeDays": half_life,
+                            "validationMae": candidate_metrics["mae"],
+                            "validationPoissonDeviance": candidate_metrics["poissonDeviance"],
+                            "validationMeanBrier": float(np.mean([x["brier"] for x in candidate_metrics["lines"]])),
+                            "validationMeanLogLoss": float(np.mean([x["logLoss"] for x in candidate_metrics["lines"]]))}
+                    tuning.append(item)
+                    if best is None or item["validationPoissonDeviance"] < best["validationPoissonDeviance"]:
+                        best = {**item, "model": candidate, "features": candidate_features}
+                    if half_life is None and (best_unweighted is None
+                                              or item["validationPoissonDeviance"] < best_unweighted["validationPoissonDeviance"]):
+                        best_unweighted = {**item, "model": candidate, "features": candidate_features}
+        # Recency weighting ships only when it beats the best unweighted fit by
+        # more than the deadband; otherwise the uniform fit is kept.
+        if best["recencyHalfLifeDays"] is not None and not (
+                best["validationPoissonDeviance"]
+                < best_unweighted["validationPoissonDeviance"] - deadband):
+            best = best_unweighted
         tuned_model = best["model"]
+        train_weights = recency.recency_weights(train["date"], best["recencyHalfLifeDays"],
+                                                reference=v0)
         tuned_valid = np.clip(tuned_model.predict(valid[best["features"] + ["league"]]), 0.01, None)
         tuned_test = np.clip(tuned_model.predict(test[best["features"] + ["league"]]), 0.01, None)
         # NB2 refit of the tuned pipeline: estimate dispersion on train residuals,
@@ -216,7 +241,8 @@ def main():
         z_valid = sm.add_constant(np.asarray(prep.transform(valid[best["features"] + ["league"]])), has_constant="add")
         z_test = sm.add_constant(np.asarray(prep.transform(test[best["features"] + ["league"]])), has_constant="add")
         nb_alpha = estimate_alpha(y_train, np.clip(tuned_model.predict(x_train), 0.01, None))
-        nb = sm.GLM(y_train, z_train, family=sm.families.NegativeBinomial(alpha=nb_alpha)).fit(maxiter=15)
+        nb = sm.GLM(y_train, z_train, family=sm.families.NegativeBinomial(alpha=nb_alpha),
+                    freq_weights=train_weights).fit(maxiter=15)
         nb_valid = np.clip(nb.predict(z_valid), 0.01, None)
         nb_test = np.clip(nb.predict(z_test), 0.01, None)
         poisson_valid_scored = score(y_valid, tuned_valid, lines)
@@ -296,6 +322,14 @@ def main():
             },
             "poissonTuning": {
                 "selectionMetric": "validation Poisson deviance (lower is better)",
+                "recency": {
+                    "rule": "exponential recency weighting (mean-1 sample weights halving every "
+                            "half-life days, age measured from the validation start) is tuned jointly "
+                            "with alpha/feature sets and ships only when the best weighted fit beats "
+                            "the best unweighted fit by more than the deadband",
+                    "gridDays": [hl for hl in HALF_LIFE_GRID],
+                    "selectedHalfLifeDays": best["recencyHalfLifeDays"],
+                },
                 "candidates": tuning,
                 "selected": {k: v for k, v in best.items() if k != "model" and k != "features"},
                 "selectedValidation": score(y_valid, tuned_valid, lines),
