@@ -6,7 +6,7 @@ leakage-safe pre-match features. All requested markets (1X2, double chance,
 total goals, individual team totals) are derived from the scoreline probability
 matrix and validated against a league rolling-mean baseline.
 """
-import argparse, json, math
+import argparse, importlib.util, json, math
 from datetime import datetime, timezone
 from pathlib import Path
 import numpy as np
@@ -18,6 +18,12 @@ from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import PoissonRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+_spec = importlib.util.spec_from_file_location(
+    "recency", Path(__file__).with_name("recency.py"))
+recency = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(recency)
+HALF_LIFE_GRID = recency.HALF_LIFE_GRID
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_INPUT = ROOT / "data/corners_cards_training.csv"
@@ -278,16 +284,32 @@ def main():
         for target, key in (("target_home_goals", "homeGoals"), ("target_away_goals", "awayGoals")):
             y_train = train[target].to_numpy(float)
             y_valid = valid[target].to_numpy(float)
-            best, tuning = None, []
+            best, best_unweighted, tuning = None, None, []
             for alpha in ALPHAS:
-                reg = PoissonRegressor(alpha=alpha, max_iter=500, tol=1e-7).fit(z_train, y_train)
-                pred = np.clip(reg.predict(z_valid), 0.01, None)
-                dev = float(2 * np.mean(np.where(y_valid > 0,
-                    y_valid * np.log(np.maximum(y_valid, 1e-12) / pred) - (y_valid - pred), pred)))
-                tuning.append({"alpha": alpha, "validationPoissonDeviance": dev})
-                if best is None or dev < best["validationPoissonDeviance"]:
-                    best = {"alpha": alpha, "validationPoissonDeviance": dev, "reg": reg}
+                for half_life in HALF_LIFE_GRID:
+                    w = recency.recency_weights(train["date"], half_life, reference=v0)
+                    reg = PoissonRegressor(alpha=alpha, max_iter=500, tol=1e-7).fit(
+                        z_train, y_train, sample_weight=w)
+                    pred = np.clip(reg.predict(z_valid), 0.01, None)
+                    dev = float(2 * np.mean(np.where(y_valid > 0,
+                        y_valid * np.log(np.maximum(y_valid, 1e-12) / pred) - (y_valid - pred), pred)))
+                    tuning.append({"alpha": alpha, "recencyHalfLifeDays": half_life,
+                                   "validationPoissonDeviance": dev})
+                    item = {"alpha": alpha, "recencyHalfLifeDays": half_life,
+                            "validationPoissonDeviance": dev, "reg": reg}
+                    if best is None or dev < best["validationPoissonDeviance"]:
+                        best = item
+                    if half_life is None and (best_unweighted is None
+                                              or dev < best_unweighted["validationPoissonDeviance"]):
+                        best_unweighted = item
+            # Recency weighting ships only when it beats the best unweighted fit
+            # by more than the deadband; otherwise the uniform fit is kept.
+            if best["recencyHalfLifeDays"] is not None and not (
+                    best["validationPoissonDeviance"]
+                    < best_unweighted["validationPoissonDeviance"] - DEADBAND):
+                best = best_unweighted
             per_target[key] = {"target": target, "regularizationAlpha": best["alpha"],
+                               "recencyHalfLifeDays": best["recencyHalfLifeDays"],
                                "tuning": tuning, "validationPoissonDeviance": best["validationPoissonDeviance"],
                                "reg": best["reg"]}
             combined += best["validationPoissonDeviance"]
@@ -297,6 +319,7 @@ def main():
             "addedFeatures": list(extra),
             "combinedValidationPoissonDeviance": combined,
             "targets": {key: {"regularizationAlpha": t["regularizationAlpha"],
+                              "recencyHalfLifeDays": t["recencyHalfLifeDays"],
                               "validationPoissonDeviance": t["validationPoissonDeviance"],
                               "tuning": t["tuning"]} for key, t in per_target.items()},
         }
@@ -327,7 +350,8 @@ def main():
             "validationMae": float(np.mean(np.abs(y_valid - p_valid))),
             "testMae": float(np.mean(np.abs(test[info["target"]].to_numpy(float) - p_test))),
         }
-        selection[key] = {"alpha": info["regularizationAlpha"], "reg": info["reg"]}
+        selection[key] = {"alpha": info["regularizationAlpha"],
+                          "recencyHalfLifeDays": info["recencyHalfLifeDays"], "reg": info["reg"]}
 
     def predict_part(part, key):
         z = prep.transform(part[numeric + ["league"]])
@@ -374,7 +398,16 @@ def main():
         p_away = p_away_valid if name == "validation" else p_away_test
         report.setdefault("markets", {})[name] = evaluate(part, p_home, p_away, base_home, base_away,
                                                           rho=deployed_rho)
-    report["selected"] = {k: {"alpha": v["alpha"]} for k, v in selection.items()}
+    report["selected"] = {k: {"alpha": v["alpha"], "recencyHalfLifeDays": v["recencyHalfLifeDays"]}
+                          for k, v in selection.items()}
+    report["recency"] = {
+        "rule": "exponential recency weighting (sample weights halving every half-life days, "
+                "normalized to mean 1, age measured from the validation start) is tuned jointly "
+                "with alpha on validation and ships only when the best weighted fit beats the "
+                "best unweighted fit by more than the deadband",
+        "gridDays": [hl for hl in HALF_LIFE_GRID],
+        "selected": {k: v["recencyHalfLifeDays"] for k, v in selection.items()},
+    }
 
     # --- Match-totals line calibration (1X2 and team totals stay matrix-derived) ---
     # Raw over-probabilities use the Poisson-sum identity: home+away goals are
