@@ -14,7 +14,7 @@ on:
       - "scripts/models/export-corners-cards-runtime.py"
       - "scripts/models/export-goals-runtime.py"
       - "scripts/models/export-stats-runtime.py"
-      - "scripts/models/download-fdo-euro.py"
+      - "scripts/models/download-bsd-euro.py"
       - "scripts/models/build-euro-dataset.py"
       - "scripts/models/train-euro-cups.py"
       - "scripts/models/export-euro-runtime.py"
@@ -71,19 +71,19 @@ jobs:
       - name: Export fouls/shots browser runtime model JSON
         run: python scripts/models/export-stats-runtime.py
 
-      - name: Download euro-cup history — CL/EL/ECL (football-data.org)
+      - name: Download euro-cup history — CL/EL/ECL (BSD sports.bzzoiro.com)
         env:
-          FDO_TOKEN: ${{ secrets.FDO_TOKEN }}
-        run: python scripts/models/download-fdo-euro.py --output-dir data/raw-fdo
+          BSD_TOKEN: ${{ secrets.BSD_TOKEN }}
+        run: python scripts/models/download-bsd-euro.py --output-dir data/raw-bsd
 
       - name: Build euro-cup dataset (CL + EL + ECL)
-        run: python scripts/models/build-euro-dataset.py --fdo-dir data/raw-fdo --domestic data/corners_cards_training.csv --output data/euro_cups_training.csv
+        run: python scripts/models/build-euro-dataset.py --bsd-dir data/raw-bsd --domestic data/corners_cards_training.csv --output data/euro_cups_training.csv
 
       - name: Train and validate euro-cup model (split by season)
         run: python scripts/models/train-euro-cups.py
 
       - name: Export euro-cup browser runtime model JSON
-        run: python scripts/models/export-euro-runtime.py --fdo-dir data/raw-fdo
+        run: python scripts/models/export-euro-runtime.py --bsd-dir data/raw-bsd
 
       - uses: actions/setup-node@v4
         with:

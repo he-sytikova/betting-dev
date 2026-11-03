@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-02",
+  "reviewedAt": "2026-11-04",
   "policy": "A source may be used for model training only after its current terms, upstream rights, attribution requirements, storage, and redistribution restrictions have been reviewed and explicitly approved. Keep similarly named providers distinct: FB_DATA is football-data.org; FOOTBALL_DATA_CO_UK is football-data.co.uk.",
   "sources": [
     {
@@ -9,9 +9,9 @@
         "fixtures",
         "predictions"
       ],
-      "trainingUse": "conditional_review",
+      "trainingUse": "permitted_by_owner_decision_with_restrictions",
       "termsUrl": "https://sports.bzzoiro.com/docs/api-license/",
-      "notes": "API Data Usage and License v4.0 (effective 2026-10-01) expressly permits internal storage, historical snapshots, research, backtesting, model development/evaluation and ML training; derived outputs may be distributed if raw data cannot reasonably be reconstructed. However, Bzzoiro states that data is compiled from public and third-party sources, does not warrant that third-party rights are cleared, and places compliance responsibility on the user. Keep conditional until upstream rights and jurisdiction-specific use are reviewed. Current published free-football API limits: 7,500 requests/account/day (reset midnight UTC) and 25 requests/second per client IP (burst 110) on cached read endpoints; 429 responses distinguish daily quota exhaustion from burst throttling and provide Retry-After. Historical audit requests must be paced and must not bypass either limit."
+      "notes": "API Data Usage and License v4.0 (effective 2026-10-01) expressly permits internal storage, historical snapshots, research, backtesting, model development/evaluation and ML training; derived outputs may be distributed if raw data cannot reasonably be reconstructed. However, Bzzoiro states that data is compiled from public and third-party sources, does not warrant that third-party rights are cleared, and places compliance responsibility on the user. Keep conditional until upstream rights and jurisdiction-specific use are reviewed. Current published free-football API limits: 7,500 requests/account/day (reset midnight UTC) and 25 requests/second per client IP (burst 110) on cached read endpoints; 429 responses distinguish daily quota exhaustion from burst throttling and provide Retry-After. Historical audit requests must be paced and must not bypass either limit. Owner approval 2026-11-03: BSD is the source for euro-cup history (CL/EL/ECL) in the internal training pipeline; raw JSON is cached only inside CI runs and the local workspace (never committed), only derived model artifacts are published, and daily/burst rate limits are respected with conservative pacing."
     },
     {
       "id": "SStats",

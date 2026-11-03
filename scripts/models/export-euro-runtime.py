@@ -26,7 +26,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_FDO_DIR = Path("/mnt/agents/work/data-fdo")
+DEFAULT_BSD_DIR = Path("/mnt/agents/work/data-bsd")
 DEFAULT_DOMESTIC = ROOT / "data" / "corners_cards_training.csv"
 DEFAULT_VALIDATION = ROOT / "data" / "euro_cups_model_validation.json"
 DEFAULT_OUTPUT = ROOT / "data" / "euro_cups_model.json"
@@ -64,9 +64,10 @@ COMPETITION_FEED_NAMES = {
             "UEFA Conference League", "Conference League"],
 }
 
-# Варианты написания КОМАНД из провайдеров фида (BSD, Euro365, FB_DATA) -> ключ
-# канонического имени (нормализованное FDO-имя). Ключи уже нормализованы
-# builder.norm_name; JS применяет ту же нормализацию.
+# Варианты написания КОМАНД из провайдеров фида (BSD, Euro365, FB_DATA).
+# Ключи — legacy-имена football-data.org; при экспорте переводятся в
+# канонические через canonical_of_fdo(). Нормализация — builder.norm_name,
+# JS применяет ту же.
 FEED_VARIANTS = {
     "FK Shakhtar Donetsk": ["Shakhtar Donetsk"],
     "Sporting Clube de Portugal": ["Sporting CP", "Sporting Lisbon"],
@@ -172,7 +173,7 @@ FEED_VARIANTS = {
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--fdo-dir", type=Path, default=DEFAULT_FDO_DIR)
+    parser.add_argument("--bsd-dir", type=Path, default=DEFAULT_BSD_DIR)
     parser.add_argument("--domestic", type=Path, default=DEFAULT_DOMESTIC)
     parser.add_argument("--validation", type=Path, default=DEFAULT_VALIDATION)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -194,7 +195,7 @@ def main():
     half_life_away = validation["tuning"]["awayGoals"].get("recencyHalfLifeDays")
     dc_rho = validation["dixonColes"]["deployedRho"]
 
-    matches = builder.load_euro_matches(args.fdo_dir)
+    matches = builder.load_euro_matches(args.bsd_dir)
     series = builder.domestic_state_series(args.domestic)
     rows, states, coverage, avg_goals = builder.process_matches(matches, series)
     df = pd.DataFrame(rows)
@@ -228,36 +229,63 @@ def main():
         models[key] = {"coefficients": coefs, "intercept": float(reg.intercept_)}
 
     # Снимок домашних признаков на дату экспорта = последнее известное состояние.
-    teams = {}
-    for fdo_name, dom_name in builder.FDO_TEAM_ALIASES.items():
-        key = builder.norm_name(fdo_name)
-        entry = {"fdoName": fdo_name, "domesticName": dom_name}
-        st = states.get(fdo_name)
-        if st:
-            entry["euro"] = {k: (round(v, 6) if isinstance(v, float) else v) for k, v in st.items()}
-        if dom_name:
-            dom_series = series.get(builder.norm_name(dom_name), [])
-            if dom_series:
-                last = dom_series[-1][1]
-                entry["domestic"] = {}
-                for k in builder.DOMESTIC_FEATURES:
-                    v = last[k]
-                    entry["domestic"][k] = (round(float(v), 6)
-                                            if v is not None and np.isfinite(float(v)) else None)
-        teams[key] = entry
+    # Ключ команды — нормализованное КАНОНИЧЕСКОЕ имя (домашнее, если чемпионат
+    # покрыт, иначе BSD-имя). Варианты: BSD-имя, legacy FDO-имя, домашнее имя,
+    # варианты фидов.
+    fdo_by_domestic = {v: k for k, v in builder.FDO_TEAM_ALIASES.items() if v}
+    fdo_to_bsd = {v: k for k, v in builder.BSD_TO_FDO.items()}
 
-    aliases = {}
-    for fdo_name in builder.FDO_TEAM_ALIASES:
-        key = builder.norm_name(fdo_name)
-        aliases[key] = key
-        variants = FEED_VARIANTS.get(fdo_name, [])
+    def canonical_of_fdo(fdo_name: str) -> str:
+        dom = builder.FDO_TEAM_ALIASES.get(fdo_name)
+        if dom:
+            return dom
+        bsd = fdo_to_bsd.get(fdo_name, fdo_name)
+        return builder.canonical_name(bsd) if bsd in builder.BSD_TEAM_ALIASES else fdo_name
+
+    teams = {}
+    team_variants = {}
+    for bsd_name, dom_name in builder.BSD_TEAM_ALIASES.items():
+        canonical = builder.canonical_name(bsd_name)
+        key = builder.norm_name(canonical)
+        fdo_name = builder.BSD_TO_FDO.get(bsd_name) or fdo_by_domestic.get(dom_name)
+        if key not in teams:
+            entry = {"name": canonical, "bsdName": bsd_name, "domesticName": dom_name}
+            if fdo_name:
+                entry["fdoName"] = fdo_name
+            st = states.get(canonical)
+            if st:
+                entry["euro"] = {k: (round(v, 6) if isinstance(v, float) else v) for k, v in st.items()}
+            if dom_name:
+                dom_series = series.get(builder.norm_name(dom_name), [])
+                if dom_series:
+                    last = dom_series[-1][1]
+                    entry["domestic"] = {}
+                    for k in builder.DOMESTIC_FEATURES:
+                        v = last[k]
+                        entry["domestic"][k] = (round(float(v), 6)
+                                                if v is not None and np.isfinite(float(v)) else None)
+            teams[key] = entry
+            team_variants[key] = set()
+        team_variants[key].add(bsd_name)
+        if fdo_name:
+            team_variants[key].add(fdo_name)
+        if dom_name:
+            team_variants[key].add(dom_name)
+
+    # Варианты из фидов, ключевые по legacy FDO-именам -> канонический ключ.
+    for fdo_name, variants in FEED_VARIANTS.items():
+        key = builder.norm_name(canonical_of_fdo(fdo_name))
+        if key not in teams:
+            continue
         if isinstance(variants, str):
             variants = [variants]
-        dom_name = builder.FDO_TEAM_ALIASES[fdo_name]
-        if dom_name:
-            variants = variants + [dom_name]
+        team_variants[key].update(variants)
+
+    aliases = {}
+    for key, variants in team_variants.items():
+        aliases[key] = key
         for v in variants:
-            aliases[builder.norm_name(v)] = key
+            aliases.setdefault(builder.norm_name(v), key)
 
     comps_present = sorted({m["comp"] for m in matches})
     competitions = [
@@ -273,10 +301,10 @@ def main():
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "status": "experimental-internal",
         "disclaimer": "Экспериментальная внутренняя модель еврокубков (Лига чемпионов, Лига Европы, "
-                      "Лига Конференций). Обучена на матчах football-data.org 2023–2026; единый "
+                      "Лига Конференций). Обучена на матчах BSD (sports.bzzoiro.com) 2021–2026; единый "
                       "кросс-страновой Elo и форма ведутся по всем турнирам в общей хронологии. "
                       "Валидация out-of-sample лучше базового среднего, но проверки против рынка не было "
-                      "(нет исторических коэффициентов), выборка по ЛЕ/ЛК особенно тонкая. "
+                      "(нет исторических коэффициентов), выборка по ЛЕ/ЛК тоньше ЛЧ. "
                       "Исследовательская оценка, не рекомендация к ставке.",
         "trainingMatches": int(len(df)),
         "trainingMatchesByCompetition": per_comp,
