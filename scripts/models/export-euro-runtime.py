@@ -42,6 +42,7 @@ def _load_module(name: str, path: Path):
 builder = _load_module("build_euro_dataset", Path(__file__).with_name("build-euro-dataset.py"))
 euro_trainer = _load_module("train_euro_cl", Path(__file__).with_name("train-euro-cl.py"))
 trainer = _load_module("train_goals_markets", Path(__file__).with_name("train-goals-markets.py"))
+recency = _load_module("recency", Path(__file__).with_name("recency.py"))
 
 MAX_GOALS = 10
 TOTAL_LINES = [1.5, 2.5, 3.5, 4.5]
@@ -135,6 +136,8 @@ def main():
     validation = json.loads(args.validation.read_text(encoding="utf-8"))
     alpha_home = validation["tuning"]["homeGoals"]["regularizationAlpha"]
     alpha_away = validation["tuning"]["awayGoals"]["regularizationAlpha"]
+    half_life_home = validation["tuning"]["homeGoals"].get("recencyHalfLifeDays")
+    half_life_away = validation["tuning"]["awayGoals"].get("recencyHalfLifeDays")
     dc_rho = validation["dixonColes"]["deployedRho"]
 
     matches = builder.load_cl_matches(args.fdo_dir)
@@ -154,10 +157,16 @@ def main():
     means = list(map(float, scaler.mean_))
     scales = list(map(float, scaler.scale_))
 
+    df["date"] = pd.to_datetime(df["date"])
     models = {}
-    for target, key, alpha in (("target_home_goals", "home", alpha_home),
-                               ("target_away_goals", "away", alpha_away)):
-        reg = PoissonRegressor(alpha=alpha, max_iter=800, tol=1e-8).fit(x_all, df[target].to_numpy(float))
+    models_meta = {}
+    for target, key, alpha, half_life in (("target_home_goals", "home", alpha_home, half_life_home),
+                                          ("target_away_goals", "away", alpha_away, half_life_away)):
+        # Тот же затухающий вес, что выбран на validation, привязан к свежей дате.
+        w = recency.recency_weights(df["date"], half_life)
+        reg = PoissonRegressor(alpha=alpha, max_iter=800, tol=1e-8).fit(
+            x_all, df[target].to_numpy(float), sample_weight=w)
+        models_meta[key] = {"alpha": alpha, "recencyHalfLifeDays": half_life}
         coefs = list(map(float, reg.coef_))
         if not (len(expanded) == len(medians) == len(means) == len(scales) == len(coefs)):
             raise RuntimeError(f"Export dimensions mismatch for {key}: "
@@ -213,6 +222,7 @@ def main():
         "scalerMean": means,
         "scalerScale": scales,
         "models": models,
+        "modelsMeta": models_meta,
         "dcRho": dc_rho,
         "maxGoals": MAX_GOALS,
         "totalLines": TOTAL_LINES,
