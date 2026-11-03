@@ -14,6 +14,10 @@ on:
       - "scripts/models/export-corners-cards-runtime.py"
       - "scripts/models/export-goals-runtime.py"
       - "scripts/models/export-stats-runtime.py"
+      - "scripts/models/download-fdo-cl.py"
+      - "scripts/models/build-euro-dataset.py"
+      - "scripts/models/train-euro-cl.py"
+      - "scripts/models/export-euro-runtime.py"
       - "requirements-models.txt"
       - ".github/workflows/retrain-corners-cards.yml"
   schedule:
@@ -67,6 +71,20 @@ jobs:
       - name: Export fouls/shots browser runtime model JSON
         run: python scripts/models/export-stats-runtime.py
 
+      - name: Download Champions League history (football-data.org)
+        env:
+          FDO_TOKEN: ${{ secrets.FDO_TOKEN }}
+        run: python scripts/models/download-fdo-cl.py --output-dir data/raw-fdo
+
+      - name: Build Champions League dataset
+        run: python scripts/models/build-euro-dataset.py --fdo-dir data/raw-fdo --domestic data/corners_cards_training.csv --output data/euro_cl_training.csv
+
+      - name: Train and validate Champions League model (split by season)
+        run: python scripts/models/train-euro-cl.py
+
+      - name: Export Champions League browser runtime model JSON
+        run: python scripts/models/export-euro-runtime.py --fdo-dir data/raw-fdo
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -78,7 +96,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/stats_markets_models.json data/stats_markets_model_validation.json data/historical_dataset_report.json data/prediction-ledger/evaluation-internal.json
+          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/stats_markets_models.json data/stats_markets_model_validation.json data/historical_dataset_report.json data/prediction-ledger/evaluation-internal.json data/euro_cl_model.json data/euro_cl_model_validation.json
           if git diff --cached --quiet; then
             echo "Model artifacts are already current"
           else
