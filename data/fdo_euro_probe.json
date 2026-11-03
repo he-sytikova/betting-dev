@@ -1,0 +1,649 @@
+{
+  "generatedAt": "2026-11-03T11:54:28.498401+00:00",
+  "competitions": {
+    "CL": {
+      "denied": false,
+      "seasons": [
+        2026,
+        2025,
+        2024,
+        2023,
+        2022,
+        2021,
+        2020,
+        2019,
+        2018,
+        2017,
+        2016,
+        2015,
+        2014,
+        2013,
+        2012,
+        2011,
+        2010,
+        2009,
+        2008,
+        2007,
+        2006,
+        2005,
+        2004,
+        2003,
+        2002,
+        2001,
+        2000,
+        1999,
+        1998,
+        1997,
+        1996,
+        1995,
+        1994,
+        1993,
+        1992,
+        1991,
+        1990,
+        1989,
+        1988,
+        1987,
+        1986,
+        1985,
+        1984,
+        1983,
+        1982,
+        1981,
+        1980
+      ],
+      "teams": [
+        {
+          "name": "1. FC Union Berlin",
+          "seasons": [
+            2023
+          ]
+        },
+        {
+          "name": "AC Milan",
+          "seasons": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "AC Sparta Praha",
+          "seasons": [
+            2024
+          ]
+        },
+        {
+          "name": "AFC Ajax",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "AS Monaco FC",
+          "seasons": [
+            2024,
+            2025
+          ]
+        },
+        {
+          "name": "AS Roma",
+          "seasons": [
+            2026
+          ]
+        },
+        {
+          "name": "Arsenal FC",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Aston Villa FC",
+          "seasons": [
+            2024,
+            2026
+          ]
+        },
+        {
+          "name": "Atalanta BC",
+          "seasons": [
+            2024,
+            2025
+          ]
+        },
+        {
+          "name": "Athletic Club",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "BSC Young Boys",
+          "seasons": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "Bayer 04 Leverkusen",
+          "seasons": [
+            2024,
+            2025
+          ]
+        },
+        {
+          "name": "Bologna FC 1909",
+          "seasons": [
+            2024
+          ]
+        },
+        {
+          "name": "Borussia Dortmund",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Celtic FC",
+          "seasons": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "Chelsea FC",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "Club Atlético de Madrid",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Club Brugge KV",
+          "seasons": [
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Como 1907",
+          "seasons": [
+            2026
+          ]
+        },
+        {
+          "name": "Eintracht Frankfurt",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "FC Barcelona",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "FC Bayern München",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "FC Internazionale Milano",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "FC København",
+          "seasons": [
+            2023,
+            2025
+          ]
+        },
+        {
+          "name": "FC Porto",
+          "seasons": [
+            2023,
+            2026
+          ]
+        },
+        {
+          "name": "FC Red Bull Salzburg",
+          "seasons": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "FK Bodø/Glimt",
+          "seasons": [
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "FK Crvena Zvezda",
+          "seasons": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "FK Kairat",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "FK Shakhtar Donetsk",
+          "seasons": [
+            2023,
+            2024,
+            2026
+          ]
+        },
+        {
+          "name": "Fenerbahçe SK",
+          "seasons": [
+            2026
+          ]
+        },
+        {
+          "name": "Feyenoord Rotterdam",
+          "seasons": [
+            2023,
+            2024,
+            2026
+          ]
+        },
+        {
+          "name": "GNK Dinamo Zagreb",
+          "seasons": [
+            2024
+          ]
+        },
+        {
+          "name": "Galatasaray SK",
+          "seasons": [
+            2023,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Girona FC",
+          "seasons": [
+            2024
+          ]
+        },
+        {
+          "name": "Juventus FC",
+          "seasons": [
+            2024,
+            2025
+          ]
+        },
+        {
+          "name": "LASK Linz",
+          "seasons": [
+            2026
+          ]
+        },
+        {
+          "name": "Lille OSC",
+          "seasons": [
+            2024,
+            2026
+          ]
+        },
+        {
+          "name": "Liverpool FC",
+          "seasons": [
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Manchester City FC",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Manchester United FC",
+          "seasons": [
+            2023,
+            2026
+          ]
+        },
+        {
+          "name": "Newcastle United FC",
+          "seasons": [
+            2023,
+            2025
+          ]
+        },
+        {
+          "name": "Olympique de Marseille",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "PAE AEK",
+          "seasons": [
+            2026
+          ]
+        },
+        {
+          "name": "PAE Olympiakos SFP",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "PSV",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Paphos FC",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "Paris Saint-Germain FC",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Qarabağ Ağdam FK",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "RB Leipzig",
+          "seasons": [
+            2023,
+            2024,
+            2026
+          ]
+        },
+        {
+          "name": "Racing Club de Lens",
+          "seasons": [
+            2023,
+            2026
+          ]
+        },
+        {
+          "name": "Real Betis Balompié",
+          "seasons": [
+            2026
+          ]
+        },
+        {
+          "name": "Real Madrid CF",
+          "seasons": [
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Real Sociedad de Fútbol",
+          "seasons": [
+            2023
+          ]
+        },
+        {
+          "name": "Royal Antwerp FC",
+          "seasons": [
+            2023
+          ]
+        },
+        {
+          "name": "Royale Union Saint-Gilloise",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "SK Slavia Praha",
+          "seasons": [
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "SK Sturm Graz",
+          "seasons": [
+            2024
+          ]
+        },
+        {
+          "name": "SS Lazio",
+          "seasons": [
+            2023
+          ]
+        },
+        {
+          "name": "SSC Napoli",
+          "seasons": [
+            2023,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Sabah FK",
+          "seasons": [
+            2026
+          ]
+        },
+        {
+          "name": "Sevilla FC",
+          "seasons": [
+            2023
+          ]
+        },
+        {
+          "name": "Sport Lisboa e Benfica",
+          "seasons": [
+            2023,
+            2024,
+            2025
+          ]
+        },
+        {
+          "name": "Sporting Clube de Braga",
+          "seasons": [
+            2023
+          ]
+        },
+        {
+          "name": "Sporting Clube de Portugal",
+          "seasons": [
+            2024,
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "Stade Brestois 29",
+          "seasons": [
+            2024
+          ]
+        },
+        {
+          "name": "Tottenham Hotspur FC",
+          "seasons": [
+            2025
+          ]
+        },
+        {
+          "name": "VfB Stuttgart",
+          "seasons": [
+            2024,
+            2026
+          ]
+        },
+        {
+          "name": "Viking FK",
+          "seasons": [
+            2026
+          ]
+        },
+        {
+          "name": "Villarreal CF",
+          "seasons": [
+            2025,
+            2026
+          ]
+        },
+        {
+          "name": "ŠK Slovan Bratislava",
+          "seasons": [
+            2024,
+            2026
+          ]
+        }
+      ],
+      "mappedToDomestic": [
+        "1. FC Union Berlin",
+        "AC Milan",
+        "AFC Ajax",
+        "AS Monaco FC",
+        "AS Roma",
+        "Arsenal FC",
+        "Aston Villa FC",
+        "Atalanta BC",
+        "Athletic Club",
+        "Bayer 04 Leverkusen",
+        "Bologna FC 1909",
+        "Borussia Dortmund",
+        "Celtic FC",
+        "Chelsea FC",
+        "Club Atlético de Madrid",
+        "Club Brugge KV",
+        "Como 1907",
+        "Eintracht Frankfurt",
+        "FC Barcelona",
+        "FC Bayern München",
+        "FC Internazionale Milano",
+        "FC Porto",
+        "FK Bodø/Glimt",
+        "Fenerbahçe SK",
+        "Feyenoord Rotterdam",
+        "Galatasaray SK",
+        "Girona FC",
+        "Juventus FC",
+        "Lille OSC",
+        "Liverpool FC",
+        "Manchester City FC",
+        "Manchester United FC",
+        "Newcastle United FC",
+        "Olympique de Marseille",
+        "PAE AEK",
+        "PAE Olympiakos SFP",
+        "PSV",
+        "Paris Saint-Germain FC",
+        "RB Leipzig",
+        "Racing Club de Lens",
+        "Real Betis Balompié",
+        "Real Madrid CF",
+        "Real Sociedad de Fútbol",
+        "Royal Antwerp FC",
+        "Royale Union Saint-Gilloise",
+        "SS Lazio",
+        "SSC Napoli",
+        "Sevilla FC",
+        "Sport Lisboa e Benfica",
+        "Sporting Clube de Braga",
+        "Sporting Clube de Portugal",
+        "Stade Brestois 29",
+        "Tottenham Hotspur FC",
+        "VfB Stuttgart",
+        "Viking FK",
+        "Villarreal CF"
+      ],
+      "euroOnly": [
+        "AC Sparta Praha",
+        "BSC Young Boys",
+        "FC København",
+        "FC Red Bull Salzburg",
+        "FK Crvena Zvezda",
+        "FK Kairat",
+        "FK Shakhtar Donetsk",
+        "GNK Dinamo Zagreb",
+        "LASK Linz",
+        "Paphos FC",
+        "Qarabağ Ağdam FK",
+        "SK Slavia Praha",
+        "SK Sturm Graz",
+        "Sabah FK",
+        "ŠK Slovan Bratislava"
+      ],
+      "unmapped": []
+    },
+    "EL": {
+      "denied": true,
+      "httpStatus": 403,
+      "seasons": [],
+      "teams": [],
+      "mappedToDomestic": [],
+      "euroOnly": [],
+      "unmapped": []
+    },
+    "ECL": {
+      "denied": true,
+      "httpStatus": 403,
+      "seasons": [],
+      "teams": [],
+      "mappedToDomestic": [],
+      "euroOnly": [],
+      "unmapped": []
+    }
+  },
+  "unmappedTotal": []
+}
