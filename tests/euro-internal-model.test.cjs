@@ -4,7 +4,11 @@ const path = require('node:path');
 const fs = require('node:fs');
 
 const euro = require('../euro-internal-model.js');
-const model = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'euro_cl_model.json'), 'utf8'));
+const modelPath = path.join(__dirname, '..', 'data', 'euro_cups_model.json');
+// Артефакт появляется после первого Retrain с мультитурнирным пайплайном;
+// до этого момента тесты модели пропускаются (как Python-тесты без CSV).
+const modelExists = fs.existsSync(modelPath);
+const model = modelExists ? JSON.parse(fs.readFileSync(modelPath, 'utf8')) : null;
 
 test('norm mirrors the Python exporter normalization', () => {
   assert.equal(euro.norm('FK Bodø/Glimt'), 'fk bod glimt');
@@ -12,24 +16,49 @@ test('norm mirrors the Python exporter normalization', () => {
   assert.equal(euro.norm('Qarabağ Ağdam FK'), 'qarabag agdam fk');
 });
 
-test('league gate accepts only Champions League spellings', () => {
-  assert.ok(euro.isChampionsLeague('UEFA Champions League'));
-  assert.ok(euro.isChampionsLeague('Champions League'));
-  assert.ok(!euro.isChampionsLeague('AFC Champions League Elite'));
-  assert.ok(!euro.isChampionsLeague('Championship'));
-  assert.ok(!euro.isChampionsLeague('England. Championship'));
+test('competition gate accepts all three UEFA tournaments', { skip: !modelExists }, () => {
+  assert.equal(euro.resolveCompetition(model, 'UEFA Champions League').code, 'CL');
+  assert.equal(euro.resolveCompetition(model, 'Champions League').code, 'CL');
+  assert.equal(euro.resolveCompetition(model, 'UEFA Europa League').code, 'EL');
+  assert.equal(euro.resolveCompetition(model, 'Europa League').code, 'EL');
+  assert.equal(euro.resolveCompetition(model, 'UEFA Europa Conference League').code, 'ECL');
+  assert.equal(euro.resolveCompetition(model, 'Conference League').code, 'ECL');
 });
 
-test('feed aliases from all three providers resolve to the same team', () => {
+test('competition gate rejects lookalike tournaments', { skip: !modelExists }, () => {
+  assert.equal(euro.resolveCompetition(model, 'AFC Champions League Elite'), null);
+  assert.equal(euro.resolveCompetition(model, 'AFC Champions League'), null);
+  assert.equal(euro.resolveCompetition(model, 'UEFA Youth League'), null);
+  assert.equal(euro.resolveCompetition(model, 'Championship'), null);
+  assert.equal(euro.resolveCompetition(model, 'England. Championship'), null);
+});
+
+test('competition indicators follow the resolved tournament, CL is reference', { skip: !modelExists }, () => {
+  const home = euro.resolveTeam(model, 'FC Barcelona');
+  const away = euro.resolveTeam(model, 'Aston Villa FC');
+  assert.ok(home && away);
+  const cl = euro.baseFeatureVector(model, home, away, { code: 'CL' });
+  assert.equal(cl.comp_is_el, 0);
+  assert.equal(cl.comp_is_ecl, 0);
+  const el = euro.baseFeatureVector(model, home, away, { code: 'EL' });
+  assert.equal(el.comp_is_el, 1);
+  assert.equal(el.comp_is_ecl, 0);
+  const ecl = euro.baseFeatureVector(model, home, away, { code: 'ECL' });
+  assert.equal(ecl.comp_is_el, 0);
+  assert.equal(ecl.comp_is_ecl, 1);
+});
+
+test('feed aliases from all three providers resolve to the same team', { skip: !modelExists }, () => {
   const variants = ['FK Bodø/Glimt', 'Bodø/Glimt', 'Bodo-Glimt'];
   const keys = variants.map(v => (euro.resolveTeam(model, v) || {}).key);
   assert.ok(keys[0], 'FDO name must resolve');
   assert.equal(new Set(keys).size, 1, `variants disagree: ${keys}`);
 });
 
-test('predict returns normalized 1X2 for a well-known fixture', () => {
+test('predict returns normalized 1X2 for a well-known fixture', { skip: !modelExists }, () => {
   const pred = euro.predict(model, 'UEFA Champions League', 'FC Barcelona', 'Aston Villa FC');
   assert.ok(pred);
+  assert.equal(pred.competition.code, 'CL');
   const { p1, x, p2 } = pred.markets;
   const sum = p1 + x + p2;
   assert.ok(Math.abs(sum - 1) < 1e-6, `1X2 sum ${sum}`);
@@ -39,12 +68,13 @@ test('predict returns normalized 1X2 for a well-known fixture', () => {
   assert.ok(Math.abs(t25.over + t25.under - 1) < 1e-6);
 });
 
-test('unknown team or wrong league yields null, never invented probabilities', () => {
+test('unknown team or wrong league yields null, never invented probabilities', { skip: !modelExists }, () => {
   assert.equal(euro.predict(model, 'UEFA Champions League', 'FC Barcelona', 'Unknown FC'), null);
   assert.equal(euro.predict(model, 'Championship', 'FC Barcelona', 'Aston Villa FC'), null);
+  assert.equal(euro.predict(model, 'UEFA Youth League', 'FC Barcelona', 'Aston Villa FC'), null);
 });
 
-test('team without domestic coverage scores via euro features only', () => {
+test('team without domestic coverage scores via euro features only', { skip: !modelExists }, () => {
   const team = euro.resolveTeam(model, 'Shakhtar Donetsk');
   assert.ok(team, 'Shakhtar must resolve');
   assert.equal(team.team.domestic, undefined, 'Ukrainian league is outside coverage');
@@ -52,12 +82,12 @@ test('team without domestic coverage scores via euro features only', () => {
   assert.ok(pred, 'match with an uncovered team still scores');
 });
 
-test('dcTau with positive rho lifts extreme low-score cells consistently', () => {
+test('dcTau with positive rho lifts extreme low-score cells consistently', { skip: !modelExists }, () => {
   const t = euro.dcTau(0, 0, 1.6, 1.2, model.dcRho);
   assert.ok(Number.isFinite(t) && t > 0);
 });
 
-test('exported transform dimensions line up', () => {
+test('exported transform dimensions line up', { skip: !modelExists }, () => {
   assert.equal(model.features.length, model.imputerMedian.length);
   assert.equal(model.features.length, model.scalerMean.length);
   assert.equal(model.features.length, model.scalerScale.length);
