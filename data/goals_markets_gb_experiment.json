@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-11-03T03:47:01.674226+00:00",
+  "dataset": "/mnt/agents/work/repo/data/corners_cards_training.csv",
+  "featureCandidate": "base+elo+decay",
+  "features": 54,
+  "rows": {
+    "train": 164688,
+    "validation": 17090,
+    "test": 19272
+  },
+  "notes": [
+    "Same split, features and deadband rules as train-goals-markets.py.",
+    "GB hyperparameters selected on validation combined Poisson deviance from a fixed small grid.",
+    "Dixon-Coles rho refit on GB train predictions; deployment follows the validation deadband rule.",
+    "Backtest block uses the identical code and thresholds as backtest-closing-odds.py."
+  ],
+  "baseline": {
+    "model": "PoissonRegressor",
+    "validationDeviance": 2.2488204254891806,
+    "validation1x2LogLoss": 1.0064799864994316,
+    "test1x2LogLoss": 1.010783794997394,
+    "dcRho": -0.055
+  },
+  "gb": {
+    "model": "HistGradientBoostingRegressor(loss=poisson)",
+    "tuning": [
+      {
+        "params": {
+          "learning_rate": 0.05,
+          "max_iter": 400,
+          "max_leaf_nodes": 31
+        },
+        "homeValidationDeviance": 1.1114164181516808,
+        "awayValidationDeviance": 1.1425075144845351,
+        "combinedValidationDeviance": 2.2539239326362157
+      },
+      {
+        "params": {
+          "learning_rate": 0.05,
+          "max_iter": 400,
+          "max_leaf_nodes": 63
+        },
+        "homeValidationDeviance": 1.1131732483753385,
+        "awayValidationDeviance": 1.1433339119072992,
+        "combinedValidationDeviance": 2.256507160282638
+      },
+      {
+        "params": {
+          "learning_rate": 0.1,
+          "max_iter": 200,
+          "max_leaf_nodes": 31
+        },
+        "homeValidationDeviance": 1.1115700605061636,
+        "awayValidationDeviance": 1.1446053916483707,
+        "combinedValidationDeviance": 2.256175452154534
+      },
+      {
+        "params": {
+          "learning_rate": 0.1,
+          "max_iter": 200,
+          "max_leaf_nodes": 63
+        },
+        "homeValidationDeviance": 1.112396584739842,
+        "awayValidationDeviance": 1.1450298336308098,
+        "combinedValidationDeviance": 2.2574264183706516
+      }
+    ],
+    "selectedParams": {
+      "learning_rate": 0.05,
+      "max_iter": 400,
+      "max_leaf_nodes": 31
+    },
+    "validationDeviance": 2.2539239326362157,
+    "validation1x2LogLoss": 1.0079472452557525,
+    "test1x2LogLoss": 1.0124560282165456,
+    "dcRho": -0.055
+  },
+  "validationVerdict": {
+    "rule": "GB must beat baseline validation 1X2 logLoss by more than the deadband",
+    "deadband": 0.0005,
+    "verdict": "no_improvement"
+  }
+}
