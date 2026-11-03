@@ -37,6 +37,10 @@ def make_cl_json(path, season, matches):
 
 
 class AliasMapTest(unittest.TestCase):
+    @unittest.skipUnless(
+        (ROOT / "data" / "corners_cards_training.csv").exists(),
+        "domestic training CSV is not committed (CI checkout has no CSV data)",
+    )
     def test_every_alias_resolves_to_domestic_team_or_none(self):
         domestic = pd.read_csv(ROOT / "data" / "corners_cards_training.csv",
                                usecols=["home_team", "away_team"], low_memory=False)
