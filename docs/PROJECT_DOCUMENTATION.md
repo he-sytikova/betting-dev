@@ -70,6 +70,7 @@ GitHub Pages публикует содержимое dev-репозитория.
 | `model-v1.html` | Угловые и жёлтые карточки | Активен; только экспериментальная внутренняя модель |
 | `stats-model.html` | Тоталы фолов, ударов, ударов в створ | Активен; только экспериментальная внутренняя модель |
 | `express-model.html` | Экспрессы дня: топ-5 двойников из двойных шансов и тоталов | Активен; надстройка над моделью голов (с 3 ноября 2026 г.) |
+| `euro-model.html` | Еврокубки: экспериментальная модель Лиги чемпионов | Активен; тонкая выборка, без проверки против рынка (с 3 ноября 2026 г.) |
 | `api-consensus.html` | Страница API-консенсуса основных рынков | Альтернативная/техническая страница |
 | `api-special.html` | Страница специальных рынков | Альтернативная/техническая страница |
 | `markets.html` | Более ранняя страница рынков/экспериментов | Требует отдельной проверки перед повторным включением |
@@ -79,6 +80,7 @@ GitHub Pages публикует содержимое dev-репозитория.
 - Основные рынки: https://he-sytikova.github.io/betting-model-preview/goals-model.html
 - Угловые и карточки: https://he-sytikova.github.io/betting-model-preview/model-v1.html
 - Экспрессы дня: https://he-sytikova.github.io/betting-model-preview/express-model.html
+- Еврокубки: https://he-sytikova.github.io/betting-model-preview/euro-model.html
 
 Страницы `goals-model.html` и `model-v1.html` сохранены как привычные адреса dev-приложения. С 2 ноября 2026 г. обе страницы показывают только внутренние модели: `goals-model.html` загружает `goals-internal-model.js` (исходы и тоталы голов), `model-v1.html` — `internal-model.js` (угловые и карточки); внешние источники на этих страницах не отображаются. API-консенсус остаётся доступен на технической странице `api-consensus.html`.
 
@@ -376,7 +378,7 @@ API-консенсус не является внутренней моделью
 
 **Пайплайн.** `scripts/models/build-euro-dataset.py` строит датасет: для каждой команды ЛЧ домашние признаки — состояние на день последнего матча чемпионата строго до даты матча ЛЧ (без утечки), команды стран вне наших 24 лиг получают только euro-признаки с индикаторами пропуска (ничего не выдумывается). Кросс-страновая сравнимость — через отдельный euro Elo (ведётся только по матчам ЛЧ, старт 1500, K=24 с множителем разницы голов, регрессия 25% к среднему между сезонами) и затухающие euro-рейтинги голов (полураспад 75 дней). `scripts/models/train-euro-cl.py` обучает Poisson-регрессию: сплит по сезонам (train 2023+2024, validation 2025, test — завершённые матчи 2026), alpha и развёртывание Dixon–Coles по тем же правилам мёртвой зоны. Отчёт: `data/euro_cl_model_validation.json`.
 
-**Результат валидации.** Модель уверенно лучше базового среднего ЛЧ: validation logLoss 0,932 против 1,024 (Brier 0,552 против 0,617), test logLoss 0,894 против 0,964 (Brier 0,518 против 0,576). Предостережения: выборка тонкая (557 матчей, test ~50 матчей — метрики шумные), Dixon–Coles выбрал ρ=+0,10 (верх границы сетки, отличается от чемпионатного −0,055 — следствие малой выборки). Публикация на страницах сайта — только после отдельного решения владельца: вероятности снабжаются пометкой о тонкой выборке, обещания преимущества над рынком быть не может (коэффициентов для проверки нет).
+**Результат валидации.** Модель уверенно лучше базового среднего ЛЧ: validation logLoss 0,932 против 1,024 (Brier 0,552 против 0,617), test logLoss 0,894 против 0,964 (Brier 0,518 против 0,576). Предостережения: выборка тонкая (557 матчей, test ~50 матчей — метрики шумные), Dixon–Coles выбрал ρ=+0,10 (верх границы сетки, отличается от чемпионатного −0,055 — следствие малой выборки). **Публикация (решение владельца от 3 ноября 2026 г.).** Модель опубликована отдельным блоком «Еврокубки»: страница `euro-model.html` (рантайм `euro-internal-model.js`, данные `data/euro_cl_model.json`, экспорт `scripts/models/export-euro-runtime.py` — дообучение на всех 557 матчах с alpha и ρ, выбранными на validation). На странице явно указаны ограничения: тонкая выборка и отсутствие проверки против рынка. Матчи ЛЧ из фида дедуплицируются по каноническим ключам команд евро-модели (один матч из нескольких источников показывается один раз); неизвестные команды и не-ЛЧ турниры (включая «AFC Champions League», «Championship») не оцениваются.
 
 ## 8. Архив результатов без CSV
 
@@ -512,7 +514,7 @@ Node.js в workflow — версия 22. Для тестов используе�
 
 ## 11. Тестирование
 
-Тесты находятся в `tests/`: `api-consensus.test.cjs`, `internal-model.test.cjs`, `goals-internal-model.test.cjs`, `stats-internal-model.test.cjs` (Node.js `node:test`) и `test_build_historical_dataset.py`, `test_backtest_closing_odds.py` (Python unittest, stdlib-only).
+Тесты находятся в `tests/`: `api-consensus.test.cjs`, `internal-model.test.cjs`, `goals-internal-model.test.cjs`, `stats-internal-model.test.cjs`, `euro-internal-model.test.cjs` (Node.js `node:test`) и `test_build_historical_dataset.py`, `test_backtest_closing_odds.py` (Python unittest, stdlib-only).
 
 Текущие проверяемые сценарии API-консенсуса:
 
@@ -571,6 +573,8 @@ node --check stats-internal-model.js
 node --test tests/stats-internal-model.test.cjs
 node --check express-model.js
 node --test tests/express-model.test.cjs
+node --check euro-internal-model.js
+node --test tests/euro-internal-model.test.cjs
 node --check scripts/models/archive-provider-results.mjs
 python3 tests/test_build_historical_dataset.py
 python3 -m unittest tests.test_backtest_closing_odds
@@ -613,11 +617,13 @@ find . -type f -name '*.csv' -not -path './.git/*'
 ├── model-v1.html
 ├── stats-model.html
 ├── express-model.html
+├── euro-model.html
 ├── api-consensus.html
 ├── api-special.html
 ├── api-consensus.js
 ├── internal-model.js
 ├── goals-internal-model.js
+├── euro-internal-model.js
 ├── stats-internal-model.js
 ├── express-model.js
 ├── data.json
@@ -630,6 +636,7 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │   ├── goals_markets_model_validation.json
 │   ├── goals_markets_backtest.json
 │   ├── goals_markets_gb_experiment.json
+│   ├── euro_cl_model.json
 │   ├── euro_cl_model_validation.json
 │   ├── stats_markets_models.json
 │   ├── stats_markets_model_validation.json
@@ -652,6 +659,7 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │       ├── download-fdo-cl.py
 │       ├── build-euro-dataset.py
 │       ├── train-euro-cl.py
+│       ├── export-euro-runtime.py
 │       ├── export-corners-cards-runtime.py
 │       ├── export-goals-runtime.py
 │       ├── export-stats-runtime.py
