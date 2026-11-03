@@ -19,6 +19,7 @@ on:
       - "tests/test_build_historical_dataset.py"
       - "tests/test_backtest_closing_odds.py"
       - "tests/test_euro_cl.py"
+      - "tests/test_recency_weights.py"
       - "euro-internal-model.js"
       - "express-model.js"
       - "scripts/models/capture-predictions.mjs"
@@ -70,6 +71,7 @@ jobs:
         run: |
           python3 -m unittest tests.test_backtest_closing_odds
           python3 -m unittest tests.test_euro_cl
+          python3 -m unittest tests.test_recency_weights
       - name: Confirm CSV pipelines are not used
         run: |
           if find . -type f -name '*.csv' -not -path './.git/*' | grep -q .; then
