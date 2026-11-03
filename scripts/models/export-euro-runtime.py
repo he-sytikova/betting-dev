@@ -31,6 +31,13 @@ DEFAULT_DOMESTIC = ROOT / "data" / "corners_cards_training.csv"
 DEFAULT_VALIDATION = ROOT / "data" / "euro_cups_model_validation.json"
 DEFAULT_OUTPUT = ROOT / "data" / "euro_cups_model.json"
 
+# Переходный режим: пока Retrain-workflow не обновлён на мультитурнирный
+# пайплайн, он прогоняет старый train-euro-cl.py и ожидает старые имена
+# артефактов. Если нового отчёта валидации нет, а старый есть — экспортируем
+# по нему в старый путь, чтобы еженедельный Retrain оставался зелёным.
+LEGACY_VALIDATION = ROOT / "data" / "euro_cl_model_validation.json"
+LEGACY_OUTPUT = ROOT / "data" / "euro_cl_model.json"
+
 
 def _load_module(name: str, path: Path):
     spec = importlib.util.spec_from_file_location(name, path)
@@ -171,7 +178,16 @@ def main():
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
-    validation = json.loads(args.validation.read_text(encoding="utf-8"))
+    validation_path = args.validation
+    output_path = args.output
+    if not validation_path.exists() and LEGACY_VALIDATION.exists():
+        print(f"transitional legacy mode: {validation_path} absent, "
+              f"using {LEGACY_VALIDATION} -> {LEGACY_OUTPUT}")
+        validation_path = LEGACY_VALIDATION
+        if output_path == DEFAULT_OUTPUT:
+            output_path = LEGACY_OUTPUT
+
+    validation = json.loads(validation_path.read_text(encoding="utf-8"))
     alpha_home = validation["tuning"]["homeGoals"]["regularizationAlpha"]
     alpha_away = validation["tuning"]["awayGoals"]["regularizationAlpha"]
     half_life_home = validation["tuning"]["homeGoals"].get("recencyHalfLifeDays")
@@ -295,8 +311,8 @@ def main():
             return [sanitize(v) for v in obj]
         return obj
 
-    args.output.write_text(json.dumps(sanitize(payload), indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(json.dumps({"output": str(args.output), "teams": len(teams), "aliases": len(aliases),
+    output_path.write_text(json.dumps(sanitize(payload), indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(json.dumps({"output": str(output_path), "teams": len(teams), "aliases": len(aliases),
                       "features": len(expanded), "matches": len(df),
                       "competitions": comps_present, "dcRho": dc_rho}, indent=1))
 
