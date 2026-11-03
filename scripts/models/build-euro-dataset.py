@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
-"""Сборка обучающего датасета Лиги чемпионов (еврокубковый этап).
+"""Сборка обучающего датасета еврокубков (ЛЧ + Лига Европы + Лига Конференций).
 
 Источники:
-- матчи ЛЧ: football-data.org API v4 (сырые JSON кэшируются локально через
-  download-fdo-cl.py; токен только в env FDO_TOKEN, файлы не коммитятся);
+- матчи еврокубков: football-data.org API v4 (сырые JSON кэшируются локально
+  через download-fdo-euro.py; токен только в env FDO_TOKEN, файлы не
+  коммитятся). Доступность турниров/сезонов зависит от тарифа: загрузчик
+  пропускает недоступное, сборщик работает с тем, что есть;
 - домашние признаки команд: data/corners_cards_training.csv (уже построенный
   leakage-safe датасет чемпионатов) — для каждой команды берётся её состояние
   (Elo, затухающие рейтинги атаки/защиты, форма по голам) на день ПОСЛЕДНЕГО
-  матча чемпионата строго до даты матча ЛЧ. Это консервативное приближение
-  «признаков на дату» без утечки.
+  матча чемпионата строго до даты еврокубкового матча. Это консервативное
+  приближение «признаков на дату» без утечки.
 
 Кросс-страновые признаки (сравнимость стран):
-- euro_elo: отдельный Elo, ведущийся ТОЛЬКО по матчам ЛЧ, старт 1500, K=24 с
-  множителем разницы голов (как в домашнем Elo сборщика), между сезонами —
-  регрессия 25% к 1500;
-- euro_att/euro_def: затухающие (полураспад 75 дней) рейтинги голов в ЛЧ
-  относительно среднего ЛЧ.
+- euro_elo: отдельный Elo, ведущийся по матчам ВСЕХ трёх турниров в общей
+  хронологии (команда, вылетевшая из ЛЧ в ЛЕ, продолжает со своим рейтингом —
+  рейтинг не теряется), старт 1500, K=24 с множителем разницы голов (как в
+  домашнем Elo сборщика), между сезонами — регрессия 25% к 1500;
+- euro_att/euro_def: затухающие (полураспад 75 дней) рейтинги голов в
+  еврокубках относительно среднего еврокубкового;
+- comp_is_el / comp_is_ecl: индикаторы турнира матча (ЛЧ — референсная
+  категория), чтобы модель могла учесть систематическую разницу уровней.
 
 Команды из стран без чемпионата в наших 24 лигах (Австрия, Украина, Чехия и
 т. п.) получают только euro-признаки; домашние признаки остаются пустыми и
@@ -39,12 +44,20 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_FDO_DIR = Path("/mnt/agents/work/data-fdo")
 DEFAULT_DOMESTIC = ROOT / "data" / "corners_cards_training.csv"
-DEFAULT_OUTPUT = ROOT / "data" / "euro_cl_training.csv"
+DEFAULT_OUTPUT = ROOT / "data" / "euro_cups_training.csv"
 
 ELO_START = 1500.0
 ELO_K = 24.0
 SEASON_REGRESS = 0.25          # доля возврата к 1500 между сезонами
 DECAY_HALF_LIFE_DAYS = 75.0
+
+# Турниры и префиксы файлов загрузчика. ЛЧ — референсная категория в
+# comp-признаках (comp_is_el = comp_is_ecl = 0).
+COMPETITIONS = {
+    "CL": {"prefix": "cl", "name": "UEFA Champions League"},
+    "EL": {"prefix": "el", "name": "UEFA Europa League"},
+    "ECL": {"prefix": "ecl", "name": "UEFA Europa Conference League"},
+}
 
 # Явное сопоставление названий football-data.org -> названий football-data.co.uk
 # (как в нашем домашнем датасете). None = страна вне наших 24 лиг, домашних
@@ -75,6 +88,18 @@ FDO_TEAM_ALIASES = {
     "Sport Lisboa e Benfica": "Benfica", "Sporting Clube de Braga": "Sp Braga",
     "Sporting Clube de Portugal": "Sp Lisbon", "Stade Brestois 29": "Brest",
     "Tottenham Hotspur FC": "Tottenham",
+    # ЛЕ/ЛК: команды чемпионатов из нашего покрытия.
+    "Rangers FC": "Rangers", "Olympique Lyonnais": "Lyon", "OGC Nice": "Nice",
+    "Toulouse FC": "Toulouse", "Stade Rennais FC 1901": "Rennes",
+    "VfL Wolfsburg": "Wolfsburg", "SC Freiburg": "Freiburg",
+    "TSG 1899 Hoffenheim": "Hoffenheim", "1. FSV Mainz 05": "Mainz",
+    "1. FC Heidenheim 1846": "Heidenheim", "ACF Fiorentina": "Fiorentina",
+    "AZ Alkmaar": "AZ Alkmaar", "Vitória SC": "Guimaraes",
+    "RSC Anderlecht": "Anderlecht", "KRC Genk": "Genk", "KAA Gent": "Gent",
+    "Standard Liège": "Standard", "Molde FK": "Molde", "Rosenborg BK": "Rosenborg",
+    "SK Brann": "Brann", "PAOK FC": "PAOK", "Panathinaikos FC": "Panathinaikos",
+    "Beşiktaş JK": "Besiktas", "Trabzonspor": "Trabzonspor",
+    "İstanbul Başakşehir FK": "Buyuksehyr", "Sivasspor": "Sivasspor",
     # Вне покрытия чемпионатами (только euro-признаки):
     "AC Sparta Praha": None, "BSC Young Boys": None, "FC København": None,
     "FC Red Bull Salzburg": None, "FK Crvena Zvezda": None, "FK Kairat": None,
@@ -87,40 +112,46 @@ DOMESTIC_FEATURES = ["elo", "att_decay", "def_decay",
                      "goal_for_avg5", "goal_against_avg5",
                      "goal_for_avg10", "goal_against_avg10"]
 
+COMP_FEATURES = ["comp_is_el", "comp_is_ecl"]
+
 
 def norm_name(value: str) -> str:
     s = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode().lower()
     return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
-def load_cl_matches(fdo_dir: Path) -> list:
+def load_euro_matches(fdo_dir: Path) -> list:
+    """Читает все файлы <comp>_<season>.json трёх турниров и возвращает
+    завершённые матчи в общей хронологии; у каждого матча — поле comp."""
     matches = []
-    for path in sorted(fdo_dir.glob("cl_*.json")):
-        data = json.loads(path.read_text(encoding="utf-8"))
-        for m in data.get("matches", []):
-            if m["status"] != "FINISHED":
-                continue
-            ft = m["score"]["fullTime"]
-            if ft.get("home") is None or ft.get("away") is None:
-                continue
-            matches.append({
-                "date": pd.Timestamp(m["utcDate"]).tz_convert(None),
-                "season": m["season"]["startDate"][:4],
-                "stage": m.get("stage") or "",
-                "home_fdo": m["homeTeam"]["name"],
-                "away_fdo": m["awayTeam"]["name"],
-                "home_goals": int(ft["home"]),
-                "away_goals": int(ft["away"]),
-            })
+    for comp, spec in COMPETITIONS.items():
+        for path in sorted(fdo_dir.glob(f"{spec['prefix']}_*.json")):
+            data = json.loads(path.read_text(encoding="utf-8"))
+            for m in data.get("matches", []):
+                if m["status"] != "FINISHED":
+                    continue
+                ft = m["score"]["fullTime"]
+                if ft.get("home") is None or ft.get("away") is None:
+                    continue
+                matches.append({
+                    "date": pd.Timestamp(m["utcDate"]).tz_convert(None),
+                    "season": m["season"]["startDate"][:4],
+                    "comp": comp,
+                    "stage": m.get("stage") or "",
+                    "home_fdo": m["homeTeam"]["name"],
+                    "away_fdo": m["awayTeam"]["name"],
+                    "home_goals": int(ft["home"]),
+                    "away_goals": int(ft["away"]),
+                })
     matches.sort(key=lambda r: r["date"])
     return matches
 
 
 def domestic_state_series(domestic_csv: Path) -> dict:
     """Для каждой команды — хронологический список (date, state) её признаков
-    ПОСЛЕ каждого сыгранного матча чемпионата. Состояние на дату матча ЛЧ —
-    последняя запись строго до этой даты (послематчевое состояние предыдущего
-    дня = доматчевое для следующего)."""
+    ПОСЛЕ каждого сыгранного матча чемпионата. Состояние на дату еврокубкового
+    матча — последняя запись строго до этой даты (послематчевое состояние
+    предыдущего дня = доматчевое для следующего)."""
     df = pd.read_csv(domestic_csv, low_memory=False)
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     df = df[df["date"].notna()].sort_values("date")
@@ -155,10 +186,11 @@ def main():
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
-    matches = load_cl_matches(args.fdo_dir)
+    matches = load_euro_matches(args.fdo_dir)
     if not matches:
-        raise SystemExit(f"No finished CL matches in {args.fdo_dir}; run download-fdo-cl.py first")
-    print(f"CL matches loaded: {len(matches)} "
+        raise SystemExit(f"No finished euro-cup matches in {args.fdo_dir}; run download-fdo-euro.py first")
+    per_comp = {comp: sum(1 for m in matches if m["comp"] == comp) for comp in COMPETITIONS}
+    print(f"Euro-cup matches loaded: {len(matches)} {per_comp} "
           f"({min(m['date'] for m in matches).date()} .. {max(m['date'] for m in matches).date()})")
 
     unknown = sorted(({m["home_fdo"] for m in matches} | {m["away_fdo"] for m in matches})
@@ -176,20 +208,21 @@ def main():
     out.to_csv(args.output, index=False)
     print(f"written {len(out)} rows -> {args.output}")
     print("domestic coverage:", coverage)
-    print("CL avg goals/match:", round(avg_goals, 3))
+    print("euro-cup avg goals/match:", round(avg_goals, 3))
 
 
 def process_matches(matches, series):
-    """Прогоняет матчи ЛЧ по хронологии: считает признаки без утечки и
-    возвращает (rows, final_states, coverage, avg_goals), где final_states —
-    euro-состояния команд после последнего матча (для рантайм-экспорта)."""
-    # --- Кросс-страновой Elo и затухающие euro-рейтинги по самим матчам ЛЧ ---
+    """Прогоняет матчи всех турниров по общей хронологии: считает признаки без
+    утечки и возвращает (rows, final_states, coverage, avg_goals), где
+    final_states — euro-состояния команд после последнего матча (для
+    рантайм-экспорта). Elo и затухающие рейтинги единые для всех турниров:
+    переход команды из ЛЧ в ЛЕ/ЛК рейтинг не обнуляет."""
+    # --- Кросс-страновой Elo и затухающие euro-рейтинги по самим еврокубкам ---
     euro_elo = defaultdict(lambda: ELO_START)
     euro_gf = defaultdict(float)   # затухающая сумма забитых
     euro_ga = defaultdict(float)   # затухающая сумма пропущенных
     euro_w = defaultdict(float)    # затухающий вес
     euro_last = {}
-    league_avg_goals = 2.92  # пересчитаем ниже фактически, до первых матчей — стартовая оценка
     total_goals, total_matches = 0.0, 0
     seen_seasons = set()
 
@@ -212,8 +245,11 @@ def process_matches(matches, series):
             return (s_prev / w_prev) if w_prev > 1e-9 else None
 
         feat = {
-            "date": m["date"].date().isoformat(), "season": m["season"], "stage": m["stage"],
+            "date": m["date"].date().isoformat(), "season": m["season"],
+            "comp": m["comp"], "stage": m["stage"],
             "home_fdo": h, "away_fdo": a,
+            "comp_is_el": 1 if m["comp"] == "EL" else 0,
+            "comp_is_ecl": 1 if m["comp"] == "ECL" else 0,
             "home_euro_elo": euro_elo[h], "away_euro_elo": euro_elo[a],
             "home_euro_games": int(round(euro_w[h])) if h in euro_last else 0,
             "away_euro_games": int(round(euro_w[a])) if a in euro_last else 0,
@@ -253,7 +289,6 @@ def process_matches(matches, series):
             euro_last[team] = m["date"]
         total_goals += m["home_goals"] + m["away_goals"]
         total_matches += 1
-        league_avg_goals = total_goals / total_matches
         rows.append(feat)
 
     final_states = {
