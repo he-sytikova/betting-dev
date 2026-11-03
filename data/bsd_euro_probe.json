@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-11-03T17:16:39.848995+00:00",
+  "api": "https://sports.bzzoiro.com/api/v2",
+  "competitions": {
+    "CL": {
+      "found": true,
+      "id": 7,
+      "name": "Champions League",
+      "country": "Europe",
+      "seasons": [],
+      "checked": []
+    },
+    "EL": {
+      "found": true,
+      "id": 8,
+      "name": "Europa League",
+      "country": "Europe",
+      "seasons": [],
+      "checked": []
+    },
+    "ECL": {
+      "found": true,
+      "id": 83,
+      "name": "Conference League",
+      "country": "Europe",
+      "seasons": [],
+      "checked": []
+    }
+  },
+  "leaguesTotal": 98
+}
