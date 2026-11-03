@@ -45,9 +45,11 @@ def _load_module(name: str, path: Path):
 
 
 trainer = _load_module("train_goals_markets", Path(__file__).with_name("train-goals-markets.py"))
+recency = _load_module("recency", Path(__file__).with_name("recency.py"))
 
 DEADBAND = trainer.DEADBAND
 ALPHAS = trainer.ALPHAS
+HALF_LIFE_GRID = recency.HALF_LIFE_GRID
 
 FEATURES = [
     "home_euro_elo", "away_euro_elo",
@@ -76,16 +78,32 @@ def logloss_brier(frame, home_pred, away_pred, rho):
     return ll, brier / len(frame)
 
 
-def fit_alpha(x_train, y_train, x_valid, y_valid):
-    best, tuning = None, []
+def fit_alpha(x_train, y_train, x_valid, y_valid, train_dates=None, reference=None):
+    """Tune alpha and recency half-life on validation; weighting ships only if
+    it beats the best unweighted fit by more than DEADBAND."""
+    best, best_unweighted, tuning = None, None, []
     for alpha in ALPHAS:
-        reg = PoissonRegressor(alpha=alpha, max_iter=800, tol=1e-8).fit(x_train, y_train)
-        pred = np.clip(reg.predict(x_valid), 1e-2, None)
-        yv = np.asarray(y_valid, float)
-        dev = float(2 * np.mean(np.where(yv > 0, yv * np.log(np.maximum(yv, 1e-12) / pred) - (yv - pred), pred)))
-        tuning.append({"alpha": alpha, "validationPoissonDeviance": dev})
-        if best is None or dev < best["validationPoissonDeviance"]:
-            best = {"alpha": alpha, "validationPoissonDeviance": dev, "reg": reg}
+        for half_life in HALF_LIFE_GRID:
+            w = (recency.recency_weights(train_dates, half_life, reference=reference)
+                 if train_dates is not None else None)
+            reg = PoissonRegressor(alpha=alpha, max_iter=800, tol=1e-8).fit(
+                x_train, y_train, sample_weight=w)
+            pred = np.clip(reg.predict(x_valid), 1e-2, None)
+            yv = np.asarray(y_valid, float)
+            dev = float(2 * np.mean(np.where(yv > 0, yv * np.log(np.maximum(yv, 1e-12) / pred) - (yv - pred), pred)))
+            tuning.append({"alpha": alpha, "recencyHalfLifeDays": half_life,
+                           "validationPoissonDeviance": dev})
+            item = {"alpha": alpha, "recencyHalfLifeDays": half_life,
+                    "validationPoissonDeviance": dev, "reg": reg}
+            if best is None or dev < best["validationPoissonDeviance"]:
+                best = item
+            if half_life is None and (best_unweighted is None
+                                      or dev < best_unweighted["validationPoissonDeviance"]):
+                best_unweighted = item
+    if best["recencyHalfLifeDays"] is not None and not (
+            best["validationPoissonDeviance"]
+            < best_unweighted["validationPoissonDeviance"] - DEADBAND):
+        best = best_unweighted
     return best, tuning
 
 
@@ -114,11 +132,14 @@ def main():
     tuning_report = {}
     for target, key in (("target_home_goals", "home"), ("target_away_goals", "away")):
         best, tuning = fit_alpha(x_train, train[target].to_numpy(float),
-                                 x_valid, valid[target].to_numpy(float))
+                                 x_valid, valid[target].to_numpy(float),
+                                 train_dates=train["date"], reference=valid["date"].min())
         preds[key] = {"train": np.clip(best["reg"].predict(x_train), 1e-2, None),
                       "valid": np.clip(best["reg"].predict(x_valid), 1e-2, None),
                       "test": np.clip(best["reg"].predict(x_test), 1e-2, None)}
-        tuning_report[f"{key}Goals"] = {"regularizationAlpha": best["alpha"], "tuning": tuning,
+        tuning_report[f"{key}Goals"] = {"regularizationAlpha": best["alpha"],
+                                        "recencyHalfLifeDays": best["recencyHalfLifeDays"],
+                                        "tuning": tuning,
                                         "validationPoissonDeviance": best["validationPoissonDeviance"]}
 
     rho, _ = trainer.fit_dc_rho(train["target_home_goals"].to_numpy(float),
@@ -138,6 +159,11 @@ def main():
         "splitPolicy": {"train": "seasons 2023+2024", "validation": "season 2025", "test": "season 2026 (finished only)"},
         "rows": {"train": int(len(train)), "validation": int(len(valid)), "test": int(len(test))},
         "features": FEATURES,
+        "recency": {"gridDays": [hl for hl in HALF_LIFE_GRID],
+                    "rule": "same deadband-gated deployment as the domestic goals model; "
+                            "weights halve every half-life days, age measured from the "
+                            "first validation match",
+                    "selected": {k: v["recencyHalfLifeDays"] for k, v in tuning_report.items()}},
         "tuning": tuning_report,
         "dixonColes": {"selectedRho": rho, "deployedRho": rho_dep,
                        "validation1x2LogLossRaw": ll_raw, "validation1x2LogLossDc": ll_dc},
