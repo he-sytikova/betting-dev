@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2026-11-03T04:17:23.627062+00:00",
+  "dataset": "/mnt/agents/work/repo/data/euro_cl_training.csv",
+  "splitPolicy": {
+    "train": "seasons 2023+2024",
+    "validation": "season 2025",
+    "test": "season 2026 (finished only)"
+  },
+  "rows": {
+    "train": 314,
+    "validation": 189,
+    "test": 54
+  },
+  "features": [
+    "home_euro_elo",
+    "away_euro_elo",
+    "home_euro_gf",
+    "home_euro_ga",
+    "away_euro_gf",
+    "away_euro_ga",
+    "home_dom_att_decay",
+    "home_dom_def_decay",
+    "away_dom_att_decay",
+    "away_dom_def_decay",
+    "home_dom_goal_for_avg5",
+    "home_dom_goal_against_avg5",
+    "away_dom_goal_for_avg5",
+    "away_dom_goal_against_avg5",
+    "home_dom_missing",
+    "away_dom_missing"
+  ],
+  "tuning": {
+    "homeGoals": {
+      "regularizationAlpha": 0.15,
+      "tuning": [
+        {
+          "alpha": 0.03,
+          "validationPoissonDeviance": 1.3456834772768667
+        },
+        {
+          "alpha": 0.15,
+          "validationPoissonDeviance": 1.341322495737518
+        },
+        {
+          "alpha": 0.5,
+          "validationPoissonDeviance": 1.3444092449534502
+        },
+        {
+          "alpha": 1.5,
+          "validationPoissonDeviance": 1.3530307318291448
+        }
+      ],
+      "validationPoissonDeviance": 1.341322495737518
+    },
+    "awayGoals": {
+      "regularizationAlpha": 0.5,
+      "tuning": [
+        {
+          "alpha": 0.03,
+          "validationPoissonDeviance": 1.3168568344163398
+        },
+        {
+          "alpha": 0.15,
+          "validationPoissonDeviance": 1.2939350616335135
+        },
+        {
+          "alpha": 0.5,
+          "validationPoissonDeviance": 1.2812128895468227
+        },
+        {
+          "alpha": 1.5,
+          "validationPoissonDeviance": 1.2950259031356848
+        }
+      ],
+      "validationPoissonDeviance": 1.2812128895468227
+    }
+  },
+  "dixonColes": {
+    "selectedRho": 0.1,
+    "deployedRho": 0.1,
+    "validation1x2LogLossRaw": 0.9343201632391284,
+    "validation1x2LogLossDc": 0.932275286614652
+  },
+  "metrics": {
+    "validation": {
+      "model1x2LogLoss": 0.932275286614652,
+      "baseline1x2LogLoss": 1.02378822516828,
+      "modelBrier": 0.5516486703354767,
+      "baselineBrier": 0.6167663650364509
+    },
+    "test": {
+      "model1x2LogLoss": 0.8937618201377752,
+      "baseline1x2LogLoss": 0.9641021387833006,
+      "modelBrier": 0.5182829348964061,
+      "baselineBrier": 0.575538494581559
+    }
+  },
+  "notes": [
+    "Chronological split by season; no random shuffling.",
+    "Domestic Elo is deliberately excluded: its scales are isolated per country by design. Cross-country comparability comes from euro Elo and euro form built on CL matches only.",
+    "Domestic features are the team's state as of its last league match strictly before the CL match date (no leakage).",
+    "Teams outside the 24 covered leagues carry euro features only; domestic gaps are median-imputed with missing indicators.",
+    "No closing-odds ROI backtest for this model: football-data.org provides no historical odds. Quality is judged by out-of-sample logLoss/Brier vs the CL-average baseline.",
+    "Thin data warning: 557 matches total, test window is ~50 matches; treat metrics as noisy."
+  ]
+}
