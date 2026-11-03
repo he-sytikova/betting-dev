@@ -2,18 +2,19 @@
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Еврокубки — внутренняя модель</title><link rel="stylesheet" href="styles.css">
 <style>
-main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:760px;border-collapse:collapse;font-size:12px}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:8px;white-space:pre-line;overflow-wrap:anywhere}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl tbody tr:hover td{background:#e2e8f0}
+main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:820px;border-collapse:collapse;font-size:12px}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:8px;white-space:pre-line;overflow-wrap:anywhere}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl tbody tr:hover td{background:#e2e8f0}
 .note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
 </style></head><body data-mode="special">
 <header class="app-header"><h1>🏆 Еврокубки — внутренняя модель</h1><p id="euro-status" class="subtitle">Загрузка внутренней модели…</p><button id="refresh" type="button">Обновить</button><a class="back" href="./goals-model.html">← Основные рынки</a><a class="back" href="./express-model.html">Экспрессы дня</a><a class="back" href="./">Dev-панель</a></header>
-<main><p class="note">Экспериментальная модель Лиги чемпионов: Poisson-регрессия ожидаемых голов, обученная на матчах ЛЧ 2023–2026 (football-data.org, 557 матчей). Признаки: кросс-страновой Elo и форма по самим матчам ЛЧ плюс состояние команд в своих чемпионатах (затухающие рейтинги атаки/защиты); команды стран вне покрытия оцениваются только по еврокубковой истории. <strong>Ограничения:</strong> выборка тонкая, проверки против букмекерских коэффициентов не было (исторических котировок у источника нет). Прогноз выводится только для матчей, где обе команды найдены в истории ЛЧ. Это исследовательская оценка вероятностей, а не рекомендация к ставке.</p><p id="euro-count" class="note"></p>
-<div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Матч</th><th>Исходы (евро-модель)</th><th>Двойные шансы</th><th>Тотал голов</th></tr></thead><tbody id="euro-rows"></tbody></table></div><p id="euro-empty" class="note" hidden>Сегодня нет матчей Лиги чемпионов, которые евро-модель может оценить.</p>
+<main><p class="note">Экспериментальная модель еврокубков — Лиги чемпионов, Лиги Европы и Лиги Конференций: Poisson-регрессия ожидаемых голов, обученная на матчах всех трёх турниров 2023–2026 (football-data.org). Признаки: единый кросс-страновой Elo и форма по самим еврокубковым матчам в общей хронологии (команда, перешедшая из ЛЧ в ЛЕ, сохраняет рейтинг), индикатор турнира, плюс состояние команд в своих чемпионатах (затухающие рейтинги атаки/защиты); команды стран вне покрытия оцениваются только по еврокубковой истории. <strong>Ограничения:</strong> выборка по ЛЕ/ЛК тонкая, проверки против букмекерских коэффициентов не было (исторических котировок у источника нет). Прогноз выводится только для матчей, где обе команды найдены в еврокубковой истории. Это исследовательская оценка вероятностей, а не рекомендация к ставке.</p><p id="euro-count" class="note"></p>
+<div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Турнир</th><th>Матч</th><th>Исходы (евро-модель)</th><th>Двойные шансы</th><th>Тотал голов</th></tr></thead><tbody id="euro-rows"></tbody></table></div><p id="euro-empty" class="note" hidden>Сегодня нет матчей еврокубков, которые евро-модель может оценить.</p>
 </main><script src="euro-internal-model.js"></script><script>
 (function () {
   'use strict';
   var $ = function (id) { return document.getElementById(id); };
   var pct = function (n) { return Number.isFinite(n) ? (n * 100).toFixed(1) + '%' : '—'; };
   var fmtTime = function (t) { return new Date(t).toLocaleString('ru-RU', { timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); };
+  var COMP_SHORT = { CL: 'ЛЧ', EL: 'ЛЕ', ECL: 'ЛК' };
   function cell(tr, value) { var td = document.createElement('td'); td.textContent = value; tr.append(td); return td; }
 
   function uniqueFixtures(model, predictions) {
@@ -24,14 +25,15 @@ main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl
     (predictions || []).forEach(function (p) {
       var time = Date.parse(p.time);
       if (!Number.isFinite(time) || time <= Date.now()) return;
-      if (!EuroInternalModel.isChampionsLeague(p.league)) return;
+      var comp = EuroInternalModel.resolveCompetition(model, p.league);
+      if (!comp) return;
       var home = EuroInternalModel.resolveTeam(model, p.home);
       var away = EuroInternalModel.resolveTeam(model, p.away);
       if (!home || !away) return;
       var key = home.key + '|' + away.key + '|' + time;
       if (seen.has(key)) return;
       seen.add(key);
-      out.push({ time: time, league: p.league, home: p.home, away: p.away });
+      out.push({ time: time, league: p.league, comp: comp, home: p.home, away: p.away });
     });
     return out.sort(function (a, b) { return a.time - b.time; });
   }
@@ -40,10 +42,10 @@ main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl
     $('euro-status').textContent = 'Загрузка внутренней модели…';
     try {
       var responses = await Promise.all([
-        fetch('./data/euro_cl_model.json?t=' + Date.now(), { cache: 'no-store' }),
+        fetch('./data/euro_cups_model.json?t=' + Date.now(), { cache: 'no-store' }),
         fetch('./data.json?t=' + Date.now(), { cache: 'no-store' }),
       ]);
-      if (!responses[0].ok) throw Error('euro_cl_model.json: HTTP ' + responses[0].status);
+      if (!responses[0].ok) throw Error('euro_cups_model.json: HTTP ' + responses[0].status);
       if (!responses[1].ok) throw Error('data.json: HTTP ' + responses[1].status);
       var model = await responses[0].json();
       var data = await responses[1].json();
@@ -59,6 +61,7 @@ main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl
         var t25 = m.totals['2.5'] || m.totals[2.5];
         var tr = document.createElement('tr');
         cell(tr, fmtTime(f.time));
+        cell(tr, COMP_SHORT[pred.competition.code] || pred.competition.code);
         cell(tr, pred.home + ' — ' + pred.away);
         cell(tr, 'П1 ' + pct(m.p1) + '\nХ ' + pct(m.x) + '\nП2 ' + pct(m.p2));
         cell(tr, '1X ' + pct(m.dc1x) + '\n12 ' + pct(m.dc12) + '\nX2 ' + pct(m.dcx2));
@@ -66,8 +69,13 @@ main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl
         host.append(tr);
       });
       $('euro-empty').hidden = rendered > 0;
-      $('euro-count').textContent = 'Дата снимка: ' + (data.date || '—') + ' (МСК). Матчей ЛЧ впереди: ' + fixtures.length +
-        ', оценено моделью: ' + rendered + '. Модель обучена на ' + model.trainingMatches + ' матчах ЛЧ по ' + (model.trainingThrough || '—') + '.';
+      var byComp = model.trainingMatchesByCompetition
+        ? Object.keys(model.trainingMatchesByCompetition).map(function (c) {
+            return (COMP_SHORT[c] || c) + ': ' + model.trainingMatchesByCompetition[c];
+          }).join(', ')
+        : '';
+      $('euro-count').textContent = 'Дата снимка: ' + (data.date || '—') + ' (МСК). Матчей еврокубков впереди: ' + fixtures.length +
+        ', оценено моделью: ' + rendered + '. Модель обучена на ' + model.trainingMatches + ' матчах (' + byComp + ') по ' + (model.trainingThrough || '—') + '.';
       $('euro-status').textContent = 'Евро-модель загружена (снимок от ' + (model.trainingThrough || '—') + ').';
     } catch (e) {
       $('euro-status').textContent = 'Евро-модель недоступна: ' + e.message;

@@ -1,10 +1,14 @@
-/* Еврокубковая внутренняя модель (Лига чемпионов).
+/* Еврокубковая внутренняя модель (Лига чемпионов, Лига Европы, Лига
+ * Конференций).
  *
- * Чистый рантайм: вероятности считаются из data/euro_cl_model.json
+ * Чистый рантайм: вероятности считаются из data/euro_cups_model.json
  * (экспорт scripts/models/export-euro-runtime.py). Импьютинг, скейлинг и
  * коэффициенты воспроизводят sklearn-пайплайн экспортёра; поправка
- * Dixon–Coles применяется через dcRho модели. Вероятности не выдумываются:
- * если лига не ЛЧ или команда неизвестна — возвращается null.
+ * Dixon–Coles применяется через dcRho модели. Гейтинг по турнирам идёт по
+ * списку competitions из самого JSON (в JS нет захардкоженных названий);
+ * «AFC Champions League», «UEFA Youth League» и прочие турниры вне списка
+ * отсекаются. Вероятности не выдумываются: если турнир не из модели или
+ * команда неизвестна — возвращается null.
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
@@ -23,9 +27,34 @@
       .trim();
   }
 
-  function isChampionsLeague(leagueName) {
+  // Каталог турниров модели: schemaVersion 2 хранит список competitions,
+  // старый schemaVersion 1 — одиночное competition (ЛЧ).
+  function competitionCatalog(model) {
+    if (!model) return [];
+    if (Array.isArray(model.competitions) && model.competitions.length) {
+      return model.competitions;
+    }
+    if (model.competition && model.competition.code) {
+      return [{ code: model.competition.code, names: model.competition.names || [] }];
+    }
+    return [];
+  }
+
+  // Сопоставляет название лиги из фида с турниром модели. Возвращает
+  // { code, name } или null — вероятности для неизвестного турнира не
+  // выдумываются.
+  function resolveCompetition(model, leagueName) {
     const n = norm(leagueName);
-    return n === 'uefa champions league' || n === 'champions league';
+    if (!n) return null;
+    const catalog = competitionCatalog(model);
+    for (let i = 0; i < catalog.length; i++) {
+      const comp = catalog[i];
+      const names = comp.names || [];
+      for (let j = 0; j < names.length; j++) {
+        if (norm(names[j]) === n) return { code: comp.code, name: comp.name || comp.code };
+      }
+    }
+    return null;
   }
 
   function resolveTeam(model, name) {
@@ -33,12 +62,13 @@
     return key ? { key, team: model.teams[key] } : null;
   }
 
-  function baseFeatureVector(model, home, away) {
+  function baseFeatureVector(model, home, away, comp) {
     const h = home.team, a = away.team;
     const euroOf = (t) => (t.euro || {});
     const domOf = (t) => (t.domestic || null);
     const hE = euroOf(h), aE = euroOf(a);
     const hD = domOf(h), aD = domOf(a);
+    const code = comp ? comp.code : '';
     return {
       home_euro_elo: hE.euroElo != null ? hE.euroElo : null,
       away_euro_elo: aE.euroElo != null ? aE.euroElo : null,
@@ -56,6 +86,8 @@
       away_dom_goal_against_avg5: aD ? aD.goal_against_avg5 : null,
       home_dom_missing: hD ? 0 : 1,
       away_dom_missing: aD ? 0 : 1,
+      comp_is_el: code === 'EL' ? 1 : 0,
+      comp_is_ecl: code === 'ECL' ? 1 : 0,
     };
   }
 
@@ -122,17 +154,20 @@
   }
 
   function predict(model, leagueName, homeName, awayName) {
-    if (!model || !isChampionsLeague(leagueName)) return null;
+    if (!model) return null;
+    const comp = resolveCompetition(model, leagueName);
+    if (!comp) return null;
     const home = resolveTeam(model, homeName);
     const away = resolveTeam(model, awayName);
     if (!home || !away) return null;
-    const base = baseFeatureVector(model, home, away);
+    const base = baseFeatureVector(model, home, away, comp);
     const vector = transform(model, base);
     const homeLambda = predictLambda(model, vector, 'home');
     const awayLambda = predictLambda(model, vector, 'away');
     const markets = deriveMarkets(homeLambda, awayLambda, model);
     return {
       league: leagueName,
+      competition: comp,
       home: home.team.fdoName,
       away: away.team.fdoName,
       homeLambda,
@@ -141,5 +176,6 @@
     };
   }
 
-  return { norm, isChampionsLeague, resolveTeam, baseFeatureVector, transform, predictLambda, dcTau, deriveMarkets, predict };
+  return { norm, competitionCatalog, resolveCompetition, resolveTeam,
+           baseFeatureVector, transform, predictLambda, dcTau, deriveMarkets, predict };
 }));
