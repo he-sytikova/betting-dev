@@ -29,6 +29,10 @@ _spec = importlib.util.spec_from_file_location(
     "corners_export", Path(__file__).with_name("export-corners-cards-runtime.py"))
 corners_export = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(corners_export)
+_spec_recency = importlib.util.spec_from_file_location(
+    "recency", Path(__file__).with_name("recency.py"))
+recency = importlib.util.module_from_spec(_spec_recency)
+_spec_recency.loader.exec_module(recency)
 
 
 def feature_columns(columns):
@@ -48,7 +52,7 @@ def feature_columns(columns):
     return [c for c in wanted if c in columns]
 
 
-def export_model(df, target, alpha, numeric=None):
+def export_model(df, target, alpha, numeric=None, recency_half_life=None):
     if numeric is None:
         numeric = feature_columns(df.columns)
     else:
@@ -58,8 +62,11 @@ def export_model(df, target, alpha, numeric=None):
     subset = subset[subset[target].notna()].sort_values("date")
     if len(subset) < 500:
         raise RuntimeError(f"Not enough rows for {target}: {len(subset)}")
-    pipeline = corners_export.make_pipeline(numeric, alpha).fit(subset[numeric + ["league"]],
-                                                                subset[target].to_numpy(float))
+    # Same decay selected on validation, re-anchored to the newest training date.
+    weights = recency.recency_weights(subset["date"], recency_half_life)
+    pipeline = corners_export.make_pipeline(numeric, alpha).fit(
+        subset[numeric + ["league"]], subset[target].to_numpy(float),
+        model__sample_weight=weights)
     prep = pipeline.named_steps["prep"]
     num_pipe = prep.named_transformers_["num"]
     imputer = num_pipe.named_steps["impute"]
@@ -80,7 +87,7 @@ def export_model(df, target, alpha, numeric=None):
         "intercept": float(pipeline.named_steps["model"].intercept_),
         "trainingRows": int(len(subset)), "trainingFrom": str(subset.date.min().date()),
         "trainingThrough": str(subset.date.max().date()),
-        "regularizationAlpha": alpha,
+        "regularizationAlpha": alpha, "recencyHalfLifeDays": recency_half_life,
         "missingIndicatorFeatures": [numeric[i] for i in missing_indices],
         "leagueCategories": categories,
     }
@@ -99,7 +106,8 @@ def main():
     models = {}
     for key, target in TARGETS.items():
         alpha = float(report["selected"][key]["alpha"])
-        models[key] = export_model(df, target, alpha, selected_features)
+        half_life = report["selected"][key].get("recencyHalfLifeDays")
+        models[key] = export_model(df, target, alpha, selected_features, half_life)
     teams, league_stats, aliases, names = corners_export.build_runtime_state(df, template)
     totals_calibration = ((report.get("totalsCalibration") or {}).get("calibrators")) or {}
     dc = report.get("dixonColes") or {}
