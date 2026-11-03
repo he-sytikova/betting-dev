@@ -366,6 +366,8 @@ API-консенсус не является внутренней моделью
 
 **Ограничения.** Покрытие Pinnacle частичное (особенно в свежих сезонах), поэтому результаты по источникам не вполне сопоставимы между собой. Прошлая неэффективность/эффективность линии могла измениться после обучающего окна. Результат не является рекомендацией к ставкам — наоборот, это измеренное подтверждение, что систематического плюса у модели против закрытия нет.
 
+**Эксперимент с градиентным бустингом (3 ноября 2026 г., отрицательный результат).** Скрипт `scripts/models/experiment-goals-gb.py` проверяет HistGradientBoostingRegressor (loss=poisson) на том же наборе признаков, сплите и мёртвой зоне: сетка из четырёх конфигураций, выбор на validation. Все конфигурации проигрывают линейной Poisson-регрессии (лучшая комбинированная deviance 2,2539 против 2,2488 у baseline; validation 1X2 logLoss 1,0079 против 1,0065). По протоколу мёртвой зоны бустинг отклонён, бэктест против коэффициентов для него не запускался, продакшен-модель не менялась. Вывод: на текущих признаках нелинейности не дают выигрыша — узкое место модели в данных (составы, травмы, xG), а не в алгоритме. Отчёт: `data/goals_markets_gb_experiment.json`.
+
 ## 8. Архив результатов без CSV
 
 Скрипт `scripts/models/archive-provider-results.mjs` сохраняет завершённые результаты в JSONL:
@@ -616,6 +618,7 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │   ├── goals_markets_models.json
 │   ├── goals_markets_model_validation.json
 │   ├── goals_markets_backtest.json
+│   ├── goals_markets_gb_experiment.json
 │   ├── stats_markets_models.json
 │   ├── stats_markets_model_validation.json
 │   ├── historical_dataset_report.json
@@ -633,6 +636,7 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │       ├── train-goals-markets.py
 │       ├── train-stats-markets.py
 │       ├── backtest-closing-odds.py
+│       ├── experiment-goals-gb.py
 │       ├── export-corners-cards-runtime.py
 │       ├── export-goals-runtime.py
 │       ├── export-stats-runtime.py
