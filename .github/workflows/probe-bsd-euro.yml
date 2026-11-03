@@ -1,0 +1,38 @@
+name: Probe BSD euro-cup coverage
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Probe BSD coverage of CL/EL/ECL (seasons, results, stats)
+        env:
+          BSD_TOKEN: ${{ secrets.BSD_TOKEN }}
+        run: python scripts/models/probe-bsd-euro.py --output data/bsd_euro_probe.json
+
+      - name: Commit probe report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/bsd_euro_probe.json
+          if git diff --cached --quiet; then
+            echo "Probe report is already current"
+          else
+            git commit -m "chore: BSD euro-cup probe report"
+            git pull --rebase origin main
+            git push
+          fi
