@@ -25,6 +25,10 @@ RATE_LIMIT_PAUSE = 7.0  # free tier: 10 запросов/мин
 # Лига Конференций (с сезона 2021).
 COMPETITIONS = ("CL", "EL", "ECL")
 
+# Внутренний код турнира -> код в API football-data.org. Лига Конференций
+# в API называется UCL (id 2154); «ECL» там не существует (404).
+API_CODES = {"CL": "CL", "EL": "EL", "ECL": "UCL"}
+
 
 def fetch(url: str, token: str) -> dict:
     req = urllib.request.Request(url)
@@ -37,12 +41,13 @@ def download_competition(comp: str, token: str, output_dir: Path,
                          seasons=None, pause: float = RATE_LIMIT_PAUSE):
     """Качает доступные сезоны одного турнира. Возвращает словарь
     {"ok": [(season, n_matches)], "skipped": [season], "catalogDenied": bool}.
-    403 на каталоге = турнир недоступен на тарифе целиком."""
+    403/404 на каталоге = турнир недоступен на тарифе/не существует целиком."""
+    api_code = API_CODES[comp]
     if seasons is None:
         try:
-            info = fetch(f"{API}/competitions/{comp}", token)
+            info = fetch(f"{API}/competitions/{api_code}", token)
         except urllib.error.HTTPError as e:
-            if e.code == 403:
+            if e.code in (403, 404):
                 return {"ok": [], "skipped": [], "catalogDenied": True}
             raise
         seasons = sorted(
@@ -56,9 +61,9 @@ def download_competition(comp: str, token: str, output_dir: Path,
             time.sleep(pause)
         first = False
         try:
-            data = fetch(f"{API}/competitions/{comp}/matches?season={season}", token)
+            data = fetch(f"{API}/competitions/{api_code}/matches?season={season}", token)
         except urllib.error.HTTPError as e:
-            if e.code == 403:
+            if e.code in (403, 404):
                 skipped.append(season)
                 continue
             raise

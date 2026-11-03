@@ -25,6 +25,10 @@ RATE_LIMIT_PAUSE = 7.0  # free tier: 10 запросов/мин
 
 COMPETITIONS = ("CL", "EL", "ECL")
 
+# Внутренний код турнира -> код в API football-data.org. Лига Конференций
+# в API называется UCL (id 2154); «ECL» там не существует (404).
+API_CODES = {"CL": "CL", "EL": "EL", "ECL": "UCL"}
+
 
 def _load_builder():
     path = Path(__file__).with_name("build-euro-dataset.py")
@@ -43,11 +47,13 @@ def fetch(url: str, token: str) -> dict:
 
 
 def probe_competition(comp: str, token: str):
+    api_code = API_CODES[comp]
     try:
-        info = fetch(f"{API}/competitions/{comp}", token)
+        info = fetch(f"{API}/competitions/{api_code}", token)
     except urllib.error.HTTPError as e:
-        if e.code == 403:
-            return {"denied": True, "seasons": [], "teams": []}
+        if e.code in (403, 404):
+            # 403 = нет доступа на тарифе; 404 = неверный/неизвестный код турнира.
+            return {"denied": True, "httpStatus": e.code, "seasons": [], "teams": []}
         raise
     seasons = sorted((int(s["startDate"][:4]) for s in info.get("seasons", [])), reverse=True)
     teams = {}
@@ -57,9 +63,9 @@ def probe_competition(comp: str, token: str):
             time.sleep(RATE_LIMIT_PAUSE)
         first = False
         try:
-            data = fetch(f"{API}/competitions/{comp}/matches?season={season}", token)
+            data = fetch(f"{API}/competitions/{api_code}/matches?season={season}", token)
         except urllib.error.HTTPError as e:
-            if e.code == 403:
+            if e.code in (403, 404):
                 continue
             raise
         for m in data.get("matches", []):
@@ -97,7 +103,7 @@ def main():
         report["competitions"][comp] = {**info, "mappedToDomestic": sorted(mapped),
                                         "euroOnly": sorted(euro_only), "unmapped": sorted(unmapped)}
         if info["denied"]:
-            print(f"{comp}: NOT AVAILABLE on current plan")
+            print(f"{comp} (api {API_CODES[comp]}): NOT AVAILABLE (HTTP {info.get('httpStatus')})")
         else:
             print(f"{comp}: seasons {info['seasons']}, teams {len(names)} "
                   f"(mapped {len(mapped)}, euro-only {len(euro_only)}, UNMAPPED {len(unmapped)})")
