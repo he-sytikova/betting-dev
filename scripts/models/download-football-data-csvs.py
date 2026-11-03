@@ -25,7 +25,7 @@ LEAGUES = ("E0", "E1", "E2", "E3", "SC0", "SC1", "D1", "D2", "I1", "I2",
 # match statistics; different column schema). They feed the goals model only.
 RESULTS_ONLY_LEAGUES = ("RUS", "BRA", "USA", "NOR", "SWE")
 # 2000/01 through the current 2026/27 season; unavailable files are skipped.
-SEASONS = tuple(f"{year % 100:02d}{(y + 1) % 100:02d}" for y in range(2000, 2027))
+SEASONS = tuple(f"{y % 100:02d}{(y + 1) % 100:02d}" for y in range(2000, 2027))
 REQUIRED = {"Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"}
 REQUIRED_RESULTS_ONLY = {"Date", "Home", "Away", "HG", "AG"}
 USER_AGENT = "BettingDevHistoricalDataset/1.0 (GitHub Actions)"
