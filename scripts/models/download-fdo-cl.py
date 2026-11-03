@@ -40,7 +40,10 @@ def main():
     seasons = args.seasons
     if seasons is None:
         info = fetch(f"{API}/competitions/CL", token)
-        seasons = sorted(int(s["startDate"][:4]) for s in info.get("seasons", []), reverse=True)
+        seasons = sorted(
+            (int(s["startDate"][:4]) for s in info.get("seasons", [])),
+            reverse=True,
+        )
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     ok, skipped = [], []
