@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-03T04:17:23.627062+00:00",
-  "dataset": "/mnt/agents/work/repo/data/euro_cl_training.csv",
+  "generatedAt": "2026-11-03T05:52:28.478090+00:00",
+  "dataset": "/home/runner/work/betting-dev/betting-dev/data/euro_cl_training.csv",
   "splitPolicy": {
     "train": "seasons 2023+2024",
     "validation": "season 2025",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T19:59:09.079539Z",
+  "generatedAt": "2026-11-03T05:39:05.301575Z",
   "sourceFiles": 513,
   "rows": 201050,
   "invalidRows": 129,
@@ -3554,7 +3554,7 @@
       "duplicates": 0
     }
   ],
-  "output": "/mnt/agents/work/repo/data/corners_cards_training.csv",
+  "output": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
   "cornersAvailableRows": 120663,
   "cardsAvailableRows": 121227,
   "cornersEligibleRows": 117884,
