@@ -70,7 +70,7 @@ GitHub Pages публикует содержимое dev-репозитория.
 | `model-v1.html` | Угловые и жёлтые карточки | Активен; только экспериментальная внутренняя модель |
 | `stats-model.html` | Тоталы фолов, ударов, ударов в створ | Активен; только экспериментальная внутренняя модель |
 | `express-model.html` | Экспрессы дня: топ-5 двойников из двойных шансов и тоталов | Активен; надстройка над моделью голов (с 3 ноября 2026 г.) |
-| `euro-model.html` | Еврокубки: экспериментальная модель Лиги чемпионов | Активен; тонкая выборка, без проверки против рынка (с 3 ноября 2026 г.) |
+| `euro-model.html` | Еврокубки: экспериментальная модель ЛЧ + Лиги Европы + Лиги Конференций | Активен; тонкая выборка по ЛЕ/ЛК, без проверки против рынка (с 3 ноября 2026 г.) |
 | `api-consensus.html` | Страница API-консенсуса основных рынков | Альтернативная/техническая страница |
 | `api-special.html` | Страница специальных рынков | Альтернативная/техническая страница |
 | `markets.html` | Более ранняя страница рынков/экспериментов | Требует отдельной проверки перед повторным включением |
@@ -390,6 +390,16 @@ API-консенсус не является внутренней моделью
 
 **Тесты.** `tests/test_recency_weights.py` (юнит-тесты весов + синтетический дрейфующий процесс, где взвешенный Poisson точнее на будущем окне).
 
+### 7.13. Еврокубковый этап — расширение на Лигу Европы и Лигу Конференций (3 ноября 2026 г.)
+
+**Назначение.** Расширение модели раздела 7.11 с одной Лиги чемпионов на все три еврокубка (ЛЧ + ЛЕ + ЛК) на том же токене football-data.org — без новых источников и затрат; выборка еврокубков утраивается, что напрямую работает против главного боттleneck'а (тонкие данные).
+
+**Данные.** Сборщик `scripts/models/download-fdo-cl.py` заменён на `scripts/models/download-fdo-euro.py`: он сам опрашивает каталог каждого турнира (CL/EL/ECL) и пропускает турниры/сезоны, недоступные на тарифе (403 — штатно). Диагностический workflow `probe-fdo-euro.yml` (скрипт `scripts/models/probe-fdo-euro.py`) выгружает полный список команд доступных турниров/сезонов и сверяет его с маппингом `FDO_TEAM_ALIASES` — отчёт коммитится в `data/fdo_euro_probe.json`, по нему маппинг дополняется до ретренировки.
+
+**Пайплайн.** `build-euro-dataset.py` читает матчи всех трёх турниров в общей хронологии; euro Elo и затухающие euro-рейтинги ведутся единые для всех турниров — команда, вылетевшая из ЛЧ в ЛЕ, продолжает со своим рейтингом (рейтинг не теряется). Добавлены признаки `comp_is_el` / `comp_is_ecl` (ЛЧ — референсная категория). Обучение — `scripts/models/train-euro-cups.py` (заменил `train-euro-cl.py`): тот же протокол сплита по сезонам и мёртвой зоны, отчёт `data/euro_cups_model_validation.json` теперь содержит разбивку метрик по турнирам (`byCompetition`) — сразу видно, если какой-то турнир проседает. Экспорт `export-euro-runtime.py` пишет `data/euro_cups_model.json` со `schemaVersion: 2`: список турниров и вариантов их названий едет в самом JSON, гейтинг в `euro-internal-model.js` идёт по этому списку (захардкоженных названий в JS нет); «AFC Champions League» и «UEFA Youth League» по-прежнему отсекаются. На странице `euro-model.html` добавлена колонка «Турнир», дисклеймер обновлён.
+
+**Тесты.** `tests/test_euro_cl.py` заменён на `tests/test_euro_cups.py` (13 тестов, включая кросс-турнирную преемственность Elo, comp-индикаторы и громкий отказ на несмапленной команде); Node-сьют `euro-internal-model.test.cjs` дополнен проверками гейта трёх турниров и comp-признаков (до первой ретренировки, когда артефакт ещё не закоммичен, модельные тесты пропускаются — как Python-тесты без CSV).
+
 ## 8. Архив результатов без CSV
 
 Скрипт `scripts/models/archive-provider-results.mjs` сохраняет завершённые результаты в JSONL:
@@ -524,7 +534,7 @@ Node.js в workflow — версия 22. Для тестов используе�
 
 ## 11. Тестирование
 
-Тесты находятся в `tests/`: `api-consensus.test.cjs`, `internal-model.test.cjs`, `goals-internal-model.test.cjs`, `stats-internal-model.test.cjs`, `euro-internal-model.test.cjs`, `express-model.test.cjs` (Node.js `node:test`) и `test_build_historical_dataset.py`, `test_backtest_closing_odds.py`, `test_euro_cl.py`, `test_recency_weights.py`, `test_runtime_model_export.py` (Python unittest).
+Тесты находятся в `tests/`: `api-consensus.test.cjs`, `internal-model.test.cjs`, `goals-internal-model.test.cjs`, `stats-internal-model.test.cjs`, `euro-internal-model.test.cjs`, `express-model.test.cjs` (Node.js `node:test`) и `test_build_historical_dataset.py`, `test_backtest_closing_odds.py`, `test_euro_cups.py`, `test_recency_weights.py`, `test_runtime_model_export.py` (Python unittest).
 
 Текущие проверяемые сценарии API-консенсуса:
 
@@ -588,7 +598,7 @@ node --test tests/euro-internal-model.test.cjs
 node --check scripts/models/archive-provider-results.mjs
 python3 tests/test_build_historical_dataset.py
 python3 -m unittest tests.test_backtest_closing_odds
-python3 -m unittest tests.test_euro_cl
+python3 -m unittest tests.test_euro_cups
 python3 -m unittest tests.test_recency_weights
 ```
 
@@ -647,8 +657,8 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │   ├── goals_markets_model_validation.json
 │   ├── goals_markets_backtest.json
 │   ├── goals_markets_gb_experiment.json
-│   ├── euro_cl_model.json
-│   ├── euro_cl_model_validation.json
+│   ├── euro_cups_model.json
+│   ├── euro_cups_model_validation.json
 │   ├── stats_markets_models.json
 │   ├── stats_markets_model_validation.json
 │   ├── historical_dataset_report.json
@@ -667,10 +677,11 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │       ├── train-stats-markets.py
 │       ├── backtest-closing-odds.py
 │       ├── experiment-goals-gb.py
-│       ├── download-fdo-cl.py
+│       ├── download-fdo-euro.py
+│       ├── probe-fdo-euro.py
 │       ├── build-euro-dataset.py
 │       ├── recency.py
-│       ├── train-euro-cl.py
+│       ├── train-euro-cups.py
 │       ├── export-euro-runtime.py
 │       ├── export-corners-cards-runtime.py
 │       ├── export-goals-runtime.py
@@ -687,7 +698,7 @@ find . -type f -name '*.csv' -not -path './.git/*'
 │   ├── test_build_historical_dataset.py
 │   ├── test_backtest_closing_odds.py
 │   ├── test_recency_weights.py
-│   └── test_euro_cl.py
+│   └── test_euro_cups.py
 └── .github/
     └── workflows/
         ├── deploy-pages.yml
