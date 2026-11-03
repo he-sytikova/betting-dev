@@ -1,17 +1,18 @@
 {
-  "generatedAt": "2026-11-03T05:52:42.236Z",
+  "generatedAt": "2026-11-03T09:06:21.947Z",
   "ledgerFiles": [
     "2026-11-01.jsonl",
-    "2026-11-02.jsonl"
+    "2026-11-02.jsonl",
+    "2026-11-03.jsonl"
   ],
   "dataset": "data/corners_cards_training.csv",
   "selectionPolicy": "latest capture strictly before kickoff per fixture; actuals from football-data.co.uk via the training dataset",
   "coverage": {
-    "ledgerRecords": 45,
-    "uniquePreKickoffFixtures": 43,
+    "ledgerRecords": 83,
+    "uniquePreKickoffFixtures": 81,
     "unresolvedLeague": 0,
     "unresolvedTeam": 0,
-    "noDatasetRow": 42,
+    "noDatasetRow": 80,
     "evaluated": 1
   },
   "models": {
