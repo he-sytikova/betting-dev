@@ -56,7 +56,9 @@ class RuntimeModelExportTests(unittest.TestCase):
         })
         model = runtime_export.export_model(
             frame, "corners", "corners_total", "corners_model_eligible",
-            [7.5, 8.5], {"featureSet": "full", "alpha": 0.15},
+            [7.5, 8.5],
+            {"poissonTuning": {"selected": {"featureSet": "full", "alpha": 0.15,
+                                            "recencyHalfLifeDays": None}}},
         )
         lengths = {len(model[key]) for key in ("features", "imputerMedian", "scalerMean", "scalerScale", "coefficients")}
         self.assertEqual(lengths, {len(model["features"])})
