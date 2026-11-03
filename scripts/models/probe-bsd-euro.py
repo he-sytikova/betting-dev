@@ -71,9 +71,24 @@ def find_leagues(leagues):
     return found
 
 
+def as_list(data, preferred=()):
+    """Достаёт список из ответа BSD: чистый список или первое
+    списочное значение среди preferred-ключей, затем любого ключа."""
+    if isinstance(data, list):
+        return data
+    if isinstance(data, dict):
+        for key in preferred:
+            if isinstance(data.get(key), list):
+                return data[key]
+        for v in data.values():
+            if isinstance(v, list):
+                return v
+    return []
+
+
 def probe_league(code: str, league_id: int, token: str):
     seasons_data = fetch(f"/leagues/{league_id}/seasons/", token)
-    seasons = seasons_data.get("results", seasons_data if isinstance(seasons_data, list) else [])
+    seasons = as_list(seasons_data, ("results", "seasons", "data"))
     season_rows = [
         {"id": s.get("id"), "year": s.get("year"), "name": s.get("name"),
          "start_date": s.get("start_date"), "end_date": s.get("end_date"),
@@ -90,8 +105,8 @@ def probe_league(code: str, league_id: int, token: str):
         except urllib.error.HTTPError as e:
             checked.append({"season": s, "error": f"HTTP {e.code}"})
             continue
-        matches = ev.get("results", ev if isinstance(ev, list) else [])
-        total = ev.get("count", len(matches))
+        matches = as_list(ev, ("results", "events", "data"))
+        total = ev.get("count", len(matches)) if isinstance(ev, dict) else len(matches)
         # Проверяем поля счёта на образце.
         score_ok = sum(
             1 for m in matches
@@ -116,7 +131,8 @@ def probe_league(code: str, league_id: int, token: str):
         checked.append({"season": s, "finished_total": total,
                         "sampled": len(matches), "with_score": score_ok,
                         "availability": sample_availability})
-    return {"seasons": season_rows, "checked": checked}
+    return {"seasons": season_rows, "checked": checked,
+            "seasonsResponseKeys": sorted(seasons_data.keys()) if isinstance(seasons_data, dict) else "list"}
 
 
 def main():
