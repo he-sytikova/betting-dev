@@ -170,6 +170,19 @@ def main():
     covered = sum(1 for v in FDO_TEAM_ALIASES.values() if v)
     print(f"FDO teams: {len(FDO_TEAM_ALIASES)}, with domestic coverage: {covered}")
 
+    rows, states, coverage, avg_goals = process_matches(matches, series)
+    out = pd.DataFrame(rows)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    out.to_csv(args.output, index=False)
+    print(f"written {len(out)} rows -> {args.output}")
+    print("domestic coverage:", coverage)
+    print("CL avg goals/match:", round(avg_goals, 3))
+
+
+def process_matches(matches, series):
+    """Прогоняет матчи ЛЧ по хронологии: считает признаки без утечки и
+    возвращает (rows, final_states, coverage, avg_goals), где final_states —
+    euro-состояния команд после последнего матча (для рантайм-экспорта)."""
     # --- Кросс-страновой Elo и затухающие euro-рейтинги по самим матчам ЛЧ ---
     euro_elo = defaultdict(lambda: ELO_START)
     euro_gf = defaultdict(float)   # затухающая сумма забитых
@@ -243,12 +256,18 @@ def main():
         league_avg_goals = total_goals / total_matches
         rows.append(feat)
 
-    out = pd.DataFrame(rows)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    out.to_csv(args.output, index=False)
-    print(f"written {len(out)} rows -> {args.output}")
-    print("domestic coverage:", coverage)
-    print("CL avg goals/match:", round(total_goals / total_matches, 3))
+    final_states = {
+        team: {
+            "euroElo": euro_elo[team],
+            "euroGf": (euro_gf[team] / euro_w[team]) if euro_w[team] > 1e-9 else None,
+            "euroGa": (euro_ga[team] / euro_w[team]) if euro_w[team] > 1e-9 else None,
+            "euroGames": sum(1 for m in matches if m["home_fdo"] == team or m["away_fdo"] == team),
+            "euroLastDate": euro_last[team].date().isoformat() if team in euro_last else None,
+        }
+        for team in {m["home_fdo"] for m in matches} | {m["away_fdo"] for m in matches}
+    }
+    avg_goals = total_goals / total_matches if total_matches else 0.0
+    return rows, final_states, coverage, avg_goals
 
 
 if __name__ == "__main__":
