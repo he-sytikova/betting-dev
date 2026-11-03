@@ -16,13 +16,33 @@ test('norm mirrors the Python exporter normalization', () => {
   assert.equal(euro.norm('Qarabağ Ağdam FK'), 'qarabag agdam fk');
 });
 
-test('competition gate accepts all three UEFA tournaments', { skip: !modelExists }, () => {
-  assert.equal(euro.resolveCompetition(model, 'UEFA Champions League').code, 'CL');
-  assert.equal(euro.resolveCompetition(model, 'Champions League').code, 'CL');
-  assert.equal(euro.resolveCompetition(model, 'UEFA Europa League').code, 'EL');
-  assert.equal(euro.resolveCompetition(model, 'Europa League').code, 'EL');
-  assert.equal(euro.resolveCompetition(model, 'UEFA Europa Conference League').code, 'ECL');
-  assert.equal(euro.resolveCompetition(model, 'Conference League').code, 'ECL');
+// Ожидания берутся из артефакта, а не захардкожены: пока тариф FDO отдаёт
+// только ЛЧ, гейт обязан принимать ровно ЛЧ; появятся ЛЕ/ЛК — тест сам их подхватит.
+const ALL_COMP_NAMES = {
+  CL: ['UEFA Champions League', 'Champions League'],
+  EL: ['UEFA Europa League', 'Europa League'],
+  ECL: ['UEFA Europa Conference League', 'UEFA Conference League', 'Conference League'],
+};
+
+test('competition gate accepts exactly the tournaments present in the model', { skip: !modelExists }, () => {
+  assert.ok(Array.isArray(model.competitions) && model.competitions.length > 0);
+  for (const comp of model.competitions) {
+    for (const name of comp.names) {
+      const resolved = euro.resolveCompetition(model, name);
+      assert.ok(resolved, `${name} must resolve`);
+      assert.equal(resolved.code, comp.code);
+    }
+  }
+});
+
+test('competition gate rejects tournaments absent from the model', { skip: !modelExists }, () => {
+  const present = new Set(model.competitions.map(c => c.code));
+  for (const [code, names] of Object.entries(ALL_COMP_NAMES)) {
+    if (present.has(code)) continue;
+    for (const name of names) {
+      assert.equal(euro.resolveCompetition(model, name), null, `${name} must not resolve`);
+    }
+  }
 });
 
 test('competition gate rejects lookalike tournaments', { skip: !modelExists }, () => {
