@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Export the validated Poisson pipelines and latest pre-match team state for browser inference."""
 from __future__ import annotations
+import importlib.util
 import json
 import re
 import unicodedata
@@ -25,6 +26,11 @@ MARKETS = {
     "yellowCards": ("cards_total", "cards_model_eligible", [1.5, 2.5, 3.5, 4.5, 5.5, 6.5]),
 }
 REFEREE_FEATURES = {"referee_available", "referee_matches_before", "referee_yellows_avg10", "referee_fouls_avg10"}
+
+_spec_recency = importlib.util.spec_from_file_location(
+    "recency", Path(__file__).with_name("recency.py"))
+recency = importlib.util.module_from_spec(_spec_recency)
+_spec_recency.loader.exec_module(recency)
 
 # Built-in league metadata. The browser runtime (internal-model.js) resolves provider
 # league names through these aliases, so CI must never lose them when no previous
@@ -146,13 +152,14 @@ def estimate_alpha(y, mu):
     return float(np.clip(raw, 0.005, 2.0))
 
 
-def fit_nb2_coefficients(prep, x, y, pipeline):
+def fit_nb2_coefficients(prep, x, y, pipeline, freq_weights=None):
     """Refit the exported pipeline as a negative-binomial GLM in the same
     transformed feature space; returns (intercept, coefficients, alpha)."""
     import statsmodels.api as sm
     z = sm.add_constant(np.asarray(prep.transform(x)), has_constant="add")
     nb_alpha = estimate_alpha(y, np.clip(pipeline.predict(x), 0.01, None))
-    nb = sm.GLM(y, z, family=sm.families.NegativeBinomial(alpha=nb_alpha)).fit(maxiter=15)
+    nb = sm.GLM(y, z, family=sm.families.NegativeBinomial(alpha=nb_alpha),
+                freq_weights=freq_weights).fit(maxiter=15)
     return float(nb.params[0]), list(map(float, nb.params[1:])), nb_alpha
 
 
@@ -170,7 +177,10 @@ def export_model(df, market, target, eligible, lines, report_market):
     numeric = feature_columns(df.columns, "corners" if market == "corners" else "cards")
     if feature_set == "without_referee":
         numeric = [c for c in numeric if c not in REFEREE_FEATURES]
+    elif feature_set == "full_plus_referee_red" and "referee_red_cards_avg10" in df.columns:
+        numeric = numeric + ["referee_red_cards_avg10"]
     alpha = float(selected.get("alpha", 0.15))
+    half_life = selected.get("recencyHalfLifeDays")
     subset = df[(df[eligible] == 1) & df[target].notna()].copy()
     subset[target] = pd.to_numeric(subset[target], errors="coerce")
     subset = subset[subset[target].notna()].sort_values("date")
@@ -178,7 +188,9 @@ def export_model(df, market, target, eligible, lines, report_market):
         raise RuntimeError(f"Not enough eligible rows for {market}: {len(subset)}")
     x = subset[numeric + ["league"]]
     y = subset[target].to_numpy(float)
-    pipeline = make_pipeline(numeric, alpha).fit(x, y)
+    # Same decay selected on validation, re-anchored to the newest training date.
+    weights = recency.recency_weights(subset["date"], half_life)
+    pipeline = make_pipeline(numeric, alpha).fit(x, y, model__sample_weight=weights)
     prep = pipeline.named_steps["prep"]
     num_pipe = prep.named_transformers_["num"]
     imputer = num_pipe.named_steps["impute"]
@@ -193,7 +205,8 @@ def export_model(df, market, target, eligible, lines, report_market):
     distribution = report_market.get("distributionSelection", {}).get("selected", "poisson")
     model_type, nb_alpha = "poisson", None
     if distribution == "nb":
-        intercept, coefficients, nb_alpha = fit_nb2_coefficients(prep, x, y, pipeline)
+        intercept, coefficients, nb_alpha = fit_nb2_coefficients(prep, x, y, pipeline,
+                                                                 freq_weights=weights)
         model_type = "nb2"
     else:
         coefficients = list(map(float, pipeline.named_steps["model"].coef_))
@@ -206,7 +219,8 @@ def export_model(df, market, target, eligible, lines, report_market):
         "intercept": intercept,
         "trainingRows": int(len(subset)), "trainingFrom": str(subset.date.min().date()),
         "trainingThrough": str(subset.date.max().date()), "selectedFeatureSet": feature_set,
-        "regularizationAlpha": alpha, "missingIndicatorFeatures": [numeric[i] for i in missing_indices],
+        "regularizationAlpha": alpha, "recencyHalfLifeDays": half_life,
+        "missingIndicatorFeatures": [numeric[i] for i in missing_indices],
         "leagueCategories": categories, "lines": lines,
     }
     if nb_alpha is not None:
