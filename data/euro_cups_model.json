@@ -1,0 +1,2140 @@
+{
+ "schemaVersion": 2,
+ "generatedAt": "2026-11-03T13:09:41.993012+00:00",
+ "status": "experimental-internal",
+ "disclaimer": "Экспериментальная внутренняя модель еврокубков (Лига чемпионов, Лига Европы, Лига Конференций). Обучена на матчах football-data.org 2023–2026; единый кросс-страновой Elo и форма ведутся по всем турнирам в общей хронологии. Валидация out-of-sample лучше базового среднего, но проверки против рынка не было (нет исторических коэффициентов), выборка по ЛЕ/ЛК особенно тонкая. Исследовательская оценка, не рекомендация к ставке.",
+ "trainingMatches": 557,
+ "trainingMatchesByCompetition": {
+  "CL": 557
+ },
+ "trainingThrough": "2026-10-21 00:00:00",
+ "competitions": [
+  {
+   "code": "CL",
+   "name": "UEFA Champions League",
+   "names": [
+    "UEFA Champions League",
+    "Champions League"
+   ]
+  }
+ ],
+ "features": [
+  "home_euro_elo",
+  "away_euro_elo",
+  "home_euro_gf",
+  "home_euro_ga",
+  "away_euro_gf",
+  "away_euro_ga",
+  "home_dom_att_decay",
+  "home_dom_def_decay",
+  "away_dom_att_decay",
+  "away_dom_def_decay",
+  "home_dom_goal_for_avg5",
+  "home_dom_goal_against_avg5",
+  "away_dom_goal_for_avg5",
+  "away_dom_goal_against_avg5",
+  "home_dom_missing",
+  "away_dom_missing",
+  "comp_is_el",
+  "comp_is_ecl",
+  "home_euro_gf__missing",
+  "home_euro_ga__missing",
+  "away_euro_gf__missing",
+  "away_euro_ga__missing",
+  "home_dom_att_decay__missing",
+  "home_dom_def_decay__missing",
+  "away_dom_att_decay__missing",
+  "away_dom_def_decay__missing",
+  "home_dom_goal_for_avg5__missing",
+  "home_dom_goal_against_avg5__missing",
+  "away_dom_goal_for_avg5__missing",
+  "away_dom_goal_against_avg5__missing"
+ ],
+ "baseFeatures": [
+  "home_euro_elo",
+  "away_euro_elo",
+  "home_euro_gf",
+  "home_euro_ga",
+  "away_euro_gf",
+  "away_euro_ga",
+  "home_dom_att_decay",
+  "home_dom_def_decay",
+  "away_dom_att_decay",
+  "away_dom_def_decay",
+  "home_dom_goal_for_avg5",
+  "home_dom_goal_against_avg5",
+  "away_dom_goal_for_avg5",
+  "away_dom_goal_against_avg5",
+  "home_dom_missing",
+  "away_dom_missing",
+  "comp_is_el",
+  "comp_is_ecl"
+ ],
+ "imputerMedian": [
+  1510.370404302138,
+  1508.4165699836726,
+  1.6923538535072549,
+  1.4861983595948183,
+  1.7900241023359333,
+  1.350565542107334,
+  2.0735,
+  0.982525,
+  2.10163,
+  0.99757,
+  2.0,
+  1.0,
+  2.0,
+  1.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0
+ ],
+ "scalerMean": [
+  1524.0848633469327,
+  1521.731248982142,
+  1.706924895458743,
+  1.6427511285840501,
+  1.8282190262775302,
+  1.4745598908549946,
+  2.1168268581687615,
+  1.0234071364452424,
+  2.1277204847396773,
+  1.0273057271095152,
+  2.078635547576302,
+  1.0441651705565531,
+  2.1070017953321365,
+  1.0642728904847396,
+  0.13464991023339318,
+  0.1400359066427289,
+  0.0,
+  0.0,
+  0.12567324955116696,
+  0.12567324955116696,
+  0.12567324955116696,
+  0.12567324955116696,
+  0.13464991023339318,
+  0.13464991023339318,
+  0.1400359066427289,
+  0.1400359066427289,
+  0.1490125673249551,
+  0.1490125673249551,
+  0.15798922800718132,
+  0.15798922800718132
+ ],
+ "scalerScale": [
+  55.94799372190373,
+  56.61105965193748,
+  0.8642058433018892,
+  0.9525614692443357,
+  0.9756983047361892,
+  0.8353471888085535,
+  0.4886865515792691,
+  0.2906502297252343,
+  0.48944065445573265,
+  0.28407418936540074,
+  0.6957627113304089,
+  0.4865028111799686,
+  0.7098469921334751,
+  0.4775367498254301,
+  0.34134925209751427,
+  0.3470242808413812,
+  1.0,
+  1.0,
+  0.33148074438557823,
+  0.33148074438557823,
+  0.33148074438557823,
+  0.33148074438557823,
+  0.34134925209751427,
+  0.34134925209751427,
+  0.3470242808413812,
+  0.3470242808413812,
+  0.356100859454426,
+  0.356100859454426,
+  0.3647309033258303,
+  0.3647309033258303
+ ],
+ "models": {
+  "home": {
+   "coefficients": [
+    0.14711571780257984,
+    -0.12144274608672377,
+    0.013228657112972497,
+    -0.019389547449611,
+    0.035566739716739446,
+    -0.03250131230509085,
+    0.0640367549388164,
+    0.016014046288931397,
+    -0.010123585697360837,
+    0.06123698779317636,
+    -0.013836101150186627,
+    -0.04654229524650768,
+    -0.00622942980586866,
+    0.005560749864621292,
+    -0.045042324654473644,
+    -0.006695957856831283,
+    0.0,
+    0.0,
+    0.003855161079874321,
+    0.003855161079874321,
+    0.003855161079874321,
+    0.003855161079874321,
+    -0.045042324654473644,
+    -0.045042324654473644,
+    -0.006695957856831283,
+    -0.006695957856831283,
+    0.015391063908426846,
+    0.015391063908426846,
+    0.0605388998488351,
+    0.0605388998488351
+   ],
+   "intercept": 0.648774416621419
+  },
+  "away": {
+   "coefficients": [
+    -0.05496065923145562,
+    0.17290162897381517,
+    -0.03284427904952246,
+    0.02461478713926788,
+    0.02889419526755453,
+    0.008187855862889311,
+    0.0052685855248849195,
+    -0.0027001407706795525,
+    0.05055501067248685,
+    0.02913243732731517,
+    -0.017703825577142826,
+    -0.004181218914145194,
+    0.002267683299637425,
+    0.028696845354246728,
+    0.05102361134299091,
+    -0.029511136329206697,
+    0.0,
+    0.0,
+    -0.0008160140700422468,
+    -0.0008160140700422468,
+    -0.0008160140700422468,
+    -0.0008160140700422468,
+    0.05102361134299091,
+    0.05102361134299091,
+    -0.029511136329206697,
+    -0.029511136329206697,
+    0.003590412685055512,
+    0.003590412685055512,
+    -0.01581217123671794,
+    -0.01581217123671794
+   ],
+   "intercept": 0.3398224369635901
+  }
+ },
+ "modelsMeta": {
+  "home": {
+   "alpha": 0.15,
+   "recencyHalfLifeDays": 1100
+  },
+  "away": {
+   "alpha": 0.5,
+   "recencyHalfLifeDays": 550
+  }
+ },
+ "dcRho": 0.1,
+ "maxGoals": 10,
+ "totalLines": [
+  1.5,
+  2.5,
+  3.5,
+  4.5
+ ],
+ "leagueAvgGoals": 3.420108,
+ "teams": {
+  "ac milan": {
+   "fdoName": "AC Milan",
+   "domesticName": "Milan",
+   "euro": {
+    "euroElo": 1503.403597,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 16,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1855.222,
+    "att_decay": 1.7564,
+    "def_decay": 1.26619,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "afc ajax": {
+   "fdoName": "AFC Ajax",
+   "domesticName": "Ajax",
+   "euro": {
+    "euroElo": 1449.964218,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1755.39,
+    "att_decay": 2.56744,
+    "def_decay": 1.2661,
+    "goal_for_avg5": 3.0,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 2.9,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "as monaco fc": {
+   "fdoName": "AS Monaco FC",
+   "domesticName": "Monaco",
+   "euro": {
+    "euroElo": 1490.943538,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 20,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1830.842,
+    "att_decay": 1.49119,
+    "def_decay": 1.19408,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "as roma": {
+   "fdoName": "AS Roma",
+   "domesticName": "Roma",
+   "euro": {
+    "euroElo": 1502.490495,
+    "euroGf": 2.855172,
+    "euroGa": 1.697066,
+    "euroGames": 3,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1942.323,
+    "att_decay": 2.29471,
+    "def_decay": 0.97126,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 2.5,
+    "goal_against_avg10": 0.8
+   }
+  },
+  "arsenal fc": {
+   "fdoName": "Arsenal FC",
+   "domesticName": "Arsenal",
+   "euro": {
+    "euroElo": 1674.470022,
+    "euroGf": 2.096059,
+    "euroGa": 0.767155,
+    "euroGames": 42,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 2143.936,
+    "att_decay": 1.65847,
+    "def_decay": 0.65177,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 0.6
+   }
+  },
+  "aston villa fc": {
+   "fdoName": "Aston Villa FC",
+   "domesticName": "Aston Villa",
+   "euro": {
+    "euroElo": 1580.79706,
+    "euroGf": 4.07766,
+    "euroGa": 0.898333,
+    "euroGames": 15,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1953.114,
+    "att_decay": 1.38694,
+    "def_decay": 1.42274,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 1.5
+   }
+  },
+  "celtic fc": {
+   "fdoName": "Celtic FC",
+   "domesticName": "Celtic",
+   "euro": {
+    "euroElo": 1486.968074,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 16,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1996.877,
+    "att_decay": 2.41275,
+    "def_decay": 0.9104,
+    "goal_for_avg5": 2.6,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 2.6,
+    "goal_against_avg10": 0.8
+   }
+  },
+  "chelsea fc": {
+   "fdoName": "Chelsea FC",
+   "domesticName": "Chelsea",
+   "euro": {
+    "euroElo": 1512.311658,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 10,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1920.962,
+    "att_decay": 1.77716,
+    "def_decay": 1.69882,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 1.8
+   }
+  },
+  "club brugge kv": {
+   "fdoName": "Club Brugge KV",
+   "domesticName": "Club Brugge",
+   "euro": {
+    "euroElo": 1508.836404,
+    "euroGf": 3.098689,
+    "euroGa": 1.846506,
+    "euroGames": 25,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1903.612,
+    "att_decay": 2.62965,
+    "def_decay": 0.88355,
+    "goal_for_avg5": 2.8,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 2.7,
+    "goal_against_avg10": 0.6
+   }
+  },
+  "fc barcelona": {
+   "fdoName": "FC Barcelona",
+   "domesticName": "Barcelona",
+   "euro": {
+    "euroElo": 1604.359814,
+    "euroGf": 3.498313,
+    "euroGa": 2.144185,
+    "euroGames": 39,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 2049.429,
+    "att_decay": 3.32873,
+    "def_decay": 1.08592,
+    "goal_for_avg5": 3.8,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 4.0,
+    "goal_against_avg10": 1.1
+   }
+  },
+  "fc porto": {
+   "fdoName": "FC Porto",
+   "domesticName": "Porto",
+   "euro": {
+    "euroElo": 1469.736401,
+    "euroGf": 0.720982,
+    "euroGa": 1.979446,
+    "euroGames": 11,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1927.248,
+    "att_decay": 2.11501,
+    "def_decay": 0.56818,
+    "goal_for_avg5": 2.4,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 2.2,
+    "goal_against_avg10": 0.4
+   }
+  },
+  "fenerbahce sk": {
+   "fdoName": "Fenerbahçe SK",
+   "domesticName": "Fenerbahce",
+   "euro": {
+    "euroElo": 1476.929155,
+    "euroGf": 1.017027,
+    "euroGa": 3.177128,
+    "euroGames": 3,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1860.828,
+    "att_decay": 2.49254,
+    "def_decay": 0.97376,
+    "goal_for_avg5": 3.0,
+    "goal_against_avg5": 0.4,
+    "goal_for_avg10": 2.6,
+    "goal_against_avg10": 1.1
+   }
+  },
+  "galatasaray sk": {
+   "fdoName": "Galatasaray SK",
+   "domesticName": "Galatasaray",
+   "euro": {
+    "euroElo": 1487.897574,
+    "euroGf": 2.144185,
+    "euroGa": 2.976107,
+    "euroGames": 21,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1904.382,
+    "att_decay": 2.06467,
+    "def_decay": 1.21314,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "girona fc": {
+   "fdoName": "Girona FC",
+   "domesticName": "Girona",
+   "euro": {
+    "euroElo": 1462.738535,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1670.762,
+    "att_decay": 1.73696,
+    "def_decay": 0.96413,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 0.4,
+    "goal_for_avg10": 2.1,
+    "goal_against_avg10": 0.9
+   }
+  },
+  "juventus fc": {
+   "fdoName": "Juventus FC",
+   "domesticName": "Juventus",
+   "euro": {
+    "euroElo": 1520.598425,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 20,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1843.06,
+    "att_decay": 1.27368,
+    "def_decay": 1.09672,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.3,
+    "goal_against_avg10": 1.2
+   }
+  },
+  "liverpool fc": {
+   "fdoName": "Liverpool FC",
+   "domesticName": "Liverpool",
+   "euro": {
+    "euroElo": 1592.727528,
+    "euroGf": 4.193477,
+    "euroGa": 2.475955,
+    "euroGames": 25,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 2019.818,
+    "att_decay": 1.48574,
+    "def_decay": 1.1542,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "newcastle united fc": {
+   "fdoName": "Newcastle United FC",
+   "domesticName": "Newcastle",
+   "euro": {
+    "euroElo": 1543.52967,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 18,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1895.869,
+    "att_decay": 1.42473,
+    "def_decay": 1.63867,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 2.0,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 1.7
+   }
+  },
+  "olympique de marseille": {
+   "fdoName": "Olympique de Marseille",
+   "domesticName": "Marseille",
+   "euro": {
+    "euroElo": 1478.850347,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1809.365,
+    "att_decay": 2.15621,
+    "def_decay": 1.601,
+    "goal_for_avg5": 2.4,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 2.2,
+    "goal_against_avg10": 1.4
+   }
+  },
+  "pae aek": {
+   "fdoName": "PAE AEK",
+   "domesticName": "AEK",
+   "euro": {
+    "euroElo": 1480.073446,
+    "euroGf": 1.0,
+    "euroGa": 2.986699,
+    "euroGames": 3,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1886.081,
+    "att_decay": 2.60379,
+    "def_decay": 0.4792,
+    "goal_for_avg5": 3.2,
+    "goal_against_avg5": 0.4,
+    "goal_for_avg10": 2.5,
+    "goal_against_avg10": 0.6
+   }
+  },
+  "pae olympiakos sfp": {
+   "fdoName": "PAE Olympiakos SFP",
+   "domesticName": "Olympiakos",
+   "euro": {
+    "euroElo": 1492.3663,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 10,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1903.693,
+    "att_decay": 1.57729,
+    "def_decay": 0.34927,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 0.2,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 0.3
+   }
+  },
+  "rb leipzig": {
+   "fdoName": "RB Leipzig",
+   "domesticName": "RB Leipzig",
+   "euro": {
+    "euroElo": 1457.885936,
+    "euroGf": 1.0,
+    "euroGa": 2.578471,
+    "euroGames": 19,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1841.035,
+    "att_decay": 2.56621,
+    "def_decay": 1.59869,
+    "goal_for_avg5": 3.2,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 2.4,
+    "goal_against_avg10": 2.0
+   }
+  },
+  "racing club de lens": {
+   "fdoName": "Racing Club de Lens",
+   "domesticName": "Lens",
+   "euro": {
+    "euroElo": 1473.468129,
+    "euroGf": 0.791266,
+    "euroGa": 2.381725,
+    "euroGames": 9,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1850.993,
+    "att_decay": 2.00194,
+    "def_decay": 1.34454,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 1.4
+   }
+  },
+  "real madrid cf": {
+   "fdoName": "Real Madrid CF",
+   "domesticName": "Real Madrid",
+   "euro": {
+    "euroElo": 1618.250414,
+    "euroGf": 3.484895,
+    "euroGa": 1.71844,
+    "euroGames": 44,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1983.742,
+    "att_decay": 2.28847,
+    "def_decay": 0.98401,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 2.5,
+    "goal_against_avg10": 1.0
+   }
+  },
+  "royal antwerp fc": {
+   "fdoName": "Royal Antwerp FC",
+   "domesticName": "Antwerp",
+   "euro": {
+    "euroElo": 1474.345439,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 6,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1572.017,
+    "att_decay": 1.40805,
+    "def_decay": 1.8896,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 2.2,
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 2.0
+   }
+  },
+  "ssc napoli": {
+   "fdoName": "SSC Napoli",
+   "domesticName": "Napoli",
+   "euro": {
+    "euroElo": 1460.656462,
+    "euroGf": 1.883082,
+    "euroGa": 2.477794,
+    "euroGames": 19,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1890.464,
+    "att_decay": 1.85212,
+    "def_decay": 1.13376,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.8,
+    "goal_against_avg10": 1.1
+   }
+  },
+  "sevilla fc": {
+   "fdoName": "Sevilla FC",
+   "domesticName": "Sevilla",
+   "euro": {
+    "euroElo": 1479.198822,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 6,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1683.358,
+    "att_decay": 1.43721,
+    "def_decay": 1.61549,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 2.0,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 1.6
+   }
+  },
+  "vfb stuttgart": {
+   "fdoName": "VfB Stuttgart",
+   "domesticName": "Stuttgart",
+   "euro": {
+    "euroElo": 1516.545459,
+    "euroGf": 2.239734,
+    "euroGa": 0.640372,
+    "euroGames": 11,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1816.916,
+    "att_decay": 1.70719,
+    "def_decay": 1.68312,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.8,
+    "goal_against_avg10": 1.9
+   }
+  },
+  "viking fk": {
+   "fdoName": "Viking FK",
+   "domesticName": "Viking",
+   "euro": {
+    "euroElo": 1479.029432,
+    "euroGf": 1.712481,
+    "euroGa": 3.0,
+    "euroGames": 3,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1826.643,
+    "att_decay": 2.64017,
+    "def_decay": 0.9478,
+    "goal_for_avg5": null,
+    "goal_against_avg5": null,
+    "goal_for_avg10": null,
+    "goal_against_avg10": null
+   }
+  },
+  "villarreal cf": {
+   "fdoName": "Villarreal CF",
+   "domesticName": "Villarreal",
+   "euro": {
+    "euroElo": 1435.946878,
+    "euroGf": 2.740676,
+    "euroGa": 2.665587,
+    "euroGames": 11,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1808.321,
+    "att_decay": 1.61238,
+    "def_decay": 1.30751,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 1.4
+   }
+  },
+  "1 fc union berlin": {
+   "fdoName": "1. FC Union Berlin",
+   "domesticName": "Union Berlin",
+   "euro": {
+    "euroElo": 1482.070345,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 6,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1650.033,
+    "att_decay": 1.02912,
+    "def_decay": 2.07089,
+    "goal_for_avg5": 0.6,
+    "goal_against_avg5": 2.2,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 2.1
+   }
+  },
+  "atalanta bc": {
+   "fdoName": "Atalanta BC",
+   "domesticName": "Atalanta",
+   "euro": {
+    "euroElo": 1504.367102,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 22,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1817.93,
+    "att_decay": 1.73617,
+    "def_decay": 1.69026,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 2.4,
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 1.8
+   }
+  },
+  "athletic club": {
+   "fdoName": "Athletic Club",
+   "domesticName": "Ath Bilbao",
+   "euro": {
+    "euroElo": 1488.581303,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1713.134,
+    "att_decay": 1.33268,
+    "def_decay": 1.21282,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "bayer 04 leverkusen": {
+   "fdoName": "Bayer 04 Leverkusen",
+   "domesticName": "Leverkusen",
+   "euro": {
+    "euroElo": 1523.165825,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 22,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1876.056,
+    "att_decay": 2.10656,
+    "def_decay": 1.64918,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 1.8,
+    "goal_for_avg10": 2.2,
+    "goal_against_avg10": 1.7
+   }
+  },
+  "bologna fc 1909": {
+   "fdoName": "Bologna FC 1909",
+   "domesticName": "Bologna",
+   "euro": {
+    "euroElo": 1482.731313,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1780.473,
+    "att_decay": 1.44208,
+    "def_decay": 1.33855,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 1.5
+   }
+  },
+  "borussia dortmund": {
+   "fdoName": "Borussia Dortmund",
+   "domesticName": "Dortmund",
+   "euro": {
+    "euroElo": 1543.886455,
+    "euroGf": 1.535855,
+    "euroGa": 1.259373,
+    "euroGames": 40,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1942.386,
+    "att_decay": 1.76542,
+    "def_decay": 0.73163,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 0.4,
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 0.7
+   }
+  },
+  "club atletico de madrid": {
+   "fdoName": "Club Atlético de Madrid",
+   "domesticName": "Ath Madrid",
+   "euro": {
+    "euroElo": 1566.140851,
+    "euroGf": 1.357502,
+    "euroGa": 0.903601,
+    "euroGames": 39,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1875.39,
+    "att_decay": 1.80078,
+    "def_decay": 0.95065,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 0.4,
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 0.8
+   }
+  },
+  "como 1907": {
+   "fdoName": "Como 1907",
+   "domesticName": "Como",
+   "euro": {
+    "euroElo": 1518.174693,
+    "euroGf": 3.286725,
+    "euroGa": 1.713275,
+    "euroGames": 3,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1892.54,
+    "att_decay": 1.88519,
+    "def_decay": 0.81685,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 2.1,
+    "goal_against_avg10": 0.9
+   }
+  },
+  "eintracht frankfurt": {
+   "fdoName": "Eintracht Frankfurt",
+   "domesticName": "Ein Frankfurt",
+   "euro": {
+    "euroElo": 1442.29685,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1726.922,
+    "att_decay": 1.38442,
+    "def_decay": 2.14703,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 2.0,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 2.4
+   }
+  },
+  "fc bayern munchen": {
+   "fdoName": "FC Bayern München",
+   "domesticName": "Bayern Munich",
+   "euro": {
+    "euroElo": 1644.920491,
+    "euroGf": 3.141276,
+    "euroGa": 1.831453,
+    "euroGames": 43,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 2095.999,
+    "att_decay": 3.56554,
+    "def_decay": 1.03226,
+    "goal_for_avg5": 4.0,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 3.4,
+    "goal_against_avg10": 1.0
+   }
+  },
+  "fc internazionale milano": {
+   "fdoName": "FC Internazionale Milano",
+   "domesticName": "Inter",
+   "euro": {
+    "euroElo": 1538.103789,
+    "euroGf": 1.714191,
+    "euroGa": 1.945195,
+    "euroGames": 36,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 2049.998,
+    "att_decay": 2.59682,
+    "def_decay": 1.02426,
+    "goal_for_avg5": 2.4,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 2.8,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "feyenoord rotterdam": {
+   "fdoName": "Feyenoord Rotterdam",
+   "domesticName": "Feyenoord",
+   "euro": {
+    "euroElo": 1480.215663,
+    "euroGf": 1.334413,
+    "euroGa": 2.395658,
+    "euroGames": 21,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1817.655,
+    "att_decay": 2.77063,
+    "def_decay": 1.13509,
+    "goal_for_avg5": 3.8,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 3.2,
+    "goal_against_avg10": 1.1
+   }
+  },
+  "fk bod glimt": {
+   "fdoName": "FK Bodø/Glimt",
+   "domesticName": "Bodo/Glimt",
+   "euro": {
+    "euroElo": 1511.761763,
+    "euroGf": 1.496411,
+    "euroGa": 2.826979,
+    "euroGames": 15,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1824.919,
+    "att_decay": 2.31791,
+    "def_decay": 0.90164,
+    "goal_for_avg5": null,
+    "goal_against_avg5": null,
+    "goal_for_avg10": null,
+    "goal_against_avg10": null
+   }
+  },
+  "lille osc": {
+   "fdoName": "Lille OSC",
+   "domesticName": "Lille",
+   "euro": {
+    "euroElo": 1473.506998,
+    "euroGf": 1.283274,
+    "euroGa": 3.382313,
+    "euroGames": 13,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1845.75,
+    "att_decay": 1.30801,
+    "def_decay": 0.8011,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.2,
+    "goal_against_avg10": 0.8
+   }
+  },
+  "manchester city fc": {
+   "fdoName": "Manchester City FC",
+   "domesticName": "Man City",
+   "euro": {
+    "euroElo": 1546.20334,
+    "euroGf": 3.143136,
+    "euroGa": 1.823009,
+    "euroGames": 33,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 2140.23,
+    "att_decay": 2.29291,
+    "def_decay": 1.09953,
+    "goal_for_avg5": 2.6,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 2.2,
+    "goal_against_avg10": 1.2
+   }
+  },
+  "manchester united fc": {
+   "fdoName": "Manchester United FC",
+   "domesticName": "Man United",
+   "euro": {
+    "euroElo": 1477.894065,
+    "euroGf": 1.432032,
+    "euroGa": 2.235165,
+    "euroGames": 9,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1941.197,
+    "att_decay": 1.39994,
+    "def_decay": 1.46635,
+    "goal_for_avg5": 0.6,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 1.5
+   }
+  },
+  "psv": {
+   "fdoName": "PSV",
+   "domesticName": "PSV Eindhoven",
+   "euro": {
+    "euroElo": 1498.877869,
+    "euroGf": 0.643362,
+    "euroGa": 0.619528,
+    "euroGames": 31,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 1900.261,
+    "att_decay": 2.7276,
+    "def_decay": 1.31103,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 2.8,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "paris saint germain fc": {
+   "fdoName": "Paris Saint-Germain FC",
+   "domesticName": "Paris SG",
+   "euro": {
+    "euroElo": 1693.025382,
+    "euroGf": 4.520478,
+    "euroGa": 1.739761,
+    "euroGames": 49,
+    "euroLastDate": "2026-10-20"
+   },
+   "domestic": {
+    "elo": 2005.286,
+    "att_decay": 2.10237,
+    "def_decay": 0.96472,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 0.6,
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 1.1
+   }
+  },
+  "real betis balompie": {
+   "fdoName": "Real Betis Balompié",
+   "domesticName": "Betis",
+   "euro": {
+    "euroElo": 1531.490891,
+    "euroGf": 2.233545,
+    "euroGa": 1.233545,
+    "euroGames": 3,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1807.846,
+    "att_decay": 1.62417,
+    "def_decay": 1.42883,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 1.4
+   }
+  },
+  "real sociedad de futbol": {
+   "fdoName": "Real Sociedad de Fútbol",
+   "domesticName": "Sociedad",
+   "euro": {
+    "euroElo": 1504.812231,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1726.519,
+    "att_decay": 1.95454,
+    "def_decay": 1.76671,
+    "goal_for_avg5": 2.6,
+    "goal_against_avg5": 2.0,
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 1.8
+   }
+  },
+  "royale union saint gilloise": {
+   "fdoName": "Royale Union Saint-Gilloise",
+   "domesticName": "St. Gilloise",
+   "euro": {
+    "euroElo": 1476.108744,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1891.147,
+    "att_decay": 2.50366,
+    "def_decay": 0.78692,
+    "goal_for_avg5": 3.2,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 3.2,
+    "goal_against_avg10": 0.7
+   }
+  },
+  "ss lazio": {
+   "fdoName": "SS Lazio",
+   "domesticName": "Lazio",
+   "euro": {
+    "euroElo": 1501.636118,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1864.945,
+    "att_decay": 2.15644,
+    "def_decay": 0.9693,
+    "goal_for_avg5": 3.2,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 2.4,
+    "goal_against_avg10": 0.8
+   }
+  },
+  "sport lisboa e benfica": {
+   "fdoName": "Sport Lisboa e Benfica",
+   "domesticName": "Benfica",
+   "euro": {
+    "euroElo": 1480.780741,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 28,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1932.18,
+    "att_decay": 2.58068,
+    "def_decay": 0.88673,
+    "goal_for_avg5": 2.4,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 2.9,
+    "goal_against_avg10": 0.9
+   }
+  },
+  "sporting clube de braga": {
+   "fdoName": "Sporting Clube de Braga",
+   "domesticName": "Sp Braga",
+   "euro": {
+    "euroElo": 1482.330668,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 6,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1699.251,
+    "att_decay": 1.18481,
+    "def_decay": 1.23844,
+    "goal_for_avg5": 0.6,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.1,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "sporting clube de portugal": {
+   "fdoName": "Sporting Clube de Portugal",
+   "domesticName": "Sp Lisbon",
+   "euro": {
+    "euroElo": 1546.358921,
+    "euroGf": 2.261964,
+    "euroGa": 1.409924,
+    "euroGames": 25,
+    "euroLastDate": "2026-10-21"
+   },
+   "domestic": {
+    "elo": 1933.499,
+    "att_decay": 2.3706,
+    "def_decay": 1.11402,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 2.4,
+    "goal_against_avg10": 1.1
+   }
+  },
+  "stade brestois 29": {
+   "fdoName": "Stade Brestois 29",
+   "domesticName": "Brest",
+   "euro": {
+    "euroElo": 1478.138327,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 10,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1688.615,
+    "att_decay": 1.57062,
+    "def_decay": 1.5593,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 1.5
+   }
+  },
+  "tottenham hotspur fc": {
+   "fdoName": "Tottenham Hotspur FC",
+   "domesticName": "Tottenham",
+   "euro": {
+    "euroElo": 1545.031983,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 10,
+    "euroLastDate": null
+   },
+   "domestic": {
+    "elo": 1833.836,
+    "att_decay": 1.17038,
+    "def_decay": 1.28179,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 1.0,
+    "goal_against_avg10": 1.2
+   }
+  },
+  "rangers fc": {
+   "fdoName": "Rangers FC",
+   "domesticName": "Rangers",
+   "domestic": {
+    "elo": 1925.364,
+    "att_decay": 2.04556,
+    "def_decay": 0.95236,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 0.6,
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 0.7
+   }
+  },
+  "olympique lyonnais": {
+   "fdoName": "Olympique Lyonnais",
+   "domesticName": "Lyon",
+   "domestic": {
+    "elo": 1835.215,
+    "att_decay": 1.55756,
+    "def_decay": 1.12953,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "ogc nice": {
+   "fdoName": "OGC Nice",
+   "domesticName": "Nice",
+   "domestic": {
+    "elo": 1693.39,
+    "att_decay": 1.06833,
+    "def_decay": 1.37959,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 0.9,
+    "goal_against_avg10": 1.2
+   }
+  },
+  "toulouse fc": {
+   "fdoName": "Toulouse FC",
+   "domesticName": "Toulouse",
+   "domestic": {
+    "elo": 1728.666,
+    "att_decay": 1.46875,
+    "def_decay": 1.31419,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.2
+   }
+  },
+  "stade rennais fc 1901": {
+   "fdoName": "Stade Rennais FC 1901",
+   "domesticName": "Rennes",
+   "domestic": {
+    "elo": 1821.743,
+    "att_decay": 2.19165,
+    "def_decay": 1.674,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.8,
+    "goal_for_avg10": 2.1,
+    "goal_against_avg10": 1.8
+   }
+  },
+  "vfl wolfsburg": {
+   "fdoName": "VfL Wolfsburg",
+   "domesticName": "Wolfsburg",
+   "domestic": {
+    "elo": 1653.81,
+    "att_decay": 2.18659,
+    "def_decay": 1.72409,
+    "goal_for_avg5": 2.6,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 2.6,
+    "goal_against_avg10": 1.5
+   }
+  },
+  "sc freiburg": {
+   "fdoName": "SC Freiburg",
+   "domesticName": "Freiburg",
+   "domestic": {
+    "elo": 1766.775,
+    "att_decay": 1.9101,
+    "def_decay": 1.53205,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 2.3,
+    "goal_against_avg10": 1.4
+   }
+  },
+  "tsg 1899 hoffenheim": {
+   "fdoName": "TSG 1899 Hoffenheim",
+   "domesticName": "Hoffenheim",
+   "domestic": {
+    "elo": 1758.36,
+    "att_decay": 1.94123,
+    "def_decay": 1.80446,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.8,
+    "goal_against_avg10": 2.1
+   }
+  },
+  "1 fsv mainz 05": {
+   "fdoName": "1. FSV Mainz 05",
+   "domesticName": "Mainz",
+   "domestic": {
+    "elo": 1730.852,
+    "att_decay": 1.97884,
+    "def_decay": 1.78933,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 2.6,
+    "goal_for_avg10": 2.1,
+    "goal_against_avg10": 1.7
+   }
+  },
+  "1 fc heidenheim 1846": {
+   "fdoName": "1. FC Heidenheim 1846",
+   "domesticName": "Heidenheim",
+   "domestic": {
+    "elo": 1572.417,
+    "att_decay": 1.5379,
+    "def_decay": 1.75304,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 1.8
+   }
+  },
+  "acf fiorentina": {
+   "fdoName": "ACF Fiorentina",
+   "domesticName": "Fiorentina",
+   "domestic": {
+    "elo": 1706.227,
+    "att_decay": 1.20235,
+    "def_decay": 1.88302,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 2.0,
+    "goal_for_avg10": 1.2,
+    "goal_against_avg10": 2.2
+   }
+  },
+  "az alkmaar": {
+   "fdoName": "AZ Alkmaar",
+   "domesticName": "AZ Alkmaar",
+   "domestic": {
+    "elo": 1667.454,
+    "att_decay": 1.72705,
+    "def_decay": 1.3512,
+    "goal_for_avg5": 0.8,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 1.2
+   }
+  },
+  "vitoria sc": {
+   "fdoName": "Vitória SC",
+   "domesticName": "Guimaraes",
+   "domestic": {
+    "elo": 1554.782,
+    "att_decay": 1.25417,
+    "def_decay": 1.2295,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 1.0,
+    "goal_against_avg10": 1.2
+   }
+  },
+  "rsc anderlecht": {
+   "fdoName": "RSC Anderlecht",
+   "domesticName": "Anderlecht",
+   "domestic": {
+    "elo": 1639.448,
+    "att_decay": 1.20744,
+    "def_decay": 1.50656,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 1.0,
+    "goal_against_avg10": 1.5
+   }
+  },
+  "krc genk": {
+   "fdoName": "KRC Genk",
+   "domesticName": "Genk",
+   "domestic": {
+    "elo": 1683.638,
+    "att_decay": 1.74783,
+    "def_decay": 1.23829,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 1.3
+   }
+  },
+  "kaa gent": {
+   "fdoName": "KAA Gent",
+   "domesticName": "Gent",
+   "domestic": {
+    "elo": 1693.956,
+    "att_decay": 1.75776,
+    "def_decay": 0.80535,
+    "goal_for_avg5": 2.4,
+    "goal_against_avg5": 0.4,
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 0.9
+   }
+  },
+  "standard liege": {
+   "fdoName": "Standard Liège",
+   "domesticName": "Standard",
+   "domestic": {
+    "elo": 1592.463,
+    "att_decay": 1.3573,
+    "def_decay": 1.44263,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 1.8,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.7
+   }
+  },
+  "molde fk": {
+   "fdoName": "Molde FK",
+   "domesticName": "Molde",
+   "domestic": {
+    "elo": 1647.62,
+    "att_decay": 2.85629,
+    "def_decay": 1.54094,
+    "goal_for_avg5": null,
+    "goal_against_avg5": null,
+    "goal_for_avg10": null,
+    "goal_against_avg10": null
+   }
+  },
+  "rosenborg bk": {
+   "fdoName": "Rosenborg BK",
+   "domesticName": "Rosenborg",
+   "domestic": {
+    "elo": 1658.951,
+    "att_decay": 2.40222,
+    "def_decay": 1.13776,
+    "goal_for_avg5": null,
+    "goal_against_avg5": null,
+    "goal_for_avg10": null,
+    "goal_against_avg10": null
+   }
+  },
+  "sk brann": {
+   "fdoName": "SK Brann",
+   "domesticName": "Brann",
+   "domestic": {
+    "elo": 1595.273,
+    "att_decay": 1.51225,
+    "def_decay": 1.77401,
+    "goal_for_avg5": null,
+    "goal_against_avg5": null,
+    "goal_for_avg10": null,
+    "goal_against_avg10": null
+   }
+  },
+  "paok fc": {
+   "fdoName": "PAOK FC",
+   "domesticName": "PAOK",
+   "domestic": {
+    "elo": 1817.569,
+    "att_decay": 1.81298,
+    "def_decay": 1.29335,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 1.4
+   }
+  },
+  "panathinaikos fc": {
+   "fdoName": "Panathinaikos FC",
+   "domesticName": "Panathinaikos",
+   "domestic": {
+    "elo": 1820.604,
+    "att_decay": 1.92207,
+    "def_decay": 0.68086,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 0.4,
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 0.7
+   }
+  },
+  "besiktas jk": {
+   "fdoName": "Beşiktaş JK",
+   "domesticName": "Besiktas",
+   "domestic": {
+    "elo": 1723.431,
+    "att_decay": 1.84708,
+    "def_decay": 1.12564,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 1.2
+   }
+  },
+  "trabzonspor": {
+   "fdoName": "Trabzonspor",
+   "domesticName": "Trabzonspor",
+   "domestic": {
+    "elo": 1771.116,
+    "att_decay": 2.27537,
+    "def_decay": 1.02575,
+    "goal_for_avg5": 2.6,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 2.2,
+    "goal_against_avg10": 1.1
+   }
+  },
+  "istanbul basaksehir fk": {
+   "fdoName": "İstanbul Başakşehir FK",
+   "domesticName": "Buyuksehyr",
+   "domestic": {
+    "elo": 1669.348,
+    "att_decay": 1.4408,
+    "def_decay": 1.36147,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.5
+   }
+  },
+  "sivasspor": {
+   "fdoName": "Sivasspor",
+   "domesticName": "Sivasspor",
+   "domestic": {
+    "elo": 1534.64,
+    "att_decay": 1.23924,
+    "def_decay": 1.65671,
+    "goal_for_avg5": 0.8,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 1.7
+   }
+  },
+  "ac sparta praha": {
+   "fdoName": "AC Sparta Praha",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1458.378155,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   }
+  },
+  "bsc young boys": {
+   "fdoName": "BSC Young Boys",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1419.145767,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 14,
+    "euroLastDate": null
+   }
+  },
+  "fc kbenhavn": {
+   "fdoName": "FC København",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1465.576552,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 16,
+    "euroLastDate": null
+   }
+  },
+  "fc red bull salzburg": {
+   "fdoName": "FC Red Bull Salzburg",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1430.201393,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 14,
+    "euroLastDate": null
+   }
+  },
+  "fk crvena zvezda": {
+   "fdoName": "FK Crvena Zvezda",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1450.275705,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 14,
+    "euroLastDate": null
+   }
+  },
+  "fk kairat": {
+   "fdoName": "FK Kairat",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1427.281078,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   }
+  },
+  "fk shakhtar donetsk": {
+   "fdoName": "FK Shakhtar Donetsk",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1482.887509,
+    "euroGf": 1.33361,
+    "euroGa": 1.0,
+    "euroGames": 17,
+    "euroLastDate": "2026-10-21"
+   }
+  },
+  "gnk dinamo zagreb": {
+   "fdoName": "GNK Dinamo Zagreb",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1498.199524,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   }
+  },
+  "lask linz": {
+   "fdoName": "LASK Linz",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1486.926407,
+    "euroGf": 2.227342,
+    "euroGa": 3.179327,
+    "euroGames": 3,
+    "euroLastDate": "2026-10-21"
+   }
+  },
+  "paphos fc": {
+   "fdoName": "Paphos FC",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1486.291976,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   }
+  },
+  "qarabag agdam fk": {
+   "fdoName": "Qarabağ Ağdam FK",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1449.748188,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 10,
+    "euroLastDate": null
+   }
+  },
+  "sabah fk": {
+   "fdoName": "Sabah FK",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1479.380936,
+    "euroGf": 1.091084,
+    "euroGa": 1.817831,
+    "euroGames": 3,
+    "euroLastDate": "2026-10-20"
+   }
+  },
+  "sk slavia praha": {
+   "fdoName": "SK Slavia Praha",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1425.837062,
+    "euroGf": 1.288462,
+    "euroGa": 2.264685,
+    "euroGames": 11,
+    "euroLastDate": "2026-10-20"
+   }
+  },
+  "sk sturm graz": {
+   "fdoName": "SK Sturm Graz",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1471.460779,
+    "euroGf": null,
+    "euroGa": null,
+    "euroGames": 8,
+    "euroLastDate": null
+   }
+  },
+  "sk slovan bratislava": {
+   "fdoName": "ŠK Slovan Bratislava",
+   "domesticName": null,
+   "euro": {
+    "euroElo": 1390.47702,
+    "euroGf": 0.260239,
+    "euroGa": 4.16085,
+    "euroGames": 11,
+    "euroLastDate": "2026-10-20"
+   }
+  }
+ },
+ "teamAliases": {
+  "ac milan": "ac milan",
+  "milan": "ac milan",
+  "afc ajax": "afc ajax",
+  "ajax": "afc ajax",
+  "as monaco fc": "as monaco fc",
+  "monaco": "as monaco fc",
+  "as monaco": "as monaco fc",
+  "as roma": "as roma",
+  "roma": "as roma",
+  "arsenal fc": "arsenal fc",
+  "arsenal": "arsenal fc",
+  "aston villa fc": "aston villa fc",
+  "aston villa": "aston villa fc",
+  "celtic fc": "celtic fc",
+  "celtic": "celtic fc",
+  "chelsea fc": "chelsea fc",
+  "chelsea": "chelsea fc",
+  "club brugge kv": "club brugge kv",
+  "club brugge": "club brugge kv",
+  "fc barcelona": "fc barcelona",
+  "barcelona": "fc barcelona",
+  "fc porto": "fc porto",
+  "porto": "fc porto",
+  "fenerbahce sk": "fenerbahce sk",
+  "fenerbahce": "fenerbahce sk",
+  "galatasaray sk": "galatasaray sk",
+  "galatasaray": "galatasaray sk",
+  "girona fc": "girona fc",
+  "girona": "girona fc",
+  "juventus fc": "juventus fc",
+  "juventus": "juventus fc",
+  "liverpool fc": "liverpool fc",
+  "liverpool": "liverpool fc",
+  "newcastle united fc": "newcastle united fc",
+  "newcastle united": "newcastle united fc",
+  "newcastle": "newcastle united fc",
+  "olympique de marseille": "olympique de marseille",
+  "marseille": "olympique de marseille",
+  "olympique marseille": "olympique de marseille",
+  "pae aek": "pae aek",
+  "aek": "pae aek",
+  "aek athens": "pae aek",
+  "pae olympiakos sfp": "pae olympiakos sfp",
+  "olympiacos": "pae olympiakos sfp",
+  "olympiakos": "pae olympiakos sfp",
+  "rb leipzig": "rb leipzig",
+  "leipzig": "rb leipzig",
+  "racing club de lens": "racing club de lens",
+  "lens": "racing club de lens",
+  "rc lens": "racing club de lens",
+  "real madrid cf": "real madrid cf",
+  "real madrid": "real madrid cf",
+  "royal antwerp fc": "royal antwerp fc",
+  "antwerp": "royal antwerp fc",
+  "royal antwerp": "royal antwerp fc",
+  "ssc napoli": "ssc napoli",
+  "napoli": "ssc napoli",
+  "sevilla fc": "sevilla fc",
+  "sevilla": "sevilla fc",
+  "vfb stuttgart": "vfb stuttgart",
+  "stuttgart": "vfb stuttgart",
+  "viking fk": "viking fk",
+  "viking": "viking fk",
+  "villarreal cf": "villarreal cf",
+  "villarreal": "villarreal cf",
+  "1 fc union berlin": "1 fc union berlin",
+  "union berlin": "1 fc union berlin",
+  "atalanta bc": "atalanta bc",
+  "atalanta": "atalanta bc",
+  "athletic club": "athletic club",
+  "athletic bilbao": "athletic club",
+  "ath bilbao": "athletic club",
+  "bayer 04 leverkusen": "bayer 04 leverkusen",
+  "leverkusen": "bayer 04 leverkusen",
+  "bayer leverkusen": "bayer 04 leverkusen",
+  "bologna fc 1909": "bologna fc 1909",
+  "bologna": "bologna fc 1909",
+  "borussia dortmund": "borussia dortmund",
+  "dortmund": "borussia dortmund",
+  "club atletico de madrid": "club atletico de madrid",
+  "atletico madrid": "club atletico de madrid",
+  "ath madrid": "club atletico de madrid",
+  "como 1907": "como 1907",
+  "como": "como 1907",
+  "eintracht frankfurt": "eintracht frankfurt",
+  "ein frankfurt": "eintracht frankfurt",
+  "fc bayern munchen": "fc bayern munchen",
+  "bayern munich": "fc bayern munchen",
+  "bayern munchen": "fc bayern munchen",
+  "fc internazionale milano": "fc internazionale milano",
+  "inter": "fc internazionale milano",
+  "internazionale milano": "fc internazionale milano",
+  "inter milan": "fc internazionale milano",
+  "feyenoord rotterdam": "feyenoord rotterdam",
+  "feyenoord": "feyenoord rotterdam",
+  "fk bod glimt": "fk bod glimt",
+  "bod glimt": "fk bod glimt",
+  "bodo glimt": "fk bod glimt",
+  "lille osc": "lille osc",
+  "losc lille": "lille osc",
+  "lille": "lille osc",
+  "manchester city fc": "manchester city fc",
+  "manchester city": "manchester city fc",
+  "man city": "manchester city fc",
+  "manchester united fc": "manchester united fc",
+  "manchester united": "manchester united fc",
+  "man united": "manchester united fc",
+  "psv": "psv",
+  "psv eindhoven": "psv",
+  "paris saint germain fc": "paris saint germain fc",
+  "paris saint germain": "paris saint germain fc",
+  "psg": "paris saint germain fc",
+  "paris sg": "paris saint germain fc",
+  "real betis balompie": "real betis balompie",
+  "real betis": "real betis balompie",
+  "betis": "real betis balompie",
+  "real sociedad de futbol": "real sociedad de futbol",
+  "real sociedad": "real sociedad de futbol",
+  "sociedad": "real sociedad de futbol",
+  "royale union saint gilloise": "royale union saint gilloise",
+  "union saint gilloise": "royale union saint gilloise",
+  "union sg": "royale union saint gilloise",
+  "union st gilloise": "royale union saint gilloise",
+  "st gilloise": "royale union saint gilloise",
+  "ss lazio": "ss lazio",
+  "lazio": "ss lazio",
+  "sport lisboa e benfica": "sport lisboa e benfica",
+  "benfica": "sport lisboa e benfica",
+  "sporting clube de braga": "sporting clube de braga",
+  "braga": "sporting clube de braga",
+  "sc braga": "sporting clube de braga",
+  "sp braga": "sporting clube de braga",
+  "sporting clube de portugal": "sporting clube de portugal",
+  "sporting cp": "sporting clube de portugal",
+  "sporting lisbon": "sporting clube de portugal",
+  "sp lisbon": "sporting clube de portugal",
+  "stade brestois 29": "stade brestois 29",
+  "brest": "stade brestois 29",
+  "tottenham hotspur fc": "tottenham hotspur fc",
+  "tottenham hotspur": "tottenham hotspur fc",
+  "tottenham": "tottenham hotspur fc",
+  "rangers fc": "rangers fc",
+  "rangers": "rangers fc",
+  "olympique lyonnais": "olympique lyonnais",
+  "lyon": "olympique lyonnais",
+  "olympique lyon": "olympique lyonnais",
+  "ogc nice": "ogc nice",
+  "nice": "ogc nice",
+  "toulouse fc": "toulouse fc",
+  "toulouse": "toulouse fc",
+  "stade rennais fc 1901": "stade rennais fc 1901",
+  "rennes": "stade rennais fc 1901",
+  "stade rennais": "stade rennais fc 1901",
+  "vfl wolfsburg": "vfl wolfsburg",
+  "wolfsburg": "vfl wolfsburg",
+  "sc freiburg": "sc freiburg",
+  "freiburg": "sc freiburg",
+  "tsg 1899 hoffenheim": "tsg 1899 hoffenheim",
+  "hoffenheim": "tsg 1899 hoffenheim",
+  "1899 hoffenheim": "tsg 1899 hoffenheim",
+  "1 fsv mainz 05": "1 fsv mainz 05",
+  "mainz": "1 fsv mainz 05",
+  "mainz 05": "1 fsv mainz 05",
+  "1 fc heidenheim 1846": "1 fc heidenheim 1846",
+  "heidenheim": "1 fc heidenheim 1846",
+  "fc heidenheim": "1 fc heidenheim 1846",
+  "acf fiorentina": "acf fiorentina",
+  "fiorentina": "acf fiorentina",
+  "az alkmaar": "az alkmaar",
+  "az": "az alkmaar",
+  "vitoria sc": "vitoria sc",
+  "vitoria guimaraes": "vitoria sc",
+  "guimaraes": "vitoria sc",
+  "rsc anderlecht": "rsc anderlecht",
+  "anderlecht": "rsc anderlecht",
+  "krc genk": "krc genk",
+  "genk": "krc genk",
+  "kaa gent": "kaa gent",
+  "gent": "kaa gent",
+  "aa gent": "kaa gent",
+  "standard liege": "standard liege",
+  "standard": "standard liege",
+  "molde fk": "molde fk",
+  "molde": "molde fk",
+  "rosenborg bk": "rosenborg bk",
+  "rosenborg": "rosenborg bk",
+  "sk brann": "sk brann",
+  "brann": "sk brann",
+  "paok fc": "paok fc",
+  "paok": "paok fc",
+  "paok salonika": "paok fc",
+  "panathinaikos fc": "panathinaikos fc",
+  "panathinaikos": "panathinaikos fc",
+  "besiktas jk": "besiktas jk",
+  "besiktas": "besiktas jk",
+  "trabzonspor": "trabzonspor",
+  "istanbul basaksehir fk": "istanbul basaksehir fk",
+  "istanbul basaksehir": "istanbul basaksehir fk",
+  "basaksehir": "istanbul basaksehir fk",
+  "buyuksehyr": "istanbul basaksehir fk",
+  "sivasspor": "sivasspor",
+  "ac sparta praha": "ac sparta praha",
+  "sparta praha": "ac sparta praha",
+  "sparta prague": "ac sparta praha",
+  "bsc young boys": "bsc young boys",
+  "young boys": "bsc young boys",
+  "fc kbenhavn": "fc kbenhavn",
+  "fc copenhagen": "fc kbenhavn",
+  "copenhagen": "fc kbenhavn",
+  "kbenhavn": "fc kbenhavn",
+  "fc red bull salzburg": "fc red bull salzburg",
+  "red bull salzburg": "fc red bull salzburg",
+  "salzburg": "fc red bull salzburg",
+  "fk crvena zvezda": "fk crvena zvezda",
+  "crvena zvezda": "fk crvena zvezda",
+  "red star belgrade": "fk crvena zvezda",
+  "fk kairat": "fk kairat",
+  "kairat": "fk kairat",
+  "kairat almaty": "fk kairat",
+  "fk shakhtar donetsk": "fk shakhtar donetsk",
+  "shakhtar donetsk": "fk shakhtar donetsk",
+  "gnk dinamo zagreb": "gnk dinamo zagreb",
+  "dinamo zagreb": "gnk dinamo zagreb",
+  "lask linz": "lask linz",
+  "lask": "lask linz",
+  "paphos fc": "paphos fc",
+  "paphos": "paphos fc",
+  "qarabag agdam fk": "qarabag agdam fk",
+  "qarabag": "qarabag agdam fk",
+  "qarabag fk": "qarabag agdam fk",
+  "sabah fk": "sabah fk",
+  "sabah": "sabah fk",
+  "sk slavia praha": "sk slavia praha",
+  "slavia praha": "sk slavia praha",
+  "slavia prague": "sk slavia praha",
+  "sk sturm graz": "sk sturm graz",
+  "sturm graz": "sk sturm graz",
+  "sk slovan bratislava": "sk slovan bratislava",
+  "slovan bratislava": "sk slovan bratislava"
+ },
+ "validation": {
+  "report": "data/euro_cups_model_validation.json",
+  "test1x2LogLoss": 0.8964958995427936,
+  "testBaseline1x2LogLoss": 0.9641021387833006,
+  "testByCompetition": {
+   "CL": {
+    "rows": 54,
+    "model1x2LogLoss": 0.8964958995427936,
+    "baseline1x2LogLoss": 0.9641021387833006,
+    "modelBrier": 0.5191434399329288,
+    "baselineBrier": 0.575538494581559
+   }
+  }
+ }
+}
