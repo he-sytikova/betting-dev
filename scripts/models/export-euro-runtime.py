@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Экспорт модели Лиги чемпионов для браузерного рантайма.
+"""Экспорт еврокубковой модели (ЛЧ + ЛЕ + ЛК) для браузерного рантайма.
 
-После валидации (train-euro-cl.py) модель дообучается на ВСЕХ завершённых
-матчах ЛЧ с alpha, выбранным на validation. Экспортируется всё, что нужно JS
-для скоринга без Python: порядок признаков, медианы импьютера (с индикаторными
-колонками), параметры скейлера, коэффициенты, развёрнутый rho Dixon–Coles,
-финальные euro-состояния команд (Elo, затухающие рейтинги голов) и снимок
-домашних признаков на дату экспорта. Сырые данные не коммитятся — коммитится
-только этот JSON.
+После валидации (train-euro-cups.py) модель дообучается на ВСЕХ завершённых
+матчах еврокубков с alpha, выбранным на validation. Экспортируется всё, что
+нужно JS для скоринга без Python: список турниров и вариантов их названий
+(гейтинг в JS идёт по этому списку, захардкоженных списков в JS нет), порядок
+признаков, медианы импьютера (с индикаторными колонками), параметры скейлера,
+коэффициенты, развёрнутый rho Dixon–Coles, финальные euro-состояния команд
+(Elo, затухающие рейтинги голов) и снимок домашних признаков на дату экспорта.
+Сырые данные не коммитятся — коммитится только этот JSON.
 """
 
 import argparse
@@ -27,8 +28,8 @@ from sklearn.preprocessing import StandardScaler
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_FDO_DIR = Path("/mnt/agents/work/data-fdo")
 DEFAULT_DOMESTIC = ROOT / "data" / "corners_cards_training.csv"
-DEFAULT_VALIDATION = ROOT / "data" / "euro_cl_model_validation.json"
-DEFAULT_OUTPUT = ROOT / "data" / "euro_cl_model.json"
+DEFAULT_VALIDATION = ROOT / "data" / "euro_cups_model_validation.json"
+DEFAULT_OUTPUT = ROOT / "data" / "euro_cups_model.json"
 
 
 def _load_module(name: str, path: Path):
@@ -40,14 +41,23 @@ def _load_module(name: str, path: Path):
 
 
 builder = _load_module("build_euro_dataset", Path(__file__).with_name("build-euro-dataset.py"))
-euro_trainer = _load_module("train_euro_cl", Path(__file__).with_name("train-euro-cl.py"))
+euro_trainer = _load_module("train_euro_cups", Path(__file__).with_name("train-euro-cups.py"))
 trainer = _load_module("train_goals_markets", Path(__file__).with_name("train-goals-markets.py"))
 recency = _load_module("recency", Path(__file__).with_name("recency.py"))
 
 MAX_GOALS = 10
 TOTAL_LINES = [1.5, 2.5, 3.5, 4.5]
 
-# Варианты написания из провайдеров фида (BSD, Euro365, FB_DATA) -> ключ
+# Варианты написания ТУРНИРОВ из провайдеров фида -> код турнира. «AFC
+# Champions League» и «UEFA Youth League» сюда не входят и отсекаются гейтом.
+COMPETITION_FEED_NAMES = {
+    "CL": ["UEFA Champions League", "Champions League"],
+    "EL": ["UEFA Europa League", "Europa League"],
+    "ECL": ["UEFA Europa Conference League", "Europa Conference League",
+            "UEFA Conference League", "Conference League"],
+}
+
+# Варианты написания КОМАНД из провайдеров фида (BSD, Euro365, FB_DATA) -> ключ
 # канонического имени (нормализованное FDO-имя). Ключи уже нормализованы
 # builder.norm_name; JS применяет ту же нормализацию.
 FEED_VARIANTS = {
@@ -122,6 +132,34 @@ FEED_VARIANTS = {
     "Viking FK": ["Viking"],
     "Paphos FC": ["Paphos"],
     "Sabah FK": ["Sabah"],
+    # ЛЕ/ЛК: варианты названий команд из фидов.
+    "Rangers FC": ["Rangers"],
+    "Olympique Lyonnais": ["Lyon", "Olympique Lyon"],
+    "OGC Nice": ["Nice"],
+    "Toulouse FC": ["Toulouse"],
+    "Stade Rennais FC 1901": ["Rennes", "Stade Rennais"],
+    "VfL Wolfsburg": ["Wolfsburg"],
+    "SC Freiburg": ["Freiburg"],
+    "TSG 1899 Hoffenheim": ["Hoffenheim", "1899 Hoffenheim"],
+    "1. FSV Mainz 05": ["Mainz", "Mainz 05"],
+    "1. FC Heidenheim 1846": ["Heidenheim", "FC Heidenheim"],
+    "ACF Fiorentina": ["Fiorentina"],
+    "AZ Alkmaar": ["AZ"],
+    "Vitória SC": ["Vitória Guimarães", "Vitoria Guimaraes", "Guimaraes"],
+    "RSC Anderlecht": ["Anderlecht"],
+    "KRC Genk": ["Genk"],
+    "KAA Gent": ["Gent", "AA Gent"],
+    "Standard Liège": ["Standard Liege", "Standard"],
+    "Molde FK": ["Molde"],
+    "Rosenborg BK": ["Rosenborg"],
+    "SK Brann": ["Brann"],
+    "PAOK FC": ["PAOK", "PAOK Salonika"],
+    "Panathinaikos FC": ["Panathinaikos"],
+    "Beşiktaş JK": ["Beşiktaş", "Besiktas"],
+    "Trabzonspor": ["Trabzonspor"],
+    "İstanbul Başakşehir FK": ["İstanbul Başakşehir", "Istanbul Basaksehir",
+                               "Başakşehir", "Basaksehir"],
+    "Sivasspor": ["Sivasspor"],
 }
 
 
@@ -140,7 +178,7 @@ def main():
     half_life_away = validation["tuning"]["awayGoals"].get("recencyHalfLifeDays")
     dc_rho = validation["dixonColes"]["deployedRho"]
 
-    matches = builder.load_cl_matches(args.fdo_dir)
+    matches = builder.load_euro_matches(args.fdo_dir)
     series = builder.domestic_state_series(args.domestic)
     rows, states, coverage, avg_goals = builder.process_matches(matches, series)
     df = pd.DataFrame(rows)
@@ -205,17 +243,29 @@ def main():
         for v in variants:
             aliases[builder.norm_name(v)] = key
 
+    comps_present = sorted({m["comp"] for m in matches})
+    competitions = [
+        {"code": comp,
+         "name": builder.COMPETITIONS[comp]["name"],
+         "names": COMPETITION_FEED_NAMES.get(comp, [builder.COMPETITIONS[comp]["name"]])}
+        for comp in comps_present
+    ]
+    per_comp = {comp: sum(1 for m in matches if m["comp"] == comp) for comp in comps_present}
+
     payload = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "status": "experimental-internal",
-        "disclaimer": "Экспериментальная внутренняя модель Лиги чемпионов. Обучена на 557 матчах ЛЧ 2023–2026 "
-                      "(football-data.org). Валидация out-of-sample лучше базового среднего, но выборка тонкая, "
-                      "преимущество против рынка не измерялось (нет исторических коэффициентов). "
+        "disclaimer": "Экспериментальная внутренняя модель еврокубков (Лига чемпионов, Лига Европы, "
+                      "Лига Конференций). Обучена на матчах football-data.org 2023–2026; единый "
+                      "кросс-страновой Elo и форма ведутся по всем турнирам в общей хронологии. "
+                      "Валидация out-of-sample лучше базового среднего, но проверки против рынка не было "
+                      "(нет исторических коэффициентов), выборка по ЛЕ/ЛК особенно тонкая. "
                       "Исследовательская оценка, не рекомендация к ставке.",
         "trainingMatches": int(len(df)),
+        "trainingMatchesByCompetition": per_comp,
         "trainingThrough": str(max(df["date"])),
-        "competition": {"code": "CL", "names": ["UEFA Champions League", "Champions League"]},
+        "competitions": competitions,
         "features": expanded,
         "baseFeatures": features,
         "imputerMedian": medians,
@@ -230,9 +280,10 @@ def main():
         "teams": teams,
         "teamAliases": aliases,
         "validation": {
-            "report": "data/euro_cl_model_validation.json",
+            "report": "data/euro_cups_model_validation.json",
             "test1x2LogLoss": validation["metrics"]["test"]["model1x2LogLoss"],
             "testBaseline1x2LogLoss": validation["metrics"]["test"]["baseline1x2LogLoss"],
+            "testByCompetition": validation["metrics"]["test"].get("byCompetition", {}),
         },
     }
     def sanitize(obj):
@@ -246,7 +297,8 @@ def main():
 
     args.output.write_text(json.dumps(sanitize(payload), indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({"output": str(args.output), "teams": len(teams), "aliases": len(aliases),
-                      "features": len(expanded), "matches": len(df), "dcRho": dc_rho}, indent=1))
+                      "features": len(expanded), "matches": len(df),
+                      "competitions": comps_present, "dcRho": dc_rho}, indent=1))
 
 
 if __name__ == "__main__":
