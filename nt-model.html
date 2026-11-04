@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лига наций — модель сборных</title><link rel="stylesheet" href="styles.css">
+<style>
+main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:820px;border-collapse:collapse;font-size:12px}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:8px;white-space:pre-line;overflow-wrap:anywhere}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl tbody tr:hover td{background:#e2e8f0}
+.tbl td.probability-cell{padding:4px 6px;font-variant-numeric:tabular-nums;white-space:normal}
+.tbl .probability-line{display:block;padding:2px 5px;margin:1px 0;border-radius:3px;line-height:1.35;white-space:nowrap}
+.tbl .probability-line.is-highlighted{font-weight:650}
+.note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
+</style></head><body data-mode="special">
+<header class="app-header"><h1>🌍 Лига наций — модель сборных</h1><p id="nt-status" class="subtitle">Загрузка модели сборных…</p><button id="refresh" type="button">Обновить</button><a class="back" href="./goals-model.html">← Основные рынки</a><a class="back" href="./euro-model.html">Еврокубки</a><a class="back" href="./express-model.html">Экспрессы дня</a><a class="back" href="./">Dev-панель</a></header>
+<main><p class="note">Экспериментальная модель сборных — Лига наций УЕФА: Poisson-регрессия ожидаемых голов, обученная на международных матчах сборных 2022–2026 (international_results, CC0). Признаки: единый Elo сборных, отреплеенный по всей истории с 1872 года (с K-факторами по категории турнира), затухающие рейтинги атаки/защиты, форма последних 5 матчей, нейтральное поле и категория турнира; контекст при скоринге зафиксирован под ЛН — официальный матч дома/в гостях. <strong>Ограничения:</strong> сборные играют редко, фактор домашнего поля у международных команд выражен слабее, а проверки против букмекерских коэффициентов не было. Прогноз выводится только для матчей, где обе сборные найдены в истории. Это исследовательская оценка вероятностей, а не рекомендация к ставке.</p><p id="nt-count" class="note"></p>
+<div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Турнир</th><th>Матч</th><th>Исходы (модель сборных)</th><th>Двойные шансы</th><th>Тотал голов</th></tr></thead><tbody id="nt-rows"></tbody></table></div><p id="nt-empty" class="note" hidden>Сегодня нет матчей Лиги наций, которые модель сборных может оценить.</p>
+</main><script src="nt-internal-model.js"></script><script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var pct = function (n) { return Number.isFinite(n) ? (n * 100).toFixed(1) + '%' : '—'; };
+  var fmtTime = function (t) { return new Date(t).toLocaleString('ru-RU', { timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); };
+  var COMP_SHORT = { UNL: 'ЛН' };
+  // Единый с другими страницами градиент: чем выше вероятность, тем насыщеннее зелёный.
+  var heat = function (p) { var x = Math.max(0, Math.min(1, p)), a = [240, 253, 244], b = [20, 83, 45]; return 'rgb(' + a.map(function (v, i) { return Math.round(v + (b[i] - v) * x); }).join(', ') + ')'; };
+  function cell(tr, value) { var td = document.createElement('td'); td.textContent = value; tr.append(td); return td; }
+  function stackedCell(tr, items) {
+    var td = document.createElement('td'); td.className = 'probability-cell';
+    if (!items.length) { td.textContent = '—'; tr.append(td); return td; }
+    items.forEach(function (item) {
+      var line = document.createElement('div'); line.className = 'probability-line';
+      line.textContent = item.label + ' ' + pct(item.value);
+      if (Number.isFinite(item.value)) {
+        line.style.backgroundColor = heat(item.value);
+        line.title = 'Вероятность: ' + pct(item.value);
+        if (item.value > .65) line.classList.add('is-highlighted');
+      }
+      td.append(line);
+    });
+    tr.append(td); return td;
+  }
+
+  function uniqueFixtures(model, predictions) {
+    // Дедупликация по каноническим ключам сборных: один и тот же матч из
+    // разных источников («Türkiye» vs «Turkey») показывается один раз.
+    var seen = new Set(); var out = [];
+    (predictions || []).forEach(function (p) {
+      var time = Date.parse(p.time);
+      if (!Number.isFinite(time) || time <= Date.now()) return;
+      var comp = NtInternalModel.resolveCompetition(model, p.league);
+      if (!comp) return;
+      var home = NtInternalModel.resolveTeam(model, p.home);
+      var away = NtInternalModel.resolveTeam(model, p.away);
+      if (!home || !away) return;
+      var key = home.key + '|' + away.key + '|' + time;
+      if (seen.has(key)) return;
+      seen.add(key);
+      out.push({ time: time, league: p.league, comp: comp, home: p.home, away: p.away });
+    });
+    return out.sort(function (a, b) { return a.time - b.time; });
+  }
+
+  async function load() {
+    $('nt-status').textContent = 'Загрузка модели сборных…';
+    try {
+      var responses = await Promise.all([
+        fetch('./data/nt_model.json?t=' + Date.now(), { cache: 'no-store' }),
+        fetch('./data.json?t=' + Date.now(), { cache: 'no-store' }),
+      ]);
+      if (!responses[0].ok) throw Error('nt_model.json: HTTP ' + responses[0].status);
+      if (!responses[1].ok) throw Error('data.json: HTTP ' + responses[1].status);
+      var model = await responses[0].json();
+      var data = await responses[1].json();
+      var fixtures = uniqueFixtures(model, data.predictions);
+      var host = $('nt-rows');
+      host.replaceChildren();
+      var rendered = 0;
+      fixtures.forEach(function (f) {
+        var pred = NtInternalModel.predict(model, f.league, f.home, f.away);
+        if (!pred) return;
+        rendered += 1;
+        var m = pred.markets;
+        var t25 = m.totals['2.5'] || m.totals[2.5];
+        var tr = document.createElement('tr');
+        cell(tr, fmtTime(f.time));
+        cell(tr, COMP_SHORT[pred.competition.code] || pred.competition.code);
+        cell(tr, pred.home + ' — ' + pred.away);
+        stackedCell(tr, [{ label: 'П1', value: m.p1 }, { label: 'Х', value: m.x }, { label: 'П2', value: m.p2 }]);
+        stackedCell(tr, [{ label: '1X', value: m.dc1x }, { label: '12', value: m.dc12 }, { label: 'X2', value: m.dcx2 }]);
+        stackedCell(tr, t25 ? [{ label: 'ТБ 2.5', value: t25.over }, { label: 'ТМ 2.5', value: t25.under }] : []);
+        host.append(tr);
+      });
+      $('nt-empty').hidden = rendered > 0;
+      $('nt-count').textContent = 'Дата снимка: ' + (data.date || '—') + ' (МСК). Матчей Лиги наций впереди: ' + fixtures.length +
+        ', оценено моделью: ' + rendered + '. Модель обучена на ' + model.trainingMatches + ' матчах сборных по ' + (model.trainingThrough || '—') +
+        ', в памяти ' + Object.keys(model.teams || {}).length + ' сборных.';
+      $('nt-status').textContent = 'Модель сборных загружена (снимок от ' + (model.trainingThrough || '—') + ').';
+    } catch (e) {
+      $('nt-status').textContent = 'Модель сборных недоступна: ' + e.message;
+      $('nt-empty').hidden = false;
+    }
+  }
+  $('refresh').addEventListener('click', load);
+  load();
+})();
+</script></body></html>

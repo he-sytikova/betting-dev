@@ -89,6 +89,16 @@
    "trainingUse": "not_applicable",
    "termsUrl": "https://the-odds-api.com/terms-of-use/",
    "notes": "The Odds API (the-odds-api.com), free plan 500 credits/month. Added 2026-11-04 as the third odds source of the dev express page: scripts/models/fetch-theodds-odds.py -> data/odds-theodds.json queries only the leagues playing on the snapshot day (totals market, eu region) twice a day and stores per-line avg/max aggregates across European bookmakers. Prices are current, so unlike the FDO opening snapshot this source participates in leg selection (best current price across Euro365 and The Odds API Max). Used only for display and express leg selection; no model training, no historical storage of raw odds; raw API responses are never committed. Do not raise the polling cadence or widen the market set without re-checking the monthly credit budget."
+  },
+  {
+   "id": "INTERNATIONAL_RESULTS",
+   "purpose": [
+    "historical_match_results",
+    "training_national_teams_model"
+   ],
+   "trainingUse": "permitted",
+   "termsUrl": "https://github.com/martj42/international_results",
+   "notes": "martj42/international_results — all men's internationals since 1872 (date, teams, score, tournament, neutral flag). License CC0-1.0 (public domain dedication), confirmed in the repository LICENSE; no attribution required, no training/storage restrictions. Added 2026-11-05 as the sole training source of the national-teams model (Nations League page): the Retrain workflow downloads results.csv to data/raw-nt/ (never committed), build-nt-dataset.py replays the full history into Elo/decay features, and only the derived model artifacts (data/nt_model.json, data/nt_model_validation.json) are published. Download is a single raw-file GET once per retrain — no API, no rate limits, no account."
   }
  ]
 }

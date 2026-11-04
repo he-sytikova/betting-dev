@@ -1,0 +1,2342 @@
+{
+ "schemaVersion": 2,
+ "generatedAt": "2026-11-04T20:50:35.013918+00:00",
+ "trainingThrough": "2026-10-06",
+ "trainingMatches": 5068,
+ "dataset": "martj42/international_results (CC0-1.0)",
+ "competitions": [
+  {
+   "code": "UNL",
+   "name": "UNL",
+   "names": [
+    "UEFA Nations League",
+    "Nations League",
+    "UEFA Nations League A",
+    "UEFA Nations League B",
+    "UEFA Nations League C",
+    "UEFA Nations League D"
+   ]
+  }
+ ],
+ "features": [
+  "home_nt_elo",
+  "away_nt_elo",
+  "home_gf_decay",
+  "home_ga_decay",
+  "away_gf_decay",
+  "away_ga_decay",
+  "home_gf_avg5",
+  "home_ga_avg5",
+  "away_gf_avg5",
+  "away_ga_avg5",
+  "is_neutral",
+  "ctx_is_friendly",
+  "ctx_is_finals"
+ ],
+ "imputerMedian": [
+  1569.668051621884,
+  1539.0183592389508,
+  1.3555304412868594,
+  1.197237068681528,
+  1.2834904456160823,
+  1.2381201675053075,
+  1.2,
+  1.2,
+  1.2,
+  1.2,
+  0.0,
+  0.0,
+  0.0
+ ],
+ "scalerMean": [
+  1570.731757158406,
+  1545.5636642890229,
+  1.4045019284990554,
+  1.3299580755173845,
+  1.337257085244266,
+  1.3820036198154144,
+  1.398901006578789,
+  1.356306952382522,
+  1.3405644007013309,
+  1.404817228904433,
+  0.35043409629044986,
+  0.287095501183899,
+  0.1026045777426993
+ ],
+ "scalerScale": [
+  219.39335518093353,
+  215.17804899922717,
+  0.5549242222164262,
+  0.6442744898664328,
+  0.5523380536684338,
+  0.6772271841226675,
+  0.8107559483941176,
+  0.8476462942685249,
+  0.7906588908518541,
+  0.8732953518514925,
+  0.47710590066309794,
+  0.4524065366281084,
+  0.30344172153635585
+ ],
+ "models": {
+  "home": {
+   "type": "poisson",
+   "coefficients": [
+    0.36883610511111703,
+    -0.4115430303886156,
+    0.12413824067376444,
+    -0.009784737356099707,
+    0.06604050628627693,
+    0.08692957576586673,
+    -0.01925941285163326,
+    0.0013805128469742765,
+    -0.029571349876307065,
+    0.02186546448931328,
+    -0.04340492181732677,
+    0.0030970932352981035,
+    0.006772958259996274
+   ],
+   "intercept": 0.3704821500870665
+  },
+  "away": {
+   "type": "poisson",
+   "coefficients": [
+    -0.38396209727890634,
+    0.3734491807134008,
+    0.051776872982830076,
+    0.14524982795677477,
+    0.11938913416497066,
+    -0.017633890043536157,
+    -0.00387560552580795,
+    0.01554737249381217,
+    0.01006409599646448,
+    -0.0006782187937080016,
+    0.09524949971912161,
+    -0.010774454060400581,
+    -0.03372708312251167
+   ],
+   "intercept": 0.019153645223314107
+  }
+ },
+ "dcRho": 0.0,
+ "maxGoals": 10,
+ "totalLines": [
+  1.5,
+  2.5,
+  3.5,
+  4.5
+ ],
+ "teams": {
+  "scotland": {
+   "name": "Scotland",
+   "ntElo": 1706.24,
+   "gfDecay": 1.3589,
+   "gaDecay": 1.2673,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.6,
+   "matches": 54
+  },
+  "england": {
+   "name": "England",
+   "ntElo": 2005.36,
+   "gfDecay": 2.428,
+   "gaDecay": 0.8215,
+   "gfAvg5": 4.0,
+   "gaAvg5": 1.4,
+   "matches": 66
+  },
+  "wales": {
+   "name": "Wales",
+   "ntElo": 1675.12,
+   "gfDecay": 1.2682,
+   "gaDecay": 1.2559,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.4,
+   "matches": 50
+  },
+  "northern ireland": {
+   "name": "Northern Ireland",
+   "ntElo": 1621.98,
+   "gfDecay": 1.0755,
+   "gaDecay": 0.9499,
+   "gfAvg5": 1.0,
+   "gaAvg5": 0.6,
+   "matches": 46
+  },
+  "united states": {
+   "name": "United States",
+   "ntElo": 1772.38,
+   "gfDecay": 2.0389,
+   "gaDecay": 1.3193,
+   "gfAvg5": 2.6,
+   "gaAvg5": 1.4,
+   "matches": 79
+  },
+  "canada": {
+   "name": "Canada",
+   "ntElo": 1770.56,
+   "gfDecay": 1.4487,
+   "gaDecay": 0.7944,
+   "gfAvg5": 0.8,
+   "gaAvg5": 0.8,
+   "matches": 66
+  },
+  "uruguay": {
+   "name": "Uruguay",
+   "ntElo": 1857.29,
+   "gfDecay": 1.5898,
+   "gaDecay": 0.8972,
+   "gfAvg5": 2.6,
+   "gaAvg5": 1.2,
+   "matches": 56
+  },
+  "argentina": {
+   "name": "Argentina",
+   "ntElo": 2092.99,
+   "gfDecay": 2.6785,
+   "gaDecay": 0.4938,
+   "gfAvg5": 3.6,
+   "gaAvg5": 0.2,
+   "matches": 67
+  },
+  "austria": {
+   "name": "Austria",
+   "ntElo": 1801.94,
+   "gfDecay": 2.0874,
+   "gaDecay": 1.1086,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.6,
+   "matches": 55
+  },
+  "hungary": {
+   "name": "Hungary",
+   "ntElo": 1727.42,
+   "gfDecay": 1.2501,
+   "gaDecay": 1.1006,
+   "gfAvg5": 1.2,
+   "gaAvg5": 0.6,
+   "matches": 51
+  },
+  "belgium": {
+   "name": "Belgium",
+   "ntElo": 1889.69,
+   "gfDecay": 2.3398,
+   "gaDecay": 1.0053,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.4,
+   "matches": 60
+  },
+  "france": {
+   "name": "France",
+   "ntElo": 2023.7,
+   "gfDecay": 2.2122,
+   "gaDecay": 0.9869,
+   "gfAvg5": 2.2,
+   "gaAvg5": 1.6,
+   "matches": 67
+  },
+  "switzerland": {
+   "name": "Switzerland",
+   "ntElo": 1897.53,
+   "gfDecay": 2.043,
+   "gaDecay": 0.9317,
+   "gfAvg5": 2.4,
+   "gaAvg5": 0.8,
+   "matches": 62
+  },
+  "jersey": {
+   "name": "Jersey",
+   "ntElo": 1757.76,
+   "gfDecay": 2.5018,
+   "gaDecay": 1.3411,
+   "gfAvg5": 2.8,
+   "gaAvg5": 1.8,
+   "matches": 11
+  },
+  "netherlands": {
+   "name": "Netherlands",
+   "ntElo": 1917.61,
+   "gfDecay": 2.2823,
+   "gaDecay": 1.0527,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.2,
+   "matches": 61
+  },
+  "guyana": {
+   "name": "Guyana",
+   "ntElo": 1505.22,
+   "gfDecay": 2.7589,
+   "gaDecay": 1.1421,
+   "gfAvg5": 3.8,
+   "gaAvg5": 0.6,
+   "matches": 41
+  },
+  "trinidad and tobago": {
+   "name": "Trinidad and Tobago",
+   "ntElo": 1484.0,
+   "gfDecay": 1.2411,
+   "gaDecay": 1.9271,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.0,
+   "matches": 62
+  },
+  "south africa": {
+   "name": "South Africa",
+   "ntElo": 1664.62,
+   "gfDecay": 1.4551,
+   "gaDecay": 0.7805,
+   "gfAvg5": 1.8,
+   "gaAvg5": 0.4,
+   "matches": 66
+  },
+  "germany": {
+   "name": "Germany",
+   "ntElo": 1873.55,
+   "gfDecay": 2.1434,
+   "gaDecay": 0.9865,
+   "gfAvg5": 0.8,
+   "gaAvg5": 0.6,
+   "matches": 60
+  },
+  "sweden": {
+   "name": "Sweden",
+   "ntElo": 1755.16,
+   "gfDecay": 1.8018,
+   "gaDecay": 1.59,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.2,
+   "matches": 55
+  },
+  "norway": {
+   "name": "Norway",
+   "ntElo": 1825.41,
+   "gfDecay": 2.283,
+   "gaDecay": 1.3372,
+   "gfAvg5": 1.4,
+   "gaAvg5": 2.0,
+   "matches": 54
+  },
+  "denmark": {
+   "name": "Denmark",
+   "ntElo": 1819.11,
+   "gfDecay": 1.9178,
+   "gaDecay": 1.1592,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.6,
+   "matches": 53
+  },
+  "italy": {
+   "name": "Italy",
+   "ntElo": 1884.67,
+   "gfDecay": 1.916,
+   "gaDecay": 1.1164,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.0,
+   "matches": 53
+  },
+  "chile": {
+   "name": "Chile",
+   "ntElo": 1735.76,
+   "gfDecay": 1.3258,
+   "gaDecay": 1.4615,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.6,
+   "matches": 50
+  },
+  "russia": {
+   "name": "Russia",
+   "ntElo": 1768.46,
+   "gfDecay": 2.4946,
+   "gaDecay": 0.6818,
+   "gfAvg5": 3.4,
+   "gaAvg5": 0.6,
+   "matches": 31
+  },
+  "finland": {
+   "name": "Finland",
+   "ntElo": 1553.92,
+   "gfDecay": 1.3806,
+   "gaDecay": 1.3754,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.8,
+   "matches": 50
+  },
+  "luxembourg": {
+   "name": "Luxembourg",
+   "ntElo": 1411.07,
+   "gfDecay": 0.5137,
+   "gaDecay": 1.5792,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.4,
+   "matches": 46
+  },
+  "philippines": {
+   "name": "Philippines",
+   "ntElo": 1334.72,
+   "gfDecay": 1.808,
+   "gaDecay": 1.4343,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.2,
+   "matches": 49
+  },
+  "china": {
+   "name": "China",
+   "ntElo": 1494.78,
+   "gfDecay": 0.9391,
+   "gaDecay": 1.5408,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.8,
+   "matches": 44
+  },
+  "brazil": {
+   "name": "Brazil",
+   "ntElo": 1960.37,
+   "gfDecay": 2.178,
+   "gaDecay": 0.9799,
+   "gfAvg5": 2.4,
+   "gaAvg5": 1.2,
+   "matches": 58
+  },
+  "japan": {
+   "name": "Japan",
+   "ntElo": 1863.21,
+   "gfDecay": 2.0983,
+   "gaDecay": 0.7133,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.0,
+   "matches": 63
+  },
+  "paraguay": {
+   "name": "Paraguay",
+   "ntElo": 1826.26,
+   "gfDecay": 1.0727,
+   "gaDecay": 0.9384,
+   "gfAvg5": 0.8,
+   "gaAvg5": 0.4,
+   "matches": 51
+  },
+  "romania": {
+   "name": "Romania",
+   "ntElo": 1595.23,
+   "gfDecay": 1.4057,
+   "gaDecay": 1.6423,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.8,
+   "matches": 52
+  },
+  "greece": {
+   "name": "Greece",
+   "ntElo": 1763.79,
+   "gfDecay": 1.4506,
+   "gaDecay": 1.0138,
+   "gfAvg5": 1.0,
+   "gaAvg5": 0.8,
+   "matches": 48
+  },
+  "spain": {
+   "name": "Spain",
+   "ntElo": 2145.85,
+   "gfDecay": 2.4117,
+   "gaDecay": 0.6995,
+   "gfAvg5": 2.6,
+   "gaAvg5": 1.0,
+   "matches": 66
+  },
+  "egypt": {
+   "name": "Egypt",
+   "ntElo": 1744.8,
+   "gfDecay": 1.4637,
+   "gaDecay": 0.7937,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.0,
+   "matches": 70
+  },
+  "estonia": {
+   "name": "Estonia",
+   "ntElo": 1460.19,
+   "gfDecay": 0.8324,
+   "gaDecay": 1.3967,
+   "gfAvg5": 0.6,
+   "gaAvg5": 0.2,
+   "matches": 52
+  },
+  "suriname": {
+   "name": "Suriname",
+   "ntElo": 1559.08,
+   "gfDecay": 1.3564,
+   "gaDecay": 1.094,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.2,
+   "matches": 40
+  },
+  "costa rica": {
+   "name": "Costa Rica",
+   "ntElo": 1670.51,
+   "gfDecay": 1.7403,
+   "gaDecay": 1.5262,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.8,
+   "matches": 66
+  },
+  "el salvador": {
+   "name": "El Salvador",
+   "ntElo": 1481.2,
+   "gfDecay": 0.8471,
+   "gaDecay": 1.5012,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.0,
+   "matches": 59
+  },
+  "guatemala": {
+   "name": "Guatemala",
+   "ntElo": 1610.15,
+   "gfDecay": 1.4502,
+   "gaDecay": 1.565,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.2,
+   "matches": 66
+  },
+  "poland": {
+   "name": "Poland",
+   "ntElo": 1689.65,
+   "gfDecay": 1.6304,
+   "gaDecay": 1.3037,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.2,
+   "matches": 54
+  },
+  "portugal": {
+   "name": "Portugal",
+   "ntElo": 1976.28,
+   "gfDecay": 2.199,
+   "gaDecay": 0.8568,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.0,
+   "matches": 63
+  },
+  "new zealand": {
+   "name": "New Zealand",
+   "ntElo": 1642.43,
+   "gfDecay": 1.6434,
+   "gaDecay": 1.564,
+   "gfAvg5": 1.6,
+   "gaAvg5": 2.0,
+   "matches": 51
+  },
+  "australia": {
+   "name": "Australia",
+   "ntElo": 1797.32,
+   "gfDecay": 1.4696,
+   "gaDecay": 0.981,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.6,
+   "matches": 57
+  },
+  "latvia": {
+   "name": "Latvia",
+   "ntElo": 1305.86,
+   "gfDecay": 0.6074,
+   "gaDecay": 1.5185,
+   "gfAvg5": 0.4,
+   "gaAvg5": 1.4,
+   "matches": 46
+  },
+  "mexico": {
+   "name": "Mexico",
+   "ntElo": 1861.41,
+   "gfDecay": 1.4443,
+   "gaDecay": 0.917,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.0,
+   "matches": 86
+  },
+  "lithuania": {
+   "name": "Lithuania",
+   "ntElo": 1330.58,
+   "gfDecay": 0.8887,
+   "gaDecay": 1.3152,
+   "gfAvg5": 1.2,
+   "gaAvg5": 0.6,
+   "matches": 48
+  },
+  "turkey": {
+   "name": "Turkey",
+   "ntElo": 1783.48,
+   "gfDecay": 1.5929,
+   "gaDecay": 1.5711,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.6,
+   "matches": 56
+  },
+  "aruba": {
+   "name": "Aruba",
+   "ntElo": 1279.27,
+   "gfDecay": 1.7698,
+   "gaDecay": 1.6932,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.8,
+   "matches": 29
+  },
+  "curacao": {
+   "name": "Curaçao",
+   "ntElo": 1581.57,
+   "gfDecay": 1.9256,
+   "gaDecay": 1.5164,
+   "gfAvg5": 2.4,
+   "gaAvg5": 1.4,
+   "matches": 46
+  },
+  "bulgaria": {
+   "name": "Bulgaria",
+   "ntElo": 1491.21,
+   "gfDecay": 1.1742,
+   "gaDecay": 1.7113,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.4,
+   "matches": 48
+  },
+  "republic of ireland": {
+   "name": "Republic of Ireland",
+   "ntElo": 1679.51,
+   "gfDecay": 1.3821,
+   "gaDecay": 1.0332,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.0,
+   "matches": 49
+  },
+  "haiti": {
+   "name": "Haiti",
+   "ntElo": 1643.76,
+   "gfDecay": 1.9355,
+   "gaDecay": 1.3595,
+   "gfAvg5": 2.2,
+   "gaAvg5": 1.8,
+   "matches": 46
+  },
+  "jamaica": {
+   "name": "Jamaica",
+   "ntElo": 1632.44,
+   "gfDecay": 1.3158,
+   "gaDecay": 1.014,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.0,
+   "matches": 71
+  },
+  "kenya": {
+   "name": "Kenya",
+   "ntElo": 1464.52,
+   "gfDecay": 1.0586,
+   "gaDecay": 1.2751,
+   "gfAvg5": 1.0,
+   "gaAvg5": 0.6,
+   "matches": 34
+  },
+  "uganda": {
+   "name": "Uganda",
+   "ntElo": 1545.96,
+   "gfDecay": 1.165,
+   "gaDecay": 1.1716,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.0,
+   "matches": 46
+  },
+  "bolivia": {
+   "name": "Bolivia",
+   "ntElo": 1625.34,
+   "gfDecay": 0.6699,
+   "gaDecay": 2.1838,
+   "gfAvg5": 0.0,
+   "gaAvg5": 3.6,
+   "matches": 52
+  },
+  "peru": {
+   "name": "Peru",
+   "ntElo": 1697.14,
+   "gfDecay": 0.7371,
+   "gaDecay": 1.5633,
+   "gfAvg5": 0.6,
+   "gaAvg5": 2.4,
+   "matches": 52
+  },
+  "honduras": {
+   "name": "Honduras",
+   "ntElo": 1620.84,
+   "gfDecay": 1.2642,
+   "gaDecay": 1.2757,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.6,
+   "matches": 61
+  },
+  "belarus": {
+   "name": "Belarus",
+   "ntElo": 1562.1,
+   "gfDecay": 1.3177,
+   "gaDecay": 1.3478,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.8,
+   "matches": 48
+  },
+  "ukraine": {
+   "name": "Ukraine",
+   "ntElo": 1759.5,
+   "gfDecay": 1.2472,
+   "gaDecay": 1.4254,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.4,
+   "matches": 49
+  },
+  "barbados": {
+   "name": "Barbados",
+   "ntElo": 1297.96,
+   "gfDecay": 1.8787,
+   "gaDecay": 1.9033,
+   "gfAvg5": 2.4,
+   "gaAvg5": 1.4,
+   "matches": 37
+  },
+  "nicaragua": {
+   "name": "Nicaragua",
+   "ntElo": 1424.4,
+   "gfDecay": 0.9709,
+   "gaDecay": 2.0838,
+   "gfAvg5": 0.8,
+   "gaAvg5": 3.6,
+   "matches": 49
+  },
+  "cuba": {
+   "name": "Cuba",
+   "ntElo": 1436.37,
+   "gfDecay": 1.5486,
+   "gaDecay": 1.5901,
+   "gfAvg5": 2.2,
+   "gaAvg5": 1.2,
+   "matches": 44
+  },
+  "martinique": {
+   "name": "Martinique",
+   "ntElo": 1477.29,
+   "gfDecay": 0.9562,
+   "gaDecay": 1.4928,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.6,
+   "matches": 28
+  },
+  "dominica": {
+   "name": "Dominica",
+   "ntElo": 1233.19,
+   "gfDecay": 0.7796,
+   "gaDecay": 2.3858,
+   "gfAvg5": 0.6,
+   "gaAvg5": 3.0,
+   "matches": 31
+  },
+  "guadeloupe": {
+   "name": "Guadeloupe",
+   "ntElo": 1449.87,
+   "gfDecay": 1.3967,
+   "gaDecay": 1.4711,
+   "gfAvg5": 1.2,
+   "gaAvg5": 2.0,
+   "matches": 33
+  },
+  "israel": {
+   "name": "Israel",
+   "ntElo": 1623.93,
+   "gfDecay": 1.3027,
+   "gaDecay": 1.7568,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.4,
+   "matches": 44
+  },
+  "indonesia": {
+   "name": "Indonesia",
+   "ntElo": 1461.16,
+   "gfDecay": 1.9767,
+   "gaDecay": 1.2204,
+   "gfAvg5": 2.8,
+   "gaAvg5": 1.0,
+   "matches": 66
+  },
+  "french guiana": {
+   "name": "French Guiana",
+   "ntElo": 1454.08,
+   "gfDecay": 1.3291,
+   "gaDecay": 0.93,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.8,
+   "matches": 24
+  },
+  "saint lucia": {
+   "name": "Saint Lucia",
+   "ntElo": 1359.53,
+   "gfDecay": 1.5514,
+   "gaDecay": 1.9727,
+   "gfAvg5": 2.0,
+   "gaAvg5": 2.0,
+   "matches": 33
+  },
+  "colombia": {
+   "name": "Colombia",
+   "ntElo": 1941.94,
+   "gfDecay": 1.6171,
+   "gaDecay": 0.758,
+   "gfAvg5": 0.8,
+   "gaAvg5": 0.4,
+   "matches": 59
+  },
+  "panama": {
+   "name": "Panama",
+   "ntElo": 1712.96,
+   "gfDecay": 1.4129,
+   "gaDecay": 1.3156,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.2,
+   "matches": 77
+  },
+  "venezuela": {
+   "name": "Venezuela",
+   "ntElo": 1751.37,
+   "gfDecay": 1.0095,
+   "gaDecay": 1.2126,
+   "gfAvg5": 0.8,
+   "gaAvg5": 0.8,
+   "matches": 49
+  },
+  "ecuador": {
+   "name": "Ecuador",
+   "ntElo": 1858.87,
+   "gfDecay": 0.9218,
+   "gaDecay": 0.7588,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.4,
+   "matches": 59
+  },
+  "saint kitts and nevis": {
+   "name": "Saint Kitts and Nevis",
+   "ntElo": 1362.78,
+   "gfDecay": 1.9403,
+   "gaDecay": 2.0349,
+   "gfAvg5": 2.8,
+   "gaAvg5": 1.6,
+   "matches": 41
+  },
+  "grenada": {
+   "name": "Grenada",
+   "ntElo": 1301.24,
+   "gfDecay": 1.1646,
+   "gaDecay": 2.3773,
+   "gfAvg5": 0.8,
+   "gaAvg5": 3.4,
+   "matches": 41
+  },
+  "india": {
+   "name": "India",
+   "ntElo": 1306.94,
+   "gfDecay": 0.6934,
+   "gaDecay": 1.7852,
+   "gfAvg5": 0.8,
+   "gaAvg5": 3.0,
+   "matches": 48
+  },
+  "slovakia": {
+   "name": "Slovakia",
+   "ntElo": 1664.0,
+   "gfDecay": 1.6267,
+   "gaDecay": 1.1216,
+   "gfAvg5": 2.2,
+   "gaAvg5": 0.8,
+   "matches": 52
+  },
+  "croatia": {
+   "name": "Croatia",
+   "ntElo": 1845.16,
+   "gfDecay": 1.6584,
+   "gaDecay": 1.6495,
+   "gfAvg5": 1.0,
+   "gaAvg5": 3.2,
+   "matches": 61
+  },
+  "lebanon": {
+   "name": "Lebanon",
+   "ntElo": 1449.14,
+   "gfDecay": 1.7931,
+   "gaDecay": 0.9692,
+   "gfAvg5": 3.0,
+   "gaAvg5": 1.0,
+   "matches": 45
+  },
+  "puerto rico": {
+   "name": "Puerto Rico",
+   "ntElo": 1389.86,
+   "gfDecay": 1.7054,
+   "gaDecay": 1.1948,
+   "gfAvg5": 1.2,
+   "gaAvg5": 0.8,
+   "matches": 35
+  },
+  "afghanistan": {
+   "name": "Afghanistan",
+   "ntElo": 1268.36,
+   "gfDecay": 0.481,
+   "gaDecay": 1.463,
+   "gfAvg5": 0.4,
+   "gaAvg5": 1.0,
+   "matches": 26
+  },
+  "iran": {
+   "name": "Iran",
+   "ntElo": 1799.49,
+   "gfDecay": 1.7292,
+   "gaDecay": 0.9739,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.6,
+   "matches": 58
+  },
+  "mongolia": {
+   "name": "Mongolia",
+   "ntElo": 1120.69,
+   "gfDecay": 0.334,
+   "gaDecay": 2.429,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.6,
+   "matches": 21
+  },
+  "tanzania": {
+   "name": "Tanzania",
+   "ntElo": 1406.46,
+   "gfDecay": 0.8656,
+   "gaDecay": 1.182,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.0,
+   "matches": 45
+  },
+  "zimbabwe": {
+   "name": "Zimbabwe",
+   "ntElo": 1475.08,
+   "gfDecay": 1.0912,
+   "gaDecay": 1.3333,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.2,
+   "matches": 32
+  },
+  "zambia": {
+   "name": "Zambia",
+   "ntElo": 1537.97,
+   "gfDecay": 1.0121,
+   "gaDecay": 1.6556,
+   "gfAvg5": 0.6,
+   "gaAvg5": 2.2,
+   "matches": 47
+  },
+  "iceland": {
+   "name": "Iceland",
+   "ntElo": 1592.48,
+   "gfDecay": 1.4237,
+   "gaDecay": 1.4844,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.8,
+   "matches": 57
+  },
+  "albania": {
+   "name": "Albania",
+   "ntElo": 1589.62,
+   "gfDecay": 1.1884,
+   "gaDecay": 0.9147,
+   "gfAvg5": 1.6,
+   "gaAvg5": 0.8,
+   "matches": 51
+  },
+  "montenegro": {
+   "name": "Montenegro",
+   "ntElo": 1537.93,
+   "gfDecay": 1.3719,
+   "gaDecay": 1.4823,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.2,
+   "matches": 48
+  },
+  "madagascar": {
+   "name": "Madagascar",
+   "ntElo": 1471.54,
+   "gfDecay": 1.4201,
+   "gaDecay": 1.5778,
+   "gfAvg5": 1.6,
+   "gaAvg5": 2.0,
+   "matches": 39
+  },
+  "mauritius": {
+   "name": "Mauritius",
+   "ntElo": 1230.37,
+   "gfDecay": 0.8418,
+   "gaDecay": 1.1519,
+   "gfAvg5": 0.8,
+   "gaAvg5": 0.4,
+   "matches": 37
+  },
+  "djibouti": {
+   "name": "Djibouti",
+   "ntElo": 1172.52,
+   "gfDecay": 0.5248,
+   "gaDecay": 2.6149,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.0,
+   "matches": 20
+  },
+  "ethiopia": {
+   "name": "Ethiopia",
+   "ntElo": 1411.51,
+   "gfDecay": 0.9094,
+   "gaDecay": 1.1295,
+   "gfAvg5": 0.6,
+   "gaAvg5": 0.6,
+   "matches": 39
+  },
+  "dr congo": {
+   "name": "DR Congo",
+   "ntElo": 1697.13,
+   "gfDecay": 1.2419,
+   "gaDecay": 0.7717,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.2,
+   "matches": 60
+  },
+  "south korea": {
+   "name": "South Korea",
+   "ntElo": 1776.41,
+   "gfDecay": 1.6382,
+   "gaDecay": 0.9649,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.0,
+   "matches": 68
+  },
+  "vietnam": {
+   "name": "Vietnam",
+   "ntElo": 1525.89,
+   "gfDecay": 2.1545,
+   "gaDecay": 0.82,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.0,
+   "matches": 64
+  },
+  "macau": {
+   "name": "Macau",
+   "ntElo": 1014.49,
+   "gfDecay": 0.359,
+   "gaDecay": 3.3404,
+   "gfAvg5": 0.4,
+   "gaAvg5": 3.0,
+   "matches": 12
+  },
+  "dominican republic": {
+   "name": "Dominican Republic",
+   "ntElo": 1487.99,
+   "gfDecay": 1.9691,
+   "gaDecay": 1.5914,
+   "gfAvg5": 2.0,
+   "gaAvg5": 2.4,
+   "matches": 43
+  },
+  "cyprus": {
+   "name": "Cyprus",
+   "ntElo": 1400.61,
+   "gfDecay": 1.2658,
+   "gaDecay": 1.5243,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.6,
+   "matches": 48
+  },
+  "sierra leone": {
+   "name": "Sierra Leone",
+   "ntElo": 1442.67,
+   "gfDecay": 1.0843,
+   "gaDecay": 1.4691,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.6,
+   "matches": 39
+  },
+  "nigeria": {
+   "name": "Nigeria",
+   "ntElo": 1768.26,
+   "gfDecay": 1.8002,
+   "gaDecay": 1.0779,
+   "gfAvg5": 1.6,
+   "gaAvg5": 2.2,
+   "matches": 64
+  },
+  "syria": {
+   "name": "Syria",
+   "ntElo": 1569.23,
+   "gfDecay": 1.4432,
+   "gaDecay": 1.3703,
+   "gfAvg5": 0.6,
+   "gaAvg5": 2.0,
+   "matches": 50
+  },
+  "serbia": {
+   "name": "Serbia",
+   "ntElo": 1696.47,
+   "gfDecay": 1.0325,
+   "gaDecay": 1.666,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.6,
+   "matches": 53
+  },
+  "taiwan": {
+   "name": "Taiwan",
+   "ntElo": 1174.08,
+   "gfDecay": 1.1543,
+   "gaDecay": 2.844,
+   "gfAvg5": 0.6,
+   "gaAvg5": 4.0,
+   "matches": 23
+  },
+  "ghana": {
+   "name": "Ghana",
+   "ntElo": 1584.22,
+   "gfDecay": 1.1159,
+   "gaDecay": 1.4149,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.8,
+   "matches": 58
+  },
+  "myanmar": {
+   "name": "Myanmar",
+   "ntElo": 1220.79,
+   "gfDecay": 1.5465,
+   "gaDecay": 2.267,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.8,
+   "matches": 48
+  },
+  "new caledonia": {
+   "name": "New Caledonia",
+   "ntElo": 1522.54,
+   "gfDecay": 1.4561,
+   "gaDecay": 1.6147,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.0,
+   "matches": 25
+  },
+  "vanuatu": {
+   "name": "Vanuatu",
+   "ntElo": 1478.79,
+   "gfDecay": 1.6034,
+   "gaDecay": 1.689,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.4,
+   "matches": 35
+  },
+  "fiji": {
+   "name": "Fiji",
+   "ntElo": 1489.66,
+   "gfDecay": 1.45,
+   "gaDecay": 1.6797,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.0,
+   "matches": 40
+  },
+  "pakistan": {
+   "name": "Pakistan",
+   "ntElo": 1182.87,
+   "gfDecay": 1.0735,
+   "gaDecay": 2.0902,
+   "gfAvg5": 1.6,
+   "gaAvg5": 2.0,
+   "matches": 27
+  },
+  "sri lanka": {
+   "name": "Sri Lanka",
+   "ntElo": 1134.02,
+   "gfDecay": 1.1207,
+   "gaDecay": 1.2546,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.6,
+   "matches": 28
+  },
+  "tahiti": {
+   "name": "Tahiti",
+   "ntElo": 1514.92,
+   "gfDecay": 1.9698,
+   "gaDecay": 1.5574,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.4,
+   "matches": 21
+  },
+  "gambia": {
+   "name": "Gambia",
+   "ntElo": 1535.44,
+   "gfDecay": 2.031,
+   "gaDecay": 1.6301,
+   "gfAvg5": 2.0,
+   "gaAvg5": 2.2,
+   "matches": 41
+  },
+  "hong kong": {
+   "name": "Hong Kong",
+   "ntElo": 1344.7,
+   "gfDecay": 1.8584,
+   "gaDecay": 0.9123,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.4,
+   "matches": 53
+  },
+  "singapore": {
+   "name": "Singapore",
+   "ntElo": 1363.57,
+   "gfDecay": 1.3218,
+   "gaDecay": 1.6132,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.4,
+   "matches": 56
+  },
+  "malaysia": {
+   "name": "Malaysia",
+   "ntElo": 1497.34,
+   "gfDecay": 1.7999,
+   "gaDecay": 0.8891,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.4,
+   "matches": 61
+  },
+  "guinea bissau": {
+   "name": "Guinea-Bissau",
+   "ntElo": 1431.92,
+   "gfDecay": 1.0301,
+   "gaDecay": 1.2704,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.4,
+   "matches": 40
+  },
+  "burundi": {
+   "name": "Burundi",
+   "ntElo": 1437.3,
+   "gfDecay": 1.2202,
+   "gaDecay": 1.4922,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.6,
+   "matches": 33
+  },
+  "cameroon": {
+   "name": "Cameroon",
+   "ntElo": 1688.0,
+   "gfDecay": 1.347,
+   "gaDecay": 0.7244,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.6,
+   "matches": 57
+  },
+  "cambodia": {
+   "name": "Cambodia",
+   "ntElo": 1147.44,
+   "gfDecay": 1.4523,
+   "gaDecay": 1.6849,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.4,
+   "matches": 40
+  },
+  "thailand": {
+   "name": "Thailand",
+   "ntElo": 1519.39,
+   "gfDecay": 2.053,
+   "gaDecay": 1.0172,
+   "gfAvg5": 2.2,
+   "gaAvg5": 1.2,
+   "matches": 77
+  },
+  "kyrgyzstan": {
+   "name": "Kyrgyzstan",
+   "ntElo": 1444.08,
+   "gfDecay": 1.5633,
+   "gaDecay": 1.3322,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.2,
+   "matches": 40
+  },
+  "moldova": {
+   "name": "Moldova",
+   "ntElo": 1351.29,
+   "gfDecay": 0.8809,
+   "gaDecay": 2.2687,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.8,
+   "matches": 49
+  },
+  "togo": {
+   "name": "Togo",
+   "ntElo": 1476.23,
+   "gfDecay": 1.1584,
+   "gaDecay": 1.1263,
+   "gfAvg5": 1.6,
+   "gaAvg5": 0.8,
+   "matches": 35
+  },
+  "north korea": {
+   "name": "North Korea",
+   "ntElo": 1508.41,
+   "gfDecay": 1.1118,
+   "gaDecay": 1.7525,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.6,
+   "matches": 18
+  },
+  "sudan": {
+   "name": "Sudan",
+   "ntElo": 1480.89,
+   "gfDecay": 0.6014,
+   "gaDecay": 1.3558,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.8,
+   "matches": 46
+  },
+  "malta": {
+   "name": "Malta",
+   "ntElo": 1352.47,
+   "gfDecay": 1.0834,
+   "gaDecay": 1.4833,
+   "gfAvg5": 1.6,
+   "gaAvg5": 0.4,
+   "matches": 45
+  },
+  "tunisia": {
+   "name": "Tunisia",
+   "ntElo": 1623.95,
+   "gfDecay": 1.3374,
+   "gaDecay": 1.327,
+   "gfAvg5": 1.0,
+   "gaAvg5": 3.0,
+   "matches": 68
+  },
+  "libya": {
+   "name": "Libya",
+   "ntElo": 1500.4,
+   "gfDecay": 1.0829,
+   "gaDecay": 1.0072,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.0,
+   "matches": 40
+  },
+  "malawi": {
+   "name": "Malawi",
+   "ntElo": 1430.09,
+   "gfDecay": 0.961,
+   "gaDecay": 1.2025,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.4,
+   "matches": 43
+  },
+  "morocco": {
+   "name": "Morocco",
+   "ntElo": 1894.33,
+   "gfDecay": 2.0348,
+   "gaDecay": 0.4629,
+   "gfAvg5": 1.6,
+   "gaAvg5": 0.6,
+   "matches": 80
+  },
+  "benin": {
+   "name": "Benin",
+   "ntElo": 1556.31,
+   "gfDecay": 0.9512,
+   "gaDecay": 1.5085,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.2,
+   "matches": 44
+  },
+  "cape verde": {
+   "name": "Cape Verde",
+   "ntElo": 1617.24,
+   "gfDecay": 1.2495,
+   "gaDecay": 1.2895,
+   "gfAvg5": 1.2,
+   "gaAvg5": 2.0,
+   "matches": 57
+  },
+  "ivory coast": {
+   "name": "Ivory Coast",
+   "ntElo": 1748.34,
+   "gfDecay": 1.6997,
+   "gaDecay": 0.6483,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.6,
+   "matches": 63
+  },
+  "burkina faso": {
+   "name": "Burkina Faso",
+   "ntElo": 1634.03,
+   "gfDecay": 1.5387,
+   "gaDecay": 1.3451,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.6,
+   "matches": 64
+  },
+  "gabon": {
+   "name": "Gabon",
+   "ntElo": 1523.95,
+   "gfDecay": 1.5473,
+   "gaDecay": 1.5811,
+   "gfAvg5": 1.4,
+   "gaAvg5": 2.0,
+   "matches": 43
+  },
+  "congo": {
+   "name": "Congo",
+   "ntElo": 1369.39,
+   "gfDecay": 0.6806,
+   "gaDecay": 1.7183,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.4,
+   "matches": 24
+  },
+  "mali": {
+   "name": "Mali",
+   "ntElo": 1682.65,
+   "gfDecay": 1.3877,
+   "gaDecay": 0.6849,
+   "gfAvg5": 1.0,
+   "gaAvg5": 0.8,
+   "matches": 51
+  },
+  "central african republic": {
+   "name": "Central African Republic",
+   "ntElo": 1379.83,
+   "gfDecay": 0.9035,
+   "gaDecay": 2.0546,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.0,
+   "matches": 31
+  },
+  "iraq": {
+   "name": "Iraq",
+   "ntElo": 1658.02,
+   "gfDecay": 1.1048,
+   "gaDecay": 1.3787,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.6,
+   "matches": 66
+  },
+  "saint vincent and the grenadines": {
+   "name": "Saint Vincent and the Grenadines",
+   "ntElo": 1444.76,
+   "gfDecay": 2.2725,
+   "gaDecay": 1.3084,
+   "gfAvg5": 2.8,
+   "gaAvg5": 1.0,
+   "matches": 43
+  },
+  "senegal": {
+   "name": "Senegal",
+   "ntElo": 1798.57,
+   "gfDecay": 1.9635,
+   "gaDecay": 0.8516,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.8,
+   "matches": 72
+  },
+  "laos": {
+   "name": "Laos",
+   "ntElo": 1054.34,
+   "gfDecay": 0.9652,
+   "gaDecay": 3.3923,
+   "gfAvg5": 1.2,
+   "gaAvg5": 4.0,
+   "matches": 31
+  },
+  "mauritania": {
+   "name": "Mauritania",
+   "ntElo": 1455.68,
+   "gfDecay": 0.8437,
+   "gaDecay": 1.1918,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.2,
+   "matches": 49
+  },
+  "liberia": {
+   "name": "Liberia",
+   "ntElo": 1398.57,
+   "gfDecay": 0.9711,
+   "gaDecay": 1.5753,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.6,
+   "matches": 36
+  },
+  "chad": {
+   "name": "Chad",
+   "ntElo": 1280.27,
+   "gfDecay": 0.5714,
+   "gaDecay": 2.1804,
+   "gfAvg5": 1.0,
+   "gaAvg5": 3.0,
+   "matches": 27
+  },
+  "niger": {
+   "name": "Niger",
+   "ntElo": 1460.76,
+   "gfDecay": 1.1402,
+   "gaDecay": 1.3679,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.4,
+   "matches": 41
+  },
+  "guinea": {
+   "name": "Guinea",
+   "ntElo": 1542.16,
+   "gfDecay": 1.2279,
+   "gaDecay": 0.9644,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.2,
+   "matches": 49
+  },
+  "algeria": {
+   "name": "Algeria",
+   "ntElo": 1792.29,
+   "gfDecay": 2.1422,
+   "gaDecay": 0.8989,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.8,
+   "matches": 70
+  },
+  "kuwait": {
+   "name": "Kuwait",
+   "ntElo": 1450.02,
+   "gfDecay": 1.1955,
+   "gaDecay": 1.8212,
+   "gfAvg5": 1.2,
+   "gaAvg5": 2.4,
+   "matches": 58
+  },
+  "jordan": {
+   "name": "Jordan",
+   "ntElo": 1661.18,
+   "gfDecay": 1.4242,
+   "gaDecay": 1.4651,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.8,
+   "matches": 67
+  },
+  "papua new guinea": {
+   "name": "Papua New Guinea",
+   "ntElo": 1476.26,
+   "gfDecay": 1.2866,
+   "gaDecay": 1.5703,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.6,
+   "matches": 33
+  },
+  "solomon islands": {
+   "name": "Solomon Islands",
+   "ntElo": 1456.4,
+   "gfDecay": 1.7938,
+   "gaDecay": 2.3072,
+   "gfAvg5": 2.2,
+   "gaAvg5": 2.2,
+   "matches": 38
+  },
+  "somalia": {
+   "name": "Somalia",
+   "ntElo": 1160.29,
+   "gfDecay": 0.3552,
+   "gaDecay": 1.5145,
+   "gfAvg5": 0.2,
+   "gaAvg5": 0.8,
+   "matches": 22
+  },
+  "saudi arabia": {
+   "name": "Saudi Arabia",
+   "ntElo": 1681.56,
+   "gfDecay": 1.1535,
+   "gaDecay": 0.9297,
+   "gfAvg5": 1.6,
+   "gaAvg5": 0.0,
+   "matches": 82
+  },
+  "bermuda": {
+   "name": "Bermuda",
+   "ntElo": 1331.71,
+   "gfDecay": 1.4519,
+   "gaDecay": 2.7136,
+   "gfAvg5": 1.6,
+   "gaAvg5": 2.6,
+   "matches": 37
+  },
+  "palestine": {
+   "name": "Palestine",
+   "ntElo": 1582.02,
+   "gfDecay": 1.3711,
+   "gaDecay": 1.0985,
+   "gfAvg5": 2.2,
+   "gaAvg5": 0.8,
+   "matches": 42
+  },
+  "yemen": {
+   "name": "Yemen",
+   "ntElo": 1353.91,
+   "gfDecay": 2.1771,
+   "gaDecay": 1.6068,
+   "gfAvg5": 3.2,
+   "gaAvg5": 2.4,
+   "matches": 28
+  },
+  "bahrain": {
+   "name": "Bahrain",
+   "ntElo": 1488.01,
+   "gfDecay": 0.9971,
+   "gaDecay": 1.7828,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.6,
+   "matches": 64
+  },
+  "oman": {
+   "name": "Oman",
+   "ntElo": 1568.12,
+   "gfDecay": 0.9475,
+   "gaDecay": 1.1408,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.8,
+   "matches": 65
+  },
+  "eswatini": {
+   "name": "Eswatini",
+   "ntElo": 1315.92,
+   "gfDecay": 0.7028,
+   "gaDecay": 1.8377,
+   "gfAvg5": 0.6,
+   "gaAvg5": 2.2,
+   "matches": 39
+  },
+  "botswana": {
+   "name": "Botswana",
+   "ntElo": 1431.51,
+   "gfDecay": 0.9107,
+   "gaDecay": 1.6572,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.0,
+   "matches": 42
+  },
+  "qatar": {
+   "name": "Qatar",
+   "ntElo": 1581.59,
+   "gfDecay": 1.1216,
+   "gaDecay": 1.472,
+   "gfAvg5": 1.0,
+   "gaAvg5": 0.8,
+   "matches": 69
+  },
+  "lesotho": {
+   "name": "Lesotho",
+   "ntElo": 1399.8,
+   "gfDecay": 0.6751,
+   "gaDecay": 1.4197,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.2,
+   "matches": 46
+  },
+  "bahamas": {
+   "name": "Bahamas",
+   "ntElo": 1139.24,
+   "gfDecay": 0.702,
+   "gaDecay": 4.3094,
+   "gfAvg5": 0.4,
+   "gaAvg5": 4.2,
+   "matches": 28
+  },
+  "brunei": {
+   "name": "Brunei",
+   "ntElo": 1019.91,
+   "gfDecay": 0.6023,
+   "gaDecay": 2.7543,
+   "gfAvg5": 0.2,
+   "gaAvg5": 3.8,
+   "matches": 30
+  },
+  "cook islands": {
+   "name": "Cook Islands",
+   "ntElo": 1294.91,
+   "gfDecay": 1.4066,
+   "gaDecay": 2.7657,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.8,
+   "matches": 12
+  },
+  "united arab emirates": {
+   "name": "United Arab Emirates",
+   "ntElo": 1627.72,
+   "gfDecay": 1.5215,
+   "gaDecay": 0.9858,
+   "gfAvg5": 1.8,
+   "gaAvg5": 0.6,
+   "matches": 59
+  },
+  "faroe islands": {
+   "name": "Faroe Islands",
+   "ntElo": 1417.1,
+   "gfDecay": 1.0628,
+   "gaDecay": 1.1499,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.0,
+   "matches": 47
+  },
+  "nepal": {
+   "name": "Nepal",
+   "ntElo": 1197.08,
+   "gfDecay": 0.6425,
+   "gaDecay": 1.606,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.4,
+   "matches": 37
+  },
+  "antigua and barbuda": {
+   "name": "Antigua and Barbuda",
+   "ntElo": 1238.51,
+   "gfDecay": 1.5136,
+   "gaDecay": 1.5982,
+   "gfAvg5": 2.4,
+   "gaAvg5": 1.4,
+   "matches": 29
+  },
+  "bangladesh": {
+   "name": "Bangladesh",
+   "ntElo": 1187.55,
+   "gfDecay": 0.9163,
+   "gaDecay": 2.1587,
+   "gfAvg5": 0.8,
+   "gaAvg5": 3.4,
+   "matches": 43
+  },
+  "seychelles": {
+   "name": "Seychelles",
+   "ntElo": 1086.53,
+   "gfDecay": 0.222,
+   "gaDecay": 3.285,
+   "gfAvg5": 0.2,
+   "gaAvg5": 2.8,
+   "matches": 28
+  },
+  "equatorial guinea": {
+   "name": "Equatorial Guinea",
+   "ntElo": 1469.92,
+   "gfDecay": 0.8225,
+   "gaDecay": 1.2508,
+   "gfAvg5": 0.6,
+   "gaAvg5": 0.8,
+   "matches": 50
+  },
+  "mozambique": {
+   "name": "Mozambique",
+   "ntElo": 1505.16,
+   "gfDecay": 1.2671,
+   "gaDecay": 1.4975,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.8,
+   "matches": 50
+  },
+  "guam": {
+   "name": "Guam",
+   "ntElo": 1113.88,
+   "gfDecay": 1.6231,
+   "gaDecay": 3.4142,
+   "gfAvg5": 1.6,
+   "gaAvg5": 4.0,
+   "matches": 10
+  },
+  "angola": {
+   "name": "Angola",
+   "ntElo": 1571.89,
+   "gfDecay": 1.2421,
+   "gaDecay": 0.8379,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.4,
+   "matches": 53
+  },
+  "sao tome and principe": {
+   "name": "São Tomé and Príncipe",
+   "ntElo": 1243.39,
+   "gfDecay": 0.3895,
+   "gaDecay": 2.1187,
+   "gfAvg5": 0.2,
+   "gaAvg5": 2.0,
+   "matches": 23
+  },
+  "rwanda": {
+   "name": "Rwanda",
+   "ntElo": 1471.49,
+   "gfDecay": 1.1185,
+   "gaDecay": 0.9098,
+   "gfAvg5": 2.2,
+   "gaAvg5": 0.4,
+   "matches": 35
+  },
+  "armenia": {
+   "name": "Armenia",
+   "ntElo": 1416.91,
+   "gfDecay": 0.961,
+   "gaDecay": 2.0576,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.2,
+   "matches": 47
+  },
+  "georgia": {
+   "name": "Georgia",
+   "ntElo": 1606.79,
+   "gfDecay": 1.2429,
+   "gaDecay": 1.1718,
+   "gfAvg5": 0.4,
+   "gaAvg5": 0.4,
+   "matches": 50
+  },
+  "azerbaijan": {
+   "name": "Azerbaijan",
+   "ntElo": 1401.26,
+   "gfDecay": 0.9759,
+   "gaDecay": 1.5231,
+   "gfAvg5": 1.0,
+   "gaAvg5": 0.4,
+   "matches": 47
+  },
+  "kazakhstan": {
+   "name": "Kazakhstan",
+   "ntElo": 1435.06,
+   "gfDecay": 1.077,
+   "gaDecay": 1.6532,
+   "gfAvg5": 1.2,
+   "gaAvg5": 2.0,
+   "matches": 49
+  },
+  "comoros": {
+   "name": "Comoros",
+   "ntElo": 1478.5,
+   "gfDecay": 1.0079,
+   "gaDecay": 1.2738,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.0,
+   "matches": 58
+  },
+  "maldives": {
+   "name": "Maldives",
+   "ntElo": 1107.66,
+   "gfDecay": 0.4583,
+   "gaDecay": 2.6529,
+   "gfAvg5": 0.0,
+   "gaAvg5": 3.6,
+   "matches": 30
+  },
+  "tonga": {
+   "name": "Tonga",
+   "ntElo": 1210.05,
+   "gfDecay": 1.4989,
+   "gaDecay": 2.7439,
+   "gfAvg5": 2.2,
+   "gaAvg5": 2.0,
+   "matches": 8
+  },
+  "samoa": {
+   "name": "Samoa",
+   "ntElo": 1324.36,
+   "gfDecay": 1.5735,
+   "gaDecay": 2.7165,
+   "gfAvg5": 1.0,
+   "gaAvg5": 3.2,
+   "matches": 14
+  },
+  "liechtenstein": {
+   "name": "Liechtenstein",
+   "ntElo": 1073.43,
+   "gfDecay": 0.2168,
+   "gaDecay": 2.4089,
+   "gfAvg5": 0.0,
+   "gaAvg5": 1.6,
+   "matches": 47
+  },
+  "bhutan": {
+   "name": "Bhutan",
+   "ntElo": 999.18,
+   "gfDecay": 0.3751,
+   "gaDecay": 2.8996,
+   "gfAvg5": 0.4,
+   "gaAvg5": 3.8,
+   "matches": 19
+  },
+  "belize": {
+   "name": "Belize",
+   "ntElo": 1293.1,
+   "gfDecay": 1.0678,
+   "gaDecay": 1.672,
+   "gfAvg5": 0.4,
+   "gaAvg5": 1.4,
+   "matches": 37
+  },
+  "cayman islands": {
+   "name": "Cayman Islands",
+   "ntElo": 1181.13,
+   "gfDecay": 0.6561,
+   "gaDecay": 1.7949,
+   "gfAvg5": 0.2,
+   "gaAvg5": 2.0,
+   "matches": 27
+  },
+  "anguilla": {
+   "name": "Anguilla",
+   "ntElo": 1048.26,
+   "gfDecay": 0.6025,
+   "gaDecay": 2.8536,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.8,
+   "matches": 29
+  },
+  "british virgin islands": {
+   "name": "British Virgin Islands",
+   "ntElo": 1120.0,
+   "gfDecay": 0.9605,
+   "gaDecay": 2.0005,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.2,
+   "matches": 30
+  },
+  "sint maarten": {
+   "name": "Sint Maarten",
+   "ntElo": 1326.02,
+   "gfDecay": 1.0422,
+   "gaDecay": 2.1933,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.0,
+   "matches": 28
+  },
+  "namibia": {
+   "name": "Namibia",
+   "ntElo": 1452.59,
+   "gfDecay": 0.5644,
+   "gaDecay": 1.5982,
+   "gfAvg5": 0.2,
+   "gaAvg5": 1.8,
+   "matches": 39
+  },
+  "saint martin": {
+   "name": "Saint Martin",
+   "ntElo": 1349.65,
+   "gfDecay": 3.0109,
+   "gaDecay": 1.163,
+   "gfAvg5": 4.4,
+   "gaAvg5": 0.4,
+   "matches": 25
+  },
+  "san marino": {
+   "name": "San Marino",
+   "ntElo": 980.39,
+   "gfDecay": 0.4334,
+   "gaDecay": 3.1822,
+   "gfAvg5": 0.4,
+   "gaAvg5": 3.6,
+   "matches": 48
+  },
+  "montserrat": {
+   "name": "Montserrat",
+   "ntElo": 1362.14,
+   "gfDecay": 1.7905,
+   "gaDecay": 1.113,
+   "gfAvg5": 2.2,
+   "gaAvg5": 0.8,
+   "matches": 25
+  },
+  "slovenia": {
+   "name": "Slovenia",
+   "ntElo": 1714.32,
+   "gfDecay": 1.1242,
+   "gaDecay": 1.0335,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.0,
+   "matches": 53
+  },
+  "turkmenistan": {
+   "name": "Turkmenistan",
+   "ntElo": 1403.04,
+   "gfDecay": 1.439,
+   "gaDecay": 1.3968,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.0,
+   "matches": 23
+  },
+  "tajikistan": {
+   "name": "Tajikistan",
+   "ntElo": 1451.27,
+   "gfDecay": 1.5415,
+   "gaDecay": 1.1567,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.4,
+   "matches": 45
+  },
+  "uzbekistan": {
+   "name": "Uzbekistan",
+   "ntElo": 1713.56,
+   "gfDecay": 1.4525,
+   "gaDecay": 1.3073,
+   "gfAvg5": 1.6,
+   "gaAvg5": 2.4,
+   "matches": 58
+  },
+  "gibraltar": {
+   "name": "Gibraltar",
+   "ntElo": 1213.43,
+   "gfDecay": 0.8731,
+   "gaDecay": 1.7698,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.4,
+   "matches": 46
+  },
+  "isle of man": {
+   "name": "Isle of Man",
+   "ntElo": 1655.5,
+   "gfDecay": 4.1319,
+   "gaDecay": 1.3725,
+   "gfAvg5": 4.6,
+   "gaAvg5": 1.4,
+   "matches": 9
+  },
+  "north macedonia": {
+   "name": "North Macedonia",
+   "ntElo": 1564.4,
+   "gfDecay": 0.7614,
+   "gaDecay": 1.7015,
+   "gfAvg5": 0.0,
+   "gaAvg5": 2.8,
+   "matches": 49
+  },
+  "czech republic": {
+   "name": "Czech Republic",
+   "ntElo": 1671.86,
+   "gfDecay": 1.5672,
+   "gaDecay": 1.5323,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.6,
+   "matches": 54
+  },
+  "bosnia and herzegovina": {
+   "name": "Bosnia and Herzegovina",
+   "ntElo": 1660.36,
+   "gfDecay": 1.3571,
+   "gaDecay": 1.3459,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.0,
+   "matches": 49
+  },
+  "andorra": {
+   "name": "Andorra",
+   "ntElo": 1156.66,
+   "gfDecay": 0.3459,
+   "gaDecay": 1.5959,
+   "gfAvg5": 0.2,
+   "gaAvg5": 1.8,
+   "matches": 49
+  },
+  "united states virgin islands": {
+   "name": "United States Virgin Islands",
+   "ntElo": 1150.04,
+   "gfDecay": 1.6712,
+   "gaDecay": 2.0119,
+   "gfAvg5": 2.0,
+   "gaAvg5": 2.0,
+   "matches": 23
+  },
+  "turks and caicos islands": {
+   "name": "Turks and Caicos Islands",
+   "ntElo": 1200.48,
+   "gfDecay": 1.4703,
+   "gaDecay": 1.7866,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.6,
+   "matches": 24
+  },
+  "timor leste": {
+   "name": "Timor-Leste",
+   "ntElo": 1030.28,
+   "gfDecay": 0.5283,
+   "gaDecay": 3.0301,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.4,
+   "matches": 27
+  },
+  "kosovo": {
+   "name": "Kosovo",
+   "ntElo": 1663.13,
+   "gfDecay": 1.4462,
+   "gaDecay": 1.1131,
+   "gfAvg5": 1.2,
+   "gaAvg5": 0.8,
+   "matches": 47
+  },
+  "bonaire": {
+   "name": "Bonaire",
+   "ntElo": 1258.91,
+   "gfDecay": 1.3111,
+   "gaDecay": 2.0608,
+   "gfAvg5": 1.4,
+   "gaAvg5": 2.0,
+   "matches": 27
+  },
+  "raetia": {
+   "name": "Raetia",
+   "ntElo": 1412.98,
+   "gfDecay": 2.0136,
+   "gaDecay": 3.4097,
+   "gfAvg5": 3.6,
+   "gaAvg5": 2.6,
+   "matches": 8
+  },
+  "south sudan": {
+   "name": "South Sudan",
+   "ntElo": 1284.11,
+   "gfDecay": 0.7237,
+   "gaDecay": 1.997,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.0,
+   "matches": 34
+  }
+ },
+ "teamAliases": {
+  "scotland": "scotland",
+  "england": "england",
+  "wales": "wales",
+  "northern ireland": "northern ireland",
+  "united states": "united states",
+  "canada": "canada",
+  "uruguay": "uruguay",
+  "argentina": "argentina",
+  "austria": "austria",
+  "hungary": "hungary",
+  "belgium": "belgium",
+  "france": "france",
+  "switzerland": "switzerland",
+  "jersey": "jersey",
+  "netherlands": "netherlands",
+  "guyana": "guyana",
+  "trinidad and tobago": "trinidad and tobago",
+  "south africa": "south africa",
+  "germany": "germany",
+  "sweden": "sweden",
+  "norway": "norway",
+  "denmark": "denmark",
+  "italy": "italy",
+  "chile": "chile",
+  "russia": "russia",
+  "finland": "finland",
+  "luxembourg": "luxembourg",
+  "philippines": "philippines",
+  "china": "china",
+  "brazil": "brazil",
+  "japan": "japan",
+  "paraguay": "paraguay",
+  "romania": "romania",
+  "greece": "greece",
+  "spain": "spain",
+  "egypt": "egypt",
+  "estonia": "estonia",
+  "suriname": "suriname",
+  "costa rica": "costa rica",
+  "el salvador": "el salvador",
+  "guatemala": "guatemala",
+  "poland": "poland",
+  "portugal": "portugal",
+  "new zealand": "new zealand",
+  "australia": "australia",
+  "latvia": "latvia",
+  "mexico": "mexico",
+  "lithuania": "lithuania",
+  "turkey": "turkey",
+  "aruba": "aruba",
+  "curacao": "curacao",
+  "bulgaria": "bulgaria",
+  "republic of ireland": "republic of ireland",
+  "haiti": "haiti",
+  "jamaica": "jamaica",
+  "kenya": "kenya",
+  "uganda": "uganda",
+  "bolivia": "bolivia",
+  "peru": "peru",
+  "honduras": "honduras",
+  "belarus": "belarus",
+  "ukraine": "ukraine",
+  "barbados": "barbados",
+  "nicaragua": "nicaragua",
+  "cuba": "cuba",
+  "martinique": "martinique",
+  "dominica": "dominica",
+  "guadeloupe": "guadeloupe",
+  "israel": "israel",
+  "indonesia": "indonesia",
+  "french guiana": "french guiana",
+  "saint lucia": "saint lucia",
+  "colombia": "colombia",
+  "panama": "panama",
+  "venezuela": "venezuela",
+  "ecuador": "ecuador",
+  "saint kitts and nevis": "saint kitts and nevis",
+  "grenada": "grenada",
+  "india": "india",
+  "slovakia": "slovakia",
+  "croatia": "croatia",
+  "lebanon": "lebanon",
+  "puerto rico": "puerto rico",
+  "afghanistan": "afghanistan",
+  "iran": "iran",
+  "mongolia": "mongolia",
+  "tanzania": "tanzania",
+  "zimbabwe": "zimbabwe",
+  "zambia": "zambia",
+  "iceland": "iceland",
+  "albania": "albania",
+  "montenegro": "montenegro",
+  "madagascar": "madagascar",
+  "mauritius": "mauritius",
+  "djibouti": "djibouti",
+  "ethiopia": "ethiopia",
+  "dr congo": "dr congo",
+  "south korea": "south korea",
+  "vietnam": "vietnam",
+  "macau": "macau",
+  "dominican republic": "dominican republic",
+  "cyprus": "cyprus",
+  "sierra leone": "sierra leone",
+  "nigeria": "nigeria",
+  "syria": "syria",
+  "serbia": "serbia",
+  "taiwan": "taiwan",
+  "ghana": "ghana",
+  "myanmar": "myanmar",
+  "new caledonia": "new caledonia",
+  "vanuatu": "vanuatu",
+  "fiji": "fiji",
+  "pakistan": "pakistan",
+  "sri lanka": "sri lanka",
+  "tahiti": "tahiti",
+  "gambia": "gambia",
+  "hong kong": "hong kong",
+  "singapore": "singapore",
+  "malaysia": "malaysia",
+  "guinea bissau": "guinea bissau",
+  "burundi": "burundi",
+  "cameroon": "cameroon",
+  "cambodia": "cambodia",
+  "thailand": "thailand",
+  "kyrgyzstan": "kyrgyzstan",
+  "moldova": "moldova",
+  "togo": "togo",
+  "north korea": "north korea",
+  "sudan": "sudan",
+  "malta": "malta",
+  "tunisia": "tunisia",
+  "libya": "libya",
+  "malawi": "malawi",
+  "morocco": "morocco",
+  "benin": "benin",
+  "cape verde": "cape verde",
+  "ivory coast": "ivory coast",
+  "burkina faso": "burkina faso",
+  "gabon": "gabon",
+  "congo": "congo",
+  "mali": "mali",
+  "central african republic": "central african republic",
+  "iraq": "iraq",
+  "saint vincent and the grenadines": "saint vincent and the grenadines",
+  "senegal": "senegal",
+  "laos": "laos",
+  "mauritania": "mauritania",
+  "liberia": "liberia",
+  "chad": "chad",
+  "niger": "niger",
+  "guinea": "guinea",
+  "algeria": "algeria",
+  "kuwait": "kuwait",
+  "jordan": "jordan",
+  "papua new guinea": "papua new guinea",
+  "solomon islands": "solomon islands",
+  "somalia": "somalia",
+  "saudi arabia": "saudi arabia",
+  "bermuda": "bermuda",
+  "palestine": "palestine",
+  "yemen": "yemen",
+  "bahrain": "bahrain",
+  "oman": "oman",
+  "eswatini": "eswatini",
+  "botswana": "botswana",
+  "qatar": "qatar",
+  "lesotho": "lesotho",
+  "bahamas": "bahamas",
+  "brunei": "brunei",
+  "cook islands": "cook islands",
+  "united arab emirates": "united arab emirates",
+  "faroe islands": "faroe islands",
+  "nepal": "nepal",
+  "antigua and barbuda": "antigua and barbuda",
+  "bangladesh": "bangladesh",
+  "seychelles": "seychelles",
+  "equatorial guinea": "equatorial guinea",
+  "mozambique": "mozambique",
+  "guam": "guam",
+  "angola": "angola",
+  "sao tome and principe": "sao tome and principe",
+  "rwanda": "rwanda",
+  "armenia": "armenia",
+  "georgia": "georgia",
+  "azerbaijan": "azerbaijan",
+  "kazakhstan": "kazakhstan",
+  "comoros": "comoros",
+  "maldives": "maldives",
+  "tonga": "tonga",
+  "samoa": "samoa",
+  "liechtenstein": "liechtenstein",
+  "bhutan": "bhutan",
+  "belize": "belize",
+  "cayman islands": "cayman islands",
+  "anguilla": "anguilla",
+  "british virgin islands": "british virgin islands",
+  "sint maarten": "sint maarten",
+  "namibia": "namibia",
+  "saint martin": "saint martin",
+  "san marino": "san marino",
+  "montserrat": "montserrat",
+  "slovenia": "slovenia",
+  "turkmenistan": "turkmenistan",
+  "tajikistan": "tajikistan",
+  "uzbekistan": "uzbekistan",
+  "gibraltar": "gibraltar",
+  "isle of man": "isle of man",
+  "north macedonia": "north macedonia",
+  "czech republic": "czech republic",
+  "bosnia and herzegovina": "bosnia and herzegovina",
+  "andorra": "andorra",
+  "united states virgin islands": "united states virgin islands",
+  "turks and caicos islands": "turks and caicos islands",
+  "timor leste": "timor leste",
+  "kosovo": "kosovo",
+  "bonaire": "bonaire",
+  "raetia": "raetia",
+  "south sudan": "south sudan",
+  "turkiye": "turkey",
+  "czechia": "czech republic",
+  "cabo verde": "cape verde",
+  "cote d ivoire": "ivory coast",
+  "usa": "united states",
+  "united states of america": "united states",
+  "korea republic": "south korea",
+  "korea dpr": "north korea",
+  "dpr korea": "north korea",
+  "china pr": "china",
+  "hong kong china": "hong kong",
+  "congo dr": "dr congo",
+  "democratic republic of the congo": "dr congo",
+  "congo kinshasa": "dr congo",
+  "ireland": "republic of ireland",
+  "macedonia": "north macedonia",
+  "fyr macedonia": "north macedonia",
+  "bosnia": "bosnia and herzegovina",
+  "bosnia herzegovina": "bosnia and herzegovina",
+  "kyrgyz republic": "kyrgyzstan",
+  "chinese taipei": "taiwan",
+  "east timor": "timor leste",
+  "moldavia": "moldova",
+  "russian federation": "russia",
+  "brunei darussalam": "brunei",
+  "syrian arab republic": "syria",
+  "ir iran": "iran",
+  "islamic republic of iran": "iran",
+  "arab republic of egypt": "egypt"
+ }
+}

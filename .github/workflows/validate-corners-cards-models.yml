@@ -16,6 +16,7 @@ on:
       - "tests/stats-internal-model.test.cjs"
       - "tests/express-model.test.cjs"
       - "tests/euro-internal-model.test.cjs"
+      - "tests/nt-internal-model.test.cjs"
       - "tests/test_build_historical_dataset.py"
       - "tests/test_backtest_closing_odds.py"
       - "tests/test_euro_cups.py"
@@ -23,7 +24,9 @@ on:
       - "tests/test_fdo_odds.py"
       - "tests/test_theodds_odds.py"
       - "tests/test_recency_weights.py"
+      - "tests/test_nt_dataset.py"
       - "euro-internal-model.js"
+      - "nt-internal-model.js"
       - "express-model.js"
       - "scripts/models/capture-predictions.mjs"
       - "scripts/models/evaluate-ledger-vs-dataset.mjs"
@@ -64,6 +67,8 @@ jobs:
           node --test tests/express-model.test.cjs
           node --check euro-internal-model.js
           node --test tests/euro-internal-model.test.cjs
+          node --check nt-internal-model.js
+          node --test tests/nt-internal-model.test.cjs
           node --check model-v1.js
           node --check goals-model.js
           node --check scripts/models/archive-provider-results.mjs
@@ -85,6 +90,7 @@ jobs:
           python3 -m unittest tests.test_fdo_odds
           python3 -m unittest tests.test_theodds_odds
           python3 -m unittest tests.test_recency_weights
+          python3 -m unittest tests.test_nt_dataset
       - name: Confirm CSV pipelines are not used
         run: |
           if find . -type f -name '*.csv' -not -path './.git/*' | grep -q .; then

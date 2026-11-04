@@ -18,6 +18,9 @@ on:
       - "scripts/models/build-euro-dataset.py"
       - "scripts/models/train-euro-cups.py"
       - "scripts/models/export-euro-runtime.py"
+      - "scripts/models/build-nt-dataset.py"
+      - "scripts/models/train-nt.py"
+      - "scripts/models/export-nt-runtime.py"
       - "requirements-models.txt"
       - ".github/workflows/retrain-corners-cards.yml"
   schedule:
@@ -85,6 +88,21 @@ jobs:
       - name: Export euro-cup browser runtime model JSON
         run: python scripts/models/export-euro-runtime.py --bsd-dir data/raw-bsd
 
+      - name: Download national-teams history (martj42/international_results, CC0-1.0)
+        run: |
+          mkdir -p data/raw-nt
+          curl -fsSL "https://raw.githubusercontent.com/martj42/international_results/master/results.csv" -o data/raw-nt/results.csv
+          test "$(wc -l < data/raw-nt/results.csv)" -gt 40000
+
+      - name: Build national-teams dataset (Elo replay since 1872)
+        run: python scripts/models/build-nt-dataset.py
+
+      - name: Train and validate national-teams model (chronological split)
+        run: python scripts/models/train-nt.py
+
+      - name: Export national-teams browser runtime model JSON
+        run: python scripts/models/export-nt-runtime.py
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -96,7 +114,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/stats_markets_models.json data/stats_markets_model_validation.json data/historical_dataset_report.json data/prediction-ledger/evaluation-internal.json data/euro_cups_model.json data/euro_cups_model_validation.json
+          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/stats_markets_models.json data/stats_markets_model_validation.json data/historical_dataset_report.json data/prediction-ledger/evaluation-internal.json data/euro_cups_model.json data/euro_cups_model_validation.json data/nt_model.json data/nt_model_validation.json
           if git diff --cached --quiet; then
             echo "Model artifacts are already current"
           else
