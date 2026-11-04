@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, buildFdoIndex, attachOdds, legOdds, legFdoPrices, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, MAX_COMBINED_ODDS } = require('../express-model.js');
+const { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, buildFdoIndex, buildOddsApiIndex, attachOdds, legOdds, legFdoPrices, legOddsApiPrices, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, MAX_COMBINED_ODDS } = require('../express-model.js');
 
 // Minimal schemaVersion-2 goals model (same shape as goals-internal-model tests).
 const sampleModel = {
@@ -275,4 +275,70 @@ test('attachOdds without FDO data behaves exactly as before', () => {
   attachOdds(legs, euro365, new Map([['m1', '42']]));
   assert.equal(legs[0].odds, 1.28);
   assert.equal(legs[0].oddsSource, 'euro365');
+});
+
+// ---- Third odds source: The Odds API current-price consensus ----
+
+test('buildOddsApiIndex resolves provider names to model fixture keys', () => {
+  const theodds = {
+    matches: [
+      { leagueCode: 'E0', home: 'Alpha', away: 'Beta', markets: { totals: { '2.5': { avg: { over: 1.91, under: 1.91 }, max: { over: 2.02, under: 1.95 } } } } },
+      { leagueCode: 'E0', home: 'Unknown FC', away: 'Beta', markets: {} }, // unknown team — skipped
+      { leagueCode: 'XX', home: 'Alpha', away: 'Beta', markets: {} },      // unknown league — skipped
+    ],
+  };
+  const index = buildOddsApiIndex(sampleModel, theodds);
+  assert.equal(index.size, 1);
+  assert.ok(index.has('model|E0|alpha|beta'), 'expected model key, got: ' + [...index.keys()]);
+});
+
+test('legOddsApiPrices reads totals lines only and validates prices', () => {
+  const markets = { totals: { '2.5': { avg: { over: 1.91, under: 1.91 }, max: { over: 2.02, under: 1.95 } } } };
+  assert.deepEqual(legOddsApiPrices({ market: 'total', label: 'ТБ 2.5' }, markets), { oddsapiAvg: 1.91, oddsapiMax: 2.02 });
+  assert.deepEqual(legOddsApiPrices({ market: 'total', label: 'ТМ 2.5' }, markets), { oddsapiAvg: 1.91, oddsapiMax: 1.95 });
+  assert.deepEqual(legOddsApiPrices({ market: 'doubleChance', label: '1X' }, markets), {});
+  assert.deepEqual(legOddsApiPrices({ market: 'total', label: 'ТБ 9.5' }, markets), {});
+  const invalid = { totals: { '2.5': { avg: { over: 0.9 }, max: { over: 1.0 } } } };
+  assert.deepEqual(legOddsApiPrices({ market: 'total', label: 'ТБ 2.5' }, invalid), {});
+});
+
+test('attachOdds selects the best CURRENT price: max of Euro365 and The Odds API Max', () => {
+  const legs = [
+    { matchKey: 'model|E0|alpha|beta', market: 'total', label: 'ТБ 2.5', probability: 0.7 },  // api max wins
+    { matchKey: 'model|E0|gamma|delta', market: 'total', label: 'ТБ 2.5', probability: 0.7 }, // euro wins
+    { matchKey: 'model|E0|gamma|delta', market: 'doubleChance', label: '1X', probability: 0.8 }, // no api market
+  ];
+  const euro365 = { events: {
+    '9': { markets: { totals: { '2.5': { over: 1.90, under: 1.85 } } } },
+    '10': { markets: { totals: { '2.5': { over: 1.98, under: 1.80 } }, doubleChance: { '1X': 1.30 } } },
+  } };
+  const eventIndex = new Map([['model|E0|alpha|beta', '9'], ['model|E0|gamma|delta', '10']]);
+  const theodds = { matches: [
+    { leagueCode: 'E0', home: 'Alpha', away: 'Beta', markets: { totals: { '2.5': { avg: { over: 1.95, under: 1.86 }, max: { over: 2.02, under: 1.90 } } } } },
+    { leagueCode: 'E0', home: 'Gamma', away: 'Delta', markets: { totals: { '2.5': { avg: { over: 1.94, under: 1.86 }, max: { over: 1.95, under: 1.88 } } } } },
+  ] };
+  attachOdds(legs, euro365, eventIndex, null, null, theodds, buildOddsApiIndex(sampleModel, theodds));
+  // Alpha-Beta ТБ 2.5: The Odds API Max (2.02) > Euro365 (1.90) -> selection takes the api price.
+  assert.equal(legs[0].odds, 2.02);
+  assert.equal(legs[0].oddsSource, 'theodds');
+  assert.deepEqual(legs[0].prices, { euro365: 1.90, oddsapiAvg: 1.95, oddsapiMax: 2.02 });
+  assert.ok(Math.abs(legs[0].ev - 0.7 * 2.02) < 1e-9);
+  // Gamma-Delta ТБ 2.5: Euro365 (1.98) > api Max (1.95) -> Euro365 stands.
+  assert.equal(legs[1].odds, 1.98);
+  assert.equal(legs[1].oddsSource, 'euro365');
+  // Double chance has no The Odds API market -> Euro365 stands, no api prices.
+  assert.equal(legs[2].odds, 1.30);
+  assert.deepEqual(legs[2].prices, { euro365: 1.30 });
+});
+
+test('attachOdds with The Odds API only (no Euro365 row) still prices totals legs', () => {
+  const legs = [{ matchKey: 'model|E0|alpha|beta', market: 'total', label: 'ТБ 2.5', probability: 0.7 }];
+  const theodds = { matches: [
+    { leagueCode: 'E0', home: 'Alpha', away: 'Beta', markets: { totals: { '2.5': { avg: { over: 1.91, under: 1.91 }, max: { over: 2.02, under: 1.95 } } } } },
+  ] };
+  attachOdds(legs, null, null, null, null, theodds, buildOddsApiIndex(sampleModel, theodds));
+  assert.equal(legs[0].odds, 2.02);
+  assert.equal(legs[0].oddsSource, 'theodds');
+  // Value mode engages on the api price: ev 0.7 * 2.02 = 1.414 passes the floor.
+  assert.ok(legs[0].ev >= MIN_LEG_EV);
 });

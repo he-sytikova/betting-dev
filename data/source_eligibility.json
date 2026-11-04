@@ -80,6 +80,15 @@
    "trainingUse": "not_explicitly_granted",
    "termsUrl": "https://www.thestatsapi.com/terms",
    "notes": "Potential paid alternative: provider advertises 10 years of historical match data, match statistics including corners/cards, 150 competitions by default, and a Starter plan at USD 50/month. However, Terms of Service (last updated 2026-04-01) license data for use within the customer's own applications during an active subscription and prohibit caching/storing data beyond what is reasonably necessary to operate the application; they do not expressly grant bulk historical retention or ML model training. Do not subscribe or ingest training data until the provider confirms in writing that historical backfill, long-term storage, model training/evaluation, derived model outputs and retention after cancellation are permitted."
+  },
+  {
+   "id": "THE_ODDS_API",
+   "purpose": [
+    "odds"
+   ],
+   "trainingUse": "not_applicable",
+   "termsUrl": "https://the-odds-api.com/terms-of-use/",
+   "notes": "The Odds API (the-odds-api.com), free plan 500 credits/month. Added 2026-11-04 as the third odds source of the dev express page: scripts/models/fetch-theodds-odds.py -> data/odds-theodds.json queries only the leagues playing on the snapshot day (totals market, eu region) twice a day and stores per-line avg/max aggregates across European bookmakers. Prices are current, so unlike the FDO opening snapshot this source participates in leg selection (best current price across Euro365 and The Odds API Max). Used only for display and express leg selection; no model training, no historical storage of raw odds; raw API responses are never committed. Do not raise the polling cadence or widen the market set without re-checking the monthly credit budget."
   }
  ]
 }

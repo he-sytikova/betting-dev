@@ -1,0 +1,48 @@
+name: Fetch The Odds API consensus
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/fetch-theodds-odds.yml"
+      - "scripts/models/fetch-theodds-odds.py"
+  schedule:
+    # Twice a day: 11:05 and 19:05 MSK. The free plan allows 500 credits/month
+    # and a league call costs 1 credit, so only the leagues that play today are
+    # queried — the 2-hourly Refresh cadence would exceed the monthly quota.
+    - cron: '5 8,16 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-theodds-odds
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dev repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Fetch The Odds API totals consensus for today's model leagues
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        run: python3 scripts/models/fetch-theodds-odds.py --data data.json --models data/goals_markets_models.json --output data/odds-theodds.json
+
+      - name: Commit odds consensus
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f data/odds-theodds.json ]; then git add data/odds-theodds.json; fi
+          if git diff --cached --quiet; then
+            echo "The Odds API consensus is already current"
+          else
+            git commit -m "chore: refresh The Odds API consensus"
+            git pull --rebase origin main
+            git push
+          fi
