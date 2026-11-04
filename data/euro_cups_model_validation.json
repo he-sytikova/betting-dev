@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T19:41:16.487696+00:00",
+  "generatedAt": "2026-11-04T21:29:34.374574+00:00",
   "dataset": "/home/runner/work/betting-dev/betting-dev/data/euro_cups_training.csv",
   "competitions": [
     "CL",
@@ -14,7 +14,7 @@
   "rows": {
     "train": 1761,
     "validation": 961,
-    "test": 573
+    "test": 584
   },
   "features": [
     "home_euro_elo",
@@ -56,22 +56,22 @@
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.3302582234741278
+          "validationPoissonDeviance": 1.3302582233854254
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.3277242653529715
+          "validationPoissonDeviance": 1.327724265352757
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.3286562013363963
+          "validationPoissonDeviance": 1.3286562013309897
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.3262271399701377
+          "validationPoissonDeviance": 1.3262271399682246
         },
         {
           "alpha": 0.15,
@@ -81,27 +81,27 @@
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.3246875210064042
+          "validationPoissonDeviance": 1.324687521010287
         },
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.3213357497200995
+          "validationPoissonDeviance": 1.321335749720112
         },
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.3189038650019334
+          "validationPoissonDeviance": 1.3189038650019336
         },
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.319910582705877
+          "validationPoissonDeviance": 1.3199105827058768
         },
         {
           "alpha": 1.5,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.3192365698106254
+          "validationPoissonDeviance": 1.3192365698106252
         },
         {
           "alpha": 1.5,
@@ -123,32 +123,32 @@
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.282824880886721
+          "validationPoissonDeviance": 1.282824880886638
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.281099634550238
+          "validationPoissonDeviance": 1.2810996345478098
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.2818281046249513
+          "validationPoissonDeviance": 1.2818281046158657
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.279573735379025
+          "validationPoissonDeviance": 1.2795737353790249
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.2776691839183236
+          "validationPoissonDeviance": 1.2776691839236562
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.278500588922111
+          "validationPoissonDeviance": 1.2785005889221335
         },
         {
           "alpha": 0.5,
@@ -168,7 +168,7 @@
         {
           "alpha": 1.5,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.2816358361413376
+          "validationPoissonDeviance": 1.2816358361766331
         },
         {
           "alpha": 1.5,
@@ -178,7 +178,7 @@
         {
           "alpha": 1.5,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.280714998350889
+          "validationPoissonDeviance": 1.2807149983508888
         }
       ],
       "validationPoissonDeviance": 1.2762624561219704
@@ -195,7 +195,7 @@
       "rows": 961,
       "model1x2LogLoss": 1.0018152194087129,
       "baseline1x2LogLoss": 1.0421165918875972,
-      "modelBrier": 0.5988585003317596,
+      "modelBrier": 0.5988585003317597,
       "baselineBrier": 0.6282796730187977,
       "byCompetition": {
         "CL": {
@@ -208,13 +208,13 @@
         "ECL": {
           "rows": 409,
           "model1x2LogLoss": 1.0207339815207006,
-          "baseline1x2LogLoss": 1.0446312135043334,
-          "modelBrier": 0.612209169627442,
+          "baseline1x2LogLoss": 1.0446312135043332,
+          "modelBrier": 0.6122091696274419,
           "baselineBrier": 0.6299800523791567
         },
         "EL": {
           "rows": 271,
-          "model1x2LogLoss": 0.9944990248050488,
+          "model1x2LogLoss": 0.9944990248050486,
           "baseline1x2LogLoss": 1.047293356994987,
           "modelBrier": 0.5937150661279172,
           "baselineBrier": 0.6320528560472903
@@ -222,18 +222,18 @@
       }
     },
     "test": {
-      "rows": 573,
-      "model1x2LogLoss": 0.9964925400777767,
-      "baseline1x2LogLoss": 1.0552243307130553,
-      "modelBrier": 0.5936258025756768,
-      "baselineBrier": 0.6365289865390503,
+      "rows": 584,
+      "model1x2LogLoss": 0.994850093249115,
+      "baseline1x2LogLoss": 1.0552284467100859,
+      "modelBrier": 0.5925027016782551,
+      "baselineBrier": 0.636573916327286,
       "byCompetition": {
         "CL": {
-          "rows": 145,
-          "model1x2LogLoss": 0.9794837984585728,
-          "baseline1x2LogLoss": 1.021841447762268,
-          "modelBrier": 0.580746095539817,
-          "baselineBrier": 0.6129607357448618
+          "rows": 155,
+          "model1x2LogLoss": 0.9711115323459604,
+          "baseline1x2LogLoss": 1.0215451716932347,
+          "modelBrier": 0.5750037386575302,
+          "baselineBrier": 0.6129999502239616
         },
         "ECL": {
           "rows": 294,
@@ -243,11 +243,11 @@
           "baselineBrier": 0.6488796761753884
         },
         "EL": {
-          "rows": 134,
-          "model1x2LogLoss": 0.9680933310282656,
-          "baseline1x2LogLoss": 1.0514683389246156,
-          "modelBrier": 0.5752671331083398,
-          "baselineBrier": 0.6349341627485583
+          "rows": 135,
+          "model1x2LogLoss": 0.9720711008412898,
+          "baseline1x2LogLoss": 1.05432694154878,
+          "modelBrier": 0.5780918007563859,
+          "baselineBrier": 0.6368411115174586
         }
       }
     }
