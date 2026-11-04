@@ -212,3 +212,15 @@ test('legOdds rejects invalid or missing prices instead of inventing them', () =
   assert.equal(legOdds({ market: 'total', label: 'ТМ 2.5' }, { totals: { '2.5': { over: 1.95, under: 1.85 } } }), 1.85);
   assert.equal(legOdds({ market: 'total', label: 'ТБ 9.5' }, { totals: { '2.5': { over: 1.95 } } }), null);
 });
+
+test('value mode admits the neutral zone 0.97-1.00 but not below it', () => {
+  const legs = [
+    valueLeg('m1', 0.62, 1.58, 1),   // ev 0.9796 — neutral zone, admitted
+    valueLeg('m2', 0.70, 1.50, 2),   // ev 1.05
+    valueLeg('m3', 0.60, 1.60, 3),   // ev 0.96 — below the floor, excluded
+  ];
+  const top = selectExpresses(legs, { limit: 5 });
+  assert.equal(top.length, 1);
+  assert.deepEqual(top[0].legs.map(l => l.matchKey), ['m1', 'm2']);
+  assert.ok(Math.abs(top[0].combinedOdds - 1.58 * 1.50) < 1e-9);
+});

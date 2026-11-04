@@ -14,10 +14,13 @@
   const MOSCOW_OFFSET_MIN = 180; // Europe/Moscow has no DST since 2014.
   const MIN_LEG_PROBABILITY = 0.60;
   const EXPRESS_LIMIT = 5;
-  // Value mode (active only when bookmaker odds are attached): a leg must beat
-  // its break-even price (p * odds >= 1) and the combined bookmaker price of a
-  // pair stays capped so the accumulator cannot drift into longshot territory.
-  const MIN_LEG_EV = 1.0;
+  // Value mode (active only when bookmaker odds are attached): a leg must stay
+  // within reach of its break-even price (p * odds >= 0.97 — neutral zone,
+  // absorbing model error and rounding; strictly positive value starts at 1.00)
+  // and the combined bookmaker price of a pair stays capped so the accumulator
+  // cannot drift into longshot territory.
+  const MIN_LEG_EV = 0.97;
+  const TRUE_VALUE_EV = 1.0;
   const MAX_COMBINED_ODDS = 4.0;
 
   function dayKeyMsk(timeMs) {
@@ -141,7 +144,7 @@
     return legs;
   }
 
-  const api = { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, attachOdds, legOdds, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, MAX_COMBINED_ODDS };
+  const api = { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, attachOdds, legOdds, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, TRUE_VALUE_EV, MAX_COMBINED_ODDS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 
   // ---- Browser rendering on express-model.html ----
@@ -211,7 +214,7 @@
       probCell(tr, leg.probability);
       cell(tr, fmtOdds(leg.odds));
       const evTd = cell(tr, fmtEv(leg.ev));
-      if (Number.isFinite(leg.ev) && leg.ev >= MIN_LEG_EV) { evTd.style.fontWeight = '650'; }
+      if (Number.isFinite(leg.ev)) { evTd.style.fontWeight = leg.ev >= TRUE_VALUE_EV ? '650' : '400'; evTd.title = leg.ev >= TRUE_VALUE_EV ? 'Строгий value: EV ≥ 1.00' : 'Нейтральная зона 0.97–1.00: не строгий value, а погрешность модели'; }
       legsHost.append(tr);
     }
     $('express-legs-empty').hidden = eligible.length > 0;
@@ -247,7 +250,7 @@
       $('express-count').textContent = 'Дата снимка: ' + (data.date || '—') + ' (МСК). Событий с вероятностью от ' +
         Math.round(MIN_LEG_PROBABILITY * 100) + '%: ' + eligibleCount + '. Модель обучена по ' + (model.trainingThrough || '—') + '. ' +
         (valueMode
-          ? 'Кэфы Euro365 от ' + (oddsData.generatedAt || '—').slice(0, 16).replace('T', ' ') + ' UTC; отбор по value (EV = p × кэф ≥ ' + MIN_LEG_EV.toFixed(2) + '), суммарный кэф до ' + MAX_COMBINED_ODDS + '.'
+          ? 'Кэфы Euro365 от ' + (oddsData.generatedAt || '—').slice(0, 16).replace('T', ' ') + ' UTC; отбор по EV = p × кэф ≥ ' + MIN_LEG_EV.toFixed(2) + ' (нейтральная зона; строгий value — от 1.00), суммарный кэф до ' + MAX_COMBINED_ODDS + '.'
           : 'Кэфы Euro365 недоступны — отбор по максимальной вероятности (без value-фильтра).');
       $('express-status').textContent = 'Внутренняя модель загружена (снимок от ' + (model.trainingThrough || '—') + ').';
     } catch (e) {
