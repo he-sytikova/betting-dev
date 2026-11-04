@@ -168,8 +168,10 @@
     return {
       league: leagueName,
       competition: comp,
-      home: home.team.fdoName,
-      away: away.team.fdoName,
+      // Отображаемое имя: fdoName есть не у всех (euro-only команды из BSD
+      // его не имеют) — откатываемся на каноническое имя.
+      home: home.team.fdoName || home.team.name,
+      away: away.team.fdoName || away.team.name,
       homeLambda,
       awayLambda,
       markets,

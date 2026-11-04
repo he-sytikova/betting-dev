@@ -102,6 +102,16 @@ test('team without domestic coverage scores via euro features only', { skip: !mo
   assert.ok(pred, 'match with an uncovered team still scores');
 });
 
+test('display names never come back undefined for euro-only teams', { skip: !modelExists }, () => {
+  // Euro-only команды из BSD не имеют fdoName — предикт обязан откатываться
+  // на каноническое имя, иначе в UI рендерится «undefined — Club Brugge KV».
+  const pred = euro.predict(model, 'Champions League', 'PSV Eindhoven', 'Club Brugge KV');
+  assert.ok(pred, 'PSV vs Club Brugge must score');
+  assert.ok(typeof pred.home === 'string' && pred.home.length > 0, 'home name must be defined');
+  assert.ok(typeof pred.away === 'string' && pred.away.length > 0, 'away name must be defined');
+  assert.ok(!pred.home.includes('undefined') && !pred.away.includes('undefined'));
+});
+
 test('dcTau with positive rho lifts extreme low-score cells consistently', { skip: !modelExists }, () => {
   const t = euro.dcTau(0, 0, 1.6, 1.2, model.dcRho);
   assert.ok(Number.isFinite(t) && t > 0);
