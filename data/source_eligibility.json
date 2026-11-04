@@ -1,83 +1,84 @@
 {
-  "schemaVersion": 1,
-  "reviewedAt": "2026-11-04",
-  "policy": "A source may be used for model training only after its current terms, upstream rights, attribution requirements, storage, and redistribution restrictions have been reviewed and explicitly approved. Keep similarly named providers distinct: FB_DATA is football-data.org; FOOTBALL_DATA_CO_UK is football-data.co.uk.",
-  "sources": [
-    {
-      "id": "BSD",
-      "purpose": [
-        "fixtures",
-        "predictions"
-      ],
-      "trainingUse": "permitted_by_owner_decision_with_restrictions",
-      "termsUrl": "https://sports.bzzoiro.com/docs/api-license/",
-      "notes": "API Data Usage and License v4.0 (effective 2026-10-01) expressly permits internal storage, historical snapshots, research, backtesting, model development/evaluation and ML training; derived outputs may be distributed if raw data cannot reasonably be reconstructed. However, Bzzoiro states that data is compiled from public and third-party sources, does not warrant that third-party rights are cleared, and places compliance responsibility on the user. Keep conditional until upstream rights and jurisdiction-specific use are reviewed. Current published free-football API limits: 7,500 requests/account/day (reset midnight UTC) and 25 requests/second per client IP (burst 110) on cached read endpoints; 429 responses distinguish daily quota exhaustion from burst throttling and provide Retry-After. Historical audit requests must be paced and must not bypass either limit. Owner approval 2026-11-03: BSD is the source for euro-cup history (CL/EL/ECL) in the internal training pipeline; raw JSON is cached only inside CI runs and the local workspace (never committed), only derived model artifacts are published, and daily/burst rate limits are respected with conservative pacing."
-    },
-    {
-      "id": "SStats",
-      "purpose": [
-        "fixtures",
-        "predictions"
-      ],
-      "trainingUse": "terms_not_found",
-      "termsUrl": "https://api.sstats.net/docs/",
-      "notes": "Official API documentation describes football match data and request limits (300 requests/minute globally or 30/minute per IP without an API key), but no public license or terms were located that grant historical retention, dataset construction or model training. Obtain written permission or published terms before any training use."
-    },
-    {
-      "id": "Euro365",
-      "purpose": [
-        "fixtures",
-        "predictions"
-      ],
-      "trainingUse": "not_explicitly_granted",
-      "termsUrl": "https://api.euro365.bet/terms/",
-      "notes": "The integration uses api.euro365.bet. Terms last updated 2026-05-21 license returned data for display, transformation and embedding during an active subscription, prohibit raw-feed resale/sublicensing, and say odds/event data is aggregated from third parties. They do not expressly grant historical retention after cancellation, historical dataset construction or ML training; the operator's legal entity/jurisdiction and upstream data rights are not identified in the reviewed terms. Obtain written permission covering storage and model training before use."
-    },
-    {
-      "id": "FB_DATA",
-      "purpose": [
-        "fixtures",
-        "derived_predictions"
-      ],
-      "trainingUse": "not_explicitly_granted",
-      "termsUrl": "https://www.football-data.org/about",
-      "notes": "This id refers to football-data.org API, not football-data.co.uk. Published General Terms (last updated 2018-06-01) require one application/domain and visible attribution, and restrict referencing football data on the user's site/service after subscription cancellation; cancellation also deletes stored/indexed account data. No express grant for historical dataset retention or ML training was found. Obtain written clarification before training use."
-    },
-    {
-      "id": "FOOTBALL_DATA_CO_UK",
-      "purpose": [
-        "historical_match_results",
-        "historical_corners",
-        "historical_yellow_cards",
-        "historical_goals",
-        "historical_match_outcomes",
-        "historical_fouls",
-        "historical_shots",
-        "historical_shots_on_target"
-      ],
-      "trainingUse": "permitted_by_owner_decision_with_restrictions",
-      "termsUrl": "https://www.football-data.co.uk/contact.php",
-      "notes": "Source of the historical dataset (football-data.co.uk/mmz4281) consumed by scripts/models/build-historical-dataset.py, train-corners-cards.py, train-goals-markets.py, train-stats-markets.py, export-corners-cards-runtime.py, export-goals-runtime.py and export-stats-runtime.py. The provider's Fair Data Usage Policy intends the free files for private individuals (personal betting and/or academic research) via manual or light downloads (at most twice weekly) and does not permit heavy repeated automated downloads or commercial data-training products; the provider asks to assume no permission for such requests. On 2026-11-02 the repository owner explicitly decided to use this source for the dev corners/cards, goals/outcomes and fouls/shots training pipelines as a personal research project, accepting the responsibility for this interpretation. Scope: on 2026-11-02 the league set was expanded from 9 to 18 model leagues (added D2, I2, SP2, F2, B1, P1, T1, G1, SC1; N1 stays in the dataset for goals/outcomes research but out of stats models due to 34.75% historical stats coverage); the audit confirmed the same provider column schema and ~99-100% match-statistics coverage in all added leagues since 2020/21. Mitigations adopted: downloads are limited to a light once-weekly cadence with a polite delay between requests and a descriptive User-Agent; raw CSV files are never committed to the repository (CI fails if a .csv appears); only derived model coefficients and aggregated statistics are published. If the provider objects or the project scope changes beyond personal research, this decision must be revisited and the pipeline stopped."
-    },
-    {
-      "id": "OPEN_MATCHDAY",
-      "purpose": [
-        "candidate_current_season_history"
-      ],
-      "trainingUse": "not_explicitly_granted",
-      "termsUrl": "https://github.com/oladeeayo/open-matchday",
-      "notes": "The repository allows informational non-commercial use with attribution, but explicitly says upstream provider rights remain with each provider. Its statistics are uneven and the README attributes shots/fouls/cards/corners in about 19% of result rows to football-data.co.uk; therefore rows with those upstream rights cannot be assumed usable for training. It is a candidate only after per-row provenance and each upstream license are checked; it is not part of the current historical training CSV."
-    },
-    {
-      "id": "THESTATSAPI",
-      "purpose": [
-        "candidate_historical_match_stats",
-        "candidate_fixtures",
-        "candidate_odds"
-      ],
-      "trainingUse": "not_explicitly_granted",
-      "termsUrl": "https://www.thestatsapi.com/terms",
-      "notes": "Potential paid alternative: provider advertises 10 years of historical match data, match statistics including corners/cards, 150 competitions by default, and a Starter plan at USD 50/month. However, Terms of Service (last updated 2026-04-01) license data for use within the customer's own applications during an active subscription and prohibit caching/storing data beyond what is reasonably necessary to operate the application; they do not expressly grant bulk historical retention or ML model training. Do not subscribe or ingest training data until the provider confirms in writing that historical backfill, long-term storage, model training/evaluation, derived model outputs and retention after cancellation are permitted."
-    }
-  ]
+ "schemaVersion": 1,
+ "reviewedAt": "2026-11-04",
+ "policy": "A source may be used for model training only after its current terms, upstream rights, attribution requirements, storage, and redistribution restrictions have been reviewed and explicitly approved. Keep similarly named providers distinct: FB_DATA is football-data.org; FOOTBALL_DATA_CO_UK is football-data.co.uk.",
+ "sources": [
+  {
+   "id": "BSD",
+   "purpose": [
+    "fixtures",
+    "predictions"
+   ],
+   "trainingUse": "permitted_by_owner_decision_with_restrictions",
+   "termsUrl": "https://sports.bzzoiro.com/docs/api-license/",
+   "notes": "API Data Usage and License v4.0 (effective 2026-10-01) expressly permits internal storage, historical snapshots, research, backtesting, model development/evaluation and ML training; derived outputs may be distributed if raw data cannot reasonably be reconstructed. However, Bzzoiro states that data is compiled from public and third-party sources, does not warrant that third-party rights are cleared, and places compliance responsibility on the user. Keep conditional until upstream rights and jurisdiction-specific use are reviewed. Current published free-football API limits: 7,500 requests/account/day (reset midnight UTC) and 25 requests/second per client IP (burst 110) on cached read endpoints; 429 responses distinguish daily quota exhaustion from burst throttling and provide Retry-After. Historical audit requests must be paced and must not bypass either limit. Owner approval 2026-11-03: BSD is the source for euro-cup history (CL/EL/ECL) in the internal training pipeline; raw JSON is cached only inside CI runs and the local workspace (never committed), only derived model artifacts are published, and daily/burst rate limits are respected with conservative pacing."
+  },
+  {
+   "id": "SStats",
+   "purpose": [
+    "fixtures",
+    "predictions"
+   ],
+   "trainingUse": "terms_not_found",
+   "termsUrl": "https://api.sstats.net/docs/",
+   "notes": "Official API documentation describes football match data and request limits (300 requests/minute globally or 30/minute per IP without an API key), but no public license or terms were located that grant historical retention, dataset construction or model training. Obtain written permission or published terms before any training use."
+  },
+  {
+   "id": "Euro365",
+   "purpose": [
+    "fixtures",
+    "predictions",
+    "odds"
+   ],
+   "trainingUse": "not_explicitly_granted",
+   "termsUrl": "https://api.euro365.bet/terms/",
+   "notes": "The integration uses api.euro365.bet. Terms last updated 2026-05-21 license returned data for display, transformation and embedding during an active subscription, prohibit raw-feed resale/sublicensing, and say odds/event data is aggregated from third parties. They do not expressly grant historical retention after cancellation, historical dataset construction or ML training; the operator's legal entity/jurisdiction and upstream data rights are not identified in the reviewed terms. Obtain written permission covering storage and model training before use. Dev-контур с 2026-11-04 дополнительно забирает сырые десятичные кэфы (scripts/models/fetch-euro365-odds.py -> data/odds.json) для отображения и value-отбора плеч экспрессов при активной подписке; обучение моделей на кэфах не ведётся, историческое хранение кэфов не строится."
+  },
+  {
+   "id": "FB_DATA",
+   "purpose": [
+    "fixtures",
+    "derived_predictions"
+   ],
+   "trainingUse": "not_explicitly_granted",
+   "termsUrl": "https://www.football-data.org/about",
+   "notes": "This id refers to football-data.org API, not football-data.co.uk. Published General Terms (last updated 2018-06-01) require one application/domain and visible attribution, and restrict referencing football data on the user's site/service after subscription cancellation; cancellation also deletes stored/indexed account data. No express grant for historical dataset retention or ML training was found. Obtain written clarification before training use."
+  },
+  {
+   "id": "FOOTBALL_DATA_CO_UK",
+   "purpose": [
+    "historical_match_results",
+    "historical_corners",
+    "historical_yellow_cards",
+    "historical_goals",
+    "historical_match_outcomes",
+    "historical_fouls",
+    "historical_shots",
+    "historical_shots_on_target"
+   ],
+   "trainingUse": "permitted_by_owner_decision_with_restrictions",
+   "termsUrl": "https://www.football-data.co.uk/contact.php",
+   "notes": "Source of the historical dataset (football-data.co.uk/mmz4281) consumed by scripts/models/build-historical-dataset.py, train-corners-cards.py, train-goals-markets.py, train-stats-markets.py, export-corners-cards-runtime.py, export-goals-runtime.py and export-stats-runtime.py. The provider's Fair Data Usage Policy intends the free files for private individuals (personal betting and/or academic research) via manual or light downloads (at most twice weekly) and does not permit heavy repeated automated downloads or commercial data-training products; the provider asks to assume no permission for such requests. On 2026-11-02 the repository owner explicitly decided to use this source for the dev corners/cards, goals/outcomes and fouls/shots training pipelines as a personal research project, accepting the responsibility for this interpretation. Scope: on 2026-11-02 the league set was expanded from 9 to 18 model leagues (added D2, I2, SP2, F2, B1, P1, T1, G1, SC1; N1 stays in the dataset for goals/outcomes research but out of stats models due to 34.75% historical stats coverage); the audit confirmed the same provider column schema and ~99-100% match-statistics coverage in all added leagues since 2020/21. Mitigations adopted: downloads are limited to a light once-weekly cadence with a polite delay between requests and a descriptive User-Agent; raw CSV files are never committed to the repository (CI fails if a .csv appears); only derived model coefficients and aggregated statistics are published. If the provider objects or the project scope changes beyond personal research, this decision must be revisited and the pipeline stopped."
+  },
+  {
+   "id": "OPEN_MATCHDAY",
+   "purpose": [
+    "candidate_current_season_history"
+   ],
+   "trainingUse": "not_explicitly_granted",
+   "termsUrl": "https://github.com/oladeeayo/open-matchday",
+   "notes": "The repository allows informational non-commercial use with attribution, but explicitly says upstream provider rights remain with each provider. Its statistics are uneven and the README attributes shots/fouls/cards/corners in about 19% of result rows to football-data.co.uk; therefore rows with those upstream rights cannot be assumed usable for training. It is a candidate only after per-row provenance and each upstream license are checked; it is not part of the current historical training CSV."
+  },
+  {
+   "id": "THESTATSAPI",
+   "purpose": [
+    "candidate_historical_match_stats",
+    "candidate_fixtures",
+    "candidate_odds"
+   ],
+   "trainingUse": "not_explicitly_granted",
+   "termsUrl": "https://www.thestatsapi.com/terms",
+   "notes": "Potential paid alternative: provider advertises 10 years of historical match data, match statistics including corners/cards, 150 competitions by default, and a Starter plan at USD 50/month. However, Terms of Service (last updated 2026-04-01) license data for use within the customer's own applications during an active subscription and prohibit caching/storing data beyond what is reasonably necessary to operate the application; they do not expressly grant bulk historical retention or ML model training. Do not subscribe or ingest training data until the provider confirms in writing that historical backfill, long-term storage, model training/evaluation, derived model outputs and retention after cancellation are permitted."
+  }
+ ]
 }

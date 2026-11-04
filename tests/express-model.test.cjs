@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, MIN_LEG_PROBABILITY, EXPRESS_LIMIT } = require('../express-model.js');
+const { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, attachOdds, legOdds, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, MAX_COMBINED_ODDS } = require('../express-model.js');
 
 // Minimal schemaVersion-2 goals model (same shape as goals-internal-model tests).
 const sampleModel = {
@@ -114,4 +114,101 @@ test('selectExpresses returns an empty list when fewer than two matches qualify'
   assert.deepEqual(selectExpresses([leg('m1', 0.95, 1)]), []);
   assert.deepEqual(selectExpresses([leg('m1', 0.95, 1), leg('m2', 0.40, 2)]), []);
   assert.deepEqual(selectExpresses([]), []);
+});
+
+// ---- Value mode: bookmaker odds attached to legs ----
+
+const valueLeg = (matchKey, probability, odds, time = 0, label = '1X', market = 'doubleChance') => ({
+  matchKey, time, league: 'L', home: 'H' + matchKey, away: 'A' + matchKey, market, label,
+  probability, odds, ev: probability * odds,
+});
+
+test('selectExpresses in value mode requires positive EV and ranks by joint EV', () => {
+  const legs = [
+    valueLeg('m1', 0.88, 1.10, 1),          // ev 0.97 — below break-even, excluded
+    valueLeg('m2', 0.70, 1.50, 2),          // ev 1.05
+    valueLeg('m3', 0.65, 1.70, 3),          // ev 1.105
+    valueLeg('m4', 0.80, 1.30, 4),          // ev 1.04
+  ];
+  const top = selectExpresses(legs, { limit: 5 });
+  assert.ok(top.length > 0);
+  for (const exp of top) {
+    assert.ok(Number.isFinite(exp.combinedOdds));
+    assert.ok(exp.legs.every(l => l.ev >= MIN_LEG_EV));
+  }
+  // Best pair by joint EV: m3 (1.105) x m2 (1.05) = 1.16025.
+  assert.deepEqual(top[0].legs.map(l => l.matchKey), ['m2', 'm3']);
+  assert.ok(Math.abs(top[0].ev - 1.105 * 1.05) < 1e-9);
+  assert.ok(Math.abs(top[0].combinedOdds - 1.70 * 1.50) < 1e-9);
+});
+
+test('value mode prefers the higher-EV leg of a match over the safer one', () => {
+  const legs = [
+    valueLeg('m1', 0.90, 1.05, 1, '1X'),    // ev 0.945
+    valueLeg('m1', 0.62, 1.80, 1, 'X2'),    // ev 1.116 — best for m1
+    valueLeg('m2', 0.70, 1.50, 2),          // ev 1.05
+  ];
+  const top = selectExpresses(legs, { limit: 5 });
+  assert.equal(top.length, 1);
+  assert.equal(top[0].legs[0].label, 'X2');
+});
+
+test('value mode drops pairs whose combined bookmaker odds exceed the cap', () => {
+  const legs = [
+    valueLeg('m1', 0.62, 3.00, 1),   // ev 1.86
+    valueLeg('m2', 0.61, 2.50, 2),   // ev 1.525, pair odds 7.5 > cap
+    valueLeg('m3', 0.65, 1.20, 3),   // ev 0.78 — excluded
+  ];
+  const top = selectExpresses(legs, { limit: 5, maxCombinedOdds: MAX_COMBINED_ODDS });
+  assert.deepEqual(top, []);
+});
+
+test('probability mode is unchanged when no leg carries odds', () => {
+  const legs = [leg('m1', 0.90, 1), leg('m2', 0.80, 2), leg('m3', 0.75, 3)];
+  const top = selectExpresses(legs, { limit: 5 });
+  assert.deepEqual(top[0].legs.map(l => l.matchKey), ['m1', 'm2']);
+  assert.equal(top[0].combinedOdds, null);
+  assert.equal(top[0].ev, null);
+});
+
+test('buildEventIndex indexes only Euro365 rows and stringifies ids', () => {
+  const predictions = [
+    { source: 'Euro365', eventId: 42, time: '2027-03-10T17:00:00Z', league: 'England. Premier League', home: 'Alpha', away: 'Beta' },
+    { source: 'SStats', eventId: 777, time: '2027-03-10T17:00:00Z', league: 'England. Premier League', home: 'Alpha', away: 'Beta' },
+    { source: 'Euro365', time: '2027-03-10T18:00:00Z', league: 'England. Premier League', home: 'Gamma', away: 'Delta' }, // no id
+  ];
+  const index = buildEventIndex(sampleModel, predictions);
+  const keyAlphaBeta = [...index.entries()].find(([, id]) => id === '42');
+  assert.ok(keyAlphaBeta, 'Euro365 row must be indexed');
+  assert.ok(![...index.values()].includes('777'), 'SStats ids never enter the Euro365 index');
+  assert.equal(index.size, 1);
+});
+
+test('attachOdds maps double chance and totals legs to raw decimal prices', () => {
+  const legs = [
+    { matchKey: 'm1', market: 'doubleChance', label: '1X', probability: 0.8 },
+    { matchKey: 'm1', market: 'total', label: 'ТБ 2.5', probability: 0.7 },
+    { matchKey: 'm1', market: 'total', label: 'ТМ 3.5', probability: 0.75 },
+    { matchKey: 'm2', market: 'doubleChance', label: '12', probability: 0.9 }, // no event
+  ];
+  const oddsData = {
+    events: {
+      '42': { markets: { doubleChance: { '1X': 1.28 }, totals: { '2.5': { over: 2.10, under: 1.70 } } } },
+    },
+  };
+  attachOdds(legs, oddsData, new Map([['m1', '42']]));
+  assert.equal(legs[0].odds, 1.28);
+  assert.ok(Math.abs(legs[0].ev - 0.8 * 1.28) < 1e-9);
+  assert.equal(legs[1].odds, 2.10);
+  assert.equal(legs[2].odds, undefined, 'missing totals line stays without odds');
+  assert.equal(legs[3].odds, undefined, 'unmatched event stays without odds');
+});
+
+test('legOdds rejects invalid or missing prices instead of inventing them', () => {
+  assert.equal(legOdds({ market: 'doubleChance', label: '1X' }, null), null);
+  assert.equal(legOdds({ market: 'doubleChance', label: '1X' }, { doubleChance: { '12': 1.2 } }), null);
+  assert.equal(legOdds({ market: 'doubleChance', label: '1X' }, { doubleChance: { '1X': 1.0 } }), null);
+  assert.equal(legOdds({ market: 'total', label: 'ТБ 2.5' }, { totals: { '2.5': { over: 1.95, under: 1.85 } } }), 1.95);
+  assert.equal(legOdds({ market: 'total', label: 'ТМ 2.5' }, { totals: { '2.5': { over: 1.95, under: 1.85 } } }), 1.85);
+  assert.equal(legOdds({ market: 'total', label: 'ТБ 9.5' }, { totals: { '2.5': { over: 1.95 } } }), null);
 });

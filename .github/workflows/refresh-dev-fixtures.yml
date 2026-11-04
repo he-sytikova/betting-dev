@@ -52,6 +52,11 @@ jobs:
             console.log('Upcoming fixture records:', future.length);
           "
 
+      - name: Fetch Euro365 bookmaker odds for the snapshot day
+        env:
+          EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
+        run: python3 scripts/models/fetch-euro365-odds.py --data data.json --output data/odds.json
+
       - name: Archive completed results from non-CSV provider feed
         run: node scripts/models/archive-provider-results.mjs
 
@@ -60,6 +65,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data.json
+          if [ -f data/odds.json ]; then git add data/odds.json; fi
           if [ -d data/results-ledger ]; then git add -A data/results-ledger; fi
           if git diff --cached --quiet; then
             echo "Fixture snapshot and completed-results archive are already current"
