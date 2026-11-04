@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, attachOdds, legOdds, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, MAX_COMBINED_ODDS } = require('../express-model.js');
+const { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, buildFdoIndex, attachOdds, legOdds, legFdoPrices, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, MAX_COMBINED_ODDS } = require('../express-model.js');
 
 // Minimal schemaVersion-2 goals model (same shape as goals-internal-model tests).
 const sampleModel = {
@@ -223,4 +223,47 @@ test('value mode admits the neutral zone 0.97-1.00 but not below it', () => {
   assert.equal(top.length, 1);
   assert.deepEqual(top[0].legs.map(l => l.matchKey), ['m1', 'm2']);
   assert.ok(Math.abs(top[0].combinedOdds - 1.58 * 1.50) < 1e-9);
+});
+
+// ---- Second odds source: football-data.co.uk fixtures consensus ----
+
+test('buildFdoIndex resolves canonical FDO names to model fixture keys', () => {
+  const fdo = {
+    matches: [
+      { div: 'E0', home: 'Alpha', away: 'Beta', markets: { totals: { '2.5': { avg: { over: 1.94, under: 1.86 }, max: { over: 2.0, under: 1.87 } } } } },
+      { div: 'E0', home: 'Unknown FC', away: 'Beta', markets: {} },   // unknown team — skipped
+      { div: 'XX', home: 'Alpha', away: 'Beta', markets: {} },        // unknown league — skipped
+    ],
+  };
+  const index = buildFdoIndex(sampleModel, fdo);
+  assert.equal(index.size, 1);
+  const key = 'model|E0|alpha|beta';
+  assert.ok(index.has(key), 'expected model key for Alpha-Beta, got: ' + [...index.keys()]);
+});
+
+test('attachOdds picks the best price across sources and records the breakdown', () => {
+  const legs = [
+    { matchKey: 'model|E0|alpha|beta', market: 'total', label: 'ТБ 2.5', probability: 0.7 },
+    { matchKey: 'model|E0|alpha|beta', market: 'doubleChance', label: '1X', probability: 0.8 },
+  ];
+  const euro365 = { events: { '9': { markets: { totals: { '2.5': { over: 1.90, under: 1.85 } }, doubleChance: { '1X': 1.30 } } } } };
+  const fdo = { matches: [{ div: 'E0', home: 'Alpha', away: 'Beta', markets: { totals: { '2.5': { avg: { over: 1.94, under: 1.86 }, max: { over: 2.02, under: 1.87 } } } } }] };
+  attachOdds(legs, euro365, new Map([['model|E0|alpha|beta', '9']]), fdo, buildFdoIndex(sampleModel, fdo));
+  // ТБ 2.5: best price is FDO Max 2.02, not Euro365 1.90.
+  assert.equal(legs[0].odds, 2.02);
+  assert.equal(legs[0].oddsSource, 'fdoMax');
+  assert.deepEqual(legs[0].prices, { euro365: 1.90, fdoAvg: 1.94, fdoMax: 2.02 });
+  assert.ok(Math.abs(legs[0].ev - 0.7 * 2.02) < 1e-9);
+  // Double chance: FDO has no such market — Euro365 price stands.
+  assert.equal(legs[1].odds, 1.30);
+  assert.equal(legs[1].oddsSource, 'euro365');
+  assert.deepEqual(legs[1].prices, { euro365: 1.30 });
+});
+
+test('attachOdds without FDO data behaves exactly as before', () => {
+  const legs = [{ matchKey: 'm1', market: 'doubleChance', label: '1X', probability: 0.8 }];
+  const euro365 = { events: { '42': { markets: { doubleChance: { '1X': 1.28 } } } } };
+  attachOdds(legs, euro365, new Map([['m1', '42']]));
+  assert.equal(legs[0].odds, 1.28);
+  assert.equal(legs[0].oddsSource, 'euro365');
 });

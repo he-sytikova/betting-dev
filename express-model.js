@@ -128,23 +128,73 @@
     return Number.isFinite(odds) && odds > 1 ? odds : null;
   }
 
-  // Attach bookmaker odds (and EV = p * odds) to legs in place; legs without a
-  // matching event or market keep no odds and stay probability-only.
-  function attachOdds(legs, oddsData, eventIndex) {
+  // Index of the football-data.co.uk fixtures odds: 'model|DIV|home|away' ->
+  // per-bookmaker prices. FDO team names are the canonical domestic names the
+  // goals model is trained on, so they resolve through resolveTeam directly.
+  // The file has no double-chance market — those legs stay Euro365-only.
+  function buildFdoIndex(model, fdoData) {
+    const map = new Map();
+    if (!model || !fdoData) return map;
+    for (const match of fdoData.matches || []) {
+      if (!match.div || !model.teams || !model.teams[match.div]) continue;
+      const home = goalsApi.resolveTeam(model, match.div, match.home);
+      const away = goalsApi.resolveTeam(model, match.div, match.away);
+      if (!home || !away) continue;
+      map.set('model|' + match.div + '|' + home.key + '|' + away.key, match.markets || {});
+    }
+    return map;
+  }
+
+  // Consensus (avg) and best-market (max) prices for a leg from the FDO file.
+  function legFdoPrices(leg, markets) {
+    const result = {};
+    if (!markets) return result;
+    const pick = (line) => {
+      if (!line) return;
+      if (line.avg) {
+        const v = leg.market === 'total' ? (leg.label.startsWith('ТБ') ? line.avg.over : line.avg.under) : null;
+        if (Number.isFinite(v) && v > 1) result.fdoAvg = v;
+      }
+      if (line.max) {
+        const v = leg.market === 'total' ? (leg.label.startsWith('ТБ') ? line.max.over : line.max.under) : null;
+        if (Number.isFinite(v) && v > 1) result.fdoMax = v;
+      }
+    };
+    if (leg.market === 'total') {
+      const match = TOTAL_LABEL.exec(leg.label);
+      pick(match ? (markets.totals || {})[match[2]] : null);
+    }
+    return result;
+  }
+
+  const PRICE_LABELS = { euro365: 'Euro365', fdoAvg: 'консенсус FDO (Avg)', fdoMax: 'лучшая цена FDO (Max)' };
+
+  // Attach bookmaker odds (and EV = p * best odds) to legs in place. Every leg
+  // keeps its per-source prices (leg.prices); leg.odds is the best available
+  // price — that is the price actually bettable somewhere. Legs without any
+  // matching market stay probability-only.
+  function attachOdds(legs, oddsData, eventIndex, fdoData, fdoIndex) {
     const events = (oddsData && oddsData.events) || {};
     for (const leg of legs) {
+      const prices = {};
       const eventId = eventIndex ? eventIndex.get(leg.matchKey) : null;
       const event = eventId != null ? events[String(eventId)] : null;
-      const odds = event ? legOdds(leg, event.markets) : null;
-      if (odds !== null) {
-        leg.odds = odds;
-        leg.ev = leg.probability * odds;
-      }
+      const euro = event ? legOdds(leg, event.markets) : null;
+      if (euro !== null) prices.euro365 = euro;
+      const fdoMarkets = fdoIndex ? fdoIndex.get(leg.matchKey) : null;
+      Object.assign(prices, legFdoPrices(leg, fdoMarkets));
+      const entries = Object.entries(prices);
+      if (!entries.length) continue;
+      const [source, best] = entries.reduce((a, b) => (b[1] > a[1] ? b : a));
+      leg.prices = prices;
+      leg.odds = best;
+      leg.oddsSource = source;
+      leg.ev = leg.probability * best;
     }
     return legs;
   }
 
-  const api = { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, attachOdds, legOdds, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, TRUE_VALUE_EV, MAX_COMBINED_ODDS };
+  const api = { dayKeyMsk, extractLegs, buildDailyLegs, selectExpresses, buildEventIndex, buildFdoIndex, attachOdds, legOdds, legFdoPrices, MIN_LEG_PROBABILITY, EXPRESS_LIMIT, MIN_LEG_EV, TRUE_VALUE_EV, MAX_COMBINED_ODDS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 
   // ---- Browser rendering on express-model.html ----
@@ -173,6 +223,10 @@
 
   const fmtOdds = o => Number.isFinite(o) ? o.toFixed(2) : '—';
   const fmtEv = ev => Number.isFinite(ev) ? ev.toFixed(2) : '—';
+  const priceTitle = leg => leg.prices
+    ? 'Лучшая цена: ' + (PRICE_LABELS[leg.oddsSource] || leg.oddsSource) + '\n' +
+      Object.entries(leg.prices).map(([k, v]) => (PRICE_LABELS[k] || k) + ': ' + v.toFixed(2)).join('\n')
+    : '';
   const legText = leg => fmtTime(leg.time) + ' · ' + leg.league + '\n' + leg.home + ' — ' + leg.away + '\n' +
     leg.label + ' (' + pct(leg.probability) + (Number.isFinite(leg.odds) ? ' × ' + fmtOdds(leg.odds) : '') + ')';
 
@@ -182,8 +236,10 @@
       const tr = document.createElement('tr');
       cell(tr, String(index + 1));
       const [a, b] = exp.legs;
-      cell(tr, legText(a));
-      cell(tr, legText(b));
+      const cellA = cell(tr, legText(a));
+      if (a.prices) cellA.title = priceTitle(a);
+      const cellB = cell(tr, legText(b));
+      if (b.prices) cellB.title = priceTitle(b);
       const joint = probCell(tr, exp.probability);
       joint.className = 'express-joint';
       joint.style.backgroundColor = heat(exp.probability);
@@ -212,7 +268,8 @@
       cell(tr, leg.home + ' — ' + leg.away);
       cell(tr, leg.label);
       probCell(tr, leg.probability);
-      cell(tr, fmtOdds(leg.odds));
+      const oddsTd = cell(tr, fmtOdds(leg.odds));
+      if (leg.prices) oddsTd.title = priceTitle(leg);
       const evTd = cell(tr, fmtEv(leg.ev));
       if (Number.isFinite(leg.ev)) { evTd.style.fontWeight = leg.ev >= TRUE_VALUE_EV ? '650' : '400'; evTd.title = leg.ev >= TRUE_VALUE_EV ? 'Строгий value: EV ≥ 1.00' : 'Нейтральная зона 0.97–1.00: не строгий value, а погрешность модели'; }
       legsHost.append(tr);
@@ -224,10 +281,11 @@
   async function load() {
     $('express-status').textContent = 'Загрузка внутренней модели…';
     try {
-      const [modelsResponse, dataResponse, oddsResponse] = await Promise.all([
+      const [modelsResponse, dataResponse, oddsResponse, fdoOddsResponse] = await Promise.all([
         fetch('./data/goals_markets_models.json?t=' + Date.now(), { cache: 'no-store' }),
         fetch('./data.json?t=' + Date.now(), { cache: 'no-store' }),
         fetch('./data/odds.json?t=' + Date.now(), { cache: 'no-store' }),
+        fetch('./data/odds-fdo.json?t=' + Date.now(), { cache: 'no-store' }),
       ]);
       if (!modelsResponse.ok) throw Error('goals_markets_models.json: HTTP ' + modelsResponse.status);
       if (!dataResponse.ok) throw Error('data.json: HTTP ' + dataResponse.status);
@@ -240,18 +298,29 @@
         const candidate = await oddsResponse.json();
         if (candidate && candidate.date === (data.date || null) && candidate.events) oddsData = candidate;
       }
+      // FDO fixtures odds carry no day gate: the file contains only upcoming
+      // matches, and legs match it by resolved team keys, not by date.
+      let fdoData = null;
+      if (fdoOddsResponse.ok) {
+        const candidate = await fdoOddsResponse.json();
+        if (candidate && Array.isArray(candidate.matches)) fdoData = candidate;
+      }
       const legs = buildDailyLegs(model, data.predictions, data.date || null);
       const eventIndex = buildEventIndex(model, data.predictions);
-      attachOdds(legs, oddsData, eventIndex);
+      const fdoIndex = buildFdoIndex(model, fdoData);
+      attachOdds(legs, oddsData, eventIndex, fdoData, fdoIndex);
       const valueMode = legs.some(l => Number.isFinite(l.odds));
       const expresses = selectExpresses(legs);
       renderExpresses(expresses);
       const eligibleCount = renderLegs(legs);
+      const sourcesNote = [];
+      if (oddsData) sourcesNote.push('Euro365 от ' + (oddsData.generatedAt || '—').slice(0, 16).replace('T', ' ') + ' UTC');
+      if (fdoData) sourcesNote.push('консенсус football-data.co.uk от ' + (fdoData.downloadedAt || '—').slice(0, 16).replace('T', ' ') + ' UTC');
       $('express-count').textContent = 'Дата снимка: ' + (data.date || '—') + ' (МСК). Событий с вероятностью от ' +
         Math.round(MIN_LEG_PROBABILITY * 100) + '%: ' + eligibleCount + '. Модель обучена по ' + (model.trainingThrough || '—') + '. ' +
         (valueMode
-          ? 'Кэфы Euro365 от ' + (oddsData.generatedAt || '—').slice(0, 16).replace('T', ' ') + ' UTC; отбор по EV = p × кэф ≥ ' + MIN_LEG_EV.toFixed(2) + ' (нейтральная зона; строгий value — от 1.00), суммарный кэф до ' + MAX_COMBINED_ODDS + '.'
-          : 'Кэфы Euro365 недоступны — отбор по максимальной вероятности (без value-фильтра).');
+          ? 'Кэфы (' + sourcesNote.join(' + ') + '); берётся лучшая цена по плечу, отбор по EV = p × кэф ≥ ' + MIN_LEG_EV.toFixed(2) + ' (нейтральная зона; строгий value — от 1.00), суммарный кэф до ' + MAX_COMBINED_ODDS + '.'
+          : 'Кэфы недоступны — отбор по максимальной вероятности (без value-фильтра).');
       $('express-status').textContent = 'Внутренняя модель загружена (снимок от ' + (model.trainingThrough || '—') + ').';
     } catch (e) {
       $('express-status').textContent = 'Внутренняя модель недоступна: ' + e.message;

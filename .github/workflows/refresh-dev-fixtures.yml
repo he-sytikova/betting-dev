@@ -57,6 +57,9 @@ jobs:
           EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
         run: python3 scripts/models/fetch-euro365-odds.py --data data.json --output data/odds.json
 
+      - name: Fetch football-data.co.uk fixtures odds (keyless consensus)
+        run: python3 scripts/models/fetch-fdo-odds.py --output data/odds-fdo.json
+
       - name: Archive completed results from non-CSV provider feed
         run: node scripts/models/archive-provider-results.mjs
 
@@ -66,6 +69,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data.json
           if [ -f data/odds.json ]; then git add data/odds.json; fi
+          if [ -f data/odds-fdo.json ]; then git add data/odds-fdo.json; fi
           if [ -d data/results-ledger ]; then git add -A data/results-ledger; fi
           if git diff --cached --quiet; then
             echo "Fixture snapshot and completed-results archive are already current"
