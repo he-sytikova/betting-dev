@@ -241,23 +241,32 @@ test('buildFdoIndex resolves canonical FDO names to model fixture keys', () => {
   assert.ok(index.has(key), 'expected model key for Alpha-Beta, got: ' + [...index.keys()]);
 });
 
-test('attachOdds picks the best price across sources and records the breakdown', () => {
+test('attachOdds selects on the current Euro365 price; FDO snapshot is display-only', () => {
   const legs = [
     { matchKey: 'model|E0|alpha|beta', market: 'total', label: 'ТБ 2.5', probability: 0.7 },
     { matchKey: 'model|E0|alpha|beta', market: 'doubleChance', label: '1X', probability: 0.8 },
+    { matchKey: 'model|E0|gamma|delta', market: 'total', label: 'ТБ 2.5', probability: 0.7 },
   ];
   const euro365 = { events: { '9': { markets: { totals: { '2.5': { over: 1.90, under: 1.85 } }, doubleChance: { '1X': 1.30 } } } } };
-  const fdo = { matches: [{ div: 'E0', home: 'Alpha', away: 'Beta', markets: { totals: { '2.5': { avg: { over: 1.94, under: 1.86 }, max: { over: 2.02, under: 1.87 } } } } }] };
+  const fdo = { matches: [
+    { div: 'E0', home: 'Alpha', away: 'Beta', markets: { totals: { '2.5': { avg: { over: 1.94, under: 1.86 }, max: { over: 2.02, under: 1.87 } } } } },
+    { div: 'E0', home: 'Gamma', away: 'Delta', markets: { totals: { '2.5': { avg: { over: 2.05, under: 1.80 } } } } },
+  ] };
   attachOdds(legs, euro365, new Map([['model|E0|alpha|beta', '9']]), fdo, buildFdoIndex(sampleModel, fdo));
-  // ТБ 2.5: best price is FDO Max 2.02, not Euro365 1.90.
-  assert.equal(legs[0].odds, 2.02);
-  assert.equal(legs[0].oddsSource, 'fdoMax');
+  // ТБ 2.5 Alpha-Beta: FDO Max (2.02) is higher than Euro365 (1.90), but the
+  // selection price stays the current Euro365 one — the snapshot may be stale.
+  assert.equal(legs[0].odds, 1.90);
+  assert.equal(legs[0].oddsSource, 'euro365');
   assert.deepEqual(legs[0].prices, { euro365: 1.90, fdoAvg: 1.94, fdoMax: 2.02 });
-  assert.ok(Math.abs(legs[0].ev - 0.7 * 2.02) < 1e-9);
+  assert.ok(Math.abs(legs[0].ev - 0.7 * 1.90) < 1e-9);
   // Double chance: FDO has no such market — Euro365 price stands.
   assert.equal(legs[1].odds, 1.30);
-  assert.equal(legs[1].oddsSource, 'euro365');
   assert.deepEqual(legs[1].prices, { euro365: 1.30 });
+  // FDO-only leg: prices shown for context, but no current price -> no EV,
+  // and it must not enter value selection.
+  assert.deepEqual(legs[2].prices, { fdoAvg: 2.05 });
+  assert.equal(legs[2].odds, undefined);
+  assert.equal(selectExpresses([legs[2], valueLeg('mX', 0.7, 1.5, 1)], { limit: 5 }).length, 0);
 });
 
 test('attachOdds without FDO data behaves exactly as before', () => {

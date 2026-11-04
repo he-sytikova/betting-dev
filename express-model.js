@@ -169,10 +169,12 @@
 
   const PRICE_LABELS = { euro365: 'Euro365', fdoAvg: 'консенсус FDO (Avg)', fdoMax: 'лучшая цена FDO (Max)' };
 
-  // Attach bookmaker odds (and EV = p * best odds) to legs in place. Every leg
-  // keeps its per-source prices (leg.prices); leg.odds is the best available
-  // price — that is the price actually bettable somewhere. Legs without any
-  // matching market stay probability-only.
+  // Attach bookmaker odds (and EV = p * odds) to legs in place. Selection runs
+  // strictly on the current intraday Euro365 price: the FDO fixtures file is a
+  // post-opening snapshot refreshed only a few times a week, so its prices may
+  // no longer be available — they are kept in leg.prices for display context
+  // (where the market opened) but never enter the EV filter. Legs without a
+  // current price stay probability-only.
   function attachOdds(legs, oddsData, eventIndex, fdoData, fdoIndex) {
     const events = (oddsData && oddsData.events) || {};
     for (const leg of legs) {
@@ -183,13 +185,13 @@
       if (euro !== null) prices.euro365 = euro;
       const fdoMarkets = fdoIndex ? fdoIndex.get(leg.matchKey) : null;
       Object.assign(prices, legFdoPrices(leg, fdoMarkets));
-      const entries = Object.entries(prices);
-      if (!entries.length) continue;
-      const [source, best] = entries.reduce((a, b) => (b[1] > a[1] ? b : a));
+      if (!Object.keys(prices).length) continue;
       leg.prices = prices;
-      leg.odds = best;
-      leg.oddsSource = source;
-      leg.ev = leg.probability * best;
+      if (euro !== null) {
+        leg.odds = euro;
+        leg.oddsSource = 'euro365';
+        leg.ev = leg.probability * euro;
+      }
     }
     return legs;
   }
@@ -224,8 +226,8 @@
   const fmtOdds = o => Number.isFinite(o) ? o.toFixed(2) : '—';
   const fmtEv = ev => Number.isFinite(ev) ? ev.toFixed(2) : '—';
   const priceTitle = leg => leg.prices
-    ? 'Лучшая цена: ' + (PRICE_LABELS[leg.oddsSource] || leg.oddsSource) + '\n' +
-      Object.entries(leg.prices).map(([k, v]) => (PRICE_LABELS[k] || k) + ': ' + v.toFixed(2)).join('\n')
+    ? Object.entries(leg.prices).map(([k, v]) => (PRICE_LABELS[k] || k) + ': ' + v.toFixed(2)).join('\n') +
+      (leg.prices.fdoAvg || leg.prices.fdoMax ? '\n(FDO — снимок открытия рынка, справочно; в отбор не входит)' : '')
     : '';
   const legText = leg => fmtTime(leg.time) + ' · ' + leg.league + '\n' + leg.home + ' — ' + leg.away + '\n' +
     leg.label + ' (' + pct(leg.probability) + (Number.isFinite(leg.odds) ? ' × ' + fmtOdds(leg.odds) : '') + ')';
@@ -270,6 +272,8 @@
       probCell(tr, leg.probability);
       const oddsTd = cell(tr, fmtOdds(leg.odds));
       if (leg.prices) oddsTd.title = priceTitle(leg);
+      const fdoTd = cell(tr, leg.prices && Number.isFinite(leg.prices.fdoAvg) ? leg.prices.fdoAvg.toFixed(2) : '—');
+      if (leg.prices && Number.isFinite(leg.prices.fdoAvg)) fdoTd.title = 'Консенсус открытия рынка (football-data.co.uk Avg), справочно';
       const evTd = cell(tr, fmtEv(leg.ev));
       if (Number.isFinite(leg.ev)) { evTd.style.fontWeight = leg.ev >= TRUE_VALUE_EV ? '650' : '400'; evTd.title = leg.ev >= TRUE_VALUE_EV ? 'Строгий value: EV ≥ 1.00' : 'Нейтральная зона 0.97–1.00: не строгий value, а погрешность модели'; }
       legsHost.append(tr);
@@ -319,7 +323,7 @@
       $('express-count').textContent = 'Дата снимка: ' + (data.date || '—') + ' (МСК). Событий с вероятностью от ' +
         Math.round(MIN_LEG_PROBABILITY * 100) + '%: ' + eligibleCount + '. Модель обучена по ' + (model.trainingThrough || '—') + '. ' +
         (valueMode
-          ? 'Кэфы (' + sourcesNote.join(' + ') + '); берётся лучшая цена по плечу, отбор по EV = p × кэф ≥ ' + MIN_LEG_EV.toFixed(2) + ' (нейтральная зона; строгий value — от 1.00), суммарный кэф до ' + MAX_COMBINED_ODDS + '.'
+          ? 'Кэфы: ' + sourcesNote.join(' + ') + '; отбор по текущей цене Euro365, EV = p × кэф ≥ ' + MIN_LEG_EV.toFixed(2) + ' (нейтральная зона; строгий value — от 1.00), суммарный кэф до ' + MAX_COMBINED_ODDS + '.'
           : 'Кэфы недоступны — отбор по максимальной вероятности (без value-фильтра).');
       $('express-status').textContent = 'Внутренняя модель загружена (снимок от ' + (model.trainingThrough || '—') + ').';
     } catch (e) {
