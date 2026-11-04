@@ -20,7 +20,7 @@ per call):
   * fetching stops when the remaining monthly quota drops below
     REMAINING_FLOOR credits (safety margin for the rest of the month).
 
-Runs from a dedicated twice-daily workflow (not from the 2-hourly Refresh —
+Runs from a dedicated three-times-daily workflow (not from the 2-hourly Refresh —
 that would exceed the monthly quota). Without THE_ODDS_API_KEY the script
 exits 0 without writing anything, leaving any previous artifact in place.
 

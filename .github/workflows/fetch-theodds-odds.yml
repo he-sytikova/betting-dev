@@ -8,9 +8,12 @@ on:
       - ".github/workflows/fetch-theodds-odds.yml"
       - "scripts/models/fetch-theodds-odds.py"
   schedule:
-    # Twice a day: 11:05 and 19:05 MSK. The free plan allows 500 credits/month
-    # and a league call costs 1 credit, so only the leagues that play today are
-    # queried — the 2-hourly Refresh cadence would exceed the monthly quota.
+    # Three times a day: 05:00, 11:05 and 19:05 MSK. The free plan allows
+    # 500 credits/month and a league call costs 1 credit, so only the leagues
+    # that play today are queried — the 2-hourly Refresh cadence would exceed
+    # the monthly quota. The 05:00 run catches the new snapshot day right
+    # after the ~03:20 MSK dev Refresh publishes it.
+    - cron: '0 2 * * *'
     - cron: '5 8,16 * * *'
 
 permissions:
