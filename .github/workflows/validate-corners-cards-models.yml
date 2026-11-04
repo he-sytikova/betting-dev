@@ -27,12 +27,19 @@ on:
       - "model-v1.js"
       - "goals-model.js"
       - ".github/workflows/validate-corners-cards-models.yml"
+  # Артефакты Retrain коммитит бот, чьи push-ивенты не запускают workflow —
+  # валидируем свежие модели по завершении Retrain.
+  workflow_run:
+    workflows: ["Retrain internal models"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
   validate:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
