@@ -1,11 +1,11 @@
 {
  "date": "2026-11-04",
- "fetchedAt": "2026-11-04T20:13:15.212681+00:00",
+ "fetchedAt": "2026-11-04T20:15:13.690773+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 12,
-  "remaining": 488
+  "used": 15,
+  "remaining": 485
  },
  "matches": [
   {
@@ -17,32 +17,32 @@
     "totals": {
      "1.5": {
       "avg": {
-       "over": 1.54,
-       "under": 2.21
+       "over": 1.577,
+       "under": 2.12
       },
       "max": {
-       "over": 1.56,
-       "under": 2.23
+       "over": 1.61,
+       "under": 2.12
       }
      },
      "2.0": {
       "avg": {
-       "over": 1.688,
-       "under": 2.016
+       "over": 1.76,
+       "under": 1.916
       },
       "max": {
        "over": 1.8,
-       "under": 2.07
+       "under": 2.05
       }
      },
      "2.5": {
       "avg": {
-       "over": 2.37,
-       "under": 1.59
+       "over": 2.41,
+       "under": 1.57
       },
       "max": {
-       "over": 2.54,
-       "under": 1.63
+       "over": 2.62,
+       "under": 1.59
       }
      }
     }
@@ -59,12 +59,12 @@
     "totals": {
      "3.5": {
       "avg": {
-       "over": 1.912,
-       "under": 1.767
+       "over": 2.002,
+       "under": 1.693
       },
       "max": {
-       "over": 2.12,
-       "under": 1.87
+       "over": 2.24,
+       "under": 1.78
       }
      }
     }
@@ -81,12 +81,12 @@
     "totals": {
      "1.5": {
       "avg": {
-       "over": 1.525,
-       "under": 2.3
+       "over": 1.552,
+       "under": 2.222
       },
       "max": {
-       "over": 1.66,
-       "under": 2.46
+       "over": 1.69,
+       "under": 2.4
       }
      },
      "1.75": {
@@ -101,12 +101,12 @@
      },
      "2.0": {
       "avg": {
-       "over": 2.042,
-       "under": 1.68
+       "over": 2.143,
+       "under": 1.63
       },
       "max": {
-       "over": 2.12,
-       "under": 1.73
+       "over": 2.2,
+       "under": 1.68
       }
      }
     }
@@ -118,27 +118,27 @@
    "home": "Bristol City",
    "away": "Wolverhampton Wanderers",
    "commenceTime": "2026-11-04T20:00:00Z",
-   "bookmakers": 16,
+   "bookmakers": 13,
    "markets": {
     "totals": {
      "2.0": {
       "avg": {
-       "over": 1.705,
-       "under": 2.115
+       "over": 1.715,
+       "under": 2.015
       },
       "max": {
-       "over": 1.73,
-       "under": 2.12
+       "over": 1.75,
+       "under": 2.1
       }
      },
      "2.5": {
       "avg": {
-       "over": 2.002,
-       "under": 1.734
+       "over": 2.056,
+       "under": 1.673
       },
       "max": {
-       "over": 2.4,
-       "under": 1.93
+       "over": 2.48,
+       "under": 1.85
       }
      }
     }
