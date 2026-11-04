@@ -1,28 +1,48 @@
 {
  "date": "2026-11-04",
- "fetchedAt": "2026-11-04T16:57:35.316995+00:00",
+ "fetchedAt": "2026-11-04T20:13:15.212681+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 9,
-  "remaining": 491
+  "used": 12,
+  "remaining": 488
  },
  "matches": [
   {
    "home": "Oxford United",
    "away": "Reading",
    "commenceTime": "2026-11-04T19:45:00Z",
-   "bookmakers": 14,
+   "bookmakers": 10,
    "markets": {
     "totals": {
-     "2.5": {
+     "1.5": {
       "avg": {
-       "over": 1.856,
-       "under": 1.878
+       "over": 1.54,
+       "under": 2.21
       },
       "max": {
-       "over": 1.98,
-       "under": 1.97
+       "over": 1.56,
+       "under": 2.23
+      }
+     },
+     "2.0": {
+      "avg": {
+       "over": 1.688,
+       "under": 2.016
+      },
+      "max": {
+       "over": 1.8,
+       "under": 2.07
+      }
+     },
+     "2.5": {
+      "avg": {
+       "over": 2.37,
+       "under": 1.59
+      },
+      "max": {
+       "over": 2.54,
+       "under": 1.63
       }
      }
     }
@@ -34,27 +54,17 @@
    "home": "Cardiff City",
    "away": "West Ham United",
    "commenceTime": "2026-11-04T19:45:00Z",
-   "bookmakers": 16,
+   "bookmakers": 10,
    "markets": {
     "totals": {
-     "2.5": {
-      "avg": {
-       "over": 1.353,
-       "under": 3.077
-      },
-      "max": {
-       "over": 1.36,
-       "under": 3.18
-      }
-     },
      "3.5": {
       "avg": {
-       "over": 1.908,
-       "under": 1.84
+       "over": 1.912,
+       "under": 1.767
       },
       "max": {
-       "over": 2.02,
-       "under": 1.96
+       "over": 2.12,
+       "under": 1.87
       }
      }
     }
@@ -66,27 +76,37 @@
    "home": "Wrexham AFC",
    "away": "Middlesbrough",
    "commenceTime": "2026-11-04T19:45:00Z",
-   "bookmakers": 15,
+   "bookmakers": 11,
    "markets": {
     "totals": {
-     "2.5": {
+     "1.5": {
       "avg": {
-       "over": 1.582,
-       "under": 2.252
+       "over": 1.525,
+       "under": 2.3
       },
       "max": {
-       "over": 1.62,
-       "under": 2.33
+       "over": 1.66,
+       "under": 2.46
       }
      },
-     "3.0": {
+     "1.75": {
       "avg": {
-       "over": 2.027,
-       "under": 1.81
+       "over": 1.8,
+       "under": 2.07
       },
       "max": {
-       "over": 2.07,
-       "under": 1.83
+       "over": 1.8,
+       "under": 2.07
+      }
+     },
+     "2.0": {
+      "avg": {
+       "over": 2.042,
+       "under": 1.68
+      },
+      "max": {
+       "over": 2.12,
+       "under": 1.73
       }
      }
     }
@@ -101,14 +121,24 @@
    "bookmakers": 16,
    "markets": {
     "totals": {
-     "2.5": {
+     "2.0": {
       "avg": {
-       "over": 1.874,
-       "under": 1.877
+       "over": 1.705,
+       "under": 2.115
       },
       "max": {
-       "over": 2.04,
-       "under": 1.94
+       "over": 1.73,
+       "under": 2.12
+      }
+     },
+     "2.5": {
+      "avg": {
+       "over": 2.002,
+       "under": 1.734
+      },
+      "max": {
+       "over": 2.4,
+       "under": 1.93
       }
      }
     }
