@@ -57,7 +57,7 @@
     }).sort((a,b)=>a.time-b.time);
   }
   const fmtTime=t=>new Date(t).toLocaleString('ru-RU',{timeZone:'Europe/Moscow',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-  const heat=p=>{const x=Math.max(0,Math.min(1,(p-65)/35)),a=[220,252,231],b=[20,83,45];return 'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*x)).join(', ')+')';};
+  const heat=p=>{const x=Math.max(0,Math.min(1,p)),a=[240,253,244],b=[20,83,45];return 'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*x)).join(', ')+')';};
   const cell=(tr,value)=>{const td=document.createElement('td');td.textContent=value;tr.append(td);return td;};
   function stackedCell(tr,items){
     const td=document.createElement('td');td.className='probability-cell';
@@ -65,7 +65,7 @@
     for(const item of items){
       const line=document.createElement('div');line.className='probability-line';
       line.textContent=item.label+': '+pct(item.value);
-      if(Number.isFinite(item.value)&&item.value>.65){line.style.backgroundColor=heat(item.value);line.classList.add('is-highlighted');line.title='Вероятность: '+pct(item.value);}
+      if(Number.isFinite(item.value)){line.style.backgroundColor=heat(item.value);line.title='Вероятность: '+pct(item.value);if(item.value>.65)line.classList.add('is-highlighted');}
       td.append(line);
     }
     tr.append(td);return td;

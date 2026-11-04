@@ -3,10 +3,13 @@
 <title>Еврокубки — внутренняя модель</title><link rel="stylesheet" href="styles.css">
 <style>
 main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl{width:100%;min-width:820px;border-collapse:collapse;font-size:12px}.tbl th{background:#172033;color:white;padding:8px}.tbl td{background:#fff;color:#111;border:1px solid #d8dee8;padding:8px;white-space:pre-line;overflow-wrap:anywhere}.tbl tr:nth-child(even) td{background:#f1f5f9}.tbl tbody tr:hover td{background:#e2e8f0}
+.tbl td.probability-cell{padding:4px 6px;font-variant-numeric:tabular-nums;white-space:normal}
+.tbl .probability-line{display:block;padding:2px 5px;margin:1px 0;border-radius:3px;line-height:1.35;white-space:nowrap}
+.tbl .probability-line.is-highlighted{font-weight:650}
 .note{color:var(--text-muted);font-size:.88rem;line-height:1.5}.back{display:inline-block;margin:8px 12px;color:var(--accent)}
 </style></head><body data-mode="special">
 <header class="app-header"><h1>🏆 Еврокубки — внутренняя модель</h1><p id="euro-status" class="subtitle">Загрузка внутренней модели…</p><button id="refresh" type="button">Обновить</button><a class="back" href="./goals-model.html">← Основные рынки</a><a class="back" href="./express-model.html">Экспрессы дня</a><a class="back" href="./">Dev-панель</a></header>
-<main><p class="note">Экспериментальная модель еврокубков — Лиги чемпионов, Лиги Европы и Лиги Конференций: Poisson-регрессия ожидаемых голов, обученная на матчах всех трёх турниров 2023–2026 (football-data.org). Признаки: единый кросс-страновой Elo и форма по самим еврокубковым матчам в общей хронологии (команда, перешедшая из ЛЧ в ЛЕ, сохраняет рейтинг), индикатор турнира, плюс состояние команд в своих чемпионатах (затухающие рейтинги атаки/защиты); команды стран вне покрытия оцениваются только по еврокубковой истории. <strong>Ограничения:</strong> выборка по ЛЕ/ЛК тонкая, проверки против букмекерских коэффициентов не было (исторических котировок у источника нет). Прогноз выводится только для матчей, где обе команды найдены в еврокубковой истории. Это исследовательская оценка вероятностей, а не рекомендация к ставке.</p><p id="euro-count" class="note"></p>
+<main><p class="note">Экспериментальная модель еврокубков — Лиги чемпионов, Лиги Европы и Лиги Конференций: Poisson-регрессия ожидаемых голов, обученная на матчах всех трёх турниров 2021–2026 (BSD, sports.bzzoiro.com). Признаки: единый кросс-страновой Elo и форма по самим еврокубковым матчам в общей хронологии (команда, перешедшая из ЛЧ в ЛЕ, сохраняет рейтинг), индикатор турнира, плюс состояние команд в своих чемпионатах (затухающие рейтинги атаки/защиты); команды стран вне покрытия оцениваются только по еврокубковой истории. <strong>Ограничения:</strong> выборка по ЛЕ/ЛК тоньше, чем по ЛЧ, проверки против букмекерских коэффициентов не было (исторических котировок у источника нет). Прогноз выводится только для матчей, где обе команды найдены в еврокубковой истории. Это исследовательская оценка вероятностей, а не рекомендация к ставке.</p><p id="euro-count" class="note"></p>
 <div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Турнир</th><th>Матч</th><th>Исходы (евро-модель)</th><th>Двойные шансы</th><th>Тотал голов</th></tr></thead><tbody id="euro-rows"></tbody></table></div><p id="euro-empty" class="note" hidden>Сегодня нет матчей еврокубков, которые евро-модель может оценить.</p>
 </main><script src="euro-internal-model.js"></script><script>
 (function () {
@@ -15,7 +18,24 @@ main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl
   var pct = function (n) { return Number.isFinite(n) ? (n * 100).toFixed(1) + '%' : '—'; };
   var fmtTime = function (t) { return new Date(t).toLocaleString('ru-RU', { timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); };
   var COMP_SHORT = { CL: 'ЛЧ', EL: 'ЛЕ', ECL: 'ЛК' };
+  // Единый с другими страницами градиент: чем выше вероятность, тем насыщеннее зелёный.
+  var heat = function (p) { var x = Math.max(0, Math.min(1, p)), a = [240, 253, 244], b = [20, 83, 45]; return 'rgb(' + a.map(function (v, i) { return Math.round(v + (b[i] - v) * x); }).join(', ') + ')'; };
   function cell(tr, value) { var td = document.createElement('td'); td.textContent = value; tr.append(td); return td; }
+  function stackedCell(tr, items) {
+    var td = document.createElement('td'); td.className = 'probability-cell';
+    if (!items.length) { td.textContent = '—'; tr.append(td); return td; }
+    items.forEach(function (item) {
+      var line = document.createElement('div'); line.className = 'probability-line';
+      line.textContent = item.label + ' ' + pct(item.value);
+      if (Number.isFinite(item.value)) {
+        line.style.backgroundColor = heat(item.value);
+        line.title = 'Вероятность: ' + pct(item.value);
+        if (item.value > .65) line.classList.add('is-highlighted');
+      }
+      td.append(line);
+    });
+    tr.append(td); return td;
+  }
 
   function uniqueFixtures(model, predictions) {
     // Дедупликация по каноническим ключам команд евро-модели: один и тот же
@@ -63,9 +83,9 @@ main{max-width:1300px;margin:20px auto;padding:0 14px}.wrap{overflow-x:auto}.tbl
         cell(tr, fmtTime(f.time));
         cell(tr, COMP_SHORT[pred.competition.code] || pred.competition.code);
         cell(tr, pred.home + ' — ' + pred.away);
-        cell(tr, 'П1 ' + pct(m.p1) + '\nХ ' + pct(m.x) + '\nП2 ' + pct(m.p2));
-        cell(tr, '1X ' + pct(m.dc1x) + '\n12 ' + pct(m.dc12) + '\nX2 ' + pct(m.dcx2));
-        cell(tr, t25 ? ('ТБ 2.5 ' + pct(t25.over) + '\nТМ 2.5 ' + pct(t25.under)) : '—');
+        stackedCell(tr, [{ label: 'П1', value: m.p1 }, { label: 'Х', value: m.x }, { label: 'П2', value: m.p2 }]);
+        stackedCell(tr, [{ label: '1X', value: m.dc1x }, { label: '12', value: m.dc12 }, { label: 'X2', value: m.dcx2 }]);
+        stackedCell(tr, t25 ? [{ label: 'ТБ 2.5', value: t25.over }, { label: 'ТМ 2.5', value: t25.under }] : []);
         host.append(tr);
       });
       $('euro-empty').hidden = rendered > 0;

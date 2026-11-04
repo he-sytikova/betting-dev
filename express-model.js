@@ -87,9 +87,21 @@
 
   const $ = id => document.getElementById(id);
   const pct = n => Number.isFinite(n) ? (n * 100).toFixed(1) + '%' : '—';
+  // Единый с другими страницами градиент: чем выше вероятность, тем насыщеннее зелёный.
+  const heat = p => { const x = Math.max(0, Math.min(1, p)), a = [240, 253, 244], b = [20, 83, 45]; return 'rgb(' + a.map((v, i) => Math.round(v + (b[i] - v) * x)).join(', ') + ')'; };
   const fmtTime = t => new Date(t).toLocaleString('ru-RU', { timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
 
   function cell(tr, value) { const td = document.createElement('td'); td.textContent = value; tr.append(td); return td; }
+  function probCell(tr, p) {
+    const td = cell(tr, pct(p));
+    if (Number.isFinite(p)) {
+      td.style.backgroundColor = heat(p);
+      td.style.color = '#000';
+      td.title = 'Вероятность: ' + pct(p);
+      if (p > .65) td.style.fontWeight = '650';
+    }
+    return td;
+  }
 
   function renderExpresses(expresses) {
     host.replaceChildren();
@@ -99,8 +111,11 @@
       const [a, b] = exp.legs;
       cell(tr, fmtTime(a.time) + ' · ' + a.league + '\n' + a.home + ' — ' + a.away + '\n' + a.label + ' (' + pct(a.probability) + ')');
       cell(tr, fmtTime(b.time) + ' · ' + b.league + '\n' + b.home + ' — ' + b.away + '\n' + b.label + ' (' + pct(b.probability) + ')');
-      const joint = cell(tr, pct(exp.probability));
+      const joint = probCell(tr, exp.probability);
       joint.className = 'express-joint';
+      joint.style.backgroundColor = heat(exp.probability);
+      joint.style.color = '#000';
+      joint.title = 'Совместная вероятность: ' + pct(exp.probability);
       cell(tr, exp.fairOdds.toFixed(2));
       host.append(tr);
     }
@@ -119,7 +134,7 @@
       cell(tr, leg.league);
       cell(tr, leg.home + ' — ' + leg.away);
       cell(tr, leg.label);
-      cell(tr, pct(leg.probability));
+      probCell(tr, leg.probability);
       legsHost.append(tr);
     }
     $('express-legs-empty').hidden = eligible.length > 0;
