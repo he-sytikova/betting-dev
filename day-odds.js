@@ -1,4 +1,4 @@
-/* Блок «Кэфы дня» на goals-model.html.
+/* Блок «Кэфы дня» на главной странице (index.html).
  *
  * Справочная таблица цен источников для матчей текущего снимка, которые
  * анализируют наши модели (клубные лиги модели голов + еврокубки). Цены
@@ -149,7 +149,7 @@
   const api = { DISPLAY_TOTAL_LINES, pickEuro365View, pickToaView, pickFdoView, sameDayGate, buildRows, analyzableFixtures };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 
-  // ---- Browser rendering on goals-model.html ----
+  // ---- Browser rendering на index.html ----
   if (typeof window === 'undefined' || typeof document === 'undefined') return;
   const host = document.getElementById('day-odds-rows');
   if (!host || !goalsApi || !expressApi) return;

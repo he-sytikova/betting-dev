@@ -14,6 +14,15 @@
     .dev-card h2{margin:0 0 10px;font-size:1.15rem}
     .dev-card p{margin:0;color:var(--text-muted);line-height:1.5}
     .dev-label{display:inline-block;margin-bottom:12px;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+    .day-odds{margin:8px 0 24px}
+    .day-odds summary{cursor:pointer;padding:6px 0}
+    .day-odds .note{color:var(--text-muted);font-size:.88rem;line-height:1.5}
+    .day-odds .wrap{overflow-x:auto;margin-top:10px}
+    .day-odds .tbl{width:100%;min-width:760px;border-collapse:collapse;font-size:12px}
+    .day-odds .tbl th{background:var(--surface-alt);color:var(--text);padding:8px;text-align:left;white-space:normal;line-height:1.25}
+    .day-odds .tbl td{background:var(--surface);color:var(--text);border:1px solid var(--border);padding:8px;white-space:pre-line;overflow-wrap:anywhere}
+    .day-odds .tbl td.probability-cell{padding:4px 6px;font-variant-numeric:tabular-nums;white-space:normal}
+    .day-odds .tbl .probability-line{display:block;padding:2px 5px;margin:1px 0;border-radius:3px;line-height:1.35;white-space:nowrap}
   </style>
 </head>
 <body>
@@ -23,11 +32,15 @@
   </header>
   <main class="dev-home">
     <p class="dev-intro">Здесь публикуются только самостоятельные расчёты dev-моделей. Таблицы и готовые прогнозы из production-приложения на этой странице не отображаются.</p>
+    <details id="day-odds-block" class="day-odds" open><summary><strong>Кэфы дня</strong> — цены источников для анализируемых матчей (Euro365 · The Odds API · FDO)</summary>
+    <p class="note"><span id="day-odds-status">Загрузка кэфов…</span> <span id="day-odds-count"></span><br>E365 — текущая интрадей-цена одного букмекера Euro365 (1X2 · Х · П2, двойные шансы, тоталы ТБ/ТМ); TOA — лучшая цена (Max) The Odds API по европейским букмекерам (только тоталы, только клубные лиги дня; консенсус Avg — в подсказке по наведению); FDO — консенсус открытия рынка football-data.co.uk (Avg), справочно: снимок после открытия, цены могли уйти. Показаны только основные линии тоталов (1.5 / 2.5 / 3.5). Цены справочные: в расчёт вероятностей модели они не входят. Матч без единой цены не показывается.</p>
+    <div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Турнир</th><th>Матч</th><th>1X2</th><th>Двойные шансы (E365)</th><th>Тоталы ТБ/ТМ</th></tr></thead><tbody id="day-odds-rows"></tbody></table></div><p id="day-odds-empty" class="note" hidden>Сегодня нет анализируемых матчей с доступными кэфами.</p>
+    </details>
     <div class="dev-grid">
       <a class="dev-card" href="./goals-model.html">
         <span class="dev-label">Активная страница</span>
         <h2>Голы и основные рынки</h2>
-        <p>Внутренняя модель: исходы 1X2, двойные шансы, общий и индивидуальные тоталы голов (ТБ/ТМ). Каждая вероятность в отдельной строке с градиентной подсветкой. Отдельный блок «Кэфы дня» показывает цены источников (Euro365 · The Odds API · FDO) по анализируемым матчам.</p>
+        <p>Внутренняя модель: исходы 1X2, двойные шансы, общий и индивидуальные тоталы голов (ТБ/ТМ). Каждая вероятность в отдельной строке с градиентной подсветкой.</p>
       </a>
       <a class="dev-card" href="./model-v1.html">
         <span class="dev-label">Активная страница</span>
@@ -57,5 +70,6 @@
     </div>
     <p class="markets-note">Экспериментальная среда. Результаты моделей требуют дальнейшей проверки и не являются рекомендацией для ставок.</p>
   </main>
+  <script src="goals-internal-model.js"></script><script src="euro-internal-model.js"></script><script src="express-model.js"></script><script src="day-odds.js"></script>
 </body>
 </html>
