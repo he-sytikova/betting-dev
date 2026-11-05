@@ -1,1128 +1,9 @@
 {
  "date": "2026-11-05",
- "generatedAt": "2026-11-05T17:23:38.178184+00:00",
+ "generatedAt": "2026-11-05T19:04:23.450458+00:00",
  "bookmaker": "Euro365",
  "note": "Котировки одного букмекера (Euro365), не консенсус рынка; только для отображения и отбора плеч, не для обучения моделей.",
  "events": {
-  "s9-99.768271470": {
-   "time": "2026-11-05T15:30:00+00:00",
-   "league": "Ivory Coast. League 1",
-   "home": "Stella Club d'Adjame",
-   "away": "AFAD Djekanou",
-   "markets": {
-    "1x2": {
-     "1": 13.9,
-     "X": 1.06,
-     "2": 16.4
-    }
-   }
-  },
-  "s9-99.768279087": {
-   "time": "2026-11-05T16:00:00+00:00",
-   "league": "Uganda. Premier League",
-   "home": "Express",
-   "away": "Blacks Power",
-   "markets": {
-    "1x2": {
-     "1": 1.19,
-     "X": 5.78,
-     "2": 15.0
-    },
-    "totals": {
-     "3.5": {
-      "over": 1.61,
-      "under": 2.23
-     },
-     "4.0": {
-      "over": 2.49,
-      "under": 1.48
-     },
-     "4.5": {
-      "over": 3.36,
-      "under": 1.27
-     },
-     "5.5": {
-      "over": 7.89,
-      "under": 1.05
-     },
-     "3.75": {
-      "over": 1.86,
-      "under": 1.88
-     },
-     "4.25": {
-      "over": 3.2,
-      "under": 1.3
-     },
-     "4.75": {
-      "over": 5.69,
-      "under": 1.14
-     },
-     "1.5": {
-      "over": 3.17,
-      "under": 1.32
-     },
-     "2.5": {
-      "over": 9.39,
-      "under": 1.03
-     },
-     "3.0": {
-      "over": 5.82,
-      "under": 1.14
-     },
-     "2.75": {
-      "over": 2.89,
-      "under": 1.42
-     },
-     "3.25": {
-      "over": 7.07,
-      "under": 1.1
-     },
-     "1.75": {
-      "over": 4.57,
-      "under": 1.2
-     }
-    }
-   }
-  },
-  "s9-99.768279084": {
-   "time": "2026-11-05T16:00:00+00:00",
-   "league": "Israel Championship. Women",
-   "home": "Hapoel Tel Aviv (Women)",
-   "away": "Maccabi Kishronot Hadera (Women)",
-   "markets": {
-    "1x2": {
-     "1": 25.0,
-     "X": 11.1,
-     "2": 1.05
-    },
-    "totals": {
-     "2.5": {
-      "over": 1.36,
-      "under": 2.89
-     },
-     "3.0": {
-      "over": 1.72,
-      "under": 2.05
-     },
-     "3.5": {
-      "over": 2.43,
-      "under": 1.5
-     }
-    }
-   }
-  },
-  "s9-99.768279083": {
-   "time": "2026-11-05T16:00:00+00:00",
-   "league": "Israel Championship. Women",
-   "home": "Kiryat Gat (Women)",
-   "away": "Maccabi Holon (Women)",
-   "markets": {
-    "1x2": {
-     "1": 1.64,
-     "X": 2.55,
-     "2": 12.9
-    },
-    "doubleChance": {
-     "1X": 1.01,
-     "12": 1.46,
-     "X2": 2.13
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.8,
-      "under": 1.95
-     },
-     "1.5": {
-      "over": 2.58,
-      "under": 1.45
-     }
-    }
-   }
-  },
-  "s9-99.768279086": {
-   "time": "2026-11-05T16:00:00+00:00",
-   "league": "Israel Championship. Women",
-   "home": "Hapoel Ra'anana (Women)",
-   "away": "Maccabi ACA (Women)",
-   "markets": {
-    "1x2": {
-     "1": 4.18,
-     "X": 1.82,
-     "2": 3.42
-    },
-    "doubleChance": {
-     "1X": 1.27,
-     "12": 1.9,
-     "X2": 1.2
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.61,
-      "under": 2.23
-     },
-     "0.75": {
-      "over": 1.86,
-      "under": 1.88
-     }
-    }
-   }
-  },
-  "s9-99.768281658": {
-   "time": "2026-11-05T16:00:00+00:00",
-   "league": "National Collegiate Athletic Association (NCAA)",
-   "home": "Warren Wilson",
-   "away": "Salisbury Sea Gulls",
-   "markets": {
-    "1x2": {
-     "1": 25.0,
-     "X": 10.0,
-     "2": 1.05
-    },
-    "totals": {
-     "3.0": {
-      "over": 1.32,
-      "under": 3.21
-     },
-     "3.5": {
-      "over": 1.94,
-      "under": 1.83
-     },
-     "4.0": {
-      "over": 3.05,
-      "under": 1.34
-     },
-     "4.5": {
-      "over": 3.82,
-      "under": 1.24
-     },
-     "3.25": {
-      "over": 1.63,
-      "under": 2.22
-     },
-     "3.75": {
-      "over": 2.27,
-      "under": 1.56
-     },
-     "4.25": {
-      "over": 3.4,
-      "under": 1.26
-     },
-     "2.5": {
-      "over": 1.94,
-      "under": 1.83
-     },
-     "0.5": {
-      "over": 3.57,
-      "under": 1.27
-     }
-    }
-   }
-  },
-  "s9-99.768279085": {
-   "time": "2026-11-05T16:00:00+00:00",
-   "league": "Liberia Championship. First Division. Women",
-   "home": "Ravia Angels (Women)",
-   "away": "Senior Pro (Women)",
-   "markets": {
-    "1x2": {
-     "1": 1.51,
-     "X": 3.59,
-     "2": 7.12
-    },
-    "doubleChance": {
-     "1X": 1.07,
-     "12": 1.26,
-     "X2": 2.4
-    },
-    "totals": {
-     "2.5": {
-      "over": 2.48,
-      "under": 1.5
-     },
-     "2.25": {
-      "over": 2.09,
-      "under": 1.69
-     }
-    }
-   }
-  },
-  "s9-99.768280343": {
-   "time": "2026-11-05T16:00:00+00:00",
-   "league": "Russian Championship. Third League",
-   "home": "Doroznik Kamenka",
-   "away": "Temp Barnaul",
-   "markets": {
-    "1x2": {
-     "1": 1.25,
-     "X": 4.91,
-     "2": 13.2
-    },
-    "totals": {
-     "2.5": {
-      "over": 2.26,
-      "under": 1.59
-     }
-    }
-   }
-  },
-  "s9-99.768284939": {
-   "time": "2026-11-05T16:15:00+00:00",
-   "league": "Russian Championship. Third League",
-   "home": "Rodnik Psynadakha",
-   "away": "Rosich",
-   "markets": {
-    "1x2": {
-     "1": 10.0,
-     "X": 10.0,
-     "2": 1.09
-    },
-    "doubleChance": {
-     "1X": 5.3,
-     "12": 10.0,
-     "X2": 10.0
-    },
-    "totals": {
-     "2.5": {
-      "over": 1.1,
-      "under": 6.02
-     },
-     "3.5": {
-      "over": 1.59,
-      "under": 2.26
-     },
-     "4.5": {
-      "over": 2.94,
-      "under": 1.35
-     },
-     "0.5": {
-      "over": 1.43,
-      "under": 2.66
-     }
-    }
-   }
-  },
-  "s9-99.768283359": {
-   "time": "2026-11-05T16:15:00+00:00",
-   "league": "Qatar Championship U20",
-   "home": "Al-Arabi Doha U20",
-   "away": "Al-Ahli Doha U20",
-   "markets": {
-    "1x2": {
-     "1": 1.18,
-     "X": 6.54,
-     "2": 12.6
-    },
-    "doubleChance": {
-     "1X": 1.01,
-     "12": 1.09,
-     "X2": 4.26
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.12,
-      "under": 5.27
-     },
-     "2.5": {
-      "over": 1.69,
-      "under": 2.1
-     },
-     "3.5": {
-      "over": 3.28,
-      "under": 1.29
-     },
-     "4.5": {
-      "over": 7.27,
-      "under": 1.06
-     },
-     "2.75": {
-      "over": 1.98,
-      "under": 1.78
-     },
-     "0.5": {
-      "over": 2.04,
-      "under": 1.71
-     }
-    }
-   }
-  },
-  "s9-99.768283358": {
-   "time": "2026-11-05T16:15:00+00:00",
-   "league": "Qatar Championship U20",
-   "home": "Mesaimeer U20",
-   "away": "Al Khor U20",
-   "markets": {
-    "1x2": {
-     "1": 6.94,
-     "X": 4.06,
-     "2": 1.45
-    },
-    "doubleChance": {
-     "1X": 2.53,
-     "12": 1.21,
-     "X2": 1.09
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.13,
-      "under": 5.18
-     },
-     "2.5": {
-      "over": 1.69,
-      "under": 2.1
-     },
-     "3.5": {
-      "over": 3.3,
-      "under": 1.29
-     },
-     "4.5": {
-      "over": 7.27,
-      "under": 1.06
-     },
-     "2.75": {
-      "over": 2.03,
-      "under": 1.74
-     },
-     "0.5": {
-      "over": 1.51,
-      "under": 2.42
-     }
-    }
-   }
-  },
-  "s9-99.768285586": {
-   "time": "2026-11-05T16:30:00+00:00",
-   "league": "Russian Cup",
-   "home": "Volga Ulyanovsk",
-   "away": "Chertanovo",
-   "markets": {
-    "1x2": {
-     "1": 1.97,
-     "X": 2.78,
-     "2": 5.76
-    },
-    "doubleChance": {
-     "1X": 1.14,
-     "12": 1.44,
-     "X2": 1.83
-    },
-    "totals": {
-     "2.5": {
-      "over": 1.23,
-      "under": 4.2
-     },
-     "3.0": {
-      "over": 1.41,
-      "under": 2.93
-     },
-     "3.5": {
-      "over": 2.04,
-      "under": 1.83
-     },
-     "4.0": {
-      "over": 3.38,
-      "under": 1.32
-     },
-     "4.5": {
-      "over": 4.44,
-      "under": 1.21
-     },
-     "5.0": {
-      "over": 10.2,
-      "under": 1.05
-     },
-     "5.5": {
-      "over": 11.7,
-      "under": 1.03
-     },
-     "2.75": {
-      "over": 1.3,
-      "under": 3.54
-     },
-     "3.25": {
-      "over": 1.7,
-      "under": 2.15
-     },
-     "3.75": {
-      "over": 2.34,
-      "under": 1.6
-     },
-     "4.25": {
-      "over": 3.69,
-      "under": 1.28
-     },
-     "4.75": {
-      "over": 5.73,
-      "under": 1.14
-     },
-     "5.25": {
-      "over": 10.9,
-      "under": 1.04
-     },
-     "1.5": {
-      "over": 2.37,
-      "under": 1.58
-     },
-     "2.0": {
-      "over": 6.77,
-      "under": 1.1
-     },
-     "1.75": {
-      "over": 1.63,
-      "under": 2.28
-     },
-     "2.25": {
-      "over": 2.5,
-      "under": 1.53
-     }
-    }
-   }
-  },
-  "s9-99.768286851": {
-   "time": "2026-11-05T16:30:00+00:00",
-   "league": "Senegal. Premier League",
-   "home": "Teungueth",
-   "away": "Ouakam",
-   "markets": {
-    "1x2": {
-     "1": 2.3,
-     "X": 2.04,
-     "2": 6.96
-    },
-    "doubleChance": {
-     "1X": 1.1,
-     "12": 1.74,
-     "X2": 1.57
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.67,
-      "under": 2.2
-     },
-     "1.0": {
-      "over": 2.48,
-      "under": 1.5
-     },
-     "1.5": {
-      "over": 3.71,
-      "under": 1.25
-     },
-     "2.5": {
-      "over": 8.54,
-      "under": 1.05
-     },
-     "0.75": {
-      "over": 1.88,
-      "under": 1.93
-     },
-     "1.25": {
-      "over": 2.98,
-      "under": 1.37
-     },
-     "1.75": {
-      "over": 5.31,
-      "under": 1.16
-     }
-    }
-   }
-  },
-  "s9-99.768286854": {
-   "time": "2026-11-05T16:30:00+00:00",
-   "league": "Qatar. Qatargas League",
-   "home": "Al Rayyan II",
-   "away": "Al Kharaitiyat",
-   "markets": {
-    "1x2": {
-     "1": 15.0,
-     "X": 7.9,
-     "2": 1.13
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.17,
-      "under": 4.5
-     },
-     "2.0": {
-      "over": 1.3,
-      "under": 3.2
-     },
-     "2.5": {
-      "over": 1.91,
-      "under": 1.83
-     },
-     "3.0": {
-      "over": 2.73,
-      "under": 1.4
-     },
-     "3.5": {
-      "over": 3.56,
-      "under": 1.25
-     },
-     "4.5": {
-      "over": 6.78,
-      "under": 1.07
-     },
-     "5.5": {
-      "over": 10.4,
-      "under": 1.02
-     },
-     "1.75": {
-      "over": 1.25,
-      "under": 3.93
-     },
-     "2.25": {
-      "over": 1.6,
-      "under": 2.19
-     },
-     "2.75": {
-      "over": 2.15,
-      "under": 1.63
-     },
-     "3.25": {
-      "over": 3.24,
-      "under": 1.34
-     },
-     "3.75": {
-      "over": 4.86,
-      "under": 1.18
-     },
-     "0.5": {
-      "over": 2.54,
-      "under": 1.52
-     },
-     "1.0": {
-      "over": 8.19,
-      "under": 1.08
-     },
-     "0.75": {
-      "over": 3.5,
-      "under": 1.3
-     },
-     "1.25": {
-      "over": 9.77,
-      "under": 1.05
-     }
-    }
-   }
-  },
-  "s9-99.768289576": {
-   "time": "2026-11-05T16:45:00+00:00",
-   "league": "FIFA 27. Amateur daily league",
-   "home": "Belgium (Crystall)",
-   "away": "France (Exort)",
-   "markets": {
-    "1x2": {
-     "1": 9.89,
-     "X": 8.72,
-     "2": 1.16
-    },
-    "doubleChance": {
-     "1X": 4.63,
-     "12": 1.03,
-     "X2": 1.02
-    },
-    "totals": {
-     "31.5": {
-      "over": 1.4,
-      "under": 2.66
-     },
-     "32.0": {
-      "over": 1.59,
-      "under": 2.15
-     },
-     "32.5": {
-      "over": 2.04,
-      "under": 1.78
-     },
-     "33.0": {
-      "over": 2.57,
-      "under": 1.42
-     },
-     "33.5": {
-      "over": 3.1,
-      "under": 1.3
-     },
-     "32.25": {
-      "over": 1.85,
-      "under": 1.96
-     },
-     "32.75": {
-      "over": 2.2,
-      "under": 1.57
-     },
-     "14.5": {
-      "over": 1.4,
-      "under": 2.66
-     },
-     "15.0": {
-      "over": 1.59,
-      "under": 2.15
-     },
-     "15.5": {
-      "over": 2.04,
-      "under": 1.78
-     },
-     "16.5": {
-      "over": 1.34,
-      "under": 2.89
-     },
-     "17.0": {
-      "over": 1.67,
-      "under": 2.21
-     },
-     "17.5": {
-      "over": 2.18,
-      "under": 1.58
-     },
-     "14.75": {
-      "over": 1.66,
-      "under": 2.21
-     },
-     "15.25": {
-      "over": 2.21,
-      "under": 1.56
-     },
-     "16.75": {
-      "over": 1.44,
-      "under": 2.5
-     },
-     "17.25": {
-      "over": 1.97,
-      "under": 1.84
-     }
-    }
-   }
-  },
-  "s9-99.768290436": {
-   "time": "2026-11-05T16:45:00+00:00",
-   "league": "Saudi Arabia. Premier League. Women",
-   "home": "Neom SC (Women)",
-   "away": "Al Hilal Riyadh (Women)",
-   "markets": {
-    "1x2": {
-     "1": 28.0,
-     "X": 16.1,
-     "2": 1.02
-    },
-    "totals": {
-     "2.5": {
-      "over": 1.22,
-      "under": 3.82
-     },
-     "3.5": {
-      "over": 1.61,
-      "under": 2.23
-     },
-     "4.5": {
-      "over": 2.59,
-      "under": 1.44
-     },
-     "3.75": {
-      "over": 1.77,
-      "under": 1.99
-     },
-     "1.5": {
-      "over": 1.93,
-      "under": 1.82
-     },
-     "0.5": {
-      "over": 2.85,
-      "under": 1.38
-     }
-    }
-   }
-  },
-  "s9-99.768293224": {
-   "time": "2026-11-05T17:00:00+00:00",
-   "league": "Atlantic Cup U19",
-   "home": "Porto Vitoria U19",
-   "away": "Ipojuca AC U19",
-   "markets": {
-    "1x2": {
-     "1": 2.33,
-     "X": 3.24,
-     "2": 2.91
-    },
-    "doubleChance": {
-     "1X": 1.37,
-     "12": 1.3,
-     "X2": 1.54
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.42,
-      "under": 2.65
-     },
-     "2.0": {
-      "over": 1.76,
-      "under": 2.0
-     },
-     "2.5": {
-      "over": 2.33,
-      "under": 1.54
-     },
-     "3.5": {
-      "over": 4.7,
-      "under": 1.15
-     },
-     "0.5": {
-      "over": 1.83,
-      "under": 1.91
-     }
-    }
-   }
-  },
-  "s9-99.768294714": {
-   "time": "2026-11-05T17:00:00+00:00",
-   "league": "National Collegiate Athletic Association (NCAA). Women",
-   "home": "William & Mary Tribe (Women)",
-   "away": "Elon Phoenix University (Women)",
-   "markets": {
-    "1x2": {
-     "1": 5.66,
-     "X": 3.43,
-     "2": 1.61
-    },
-    "doubleChance": {
-     "1X": 2.13,
-     "12": 1.26,
-     "X2": 1.1
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.5,
-      "under": 2.4
-     },
-     "2.0": {
-      "over": 1.99,
-      "under": 1.78
-     },
-     "2.5": {
-      "over": 2.68,
-      "under": 1.41
-     },
-     "3.0": {
-      "over": 4.36,
-      "under": 1.21
-     },
-     "0.75": {
-      "over": 2.13,
-      "under": 1.69
-     },
-     "1.25": {
-      "over": 3.89,
-      "under": 1.21
-     },
-     "1.75": {
-      "over": 1.7,
-      "under": 2.11
-     },
-     "2.25": {
-      "over": 2.32,
-      "under": 1.54
-     },
-     "2.75": {
-      "over": 3.18,
-      "under": 1.29
-     },
-     "0.5": {
-      "over": 1.74,
-      "under": 2.05
-     },
-     "1.0": {
-      "over": 3.23,
-      "under": 1.32
-     }
-    }
-   }
-  },
-  "s9-99.768293226": {
-   "time": "2026-11-05T17:00:00+00:00",
-   "league": "Atlantic Cup U19",
-   "home": "EC Vitoria Salvador U19",
-   "away": "Botafogo de Futebol e Regatas U19",
-   "markets": {
-    "1x2": {
-     "1": 1.53,
-     "X": 4.06,
-     "2": 5.59
-    },
-    "doubleChance": {
-     "1X": 1.12,
-     "12": 1.21,
-     "X2": 2.37
-    },
-    "totals": {
-     "3.5": {
-      "over": 2.13,
-      "under": 1.67
-     },
-     "3.25": {
-      "over": 1.92,
-      "under": 1.82
-     },
-     "1.5": {
-      "over": 1.83,
-      "under": 1.91
-     }
-    }
-   }
-  },
-  "s9-99.768293228": {
-   "time": "2026-11-05T17:00:00+00:00",
-   "league": "Uruguay. Reserve League",
-   "home": "Progreso II",
-   "away": "Racing Club de Montevideo II",
-   "markets": {
-    "1x2": {
-     "1": 3.11,
-     "X": 3.26,
-     "2": 2.21
-    },
-    "doubleChance": {
-     "1X": 1.6,
-     "12": 1.3,
-     "X2": 1.33
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.07,
-      "under": 6.91
-     },
-     "1.0": {
-      "over": 1.11,
-      "under": 6.46
-     },
-     "1.5": {
-      "over": 1.38,
-      "under": 2.79
-     },
-     "2.0": {
-      "over": 1.69,
-      "under": 2.1
-     },
-     "2.5": {
-      "over": 2.12,
-      "under": 1.64
-     },
-     "3.0": {
-      "over": 3.49,
-      "under": 1.3
-     },
-     "3.5": {
-      "over": 3.81,
-      "under": 1.22
-     },
-     "4.5": {
-      "over": 6.4,
-      "under": 1.08
-     },
-     "5.5": {
-      "over": 9.37,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 2.15,
-      "under": 1.63
-     },
-     "1.25": {
-      "over": 4.33,
-      "under": 1.22
-     },
-     "1.75": {
-      "over": 1.49,
-      "under": 2.44
-     },
-     "2.25": {
-      "over": 1.9,
-      "under": 1.81
-     },
-     "2.75": {
-      "over": 2.48,
-      "under": 1.48
-     },
-     "3.75": {
-      "over": 5.69,
-      "under": 1.14
-     }
-    }
-   }
-  },
-  "s9-99.768293230": {
-   "time": "2026-11-05T17:00:00+00:00",
-   "league": "Uganda. Premier League",
-   "home": "Vipers",
-   "away": "Lugazi",
-   "markets": {
-    "1x2": {
-     "1": 1.33,
-     "X": 4.43,
-     "2": 9.71
-    },
-    "doubleChance": {
-     "1X": 1.03,
-     "12": 1.18,
-     "X2": 3.06
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.07,
-      "under": 6.91
-     },
-     "1.0": {
-      "over": 1.14,
-      "under": 5.75
-     },
-     "1.5": {
-      "over": 1.42,
-      "under": 2.66
-     },
-     "2.0": {
-      "over": 1.76,
-      "under": 2.0
-     },
-     "2.5": {
-      "over": 2.28,
-      "under": 1.56
-     },
-     "3.0": {
-      "over": 3.92,
-      "under": 1.26
-     },
-     "3.5": {
-      "over": 4.21,
-      "under": 1.18
-     },
-     "4.5": {
-      "over": 7.33,
-      "under": 1.06
-     },
-     "5.5": {
-      "over": 10.2,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 2.08,
-      "under": 1.67
-     },
-     "1.25": {
-      "over": 1.33,
-      "under": 3.37
-     },
-     "1.75": {
-      "over": 1.55,
-      "under": 2.29
-     },
-     "2.25": {
-      "over": 2.03,
-      "under": 1.7
-     },
-     "2.75": {
-      "over": 2.86,
-      "under": 1.42
-     },
-     "3.75": {
-      "over": 6.44,
-      "under": 1.11
-     },
-     "3.25": {
-      "over": 6.83,
-      "under": 1.1
-     }
-    }
-   }
-  },
-  "s9-99.768295965": {
-   "time": "2026-11-05T17:00:00+00:00",
-   "league": "National Collegiate Athletic Association (NCAA). Women",
-   "home": "Texas-Rio Grande Valley Vaqueros (Women)",
-   "away": "Northwestern Demons (Women)",
-   "markets": {
-    "1x2": {
-     "1": 3.45,
-     "X": 4.24,
-     "2": 1.82
-    },
-    "doubleChance": {
-     "1X": 1.9,
-     "12": 1.19,
-     "X2": 1.27
-    },
-    "totals": {
-     "2.5": {
-      "over": 1.18,
-      "under": 4.72
-     },
-     "3.5": {
-      "over": 1.51,
-      "under": 2.38
-     },
-     "4.0": {
-      "over": 1.88,
-      "under": 1.88
-     },
-     "4.5": {
-      "over": 2.38,
-      "under": 1.51
-     },
-     "5.0": {
-      "over": 3.37,
-      "under": 1.28
-     },
-     "5.5": {
-      "over": 4.02,
-      "under": 1.23
-     },
-     "1.75": {
-      "over": 1.48,
-      "under": 2.46
-     },
-     "2.25": {
-      "over": 2.33,
-      "under": 1.58
-     },
-     "2.75": {
-      "over": 3.51,
-      "under": 1.25
-     },
-     "3.25": {
-      "over": 1.35,
-      "under": 2.93
-     },
-     "3.75": {
-      "over": 1.65,
-      "under": 2.12
-     },
-     "4.25": {
-      "over": 2.15,
-      "under": 1.67
-     },
-     "4.75": {
-      "over": 2.81,
-      "under": 1.38
-     },
-     "5.25": {
-      "over": 3.75,
-      "under": 1.22
-     },
-     "1.5": {
-      "over": 1.35,
-      "under": 3.01
-     },
-     "3.0": {
-      "over": 5.44,
-      "under": 1.14
-     },
-     "2.0": {
-      "over": 1.58,
-      "under": 2.33
-     },
-     "1.25": {
-      "over": 1.45,
-      "under": 2.55
-     }
-    }
-   }
-  },
   "s9-99.768293227": {
    "time": "2026-11-05T17:00:00+00:00",
    "league": "Botswana Championship",
@@ -1130,5420 +11,3360 @@
    "away": "Township Rollers",
    "markets": {
     "1x2": {
-     "1": 2.54,
-     "X": 3.05,
-     "2": 2.79
-    },
-    "doubleChance": {
-     "1X": 1.39,
-     "12": 1.34,
-     "X2": 1.46
+     "1": 32.0,
+     "X": 7.44,
+     "2": 1.06
     },
     "totals": {
-     "0.5": {
-      "over": 1.11,
-      "under": 5.5
-     },
-     "1.0": {
-      "over": 1.23,
-      "under": 4.22
-     },
-     "1.5": {
-      "over": 1.52,
-      "under": 2.38
-     },
-     "2.0": {
-      "over": 1.92,
-      "under": 1.83
-     },
-     "2.5": {
-      "over": 2.58,
-      "under": 1.45
-     },
-     "3.5": {
-      "over": 4.46,
-      "under": 1.17
-     },
      "4.5": {
-      "over": 7.77,
-      "under": 1.05
-     },
-     "0.75": {
-      "over": 1.87,
-      "under": 1.87
-     },
-     "1.25": {
-      "over": 3.07,
-      "under": 1.33
-     },
-     "1.75": {
-      "over": 5.44,
-      "under": 1.15
-     },
-     "2.25": {
-      "over": 2.25,
-      "under": 1.58
-     },
-     "2.75": {
-      "over": 3.72,
-      "under": 1.27
-     }
-    }
-   }
-  },
-  "s9-99.768293225": {
-   "time": "2026-11-05T17:00:00+00:00",
-   "league": "Atlantic Cup U19",
-   "home": "Brasiliense U19",
-   "away": "Clube Nautico Capibaribe U19",
-   "markets": {
-    "1x2": {
-     "1": 5.76,
-     "X": 4.37,
-     "2": 1.48
-    },
-    "doubleChance": {
-     "1X": 2.5,
-     "12": 1.18,
-     "X2": 1.11
-    },
-    "totals": {
-     "2.5": {
-      "over": 1.3,
-      "under": 3.24
-     },
-     "3.5": {
-      "over": 2.04,
-      "under": 1.73
-     },
-     "4.5": {
-      "over": 3.74,
-      "under": 1.23
-     },
-     "3.25": {
-      "over": 1.82,
-      "under": 1.92
-     },
-     "1.5": {
-      "over": 1.74,
-      "under": 2.03
-     },
-     "0.5": {
-      "over": 1.35,
-      "under": 3.0
-     }
-    }
-   }
-  },
-  "s9-99.768293229": {
-   "time": "2026-11-05T17:00:00+00:00",
-   "league": "Israel. Liga Bet. South",
-   "home": "Hapoel Ashkelon",
-   "away": "Hapoel Bnei Ashdod",
-   "markets": {
-    "1x2": {
-     "1": 1.1,
-     "X": 9.1,
-     "2": 16.1
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.03,
-      "under": 9.04
-     },
-     "2.5": {
-      "over": 1.25,
-      "under": 3.62
-     },
-     "3.0": {
-      "over": 1.49,
-      "under": 2.45
-     },
-     "3.5": {
-      "over": 1.93,
-      "under": 1.82
-     },
-     "4.5": {
-      "over": 3.11,
-      "under": 1.32
+      "over": 3.76,
+      "under": 1.25
      },
      "5.5": {
-      "over": 5.48,
-      "under": 1.11
+      "over": 10.4,
+      "under": 1.02
      },
-     "6.5": {
-      "over": 8.56,
-      "under": 1.03
-     },
-     "1.75": {
-      "over": 1.9,
-      "under": 1.81
-     },
-     "2.75": {
-      "over": 1.38,
-      "under": 2.8
-     },
-     "3.25": {
-      "over": 1.7,
-      "under": 2.07
-     },
-     "3.75": {
-      "over": 2.17,
-      "under": 1.62
-     },
-     "2.0": {
-      "over": 2.77,
-      "under": 1.39
-     },
-     "0.5": {
-      "over": 2.08,
-      "under": 1.69
-     }
-    }
-   }
-  },
-  "s9-99.768294523": {
-   "time": "2026-11-05T17:06:00+00:00",
-   "league": "Division 4x4",
-   "home": "Emmen (Amateur)",
-   "away": "Willem (Amateur)",
-   "markets": {
-    "totals": {
-     "8.0": {
-      "over": 1.17,
-      "under": 4.21
-     },
-     "8.5": {
-      "over": 1.64,
-      "under": 2.18
-     },
-     "9.0": {
-      "over": 2.22,
-      "under": 1.56
-     },
-     "9.5": {
-      "over": 3.03,
-      "under": 1.31
-     },
-     "3.0": {
-      "over": 2.37,
-      "under": 1.54
+     "4.75": {
+      "over": 5.39,
+      "under": 1.12
      },
      "3.5": {
-      "over": 3.49,
-      "under": 1.24
-     },
-     "6.5": {
-      "over": 3.49,
-      "under": 1.24
-     }
-    }
-   }
-  },
-  "s9-99.768297599": {
-   "time": "2026-11-05T17:08:00+00:00",
-   "league": "National Collegiate Athletic Association (NCAA)",
-   "home": "Kuyper Cougars",
-   "away": "Maranatha Baptist University",
-   "markets": {
-    "1x2": {
-     "1": 1.57,
-     "X": 3.89,
-     "2": 5.11
-    },
-    "doubleChance": {
-     "1X": 1.12,
-     "12": 1.2,
-     "X2": 2.21
-    },
-    "totals": {
-     "2.5": {
-      "over": 1.47,
-      "under": 2.5
-     },
-     "3.0": {
-      "over": 1.9,
-      "under": 1.86
-     },
-     "3.5": {
-      "over": 2.56,
-      "under": 1.45
-     },
-     "4.0": {
-      "over": 4.08,
-      "under": 1.23
-     },
-     "1.75": {
-      "over": 2.1,
-      "under": 1.7
-     },
-     "2.25": {
-      "over": 3.82,
-      "under": 1.22
-     },
-     "2.75": {
-      "over": 1.64,
-      "under": 2.2
-     },
-     "3.25": {
-      "over": 2.22,
-      "under": 1.59
-     },
-     "3.75": {
-      "over": 3.17,
-      "under": 1.32
+      "over": 6.74,
+      "under": 1.08
      },
      "1.5": {
-      "over": 1.72,
-      "under": 2.07
-     },
-     "2.0": {
-      "over": 3.16,
-      "under": 1.33
-     },
-     "0.5": {
-      "over": 1.34,
-      "under": 3.04
-     },
-     "1.0": {
-      "over": 1.8,
-      "under": 1.97
-     },
-     "0.75": {
-      "over": 1.47,
-      "under": 2.49
-     },
-     "1.25": {
-      "over": 2.27,
-      "under": 1.56
+      "over": 6.06,
+      "under": 1.1
      }
     }
    }
   },
-  "s9-99.767842402": {
+  "s9-99.768299742": {
    "time": "2026-11-05T17:30:00+00:00",
    "league": "Israel. Liga Alef. North",
    "home": "Beitar Nahariya",
    "away": "Tzeirey Tamra",
    "markets": {
     "1x2": {
-     "1": 1.26,
-     "X": 4.9,
-     "2": 9.0
-    },
-    "doubleChance": {
-     "1X": 1.05,
-     "12": 1.09,
-     "X2": 3.13
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.02,
-      "under": 11.9
-     },
-     "1.0": {
-      "over": 1.02,
-      "under": 9.5
-     },
-     "1.5": {
-      "over": 1.13,
-      "under": 4.9
-     },
-     "2.0": {
-      "over": 1.14,
-      "under": 4.4
-     },
-     "2.5": {
-      "over": 1.4,
-      "under": 2.56
-     },
-     "3.0": {
-      "over": 1.61,
-      "under": 2.07
-     },
-     "3.5": {
-      "over": 1.98,
-      "under": 1.71
-     },
-     "4.0": {
-      "over": 2.69,
-      "under": 1.36
-     },
-     "4.5": {
-      "over": 3.2,
-      "under": 1.26
-     },
-     "5.0": {
-      "over": 5.0,
-      "under": 1.11
-     },
-     "5.5": {
-      "over": 6.5,
-      "under": 1.1
-     },
-     "1.25": {
-      "over": 1.73,
-      "under": 1.93
-     },
-     "1.75": {
-      "over": 2.39,
-      "under": 1.49
-     },
-     "2.25": {
-      "over": 1.27,
-      "under": 3.14
-     },
-     "2.75": {
-      "over": 1.49,
-      "under": 2.31
-     },
-     "3.25": {
-      "over": 1.81,
-      "under": 1.87
-     },
-     "3.75": {
-      "over": 2.29,
-      "under": 1.53
-     },
-     "4.25": {
-      "over": 2.92,
-      "under": 1.31
-     }
-    }
-   }
-  },
-  "s9-99.767870492": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Mihajlo Cvetkovic",
-   "away": "FC Salzburg",
-   "markets": {
-    "1x2": {
-     "1": 6.73,
-     "X": 2.84,
-     "2": 1.64
-    },
-    "doubleChance": {
-     "1X": 1.97,
-     "12": 1.3,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.28,
-      "under": 3.2
-     },
-     "1.5": {
-      "over": 1.88,
-      "under": 1.78
-     },
-     "2.0": {
-      "over": 3.02,
-      "under": 1.31
-     }
-    }
-   }
-  },
-  "s9-99.767882588": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Goncalo Guedes",
-   "away": "Lyon",
-   "markets": {
-    "1x2": {
-     "1": 8.9,
-     "X": 2.99,
-     "2": 1.51
-    },
-    "doubleChance": {
-     "1X": 2.2,
-     "12": 1.27,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.28,
-      "under": 3.21
-     },
-     "1.5": {
-      "over": 1.88,
-      "under": 1.79
-     },
-     "2.0": {
-      "over": 3.01,
-      "under": 1.31
-     }
-    }
-   }
-  },
-  "s9-99.765259966": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Conference League",
-   "home": "Thun",
-   "away": "Heart of Midlothian",
-   "markets": {
-    "1x2": {
-     "1": 2.23,
-     "X": 3.75,
-     "2": 3.11
-    },
-    "doubleChance": {
-     "1X": 1.39,
-     "12": 1.29,
-     "X2": 1.69
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 9.8
-     },
-     "1.5": {
-      "over": 1.15,
-      "under": 4.77
-     },
-     "2.0": {
-      "over": 1.22,
-      "under": 3.94
-     },
-     "2.5": {
-      "over": 1.54,
-      "under": 2.42
-     },
-     "3.0": {
-      "over": 1.85,
-      "under": 1.95
-     },
-     "3.5": {
-      "over": 2.36,
-      "under": 1.63
-     },
-     "4.0": {
-      "over": 3.28,
-      "under": 1.34
-     },
-     "4.5": {
-      "over": 3.85,
-      "under": 1.25
-     },
-     "5.0": {
-      "over": 6.16,
-      "under": 1.1
-     },
-     "5.5": {
-      "over": 6.74,
-      "under": 1.08
-     },
-     "6.5": {
-      "over": 8.5,
-      "under": 1.04
-     },
-     "7.5": {
-      "over": 9.75,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.33,
-      "under": 2.92
-     },
-     "1.25": {
-      "over": 1.83,
-      "under": 1.85
-     },
-     "1.75": {
-      "over": 2.62,
-      "under": 1.44
-     },
-     "2.25": {
-      "over": 4.0,
-      "under": 1.18
-     },
-     "2.75": {
-      "over": 1.67,
-      "under": 2.17
-     },
-     "3.25": {
-      "over": 2.12,
-      "under": 1.77
-     },
-     "3.75": {
-      "over": 2.66,
-      "under": 1.47
-     },
-     "4.25": {
-      "over": 3.46,
-      "under": 1.28
-     },
-     "4.75": {
-      "over": 4.62,
-      "under": 1.16
-     },
-     "5.25": {
-      "over": 6.36,
-      "under": 1.08
-     },
-     "0.5": {
-      "over": 1.23,
-      "under": 3.48
-     }
-    }
-   }
-  },
-  "s9-99.765258499": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Conference League",
-   "home": "AGF Aarhus",
-   "away": "Braga",
-   "markets": {
-    "1x2": {
-     "1": 4.76,
-     "X": 3.73,
-     "2": 1.79
-    },
-    "doubleChance": {
-     "1X": 2.07,
-     "12": 1.29,
-     "X2": 1.2
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.04,
-      "under": 8.5
-     },
-     "1.5": {
-      "over": 1.26,
-      "under": 3.62
-     },
-     "2.0": {
-      "over": 1.42,
-      "under": 2.85
-     },
-     "2.5": {
-      "over": 1.87,
-      "under": 1.99
-     },
-     "3.0": {
-      "over": 2.42,
-      "under": 1.57
-     },
-     "3.5": {
-      "over": 3.0,
-      "under": 1.38
-     },
-     "4.0": {
-      "over": 4.87,
-      "under": 1.16
-     },
-     "4.5": {
-      "over": 5.56,
-      "under": 1.12
-     },
-     "5.0": {
-      "over": 7.5,
-      "under": 1.06
-     },
-     "5.5": {
-      "over": 8.4,
-      "under": 1.04
-     },
-     "6.5": {
-      "over": 9.7,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.48,
-      "under": 2.46
-     },
-     "1.25": {
-      "over": 2.15,
-      "under": 1.61
-     },
-     "1.75": {
-      "over": 3.13,
-      "under": 1.28
-     },
-     "2.25": {
-      "over": 5.2,
-      "under": 1.1
-     },
-     "2.75": {
-      "over": 2.09,
-      "under": 1.79
-     },
-     "3.25": {
-      "over": 2.7,
-      "under": 1.45
-     },
-     "3.75": {
-      "over": 3.6,
-      "under": 1.25
-     },
-     "4.25": {
-      "over": 5.14,
-      "under": 1.12
-     },
-     "0.5": {
-      "over": 1.33,
-      "under": 2.96
-     }
-    }
-   }
-  },
-  "s9-99.767873667": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Christian Pulisic",
-   "away": "Ferencvarosi",
-   "markets": {
-    "1x2": {
-     "1": 3.68,
-     "X": 2.38,
-     "2": 2.39
-    },
-    "doubleChance": {
-     "1X": 1.43,
-     "12": 1.42,
-     "X2": 1.19
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.18,
-      "under": 3.84
-     },
-     "1.0": {
-      "over": 1.42,
-      "under": 2.56
-     },
-     "1.5": {
-      "over": 2.16,
-      "under": 1.59
-     },
-     "2.0": {
-      "over": 3.94,
-      "under": 1.19
-     }
-    }
-   }
-  },
-  "s9-99.767872641": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Lillestrom",
-   "away": "Prince Kwabena Adu",
-   "markets": {
-    "1x2": {
-     "1": 1.38,
-     "X": 3.5,
-     "2": 10.1
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.19,
-     "X2": 2.55
+     "1": 1.1,
+     "X": 7.82,
+     "2": 26.0
     },
     "totals": {
      "1.5": {
-      "over": 1.62,
-      "under": 2.1
-     },
-     "2.0": {
-      "over": 2.27,
-      "under": 1.53
-     },
-     "2.5": {
-      "over": 3.11,
-      "under": 1.3
-     }
-    }
-   }
-  },
-  "s9-99.767873371": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Goncalo Matias Ramos",
-   "away": "Ferencvarosi",
-   "markets": {
-    "1x2": {
-     "1": 3.28,
-     "X": 2.45,
-     "2": 2.52
-    },
-    "doubleChance": {
-     "1X": 1.38,
-     "12": 1.4,
-     "X2": 1.24
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.36,
-      "under": 2.81
-     },
-     "1.5": {
-      "over": 2.03,
-      "under": 1.67
-     },
-     "2.0": {
-      "over": 3.45,
-      "under": 1.24
-     }
-    }
-   }
-  },
-  "s9-99.764298871": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League",
-   "home": "N.E.C.",
-   "away": "AC Omonia",
-   "markets": {
-    "1x2": {
-     "1": 1.68,
-     "X": 4.31,
-     "2": 4.87
-    },
-    "doubleChance": {
-     "1X": 1.2,
-     "12": 1.24,
-     "X2": 2.26
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 10.2
-     },
-     "1.5": {
-      "over": 1.16,
-      "under": 4.82
-     },
-     "2.0": {
-      "over": 1.25,
-      "under": 3.91
-     },
-     "2.5": {
-      "over": 1.62,
-      "under": 2.42
-     },
-     "3.0": {
-      "over": 1.95,
-      "under": 1.87
-     },
-     "3.5": {
-      "over": 2.45,
-      "under": 1.54
-     },
-     "4.0": {
-      "over": 3.64,
-      "under": 1.26
-     },
-     "4.5": {
-      "over": 4.33,
-      "under": 1.19
-     },
-     "5.0": {
-      "over": 7.48,
-      "under": 1.06
-     },
-     "5.5": {
-      "over": 8.15,
-      "under": 1.05
-     },
-     "6.5": {
-      "over": 9.7,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.35,
-      "under": 2.98
-     },
-     "1.25": {
-      "over": 1.91,
-      "under": 1.83
-     },
-     "1.75": {
-      "over": 2.88,
-      "under": 1.41
-     },
-     "2.25": {
-      "over": 4.75,
-      "under": 1.16
-     },
-     "2.75": {
-      "over": 1.72,
-      "under": 2.1
-     },
-     "3.25": {
-      "over": 2.25,
-      "under": 1.71
-     },
-     "3.75": {
-      "over": 2.88,
-      "under": 1.42
-     },
-     "4.25": {
-      "over": 3.94,
-      "under": 1.23
-     },
-     "4.75": {
-      "over": 5.38,
-      "under": 1.12
-     },
-     "5.25": {
-      "over": 7.8,
-      "under": 1.04
-     },
-     "0.5": {
-      "over": 1.26,
-      "under": 3.48
-     }
-    }
-   }
-  },
-  "s9-99.767882593": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "AC Sparta Prague",
-   "away": "Rayan Vitor",
-   "markets": {
-    "1x2": {
-     "1": 1.84,
-     "X": 2.5,
-     "2": 6.02
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.38,
-     "X2": 1.74
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.19,
-      "under": 3.73
-     },
-     "1.0": {
-      "over": 1.45,
-      "under": 2.49
-     },
-     "1.5": {
-      "over": 2.21,
-      "under": 1.56
-     }
-    }
-   }
-  },
-  "s9-99.767873669": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Francesco Camarda",
-   "away": "Ferencvarosi",
-   "markets": {
-    "1x2": {
-     "1": 4.28,
-     "X": 2.31,
-     "2": 2.25
-    },
-    "doubleChance": {
-     "1X": 1.48,
-     "12": 1.45,
-     "X2": 1.14
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.22,
-      "under": 3.5
-     },
-     "1.0": {
-      "over": 1.52,
-      "under": 2.31
-     },
-     "1.5": {
-      "over": 2.34,
-      "under": 1.5
-     }
-    }
-   }
-  },
-  "s9-99.767872236": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Lillestrom",
-   "away": "Baboucarr Faal",
-   "markets": {
-    "1x2": {
-     "1": 1.39,
-     "X": 3.48,
-     "2": 9.55
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.2,
-     "X2": 2.5
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.6,
-      "under": 2.13
-     },
-     "2.0": {
-      "over": 2.22,
-      "under": 1.55
-     },
-     "2.5": {
-      "over": 3.04,
-      "under": 1.31
-     }
-    }
-   }
-  },
-  "s9-99.764298874": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League",
-   "home": "Lillestrom",
-   "away": "Viktoria Plzen",
-   "markets": {
-    "1x2": {
-     "1": 3.1,
-     "X": 3.91,
-     "2": 2.21
-    },
-    "doubleChance": {
-     "1X": 1.71,
-     "12": 1.28,
-     "X2": 1.4
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 9.85
-     },
-     "1.5": {
-      "over": 1.16,
-      "under": 4.72
-     },
-     "2.0": {
-      "over": 1.23,
-      "under": 3.88
-     },
-     "2.5": {
-      "over": 1.55,
-      "under": 2.4
-     },
-     "3.0": {
-      "over": 1.89,
-      "under": 1.92
-     },
-     "3.5": {
-      "over": 2.44,
-      "under": 1.61
-     },
-     "4.0": {
-      "over": 3.45,
-      "under": 1.32
-     },
-     "4.5": {
-      "over": 4.03,
-      "under": 1.23
-     },
-     "5.0": {
-      "over": 6.49,
-      "under": 1.09
-     },
-     "5.5": {
-      "over": 7.04,
-      "under": 1.07
-     },
-     "6.5": {
-      "over": 9.85,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.32,
-      "under": 3.15
-     },
-     "1.25": {
-      "over": 1.83,
-      "under": 1.91
-     },
-     "1.75": {
-      "over": 2.65,
-      "under": 1.47
-     },
-     "2.25": {
-      "over": 4.05,
-      "under": 1.21
-     },
-     "2.75": {
-      "over": 1.68,
-      "under": 2.16
-     },
-     "3.25": {
-      "over": 2.18,
-      "under": 1.75
-     },
-     "3.75": {
-      "over": 2.76,
-      "under": 1.45
-     },
-     "4.25": {
-      "over": 3.66,
-      "under": 1.26
-     },
-     "4.75": {
-      "over": 4.84,
-      "under": 1.15
-     },
-     "5.25": {
-      "over": 6.67,
-      "under": 1.07
-     },
-     "0.5": {
-      "over": 1.23,
-      "under": 3.74
-     }
-    }
-   }
-  },
-  "s9-99.767873668": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Alphadjo Cisse",
-   "away": "Ferencvarosi",
-   "markets": {
-    "1x2": {
-     "1": 3.92,
-     "X": 2.35,
-     "2": 2.33
-    },
-    "doubleChance": {
-     "1X": 1.45,
-     "12": 1.43,
-     "X2": 1.17
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.2,
-      "under": 3.69
-     },
-     "1.0": {
-      "over": 1.46,
-      "under": 2.45
-     },
-     "1.5": {
-      "over": 2.23,
-      "under": 1.55
-     }
-    }
-   }
-  },
-  "s9-99.767882591": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "AC Sparta Prague",
-   "away": "Marcus Tavernier",
-   "markets": {
-    "1x2": {
-     "1": 1.92,
-     "X": 2.53,
-     "2": 5.15
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.37,
-     "X2": 1.67
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.38,
-      "under": 2.71
-     },
-     "1.5": {
-      "over": 2.08,
-      "under": 1.63
-     },
-     "2.0": {
-      "over": 3.65,
-      "under": 1.22
-     }
-    }
-   }
-  },
-  "s9-99.764302019": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League",
-   "home": "AC Sparta Prague",
-   "away": "Bournemouth",
-   "markets": {
-    "1x2": {
-     "1": 5.52,
-     "X": 4.36,
-     "2": 1.61
-    },
-    "doubleChance": {
-     "1X": 2.4,
-     "12": 1.24,
-     "X2": 1.17
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 10.2
-     },
-     "1.5": {
-      "over": 1.16,
-      "under": 4.86
-     },
-     "2.0": {
-      "over": 1.25,
-      "under": 3.95
-     },
-     "2.5": {
-      "over": 1.62,
-      "under": 2.42
-     },
-     "3.0": {
-      "over": 1.93,
-      "under": 1.89
-     },
-     "3.5": {
-      "over": 2.4,
-      "under": 1.56
-     },
-     "4.0": {
-      "over": 3.48,
-      "under": 1.29
-     },
-     "4.5": {
-      "over": 4.22,
-      "under": 1.2
-     },
-     "5.0": {
-      "over": 7.27,
-      "under": 1.07
-     },
-     "5.5": {
-      "over": 7.85,
-      "under": 1.05
-     },
-     "6.5": {
-      "over": 9.7,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.33,
-      "under": 3.08
-     },
-     "1.25": {
-      "over": 1.87,
-      "under": 1.87
-     },
-     "1.75": {
-      "over": 2.76,
-      "under": 1.44
-     },
-     "2.25": {
-      "over": 4.35,
-      "under": 1.18
-     },
-     "2.75": {
-      "over": 1.7,
-      "under": 2.13
-     },
-     "3.25": {
-      "over": 2.22,
-      "under": 1.73
-     },
-     "3.75": {
-      "over": 2.84,
-      "under": 1.43
-     },
-     "4.25": {
-      "over": 3.84,
-      "under": 1.24
-     },
-     "4.75": {
-      "over": 5.19,
-      "under": 1.13
-     },
-     "5.25": {
-      "over": 7.5,
-      "under": 1.05
-     },
-     "0.5": {
-      "over": 1.24,
-      "under": 3.65
-     }
-    }
-   }
-  },
-  "s9-99.764296541": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League",
-   "home": "Anderlecht",
-   "away": "FC Salzburg",
-   "markets": {
-    "1x2": {
-     "1": 1.97,
-     "X": 4.04,
-     "2": 3.63
-    },
-    "doubleChance": {
-     "1X": 1.31,
-     "12": 1.27,
-     "X2": 1.89
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 9.85
-     },
-     "1.5": {
-      "over": 1.12,
-      "under": 5.45
-     },
-     "2.0": {
-      "over": 1.18,
-      "under": 4.59
-     },
-     "2.5": {
-      "over": 1.46,
-      "under": 2.66
-     },
-     "3.0": {
-      "over": 1.71,
-      "under": 2.15
-     },
-     "3.5": {
-      "over": 2.19,
-      "under": 1.74
-     },
-     "4.0": {
-      "over": 2.98,
-      "under": 1.4
-     },
-     "4.5": {
-      "over": 3.54,
-      "under": 1.29
-     },
-     "5.0": {
-      "over": 5.63,
-      "under": 1.13
-     },
-     "5.5": {
-      "over": 6.23,
-      "under": 1.1
-     },
-     "6.5": {
-      "over": 8.55,
-      "under": 1.04
-     },
-     "7.5": {
-      "over": 9.8,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.31,
-      "under": 3.2
-     },
-     "1.25": {
-      "over": 1.8,
-      "under": 1.99
-     },
-     "1.75": {
-      "over": 2.53,
-      "under": 1.49
-     },
-     "2.25": {
-      "over": 4.05,
-      "under": 1.21
-     },
-     "2.75": {
-      "over": 1.57,
-      "under": 2.38
-     },
-     "3.25": {
-      "over": 1.98,
-      "under": 1.91
-     },
-     "3.75": {
-      "over": 2.45,
-      "under": 1.55
-     },
-     "4.25": {
-      "over": 3.23,
-      "under": 1.32
-     },
-     "4.75": {
-      "over": 4.26,
-      "under": 1.19
-     },
-     "5.25": {
-      "over": 5.86,
-      "under": 1.09
-     },
-     "0.5": {
-      "over": 1.22,
-      "under": 3.8
-     }
-    }
-   }
-  },
-  "s9-99.764295938": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League",
-   "home": "Milan",
-   "away": "Ferencvarosi",
-   "markets": {
-    "1x2": {
-     "1": 1.42,
-     "X": 5.15,
-     "2": 7.5
-    },
-    "doubleChance": {
-     "1X": 1.11,
-     "12": 1.19,
-     "X2": 3.01
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 9.85
-     },
-     "1.5": {
-      "over": 1.13,
-      "under": 5.26
-     },
-     "2.0": {
-      "over": 1.19,
-      "under": 4.32
-     },
-     "2.5": {
-      "over": 1.51,
-      "under": 2.51
-     },
-     "3.0": {
-      "over": 1.81,
-      "under": 2.01
-     },
-     "3.5": {
-      "over": 2.35,
-      "under": 1.65
-     },
-     "4.0": {
-      "over": 3.31,
-      "under": 1.34
-     },
-     "4.5": {
-      "over": 3.94,
-      "under": 1.24
-     },
-     "5.0": {
-      "over": 6.62,
-      "under": 1.09
-     },
-     "5.5": {
-      "over": 7.27,
-      "under": 1.07
-     },
-     "6.5": {
-      "over": 8.55,
-      "under": 1.04
-     },
-     "7.5": {
-      "over": 9.8,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.28,
-      "under": 3.29
-     },
-     "1.25": {
-      "over": 1.84,
+      "over": 1.76,
       "under": 2.0
      },
-     "1.75": {
-      "over": 2.57,
-      "under": 1.47
-     },
-     "2.25": {
-      "over": 4.05,
-      "under": 1.19
-     },
-     "2.75": {
-      "over": 1.63,
-      "under": 2.26
-     },
-     "3.25": {
-      "over": 2.08,
-      "under": 1.82
-     },
-     "3.75": {
-      "over": 2.65,
-      "under": 1.48
-     },
-     "4.25": {
-      "over": 3.55,
-      "under": 1.27
-     },
-     "4.75": {
-      "over": 4.82,
-      "under": 1.15
-     },
-     "5.25": {
-      "over": 6.85,
-      "under": 1.07
-     },
-     "0.5": {
-      "over": 1.23,
-      "under": 3.96
-     }
-    }
-   }
-  },
-  "s9-99.767878669": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Bryan Linssen",
-   "away": "AC Omonia",
-   "markets": {
-    "1x2": {
-     "1": 6.25,
-     "X": 2.84,
-     "2": 1.67
-    },
-    "doubleChance": {
-     "1X": 1.93,
-     "12": 1.3,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.26,
-      "under": 3.33
-     },
-     "1.5": {
-      "over": 1.84,
-      "under": 1.82
-     },
      "2.0": {
-      "over": 2.9,
-      "under": 1.34
-     },
-     "2.5": {
-      "over": 3.94,
-      "under": 1.19
-     }
-    }
-   }
-  },
-  "s9-99.767870491": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Danylo Sikan",
-   "away": "FC Salzburg",
-   "markets": {
-    "1x2": {
-     "1": 6.36,
-     "X": 2.84,
-     "2": 1.66
-    },
-    "doubleChance": {
-     "1X": 1.94,
-     "12": 1.3,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.27,
-      "under": 3.3
-     },
-     "1.5": {
-      "over": 1.85,
-      "under": 1.81
-     },
-     "2.0": {
-      "over": 2.93,
+      "over": 3.06,
       "under": 1.33
      },
      "2.5": {
-      "over": 3.97,
-      "under": 1.19
+      "over": 4.46,
+      "under": 1.17
+     },
+     "3.5": {
+      "over": 9.07,
+      "under": 1.03
+     },
+     "1.75": {
+      "over": 2.06,
+      "under": 1.68
+     },
+     "2.25": {
+      "over": 3.96,
+      "under": 1.25
+     },
+     "0.5": {
+      "over": 4.52,
+      "under": 1.17
      }
     }
    }
   },
-  "s9-99.765258493": {
+  "s9-99.768300886": {
+   "time": "2026-11-05T17:30:00+00:00",
+   "league": "Greece. Regional Cup",
+   "home": "Lido",
+   "away": "Agia Varvara",
+   "markets": {
+    "1x2": {
+     "1": 4.12,
+     "X": 1.7,
+     "2": 3.99
+    },
+    "doubleChance": {
+     "1X": 1.21,
+     "12": 2.04,
+     "X2": 1.2
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.95,
+      "under": 1.79
+     },
+     "1.5": {
+      "over": 5.0,
+      "under": 1.14
+     }
+    }
+   }
+  },
+  "s9-99.768303787": {
    "time": "2026-11-05T17:45:00+00:00",
    "league": "UEFA Conference League",
    "home": "Lincoln Red Imps",
    "away": "Hajduk Split",
    "markets": {
     "1x2": {
-     "1": 11.3,
-     "X": 5.85,
-     "2": 1.29
+     "1": 10.2,
+     "X": 2.43,
+     "2": 1.84
     },
     "doubleChance": {
-     "1X": 3.78,
-     "12": 1.15,
-     "X2": 1.04
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 10.1
-     },
-     "1.5": {
-      "over": 1.17,
-      "under": 4.7
-     },
-     "2.0": {
-      "over": 1.27,
-      "under": 3.71
-     },
-     "2.5": {
-      "over": 1.63,
-      "under": 2.36
-     },
-     "3.0": {
-      "over": 1.97,
-      "under": 1.84
-     },
-     "3.5": {
-      "over": 2.48,
-      "under": 1.52
-     },
-     "4.0": {
-      "over": 3.63,
-      "under": 1.26
-     },
-     "4.5": {
-      "over": 4.34,
-      "under": 1.19
-     },
-     "5.0": {
-      "over": 7.6,
-      "under": 1.06
-     },
-     "5.5": {
-      "over": 8.25,
-      "under": 1.04
-     },
-     "6.5": {
-      "over": 9.7,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.35,
-      "under": 2.93
-     },
-     "1.25": {
-      "over": 1.89,
-      "under": 1.79
-     },
-     "1.75": {
-      "over": 2.74,
-      "under": 1.36
-     },
-     "2.25": {
-      "over": 4.4,
-      "under": 1.14
-     },
-     "2.75": {
-      "over": 1.77,
-      "under": 2.12
-     },
-     "3.25": {
-      "over": 2.22,
-      "under": 1.65
-     },
-     "3.75": {
-      "over": 2.88,
-      "under": 1.39
-     },
-     "4.25": {
-      "over": 3.98,
-      "under": 1.21
-     },
-     "4.75": {
-      "over": 5.39,
-      "under": 1.11
-     },
-     "0.5": {
-      "over": 1.25,
-      "under": 3.46
-     }
-    }
-   }
-  },
-  "s9-99.767872235": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Lillestrom",
-   "away": "Matej Vydra",
-   "markets": {
-    "1x2": {
-     "1": 1.4,
-     "X": 3.48,
-     "2": 9.35
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.2,
-     "X2": 2.49
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.6,
-      "under": 2.14
-     },
-     "2.0": {
-      "over": 2.21,
-      "under": 1.56
-     },
-     "2.5": {
-      "over": 3.03,
-      "under": 1.31
-     }
-    }
-   }
-  },
-  "s9-99.765261586": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Conference League",
-   "home": "Atalanta",
-   "away": "Kairat",
-   "markets": {
-    "1x2": {
-     "1": 1.13,
-     "X": 10.2,
-     "2": 17.5
-    },
-    "doubleChance": {
-     "1X": 1.01,
-     "12": 1.06,
-     "X2": 6.25
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.05,
-      "under": 7.85
-     },
-     "2.0": {
-      "over": 1.08,
-      "under": 6.94
-     },
-     "2.5": {
-      "over": 1.28,
-      "under": 3.55
-     },
-     "3.0": {
-      "over": 1.4,
-      "under": 2.95
-     },
-     "3.5": {
-      "over": 1.75,
-      "under": 2.15
-     },
-     "4.0": {
-      "over": 2.12,
-      "under": 1.73
-     },
-     "4.5": {
-      "over": 2.57,
-      "under": 1.49
-     },
-     "5.0": {
-      "over": 3.63,
-      "under": 1.27
-     },
-     "5.5": {
-      "over": 4.28,
-      "under": 1.2
-     },
-     "6.0": {
-      "over": 6.84,
-      "under": 1.08
-     },
-     "6.5": {
-      "over": 7.75,
-      "under": 1.05
-     },
-     "7.5": {
-      "over": 8.35,
-      "under": 1.04
-     },
-     "8.5": {
-      "over": 9.65,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.14,
-      "under": 4.6
-     },
-     "1.25": {
-      "over": 1.49,
-      "under": 2.39
-     },
-     "1.75": {
-      "over": 2.02,
-      "under": 1.72
-     },
-     "2.25": {
-      "over": 2.88,
-      "under": 1.34
-     },
-     "2.75": {
-      "over": 1.31,
-      "under": 3.25
-     },
-     "3.25": {
-      "over": 1.56,
-      "under": 2.4
-     },
-     "3.75": {
-      "over": 1.92,
-      "under": 1.94
-     },
-     "4.25": {
-      "over": 2.33,
-      "under": 1.58
-     },
-     "4.75": {
-      "over": 2.96,
-      "under": 1.36
-     },
-     "5.25": {
-      "over": 3.91,
-      "under": 1.21
-     },
-     "0.5": {
-      "over": 1.09,
-      "under": 5.4
-     },
-     "1.0": {
-      "over": 1.22,
-      "under": 3.72
-     }
-    }
-   }
-  },
-  "s9-99.767874081": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Omari Giraud-Hutchinson",
-   "away": "Ferencvarosi",
-   "markets": {
-    "1x2": {
-     "1": 5.74,
-     "X": 2.22,
-     "2": 2.06
-    },
-    "doubleChance": {
-     "1X": 1.58,
-     "12": 1.48,
-     "X2": 10.0
+     "1X": 1.95,
+     "12": 1.56,
+     "X2": 1.06
     },
     "totals": {
      "0.5": {
-      "over": 1.29,
-      "under": 3.05
+      "over": 1.46,
+      "under": 2.75
      },
      "1.0": {
-      "over": 1.7,
-      "under": 1.98
+      "over": 1.94,
+      "under": 1.88
      },
      "1.5": {
-      "over": 2.67,
-      "under": 1.39
-     }
-    }
-   }
-  },
-  "s9-99.767882594": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "AC Sparta Prague",
-   "away": "Justin Kluivert",
-   "markets": {
-    "1x2": {
-     "1": 1.84,
-     "X": 2.5,
-     "2": 6.02
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.38,
-     "X2": 1.74
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.19,
-      "under": 3.73
-     },
-     "1.0": {
-      "over": 1.45,
-      "under": 2.49
-     },
-     "1.5": {
-      "over": 2.21,
-      "under": 1.56
-     }
-    }
-   }
-  },
-  "s9-99.767872642": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Lillestrom",
-   "away": "Mohamed Toure",
-   "markets": {
-    "1x2": {
-     "1": 1.38,
-     "X": 3.5,
-     "2": 10.1
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.19,
-     "X2": 2.55
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.62,
-      "under": 2.1
-     },
-     "2.0": {
-      "over": 2.27,
-      "under": 1.53
-     },
-     "2.5": {
-      "over": 3.11,
-      "under": 1.3
-     }
-    }
-   }
-  },
-  "s9-99.767882586": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Mikel Oyarzabal",
-   "away": "Lyon",
-   "markets": {
-    "1x2": {
-     "1": 5.67,
-     "X": 2.98,
-     "2": 1.67
-    },
-    "doubleChance": {
-     "1X": 1.93,
-     "12": 1.27,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.68,
-      "under": 2.01
-     },
-     "2.0": {
-      "over": 2.44,
-      "under": 1.46
-     },
-     "2.5": {
-      "over": 3.34,
-      "under": 1.26
-     }
-    }
-   }
-  },
-  "s9-99.767878670": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Kaj Sierhuis",
-   "away": "AC Omonia",
-   "markets": {
-    "1x2": {
-     "1": 6.54,
-     "X": 2.84,
-     "2": 1.65
-    },
-    "doubleChance": {
-     "1X": 1.96,
-     "12": 1.3,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.27,
-      "under": 3.25
-     },
-     "1.5": {
-      "over": 1.86,
-      "under": 1.8
-     },
-     "2.0": {
-      "over": 2.97,
-      "under": 1.32
-     }
-    }
-   }
-  },
-  "s9-99.765258490": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Conference League",
-   "home": "Mjallby",
-   "away": "Borac Banja Luka",
-   "markets": {
-    "1x2": {
-     "1": 2.38,
-     "X": 3.37,
-     "2": 3.13
-    },
-    "doubleChance": {
-     "1X": 1.38,
-     "12": 1.34,
-     "X2": 1.61
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.03,
-      "under": 8.45
-     },
-     "1.0": {
-      "over": 1.06,
-      "under": 7.38
-     },
-     "1.5": {
-      "over": 1.3,
-      "under": 3.31
-     },
-     "2.0": {
-      "over": 1.48,
-      "under": 2.63
-     },
-     "2.5": {
-      "over": 1.97,
-      "under": 1.89
-     },
-     "3.0": {
-      "over": 2.61,
-      "under": 1.5
-     },
-     "3.5": {
-      "over": 3.21,
-      "under": 1.33
-     },
-     "4.0": {
-      "over": 5.27,
-      "under": 1.14
-     },
-     "4.5": {
-      "over": 5.92,
-      "under": 1.11
-     },
-     "5.0": {
-      "over": 8.5,
-      "under": 1.04
-     },
-     "5.5": {
-      "over": 9.75,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.52,
-      "under": 2.35
-     },
-     "1.25": {
-      "over": 2.23,
-      "under": 1.56
-     },
-     "1.75": {
-      "over": 3.25,
-      "under": 1.26
-     },
-     "2.25": {
-      "over": 5.35,
-      "under": 1.09
-     },
-     "2.75": {
-      "over": 2.23,
-      "under": 1.7
-     },
-     "3.25": {
-      "over": 2.9,
+      "over": 3.01,
       "under": 1.4
      },
-     "3.75": {
-      "over": 3.89,
-      "under": 1.22
-     },
-     "4.25": {
-      "over": 5.55,
-      "under": 1.11
-     }
-    }
-   }
-  },
-  "s9-99.767874082": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Adrien Rabiot",
-   "away": "Ferencvarosi",
-   "markets": {
-    "1x2": {
-     "1": 6.01,
-     "X": 2.21,
-     "2": 2.03
-    },
-    "doubleChance": {
-     "1X": 1.6,
-     "12": 1.49,
-     "X2": 10.0
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.3,
-      "under": 3.0
-     },
-     "1.0": {
-      "over": 1.73,
-      "under": 1.94
-     },
-     "1.5": {
-      "over": 2.71,
-      "under": 1.38
-     }
-    }
-   }
-  },
-  "s9-99.764296547": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League",
-   "home": "Real Sociedad",
-   "away": "Lyon",
-   "markets": {
-    "1x2": {
-     "1": 1.7,
-     "X": 4.37,
-     "2": 4.95
-    },
-    "doubleChance": {
-     "1X": 1.21,
-     "12": 1.25,
-     "X2": 2.29
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 9.95
-     },
-     "1.5": {
-      "over": 1.14,
-      "under": 5.04
-     },
      "2.0": {
-      "over": 1.2,
-      "under": 4.26
-     },
-     "2.5": {
-      "over": 1.5,
-      "under": 2.57
-     },
-     "3.0": {
-      "over": 1.79,
-      "under": 2.07
-     },
-     "3.5": {
-      "over": 2.3,
-      "under": 1.71
-     },
-     "4.0": {
-      "over": 3.09,
-      "under": 1.39
-     },
-     "4.5": {
-      "over": 3.7,
-      "under": 1.27
-     },
-     "5.0": {
-      "over": 5.82,
+      "over": 6.3,
       "under": 1.12
      },
-     "5.5": {
-      "over": 6.3,
+     "2.5": {
+      "over": 7.24,
       "under": 1.1
      },
-     "6.5": {
-      "over": 8.65,
-      "under": 1.04
-     },
-     "7.5": {
-      "over": 9.85,
+     "3.5": {
+      "over": 15.0,
       "under": 1.02
      },
      "0.75": {
-      "over": 1.29,
-      "under": 3.23
+      "over": 1.6,
+      "under": 2.38
      },
      "1.25": {
-      "over": 1.79,
-      "under": 1.96
+      "over": 2.42,
+      "under": 1.58
      },
      "1.75": {
-      "over": 2.6,
-      "under": 1.52
+      "over": 3.73,
+      "under": 1.27
      },
      "2.25": {
-      "over": 3.85,
-      "under": 1.21
+      "over": 11.4,
+      "under": 1.03
+     }
+    }
+   }
+  },
+  "s9-99.768300915": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Europa League",
+   "home": "Lillestrom",
+   "away": "Viktoria Plzen",
+   "markets": {
+    "1x2": {
+     "1": 15.1,
+     "X": 5.12,
+     "2": 1.28
+    },
+    "doubleChance": {
+     "1X": 3.71,
+     "12": 1.17,
+     "X2": 1.02
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.43,
+      "under": 2.83
      },
-     "2.75": {
+     "2.0": {
+      "over": 1.98,
+      "under": 1.89
+     },
+     "2.5": {
+      "over": 2.95,
+      "under": 1.4
+     },
+     "3.0": {
+      "over": 5.96,
+      "under": 1.13
+     },
+     "3.5": {
+      "over": 7.41,
+      "under": 1.09
+     },
+     "4.5": {
+      "over": 14.7,
+      "under": 1.02
+     },
+     "1.75": {
       "over": 1.61,
       "under": 2.32
      },
-     "3.25": {
-      "over": 2.06,
-      "under": 1.87
-     },
-     "3.75": {
-      "over": 2.54,
+     "2.25": {
+      "over": 2.52,
       "under": 1.53
      },
-     "4.25": {
-      "over": 3.37,
-      "under": 1.3
+     "2.75": {
+      "over": 3.67,
+      "under": 1.28
      },
-     "4.75": {
-      "over": 4.39,
-      "under": 1.18
+     "3.25": {
+      "over": 6.74,
+      "under": 1.1
      },
-     "5.25": {
-      "over": 5.99,
+     "0.5": {
+      "over": 2.46,
+      "under": 1.55
+     },
+     "1.0": {
+      "over": 6.26,
+      "under": 1.12
+     },
+     "0.75": {
+      "over": 3.14,
+      "under": 1.37
+     },
+     "1.25": {
+      "over": 7.62,
       "under": 1.09
-     },
-     "0.5": {
-      "over": 1.24,
-      "under": 3.86
      }
     }
    }
   },
-  "s9-99.767901067": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Lillestrom",
-   "away": "Salim Fago Lawal",
-   "markets": {
-    "1x2": {
-     "1": 1.38,
-     "X": 3.49,
-     "2": 9.95
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.19,
-     "X2": 2.53
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.61,
-      "under": 2.11
-     },
-     "2.0": {
-      "over": 2.25,
-      "under": 1.54
-     },
-     "2.5": {
-      "over": 3.08,
-      "under": 1.3
-     }
-    }
-   }
-  },
-  "s9-99.767882590": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "AC Sparta Prague",
-   "away": "Francisco Evanilson de Lima Barbosa",
-   "markets": {
-    "1x2": {
-     "1": 1.94,
-     "X": 2.54,
-     "2": 5.01
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.37,
-     "X2": 1.66
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.37,
-      "under": 2.75
-     },
-     "1.5": {
-      "over": 2.06,
-      "under": 1.65
-     },
-     "2.0": {
-      "over": 3.58,
-      "under": 1.23
-     }
-    }
-   }
-  },
-  "s9-99.767882592": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "AC Sparta Prague",
-   "away": "Alvaro Daniel Rodriguez Munoz",
-   "markets": {
-    "1x2": {
-     "1": 1.88,
-     "X": 2.51,
-     "2": 5.58
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.38,
-     "X2": 1.71
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.18,
-      "under": 3.86
-     },
-     "1.0": {
-      "over": 1.42,
-      "under": 2.59
-     },
-     "1.5": {
-      "over": 2.15,
-      "under": 1.59
-     },
-     "2.0": {
-      "over": 3.86,
-      "under": 1.2
-     }
-    }
-   }
-  },
-  "s9-99.765257422": {
+  "s9-99.768303784": {
    "time": "2026-11-05T17:45:00+00:00",
    "league": "UEFA Conference League",
    "home": "Crvena Zvezda",
    "away": "Inter Club d'Escaldes",
    "markets": {
     "1x2": {
-     "1": 1.02,
-     "X": 23.0,
-     "2": 50.0
+     "1": 1.35,
+     "X": 4.02,
+     "2": 16.0
     },
     "doubleChance": {
-     "1X": 1.01,
-     "12": 1.18,
-     "X2": 3.28
+     "1X": 1.02,
+     "12": 1.25,
+     "X2": 3.18
     },
     "totals": {
-     "1.5": {
-      "over": 1.03,
-      "under": 9.0
-     },
-     "2.0": {
-      "over": 1.05,
-      "under": 8.0
-     },
-     "2.5": {
-      "over": 1.22,
-      "under": 4.02
-     },
-     "3.0": {
-      "over": 1.33,
-      "under": 3.34
-     },
-     "3.5": {
-      "over": 1.64,
-      "under": 2.34
-     },
-     "4.0": {
-      "over": 1.93,
-      "under": 1.88
-     },
-     "4.5": {
-      "over": 2.34,
-      "under": 1.59
-     },
-     "5.0": {
-      "over": 3.2,
-      "under": 1.33
-     },
-     "5.5": {
-      "over": 3.7,
-      "under": 1.25
-     },
-     "6.0": {
-      "over": 5.91,
-      "under": 1.11
-     },
-     "6.5": {
-      "over": 7.75,
-      "under": 1.05
-     },
-     "7.5": {
-      "over": 8.35,
-      "under": 1.04
-     },
-     "8.5": {
-      "over": 9.65,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.13,
-      "under": 4.75
-     },
-     "1.25": {
-      "over": 1.47,
-      "under": 2.53
-     },
-     "1.75": {
-      "over": 1.93,
-      "under": 1.75
-     },
-     "2.25": {
-      "over": 2.75,
-      "under": 1.37
-     },
-     "2.75": {
-      "over": 1.26,
-      "under": 3.62
-     },
-     "3.25": {
-      "over": 1.47,
-      "under": 2.66
-     },
-     "3.75": {
-      "over": 1.77,
-      "under": 2.12
-     },
-     "4.25": {
-      "over": 2.12,
-      "under": 1.7
-     },
-     "4.75": {
-      "over": 2.63,
-      "under": 1.44
-     },
-     "5.25": {
-      "over": 3.4,
-      "under": 1.26
-     },
-     "0.5": {
-      "over": 1.09,
-      "under": 5.55
-     },
-     "1.0": {
-      "over": 1.21,
-      "under": 3.82
-     }
-    }
-   }
-  },
-  "s9-99.767882587": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Orri Steinn Oskarsson",
-   "away": "Lyon",
-   "markets": {
-    "1x2": {
-     "1": 6.37,
-     "X": 2.98,
-     "2": 1.62
-    },
-    "doubleChance": {
-     "1X": 2.01,
-     "12": 1.27,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.21,
-      "under": 3.73
-     },
-     "1.5": {
-      "over": 1.74,
-      "under": 1.93
-     },
-     "2.0": {
-      "over": 2.6,
-      "under": 1.41
-     },
-     "2.5": {
-      "over": 3.55,
-      "under": 1.23
-     }
-    }
-   }
-  },
-  "s9-99.767872234": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Lillestrom",
-   "away": "Christophe Kabongo",
-   "markets": {
-    "1x2": {
-     "1": 1.41,
-     "X": 3.46,
-     "2": 8.9
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.2,
-     "X2": 2.45
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.58,
-      "under": 2.17
-     },
-     "2.0": {
-      "over": 2.17,
-      "under": 1.58
-     },
-     "2.5": {
-      "over": 2.98,
-      "under": 1.32
-     }
-    }
-   }
-  },
-  "s9-99.765258487": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Conference League",
-   "home": "Midtjylland",
-   "away": "Ajax",
-   "markets": {
-    "1x2": {
-     "1": 2.94,
-     "X": 3.94,
-     "2": 2.26
-    },
-    "doubleChance": {
-     "1X": 1.67,
-     "12": 1.27,
-     "X2": 1.43
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 9.8
-     },
-     "1.5": {
-      "over": 1.1,
-      "under": 6.05
-     },
-     "2.0": {
-      "over": 1.15,
-      "under": 5.05
-     },
-     "2.5": {
-      "over": 1.42,
-      "under": 2.8
-     },
-     "3.0": {
-      "over": 1.64,
-      "under": 2.26
-     },
-     "3.5": {
-      "over": 2.1,
-      "under": 1.79
-     },
-     "4.0": {
-      "over": 2.78,
-      "under": 1.44
-     },
-     "4.5": {
-      "over": 3.34,
-      "under": 1.31
-     },
-     "5.0": {
-      "over": 5.37,
-      "under": 1.13
-     },
-     "5.5": {
-      "over": 6.02,
-      "under": 1.1
-     },
-     "6.5": {
-      "over": 8.5,
-      "under": 1.04
-     },
-     "7.5": {
-      "over": 9.75,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.25,
-      "under": 3.4
-     },
-     "1.25": {
-      "over": 1.71,
-      "under": 2.03
-     },
-     "1.75": {
-      "over": 2.34,
-      "under": 1.51
-     },
-     "2.25": {
-      "over": 3.64,
-      "under": 1.22
-     },
-     "2.75": {
-      "over": 1.51,
-      "under": 2.52
-     },
-     "3.25": {
-      "over": 1.89,
-      "under": 1.97
-     },
-     "3.75": {
-      "over": 2.33,
-      "under": 1.59
-     },
-     "4.25": {
-      "over": 3.02,
-      "under": 1.36
-     },
-     "4.75": {
-      "over": 4.02,
-      "under": 1.21
-     },
-     "5.25": {
-      "over": 5.6,
-      "under": 1.1
-     },
      "0.5": {
       "over": 1.16,
-      "under": 4.15
-     }
-    }
-   }
-  },
-  "s9-99.764296544": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League",
-   "home": "Crystal Palace",
-   "away": "TSG 1899 Hoffenheim",
-   "markets": {
-    "1x2": {
-     "1": 1.92,
-     "X": 4.14,
-     "2": 3.88
-    },
-    "doubleChance": {
-     "1X": 1.3,
-     "12": 1.27,
-     "X2": 1.98
-    },
-    "totals": {
+      "under": 5.5
+     },
      "1.0": {
-      "over": 1.02,
-      "under": 9.95
-     },
-     "1.5": {
-      "over": 1.13,
-      "under": 5.27
-     },
-     "2.0": {
-      "over": 1.19,
-      "under": 4.42
-     },
-     "2.5": {
-      "over": 1.5,
-      "under": 2.58
-     },
-     "3.0": {
-      "over": 1.78,
-      "under": 2.08
-     },
-     "3.5": {
-      "over": 2.29,
-      "under": 1.71
-     },
-     "4.0": {
-      "over": 3.16,
-      "under": 1.38
-     },
-     "4.5": {
-      "over": 3.7,
-      "under": 1.28
-     },
-     "5.0": {
-      "over": 6.03,
-      "under": 1.11
-     },
-     "5.5": {
-      "over": 6.62,
-      "under": 1.09
-     },
-     "6.5": {
-      "over": 8.65,
-      "under": 1.04
-     },
-     "7.5": {
-      "over": 9.85,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.28,
-      "under": 3.29
-     },
-     "1.25": {
-      "over": 1.79,
-      "under": 1.96
-     },
-     "1.75": {
-      "over": 2.57,
-      "under": 1.53
-     },
-     "2.25": {
-      "over": 3.85,
-      "under": 1.21
-     },
-     "2.75": {
-      "over": 1.61,
-      "under": 2.33
-     },
-     "3.25": {
-      "over": 2.05,
-      "under": 1.88
-     },
-     "3.75": {
-      "over": 2.55,
-      "under": 1.53
-     },
-     "4.25": {
-      "over": 3.34,
-      "under": 1.31
-     },
-     "4.75": {
-      "over": 4.47,
-      "under": 1.17
-     },
-     "5.25": {
-      "over": 6.24,
-      "under": 1.08
-     },
-     "0.5": {
-      "over": 1.23,
-      "under": 3.96
-     }
-    }
-   }
-  },
-  "s9-99.767870125": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Tawfik Bentayeb",
-   "away": "FC Salzburg",
-   "markets": {
-    "1x2": {
-     "1": 5.52,
-     "X": 2.85,
-     "2": 1.73
-    },
-    "doubleChance": {
-     "1X": 1.86,
-     "12": 1.29,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.23,
-      "under": 3.59
-     },
-     "1.5": {
-      "over": 1.77,
-      "under": 1.89
-     },
-     "2.0": {
-      "over": 2.7,
-      "under": 1.38
-     },
-     "2.5": {
-      "over": 3.68,
-      "under": 1.22
-     }
-    }
-   }
-  },
-  "s9-99.767870124": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Adriano Bertaccini",
-   "away": "FC Salzburg",
-   "markets": {
-    "1x2": {
-     "1": 5.34,
-     "X": 2.85,
-     "2": 1.75
-    },
-    "doubleChance": {
-     "1X": 1.84,
-     "12": 1.29,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.22,
-      "under": 3.66
+      "over": 1.25,
+      "under": 3.98
      },
      "1.5": {
       "over": 1.75,
-      "under": 1.91
+      "under": 2.1
      },
      "2.0": {
-      "over": 2.65,
-      "under": 1.4
+      "over": 2.42,
+      "under": 1.58
      },
      "2.5": {
-      "over": 3.61,
-      "under": 1.22
-     }
-    }
-   }
-  },
-  "s9-99.765273198": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Conference League",
-   "home": "Trabzonspor",
-   "away": "Freiburg",
-   "markets": {
-    "1x2": {
-     "1": 2.49,
-     "X": 3.58,
-     "2": 2.81
-    },
-    "doubleChance": {
-     "1X": 1.46,
-     "12": 1.31,
-     "X2": 1.56
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 10.1
-     },
-     "1.5": {
-      "over": 1.18,
-      "under": 4.47
-     },
-     "2.0": {
-      "over": 1.29,
-      "under": 3.58
-     },
-     "2.5": {
-      "over": 1.67,
-      "under": 2.3
+      "over": 3.18,
+      "under": 1.37
      },
      "3.0": {
-      "over": 2.01,
-      "under": 1.81
+      "over": 5.93,
+      "under": 1.13
      },
      "3.5": {
-      "over": 2.5,
-      "under": 1.51
-     },
-     "4.0": {
-      "over": 3.67,
-      "under": 1.26
+      "over": 6.8,
+      "under": 1.11
      },
      "4.5": {
-      "over": 4.34,
-      "under": 1.19
-     },
-     "5.0": {
-      "over": 7.3,
-      "under": 1.07
-     },
-     "5.5": {
-      "over": 7.95,
-      "under": 1.05
-     },
-     "6.5": {
-      "over": 9.7,
-      "under": 1.02
+      "over": 13.1,
+      "under": 1.03
      },
      "0.75": {
-      "over": 1.37,
-      "under": 2.79
+      "over": 1.19,
+      "under": 4.74
      },
      "1.25": {
-      "over": 1.91,
-      "under": 1.75
+      "over": 1.5,
+      "under": 2.64
      },
      "1.75": {
-      "over": 2.76,
-      "under": 1.36
+      "over": 1.96,
+      "under": 1.86
      },
      "2.25": {
-      "over": 4.4,
-      "under": 1.14
+      "over": 2.8,
+      "under": 1.45
      },
      "2.75": {
-      "over": 1.77,
-      "under": 2.02
+      "over": 3.93,
+      "under": 1.25
      },
      "3.25": {
-      "over": 2.29,
-      "under": 1.67
-     },
-     "3.75": {
-      "over": 2.93,
-      "under": 1.4
-     },
-     "4.25": {
-      "over": 4.03,
-      "under": 1.22
-     },
-     "4.75": {
-      "over": 5.37,
-      "under": 1.12
-     },
-     "5.25": {
-      "over": 7.6,
-      "under": 1.05
-     },
-     "0.5": {
-      "over": 1.27,
-      "under": 3.32
+      "over": 6.5,
+      "under": 1.11
      }
     }
    }
   },
-  "s9-99.767871369": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Jean-Philippe Mateta",
-   "away": "TSG 1899 Hoffenheim",
-   "markets": {
-    "1x2": {
-     "1": 4.95,
-     "X": 3.1,
-     "2": 1.71
-    },
-    "doubleChance": {
-     "1X": 1.88,
-     "12": 1.25,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.53,
-      "under": 2.27
-     },
-     "2.0": {
-      "over": 2.07,
-      "under": 1.64
-     },
-     "2.5": {
-      "over": 2.85,
-      "under": 1.35
-     }
-    }
-   }
-  },
-  "s9-99.767882589": {
-   "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Luka Sucic",
-   "away": "Lyon",
-   "markets": {
-    "1x2": {
-     "1": 8.9,
-     "X": 2.99,
-     "2": 1.51
-    },
-    "doubleChance": {
-     "1X": 2.2,
-     "12": 1.27,
-     "X2": 10.0
-    },
-    "totals": {
-     "1.0": {
-      "over": 1.28,
-      "under": 3.21
-     },
-     "1.5": {
-      "over": 1.88,
-      "under": 1.79
-     },
-     "2.0": {
-      "over": 3.01,
-      "under": 1.31
-     }
-    }
-   }
-  },
-  "s9-99.764297584": {
+  "s9-99.768300923": {
    "time": "2026-11-05T17:45:00+00:00",
    "league": "UEFA Europa League",
    "home": "Levski Sofia",
    "away": "Jagiellonia Bialystok",
    "markets": {
     "1x2": {
-     "1": 2.05,
-     "X": 3.35,
-     "2": 4.11
+     "1": 2.84,
+     "X": 2.17,
+     "2": 4.39
     },
     "doubleChance": {
-     "1X": 1.26,
-     "12": 1.36,
-     "X2": 1.83
+     "1X": 1.21,
+     "12": 1.69,
+     "X2": 1.43
     },
     "totals": {
      "0.5": {
-      "over": 1.05,
-      "under": 7.44
+      "over": 1.49,
+      "under": 2.63
      },
      "1.0": {
-      "over": 1.09,
-      "under": 6.24
+      "over": 2.23,
+      "under": 1.7
      },
      "1.5": {
-      "over": 1.39,
-      "under": 2.86
-     },
-     "2.0": {
-      "over": 1.68,
-      "under": 2.18
-     },
-     "2.5": {
-      "over": 2.29,
-      "under": 1.68
-     },
-     "3.0": {
-      "over": 3.33,
+      "over": 3.3,
       "under": 1.34
      },
-     "3.5": {
-      "over": 4.07,
-      "under": 1.23
+     "2.0": {
+      "over": 7.49,
+      "under": 1.09
      },
-     "4.0": {
-      "over": 7.32,
+     "2.5": {
+      "over": 8.41,
       "under": 1.07
      },
-     "4.5": {
-      "over": 8.0,
-      "under": 1.05
-     },
-     "5.5": {
-      "over": 9.85,
+     "3.5": {
+      "over": 14.6,
       "under": 1.02
      },
      "0.75": {
-      "over": 1.68,
-      "under": 2.11
+      "over": 1.72,
+      "under": 2.21
      },
      "1.25": {
-      "over": 2.64,
-      "under": 1.43
+      "over": 2.7,
+      "under": 1.46
      },
      "1.75": {
-      "over": 4.22,
-      "under": 1.18
+      "over": 4.17,
+      "under": 1.23
      },
      "2.25": {
-      "over": 7.7,
-      "under": 1.04
-     },
-     "2.75": {
-      "over": 2.63,
-      "under": 1.49
-     },
-     "3.25": {
-      "over": 3.66,
-      "under": 1.26
-     },
-     "3.75": {
-      "over": 5.08,
-      "under": 1.14
-     },
-     "4.25": {
-      "over": 7.5,
-      "under": 1.05
+      "over": 8.36,
+      "under": 1.07
      }
     }
    }
   },
-  "s9-99.767871370": {
+  "s9-99.768301094": {
    "time": "2026-11-05T17:45:00+00:00",
-   "league": "UEFA Europa League. Team vs Player",
-   "home": "Edward Nketiah",
+   "league": "UEFA Europa League",
+   "home": "Crystal Palace",
    "away": "TSG 1899 Hoffenheim",
    "markets": {
     "1x2": {
-     "1": 5.61,
-     "X": 3.1,
-     "2": 1.64
+     "1": 2.13,
+     "X": 2.49,
+     "2": 4.91
+    }
+   }
+  },
+  "s9-99.768300912": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Europa League",
+   "home": "Real Sociedad",
+   "away": "Lyon",
+   "markets": {
+    "1x2": {
+     "1": 2.54,
+     "X": 2.46,
+     "2": 4.15
     },
     "doubleChance": {
-     "1X": 1.97,
-     "12": 1.25,
-     "X2": 10.0
+     "1X": 1.23,
+     "12": 1.54,
+     "X2": 1.52
     },
     "totals": {
+     "2.5": {
+      "over": 1.29,
+      "under": 3.62
+     },
+     "3.0": {
+      "over": 1.62,
+      "under": 2.39
+     },
+     "3.5": {
+      "over": 2.36,
+      "under": 1.59
+     },
+     "4.0": {
+      "over": 4.06,
+      "under": 1.24
+     },
+     "4.5": {
+      "over": 5.31,
+      "under": 1.16
+     },
+     "5.5": {
+      "over": 11.5,
+      "under": 1.03
+     },
+     "2.75": {
+      "over": 1.4,
+      "under": 2.96
+     },
+     "3.25": {
+      "over": 1.99,
+      "under": 1.88
+     },
+     "3.75": {
+      "over": 2.95,
+      "under": 1.4
+     },
+     "4.25": {
+      "over": 4.65,
+      "under": 1.19
+     },
+     "4.75": {
+      "over": 7.47,
+      "under": 1.09
+     },
      "1.5": {
-      "over": 1.59,
-      "under": 2.15
+      "over": 2.18,
+      "under": 1.69
      },
      "2.0": {
-      "over": 2.21,
-      "under": 1.56
+      "over": 5.55,
+      "under": 1.14
      },
-     "2.5": {
-      "over": 3.04,
+     "1.75": {
+      "over": 1.93,
+      "under": 1.88
+     },
+     "2.25": {
+      "over": 3.44,
       "under": 1.31
      }
     }
    }
   },
-  "s9-99.765273201": {
+  "s9-99.768300917": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Europa League",
+   "home": "AC Sparta Prague",
+   "away": "Bournemouth",
+   "markets": {
+    "1x2": {
+     "1": 13.2,
+     "X": 2.95,
+     "2": 1.6
+    },
+    "doubleChance": {
+     "1X": 2.32,
+     "12": 1.4,
+     "X2": 1.03
+    },
+    "totals": {
+     "2.5": {
+      "over": 1.25,
+      "under": 3.99
+     },
+     "3.0": {
+      "over": 1.52,
+      "under": 2.53
+     },
+     "3.5": {
+      "over": 2.26,
+      "under": 1.69
+     },
+     "4.0": {
+      "over": 3.82,
+      "under": 1.26
+     },
+     "4.5": {
+      "over": 4.82,
+      "under": 1.18
+     },
+     "5.5": {
+      "over": 10.4,
+      "under": 1.05
+     },
+     "2.75": {
+      "over": 1.35,
+      "under": 3.22
+     },
+     "3.25": {
+      "over": 1.87,
+      "under": 2.0
+     },
+     "3.75": {
+      "over": 2.72,
+      "under": 1.46
+     },
+     "4.25": {
+      "over": 4.39,
+      "under": 1.22
+     },
+     "4.75": {
+      "over": 6.99,
+      "under": 1.1
+     },
+     "1.5": {
+      "over": 1.34,
+      "under": 3.23
+     },
+     "2.0": {
+      "over": 1.77,
+      "under": 2.05
+     },
+     "1.75": {
+      "over": 1.52,
+      "under": 2.54
+     },
+     "2.25": {
+      "over": 2.19,
+      "under": 1.68
+     }
+    }
+   }
+  },
+  "s9-99.768303783": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Conference League",
+   "home": "Mjallby",
+   "away": "Borac Banja Luka",
+   "markets": {
+    "1x2": {
+     "1": 1.44,
+     "X": 3.85,
+     "2": 10.3
+    },
+    "doubleChance": {
+     "1X": 1.06,
+     "12": 1.26,
+     "X2": 2.77
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.45,
+      "under": 2.79
+     },
+     "2.0": {
+      "over": 1.95,
+      "under": 1.87
+     },
+     "2.5": {
+      "over": 3.01,
+      "under": 1.4
+     },
+     "3.0": {
+      "over": 6.11,
+      "under": 1.13
+     },
+     "3.5": {
+      "over": 7.62,
+      "under": 1.09
+     },
+     "4.5": {
+      "over": 15.2,
+      "under": 1.02
+     },
+     "1.75": {
+      "over": 1.55,
+      "under": 2.48
+     },
+     "2.25": {
+      "over": 2.4,
+      "under": 1.58
+     },
+     "2.75": {
+      "over": 3.58,
+      "under": 1.3
+     },
+     "3.25": {
+      "over": 6.87,
+      "under": 1.1
+     },
+     "0.5": {
+      "over": 2.0,
+      "under": 1.83
+     },
+     "1.0": {
+      "over": 4.31,
+      "under": 1.22
+     },
+     "0.75": {
+      "over": 2.48,
+      "under": 1.54
+     },
+     "1.25": {
+      "over": 5.33,
+      "under": 1.16
+     }
+    }
+   }
+  },
+  "s9-99.768301375": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Europa League",
+   "home": "Milan",
+   "away": "Ferencvarosi",
+   "markets": {
+    "1x2": {
+     "1": 4.14,
+     "X": 3.06,
+     "2": 2.11
+    },
+    "doubleChance": {
+     "1X": 1.73,
+     "12": 1.38,
+     "X2": 1.23
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.27,
+      "under": 3.72
+     },
+     "2.0": {
+      "over": 1.57,
+      "under": 2.5
+     },
+     "2.5": {
+      "over": 2.27,
+      "under": 1.64
+     },
+     "3.0": {
+      "over": 4.02,
+      "under": 1.25
+     },
+     "3.5": {
+      "over": 5.31,
+      "under": 1.16
+     },
+     "4.5": {
+      "over": 11.5,
+      "under": 1.03
+     },
+     "1.75": {
+      "over": 1.35,
+      "under": 3.22
+     },
+     "2.25": {
+      "over": 1.92,
+      "under": 1.94
+     },
+     "2.75": {
+      "over": 2.72,
+      "under": 1.46
+     },
+     "3.25": {
+      "over": 4.61,
+      "under": 1.2
+     },
+     "3.75": {
+      "over": 7.39,
+      "under": 1.09
+     },
+     "0.5": {
+      "over": 1.47,
+      "under": 2.7
+     },
+     "1.0": {
+      "over": 2.01,
+      "under": 1.81
+     },
+     "0.75": {
+      "over": 1.63,
+      "under": 2.27
+     },
+     "1.25": {
+      "over": 2.51,
+      "under": 1.53
+     }
+    }
+   }
+  },
+  "s9-99.768303785": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Conference League",
+   "home": "Atalanta",
+   "away": "Kairat",
+   "markets": {
+    "1x2": {
+     "1": 2.48,
+     "X": 2.91,
+     "2": 3.26
+    },
+    "doubleChance": {
+     "1X": 1.34,
+     "12": 1.41,
+     "X2": 1.54
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.2,
+      "under": 4.66
+     },
+     "2.0": {
+      "over": 1.34,
+      "under": 3.34
+     },
+     "2.5": {
+      "over": 1.9,
+      "under": 1.92
+     },
+     "3.0": {
+      "over": 3.05,
+      "under": 1.39
+     },
+     "3.5": {
+      "over": 3.78,
+      "under": 1.28
+     },
+     "4.5": {
+      "over": 8.24,
+      "under": 1.08
+     },
+     "5.5": {
+      "over": 15.8,
+      "under": 1.02
+     },
+     "1.75": {
+      "over": 1.24,
+      "under": 4.03
+     },
+     "2.25": {
+      "over": 1.59,
+      "under": 2.4
+     },
+     "2.75": {
+      "over": 2.17,
+      "under": 1.7
+     },
+     "3.25": {
+      "over": 3.18,
+      "under": 1.36
+     },
+     "3.75": {
+      "over": 4.82,
+      "under": 1.18
+     },
+     "0.5": {
+      "over": 1.25,
+      "under": 4.11
+     },
+     "1.0": {
+      "over": 1.48,
+      "under": 2.65
+     },
+     "0.75": {
+      "over": 1.34,
+      "under": 3.26
+     },
+     "1.25": {
+      "over": 1.78,
+      "under": 2.04
+     }
+    }
+   }
+  },
+  "s9-99.768301107": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Conference League",
+   "home": "Midtjylland",
+   "away": "Ajax",
+   "markets": {
+    "1x2": {
+     "1": 12.1,
+     "X": 4.08,
+     "2": 1.38
+    },
+    "doubleChance": {
+     "1X": 2.96,
+     "12": 1.24,
+     "X2": 1.05
+    },
+    "totals": {
+     "2.5": {
+      "over": 1.11,
+      "under": 6.91
+     },
+     "3.0": {
+      "over": 1.13,
+      "under": 5.92
+     },
+     "3.5": {
+      "over": 1.49,
+      "under": 2.66
+     },
+     "4.0": {
+      "over": 1.79,
+      "under": 2.05
+     },
+     "4.5": {
+      "over": 2.48,
+      "under": 1.55
+     },
+     "5.0": {
+      "over": 3.8,
+      "under": 1.26
+     },
+     "5.5": {
+      "over": 4.96,
+      "under": 1.18
+     },
+     "6.5": {
+      "over": 9.96,
+      "under": 1.06
+     },
+     "3.25": {
+      "over": 1.31,
+      "under": 3.44
+     },
+     "3.75": {
+      "over": 1.58,
+      "under": 2.42
+     },
+     "4.25": {
+      "over": 2.1,
+      "under": 1.75
+     },
+     "4.75": {
+      "over": 2.81,
+      "under": 1.44
+     },
+     "5.25": {
+      "over": 4.23,
+      "under": 1.23
+     },
+     "5.75": {
+      "over": 6.24,
+      "under": 1.12
+     },
+     "1.5": {
+      "over": 1.16,
+      "under": 5.37
+     },
+     "2.0": {
+      "over": 1.29,
+      "under": 3.64
+     },
+     "1.75": {
+      "over": 3.33,
+      "under": 1.33
+     },
+     "2.25": {
+      "over": 9.37,
+      "under": 1.06
+     },
+     "2.75": {
+      "over": 2.0,
+      "under": 1.82
+     }
+    }
+   }
+  },
+  "s9-99.768300895": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Europa League",
+   "home": "Anderlecht",
+   "away": "FC Salzburg",
+   "markets": {
+    "1x2": {
+     "1": 1.25,
+     "X": 5.44,
+     "2": 17.3
+    },
+    "doubleChance": {
+     "1X": 1.01,
+     "12": 1.15,
+     "X2": 4.01
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.35,
+      "under": 3.2
+     },
+     "2.0": {
+      "over": 1.77,
+      "under": 2.13
+     },
+     "2.5": {
+      "over": 2.59,
+      "under": 1.5
+     },
+     "3.0": {
+      "over": 5.03,
+      "under": 1.17
+     },
+     "3.5": {
+      "over": 6.55,
+      "under": 1.11
+     },
+     "4.5": {
+      "over": 13.0,
+      "under": 1.02
+     },
+     "1.75": {
+      "over": 1.49,
+      "under": 2.63
+     },
+     "2.25": {
+      "over": 2.17,
+      "under": 1.69
+     },
+     "2.75": {
+      "over": 3.22,
+      "under": 1.35
+     },
+     "3.25": {
+      "over": 5.71,
+      "under": 1.14
+     },
+     "0.5": {
+      "over": 2.31,
+      "under": 1.62
+     },
+     "1.0": {
+      "over": 5.89,
+      "under": 1.14
+     },
+     "0.75": {
+      "over": 2.95,
+      "under": 1.4
+     },
+     "1.25": {
+      "over": 7.16,
+      "under": 1.1
+     }
+    }
+   }
+  },
+  "s9-99.768301452": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Conference League",
+   "home": "Trabzonspor",
+   "away": "Freiburg",
+   "markets": {
+    "1x2": {
+     "1": 12.2,
+     "X": 4.35,
+     "2": 1.35
+    },
+    "doubleChance": {
+     "1X": 3.17,
+     "12": 1.22,
+     "X2": 1.03
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.45,
+      "under": 2.83
+     },
+     "2.0": {
+      "over": 2.08,
+      "under": 1.77
+     },
+     "2.5": {
+      "over": 3.37,
+      "under": 1.34
+     },
+     "3.0": {
+      "over": 6.92,
+      "under": 1.1
+     },
+     "3.5": {
+      "over": 8.24,
+      "under": 1.08
+     },
+     "4.5": {
+      "over": 15.8,
+      "under": 1.02
+     },
+     "1.75": {
+      "over": 1.61,
+      "under": 2.34
+     },
+     "2.25": {
+      "over": 2.54,
+      "under": 1.53
+     },
+     "2.75": {
+      "over": 3.87,
+      "under": 1.26
+     },
+     "3.25": {
+      "over": 7.73,
+      "under": 1.09
+     },
+     "0.5": {
+      "over": 2.17,
+      "under": 1.7
+     },
+     "1.0": {
+      "over": 5.5,
+      "under": 1.15
+     },
+     "0.75": {
+      "over": 2.76,
+      "under": 1.45
+     },
+     "1.25": {
+      "over": 6.69,
+      "under": 1.11
+     }
+    }
+   }
+  },
+  "s9-99.768300877": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Europa League",
+   "home": "N.E.C.",
+   "away": "AC Omonia",
+   "markets": {
+    "1x2": {
+     "1": 2.06,
+     "X": 2.57,
+     "2": 6.01
+    },
+    "doubleChance": {
+     "1X": 1.13,
+     "12": 1.5,
+     "X2": 1.76
+    },
+    "totals": {
+     "2.5": {
+      "over": 1.27,
+      "under": 3.72
+     },
+     "3.0": {
+      "over": 1.62,
+      "under": 2.39
+     },
+     "3.5": {
+      "over": 2.36,
+      "under": 1.59
+     },
+     "4.0": {
+      "over": 4.18,
+      "under": 1.23
+     },
+     "4.5": {
+      "over": 5.31,
+      "under": 1.16
+     },
+     "5.5": {
+      "over": 11.5,
+      "under": 1.03
+     },
+     "2.75": {
+      "over": 1.4,
+      "under": 2.96
+     },
+     "3.25": {
+      "over": 1.99,
+      "under": 1.88
+     },
+     "3.75": {
+      "over": 2.85,
+      "under": 1.43
+     },
+     "4.25": {
+      "over": 4.78,
+      "under": 1.18
+     },
+     "1.5": {
+      "over": 2.6,
+      "under": 1.5
+     },
+     "2.0": {
+      "over": 8.1,
+      "under": 1.08
+     },
+     "1.75": {
+      "over": 1.8,
+      "under": 2.01
+     },
+     "2.25": {
+      "over": 3.05,
+      "under": 1.38
+     }
+    }
+   }
+  },
+  "s9-99.768301068": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Conference League",
+   "home": "AGF Aarhus",
+   "away": "Braga",
+   "markets": {
+    "1x2": {
+     "1": 5.17,
+     "X": 2.41,
+     "2": 2.26
+    },
+    "doubleChance": {
+     "1X": 1.64,
+     "12": 1.57,
+     "X2": 1.17
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.32,
+      "under": 3.46
+     },
+     "1.0": {
+      "over": 1.67,
+      "under": 2.23
+     },
+     "1.5": {
+      "over": 2.48,
+      "under": 1.55
+     },
+     "2.0": {
+      "over": 4.48,
+      "under": 1.21
+     },
+     "2.5": {
+      "over": 5.96,
+      "under": 1.14
+     },
+     "3.5": {
+      "over": 13.2,
+      "under": 1.03
+     },
+     "0.75": {
+      "over": 1.43,
+      "under": 2.89
+     },
+     "1.25": {
+      "over": 2.06,
+      "under": 1.78
+     },
+     "1.75": {
+      "over": 3.14,
+      "under": 1.37
+     },
+     "2.25": {
+      "over": 5.11,
+      "under": 1.17
+     }
+    }
+   }
+  },
+  "s9-99.768301309": {
+   "time": "2026-11-05T17:45:00+00:00",
+   "league": "UEFA Conference League",
+   "home": "Thun",
+   "away": "Heart of Midlothian",
+   "markets": {
+    "1x2": {
+     "1": 1.04,
+     "X": 13.0,
+     "2": 39.0
+    },
+    "totals": {
+     "2.5": {
+      "over": 1.28,
+      "under": 3.75
+     },
+     "3.0": {
+      "over": 1.58,
+      "under": 2.42
+     },
+     "3.5": {
+      "over": 2.34,
+      "under": 1.62
+     },
+     "4.0": {
+      "over": 4.0,
+      "under": 1.25
+     },
+     "4.5": {
+      "over": 4.97,
+      "under": 1.18
+     },
+     "5.5": {
+      "over": 11.7,
+      "under": 1.04
+     },
+     "2.75": {
+      "over": 1.37,
+      "under": 3.15
+     },
+     "3.25": {
+      "over": 1.91,
+      "under": 1.91
+     },
+     "3.75": {
+      "over": 2.8,
+      "under": 1.45
+     },
+     "4.75": {
+      "over": 7.31,
+      "under": 1.09
+     },
+     "0.5": {
+      "over": 1.94,
+      "under": 1.88
+     },
+     "1.0": {
+      "over": 4.19,
+      "under": 1.23
+     },
+     "1.5": {
+      "over": 6.17,
+      "under": 1.13
+     },
+     "0.75": {
+      "over": 2.4,
+      "under": 1.57
+     },
+     "1.25": {
+      "over": 5.17,
+      "under": 1.17
+     }
+    }
+   }
+  },
+  "s9-99.768301090": {
    "time": "2026-11-05T17:45:00+00:00",
    "league": "UEFA Conference League",
    "home": "Kuopion Palloseura",
    "away": "Gent",
    "markets": {
     "1x2": {
-     "1": 5.29,
-     "X": 4.09,
-     "2": 1.66
+     "1": 9.21,
+     "X": 2.24,
+     "2": 2.01
     },
     "doubleChance": {
-     "1X": 2.28,
-     "12": 1.25,
-     "X2": 1.17
+     "1X": 1.77,
+     "12": 1.64,
+     "X2": 1.08
     },
     "totals": {
+     "0.5": {
+      "over": 1.45,
+      "under": 2.79
+     },
      "1.0": {
-      "over": 1.02,
-      "under": 10.1
+      "over": 2.06,
+      "under": 1.78
      },
      "1.5": {
-      "over": 1.26,
-      "under": 3.6
+      "over": 3.18,
+      "under": 1.37
      },
      "2.0": {
-      "over": 1.43,
-      "under": 2.81
+      "over": 7.12,
+      "under": 1.1
      },
      "2.5": {
-      "over": 1.91,
-      "under": 1.95
-     },
-     "3.0": {
-      "over": 2.49,
-      "under": 1.54
+      "over": 8.32,
+      "under": 1.08
      },
      "3.5": {
-      "over": 3.1,
-      "under": 1.36
-     },
-     "4.0": {
-      "over": 5.18,
-      "under": 1.15
-     },
-     "4.5": {
-      "over": 5.88,
-      "under": 1.11
-     },
-     "5.0": {
-      "over": 7.5,
-      "under": 1.06
-     },
-     "5.5": {
-      "over": 8.4,
-      "under": 1.04
-     },
-     "6.5": {
-      "over": 9.7,
+      "over": 16.0,
       "under": 1.02
      },
      "0.75": {
-      "over": 1.43,
-      "under": 2.57
+      "over": 1.63,
+      "under": 2.32
      },
      "1.25": {
-      "over": 2.13,
-      "under": 1.59
+      "over": 2.57,
+      "under": 1.53
      },
      "1.75": {
-      "over": 3.18,
-      "under": 1.27
+      "over": 3.96,
+      "under": 1.25
      },
      "2.25": {
-      "over": 5.3,
-      "under": 1.09
-     },
-     "2.75": {
-      "over": 2.15,
-      "under": 1.75
-     },
-     "3.25": {
-      "over": 2.83,
-      "under": 1.42
-     },
-     "3.75": {
-      "over": 3.8,
-      "under": 1.24
-     },
-     "4.25": {
-      "over": 5.48,
-      "under": 1.12
-     },
-     "4.75": {
-      "over": 7.43,
-      "under": 1.05
-     },
-     "0.5": {
-      "over": 1.31,
-      "under": 3.08
+      "over": 7.94,
+      "under": 1.08
      }
     }
    }
   },
-  "s9-99.768045106": {
+  "s9-99.768309248": {
    "time": "2026-11-05T18:00:00+00:00",
    "league": "Argentina. Reserve League",
    "home": "Racing Club de Avellaneda II",
    "away": "Rosario Central II",
    "markets": {
     "1x2": {
-     "1": 2.47,
-     "X": 3.34,
-     "2": 2.39
+     "1": 4.87,
+     "X": 3.59,
+     "2": 1.71
     },
     "doubleChance": {
-     "1X": 1.43,
-     "12": 1.22,
-     "X2": 1.4
+     "1X": 2.08,
+     "12": 1.27,
+     "X2": 1.16
     },
     "totals": {
-     "1.0": {
-      "over": 1.01,
-      "under": 9.0
-     },
      "1.5": {
-      "over": 1.19,
-      "under": 3.74
+      "over": 1.18,
+      "under": 4.5
      },
      "2.0": {
-      "over": 1.31,
-      "under": 2.92
+      "over": 1.32,
+      "under": 3.2
      },
      "2.5": {
-      "over": 1.7,
-      "under": 1.99
+      "over": 1.89,
+      "under": 1.91
      },
      "3.0": {
-      "over": 2.15,
-      "under": 1.56
-     },
-     "3.5": {
-      "over": 2.7,
-      "under": 1.36
-     },
-     "4.0": {
-      "over": 4.25,
-      "under": 1.15
-     },
-     "4.5": {
-      "over": 5.1,
-      "under": 1.12
-     },
-     "5.5": {
-      "over": 10.0,
-      "under": 1.04
-     },
-     "0.75": {
-      "over": 1.4,
-      "under": 2.62
-     },
-     "1.25": {
-      "over": 2.01,
-      "under": 1.65
-     },
-     "1.75": {
-      "over": 1.24,
-      "under": 3.34
-     },
-     "2.25": {
-      "over": 1.5,
-      "under": 2.31
-     },
-     "2.75": {
-      "over": 1.88,
-      "under": 1.79
-     },
-     "3.25": {
-      "over": 2.44,
-      "under": 1.45
-     },
-     "3.75": {
-      "over": 3.2,
-      "under": 1.26
-     },
-     "0.5": {
-      "over": 1.28,
-      "under": 3.13
-     }
-    }
-   }
-  },
-  "s9-99.767873982": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Slovenian Championship U19",
-   "home": "NK Brinje Grosuplje U19",
-   "away": "Olimpija Ljubljana U19",
-   "markets": {
-    "1x2": {
-     "1": 4.71,
-     "X": 3.8,
-     "2": 1.58
-    },
-    "doubleChance": {
-     "1X": 2.09,
-     "12": 1.17,
-     "X2": 1.11
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.02,
-      "under": 17.0
-     },
-     "1.5": {
-      "over": 1.2,
-      "under": 3.9
-     },
-     "2.0": {
-      "over": 1.22,
-      "under": 3.5
-     },
-     "2.5": {
-      "over": 1.53,
-      "under": 2.21
-     },
-     "3.0": {
-      "over": 1.9,
-      "under": 1.73
-     },
-     "3.5": {
-      "over": 2.44,
-      "under": 1.47
-     },
-     "4.0": {
-      "over": 3.58,
-      "under": 1.21
-     },
-     "4.5": {
-      "over": 4.25,
-      "under": 1.15
-     },
-     "5.0": {
-      "over": 7.3,
-      "under": 1.03
-     },
-     "5.5": {
-      "over": 7.0,
-      "under": 1.08
-     },
-     "0.75": {
-      "over": 1.33,
-      "under": 2.87
-     },
-     "1.25": {
-      "over": 1.87,
-      "under": 1.78
-     },
-     "2.25": {
-      "over": 1.38,
-      "under": 2.63
-     },
-     "2.75": {
-      "over": 1.68,
-      "under": 1.96
-     },
-     "3.25": {
-      "over": 2.1,
-      "under": 1.59
-     },
-     "3.75": {
-      "over": 2.83,
-      "under": 1.33
-     },
-     "4.25": {
-      "over": 3.9,
-      "under": 1.18
-     },
-     "1.75": {
-      "over": 2.05,
-      "under": 1.64
-     },
-     "1.0": {
-      "over": 1.52,
-      "under": 2.31
-     }
-    }
-   }
-  },
-  "s9-99.768045118": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Argentina. Reserve League",
-   "home": "Estudiantes de Rio Cuarto II",
-   "away": "Ferro Carril Oeste II",
-   "markets": {
-    "1x2": {
-     "1": 2.03,
-     "X": 3.13,
-     "2": 3.37
-    },
-    "doubleChance": {
-     "1X": 1.23,
-     "12": 1.25,
-     "X2": 1.61
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.04,
-      "under": 7.5
-     },
-     "1.0": {
-      "over": 1.06,
-      "under": 6.25
-     },
-     "1.5": {
-      "over": 1.36,
-      "under": 2.7
-     },
-     "2.0": {
-      "over": 1.62,
-      "under": 2.06
-     },
-     "2.5": {
-      "over": 2.17,
-      "under": 1.59
-     },
-     "3.0": {
-      "over": 3.2,
-      "under": 1.26
-     },
-     "3.5": {
-      "over": 4.0,
-      "under": 1.17
-     },
-     "4.0": {
-      "over": 7.3,
-      "under": 1.03
-     },
-     "4.5": {
-      "over": 8.4,
-      "under": 1.03
-     },
-     "5.5": {
-      "over": 19.0,
-      "under": 1.01
-     },
-     "0.75": {
-      "over": 1.61,
-      "under": 2.1
-     },
-     "1.25": {
-      "over": 2.48,
+      "over": 2.72,
       "under": 1.43
      },
-     "1.75": {
-      "over": 1.47,
-      "under": 2.39
-     },
-     "2.25": {
-      "over": 1.9,
-      "under": 1.77
-     },
-     "2.75": {
-      "over": 2.53,
-      "under": 1.42
-     },
-     "3.25": {
-      "over": 3.58,
-      "under": 1.21
-     }
-    }
-   }
-  },
-  "s9-99.767983990": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Brazil. Copa do Brasil U20",
-   "home": "Sao Paulo U20",
-   "away": "Ceara U20",
-   "markets": {
-    "1x2": {
-     "1": 1.58,
-     "X": 3.75,
-     "2": 4.76
-    },
-    "doubleChance": {
-     "1X": 1.1,
-     "12": 1.17,
-     "X2": 2.09
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.02,
-      "under": 12.3
-     },
-     "1.0": {
-      "over": 1.02,
-      "under": 9.1
-     },
-     "1.5": {
-      "over": 1.17,
-      "under": 4.0
-     },
-     "2.0": {
-      "over": 1.27,
-      "under": 3.14
-     },
-     "2.5": {
-      "over": 1.64,
-      "under": 2.08
-     },
-     "3.0": {
-      "over": 2.03,
-      "under": 1.63
-     },
      "3.5": {
-      "over": 2.56,
-      "under": 1.4
-     },
-     "4.0": {
-      "over": 3.94,
-      "under": 1.17
+      "over": 3.33,
+      "under": 1.3
      },
      "4.5": {
-      "over": 4.65,
-      "under": 1.13
+      "over": 6.84,
+      "under": 1.09
      },
      "5.5": {
-      "over": 9.0,
-      "under": 1.05
-     },
-     "0.75": {
-      "over": 1.38,
-      "under": 2.69
-     },
-     "1.25": {
-      "over": 1.96,
-      "under": 1.69
+      "over": 11.2,
+      "under": 1.02
      },
      "1.75": {
-      "over": 1.21,
-      "under": 3.58
+      "over": 1.26,
+      "under": 3.8
      },
      "2.25": {
-      "over": 1.45,
-      "under": 2.44
+      "over": 1.59,
+      "under": 2.27
      },
      "2.75": {
-      "over": 1.8,
-      "under": 1.87
+      "over": 2.13,
+      "under": 1.67
      },
      "3.25": {
-      "over": 2.31,
-      "under": 1.5
+      "over": 3.17,
+      "under": 1.36
      },
      "3.75": {
-      "over": 3.04,
-      "under": 1.29
+      "over": 5.07,
+      "under": 1.17
      },
-     "4.25": {
-      "over": 4.2,
-      "under": 1.19
+     "0.5": {
+      "over": 1.5,
+      "under": 2.51
+     },
+     "1.0": {
+      "over": 2.26,
+      "under": 1.64
+     },
+     "0.75": {
+      "over": 1.78,
+      "under": 2.04
+     },
+     "1.25": {
+      "over": 2.84,
+      "under": 1.43
      }
     }
    }
   },
-  "s9-99.768045109": {
+  "s9-99.768309237": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Brazil. Campeonato Paraense. Women",
+   "home": "Paysandu (Women)",
+   "away": "Cabanos (Women)",
+   "markets": {
+    "1x2": {
+     "1": 1.06,
+     "X": 9.99,
+     "2": 26.0
+    },
+    "totals": {
+     "3.0": {
+      "over": 1.78,
+      "under": 1.98
+     },
+     "3.5": {
+      "over": 2.25,
+      "under": 1.57
+     }
+    }
+   }
+  },
+  "s9-99.768309251": {
    "time": "2026-11-05T18:00:00+00:00",
    "league": "Argentina. Reserve League",
    "home": "Belgrano II",
    "away": "Platense II",
    "markets": {
     "1x2": {
-     "1": 1.54,
-     "X": 3.78,
-     "2": 5.12
+     "1": 2.02,
+     "X": 2.57,
+     "2": 5.41
     },
     "doubleChance": {
-     "1X": 1.09,
-     "12": 1.17,
-     "X2": 2.16
+     "1X": 1.14,
+     "12": 1.48,
+     "X2": 1.75
     },
     "totals": {
      "0.5": {
-      "over": 1.01,
-      "under": 10.5
+      "over": 1.29,
+      "under": 3.4
      },
      "1.0": {
-      "over": 1.04,
-      "under": 7.5
+      "over": 1.58,
+      "under": 2.3
      },
      "1.5": {
-      "over": 1.22,
-      "under": 3.5
+      "over": 2.4,
+      "under": 1.57
      },
      "2.0": {
-      "over": 1.35,
-      "under": 2.74
+      "over": 4.43,
+      "under": 1.21
      },
      "2.5": {
-      "over": 1.79,
-      "under": 1.88
-     },
-     "3.0": {
-      "over": 2.38,
-      "under": 1.46
+      "over": 5.14,
+      "under": 1.14
      },
      "3.5": {
-      "over": 2.97,
-      "under": 1.3
+      "over": 9.26,
+      "under": 1.04
+     },
+     "0.75": {
+      "over": 1.39,
+      "under": 2.86
+     },
+     "1.25": {
+      "over": 1.98,
+      "under": 1.83
+     },
+     "1.75": {
+      "over": 2.76,
+      "under": 1.42
+     },
+     "2.25": {
+      "over": 12.5,
+      "under": 1.03
+     }
+    }
+   }
+  },
+  "s9-99.768309238": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Slovenian Championship U19",
+   "home": "NK Brinje Grosuplje U19",
+   "away": "Olimpija Ljubljana U19",
+   "markets": {
+    "1x2": {
+     "1": 10.8,
+     "X": 5.93,
+     "2": 1.22
+    },
+    "doubleChance": {
+     "1X": 3.85,
+     "12": 1.1,
+     "X2": 1.02
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.17,
+      "under": 5.13
+     },
+     "2.0": {
+      "over": 1.29,
+      "under": 3.64
+     },
+     "2.5": {
+      "over": 1.74,
+      "under": 2.03
+     },
+     "3.0": {
+      "over": 2.5,
+      "under": 1.53
+     },
+     "3.5": {
+      "over": 3.32,
+      "under": 1.33
      },
      "4.0": {
-      "over": 5.05,
+      "over": 6.93,
       "under": 1.1
      },
      "4.5": {
-      "over": 5.85,
-      "under": 1.07
-     },
-     "5.5": {
-      "over": 12.0,
-      "under": 1.03
-     },
-     "0.75": {
-      "over": 1.42,
-      "under": 2.51
-     },
-     "1.25": {
-      "over": 2.12,
-      "under": 1.6
-     },
-     "1.75": {
-      "over": 1.27,
-      "under": 3.14
-     },
-     "2.25": {
-      "over": 1.57,
-      "under": 2.16
-     },
-     "2.75": {
-      "over": 2.02,
-      "under": 1.68
-     },
-     "3.25": {
-      "over": 2.71,
-      "under": 1.37
-     },
-     "3.75": {
-      "over": 3.7,
-      "under": 1.2
-     }
-    }
-   }
-  },
-  "s9-99.767775661": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Cyprus Cup",
-   "home": "Omonia 29th May",
-   "away": "AEP Polemidion",
-   "markets": {
-    "1x2": {
-     "1": 1.11,
-     "X": 7.6,
-     "2": 11.7
-    },
-    "doubleChance": {
-     "1X": 1.04,
-     "12": 1.01,
-     "X2": 4.65
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.01,
-      "under": 9.6
-     },
-     "2.0": {
-      "over": 1.02,
-      "under": 8.1
-     },
-     "2.5": {
-      "over": 1.17,
-      "under": 4.0
-     },
-     "3.0": {
-      "over": 1.25,
-      "under": 3.28
-     },
-     "3.5": {
-      "over": 1.54,
-      "under": 2.27
-     },
-     "4.0": {
-      "over": 1.8,
-      "under": 1.82
-     },
-     "4.5": {
-      "over": 2.14,
-      "under": 1.57
-     },
-     "5.0": {
-      "over": 2.97,
-      "under": 1.3
-     },
-     "5.5": {
-      "over": 3.3,
-      "under": 1.25
-     },
-     "6.0": {
-      "over": 4.5,
-      "under": 1.15
-     },
-     "6.5": {
-      "over": 5.0,
-      "under": 1.12
-     },
-     "1.25": {
-      "over": 1.4,
-      "under": 2.62
-     },
-     "1.75": {
-      "over": 1.85,
-      "under": 1.82
-     },
-     "2.25": {
-      "over": 1.13,
-      "under": 5.2
-     },
-     "2.75": {
-      "over": 1.2,
-      "under": 3.68
-     },
-     "3.25": {
-      "over": 1.39,
-      "under": 2.59
-     },
-     "3.75": {
-      "over": 1.61,
-      "under": 2.07
-     },
-     "4.25": {
-      "over": 1.99,
-      "under": 1.66
-     },
-     "4.75": {
-      "over": 2.49,
-      "under": 1.42
-     },
-     "0.5": {
-      "over": 1.11,
-      "under": 5.5
-     },
-     "1.0": {
-      "over": 1.15,
-      "under": 4.35
-     }
-    }
-   }
-  },
-  "s9-99.768045115": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Argentina. Reserve League",
-   "home": "Atletico Tucuman II",
-   "away": "Instituto Atletico Central Cordoba II",
-   "markets": {
-    "1x2": {
-     "1": 2.14,
-     "X": 3.18,
-     "2": 3.06
-    },
-    "doubleChance": {
-     "1X": 1.28,
-     "12": 1.24,
-     "X2": 1.54
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.02,
-      "under": 8.7
-     },
-     "1.0": {
-      "over": 1.04,
-      "under": 7.1
-     },
-     "1.5": {
-      "over": 1.29,
-      "under": 3.04
-     },
-     "2.0": {
-      "over": 1.48,
-      "under": 2.33
-     },
-     "2.5": {
-      "over": 1.95,
-      "under": 1.73
-     },
-     "3.0": {
-      "over": 2.7,
-      "under": 1.36
-     },
-     "3.5": {
-      "over": 3.34,
-      "under": 1.24
-     },
-     "4.0": {
-      "over": 5.7,
+      "over": 8.14,
       "under": 1.08
      },
-     "4.5": {
-      "over": 6.9,
-      "under": 1.06
+     "1.75": {
+      "over": 1.22,
+      "under": 4.38
      },
-     "5.5": {
-      "over": 15.0,
+     "2.25": {
+      "over": 1.54,
+      "under": 2.49
+     },
+     "2.75": {
+      "over": 2.0,
+      "under": 1.82
+     },
+     "3.25": {
+      "over": 2.91,
+      "under": 1.41
+     },
+     "3.75": {
+      "over": 4.33,
+      "under": 1.22
+     },
+     "4.25": {
+      "over": 7.54,
+      "under": 1.09
+     },
+     "0.5": {
+      "over": 2.0,
+      "under": 1.81
+     },
+     "1.0": {
+      "over": 4.51,
+      "under": 1.21
+     },
+     "0.75": {
+      "over": 2.53,
+      "under": 1.52
+     },
+     "1.25": {
+      "over": 5.56,
+      "under": 1.14
+     }
+    }
+   }
+  },
+  "s9-99.768309246": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "Estudiantes de Rio Cuarto II",
+   "away": "Ferro Carril Oeste II",
+   "markets": {
+    "1x2": {
+     "1": 4.31,
+     "X": 2.3,
+     "2": 2.48
+    },
+    "doubleChance": {
+     "1X": 1.51,
+     "12": 1.58,
+     "X2": 1.2
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.36,
+      "under": 3.0
+     },
+     "1.0": {
+      "over": 1.81,
+      "under": 2.0
+     },
+     "1.5": {
+      "over": 2.65,
+      "under": 1.45
+     },
+     "2.5": {
+      "over": 5.9,
+      "under": 1.11
+     },
+     "3.5": {
+      "over": 11.2,
       "under": 1.02
      },
      "0.75": {
       "over": 1.52,
-      "under": 2.28
+      "under": 2.43
      },
      "1.25": {
-      "over": 2.27,
-      "under": 1.51
+      "over": 2.22,
+      "under": 1.62
      },
      "1.75": {
-      "over": 1.37,
-      "under": 2.72
-     },
-     "2.25": {
-      "over": 1.73,
-      "under": 1.95
-     },
-     "2.75": {
-      "over": 2.22,
-      "under": 1.54
-     },
-     "3.25": {
-      "over": 3.04,
+      "over": 3.59,
       "under": 1.29
      }
     }
    }
   },
-  "s9-99.768045112": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Argentina. Reserve League",
-   "home": "Huracan II",
-   "away": "Colon de Santa Fe II",
-   "markets": {
-    "1x2": {
-     "1": 1.69,
-     "X": 3.28,
-     "2": 4.73
-    },
-    "doubleChance": {
-     "1X": 1.11,
-     "12": 1.23,
-     "X2": 1.92
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.05,
-      "under": 7.3
-     },
-     "1.0": {
-      "over": 1.06,
-      "under": 6.15
-     },
-     "1.5": {
-      "over": 1.38,
-      "under": 2.63
-     },
-     "2.0": {
-      "over": 1.67,
-      "under": 1.98
-     },
-     "2.5": {
-      "over": 2.27,
-      "under": 1.54
-     },
-     "3.0": {
-      "over": 3.5,
-      "under": 1.22
-     },
-     "3.5": {
-      "over": 4.33,
-      "under": 1.14
-     },
-     "4.0": {
-      "over": 8.4,
-      "under": 1.01
-     },
-     "4.5": {
-      "over": 9.0,
-      "under": 1.02
-     },
-     "5.5": {
-      "over": 23.0,
-      "under": 1.01
-     },
-     "0.75": {
-      "over": 1.63,
-      "under": 2.07
-     },
-     "1.25": {
-      "over": 2.6,
-      "under": 1.39
-     },
-     "1.75": {
-      "over": 1.5,
-      "under": 2.31
-     },
-     "2.25": {
-      "over": 1.98,
-      "under": 1.71
-     },
-     "2.75": {
-      "over": 2.67,
-      "under": 1.38
-     },
-     "3.25": {
-      "over": 3.92,
-      "under": 1.18
-     }
-    }
-   }
-  },
-  "s9-99.767852771": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Ivory Coast. League 1",
-   "home": "Inova SCA",
-   "away": "ASEC Mimosas",
-   "markets": {
-    "1x2": {
-     "1": 4.74,
-     "X": 3.04,
-     "2": 1.76
-    },
-    "doubleChance": {
-     "1X": 1.83,
-     "12": 1.27,
-     "X2": 1.11
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.05,
-      "under": 6.4
-     },
-     "1.0": {
-      "over": 1.11,
-      "under": 4.95
-     },
-     "1.5": {
-      "over": 1.49,
-      "under": 2.38
-     },
-     "2.0": {
-      "over": 1.88,
-      "under": 1.75
-     },
-     "2.5": {
-      "over": 2.52,
-      "under": 1.41
-     },
-     "3.0": {
-      "over": 4.25,
-      "under": 1.15
-     },
-     "3.5": {
-      "over": 5.1,
-      "under": 1.1
-     },
-     "4.5": {
-      "over": 11.0,
-      "under": 1.04
-     },
-     "5.5": {
-      "over": 26.0,
-      "under": 1.01
-     },
-     "0.75": {
-      "over": 1.79,
-      "under": 1.88
-     },
-     "1.25": {
-      "over": 2.88,
-      "under": 1.32
-     },
-     "1.75": {
-      "over": 1.63,
-      "under": 2.06
-     },
-     "2.25": {
-      "over": 2.24,
-      "under": 1.55
-     },
-     "2.75": {
-      "over": 3.08,
-      "under": 1.28
-     }
-    }
-   }
-  },
-  "s9-99.767902157": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Argentina. Primera Division",
-   "home": "CA Aldosivi",
-   "away": "River Plate Buenos Aires",
-   "markets": {
-    "1x2": {
-     "1": 8.15,
-     "X": 4.54,
-     "2": 1.41
-    },
-    "doubleChance": {
-     "1X": 2.87,
-     "12": 1.19,
-     "X2": 1.07
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.01,
-      "under": 10.0
-     },
-     "1.0": {
-      "over": 1.01,
-      "under": 8.6
-     },
-     "1.5": {
-      "over": 1.23,
-      "under": 3.52
-     },
-     "2.0": {
-      "over": 1.41,
-      "under": 2.71
-     },
-     "2.5": {
-      "over": 1.88,
-      "under": 1.92
-     },
-     "3.0": {
-      "over": 2.54,
-      "under": 1.51
-     },
-     "3.5": {
-      "over": 3.37,
-      "under": 1.31
-     },
-     "4.0": {
-      "over": 6.42,
-      "under": 1.11
-     },
-     "4.5": {
-      "over": 7.75,
-      "under": 1.07
-     },
-     "5.0": {
-      "over": 12.1,
-      "under": 1.02
-     },
-     "5.5": {
-      "over": 11.0,
-      "under": 1.03
-     },
-     "6.5": {
-      "over": 26.0,
-      "under": 1.01
-     },
-     "0.75": {
-      "over": 1.45,
-      "under": 2.5
-     },
-     "1.25": {
-      "over": 2.15,
-      "under": 1.58
-     },
-     "1.75": {
-      "over": 3.24,
-      "under": 1.26
-     },
-     "2.25": {
-      "over": 5.55,
-      "under": 1.08
-     },
-     "2.75": {
-      "over": 2.12,
-      "under": 1.72
-     },
-     "3.25": {
-      "over": 2.84,
-      "under": 1.39
-     },
-     "3.75": {
-      "over": 3.82,
-      "under": 1.21
-     },
-     "4.25": {
-      "over": 5.58,
-      "under": 1.09
-     },
-     "4.75": {
-      "over": 7.7,
-      "under": 1.02
-     }
-    }
-   }
-  },
-  "s9-99.768045121": {
+  "s9-99.768309250": {
    "time": "2026-11-05T18:00:00+00:00",
    "league": "Argentina. Reserve League",
    "home": "Defensa y Justicia II",
    "away": "Boca Juniors II",
    "markets": {
     "1x2": {
-     "1": 4.52,
-     "X": 3.42,
-     "2": 1.68
+     "1": 11.1,
+     "X": 5.26,
+     "2": 1.26
     },
     "doubleChance": {
-     "1X": 1.93,
-     "12": 1.21,
-     "X2": 1.12
+     "1X": 3.52,
+     "12": 1.14,
+     "X2": 1.03
     },
     "totals": {
-     "0.5": {
-      "over": 1.03,
-      "under": 8.15
-     },
-     "1.0": {
-      "over": 1.03,
-      "under": 7.5
-     },
      "1.5": {
-      "over": 1.3,
-      "under": 2.97
+      "over": 1.29,
+      "under": 3.4
      },
      "2.0": {
-      "over": 1.5,
-      "under": 2.28
+      "over": 1.58,
+      "under": 2.3
      },
      "2.5": {
-      "over": 2.02,
-      "under": 1.68
+      "over": 2.4,
+      "under": 1.57
      },
      "3.0": {
-      "over": 2.88,
-      "under": 1.32
-     },
-     "3.5": {
-      "over": 3.58,
+      "over": 4.48,
       "under": 1.21
      },
-     "4.0": {
-      "over": 6.6,
-      "under": 1.05
+     "3.5": {
+      "over": 5.14,
+      "under": 1.14
      },
      "4.5": {
-      "over": 7.6,
+      "over": 9.26,
       "under": 1.04
-     },
-     "5.5": {
-      "over": 17.0,
-      "under": 1.02
-     },
-     "0.75": {
-      "over": 1.53,
-      "under": 2.26
-     },
-     "1.25": {
-      "over": 2.37,
-      "under": 1.47
      },
      "1.75": {
       "over": 1.39,
-      "under": 2.64
+      "under": 2.86
      },
      "2.25": {
-      "over": 1.77,
-      "under": 1.9
-     },
-     "2.75": {
-      "over": 2.31,
-      "under": 1.5
-     },
-     "3.25": {
-      "over": 3.28,
-      "under": 1.25
-     }
-    }
-   }
-  },
-  "s9-99.768000738": {
-   "time": "2026-11-05T18:00:00+00:00",
-   "league": "Atlantic Cup U19",
-   "home": "Cruzeiro Paraiba U19",
-   "away": "Ls Valen U19",
-   "markets": {
-    "1x2": {
-     "1": 2.43,
-     "X": 3.34,
-     "2": 2.43
-    },
-    "doubleChance": {
-     "1X": 1.41,
-     "12": 1.22,
-     "X2": 1.41
-    },
-    "totals": {
-     "1.5": {
-      "over": 1.23,
-      "under": 3.42
-     },
-     "2.0": {
-      "over": 1.38,
-      "under": 2.63
-     },
-     "2.5": {
-      "over": 1.83,
+      "over": 1.98,
       "under": 1.83
      },
-     "3.0": {
-      "over": 2.49,
+     "2.75": {
+      "over": 2.76,
       "under": 1.42
      },
-     "3.5": {
-      "over": 3.14,
-      "under": 1.27
-     },
-     "4.0": {
-      "over": 5.4,
-      "under": 1.09
-     },
-     "4.5": {
-      "over": 6.2,
-      "under": 1.06
-     },
-     "0.75": {
-      "over": 1.44,
-      "under": 2.49
-     },
-     "1.25": {
-      "over": 2.15,
-      "under": 1.57
-     },
-     "1.75": {
-      "over": 1.29,
-      "under": 3.04
-     },
-     "2.25": {
-      "over": 1.61,
-      "under": 2.09
-     },
-     "2.75": {
-      "over": 2.09,
-      "under": 1.64
-     },
-     "3.25": {
-      "over": 2.84,
-      "under": 1.34
-     },
-     "3.75": {
-      "over": 3.9,
-      "under": 1.18
-     },
      "0.5": {
-      "over": 1.3,
-      "under": 3.0
+      "over": 2.22,
+      "under": 1.63
      },
      "1.0": {
-      "over": 1.74,
-      "under": 1.94
+      "over": 5.49,
+      "under": 1.15
+     },
+     "0.75": {
+      "over": 2.85,
+      "under": 1.43
+     },
+     "1.25": {
+      "over": 6.71,
+      "under": 1.11
      }
     }
    }
   },
-  "s9-99.767989312": {
+  "s9-99.768309240": {
    "time": "2026-11-05T18:00:00+00:00",
    "league": "Bolivia Championship U19",
    "home": "The Strongest U19",
    "away": "Real Oruro U19",
    "markets": {
     "1x2": {
-     "1": 1.35,
-     "X": 4.65,
-     "2": 6.51
-    },
-    "doubleChance": {
-     "1X": 1.04,
-     "12": 1.1,
-     "X2": 2.67
+     "1": 1.48,
+     "X": 3.45,
+     "2": 6.9
     },
     "totals": {
-     "0.5": {
-      "over": 1.01,
-      "under": 21.0
-     },
-     "1.5": {
-      "over": 1.11,
-      "under": 5.8
-     },
-     "2.0": {
-      "over": 1.16,
-      "under": 4.15
-     },
-     "2.5": {
-      "over": 1.45,
-      "under": 2.41
-     },
-     "3.0": {
-      "over": 1.73,
-      "under": 1.9
-     },
-     "3.5": {
-      "over": 2.22,
-      "under": 1.56
-     },
-     "4.0": {
-      "over": 3.14,
-      "under": 1.27
-     },
      "4.5": {
-      "over": 3.8,
-      "under": 1.19
+      "over": 1.54,
+      "under": 2.39
      },
-     "5.0": {
-      "over": 6.55,
-      "under": 1.05
-     },
-     "5.5": {
-      "over": 5.5,
-      "under": 1.11
-     },
-     "1.25": {
-      "over": 1.78,
-      "under": 1.87
-     },
-     "1.75": {
-      "over": 2.53,
-      "under": 1.44
-     },
-     "2.25": {
-      "over": 1.31,
-      "under": 2.92
-     },
-     "2.75": {
-      "over": 1.57,
-      "under": 2.16
-     },
-     "3.25": {
-      "over": 1.99,
-      "under": 1.7
-     },
-     "3.75": {
-      "over": 2.53,
-      "under": 1.42
-     },
-     "4.25": {
-      "over": 3.48,
-      "under": 1.22
-     },
-     "1.0": {
-      "over": 1.41,
-      "under": 2.55
+     "4.75": {
+      "over": 1.67,
+      "under": 2.13
      }
     }
    }
   },
-  "s9-99.768263108": {
+  "s9-99.768309252": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Cyprus Cup",
+   "home": "Omonia 29th May",
+   "away": "AEP Polemidion",
+   "markets": {
+    "1x2": {
+     "1": 1.37,
+     "X": 4.02,
+     "2": 7.54
+    },
+    "totals": {
+     "3.5": {
+      "over": 1.06,
+      "under": 8.77
+     },
+     "4.0": {
+      "over": 1.1,
+      "under": 6.86
+     },
+     "4.5": {
+      "over": 1.44,
+      "under": 2.81
+     },
+     "5.0": {
+      "over": 1.71,
+      "under": 2.14
+     },
+     "5.5": {
+      "over": 2.22,
+      "under": 1.62
+     },
+     "6.0": {
+      "over": 3.32,
+      "under": 1.33
+     },
+     "6.5": {
+      "over": 4.11,
+      "under": 1.24
+     },
+     "7.0": {
+      "over": 8.22,
+      "under": 1.08
+     },
+     "7.5": {
+      "over": 9.32,
+      "under": 1.06
+     },
+     "3.75": {
+      "over": 1.08,
+      "under": 7.82
+     },
+     "4.25": {
+      "over": 1.27,
+      "under": 3.73
+     },
+     "4.75": {
+      "over": 1.54,
+      "under": 2.47
+     },
+     "5.25": {
+      "over": 1.98,
+      "under": 1.83
+     },
+     "5.75": {
+      "over": 2.58,
+      "under": 1.5
+     },
+     "6.25": {
+      "over": 3.71,
+      "under": 1.27
+     },
+     "6.75": {
+      "over": 5.34,
+      "under": 1.16
+     },
+     "7.25": {
+      "over": 8.77,
+      "under": 1.06
+     },
+     "0.5": {
+      "over": 2.24,
+      "under": 1.65
+     },
+     "1.0": {
+      "over": 5.87,
+      "under": 1.14
+     },
+     "1.5": {
+      "over": 8.42,
+      "under": 1.07
+     },
+     "0.75": {
+      "over": 2.94,
+      "under": 1.41
+     },
+     "1.25": {
+      "over": 7.15,
+      "under": 1.1
+     }
+    }
+   }
+  },
+  "s9-99.768309239": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Atlantic Cup U19",
+   "home": "Cruzeiro Paraiba U19",
+   "away": "Ls Valen U19",
+   "markets": {
+    "1x2": {
+     "1": 2.91,
+     "X": 2.54,
+     "2": 2.91
+    },
+    "doubleChance": {
+     "1X": 1.37,
+     "12": 1.46,
+     "X2": 1.37
+    },
+    "totals": {
+     "3.5": {
+      "over": 2.13,
+      "under": 1.67
+     },
+     "3.25": {
+      "over": 1.8,
+      "under": 1.95
+     }
+    }
+   }
+  },
+  "s9-99.768309245": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Ivory Coast. League 1",
+   "home": "Inova SCA",
+   "away": "ASEC Mimosas",
+   "markets": {
+    "1x2": {
+     "1": 5.3,
+     "X": 2.22,
+     "2": 2.26
+    },
+    "doubleChance": {
+     "1X": 1.58,
+     "12": 1.6,
+     "X2": 1.13
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.39,
+      "under": 2.75
+     },
+     "1.0": {
+      "over": 1.89,
+      "under": 1.85
+     },
+     "1.5": {
+      "over": 2.73,
+      "under": 1.4
+     },
+     "2.5": {
+      "over": 6.34,
+      "under": 1.09
+     },
+     "3.5": {
+      "over": 10.4,
+      "under": 1.02
+     },
+     "0.75": {
+      "over": 1.58,
+      "under": 2.25
+     },
+     "1.25": {
+      "over": 2.35,
+      "under": 1.53
+     }
+    }
+   }
+  },
+  "s9-99.768309247": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "Huracan II",
+   "away": "Colon de Santa Fe II",
+   "markets": {
+    "1x2": {
+     "1": 1.25,
+     "X": 5.47,
+     "2": 12.0
+    },
+    "doubleChance": {
+     "1X": 1.02,
+     "12": 1.14,
+     "X2": 3.78
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.36,
+      "under": 3.0
+     },
+     "2.0": {
+      "over": 1.79,
+      "under": 2.03
+     },
+     "2.5": {
+      "over": 2.65,
+      "under": 1.45
+     },
+     "3.5": {
+      "over": 5.54,
+      "under": 1.13
+     },
+     "4.5": {
+      "over": 11.2,
+      "under": 1.02
+     },
+     "1.75": {
+      "over": 1.52,
+      "under": 2.43
+     },
+     "2.25": {
+      "over": 2.22,
+      "under": 1.62
+     },
+     "2.75": {
+      "over": 3.59,
+      "under": 1.29
+     },
+     "0.5": {
+      "over": 2.51,
+      "under": 1.5
+     },
+     "1.0": {
+      "over": 7.32,
+      "under": 1.09
+     },
+     "0.75": {
+      "over": 3.3,
+      "under": 1.34
+     },
+     "1.25": {
+      "over": 8.79,
+      "under": 1.06
+     }
+    }
+   }
+  },
+  "s9-99.768308030": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Argentina. Primera Division",
+   "home": "CA Aldosivi",
+   "away": "River Plate Buenos Aires",
+   "markets": {
+    "1x2": {
+     "1": 10.9,
+     "X": 3.08,
+     "2": 1.6
+    },
+    "doubleChance": {
+     "1X": 2.3,
+     "12": 1.37,
+     "X2": 1.04
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.24,
+      "under": 4.0
+     },
+     "1.0": {
+      "over": 1.42,
+      "under": 2.85
+     },
+     "1.5": {
+      "over": 2.16,
+      "under": 1.73
+     },
+     "2.0": {
+      "over": 3.46,
+      "under": 1.3
+     },
+     "2.5": {
+      "over": 4.17,
+      "under": 1.22
+     },
+     "3.5": {
+      "over": 8.58,
+      "under": 1.06
+     },
+     "0.75": {
+      "over": 1.3,
+      "under": 3.5
+     },
+     "1.25": {
+      "over": 1.73,
+      "under": 2.08
+     },
+     "1.75": {
+      "over": 2.45,
+      "under": 1.54
+     },
+     "2.25": {
+      "over": 3.67,
+      "under": 1.28
+     },
+     "2.75": {
+      "over": 5.64,
+      "under": 1.14
+     }
+    }
+   }
+  },
+  "s9-99.768309257": {
+   "time": "2026-11-05T18:00:00+00:00",
+   "league": "Brazil. Copa do Brasil U20",
+   "home": "Sao Paulo U20",
+   "away": "Ceara U20",
+   "markets": {
+    "1x2": {
+     "1": 2.21,
+     "X": 3.11,
+     "2": 3.26
+    },
+    "doubleChance": {
+     "1X": 1.3,
+     "12": 1.33,
+     "X2": 1.6
+    },
+    "totals": {
+     "3.5": {
+      "over": 1.69,
+      "under": 2.1
+     },
+     "3.75": {
+      "over": 1.87,
+      "under": 1.87
+     }
+    }
+   }
+  },
+  "s9-99.768313124": {
+   "time": "2026-11-05T18:15:00+00:00",
+   "league": "Israel. Liga Gimel. Tel Aviv",
+   "home": "Hapoel Neve Golan",
+   "away": "Maccabi Azor",
+   "markets": {
+    "1x2": {
+     "1": 3.85,
+     "X": 3.8,
+     "2": 1.77
+    },
+    "doubleChance": {
+     "1X": 1.91,
+     "12": 1.21,
+     "X2": 1.21
+    },
+    "totals": {
+     "4.0": {
+      "over": 1.37,
+      "under": 2.93
+     },
+     "4.5": {
+      "over": 1.82,
+      "under": 1.95
+     },
+     "5.0": {
+      "over": 2.42,
+      "under": 1.5
+     },
+     "5.5": {
+      "over": 3.11,
+      "under": 1.34
+     },
+     "4.25": {
+      "over": 1.57,
+      "under": 2.26
+     },
+     "4.75": {
+      "over": 2.05,
+      "under": 1.74
+     },
+     "5.25": {
+      "over": 2.77,
+      "under": 1.39
+     },
+     "2.5": {
+      "over": 4.28,
+      "under": 1.21
+     },
+     "3.0": {
+      "over": 2.84,
+      "under": 1.38
+     },
+     "3.5": {
+      "over": 3.59,
+      "under": 1.26
+     },
+     "1.5": {
+      "over": 1.42,
+      "under": 2.67
+     },
+     "2.0": {
+      "over": 2.08,
+      "under": 1.72
+     },
+     "1.75": {
+      "over": 1.61,
+      "under": 2.18
+     },
+     "2.25": {
+      "over": 2.64,
+      "under": 1.43
+     },
+     "2.75": {
+      "over": 2.16,
+      "under": 1.62
+     },
+     "3.25": {
+      "over": 3.15,
+      "under": 1.29
+     }
+    }
+   }
+  },
+  "s9-99.768315834": {
    "time": "2026-11-05T18:30:00+00:00",
    "league": "Israel. Liga Bet. North",
    "home": "Maccabi Bnei Abu Snan",
    "away": "Hapoel Bnei Sumei",
    "markets": {
     "1x2": {
-     "1": 2.08,
-     "X": 3.38,
-     "2": 3.01
+     "1": 1.38,
+     "X": 4.57,
+     "2": 7.11
     },
     "doubleChance": {
-     "1X": 1.29,
-     "12": 1.22,
-     "X2": 1.58
+     "1X": 1.07,
+     "12": 1.17,
+     "X2": 2.8
     },
     "totals": {
      "1.5": {
-      "over": 1.19,
-      "under": 3.82
-     },
-     "2.0": {
-      "over": 1.3,
-      "under": 2.97
+      "over": 1.1,
+      "under": 6.0
      },
      "2.5": {
-      "over": 1.71,
-      "under": 1.98
+      "over": 1.54,
+      "under": 2.38
      },
      "3.0": {
-      "over": 2.21,
-      "under": 1.53
+      "over": 1.92,
+      "under": 1.83
      },
      "3.5": {
-      "over": 2.78,
-      "under": 1.34
-     },
-     "4.0": {
-      "over": 4.55,
-      "under": 1.13
+      "over": 2.58,
+      "under": 1.45
      },
      "4.5": {
-      "over": 5.3,
-      "under": 1.09
-     },
-     "1.75": {
-      "over": 1.24,
-      "under": 3.34
-     },
-     "2.25": {
-      "over": 1.51,
-      "under": 2.29
-     },
-     "2.75": {
-      "over": 1.9,
-      "under": 1.77
-     },
-     "3.25": {
-      "over": 2.5,
-      "under": 1.43
-     },
-     "3.75": {
-      "over": 3.34,
-      "under": 1.24
-     },
-     "1.25": {
-      "over": 1.63,
-      "under": 2.07
-     },
-     "0.5": {
-      "over": 1.16,
-      "under": 4.6
-     },
-     "1.0": {
-      "over": 1.32,
-      "under": 2.89
-     }
-    }
-   }
-  },
-  "s9-99.768052997": {
-   "time": "2026-11-05T18:30:00+00:00",
-   "league": "Argentina Championship. Women",
-   "home": "Union de Santa Fe (Women)",
-   "away": "Talleres de Cordoba (Women)",
-   "markets": {
-    "1x2": {
-     "1": 10.1,
-     "X": 4.9,
-     "2": 1.24
-    },
-    "doubleChance": {
-     "1X": 3.25,
-     "12": 1.09,
-     "X2": 1.02
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.04,
-      "under": 11.0
-     },
-     "1.5": {
-      "over": 1.2,
-      "under": 3.7
-     },
-     "2.0": {
-      "over": 1.32,
-      "under": 2.88
-     },
-     "2.5": {
-      "over": 1.74,
-      "under": 1.94
-     },
-     "3.0": {
-      "over": 2.26,
-      "under": 1.51
-     },
-     "3.5": {
-      "over": 2.88,
-      "under": 1.32
-     },
-     "4.0": {
-      "over": 4.75,
-      "under": 1.12
-     },
-     "4.5": {
-      "over": 5.5,
-      "under": 1.08
+      "over": 4.46,
+      "under": 1.17
      },
      "5.5": {
-      "over": 11.0,
-      "under": 1.04
-     },
-     "0.75": {
-      "over": 1.39,
-      "under": 2.6
-     },
-     "1.25": {
-      "over": 2.07,
-      "under": 1.63
+      "over": 7.77,
+      "under": 1.05
      },
      "1.75": {
-      "over": 1.25,
-      "under": 3.28
-     },
-     "2.25": {
-      "over": 1.54,
-      "under": 2.27
+      "over": 3.48,
+      "under": 1.26
      },
      "2.75": {
-      "over": 1.93,
-      "under": 1.72
+      "over": 1.68,
+      "under": 2.06
      },
      "3.25": {
-      "over": 2.57,
-      "under": 1.4
+      "over": 2.25,
+      "under": 1.58
      },
-     "3.75": {
-      "over": 3.5,
-      "under": 1.22
-     },
-     "1.0": {
-      "over": 1.67,
-      "under": 2.04
+     "0.5": {
+      "over": 1.58,
+      "under": 2.26
      }
     }
    }
   },
-  "s9-99.767851152": {
+  "s9-99.768315835": {
    "time": "2026-11-05T18:30:00+00:00",
    "league": "Israel. Liga Bet. North",
    "home": "Beitar Haifa Jacob",
    "away": "Hapoel Bnei Arara Ara",
    "markets": {
     "1x2": {
-     "1": 1.29,
-     "X": 4.65,
-     "2": 8.35
-    },
-    "doubleChance": {
-     "1X": 1.02,
-     "12": 1.4,
-     "X2": 1.83
+     "1": 1.06,
+     "X": 11.4,
+     "2": 22.0
     },
     "totals": {
-     "0.5": {
-      "over": 1.01,
-      "under": 17.0
-     },
      "1.5": {
-      "over": 1.18,
-      "under": 5.2
+      "over": 1.03,
+      "under": 8.5
      },
-     "2.0": {
-      "over": 1.17,
-      "under": 3.98
-     },
-     "2.5": {
-      "over": 1.45,
-      "under": 2.41
-     },
-     "3.0": {
-      "over": 1.7,
-      "under": 1.94
-     },
-     "3.5": {
-      "over": 2.15,
-      "under": 1.6
-     },
-     "4.0": {
-      "over": 2.88,
-      "under": 1.32
-     },
-     "4.5": {
-      "over": 3.42,
-      "under": 1.23
-     },
-     "5.0": {
-      "over": 5.45,
-      "under": 1.08
-     },
-     "5.5": {
-      "over": 8.0,
-      "under": 1.08
-     },
-     "1.25": {
-      "over": 1.78,
-      "under": 1.87
-     },
-     "1.75": {
-      "over": 2.5,
-      "under": 1.45
-     },
-     "2.25": {
-      "over": 1.31,
-      "under": 2.92
-     },
-     "2.75": {
-      "over": 1.56,
-      "under": 2.18
-     },
-     "3.25": {
-      "over": 1.93,
-      "under": 1.75
-     },
-     "3.75": {
-      "over": 2.42,
-      "under": 1.46
-     },
-     "4.25": {
-      "over": 3.14,
-      "under": 1.27
-     },
-     "1.0": {
-      "over": 1.46,
-      "under": 2.4
-     }
-    }
-   }
-  },
-  "s9-99.768195060": {
-   "time": "2026-11-05T18:30:00+00:00",
-   "league": "Germany. Verbandsliga",
-   "home": "Blau-Weiss 90 Berlin",
-   "away": "Croatia Berlin",
-   "markets": {
-    "1x2": {
-     "1": 1.32,
-     "X": 5.21,
-     "2": 6.15
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 10.0,
-     "X2": 2.76
-    },
-    "totals": {
      "2.5": {
       "over": 1.26,
-      "under": 3.35
+      "under": 3.5
      },
      "3.0": {
-      "over": 1.39,
-      "under": 2.66
+      "over": 1.4,
+      "under": 2.73
      },
      "3.5": {
-      "over": 1.76,
+      "over": 1.83,
       "under": 1.91
      },
      "4.0": {
-      "over": 2.26,
-      "under": 1.54
+      "over": 2.35,
+      "under": 1.53
      },
      "4.5": {
-      "over": 2.81,
-      "under": 1.36
+      "over": 2.88,
+      "under": 1.37
      },
-     "1.5": {
-      "over": 1.62,
-      "under": 2.11
+     "5.5": {
+      "over": 4.85,
+      "under": 1.14
+     },
+     "6.5": {
+      "over": 7.77,
+      "under": 1.05
+     },
+     "1.75": {
+      "over": 2.22,
+      "under": 1.59
+     },
+     "3.25": {
+      "over": 1.6,
+      "under": 2.19
+     },
+     "3.75": {
+      "over": 1.98,
+      "under": 1.74
      },
      "2.0": {
-      "over": 2.25,
-      "under": 1.54
+      "over": 3.44,
+      "under": 1.26
      },
-     "1.0": {
-      "over": 1.75,
-      "under": 1.92
+     "0.5": {
+      "over": 2.48,
+      "under": 1.49
      }
     }
    }
   },
-  "s9-99.767851155": {
+  "s9-99.768315840": {
+   "time": "2026-11-05T18:30:00+00:00",
+   "league": "Argentina Championship. Women",
+   "home": "Union de Santa Fe (Women)",
+   "away": "Talleres de Cordoba (Women)",
+   "markets": {
+    "1x2": {
+     "1": 11.1,
+     "X": 4.37,
+     "2": 1.31
+    },
+    "doubleChance": {
+     "1X": 3.16,
+     "12": 1.18,
+     "X2": 1.02
+    },
+    "totals": {
+     "2.5": {
+      "over": 1.08,
+      "under": 6.5
+     },
+     "3.5": {
+      "over": 1.47,
+      "under": 2.5
+     },
+     "4.0": {
+      "over": 1.82,
+      "under": 1.93
+     },
+     "4.5": {
+      "over": 2.42,
+      "under": 1.5
+     },
+     "5.5": {
+      "over": 4.04,
+      "under": 1.2
+     },
+     "6.5": {
+      "over": 7.77,
+      "under": 1.05
+     },
+     "2.75": {
+      "over": 2.64,
+      "under": 1.43
+     },
+     "3.75": {
+      "over": 1.6,
+      "under": 2.19
+     },
+     "4.25": {
+      "over": 2.1,
+      "under": 1.65
+     },
+     "3.0": {
+      "over": 5.07,
+      "under": 1.13
+     },
+     "1.5": {
+      "over": 1.14,
+      "under": 5.0
+     }
+    }
+   }
+  },
+  "s9-99.768317198": {
+   "time": "2026-11-05T18:40:01+00:00",
+   "league": "FIFA 27. Amateur daily league",
+   "home": "Italy (Amanai)",
+   "away": "Belgium (Crystall)",
+   "markets": {
+    "1x2": {
+     "1": 1.21,
+     "X": 10.0,
+     "2": 5.75
+    },
+    "doubleChance": {
+     "1X": 1.6,
+     "12": 1.03,
+     "X2": 1.76
+    },
+    "totals": {
+     "30.5": {
+      "over": 1.5,
+      "under": 2.35
+     },
+     "31.0": {
+      "over": 1.62,
+      "under": 2.1
+     },
+     "31.5": {
+      "over": 1.88,
+      "under": 1.93
+     },
+     "32.0": {
+      "over": 2.03,
+      "under": 1.66
+     },
+     "32.5": {
+      "over": 2.26,
+      "under": 1.54
+     },
+     "31.25": {
+      "over": 1.71,
+      "under": 1.97
+     },
+     "31.75": {
+      "over": 1.98,
+      "under": 1.83
+     },
+     "14.5": {
+      "over": 1.87,
+      "under": 1.93
+     },
+     "15.0": {
+      "over": 2.03,
+      "under": 1.67
+     },
+     "15.5": {
+      "over": 2.26,
+      "under": 1.54
+     },
+     "13.5": {
+      "over": 1.57,
+      "under": 2.2
+     },
+     "14.0": {
+      "over": 1.86,
+      "under": 1.94
+     },
+     "16.5": {
+      "over": 1.47,
+      "under": 2.42
+     },
+     "17.0": {
+      "over": 1.65,
+      "under": 2.06
+     },
+     "17.5": {
+      "over": 2.0,
+      "under": 1.81
+     },
+     "16.75": {
+      "over": 1.54,
+      "under": 2.24
+     },
+     "17.25": {
+      "over": 1.85,
+      "under": 1.95
+     },
+     "13.75": {
+      "over": 1.66,
+      "under": 2.04
+     },
+     "14.25": {
+      "over": 2.02,
+      "under": 1.79
+     }
+    }
+   }
+  },
+  "s9-99.768319227": {
    "time": "2026-11-05T18:45:00+00:00",
    "league": "Israel. Liga Bet. North",
    "home": "Kolet Netanya",
    "away": "Tzeirey Haifa",
    "markets": {
     "1x2": {
-     "1": 2.08,
-     "X": 3.52,
-     "2": 2.9
+     "1": 2.53,
+     "X": 3.64,
+     "2": 2.43
     },
     "doubleChance": {
-     "1X": 1.31,
-     "12": 1.2,
-     "X2": 1.58
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.01,
-      "under": 17.0
-     },
-     "1.5": {
-      "over": 1.17,
-      "under": 5.2
-     },
-     "2.0": {
-      "over": 1.16,
-      "under": 4.1
-     },
-     "2.5": {
-      "over": 1.46,
-      "under": 2.38
-     },
-     "3.0": {
-      "over": 1.74,
-      "under": 1.89
-     },
-     "3.5": {
-      "over": 2.22,
-      "under": 1.56
-     },
-     "4.0": {
-      "over": 3.14,
-      "under": 1.27
-     },
-     "4.5": {
-      "over": 3.8,
-      "under": 1.19
-     },
-     "5.0": {
-      "over": 6.4,
-      "under": 1.05
-     },
-     "5.5": {
-      "over": 8.0,
-      "under": 1.08
-     },
-     "1.25": {
-      "over": 1.79,
-      "under": 1.86
-     },
-     "1.75": {
-      "over": 2.6,
-      "under": 1.42
-     },
-     "2.25": {
-      "over": 1.31,
-      "under": 2.92
-     },
-     "2.75": {
-      "over": 1.59,
-      "under": 2.17
-     },
-     "3.25": {
-      "over": 1.97,
-      "under": 1.69
-     },
-     "3.75": {
-      "over": 2.53,
-      "under": 1.41
-     },
-     "4.25": {
-      "over": 3.48,
-      "under": 1.22
-     },
-     "1.0": {
-      "over": 1.44,
-      "under": 2.45
-     }
-    }
-   }
-  },
-  "s9-99.767851149": {
-   "time": "2026-11-05T19:00:00+00:00",
-   "league": "Israel. Liga Bet. North",
-   "home": "Ironi Ariel",
-   "away": "Hapoel Ramot Menashe Meggido",
-   "markets": {
-    "1x2": {
-     "1": 1.94,
-     "X": 3.46,
-     "2": 3.28
-    },
-    "doubleChance": {
-     "1X": 1.24,
-     "12": 1.21,
-     "X2": 1.67
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.03,
-      "under": 13.0
-     },
-     "1.5": {
-      "over": 1.18,
-      "under": 3.92
-     },
-     "2.0": {
-      "over": 1.28,
-      "under": 3.08
-     },
-     "2.5": {
-      "over": 1.66,
-      "under": 2.05
-     },
-     "3.0": {
-      "over": 2.08,
-      "under": 1.6
-     },
-     "3.5": {
-      "over": 2.63,
-      "under": 1.38
-     },
-     "4.0": {
-      "over": 4.15,
-      "under": 1.16
-     },
-     "4.5": {
-      "over": 4.8,
-      "under": 1.11
-     },
-     "5.5": {
-      "over": 10.0,
-      "under": 1.05
-     },
-     "0.75": {
-      "over": 1.36,
-      "under": 2.71
-     },
-     "1.25": {
-      "over": 1.98,
-      "under": 1.69
-     },
-     "1.75": {
-      "over": 1.22,
-      "under": 3.5
-     },
-     "2.25": {
-      "over": 1.47,
-      "under": 2.39
-     },
-     "2.75": {
-      "over": 1.83,
-      "under": 1.83
-     },
-     "3.25": {
-      "over": 2.36,
-      "under": 1.48
-     },
-     "3.75": {
-      "over": 3.14,
-      "under": 1.27
-     },
-     "1.0": {
-      "over": 1.61,
-      "under": 2.13
-     }
-    }
-   }
-  },
-  "s9-99.768077657": {
-   "time": "2026-11-05T19:00:00+00:00",
-   "league": "Uruguay. Reserve League",
-   "home": "Liverpool Montevideo II",
-   "away": "Penarol II",
-   "markets": {
-    "1x2": {
-     "1": 3.57,
-     "X": 3.54,
-     "2": 1.83
-    },
-    "doubleChance": {
-     "1X": 1.76,
-     "12": 1.19,
-     "X2": 1.2
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.02,
-      "under": 12.8
-     },
-     "1.0": {
-      "over": 1.02,
-      "under": 9.0
-     },
-     "1.5": {
-      "over": 1.18,
-      "under": 4.1
-     },
-     "2.0": {
-      "over": 1.22,
-      "under": 3.5
-     },
-     "2.5": {
-      "over": 1.53,
-      "under": 2.21
-     },
-     "3.0": {
-      "over": 1.84,
-      "under": 1.78
-     },
-     "3.5": {
-      "over": 2.36,
-      "under": 1.5
-     },
-     "4.0": {
-      "over": 3.34,
-      "under": 1.24
-     },
-     "4.5": {
-      "over": 3.96,
-      "under": 1.17
-     },
-     "5.0": {
-      "over": 6.55,
-      "under": 1.05
-     },
-     "5.5": {
-      "over": 8.0,
-      "under": 1.06
-     },
-     "0.75": {
-      "over": 1.33,
-      "under": 2.88
-     },
-     "1.25": {
-      "over": 1.86,
-      "under": 1.79
-     },
-     "2.25": {
-      "over": 1.37,
-      "under": 2.66
-     },
-     "2.75": {
-      "over": 1.66,
-      "under": 1.99
-     },
-     "3.25": {
-      "over": 2.08,
-      "under": 1.6
-     },
-     "3.75": {
-      "over": 2.7,
-      "under": 1.36
-     },
-     "4.25": {
-      "over": 3.68,
-      "under": 1.2
-     },
-     "1.75": {
-      "over": 2.01,
-      "under": 1.69
-     }
-    }
-   }
-  },
-  "s9-99.767156843": {
-   "time": "2026-11-05T19:00:00+00:00",
-   "league": "Switzerland. League 3",
-   "home": "FC Assens A",
-   "away": "Echandens",
-   "markets": {
-    "1x2": {
-     "1": 1.44,
-     "X": 4.71,
-     "2": 4.89
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 10.0,
-     "X2": 2.35
-    },
-    "totals": {
-     "2.5": {
-      "over": 1.29,
-      "under": 3.16
-     },
-     "3.0": {
-      "over": 1.44,
-      "under": 2.5
-     },
-     "3.5": {
-      "over": 1.83,
-      "under": 1.83
-     },
-     "4.0": {
-      "over": 2.42,
-      "under": 1.47
-     },
-     "4.5": {
-      "over": 2.99,
-      "under": 1.32
-     },
-     "1.5": {
-      "over": 1.66,
-      "under": 2.04
-     },
-     "2.0": {
-      "over": 2.37,
-      "under": 1.49
-     },
-     "1.0": {
-      "over": 1.6,
-      "under": 2.14
-     }
-    }
-   }
-  },
-  "s9-99.768000732": {
-   "time": "2026-11-05T19:00:00+00:00",
-   "league": "Atlantic Cup U19",
-   "home": "Atletico Mineiro U19",
-   "away": "Norte America U19",
-   "markets": {
-    "1x2": {
-     "1": 1.1,
-     "X": 7.1,
-     "2": 13.7
-    },
-    "doubleChance": {
-     "1X": 10.0,
-     "12": 1.02,
-     "X2": 4.7
-    },
-    "totals": {
-     "2.0": {
-      "over": 1.14,
-      "under": 4.4
-     },
-     "2.5": {
-      "over": 1.41,
-      "under": 2.52
-     },
-     "3.0": {
-      "over": 1.65,
-      "under": 2.0
-     },
-     "3.5": {
-      "over": 2.11,
-      "under": 1.62
-     },
-     "4.0": {
-      "over": 2.88,
-      "under": 1.32
-     },
-     "4.5": {
-      "over": 3.48,
-      "under": 1.22
-     },
-     "5.0": {
-      "over": 5.7,
-      "under": 1.08
-     },
-     "1.25": {
-      "over": 1.73,
-      "under": 1.95
-     },
-     "1.75": {
-      "over": 2.4,
-      "under": 1.47
-     },
-     "2.25": {
-      "over": 1.28,
-      "under": 3.08
-     },
-     "2.75": {
-      "over": 1.53,
-      "under": 2.29
-     },
-     "3.25": {
-      "over": 1.87,
-      "under": 1.77
-     },
-     "3.75": {
-      "over": 2.38,
-      "under": 1.46
-     },
-     "4.25": {
-      "over": 3.14,
-      "under": 1.27
-     },
-     "0.5": {
-      "over": 1.22,
-      "under": 3.8
-     },
-     "1.0": {
-      "over": 1.36,
-      "under": 2.73
-     },
-     "1.5": {
-      "over": 2.04,
-      "under": 1.67
-     }
-    }
-   }
-  },
-  "s9-99.767935078": {
-   "time": "2026-11-05T19:00:00+00:00",
-   "league": "Uruguay Cup",
-   "home": "Lito",
-   "away": "Montevideo Wanderers",
-   "markets": {
-    "1x2": {
-     "1": 4.15,
-     "X": 3.18,
-     "2": 1.82
-    },
-    "doubleChance": {
-     "1X": 1.78,
+     "1X": 1.5,
      "12": 1.25,
-     "X2": 1.15
+     "X2": 1.47
     },
     "totals": {
      "0.5": {
       "over": 1.02,
-      "under": 7.8
-     },
-     "1.0": {
-      "over": 1.06,
-      "under": 6.3
+      "under": 10.0
      },
      "1.5": {
-      "over": 1.36,
-      "under": 2.7
-     },
-     "2.0": {
-      "over": 1.62,
-      "under": 2.05
+      "over": 1.21,
+      "under": 4.0
      },
      "2.5": {
-      "over": 2.2,
-      "under": 1.57
+      "over": 1.66,
+      "under": 2.1
      },
      "3.0": {
-      "over": 3.28,
-      "under": 1.25
+      "over": 2.08,
+      "under": 1.7
      },
      "3.5": {
-      "over": 4.05,
+      "over": 2.58,
+      "under": 1.45
+     },
+     "4.5": {
+      "over": 4.46,
       "under": 1.17
      },
-     "4.0": {
-      "over": 7.4,
-      "under": 1.03
-     },
-     "4.5": {
-      "over": 8.2,
-      "under": 1.02
-     },
      "5.5": {
-      "over": 21.0,
-      "under": 1.01
+      "over": 6.78,
+      "under": 1.07
+     },
+     "6.5": {
+      "over": 9.93,
+      "under": 1.02
      },
      "0.75": {
-      "over": 1.6,
-      "under": 2.12
+      "over": 1.63,
+      "under": 2.19
      },
      "1.25": {
-      "over": 2.48,
-      "under": 1.43
-     },
-     "1.75": {
-      "over": 3.92,
-      "under": 1.18
-     },
-     "2.25": {
-      "over": 1.92,
-      "under": 1.75
-     },
-     "2.75": {
-      "over": 2.54,
-      "under": 1.42
-     },
-     "3.25": {
-      "over": 3.69,
-      "under": 1.2
-     },
-     "3.75": {
-      "over": 5.15,
-      "under": 1.1
-     },
-     "4.25": {
-      "over": 7.8,
-      "under": 1.02
-     }
-    }
-   }
-  },
-  "s9-99.768032441": {
-   "time": "2026-11-05T19:00:00+00:00",
-   "league": "Paraguay. Reserve League",
-   "home": "Club Olimpia II",
-   "away": "Recoleta II",
-   "markets": {
-    "1x2": {
-     "1": 1.38,
-     "X": 4.2,
-     "2": 6.85
-    },
-    "doubleChance": {
-     "1X": 1.03,
-     "12": 1.13,
-     "X2": 2.56
-    },
-    "totals": {
-     "0.5": {
-      "over": 1.01,
-      "under": 21.0
-     },
-     "1.5": {
-      "over": 1.11,
-      "under": 5.8
-     },
-     "2.0": {
-      "over": 1.15,
-      "under": 4.25
-     },
-     "2.5": {
-      "over": 1.43,
-      "under": 2.46
-     },
-     "3.0": {
-      "over": 1.67,
-      "under": 1.98
-     },
-     "3.5": {
-      "over": 2.11,
-      "under": 1.62
-     },
-     "4.0": {
-      "over": 2.88,
-      "under": 1.32
-     },
-     "4.5": {
-      "over": 3.5,
-      "under": 1.22
-     },
-     "5.0": {
-      "over": 5.7,
-      "under": 1.08
-     },
-     "5.5": {
-      "over": 5.5,
-      "under": 1.11
-     },
-     "1.25": {
-      "over": 1.79,
-      "under": 1.86
-     },
-     "1.75": {
-      "over": 2.5,
+      "over": 2.57,
       "under": 1.45
      },
      "2.25": {
-      "over": 1.29,
-      "under": 3.04
+      "over": 1.5,
+      "under": 2.4
      },
      "2.75": {
-      "over": 1.54,
-      "under": 2.22
+      "over": 1.82,
+      "under": 1.92
      },
      "3.25": {
-      "over": 1.9,
-      "under": 1.77
-     },
-     "3.75": {
-      "over": 2.39,
-      "under": 1.47
-     },
-     "4.25": {
-      "over": 3.2,
-      "under": 1.26
+      "over": 2.3,
+      "under": 1.55
      },
      "1.0": {
-      "over": 1.45,
-      "under": 2.42
+      "over": 2.08,
+      "under": 1.7
      }
     }
    }
   },
-  "s9-99.767842419": {
+  "s9-99.768318998": {
+   "time": "2026-11-05T18:47:01+00:00",
+   "league": "Division 4x4",
+   "home": "Excelsior (Amateur)",
+   "away": "Volendam (Amateur)",
+   "markets": {
+    "1x2": {
+     "1": 2.95,
+     "X": 2.48,
+     "2": 2.95
+    },
+    "totals": {
+     "8.5": {
+      "over": 1.21,
+      "under": 3.73
+     },
+     "9.0": {
+      "over": 1.41,
+      "under": 2.61
+     }
+    }
+   }
+  },
+  "s9-99.768323509": {
+   "time": "2026-11-05T18:51:00+00:00",
+   "league": "National Collegiate Athletic Association (NCAA). Women",
+   "home": "Central Washington Wildcats (Women)",
+   "away": "Western Washington Vikings (Women)",
+   "markets": {
+    "1x2": {
+     "1": 10.1,
+     "X": 5.74,
+     "2": 1.23
+    },
+    "doubleChance": {
+     "1X": 3.66,
+     "12": 1.1,
+     "X2": 1.02
+    },
+    "totals": {
+     "2.5": {
+      "over": 1.54,
+      "under": 2.3
+     },
+     "3.0": {
+      "over": 1.94,
+      "under": 1.82
+     },
+     "3.5": {
+      "over": 2.46,
+      "under": 1.48
+     },
+     "4.0": {
+      "over": 3.54,
+      "under": 1.26
+     },
+     "0.75": {
+      "over": 1.24,
+      "under": 3.41
+     },
+     "1.25": {
+      "over": 1.71,
+      "under": 2.09
+     },
+     "2.75": {
+      "over": 1.71,
+      "under": 2.08
+     },
+     "3.25": {
+      "over": 2.19,
+      "under": 1.6
+     },
+     "3.75": {
+      "over": 2.94,
+      "under": 1.36
+     },
+     "0.5": {
+      "over": 1.23,
+      "under": 4.02
+     },
+     "1.0": {
+      "over": 1.37,
+      "under": 2.93
+     },
+     "1.5": {
+      "over": 2.05,
+      "under": 1.74
+     },
+     "2.0": {
+      "over": 1.59,
+      "under": 2.22
+     },
+     "1.75": {
+      "over": 1.43,
+      "under": 2.61
+     },
+     "2.25": {
+      "over": 1.87,
+      "under": 1.83
+     }
+    }
+   }
+  },
+  "s9-99.768321978": {
    "time": "2026-11-05T19:00:00+00:00",
    "league": "Israel. Liga Bet. South",
    "home": "Beitar Tel Aviv Holon",
    "away": "Hakoah Amidar Ramat Gan",
    "markets": {
     "1x2": {
-     "1": 1.74,
-     "X": 3.64,
-     "2": 3.85
+     "1": 1.58,
+     "X": 4.37,
+     "2": 4.53
     },
     "doubleChance": {
      "1X": 1.17,
      "12": 1.18,
-     "X2": 1.86
+     "X2": 2.24
     },
     "totals": {
-     "0.5": {
-      "over": 1.01,
-      "under": 9.7
-     },
-     "1.0": {
-      "over": 1.01,
-      "under": 8.4
-     },
      "1.5": {
-      "over": 1.25,
-      "under": 3.28
-     },
-     "2.0": {
-      "over": 1.4,
-      "under": 2.56
+      "over": 1.23,
+      "under": 3.75
      },
      "2.5": {
-      "over": 1.84,
-      "under": 1.83
+      "over": 1.76,
+      "under": 2.0
      },
      "3.0": {
-      "over": 2.49,
-      "under": 1.42
+      "over": 2.19,
+      "under": 1.6
      },
      "3.5": {
-      "over": 3.08,
-      "under": 1.28
-     },
-     "4.0": {
-      "over": 5.15,
-      "under": 1.1
+      "over": 2.73,
+      "under": 1.4
      },
      "4.5": {
-      "over": 6.5,
-      "under": 1.11
+      "over": 4.46,
+      "under": 1.17
      },
      "5.5": {
-      "over": 12.0,
-      "under": 1.04
+      "over": 7.17,
+      "under": 1.06
+     },
+     "6.5": {
+      "over": 10.4,
+      "under": 1.02
      },
      "0.75": {
-      "over": 1.42,
-      "under": 2.51
+      "over": 1.45,
+      "under": 2.55
      },
      "1.25": {
-      "over": 2.14,
-      "under": 1.59
-     },
-     "1.75": {
-      "over": 1.31,
-      "under": 2.92
+      "over": 2.1,
+      "under": 1.65
      },
      "2.25": {
-      "over": 1.63,
-      "under": 2.1
+      "over": 1.55,
+      "under": 2.3
      },
      "2.75": {
-      "over": 2.07,
-      "under": 1.63
+      "over": 1.92,
+      "under": 1.82
      },
      "3.25": {
-      "over": 2.79,
-      "under": 1.35
+      "over": 2.4,
+      "under": 1.5
      },
-     "3.75": {
-      "over": 3.82,
-      "under": 1.19
+     "0.5": {
+      "over": 1.3,
+      "under": 3.25
+     },
+     "1.0": {
+      "over": 1.7,
+      "under": 2.08
      }
     }
    }
   },
-  "s9-99.768000735": {
+  "s9-99.768322019": {
+   "time": "2026-11-05T19:00:00+00:00",
+   "league": "BudnesLiga LFL 5x5",
+   "home": "Bayer (Amateur)",
+   "away": "Dynamo Dresden (Amateur)",
+   "markets": {
+    "1x2": {
+     "1": 3.6,
+     "X": 5.91,
+     "2": 1.58
+    },
+    "doubleChance": {
+     "1X": 2.24,
+     "12": 1.1,
+     "X2": 1.25
+    },
+    "totals": {
+     "5.5": {
+      "over": 1.39,
+      "under": 2.68
+     },
+     "6.0": {
+      "over": 1.56,
+      "under": 2.22
+     },
+     "6.5": {
+      "over": 1.9,
+      "under": 1.82
+     },
+     "7.0": {
+      "over": 2.34,
+      "under": 1.5
+     },
+     "7.5": {
+      "over": 2.78,
+      "under": 1.37
+     },
+     "8.0": {
+      "over": 3.73,
+      "under": 1.21
+     },
+     "3.25": {
+      "over": 1.92,
+      "under": 1.88
+     },
+     "6.25": {
+      "over": 1.78,
+      "under": 2.04
+     },
+     "6.75": {
+      "over": 2.14,
+      "under": 1.71
+     },
+     "2.5": {
+      "over": 1.33,
+      "under": 2.95
+     },
+     "3.0": {
+      "over": 1.57,
+      "under": 2.19
+     },
+     "3.5": {
+      "over": 2.16,
+      "under": 1.63
+     },
+     "4.0": {
+      "over": 2.31,
+      "under": 1.52
+     },
+     "4.5": {
+      "over": 2.97,
+      "under": 1.32
+     },
+     "2.75": {
+      "over": 2.02,
+      "under": 1.8
+     },
+     "3.75": {
+      "over": 2.02,
+      "under": 1.8
+     },
+     "4.25": {
+      "over": 2.74,
+      "under": 1.46
+     }
+    }
+   }
+  },
+  "s9-99.768321980": {
+   "time": "2026-11-05T19:00:00+00:00",
+   "league": "Uruguay. Reserve League",
+   "home": "Liverpool Montevideo II",
+   "away": "Penarol II",
+   "markets": {
+    "1x2": {
+     "1": 3.47,
+     "X": 3.57,
+     "2": 1.95
+    },
+    "doubleChance": {
+     "1X": 1.77,
+     "12": 1.26,
+     "X2": 1.27
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.17,
+      "under": 4.5
+     },
+     "2.0": {
+      "over": 1.27,
+      "under": 3.71
+     },
+     "2.5": {
+      "over": 1.57,
+      "under": 2.25
+     },
+     "3.0": {
+      "over": 1.86,
+      "under": 1.88
+     },
+     "3.5": {
+      "over": 2.33,
+      "under": 1.54
+     },
+     "4.0": {
+      "over": 3.58,
+      "under": 1.3
+     },
+     "4.5": {
+      "over": 3.8,
+      "under": 1.22
+     },
+     "5.5": {
+      "over": 6.34,
+      "under": 1.09
+     },
+     "6.5": {
+      "over": 9.07,
+      "under": 1.03
+     },
+     "0.75": {
+      "over": 1.38,
+      "under": 2.83
+     },
+     "1.25": {
+      "over": 1.95,
+      "under": 1.8
+     },
+     "1.75": {
+      "over": 2.73,
+      "under": 1.4
+     },
+     "2.25": {
+      "over": 4.77,
+      "under": 1.18
+     },
+     "2.75": {
+      "over": 7.63,
+      "under": 1.09
+     },
+     "3.25": {
+      "over": 2.06,
+      "under": 1.68
+     },
+     "3.75": {
+      "over": 2.83,
+      "under": 1.43
+     },
+     "4.75": {
+      "over": 5.43,
+      "under": 1.15
+     },
+     "0.5": {
+      "over": 1.26,
+      "under": 3.5
+     },
+     "1.0": {
+      "over": 1.55,
+      "under": 2.3
+     }
+    }
+   }
+  },
+  "s9-99.768321979": {
+   "time": "2026-11-05T19:00:00+00:00",
+   "league": "Paraguay. Reserve League",
+   "home": "Club Olimpia II",
+   "away": "Recoleta II",
+   "markets": {
+    "1x2": {
+     "1": 1.41,
+     "X": 4.54,
+     "2": 6.56
+    },
+    "doubleChance": {
+     "1X": 1.09,
+     "12": 1.17,
+     "X2": 2.7
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.14,
+      "under": 5.0
+     },
+     "2.0": {
+      "over": 1.23,
+      "under": 4.22
+     },
+     "2.5": {
+      "over": 1.43,
+      "under": 2.63
+     },
+     "3.0": {
+      "over": 1.72,
+      "under": 2.05
+     },
+     "3.5": {
+      "over": 2.08,
+      "under": 1.67
+     },
+     "4.0": {
+      "over": 3.15,
+      "under": 1.36
+     },
+     "4.5": {
+      "over": 3.3,
+      "under": 1.29
+     },
+     "5.5": {
+      "over": 5.2,
+      "under": 1.13
+     },
+     "6.5": {
+      "over": 8.36,
+      "under": 1.04
+     },
+     "7.5": {
+      "over": 10.4,
+      "under": 1.02
+     },
+     "0.75": {
+      "over": 1.33,
+      "under": 3.07
+     },
+     "1.25": {
+      "over": 1.8,
+      "under": 1.95
+     },
+     "1.75": {
+      "over": 2.48,
+      "under": 1.48
+     },
+     "2.75": {
+      "over": 6.47,
+      "under": 1.11
+     },
+     "2.25": {
+      "over": 1.39,
+      "under": 3.01
+     },
+     "3.25": {
+      "over": 1.92,
+      "under": 1.82
+     },
+     "3.75": {
+      "over": 2.35,
+      "under": 1.53
+     },
+     "4.75": {
+      "over": 4.71,
+      "under": 1.19
+     },
+     "0.5": {
+      "over": 1.23,
+      "under": 3.75
+     },
+     "1.0": {
+      "over": 1.45,
+      "under": 2.55
+     },
+     "4.25": {
+      "over": 8.5,
+      "under": 1.07
+     }
+    }
+   }
+  },
+  "s9-99.768321982": {
+   "time": "2026-11-05T19:00:00+00:00",
+   "league": "Uruguay Cup",
+   "home": "Lito",
+   "away": "Montevideo Wanderers",
+   "markets": {
+    "1x2": {
+     "1": 3.81,
+     "X": 3.35,
+     "2": 1.97
+    },
+    "doubleChance": {
+     "1X": 1.79,
+     "12": 1.3,
+     "X2": 1.25
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.08,
+      "under": 7.0
+     },
+     "1.0": {
+      "over": 1.11,
+      "under": 6.52
+     },
+     "1.5": {
+      "over": 1.36,
+      "under": 3.0
+     },
+     "2.0": {
+      "over": 1.7,
+      "under": 2.15
+     },
+     "2.5": {
+      "over": 2.22,
+      "under": 1.62
+     },
+     "3.5": {
+      "over": 3.43,
+      "under": 1.29
+     },
+     "4.5": {
+      "over": 6.84,
+      "under": 1.09
+     },
+     "5.5": {
+      "over": 10.6,
+      "under": 1.02
+     },
+     "0.75": {
+      "over": 1.57,
+      "under": 2.31
+     },
+     "1.25": {
+      "over": 2.36,
+      "under": 1.55
+     },
+     "1.75": {
+      "over": 3.82,
+      "under": 1.26
+     },
+     "2.25": {
+      "over": 1.95,
+      "under": 1.85
+     },
+     "2.75": {
+      "over": 2.5,
+      "under": 1.49
+     },
+     "3.75": {
+      "over": 5.61,
+      "under": 1.14
+     },
+     "3.25": {
+      "over": 13.3,
+      "under": 1.02
+     }
+    }
+   }
+  },
+  "s9-99.768322100": {
+   "time": "2026-11-05T19:00:00+00:00",
+   "league": "BudnesLiga LFL 5x5",
+   "home": "St. Pauli (Amateur)",
+   "away": "FT Braunschweig (Amateur)",
+   "markets": {
+    "1x2": {
+     "1": 1.57,
+     "X": 5.86,
+     "2": 3.65
+    },
+    "doubleChance": {
+     "1X": 1.24,
+     "12": 1.1,
+     "X2": 2.25
+    },
+    "totals": {
+     "5.0": {
+      "over": 1.23,
+      "under": 3.57
+     },
+     "5.5": {
+      "over": 1.44,
+      "under": 2.53
+     },
+     "6.0": {
+      "over": 1.63,
+      "under": 2.09
+     },
+     "6.5": {
+      "over": 2.0,
+      "under": 1.74
+     },
+     "7.0": {
+      "over": 2.5,
+      "under": 1.45
+     },
+     "7.5": {
+      "over": 2.96,
+      "under": 1.33
+     },
+     "3.25": {
+      "over": 2.1,
+      "under": 1.74
+     },
+     "6.25": {
+      "over": 1.86,
+      "under": 1.94
+     },
+     "6.75": {
+      "over": 2.26,
+      "under": 1.64
+     },
+     "2.5": {
+      "over": 1.39,
+      "under": 2.69
+     },
+     "3.0": {
+      "over": 1.74,
+      "under": 2.01
+     },
+     "3.5": {
+      "over": 2.33,
+      "under": 1.51
+     },
+     "4.0": {
+      "over": 2.42,
+      "under": 1.47
+     },
+     "4.5": {
+      "over": 3.1,
+      "under": 1.3
+     },
+     "3.75": {
+      "over": 2.09,
+      "under": 1.74
+     },
+     "4.25": {
+      "over": 2.86,
+      "under": 1.42
+     },
+     "2.75": {
+      "over": 2.1,
+      "under": 1.74
+     }
+    }
+   }
+  },
+  "s9-99.768323287": {
+   "time": "2026-11-05T19:00:00+00:00",
+   "league": "Switzerland. Regional Cup",
+   "home": "Industrie Turicum",
+   "away": "Wollishofen",
+   "markets": {
+    "1x2": {
+     "1": 2.81,
+     "X": 4.67,
+     "2": 1.93
+    },
+    "doubleChance": {
+     "1X": 1.75,
+     "12": 1.14,
+     "X2": 1.37
+    },
+    "totals": {
+     "3.5": {
+      "over": 1.49,
+      "under": 2.46
+     },
+     "4.0": {
+      "over": 1.77,
+      "under": 2.01
+     },
+     "4.5": {
+      "over": 2.15,
+      "under": 1.62
+     },
+     "5.0": {
+      "over": 2.93,
+      "under": 1.37
+     },
+     "1.75": {
+      "over": 1.79,
+      "under": 1.98
+     },
+     "2.25": {
+      "over": 2.52,
+      "under": 1.46
+     },
+     "3.75": {
+      "over": 1.59,
+      "under": 2.22
+     },
+     "4.25": {
+      "over": 1.98,
+      "under": 1.79
+     },
+     "4.75": {
+      "over": 2.45,
+      "under": 1.49
+     },
+     "1.5": {
+      "over": 1.57,
+      "under": 2.25
+     },
+     "2.0": {
+      "over": 2.15,
+      "under": 1.66
+     },
+     "2.5": {
+      "over": 2.91,
+      "under": 1.37
+     }
+    }
+   }
+  },
+  "s9-99.768321973": {
    "time": "2026-11-05T19:00:00+00:00",
    "league": "Atlantic Cup U19",
    "home": "Retro Brasil U19",
    "away": "Sociedade Esportiva Palmeiras U19",
    "markets": {
     "1x2": {
-     "1": 3.68,
-     "X": 3.48,
-     "2": 1.82
+     "1": 3.62,
+     "X": 3.62,
+     "2": 1.9
     },
     "doubleChance": {
-     "1X": 1.77,
-     "12": 1.2,
-     "X2": 1.19
+     "1X": 1.82,
+     "12": 1.25,
+     "X2": 1.25
     },
     "totals": {
-     "1.0": {
-      "over": 1.01,
-      "under": 8.9
-     },
-     "1.5": {
-      "over": 1.19,
-      "under": 3.75
-     },
-     "2.0": {
-      "over": 1.3,
-      "under": 2.97
-     },
      "2.5": {
-      "over": 1.7,
-      "under": 1.99
-     },
-     "3.0": {
-      "over": 2.14,
-      "under": 1.57
-     },
-     "3.5": {
-      "over": 2.66,
-      "under": 1.37
-     },
-     "4.0": {
-      "over": 4.15,
-      "under": 1.16
-     },
-     "0.75": {
-      "over": 1.4,
-      "under": 2.62
+      "over": 1.76,
+      "under": 2.0
      },
      "1.25": {
-      "over": 2.01,
-      "under": 1.65
-     },
-     "1.75": {
-      "over": 1.24,
-      "under": 3.34
-     },
-     "2.25": {
-      "over": 1.5,
-      "under": 2.31
+      "over": 2.09,
+      "under": 1.69
      },
      "2.75": {
-      "over": 1.86,
-      "under": 1.8
+      "over": 1.87,
+      "under": 1.87
+     },
+     "1.5": {
+      "over": 2.48,
+      "under": 1.5
+     }
+    }
+   }
+  },
+  "s9-99.768321974": {
+   "time": "2026-11-05T19:00:00+00:00",
+   "league": "Atlantic Cup U19",
+   "home": "Atletico Mineiro U19",
+   "away": "Norte America U19",
+   "markets": {
+    "1x2": {
+     "1": 1.15,
+     "X": 8.38,
+     "2": 10.8
+    },
+    "doubleChance": {
+     "1X": 1.02,
+     "12": 1.05,
+     "X2": 4.76
+    },
+    "totals": {
+     "2.5": {
+      "over": 1.41,
+      "under": 2.71
+     },
+     "3.5": {
+      "over": 2.13,
+      "under": 1.67
+     },
+     "4.5": {
+      "over": 2.94,
+      "under": 1.35
+     },
+     "1.25": {
+      "over": 1.67,
+      "under": 2.13
      },
      "3.25": {
-      "over": 2.42,
-      "under": 1.46
+      "over": 1.87,
+      "under": 1.87
      },
-     "3.75": {
-      "over": 3.2,
-      "under": 1.26
+     "1.5": {
+      "over": 2.01,
+      "under": 1.75
      },
      "0.5": {
-      "over": 1.29,
-      "under": 3.08
+      "over": 1.94,
+      "under": 1.78
+     }
+    }
+   }
+  },
+  "s9-99.768321977": {
+   "time": "2026-11-05T19:00:00+00:00",
+   "league": "Israel. Liga Bet. North",
+   "home": "Ironi Ariel",
+   "away": "Hapoel Ramot Menashe Meggido",
+   "markets": {
+    "1x2": {
+     "1": 2.09,
+     "X": 3.66,
+     "2": 3.05
+    },
+    "doubleChance": {
+     "1X": 1.34,
+     "12": 1.25,
+     "X2": 1.68
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.18,
+      "under": 4.33
+     },
+     "2.5": {
+      "over": 1.66,
+      "under": 2.1
+     },
+     "3.0": {
+      "over": 2.04,
+      "under": 1.73
+     },
+     "3.5": {
+      "over": 2.42,
+      "under": 1.5
+     },
+     "4.5": {
+      "over": 4.04,
+      "under": 1.2
+     },
+     "5.5": {
+      "over": 6.78,
+      "under": 1.07
+     },
+     "6.5": {
+      "over": 9.48,
+      "under": 1.02
+     },
+     "0.75": {
+      "over": 1.43,
+      "under": 2.63
+     },
+     "1.25": {
+      "over": 2.06,
+      "under": 1.71
+     },
+     "1.75": {
+      "over": 2.94,
+      "under": 1.35
+     },
+     "2.25": {
+      "over": 1.48,
+      "under": 2.48
+     },
+     "2.75": {
+      "over": 1.8,
+      "under": 1.95
+     },
+     "3.25": {
+      "over": 2.25,
+      "under": 1.58
+     },
+     "0.5": {
+      "over": 1.3,
+      "under": 3.25
+     },
+     "1.0": {
+      "over": 1.69,
+      "under": 2.1
      }
     }
    }
@@ -6556,13 +3377,13 @@
    "markets": {
     "1x2": {
      "1": 9.8,
-     "X": 6.7,
-     "2": 1.15
+     "X": 6.55,
+     "2": 1.17
     },
     "doubleChance": {
-     "1X": 4.0,
+     "1X": 3.86,
      "12": 1.03,
-     "X2": 1.01
+     "X2": 1.02
     },
     "totals": {
      "1.5": {
@@ -6570,76 +3391,72 @@
       "under": 8.5
      },
      "2.0": {
-      "over": 1.02,
-      "under": 8.3
+      "over": 1.01,
+      "under": 8.5
      },
      "2.5": {
       "over": 1.17,
-      "under": 3.98
+      "under": 4.05
      },
      "3.0": {
-      "over": 1.25,
-      "under": 3.28
+      "over": 1.24,
+      "under": 3.34
      },
      "3.5": {
-      "over": 1.55,
-      "under": 2.24
+      "over": 1.54,
+      "under": 2.27
      },
      "4.0": {
-      "over": 1.81,
-      "under": 1.81
+      "over": 1.8,
+      "under": 1.82
      },
      "4.5": {
-      "over": 2.21,
-      "under": 1.53
+      "over": 2.19,
+      "under": 1.54
      },
      "5.0": {
-      "over": 3.05,
-      "under": 1.29
+      "over": 2.97,
+      "under": 1.3
      },
      "5.5": {
       "over": 3.3,
       "under": 1.28
      },
      "1.25": {
-      "over": 1.43,
-      "under": 2.56
-     },
-     "1.75": {
-      "over": 1.87,
-      "under": 1.78
-     },
-     "2.75": {
-      "over": 1.21,
-      "under": 3.58
-     },
-     "3.25": {
-      "over": 1.39,
+      "over": 1.42,
       "under": 2.6
      },
+     "1.75": {
+      "over": 1.86,
+      "under": 1.79
+     },
+     "2.75": {
+      "over": 1.2,
+      "under": 3.7
+     },
+     "3.25": {
+      "over": 1.38,
+      "under": 2.63
+     },
      "3.75": {
-      "over": 1.66,
-      "under": 2.01
+      "over": 1.63,
+      "under": 2.03
      },
      "4.25": {
-      "over": 2.04,
+      "over": 1.99,
       "under": 1.66
      },
      "4.75": {
-      "over": 2.52,
-      "under": 1.41
-     },
-     "2.25": {
-      "over": 1.9,
-      "under": 1.74
+      "over": 2.49,
+      "under": 1.42
      },
      "0.5": {
       "over": 1.11,
       "under": 5.5
      },
      "1.0": {
-      "over": 1.17,
-      "under": 4.1
+      "over": 1.16,
+      "under": 4.15
      }
     }
    }
@@ -6651,14 +3468,14 @@
    "away": "Espanyol II (Women)",
    "markets": {
     "1x2": {
-     "1": 6.25,
-     "X": 4.45,
-     "2": 1.38
+     "1": 5.92,
+     "X": 4.33,
+     "2": 1.41
     },
     "doubleChance": {
-     "1X": 2.56,
+     "1X": 2.46,
      "12": 1.12,
-     "X2": 1.05
+     "X2": 1.06
     },
     "totals": {
      "2.0": {
@@ -6670,8 +3487,8 @@
       "under": 2.33
      },
      "3.0": {
-      "over": 1.76,
-      "under": 1.86
+      "over": 1.77,
+      "under": 1.85
      },
      "3.5": {
       "over": 2.24,
@@ -6682,11 +3499,11 @@
       "under": 1.27
      },
      "4.5": {
-      "over": 3.72,
-      "under": 1.2
+      "over": 3.74,
+      "under": 1.19
      },
      "5.0": {
-      "over": 6.05,
+      "over": 6.1,
       "under": 1.06
      },
      "1.25": {
@@ -6699,7 +3516,7 @@
      },
      "2.25": {
       "over": 1.33,
-      "under": 2.83
+      "under": 2.81
      },
      "2.75": {
       "over": 1.6,
@@ -6726,8 +3543,8 @@
       "under": 2.45
      },
      "1.5": {
-      "over": 2.12,
-      "under": 1.62
+      "over": 2.13,
+      "under": 1.61
      }
     }
    }
@@ -6828,6 +3645,38 @@
     }
    }
   },
+  "s9-99.767890211": {
+   "time": "2026-11-05T20:00:00+00:00",
+   "league": "UEFA Europa League. Team vs Player",
+   "home": "Enzo Le Fee",
+   "away": "Dinamo Zagreb",
+   "markets": {
+    "1x2": {
+     "1": 6.28,
+     "X": 2.32,
+     "2": 1.92
+    },
+    "doubleChance": {
+     "1X": 1.67,
+     "12": 1.44,
+     "X2": 10.0
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.26,
+      "under": 3.23
+     },
+     "1.0": {
+      "over": 1.62,
+      "under": 2.11
+     },
+     "1.5": {
+      "over": 2.52,
+      "under": 1.44
+     }
+    }
+   }
+  },
   "s9-99.767886127": {
    "time": "2026-11-05T20:00:00+00:00",
    "league": "UEFA Europa League. Team vs Player",
@@ -6860,6 +3709,42 @@
      "2.5": {
       "over": 3.43,
       "under": 1.25
+     }
+    }
+   }
+  },
+  "s9-99.767893113": {
+   "time": "2026-11-05T20:00:00+00:00",
+   "league": "UEFA Europa League. Team vs Player",
+   "home": "Iago Aspas",
+   "away": "Royale Union Saint-Gilloise",
+   "markets": {
+    "1x2": {
+     "1": 9.25,
+     "X": 3.23,
+     "2": 1.44
+    },
+    "doubleChance": {
+     "1X": 2.35,
+     "12": 1.23,
+     "X2": 10.0
+    },
+    "totals": {
+     "1.0": {
+      "over": 1.21,
+      "under": 3.79
+     },
+     "1.5": {
+      "over": 1.72,
+      "under": 1.95
+     },
+     "2.0": {
+      "over": 2.57,
+      "under": 1.42
+     },
+     "2.5": {
+      "over": 3.51,
+      "under": 1.24
      }
     }
    }
@@ -7402,7 +4287,7 @@
       "under": 1.05
      },
      "6.5": {
-      "over": 8.4,
+      "over": 8.7,
       "under": 1.04
      },
      "7.5": {
@@ -7607,91 +4492,119 @@
    "away": "Treasure Beach",
    "markets": {
     "1x2": {
-     "1": 1.1,
-     "X": 6.35,
-     "2": 18.0
+     "1": 1.09,
+     "X": 6.5,
+     "2": 19.0
     },
     "doubleChance": {
-     "1X": 1.02,
-     "12": 1.04,
-     "X2": 4.7
+     "1X": 1.01,
+     "12": 1.03,
+     "X2": 4.9
     },
     "totals": {
      "0.5": {
-      "over": 1.01,
-      "under": 13.3
+      "over": 1.02,
+      "under": 14.9
      },
      "1.0": {
-      "over": 1.01,
-      "under": 9.9
+      "over": 1.02,
+      "under": 11.0
      },
      "1.5": {
-      "over": 1.14,
-      "under": 4.7
+      "over": 1.11,
+      "under": 5.3
      },
      "2.0": {
-      "over": 1.19,
-      "under": 3.8
+      "over": 1.17,
+      "under": 3.98
      },
      "2.5": {
-      "over": 1.48,
-      "under": 2.33
+      "over": 1.44,
+      "under": 2.43
      },
      "3.0": {
-      "over": 1.74,
-      "under": 1.89
+      "over": 1.68,
+      "under": 1.96
      },
      "3.5": {
-      "over": 2.08,
-      "under": 1.64
+      "over": 2.1,
+      "under": 1.63
      },
      "4.0": {
-      "over": 2.97,
-      "under": 1.3
+      "over": 2.81,
+      "under": 1.33
      },
      "4.5": {
-      "over": 3.58,
-      "under": 1.21
+      "over": 3.34,
+      "under": 1.24
      },
      "5.0": {
-      "over": 5.75,
-      "under": 1.07
+      "over": 5.3,
+      "under": 1.09
      },
      "5.5": {
-      "over": 7.0,
+      "over": 6.5,
       "under": 1.08
      },
-     "0.75": {
-      "over": 1.36,
-      "under": 2.75
-     },
      "1.25": {
-      "over": 1.85,
-      "under": 1.8
+      "over": 1.83,
+      "under": 1.84
      },
      "1.75": {
-      "over": 1.18,
-      "under": 4.2
+      "over": 2.55,
+      "under": 1.42
      },
      "2.25": {
-      "over": 1.33,
-      "under": 2.81
+      "over": 1.31,
+      "under": 2.92
      },
      "2.75": {
       "over": 1.54,
-      "under": 2.27
+      "under": 2.22
      },
      "3.25": {
-      "over": 1.97,
-      "under": 1.71
+      "over": 1.9,
+      "under": 1.77
      },
      "3.75": {
-      "over": 2.47,
-      "under": 1.44
+      "over": 2.36,
+      "under": 1.48
      },
      "4.25": {
-      "over": 3.28,
-      "under": 1.25
+      "over": 3.08,
+      "under": 1.28
+     }
+    }
+   }
+  },
+  "s9-99.767893111": {
+   "time": "2026-11-05T20:00:00+00:00",
+   "league": "UEFA Europa League. Team vs Player",
+   "home": "Ferran Jutgla",
+   "away": "Royale Union Saint-Gilloise",
+   "markets": {
+    "1x2": {
+     "1": 6.98,
+     "X": 3.2,
+     "2": 1.53
+    },
+    "doubleChance": {
+     "1X": 2.17,
+     "12": 1.23,
+     "X2": 10.0
+    },
+    "totals": {
+     "1.5": {
+      "over": 1.63,
+      "under": 2.08
+     },
+     "2.0": {
+      "over": 2.32,
+      "under": 1.51
+     },
+     "2.5": {
+      "over": 3.18,
+      "under": 1.28
      }
     }
    }
@@ -8080,6 +4993,38 @@
      "2.5": {
       "over": 3.41,
       "under": 1.25
+     }
+    }
+   }
+  },
+  "s9-99.767894469": {
+   "time": "2026-11-05T20:00:00+00:00",
+   "league": "UEFA Europa League. Team vs Player",
+   "home": "Jorge Aguirre de Cespedes",
+   "away": "Ararat - Armenia",
+   "markets": {
+    "1x2": {
+     "1": 6.53,
+     "X": 2.4,
+     "2": 1.85
+    },
+    "doubleChance": {
+     "1X": 1.73,
+     "12": 1.41,
+     "X2": 10.0
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.23,
+      "under": 3.39
+     },
+     "1.0": {
+      "over": 1.55,
+      "under": 2.23
+     },
+     "1.5": {
+      "over": 2.4,
+      "under": 1.48
      }
     }
    }
@@ -8546,8 +5491,8 @@
       "under": 1.12
      },
      "6.5": {
-      "over": 6.83,
-      "under": 1.07
+      "over": 6.35,
+      "under": 1.09
      },
      "7.5": {
       "over": 8.35,
@@ -8780,6 +5725,142 @@
     }
    }
   },
+  "s9-99.767889850": {
+   "time": "2026-11-05T20:00:00+00:00",
+   "league": "UEFA Europa League. Team vs Player",
+   "home": "Wilson Isidor",
+   "away": "Dinamo Zagreb",
+   "markets": {
+    "1x2": {
+     "1": 4.26,
+     "X": 2.43,
+     "2": 2.16
+    },
+    "doubleChance": {
+     "1X": 1.52,
+     "12": 1.41,
+     "X2": 1.14
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.18,
+      "under": 3.88
+     },
+     "1.0": {
+      "over": 1.41,
+      "under": 2.6
+     },
+     "1.5": {
+      "over": 2.14,
+      "under": 1.6
+     },
+     "2.0": {
+      "over": 3.86,
+      "under": 1.2
+     }
+    }
+   }
+  },
+  "s9-99.767886845": {
+   "time": "2026-11-05T20:00:00+00:00",
+   "league": "UEFA Europa League. Team vs Player",
+   "home": "Jakub Kaminski",
+   "away": "Lech Poznan",
+   "markets": {
+    "1x2": {
+     "1": 4.3,
+     "X": 2.11,
+     "2": 2.48
+    },
+    "doubleChance": {
+     "1X": 1.39,
+     "12": 1.54,
+     "X2": 1.14
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.31,
+      "under": 2.91
+     },
+     "1.0": {
+      "over": 1.78,
+      "under": 1.88
+     },
+     "1.5": {
+      "over": 2.8,
+      "under": 1.36
+     }
+    }
+   }
+  },
+  "s9-99.767890210": {
+   "time": "2026-11-05T20:00:00+00:00",
+   "league": "UEFA Europa League. Team vs Player",
+   "home": "Trey Ogunsuyi",
+   "away": "Dinamo Zagreb",
+   "markets": {
+    "1x2": {
+     "1": 4.64,
+     "X": 2.4,
+     "2": 2.09
+    },
+    "doubleChance": {
+     "1X": 1.56,
+     "12": 1.42,
+     "X2": 1.11
+    },
+    "totals": {
+     "0.5": {
+      "over": 1.2,
+      "under": 3.69
+     },
+     "1.0": {
+      "over": 1.46,
+      "under": 2.46
+     },
+     "1.5": {
+      "over": 2.23,
+      "under": 1.55
+     }
+    }
+   }
+  },
+  "s9-99.767896818": {
+   "time": "2026-11-05T20:00:00+00:00",
+   "league": "UEFA Europa League. Team vs Player",
+   "home": "Oumar Diakite",
+   "away": "Celje",
+   "markets": {
+    "1x2": {
+     "1": 4.03,
+     "X": 2.68,
+     "2": 2.05
+    },
+    "doubleChance": {
+     "1X": 1.59,
+     "12": 1.33,
+     "X2": 1.15
+    },
+    "totals": {
+     "1.0": {
+      "over": 1.24,
+      "under": 3.49
+     },
+     "1.5": {
+      "over": 1.8,
+      "under": 1.87
+     },
+     "2.0": {
+      "over": 2.78,
+      "under": 1.36
+     },
+     "2.5": {
+      "over": 3.78,
+      "under": 1.21
+     }
+    }
+   }
+  },
   "s9-99.767886129": {
    "time": "2026-11-05T20:00:00+00:00",
    "league": "UEFA Europa League. Team vs Player",
@@ -8883,14 +5964,14 @@
    "away": "Iberia 1999",
    "markets": {
     "1x2": {
-     "1": 1.14,
-     "X": 9.0,
-     "2": 21.0
+     "1": 1.12,
+     "X": 10.0,
+     "2": 25.0
     },
     "doubleChance": {
-     "1X": 1.02,
-     "12": 1.33,
-     "X2": 2.33
+     "1X": 1.01,
+     "12": 1.3,
+     "X2": 2.44
     },
     "totals": {
      "1.0": {
@@ -8898,39 +5979,39 @@
       "under": 9.8
      },
      "1.5": {
-      "over": 1.14,
-      "under": 5.08
+      "over": 1.13,
+      "under": 5.18
      },
      "2.0": {
       "over": 1.19,
-      "under": 4.33
+      "under": 4.38
      },
      "2.5": {
-      "over": 1.48,
-      "under": 2.59
+      "over": 1.47,
+      "under": 2.62
      },
      "3.0": {
-      "over": 1.72,
-      "under": 2.12
+      "over": 1.71,
+      "under": 2.13
      },
      "3.5": {
-      "over": 2.19,
+      "over": 2.18,
       "under": 1.73
      },
      "4.0": {
-      "over": 2.91,
-      "under": 1.41
+      "over": 2.87,
+      "under": 1.42
      },
      "4.5": {
       "over": 3.41,
       "under": 1.3
      },
      "5.0": {
-      "over": 5.33,
+      "over": 5.32,
       "under": 1.14
      },
      "5.5": {
-      "over": 5.91,
+      "over": 5.87,
       "under": 1.11
      },
      "6.5": {
@@ -8942,48 +6023,48 @@
       "under": 1.02
      },
      "0.75": {
-      "over": 1.3,
-      "under": 3.08
+      "over": 1.29,
+      "under": 3.16
      },
      "1.25": {
-      "over": 1.78,
-      "under": 1.9
+      "over": 1.76,
+      "under": 1.92
      },
      "1.75": {
       "over": 2.47,
       "under": 1.49
      },
      "2.25": {
-      "over": 3.74,
-      "under": 1.21
+      "over": 3.64,
+      "under": 1.22
      },
      "2.75": {
-      "over": 1.57,
-      "under": 2.36
+      "over": 1.56,
+      "under": 2.38
      },
      "3.25": {
-      "over": 1.96,
-      "under": 1.9
+      "over": 1.95,
+      "under": 1.91
      },
      "3.75": {
-      "over": 2.42,
-      "under": 1.55
+      "over": 2.4,
+      "under": 1.56
      },
      "4.25": {
       "over": 3.14,
       "under": 1.33
      },
      "4.75": {
-      "over": 4.08,
+      "over": 4.05,
       "under": 1.2
      },
      "5.25": {
-      "over": 5.55,
+      "over": 5.5,
       "under": 1.11
      },
      "0.5": {
-      "over": 1.21,
-      "under": 3.65
+      "over": 1.2,
+      "under": 3.78
      }
     }
    }
@@ -9340,8 +6421,8 @@
    "markets": {
     "1x2": {
      "1": 1.31,
-     "X": 6.25,
-     "2": 9.2
+     "X": 6.3,
+     "2": 9.1
     },
     "doubleChance": {
      "1X": 1.08,
@@ -9349,49 +6430,45 @@
      "X2": 3.64
     },
     "totals": {
-     "1.0": {
-      "over": 1.02,
-      "under": 9.85
-     },
      "1.5": {
-      "over": 1.09,
-      "under": 6.44
+      "over": 1.07,
+      "under": 6.82
      },
      "2.0": {
-      "over": 1.12,
-      "under": 5.69
+      "over": 1.1,
+      "under": 6.13
      },
      "2.5": {
-      "over": 1.35,
-      "under": 3.14
+      "over": 1.32,
+      "under": 3.3
      },
      "3.0": {
-      "over": 1.51,
-      "under": 2.58
+      "over": 1.46,
+      "under": 2.74
      },
      "3.5": {
-      "over": 1.93,
-      "under": 1.95
+      "over": 1.85,
+      "under": 2.04
      },
      "4.0": {
-      "over": 2.43,
-      "under": 1.57
+      "over": 2.29,
+      "under": 1.64
      },
      "4.5": {
-      "over": 2.9,
-      "under": 1.4
+      "over": 2.74,
+      "under": 1.45
      },
      "5.0": {
-      "over": 4.34,
-      "under": 1.2
+      "over": 3.92,
+      "under": 1.24
      },
      "5.5": {
-      "over": 4.83,
-      "under": 1.16
+      "over": 4.51,
+      "under": 1.18
      },
      "6.0": {
-      "over": 7.7,
-      "under": 1.06
+      "over": 7.14,
+      "under": 1.07
      },
      "6.5": {
       "over": 8.7,
@@ -9402,48 +6479,52 @@
       "under": 1.02
      },
      "0.75": {
-      "over": 1.22,
-      "under": 3.75
+      "over": 1.2,
+      "under": 3.96
      },
      "1.25": {
-      "over": 1.67,
-      "under": 2.25
+      "over": 1.58,
+      "under": 2.29
      },
      "1.75": {
-      "over": 2.25,
-      "under": 1.6
+      "over": 2.21,
+      "under": 1.69
      },
      "2.25": {
-      "over": 3.36,
-      "under": 1.27
+      "over": 3.17,
+      "under": 1.3
      },
      "2.75": {
-      "over": 1.4,
-      "under": 2.82
+      "over": 1.36,
+      "under": 3.0
      },
      "3.25": {
-      "over": 1.7,
-      "under": 2.15
+      "over": 1.64,
+      "under": 2.26
      },
      "3.75": {
-      "over": 2.14,
-      "under": 1.78
+      "over": 2.03,
+      "under": 1.86
      },
      "4.25": {
-      "over": 2.66,
-      "under": 1.47
+      "over": 2.51,
+      "under": 1.52
      },
      "4.75": {
-      "over": 3.36,
-      "under": 1.29
+      "over": 3.16,
+      "under": 1.32
      },
      "5.25": {
-      "over": 4.53,
-      "under": 1.16
+      "over": 4.18,
+      "under": 1.18
      },
      "0.5": {
-      "over": 1.19,
-      "under": 4.5
+      "over": 1.17,
+      "under": 4.7
+     },
+     "1.0": {
+      "over": 1.32,
+      "under": 3.36
      }
     }
    }
@@ -9455,115 +6536,118 @@
    "away": "Lech Poznan",
    "markets": {
     "1x2": {
-     "1": 1.14,
-     "X": 9.6,
+     "1": 1.13,
+     "X": 9.95,
      "2": 20.0
-    },
-    "doubleChance": {
-     "1X": 1.01,
-     "12": 1.26,
-     "X2": 2.65
     },
     "totals": {
      "1.5": {
-      "over": 1.06,
-      "under": 7.55
+      "over": 1.02,
+      "under": 9.8
      },
      "2.0": {
-      "over": 1.08,
-      "under": 6.93
+      "over": 1.06,
+      "under": 7.39
      },
      "2.5": {
-      "over": 1.26,
-      "under": 3.69
+      "over": 1.22,
+      "under": 3.94
      },
      "3.0": {
-      "over": 1.37,
-      "under": 3.14
+      "over": 1.31,
+      "under": 3.29
      },
      "3.5": {
-      "over": 1.69,
-      "under": 2.27
+      "over": 1.6,
+      "under": 2.32
      },
      "4.0": {
-      "over": 1.99,
-      "under": 1.84
+      "over": 1.88,
+      "under": 1.93
      },
      "4.5": {
-      "over": 2.38,
-      "under": 1.57
+      "over": 2.33,
+      "under": 1.66
      },
      "5.0": {
-      "over": 3.24,
-      "under": 1.33
+      "over": 3.05,
+      "under": 1.39
      },
      "5.5": {
-      "over": 3.71,
-      "under": 1.25
+      "over": 3.54,
+      "under": 1.29
      },
      "6.0": {
-      "over": 5.71,
-      "under": 1.11
+      "over": 5.27,
+      "under": 1.14
      },
      "6.5": {
-      "over": 6.36,
-      "under": 1.09
+      "over": 5.72,
+      "under": 1.11
      },
      "7.5": {
-      "over": 8.35,
+      "over": 8.55,
       "under": 1.04
      },
      "8.5": {
-      "over": 9.7,
+      "over": 9.8,
       "under": 1.02
      },
      "0.75": {
-      "over": 1.17,
-      "under": 4.55
+      "over": 1.15,
+      "under": 4.8
      },
      "1.25": {
-      "over": 1.51,
-      "under": 2.53
+      "over": 1.47,
+      "under": 2.65
      },
      "1.75": {
-      "over": 1.97,
-      "under": 1.78
+      "over": 1.9,
+      "under": 1.84
      },
      "2.25": {
-      "over": 2.77,
-      "under": 1.4
-     },
-     "2.75": {
-      "over": 1.29,
-      "under": 3.42
-     },
-     "3.25": {
-      "over": 1.51,
-      "under": 2.57
-     },
-     "3.75": {
-      "over": 1.83,
-      "under": 2.06
-     },
-     "4.25": {
-      "over": 2.18,
-      "under": 1.67
-     },
-     "4.75": {
-      "over": 2.68,
+      "over": 2.66,
       "under": 1.43
      },
+     "2.75": {
+      "over": 1.24,
+      "under": 3.57
+     },
+     "3.25": {
+      "over": 1.44,
+      "under": 2.64
+     },
+     "3.75": {
+      "over": 1.71,
+      "under": 2.12
+     },
+     "4.25": {
+      "over": 2.12,
+      "under": 1.79
+     },
+     "4.75": {
+      "over": 2.57,
+      "under": 1.51
+     },
      "5.25": {
-      "over": 3.4,
-      "under": 1.26
+      "over": 3.29,
+      "under": 1.31
+     },
+     "5.75": {
+      "over": 4.16,
+      "under": 1.19
+     },
+     "6.25": {
+      "over": 5.45,
+      "under": 1.11
      },
      "0.5": {
-      "over": 1.12,
-      "under": 5.25
+      "over": 1.11,
+      "under": 5.5
      },
      "1.0": {
-      "over": 1.25,
-      "under": 3.72
+      "over": 1.22,
+      "under": 4.0
      }
     }
    }
@@ -9626,16 +6710,16 @@
       "under": 1.08
      },
      "1.25": {
-      "over": 1.78,
-      "under": 1.87
+      "over": 1.79,
+      "under": 1.86
      },
      "1.75": {
       "over": 2.53,
       "under": 1.44
      },
      "2.25": {
-      "over": 1.31,
-      "under": 2.92
+      "over": 1.3,
+      "under": 2.97
      },
      "2.75": {
       "over": 1.56,
@@ -9646,8 +6730,8 @@
       "under": 1.72
      },
      "3.75": {
-      "over": 2.5,
-      "under": 1.43
+      "over": 2.47,
+      "under": 1.44
      },
      "4.25": {
       "over": 3.34,
