@@ -29,6 +29,9 @@ on:
       - "euro-internal-model.js"
       - "nt-internal-model.js"
       - "day-odds.js"
+      - "tomorrow-model.js"
+      - "tests/tomorrow-model.test.cjs"
+      - "tests/test_tomorrow_fixtures.py"
       - "express-model.js"
       - "scripts/models/capture-predictions.mjs"
       - "scripts/models/evaluate-ledger-vs-dataset.mjs"
@@ -73,6 +76,8 @@ jobs:
           node --test tests/nt-internal-model.test.cjs
           node --check day-odds.js
           node --test tests/day-odds.test.cjs
+          node --check tomorrow-model.js
+          node --test tests/tomorrow-model.test.cjs
           node --check model-v1.js
           node --check goals-model.js
           node --check scripts/models/archive-provider-results.mjs
@@ -95,6 +100,7 @@ jobs:
           python3 -m unittest tests.test_theodds_odds
           python3 -m unittest tests.test_recency_weights
           python3 -m unittest tests.test_nt_dataset
+          python3 -m unittest tests.test_tomorrow_fixtures
       - name: Confirm CSV pipelines are not used
         run: |
           if find . -type f -name '*.csv' -not -path './.git/*' | grep -q .; then

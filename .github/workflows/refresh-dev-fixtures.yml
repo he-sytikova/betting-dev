@@ -57,6 +57,11 @@ jobs:
           EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
         run: python3 scripts/models/fetch-euro365-odds.py --data data.json --output data/odds.json
 
+      - name: Fetch tomorrow fixture list from Euro365 prematch (schedule only, no odds)
+        env:
+          EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
+        run: python3 scripts/models/fetch-tomorrow-fixtures.py --output data/fixtures-tomorrow.json
+
       - name: Fetch football-data.co.uk fixtures odds (keyless consensus)
         run: python3 scripts/models/fetch-fdo-odds.py --output data/odds-fdo.json
 
@@ -69,6 +74,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data.json
           if [ -f data/odds.json ]; then git add data/odds.json; fi
+          if [ -f data/fixtures-tomorrow.json ]; then git add data/fixtures-tomorrow.json; fi
           if [ -f data/odds-fdo.json ]; then git add data/odds-fdo.json; fi
           if [ -d data/results-ledger ]; then git add -A data/results-ledger; fi
           if git diff --cached --quiet; then
