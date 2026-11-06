@@ -1,45 +1,13 @@
 {
  "date": "2026-11-06",
- "fetchedAt": "2026-11-06T02:43:19.844979+00:00",
+ "fetchedAt": "2026-11-06T08:53:28.455949+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 33,
-  "remaining": 467
+  "used": 49,
+  "remaining": 451
  },
  "matches": [
-  {
-   "home": "Cruzeiro",
-   "away": "Bahia",
-   "commenceTime": "2026-11-06T00:30:00Z",
-   "bookmakers": 4,
-   "markets": {
-    "totals": {
-     "4.5": {
-      "avg": {
-       "over": 3.43,
-       "under": 1.33
-      },
-      "max": {
-       "over": 3.43,
-       "under": 1.33
-      }
-     },
-     "5.5": {
-      "avg": {
-       "over": 9.483,
-       "under": 1.047
-      },
-      "max": {
-       "over": 13.0,
-       "under": 1.09
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_brazil_campeonato",
-   "leagueCode": "BRA"
-  },
   {
    "home": "Lokomotiv Moscow",
    "away": "Rubin Kazan",
@@ -49,12 +17,12 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 2.027,
-       "under": 1.825
+       "over": 2.012,
+       "under": 1.847
       },
       "max": {
-       "over": 2.09,
-       "under": 1.86
+       "over": 2.07,
+       "under": 1.88
       }
      }
     }
@@ -71,12 +39,12 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.877,
-       "under": 1.867
+       "over": 1.839,
+       "under": 1.913
       },
       "max": {
-       "over": 1.95,
-       "under": 1.99
+       "over": 1.91,
+       "under": 2.05
       }
      }
     }
@@ -93,42 +61,42 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.579,
-       "under": 2.25
+       "over": 1.63,
+       "under": 2.16
       },
       "max": {
-       "over": 1.6,
-       "under": 2.31
+       "over": 1.65,
+       "under": 2.25
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.83,
-       "under": 2.06
+       "over": 1.88,
+       "under": 2.0
       },
       "max": {
-       "over": 1.83,
-       "under": 2.06
+       "over": 1.88,
+       "under": 2.0
       }
      },
      "3.0": {
       "avg": {
-       "over": 1.94,
-       "under": 1.835
+       "over": 2.055,
+       "under": 1.735
       },
       "max": {
-       "over": 1.96,
-       "under": 1.85
+       "over": 2.08,
+       "under": 1.76
       }
      },
      "3.5": {
       "avg": {
-       "over": 2.228,
-       "under": 1.535
+       "over": 2.325,
+       "under": 1.482
       },
       "max": {
-       "over": 2.25,
-       "under": 1.55
+       "over": 2.35,
+       "under": 1.5
       }
      }
     }
@@ -145,32 +113,42 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.433,
-       "under": 2.62
+       "over": 1.447,
+       "under": 2.587
       },
       "max": {
        "over": 1.45,
-       "under": 2.7
+       "under": 2.6
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 1.71,
+       "under": 2.08
+      },
+      "max": {
+       "over": 1.71,
+       "under": 2.08
       }
      },
      "3.25": {
       "avg": {
-       "over": 1.95,
-       "under": 1.92
+       "over": 2.0,
+       "under": 1.88
       },
       "max": {
-       "over": 1.95,
-       "under": 1.92
+       "over": 2.0,
+       "under": 1.88
       }
      },
      "3.5": {
       "avg": {
-       "over": 2.012,
-       "under": 1.731
+       "over": 2.049,
+       "under": 1.698
       },
       "max": {
-       "over": 2.2,
-       "under": 1.8
+       "over": 2.26,
+       "under": 1.74
       }
      }
     }
@@ -182,37 +160,37 @@
    "home": "Hammarby IF",
    "away": "IF Elfsborg",
    "commenceTime": "2026-11-06T18:00:00Z",
-   "bookmakers": 14,
+   "bookmakers": 15,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.556,
-       "under": 2.35
+       "over": 1.537,
+       "under": 2.327
       },
       "max": {
-       "over": 1.58,
-       "under": 2.38
+       "over": 1.6,
+       "under": 2.48
       }
      },
      "3.0": {
       "avg": {
-       "over": 1.89,
-       "under": 1.895
+       "over": 1.855,
+       "under": 1.94
       },
       "max": {
-       "over": 1.93,
-       "under": 1.93
+       "over": 1.87,
+       "under": 1.99
       }
      },
      "3.5": {
       "avg": {
-       "over": 2.374,
-       "under": 1.484
+       "over": 2.297,
+       "under": 1.595
       },
       "max": {
-       "over": 2.48,
-       "under": 1.55
+       "over": 2.38,
+       "under": 1.64
       }
      }
     }
@@ -239,22 +217,22 @@
      },
      "2.25": {
       "avg": {
-       "over": 2.02,
-       "under": 1.8
+       "over": 2.05,
+       "under": 1.785
       },
       "max": {
-       "over": 2.05,
-       "under": 1.82
+       "over": 2.09,
+       "under": 1.8
       }
      },
      "2.5": {
       "avg": {
-       "over": 2.234,
-       "under": 1.577
+       "over": 2.273,
+       "under": 1.558
       },
       "max": {
-       "over": 2.34,
-       "under": 1.64
+       "over": 2.4,
+       "under": 1.62
       }
      }
     }
@@ -271,21 +249,21 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.643,
-       "under": 2.125
+       "over": 1.656,
+       "under": 2.102
       },
       "max": {
-       "over": 1.7,
-       "under": 2.29
+       "over": 1.71,
+       "under": 2.24
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.86,
+       "over": 1.87,
        "under": 1.945
       },
       "max": {
-       "over": 1.89,
+       "over": 1.91,
        "under": 1.96
       }
      },
@@ -313,11 +291,11 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.879,
-       "under": 1.835
+       "over": 1.88,
+       "under": 1.837
       },
       "max": {
-       "over": 1.96,
+       "over": 1.97,
        "under": 1.92
       }
      }
@@ -335,22 +313,22 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.593,
-       "under": 2.203
+       "over": 1.617,
+       "under": 2.162
       },
       "max": {
        "over": 1.72,
-       "under": 2.33
+       "under": 2.23
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.86,
-       "under": 1.945
+       "over": 1.885,
+       "under": 1.94
       },
       "max": {
-       "over": 1.89,
-       "under": 1.96
+       "over": 1.92,
+       "under": 1.95
       }
      },
      "3.0": {
@@ -377,22 +355,22 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.663,
-       "under": 2.075
+       "over": 1.644,
+       "under": 2.107
       },
       "max": {
-       "over": 1.73,
-       "under": 2.15
+       "over": 1.7,
+       "under": 2.22
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.87,
-       "under": 1.935
+       "over": 1.875,
+       "under": 1.945
       },
       "max": {
-       "over": 1.9,
-       "under": 1.95
+       "over": 1.89,
+       "under": 1.98
       }
      }
     }
@@ -409,12 +387,12 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.867,
-       "under": 1.847
+       "over": 1.845,
+       "under": 1.874
       },
       "max": {
        "over": 1.95,
-       "under": 1.92
+       "under": 1.93
       }
      }
     }
@@ -431,32 +409,42 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.554,
-       "under": 2.372
+       "over": 1.647,
+       "under": 2.194
       },
       "max": {
-       "over": 1.61,
-       "under": 2.46
+       "over": 1.73,
+       "under": 2.25
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.88,
+       "under": 2.01
+      },
+      "max": {
+       "over": 1.88,
+       "under": 2.01
       }
      },
      "3.0": {
       "avg": {
-       "over": 1.88,
-       "under": 1.91
+       "over": 2.07,
+       "under": 1.727
       },
       "max": {
-       "over": 1.93,
-       "under": 1.94
+       "over": 2.1,
+       "under": 1.76
       }
      },
      "3.5": {
       "avg": {
-       "over": 2.306,
-       "under": 1.554
+       "over": 2.45,
+       "under": 1.47
       },
       "max": {
-       "over": 2.39,
-       "under": 1.6
+       "over": 2.5,
+       "under": 1.5
       }
      }
     }
@@ -468,27 +456,27 @@
    "home": "Ascoli",
    "away": "Palermo",
    "commenceTime": "2026-11-06T19:30:00Z",
-   "bookmakers": 14,
+   "bookmakers": 15,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.609,
-       "under": 2.15
+       "over": 1.623,
+       "under": 2.152
       },
       "max": {
-       "over": 1.65,
-       "under": 2.27
+       "over": 1.72,
+       "under": 2.28
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.835,
-       "under": 1.98
+       "over": 1.845,
+       "under": 1.99
       },
       "max": {
-       "over": 1.87,
-       "under": 2.0
+       "over": 1.88,
+       "under": 2.02
       }
      },
      "3.0": {
@@ -510,37 +498,37 @@
    "home": "CD Castellón",
    "away": "SD Eibar",
    "commenceTime": "2026-11-06T19:30:00Z",
-   "bookmakers": 13,
+   "bookmakers": 9,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.567,
-       "under": 2.219
+       "over": 1.556,
+       "under": 2.186
       },
       "max": {
-       "over": 1.64,
-       "under": 2.4
+       "over": 1.57,
+       "under": 2.25
       }
      },
      "3.0": {
       "avg": {
-       "over": 1.965,
-       "under": 1.825
+       "over": 1.967,
+       "under": 1.843
       },
       "max": {
-       "over": 2.07,
+       "over": 2.08,
        "under": 1.85
       }
      },
      "3.5": {
       "avg": {
-       "over": 2.36,
-       "under": 1.58
+       "over": 2.33,
+       "under": 1.56
       },
       "max": {
-       "over": 2.39,
-       "under": 1.6
+       "over": 2.33,
+       "under": 1.56
       }
      }
     }
@@ -552,36 +540,36 @@
    "home": "Hamburger SV",
    "away": "Borussia Monchengladbach",
    "commenceTime": "2026-11-06T19:30:00Z",
-   "bookmakers": 15,
+   "bookmakers": 16,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.61,
-       "under": 2.277
+       "over": 1.638,
+       "under": 2.237
       },
       "max": {
-       "over": 1.69,
-       "under": 2.4
+       "over": 1.74,
+       "under": 2.32
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.9,
-       "under": 1.99
+       "over": 1.88,
+       "under": 2.03
       },
       "max": {
-       "over": 1.9,
-       "under": 1.99
+       "over": 1.88,
+       "under": 2.03
       }
      },
      "3.0": {
       "avg": {
-       "over": 2.035,
-       "under": 1.77
+       "over": 2.12,
+       "under": 1.76
       },
       "max": {
-       "over": 2.04,
+       "over": 2.13,
        "under": 1.78
       }
      }
@@ -589,38 +577,6 @@
    },
    "sportKey": "soccer_germany_bundesliga",
    "leagueCode": "D1"
-  },
-  {
-   "home": "Venezia",
-   "away": "Udinese",
-   "commenceTime": "2026-11-06T19:45:00Z",
-   "bookmakers": 17,
-   "markets": {
-    "totals": {
-     "2.5": {
-      "avg": {
-       "over": 1.771,
-       "under": 2.044
-      },
-      "max": {
-       "over": 1.93,
-       "under": 2.12
-      }
-     },
-     "2.75": {
-      "avg": {
-       "over": 2.08,
-       "under": 1.82
-      },
-      "max": {
-       "over": 2.08,
-       "under": 1.82
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_italy_serie_a",
-   "leagueCode": "I1"
   },
   {
    "home": "Toulouse",
@@ -631,28 +587,70 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.609,
-       "under": 2.263
+       "over": 1.655,
+       "under": 2.181
       },
       "max": {
-       "over": 1.72,
-       "under": 2.38
+       "over": 1.74,
+       "under": 2.27
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.88,
+       "under": 2.02
+      },
+      "max": {
+       "over": 1.88,
+       "under": 2.02
       }
      },
      "3.0": {
       "avg": {
-       "over": 2.043,
-       "under": 1.83
+       "over": 2.115,
+       "under": 1.765
       },
       "max": {
        "over": 2.13,
-       "under": 1.88
+       "under": 1.78
       }
      }
     }
    },
    "sportKey": "soccer_france_ligue_one",
    "leagueCode": "F1"
+  },
+  {
+   "home": "Venezia",
+   "away": "Udinese",
+   "commenceTime": "2026-11-06T19:45:00Z",
+   "bookmakers": 17,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.804,
+       "under": 1.992
+      },
+      "max": {
+       "over": 1.9,
+       "under": 2.12
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 2.11,
+       "under": 1.82
+      },
+      "max": {
+       "over": 2.11,
+       "under": 1.82
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_italy_serie_a",
+   "leagueCode": "I1"
   },
   {
    "home": "Derby County",
@@ -664,31 +662,31 @@
      "2.5": {
       "avg": {
        "over": 1.679,
-       "under": 2.096
+       "under": 2.098
       },
       "max": {
-       "over": 1.76,
-       "under": 2.24
+       "over": 1.75,
+       "under": 2.2
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.9,
-       "under": 1.97
+       "over": 1.88,
+       "under": 2.01
       },
       "max": {
-       "over": 1.9,
-       "under": 1.97
+       "over": 1.88,
+       "under": 2.01
       }
      },
      "3.0": {
       "avg": {
-       "over": 2.09,
-       "under": 1.71
+       "over": 2.1,
+       "under": 1.7
       },
       "max": {
-       "over": 2.15,
-       "under": 1.74
+       "over": 2.1,
+       "under": 1.7
       }
      }
     }
@@ -706,21 +704,21 @@
      "2.25": {
       "avg": {
        "over": 1.93,
-       "under": 1.96
+       "under": 1.97
       },
       "max": {
        "over": 1.93,
-       "under": 1.96
+       "under": 1.97
       }
      },
      "2.5": {
       "avg": {
-       "over": 2.161,
-       "under": 1.678
+       "over": 2.13,
+       "under": 1.695
       },
       "max": {
-       "over": 2.27,
-       "under": 1.74
+       "over": 2.25,
+       "under": 1.75
       }
      }
     }
@@ -737,22 +735,22 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.728,
-       "under": 2.106
+       "over": 1.724,
+       "under": 2.112
       },
       "max": {
-       "over": 1.83,
+       "over": 1.81,
        "under": 2.18
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.95,
-       "under": 1.93
+       "over": 1.99,
+       "under": 1.92
       },
       "max": {
-       "over": 1.95,
-       "under": 1.93
+       "over": 1.99,
+       "under": 1.92
       }
      }
     }
@@ -767,24 +765,34 @@
    "bookmakers": 14,
    "markets": {
     "totals": {
-     "2.25": {
+     "2.0": {
       "avg": {
-       "over": 1.855,
-       "under": 1.96
+       "over": 1.66,
+       "under": 2.19
       },
       "max": {
-       "over": 1.89,
-       "under": 1.98
+       "over": 1.66,
+       "under": 2.19
+      }
+     },
+     "2.25": {
+      "avg": {
+       "over": 1.985,
+       "under": 1.84
+      },
+      "max": {
+       "over": 2.01,
+       "under": 1.87
       }
      },
      "2.5": {
       "avg": {
-       "over": 2.013,
-       "under": 1.735
+       "over": 2.129,
+       "under": 1.66
       },
       "max": {
-       "over": 2.2,
-       "under": 1.79
+       "over": 2.32,
+       "under": 1.72
       }
      }
     }
