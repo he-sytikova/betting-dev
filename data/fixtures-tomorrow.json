@@ -1,6 +1,6 @@
 {
  "date": "2026-11-07",
- "generatedAt": "2026-11-06T07:26:12.924106+00:00",
+ "generatedAt": "2026-11-06T09:05:25.421519+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.768066429",
@@ -183,6 +183,13 @@
    "league": "Costa Rica. Primera Division. Women",
    "home": "Alajuelense (Women)",
    "away": "AD Moravia (Women)"
+  },
+  {
+   "eventId": "s9-99.768450431",
+   "time": "2026-11-07T01:00:00+00:00",
+   "league": "Costa Rica. Primera Division. Women",
+   "home": "Deportivo Saprissa (Women)",
+   "away": "Upala Carrillo (Women)"
   },
   {
    "eventId": "s9-99.768311561",
@@ -1382,6 +1389,13 @@
    "away": "Hobro U19"
   },
   {
+   "eventId": "s9-99.768452452",
+   "time": "2026-11-07T11:00:00+00:00",
+   "league": "Denmark. 5th Division",
+   "home": "B 1909",
+   "away": "Kerteminde"
+  },
+  {
    "eventId": "s9-99.768187613",
    "time": "2026-11-07T11:00:00+00:00",
    "league": "Denmark. Serie 1",
@@ -1765,6 +1779,13 @@
    "league": "Denmark Championship. A-League. Women",
    "home": "Kolding (Women)",
    "away": "Kobenhavn (Women)"
+  },
+  {
+   "eventId": "s9-99.768465765",
+   "time": "2026-11-07T12:00:00+00:00",
+   "league": "Denmark Championship. B-League. Women",
+   "home": "Aalborg (Women)",
+   "away": "B.93 Copenhagen (Women)"
   },
   {
    "eventId": "s9-99.767134095",
@@ -2656,11 +2677,39 @@
    "away": "SK Doksy"
   },
   {
+   "eventId": "s9-99.768451915",
+   "time": "2026-11-07T13:00:00+00:00",
+   "league": "Czech Republic. 5 Liga",
+   "home": "Semily",
+   "away": "Jivan Bela"
+  },
+  {
+   "eventId": "s9-99.768450028",
+   "time": "2026-11-07T13:00:00+00:00",
+   "league": "Czech Republic. 5 Liga",
+   "home": "Tuchlovice",
+   "away": "Sokol Tuchomerice"
+  },
+  {
    "eventId": "s9-99.768209507",
    "time": "2026-11-07T13:00:00+00:00",
    "league": "Denmark Championship U19",
    "home": "Copenhagen U19",
    "away": "Vejle U19"
+  },
+  {
+   "eventId": "s9-99.768466686",
+   "time": "2026-11-07T13:00:00+00:00",
+   "league": "Denmark Championship. B-League. Women",
+   "home": "Sundby (Women)",
+   "away": "Thy Thisted Q (Women)"
+  },
+  {
+   "eventId": "s9-99.768465310",
+   "time": "2026-11-07T13:00:00+00:00",
+   "league": "Denmark Championship. B-League. Women",
+   "home": "Viborg (Women)",
+   "away": "Esbjerg fB (Women)"
   },
   {
    "eventId": "s9-99.767180736",
@@ -3431,6 +3480,13 @@
    "league": "Denmark. 3rd Division",
    "home": "Holstebro",
    "away": "Ringsted"
+  },
+  {
+   "eventId": "s9-99.768455556",
+   "time": "2026-11-07T13:30:00+00:00",
+   "league": "France. Youth League",
+   "home": "Vertou U19",
+   "away": "Brest U19"
   },
   {
    "eventId": "s9-99.767416573",
@@ -5449,14 +5505,14 @@
    "away": "Vitesse Bobo-Dioulasso"
   },
   {
-   "eventId": "s9-99.768392298",
+   "eventId": "s9-99.768454000",
    "time": "2026-11-07T15:30:00+00:00",
    "league": "Burkina Faso",
    "home": "Sporting Tannounyan",
    "away": "Rail Club du Kadiogo"
   },
   {
-   "eventId": "s9-99.768380182",
+   "eventId": "s9-99.768453997",
    "time": "2026-11-07T15:30:00+00:00",
    "league": "Burkina Faso",
    "home": "US des Forces Armees",
@@ -5792,6 +5848,27 @@
    "away": "Hellas Verona"
   },
   {
+   "eventId": "s9-99.768446079",
+   "time": "2026-11-07T16:15:00+00:00",
+   "league": "Sierra Leone. Premier League",
+   "home": "East End Lions",
+   "away": "Wilberforce Strikers"
+  },
+  {
+   "eventId": "s9-99.768449026",
+   "time": "2026-11-07T16:15:00+00:00",
+   "league": "Sierra Leone. Premier League",
+   "home": "Kallon",
+   "away": "Western United Freetown"
+  },
+  {
+   "eventId": "s9-99.768450842",
+   "time": "2026-11-07T16:15:00+00:00",
+   "league": "Sierra Leone. Premier League",
+   "home": "Mighty Blackpool",
+   "away": "Star Sport Academy"
+  },
+  {
    "eventId": "s9-99.766955361",
    "time": "2026-11-07T16:30:00+00:00",
    "league": "Austria. Second League",
@@ -5951,6 +6028,20 @@
    "league": "France. Ligue 1. Women",
    "home": "Fleury 91 (Women)",
    "away": "Strasbourg (Women)"
+  },
+  {
+   "eventId": "s9-99.768454008",
+   "time": "2026-11-07T17:00:00+00:00",
+   "league": "France. National 1",
+   "home": "AS Lyon-Duchere",
+   "away": "Etoile Frejus Saint Raphael"
+  },
+  {
+   "eventId": "s9-99.768450034",
+   "time": "2026-11-07T17:00:00+00:00",
+   "league": "France. National 1",
+   "home": "Avranches",
+   "away": "GSI Pontivy"
   },
   {
    "eventId": "s9-99.768444521",
