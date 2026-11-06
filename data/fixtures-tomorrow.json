@@ -1,6 +1,6 @@
 {
  "date": "2026-11-07",
- "generatedAt": "2026-11-06T07:06:10.661939+00:00",
+ "generatedAt": "2026-11-06T07:26:12.924106+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.768066429",
@@ -1018,6 +1018,13 @@
    "away": "Slovan Havlickuv Brod"
   },
   {
+   "eventId": "s9-99.768434826",
+   "time": "2026-11-07T09:15:00+00:00",
+   "league": "Czech Republic. 5 Liga",
+   "home": "Sparta Kutna Hora",
+   "away": "Viktoria Vestec"
+  },
+  {
    "eventId": "s9-99.768131221",
    "time": "2026-11-07T09:30:00+00:00",
    "league": "Czech Republic. 3 Liga",
@@ -1030,6 +1037,13 @@
    "league": "Czech Republic. 4 Liga",
    "home": "Hlinsko",
    "away": "OEZ Letohrad"
+  },
+  {
+   "eventId": "s9-99.768434823",
+   "time": "2026-11-07T09:30:00+00:00",
+   "league": "Czech Republic. 5 Liga",
+   "home": "Tatran Kohoutovice",
+   "away": "Banik Ratiskovice"
   },
   {
    "eventId": "s9-99.768243195",
@@ -2633,6 +2647,13 @@
    "league": "Czech Republic. 4 Liga",
    "home": "Trutnov",
    "away": "Chlumec NC"
+  },
+  {
+   "eventId": "s9-99.768434829",
+   "time": "2026-11-07T13:00:00+00:00",
+   "league": "Czech Republic. 5 Liga",
+   "home": "Bohemia Podebrady",
+   "away": "SK Doksy"
   },
   {
    "eventId": "s9-99.768209507",
@@ -5071,6 +5092,13 @@
    "away": "Gloucester City"
   },
   {
+   "eventId": "s9-99.768446859",
+   "time": "2026-11-07T15:00:00+00:00",
+   "league": "France. National 1",
+   "home": "Troyes AC II",
+   "away": "Canet Roussillon"
+  },
+  {
    "eventId": "s9-99.767300419",
    "time": "2026-11-07T15:00:00+00:00",
    "league": "Germany. Oberliga Bayern",
@@ -5925,6 +5953,27 @@
    "away": "Strasbourg (Women)"
   },
   {
+   "eventId": "s9-99.768444521",
+   "time": "2026-11-07T17:00:00+00:00",
+   "league": "France. National 1",
+   "home": "Haguenau",
+   "away": "Colmar"
+  },
+  {
+   "eventId": "s9-99.768444518",
+   "time": "2026-11-07T17:00:00+00:00",
+   "league": "France. National 1",
+   "home": "Hauts Lyonnais",
+   "away": "Bourges Foot 18"
+  },
+  {
+   "eventId": "s9-99.768447319",
+   "time": "2026-11-07T17:00:00+00:00",
+   "league": "France. National 1",
+   "home": "Racing Paris",
+   "away": "Montlouis"
+  },
+  {
    "eventId": "s9-99.767386144",
    "time": "2026-11-07T17:00:00+00:00",
    "league": "Germany. Regionalliga North",
@@ -6548,7 +6597,7 @@
    "away": "Reading"
   },
   {
-   "eventId": "s9-99.768430367",
+   "eventId": "s9-99.768442412",
    "time": "2026-11-07T20:00:00+00:00",
    "league": "France. Ligue 1. Women",
    "home": "Saint-Malo (Women)",
