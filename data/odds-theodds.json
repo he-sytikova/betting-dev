@@ -1,11 +1,796 @@
 {
- "date": "2026-11-05",
- "fetchedAt": "2026-11-05T08:56:26.365748+00:00",
+ "date": "2026-11-06",
+ "fetchedAt": "2026-11-06T02:43:19.844979+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 17,
-  "remaining": 483
+  "used": 33,
+  "remaining": 467
  },
- "matches": []
+ "matches": [
+  {
+   "home": "Cruzeiro",
+   "away": "Bahia",
+   "commenceTime": "2026-11-06T00:30:00Z",
+   "bookmakers": 4,
+   "markets": {
+    "totals": {
+     "4.5": {
+      "avg": {
+       "over": 3.43,
+       "under": 1.33
+      },
+      "max": {
+       "over": 3.43,
+       "under": 1.33
+      }
+     },
+     "5.5": {
+      "avg": {
+       "over": 9.483,
+       "under": 1.047
+      },
+      "max": {
+       "over": 13.0,
+       "under": 1.09
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_brazil_campeonato",
+   "leagueCode": "BRA"
+  },
+  {
+   "home": "Lokomotiv Moscow",
+   "away": "Rubin Kazan",
+   "commenceTime": "2026-11-06T16:30:00Z",
+   "bookmakers": 4,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 2.027,
+       "under": 1.825
+      },
+      "max": {
+       "over": 2.09,
+       "under": 1.86
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_russia_premier_league",
+   "leagueCode": "RUS"
+  },
+  {
+   "home": "Gazişehir Gaziantep",
+   "away": "Kasimpasa SK",
+   "commenceTime": "2026-11-06T17:00:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.877,
+       "under": 1.867
+      },
+      "max": {
+       "over": 1.95,
+       "under": 1.99
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_turkey_super_league",
+   "leagueCode": "T1"
+  },
+  {
+   "home": "Dynamo Dresden",
+   "away": "Greuther Fürth",
+   "commenceTime": "2026-11-06T17:30:00Z",
+   "bookmakers": 14,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.579,
+       "under": 2.25
+      },
+      "max": {
+       "over": 1.6,
+       "under": 2.31
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.83,
+       "under": 2.06
+      },
+      "max": {
+       "over": 1.83,
+       "under": 2.06
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 1.94,
+       "under": 1.835
+      },
+      "max": {
+       "over": 1.96,
+       "under": 1.85
+      }
+     },
+     "3.5": {
+      "avg": {
+       "over": 2.228,
+       "under": 1.535
+      },
+      "max": {
+       "over": 2.25,
+       "under": 1.55
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_germany_bundesliga2",
+   "leagueCode": "D2"
+  },
+  {
+   "home": "Eintracht Braunschweig",
+   "away": "FC Energie Cottbus",
+   "commenceTime": "2026-11-06T17:30:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.433,
+       "under": 2.62
+      },
+      "max": {
+       "over": 1.45,
+       "under": 2.7
+      }
+     },
+     "3.25": {
+      "avg": {
+       "over": 1.95,
+       "under": 1.92
+      },
+      "max": {
+       "over": 1.95,
+       "under": 1.92
+      }
+     },
+     "3.5": {
+      "avg": {
+       "over": 2.012,
+       "under": 1.731
+      },
+      "max": {
+       "over": 2.2,
+       "under": 1.8
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_germany_bundesliga2",
+   "leagueCode": "D2"
+  },
+  {
+   "home": "Hammarby IF",
+   "away": "IF Elfsborg",
+   "commenceTime": "2026-11-06T18:00:00Z",
+   "bookmakers": 14,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.556,
+       "under": 2.35
+      },
+      "max": {
+       "over": 1.58,
+       "under": 2.38
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 1.89,
+       "under": 1.895
+      },
+      "max": {
+       "over": 1.93,
+       "under": 1.93
+      }
+     },
+     "3.5": {
+      "avg": {
+       "over": 2.374,
+       "under": 1.484
+      },
+      "max": {
+       "over": 2.48,
+       "under": 1.55
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_sweden_allsvenskan",
+   "leagueCode": "SWE"
+  },
+  {
+   "home": "Boulogne",
+   "away": "Annecy FC",
+   "commenceTime": "2026-11-06T19:00:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.0": {
+      "avg": {
+       "over": 1.73,
+       "under": 2.07
+      },
+      "max": {
+       "over": 1.73,
+       "under": 2.07
+      }
+     },
+     "2.25": {
+      "avg": {
+       "over": 2.02,
+       "under": 1.8
+      },
+      "max": {
+       "over": 2.05,
+       "under": 1.82
+      }
+     },
+     "2.5": {
+      "avg": {
+       "over": 2.234,
+       "under": 1.577
+      },
+      "max": {
+       "over": 2.34,
+       "under": 1.64
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_france_ligue_two",
+   "leagueCode": "F2"
+  },
+  {
+   "home": "Dijon",
+   "away": "Red Star",
+   "commenceTime": "2026-11-06T19:00:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.643,
+       "under": 2.125
+      },
+      "max": {
+       "over": 1.7,
+       "under": 2.29
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.86,
+       "under": 1.945
+      },
+      "max": {
+       "over": 1.89,
+       "under": 1.96
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 2.1,
+       "under": 1.71
+      },
+      "max": {
+       "over": 2.1,
+       "under": 1.71
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_france_ligue_two",
+   "leagueCode": "F2"
+  },
+  {
+   "home": "Grenoble",
+   "away": "Stade de Reims",
+   "commenceTime": "2026-11-06T19:00:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.879,
+       "under": 1.835
+      },
+      "max": {
+       "over": 1.96,
+       "under": 1.92
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_france_ligue_two",
+   "leagueCode": "F2"
+  },
+  {
+   "home": "USL Dunkerque",
+   "away": "Guingamp",
+   "commenceTime": "2026-11-06T19:00:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.593,
+       "under": 2.203
+      },
+      "max": {
+       "over": 1.72,
+       "under": 2.33
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.86,
+       "under": 1.945
+      },
+      "max": {
+       "over": 1.89,
+       "under": 1.96
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 2.1,
+       "under": 1.71
+      },
+      "max": {
+       "over": 2.1,
+       "under": 1.71
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_france_ligue_two",
+   "leagueCode": "F2"
+  },
+  {
+   "home": "Montpellier",
+   "away": "Metz",
+   "commenceTime": "2026-11-06T19:00:00Z",
+   "bookmakers": 14,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.663,
+       "under": 2.075
+      },
+      "max": {
+       "over": 1.73,
+       "under": 2.15
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.87,
+       "under": 1.935
+      },
+      "max": {
+       "over": 1.9,
+       "under": 1.95
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_france_ligue_two",
+   "leagueCode": "F2"
+  },
+  {
+   "home": "Nancy",
+   "away": "Sochaux",
+   "commenceTime": "2026-11-06T19:00:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.867,
+       "under": 1.847
+      },
+      "max": {
+       "over": 1.95,
+       "under": 1.92
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_france_ligue_two",
+   "leagueCode": "F2"
+  },
+  {
+   "home": "Willem II",
+   "away": "FC Zwolle",
+   "commenceTime": "2026-11-06T19:00:00Z",
+   "bookmakers": 16,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.554,
+       "under": 2.372
+      },
+      "max": {
+       "over": 1.61,
+       "under": 2.46
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 1.88,
+       "under": 1.91
+      },
+      "max": {
+       "over": 1.93,
+       "under": 1.94
+      }
+     },
+     "3.5": {
+      "avg": {
+       "over": 2.306,
+       "under": 1.554
+      },
+      "max": {
+       "over": 2.39,
+       "under": 1.6
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_netherlands_eredivisie",
+   "leagueCode": "N1"
+  },
+  {
+   "home": "Ascoli",
+   "away": "Palermo",
+   "commenceTime": "2026-11-06T19:30:00Z",
+   "bookmakers": 14,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.609,
+       "under": 2.15
+      },
+      "max": {
+       "over": 1.65,
+       "under": 2.27
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.835,
+       "under": 1.98
+      },
+      "max": {
+       "over": 1.87,
+       "under": 2.0
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 2.06,
+       "under": 1.74
+      },
+      "max": {
+       "over": 2.06,
+       "under": 1.74
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_italy_serie_b",
+   "leagueCode": "I2"
+  },
+  {
+   "home": "CD Castellón",
+   "away": "SD Eibar",
+   "commenceTime": "2026-11-06T19:30:00Z",
+   "bookmakers": 13,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.567,
+       "under": 2.219
+      },
+      "max": {
+       "over": 1.64,
+       "under": 2.4
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 1.965,
+       "under": 1.825
+      },
+      "max": {
+       "over": 2.07,
+       "under": 1.85
+      }
+     },
+     "3.5": {
+      "avg": {
+       "over": 2.36,
+       "under": 1.58
+      },
+      "max": {
+       "over": 2.39,
+       "under": 1.6
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_spain_segunda_division",
+   "leagueCode": "SP2"
+  },
+  {
+   "home": "Hamburger SV",
+   "away": "Borussia Monchengladbach",
+   "commenceTime": "2026-11-06T19:30:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.61,
+       "under": 2.277
+      },
+      "max": {
+       "over": 1.69,
+       "under": 2.4
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.9,
+       "under": 1.99
+      },
+      "max": {
+       "over": 1.9,
+       "under": 1.99
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 2.035,
+       "under": 1.77
+      },
+      "max": {
+       "over": 2.04,
+       "under": 1.78
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_germany_bundesliga",
+   "leagueCode": "D1"
+  },
+  {
+   "home": "Venezia",
+   "away": "Udinese",
+   "commenceTime": "2026-11-06T19:45:00Z",
+   "bookmakers": 17,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.771,
+       "under": 2.044
+      },
+      "max": {
+       "over": 1.93,
+       "under": 2.12
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 2.08,
+       "under": 1.82
+      },
+      "max": {
+       "over": 2.08,
+       "under": 1.82
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_italy_serie_a",
+   "leagueCode": "I1"
+  },
+  {
+   "home": "Toulouse",
+   "away": "Strasbourg",
+   "commenceTime": "2026-11-06T19:45:00Z",
+   "bookmakers": 15,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.609,
+       "under": 2.263
+      },
+      "max": {
+       "over": 1.72,
+       "under": 2.38
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 2.043,
+       "under": 1.83
+      },
+      "max": {
+       "over": 2.13,
+       "under": 1.88
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_france_ligue_one",
+   "leagueCode": "F1"
+  },
+  {
+   "home": "Derby County",
+   "away": "Bolton Wanderers",
+   "commenceTime": "2026-11-06T20:00:00Z",
+   "bookmakers": 16,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.679,
+       "under": 2.096
+      },
+      "max": {
+       "over": 1.76,
+       "under": 2.24
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.9,
+       "under": 1.97
+      },
+      "max": {
+       "over": 1.9,
+       "under": 1.97
+      }
+     },
+     "3.0": {
+      "avg": {
+       "over": 2.09,
+       "under": 1.71
+      },
+      "max": {
+       "over": 2.15,
+       "under": 1.74
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_efl_champ",
+   "leagueCode": "E1"
+  },
+  {
+   "home": "Sevilla",
+   "away": "Alavés",
+   "commenceTime": "2026-11-06T20:00:00Z",
+   "bookmakers": 14,
+   "markets": {
+    "totals": {
+     "2.25": {
+      "avg": {
+       "over": 1.93,
+       "under": 1.96
+      },
+      "max": {
+       "over": 1.93,
+       "under": 1.96
+      }
+     },
+     "2.5": {
+      "avg": {
+       "over": 2.161,
+       "under": 1.678
+      },
+      "max": {
+       "over": 2.27,
+       "under": 1.74
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_spain_la_liga",
+   "leagueCode": "SP1"
+  },
+  {
+   "home": "Everton",
+   "away": "Coventry City",
+   "commenceTime": "2026-11-06T20:00:00Z",
+   "bookmakers": 18,
+   "markets": {
+    "totals": {
+     "2.5": {
+      "avg": {
+       "over": 1.728,
+       "under": 2.106
+      },
+      "max": {
+       "over": 1.83,
+       "under": 2.18
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.95,
+       "under": 1.93
+      },
+      "max": {
+       "over": 1.95,
+       "under": 1.93
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_epl",
+   "leagueCode": "E0"
+  },
+  {
+   "home": "Famalicão",
+   "away": "Arouca",
+   "commenceTime": "2026-11-06T20:45:00Z",
+   "bookmakers": 14,
+   "markets": {
+    "totals": {
+     "2.25": {
+      "avg": {
+       "over": 1.855,
+       "under": 1.96
+      },
+      "max": {
+       "over": 1.89,
+       "under": 1.98
+      }
+     },
+     "2.5": {
+      "avg": {
+       "over": 2.013,
+       "under": 1.735
+      },
+      "max": {
+       "over": 2.2,
+       "under": 1.79
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_portugal_primeira_liga",
+   "leagueCode": "P1"
+  }
+ ]
 }
