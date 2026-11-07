@@ -1,6 +1,6 @@
 {
  "date": "2026-11-08",
- "generatedAt": "2026-11-07T07:10:20.801084+00:00",
+ "generatedAt": "2026-11-07T08:59:31.025002+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.767352275",
@@ -52,7 +52,7 @@
    "away": "Estrella Roja de Arauli"
   },
   {
-   "eventId": "s9-99.768725710",
+   "eventId": "s9-99.768752114",
    "time": "2026-11-07T21:00:00+00:00",
    "league": "Honduras. Liga Nacional. Reserve League",
    "home": "Club Deportivo Olimpia II",
@@ -241,14 +241,14 @@
    "away": "Club Deportivo Mineros de Zacatecas II"
   },
   {
-   "eventId": "s9-99.768740450",
+   "eventId": "s9-99.768754318",
    "time": "2026-11-07T22:00:00+00:00",
    "league": "Mexico. Division 4",
    "home": "Cobras Premier",
    "away": "Datileros de San Luis"
   },
   {
-   "eventId": "s9-99.768685802",
+   "eventId": "s9-99.768753569",
    "time": "2026-11-07T22:00:00+00:00",
    "league": "Mexico. Division 4",
    "home": "La Piedad Queretaro",
@@ -267,6 +267,13 @@
    "league": "Mexico. Division 4",
    "home": "Xalisco",
    "away": "Real Refineros II"
+  },
+  {
+   "eventId": "s9-99.768764627",
+   "time": "2026-11-07T22:00:00+00:00",
+   "league": "Mexico. Liga Premier. Serie A",
+   "home": "Saltillo Soccer",
+   "away": "Ciervos"
   },
   {
    "eventId": "s9-99.768602160",
@@ -591,7 +598,7 @@
    "away": "Olancho"
   },
   {
-   "eventId": "s9-99.768740455",
+   "eventId": "s9-99.768751506",
    "time": "2026-11-08T01:30:00+00:00",
    "league": "Panama. First Division. Women",
    "home": "Club Deportivo Plaza Amador (Women)",
@@ -1401,6 +1408,20 @@
    "league": "Hungary. NB III",
    "home": "Vasas II",
    "away": "Dabas"
+  },
+  {
+   "eventId": "s9-99.768732189",
+   "time": "2026-11-08T10:00:00+00:00",
+   "league": "Italy. Eccellenza",
+   "home": "Citta Monte San Giovanni Campano",
+   "away": "Lodigiani Calcio 1972"
+  },
+  {
+   "eventId": "s9-99.768731328",
+   "time": "2026-11-08T10:00:00+00:00",
+   "league": "Italy. Eccellenza",
+   "home": "Poggio de Marinis",
+   "away": "Rossoblu Castel San Giorgio"
   },
   {
    "eventId": "s9-99.768513833",
@@ -2474,7 +2495,7 @@
    "away": "Persiku Kudus"
   },
   {
-   "eventId": "s9-99.768693853",
+   "eventId": "s9-99.768747405",
    "time": "2026-11-08T12:00:00+00:00",
    "league": "Indonesia. Championship",
    "home": "Semen Padang",
@@ -2836,13 +2857,6 @@
    "league": "Turkey. TFF 2. Lig",
    "home": "52 Orduspor",
    "away": "Sakaryaspor"
-  },
-  {
-   "eventId": "s9-99.767903884",
-   "time": "2026-11-08T12:30:00+00:00",
-   "league": "Turkey. TFF 2. Lig",
-   "home": "Elazigspor",
-   "away": "Sanliurfaspor"
   },
   {
    "eventId": "s9-99.767882987",
@@ -5274,7 +5288,7 @@
    "away": "Panathinaikos"
   },
   {
-   "eventId": "s9-99.768734953",
+   "eventId": "s9-99.768751542",
    "time": "2026-11-08T15:30:00+00:00",
    "league": "Ivory Coast. League 2",
    "home": "Leader Adjame",
@@ -6203,13 +6217,6 @@
    "league": "Hungary. NB I",
    "home": "Vasas",
    "away": "Ferencvarosi"
-  },
-  {
-   "eventId": "s9-99.768723317",
-   "time": "2026-11-08T18:00:00+00:00",
-   "league": "Ivory Coast. League 1",
-   "home": "Stella Club d'Adjame",
-   "away": "San Pedro Ivory Coast"
   },
   {
    "eventId": "s9-99.768436029",
