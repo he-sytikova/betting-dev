@@ -1,6 +1,6 @@
 {
  "date": "2026-11-09",
- "generatedAt": "2026-11-08T05:00:42.649866+00:00",
+ "generatedAt": "2026-11-08T07:11:53.648856+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.769000476",
@@ -8,6 +8,13 @@
    "league": "Argentina. Torneo Regional Federal",
    "home": "AH Zapla",
    "away": "Talleres de Perico"
+  },
+  {
+   "eventId": "s9-99.769077784",
+   "time": "2026-11-08T21:00:00+00:00",
+   "league": "Argentina. Torneo Regional Federal",
+   "home": "Colon de San Justo",
+   "away": "Ben Hur Rafaela"
   },
   {
    "eventId": "s9-99.767508000",
@@ -73,13 +80,6 @@
    "away": "Liga Deportiva Universitaria de Quito"
   },
   {
-   "eventId": "s9-99.768941405",
-   "time": "2026-11-08T21:30:00+00:00",
-   "league": "Mexico. Liga Premier. Serie A",
-   "home": "Real Apodaca",
-   "away": "Dragones de Oaxaca"
-  },
-  {
    "eventId": "s9-99.768899367",
    "time": "2026-11-08T21:30:00+00:00",
    "league": "Venezuela. Primera Division",
@@ -113,6 +113,13 @@
    "league": "Mexico. Liga Premier. Serie A",
    "home": "Guerreros de Autlan",
    "away": "Guerreros del Pacifico"
+  },
+  {
+   "eventId": "s9-99.768941405",
+   "time": "2026-11-08T22:00:00+00:00",
+   "league": "Mexico. Liga Premier. Serie A",
+   "home": "Real Apodaca",
+   "away": "Dragones de Oaxaca"
   },
   {
    "eventId": "s9-99.769053082",
@@ -220,11 +227,25 @@
    "away": "Real C.D. Espana"
   },
   {
+   "eventId": "s9-99.769081095",
+   "time": "2026-11-08T23:30:00+00:00",
+   "league": "Argentina. Torneo Regional Federal",
+   "home": "Sportivo Desamparados",
+   "away": "Defensores Belgrano JD"
+  },
+  {
    "eventId": "s9-99.767506927",
    "time": "2026-11-08T23:30:00+00:00",
    "league": "Bolivia. Primera Division",
    "home": "Club Blooming",
    "away": "Oriente Petrolero"
+  },
+  {
+   "eventId": "s9-99.769082765",
+   "time": "2026-11-08T23:30:00+00:00",
+   "league": "Saint Kitts and Nevis Championship",
+   "home": "Village Superstars",
+   "away": "Conaree"
   },
   {
    "eventId": "s9-99.768805991",
@@ -374,6 +395,20 @@
    "away": "Naft Gachsaran"
   },
   {
+   "eventId": "s9-99.769081101",
+   "time": "2026-11-09T11:30:00+00:00",
+   "league": "Iraq. Premier Division League",
+   "home": "Al Hashd Al Shaabi",
+   "away": "Al Etisalat"
+  },
+  {
+   "eventId": "s9-99.769081104",
+   "time": "2026-11-09T11:30:00+00:00",
+   "league": "Iraq. Premier Division League",
+   "home": "Al-Hussein Baghdad",
+   "away": "Al Nasiriya"
+  },
+  {
    "eventId": "s9-99.767985783",
    "time": "2026-11-09T12:00:00+00:00",
    "league": "Iran. Azadegan League",
@@ -479,6 +514,20 @@
    "away": "Shabab Al Ordon U21"
   },
   {
+   "eventId": "s9-99.769060103",
+   "time": "2026-11-09T15:00:00+00:00",
+   "league": "Morocco Championship. Women",
+   "home": "Phoenix Marrakech (Women)",
+   "away": "Casablanca (Women)"
+  },
+  {
+   "eventId": "s9-99.769067645",
+   "time": "2026-11-09T15:00:00+00:00",
+   "league": "Nigeria. Premier League",
+   "home": "Ikorodu City",
+   "away": "Inter Lagos"
+  },
+  {
    "eventId": "s9-99.768000202",
    "time": "2026-11-09T15:00:00+00:00",
    "league": "Romania. Liga 2",
@@ -486,7 +535,7 @@
    "away": "Ramnicu Valcea"
   },
   {
-   "eventId": "s9-99.768414745",
+   "eventId": "s9-99.769077778",
    "time": "2026-11-09T15:00:00+00:00",
    "league": "Serbia. 1st League",
    "home": "Napredak Krusevac",
@@ -549,7 +598,7 @@
    "away": "Hapoel Afula"
   },
   {
-   "eventId": "s9-99.768023297",
+   "eventId": "s9-99.769077775",
    "time": "2026-11-09T17:00:00+00:00",
    "league": "Serbia. 1st League",
    "home": "Javor Ivanjica",
