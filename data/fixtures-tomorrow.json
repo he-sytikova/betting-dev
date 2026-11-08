@@ -1,7 +1,14 @@
 {
  "date": "2026-11-09",
- "generatedAt": "2026-11-07T22:48:24.011622+00:00",
+ "generatedAt": "2026-11-08T01:15:31.358764+00:00",
  "fixtures": [
+  {
+   "eventId": "s9-99.769000476",
+   "time": "2026-11-08T21:00:00+00:00",
+   "league": "Argentina. Torneo Regional Federal",
+   "home": "AH Zapla",
+   "away": "Talleres de Perico"
+  },
   {
    "eventId": "s9-99.767508000",
    "time": "2026-11-08T21:00:00+00:00",
@@ -304,11 +311,25 @@
    "away": "Guadalajara"
   },
   {
+   "eventId": "s9-99.769020944",
+   "time": "2026-11-09T05:30:00+00:00",
+   "league": "India. Bangalore. Super Division",
+   "home": "Rebels Bangalore",
+   "away": "South United Bangalore"
+  },
+  {
    "eventId": "s9-99.768878460",
    "time": "2026-11-09T09:00:00+00:00",
    "league": "Myanmar Championship U20",
    "home": "Hantharwady United U20",
    "away": "Yangon City U20"
+  },
+  {
+   "eventId": "s9-99.767906757",
+   "time": "2026-11-09T09:00:00+00:00",
+   "league": "Ukraine. First League",
+   "home": "Viktoriya Sumy",
+   "away": "Agrobiznes Volochisk"
   },
   {
    "eventId": "s9-99.767845311",
@@ -367,6 +388,20 @@
    "away": "Yantra Gabrovo"
   },
   {
+   "eventId": "s9-99.769002411",
+   "time": "2026-11-09T12:30:00+00:00",
+   "league": "Egypt Cup",
+   "home": "Wadi Degla",
+   "away": "Kahrbaa Alasmalia"
+  },
+  {
+   "eventId": "s9-99.769023165",
+   "time": "2026-11-09T12:30:00+00:00",
+   "league": "Hong Kong. Premier League U22",
+   "home": "Tai Po U22",
+   "away": "Hong Kong Football Club U22"
+  },
+  {
    "eventId": "s9-99.767971617",
    "time": "2026-11-09T12:30:00+00:00",
    "league": "Romania. Liga 2",
@@ -421,6 +456,13 @@
    "league": "Bulgaria. Second League",
    "home": "Fratria",
    "away": "Sportist Svoge"
+  },
+  {
+   "eventId": "s9-99.769012374",
+   "time": "2026-11-09T16:00:00+00:00",
+   "league": "Georgia Championship",
+   "home": "Iberia 1999",
+   "away": "Gagra"
   },
   {
    "eventId": "s9-99.768248525",
