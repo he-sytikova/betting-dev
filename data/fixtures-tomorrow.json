@@ -1,6 +1,6 @@
 {
  "date": "2026-11-09",
- "generatedAt": "2026-11-08T01:15:31.358764+00:00",
+ "generatedAt": "2026-11-08T03:00:01.979524+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.769000476",
@@ -57,13 +57,6 @@
    "league": "Colombia. Categoria Primera A",
    "home": "Jaguares de Cordoba",
    "away": "Atletico Bucaramanga"
-  },
-  {
-   "eventId": "s9-99.767506536",
-   "time": "2026-11-08T21:15:00+00:00",
-   "league": "Bolivia. Primera Division",
-   "home": "Bolivar",
-   "away": "The Strongest"
   },
   {
    "eventId": "s9-99.767245801",
@@ -220,13 +213,6 @@
    "away": "Real C.D. Espana"
   },
   {
-   "eventId": "s9-99.767506927",
-   "time": "2026-11-08T23:30:00+00:00",
-   "league": "Bolivia. Primera Division",
-   "home": "Club Blooming",
-   "away": "Oriente Petrolero"
-  },
-  {
    "eventId": "s9-99.768805991",
    "time": "2026-11-09T00:00:00+00:00",
    "league": "Aruba Championship",
@@ -311,6 +297,13 @@
    "away": "Guadalajara"
   },
   {
+   "eventId": "s9-99.769034478",
+   "time": "2026-11-09T03:00:00+00:00",
+   "league": "India. I-League. Third Division",
+   "home": "Zinc Academy",
+   "away": "Kickstart"
+  },
+  {
    "eventId": "s9-99.769020944",
    "time": "2026-11-09T05:30:00+00:00",
    "league": "India. Bangalore. Super Division",
@@ -346,11 +339,11 @@
    "away": "Shirak II"
   },
   {
-   "eventId": "s9-99.768586655",
-   "time": "2026-11-09T11:00:00+00:00",
-   "league": "Russian Championship. League 2. Division A. Gold",
-   "home": "Mashuk-KMV Pyatigorsk",
-   "away": "Rodina Moscow II"
+   "eventId": "s9-99.769032872",
+   "time": "2026-11-09T10:30:00+00:00",
+   "league": "India. Bangalore. Super Division",
+   "home": "HAL",
+   "away": "Bengaluru II"
   },
   {
    "eventId": "s9-99.767977315",
@@ -395,7 +388,7 @@
    "away": "Kahrbaa Alasmalia"
   },
   {
-   "eventId": "s9-99.769023165",
+   "eventId": "s9-99.769033406",
    "time": "2026-11-09T12:30:00+00:00",
    "league": "Hong Kong. Premier League U22",
    "home": "Tai Po U22",
@@ -435,6 +428,13 @@
    "league": "Bulgaria. Second League",
    "home": "Etar",
    "away": "Montana"
+  },
+  {
+   "eventId": "s9-99.769028303",
+   "time": "2026-11-09T15:00:00+00:00",
+   "league": "Egypt Cup",
+   "home": "ZED",
+   "away": "Samanoud"
   },
   {
    "eventId": "s9-99.768000202",
@@ -484,6 +484,27 @@
    "league": "Germany. Bundesliga. Women",
    "home": "1. Koln (Women)",
    "away": "RB Leipzig (Women)"
+  },
+  {
+   "eventId": "s9-99.769032452",
+   "time": "2026-11-09T17:00:00+00:00",
+   "league": "Israel. Liga Leumit",
+   "home": "Hapoel Kfar Saba",
+   "away": "Maccabi Bnei Reineh"
+  },
+  {
+   "eventId": "s9-99.769032446",
+   "time": "2026-11-09T17:00:00+00:00",
+   "league": "Israel. Liga Leumit",
+   "home": "Ironi Modiin",
+   "away": "Hapoel Ironi Acre"
+  },
+  {
+   "eventId": "s9-99.769032449",
+   "time": "2026-11-09T17:00:00+00:00",
+   "league": "Israel. Liga Leumit",
+   "home": "Kafr Qasim",
+   "away": "Hapoel Afula"
   },
   {
    "eventId": "s9-99.768023297",
