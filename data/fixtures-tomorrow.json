@@ -1,6 +1,6 @@
 {
  "date": "2026-11-09",
- "generatedAt": "2026-11-08T03:00:01.979524+00:00",
+ "generatedAt": "2026-11-08T05:00:42.649866+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.769000476",
@@ -59,6 +59,13 @@
    "away": "Atletico Bucaramanga"
   },
   {
+   "eventId": "s9-99.767506536",
+   "time": "2026-11-08T21:15:00+00:00",
+   "league": "Bolivia. Primera Division",
+   "home": "Bolivar",
+   "away": "The Strongest"
+  },
+  {
    "eventId": "s9-99.767245801",
    "time": "2026-11-08T21:30:00+00:00",
    "league": "Ecuador. Serie A",
@@ -108,7 +115,7 @@
    "away": "Guerreros del Pacifico"
   },
   {
-   "eventId": "s9-99.768883627",
+   "eventId": "s9-99.769053082",
    "time": "2026-11-08T22:00:00+00:00",
    "league": "Suriname Championship",
    "home": "Inter Wanica",
@@ -211,6 +218,13 @@
    "league": "Honduras. Liga Nacional",
    "home": "CA Independiente Siguatepeque",
    "away": "Real C.D. Espana"
+  },
+  {
+   "eventId": "s9-99.767506927",
+   "time": "2026-11-08T23:30:00+00:00",
+   "league": "Bolivia. Primera Division",
+   "home": "Club Blooming",
+   "away": "Oriente Petrolero"
   },
   {
    "eventId": "s9-99.768805991",
@@ -346,6 +360,13 @@
    "away": "Bengaluru II"
   },
   {
+   "eventId": "s9-99.768586655",
+   "time": "2026-11-09T11:00:00+00:00",
+   "league": "Russian Championship. League 2. Division A. Gold",
+   "home": "Mashuk-KMV Pyatigorsk",
+   "away": "Rodina Moscow II"
+  },
+  {
    "eventId": "s9-99.767977315",
    "time": "2026-11-09T11:30:00+00:00",
    "league": "Iran. Azadegan League",
@@ -358,6 +379,13 @@
    "league": "Iran. Azadegan League",
    "home": "Saipa",
    "away": "Havadar"
+  },
+  {
+   "eventId": "s9-99.769049631",
+   "time": "2026-11-09T12:00:00+00:00",
+   "league": "Kosovo. Division 1",
+   "home": "KF Ferizaj",
+   "away": "Suhareka"
   },
   {
    "eventId": "s9-99.768298915",
@@ -435,6 +463,20 @@
    "league": "Egypt Cup",
    "home": "ZED",
    "away": "Samanoud"
+  },
+  {
+   "eventId": "s9-99.769041608",
+   "time": "2026-11-09T15:00:00+00:00",
+   "league": "Jordan Championship. Women",
+   "home": "Al Orthodoxi (Women)",
+   "away": "Amman (Women)"
+  },
+  {
+   "eventId": "s9-99.769053644",
+   "time": "2026-11-09T15:00:00+00:00",
+   "league": "Jordan. Shield Cup U21",
+   "home": "Al-Faisaly Amman U21",
+   "away": "Shabab Al Ordon U21"
   },
   {
    "eventId": "s9-99.768000202",
@@ -528,6 +570,13 @@
    "away": "Delfin"
   },
   {
+   "eventId": "s9-99.769052672",
+   "time": "2026-11-09T18:00:00+00:00",
+   "league": "Israel. Liga Bet. South",
+   "home": "Ironi Beit Dagan",
+   "away": "AS Holon Mor"
+  },
+  {
    "eventId": "s9-99.768553254",
    "time": "2026-11-09T18:00:00+00:00",
    "league": "Norway. Eliteserien",
@@ -584,7 +633,7 @@
    "away": "Real Sociedad II"
   },
   {
-   "eventId": "s9-99.768980361",
+   "eventId": "s9-99.769044792",
    "time": "2026-11-09T19:30:00+00:00",
    "league": "Uruguay Cup",
    "home": "Lito",
