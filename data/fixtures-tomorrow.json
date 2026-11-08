@@ -1,6 +1,6 @@
 {
  "date": "2026-11-09",
- "generatedAt": "2026-11-08T18:54:07.563241+00:00",
+ "generatedAt": "2026-11-08T20:46:31.682994+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.768110060",
@@ -304,6 +304,20 @@
    "away": "Puebla"
   },
   {
+   "eventId": "s9-99.769278482",
+   "time": "2026-11-09T00:00:00+00:00",
+   "league": "USA. UPSL",
+   "home": "Florida Elite",
+   "away": "Miami U20"
+  },
+  {
+   "eventId": "s9-99.769278479",
+   "time": "2026-11-09T00:00:00+00:00",
+   "league": "USA. UPSL",
+   "home": "Tampa Rangers",
+   "away": "PCU Pelicans"
+  },
+  {
    "eventId": "s9-99.768846067",
    "time": "2026-11-09T00:00:00+00:00",
    "league": "USA. USL League One",
@@ -381,6 +395,13 @@
    "away": "Kickstart"
   },
   {
+   "eventId": "s9-99.769272693",
+   "time": "2026-11-09T03:30:00+00:00",
+   "league": "India. Mumbai. Super League",
+   "home": "Tivana",
+   "away": "Anstrengung United"
+  },
+  {
    "eventId": "s9-99.769243821",
    "time": "2026-11-09T05:00:00+00:00",
    "league": "Mongolia. National Premier League",
@@ -437,6 +458,48 @@
    "away": "Agrobiznes Volochisk"
   },
   {
+   "eventId": "s9-99.769282926",
+   "time": "2026-11-09T09:00:00+00:00",
+   "league": "Uzbekistan. Pro League",
+   "home": "Gazalkent",
+   "away": "Respublika FA"
+  },
+  {
+   "eventId": "s9-99.769282927",
+   "time": "2026-11-09T09:00:00+00:00",
+   "league": "Uzbekistan. Pro League",
+   "home": "Jayxun",
+   "away": "Olimpik MobiUZ"
+  },
+  {
+   "eventId": "s9-99.769282928",
+   "time": "2026-11-09T09:00:00+00:00",
+   "league": "Uzbekistan. Pro League",
+   "home": "Metallurg Bekabad",
+   "away": "Aral"
+  },
+  {
+   "eventId": "s9-99.769283556",
+   "time": "2026-11-09T09:00:00+00:00",
+   "league": "Uzbekistan. Pro League",
+   "home": "Pakhtakor Tashkent II",
+   "away": "Kattakurgan"
+  },
+  {
+   "eventId": "s9-99.769283557",
+   "time": "2026-11-09T09:00:00+00:00",
+   "league": "Uzbekistan. Pro League",
+   "home": "Shurtan Guzar",
+   "away": "Buxdu"
+  },
+  {
+   "eventId": "s9-99.769283558",
+   "time": "2026-11-09T09:00:00+00:00",
+   "league": "Uzbekistan. Pro League",
+   "home": "Yaypan",
+   "away": "Lochin"
+  },
+  {
    "eventId": "s9-99.769250710",
    "time": "2026-11-09T09:30:00+00:00",
    "league": "Ukraine. Premier League 2",
@@ -470,6 +533,27 @@
    "league": "India. Bangalore. Super Division",
    "home": "HAL",
    "away": "Bengaluru II"
+  },
+  {
+   "eventId": "s9-99.769279832",
+   "time": "2026-11-09T10:30:00+00:00",
+   "league": "India. I-League. Third Division",
+   "home": "GOG FCC",
+   "away": "Clube de Salgaocar"
+  },
+  {
+   "eventId": "s9-99.769276673",
+   "time": "2026-11-09T10:30:00+00:00",
+   "league": "Paraguay. Reserve League",
+   "home": "Sportivo Luqueno II",
+   "away": "2 de Mayo II"
+  },
+  {
+   "eventId": "s9-99.769274680",
+   "time": "2026-11-09T10:30:00+00:00",
+   "league": "Paraguay. Reserve League",
+   "home": "Sportivo Trinidense II",
+   "away": "Sportivo Ameliano II"
   },
   {
    "eventId": "s9-99.768586655",
@@ -598,6 +682,13 @@
    "away": "Queens Park Rangers U21"
   },
   {
+   "eventId": "s9-99.769287119",
+   "time": "2026-11-09T13:00:00+00:00",
+   "league": "Ethiopia. Higher League. Women",
+   "home": "Akaki Kality (Women)",
+   "away": "Lemi Kura (Women)"
+  },
+  {
    "eventId": "s9-99.768840262",
    "time": "2026-11-09T13:00:00+00:00",
    "league": "Greece. SuperLeague 2",
@@ -638,6 +729,13 @@
    "league": "Iran. Azadegan League",
    "home": "Pars Jonoubi Jam",
    "away": "Palayesh Naft Bandar Abbas"
+  },
+  {
+   "eventId": "s9-99.769287699",
+   "time": "2026-11-09T14:50:00+00:00",
+   "league": "Israel Championship. Women",
+   "home": "Maccabi Holon (Women)",
+   "away": "Hapoel Ra'anana (Women)"
   },
   {
    "eventId": "s9-99.769142635",
@@ -717,6 +815,13 @@
    "away": "Sportist Svoge"
   },
   {
+   "eventId": "s9-99.769282462",
+   "time": "2026-11-09T15:30:00+00:00",
+   "league": "Uruguay. Reserve League",
+   "home": "Deportivo Maldonado II",
+   "away": "Nacional Montevideo II"
+  },
+  {
    "eventId": "s9-99.769012374",
    "time": "2026-11-09T16:00:00+00:00",
    "league": "Georgia Championship",
@@ -780,14 +885,14 @@
    "away": "TSC Backa Topola"
   },
   {
-   "eventId": "s9-99.769267379",
+   "eventId": "s9-99.769289735",
    "time": "2026-11-09T17:00:00+00:00",
    "league": "Uruguay. Reserve League",
    "home": "Central Espanol II",
    "away": "Montevideo Wanderers II"
   },
   {
-   "eventId": "s9-99.769267382",
+   "eventId": "s9-99.769274064",
    "time": "2026-11-09T17:00:00+00:00",
    "league": "Uruguay. Reserve League",
    "home": "Oriental II",
@@ -843,6 +948,13 @@
    "away": "Badalona (Women)"
   },
   {
+   "eventId": "s9-99.769287702",
+   "time": "2026-11-09T18:30:00+00:00",
+   "league": "Israel Championship. Women",
+   "home": "Bnot Netanya (Women)",
+   "away": "Hapoel Tel Aviv (Women)"
+  },
+  {
    "eventId": "s9-99.769141272",
    "time": "2026-11-09T19:00:00+00:00",
    "league": "England. Premier League 2",
@@ -857,18 +969,39 @@
    "away": "Bromley U21"
   },
   {
-   "eventId": "s9-99.769267385",
+   "eventId": "s9-99.769274067",
    "time": "2026-11-09T19:00:00+00:00",
    "league": "Uruguay. Reserve League",
    "home": "Colon II",
    "away": "Defensor Sporting II"
   },
   {
-   "eventId": "s9-99.769267388",
+   "eventId": "s9-99.769282459",
+   "time": "2026-11-09T19:00:00+00:00",
+   "league": "Uruguay. Reserve League",
+   "home": "La Luz II",
+   "away": "Albion Montevideo II"
+  },
+  {
+   "eventId": "s9-99.769282465",
+   "time": "2026-11-09T19:00:00+00:00",
+   "league": "Uruguay. Reserve League",
+   "home": "Montevideo City Torque II",
+   "away": "Club Atletico Boston River II"
+  },
+  {
+   "eventId": "s9-99.769274061",
    "time": "2026-11-09T19:00:00+00:00",
    "league": "Uruguay. Reserve League",
    "home": "Penarol II",
    "away": "Juventud de Las Piedras II"
+  },
+  {
+   "eventId": "s9-99.769282468",
+   "time": "2026-11-09T19:00:00+00:00",
+   "league": "Uruguay. Reserve League",
+   "home": "Racing Club de Montevideo II",
+   "away": "River Plate Montevideo II"
   },
   {
    "eventId": "s9-99.767709766",
@@ -899,7 +1032,7 @@
    "away": "Barletta Calcio"
   },
   {
-   "eventId": "s9-99.769200496",
+   "eventId": "s9-99.769285037",
    "time": "2026-11-09T19:30:00+00:00",
    "league": "Spain. Segunda Division",
    "home": "Las Palmas",
@@ -918,6 +1051,13 @@
    "league": "Uruguay Cup",
    "home": "Lito",
    "away": "Danubio"
+  },
+  {
+   "eventId": "s9-99.769288771",
+   "time": "2026-11-09T19:45:00+00:00",
+   "league": "Colombia Super Cup U19",
+   "home": "Deportes Tolima U19",
+   "away": "Once Caldas U19"
   },
   {
    "eventId": "s9-99.769118848",
