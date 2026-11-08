@@ -1,6 +1,6 @@
 {
  "date": "2026-11-09",
- "generatedAt": "2026-11-08T14:49:22.673984+00:00",
+ "generatedAt": "2026-11-08T16:47:21.287967+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.768110060",
@@ -813,6 +813,13 @@
    "league": "Italy. Serie C. Group C",
    "home": "Foggia Calcio",
    "away": "Barletta Calcio"
+  },
+  {
+   "eventId": "s9-99.769200496",
+   "time": "2026-11-09T19:30:00+00:00",
+   "league": "Spain. Segunda Division",
+   "home": "Las Palmas",
+   "away": "Eldense"
   },
   {
    "eventId": "s9-99.767522177",
