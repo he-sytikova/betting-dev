@@ -1,6 +1,6 @@
 {
  "date": "2026-11-09",
- "generatedAt": "2026-11-08T13:01:14.030760+00:00",
+ "generatedAt": "2026-11-08T14:49:22.673984+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.768110060",
@@ -381,6 +381,13 @@
    "away": "South United Bangalore"
   },
   {
+   "eventId": "s9-99.769198559",
+   "time": "2026-11-09T09:00:00+00:00",
+   "league": "Kosovo. Superleague U19",
+   "home": "Prishtina U19",
+   "away": "Malisheva U19"
+  },
+  {
    "eventId": "s9-99.768878460",
    "time": "2026-11-09T09:00:00+00:00",
    "league": "Myanmar Championship U20",
@@ -542,6 +549,13 @@
    "away": "Queens Park Rangers U21"
   },
   {
+   "eventId": "s9-99.768840262",
+   "time": "2026-11-09T13:00:00+00:00",
+   "league": "Greece. SuperLeague 2",
+   "home": "A.P.S. Zakynthos",
+   "away": "Niki Volos"
+  },
+  {
    "eventId": "s9-99.768298916",
    "time": "2026-11-09T13:00:00+00:00",
    "league": "Montenegro. Second League U19",
@@ -561,6 +575,13 @@
    "league": "Slovenian Championship U19",
    "home": "NK Fuzinar U19",
    "away": "NK Dekani U19"
+  },
+  {
+   "eventId": "s9-99.767986693",
+   "time": "2026-11-09T13:15:00+00:00",
+   "league": "Iran. Azadegan League",
+   "home": "Foolad Khuzestan II",
+   "away": "Ario Eslamshahr"
   },
   {
    "eventId": "s9-99.767987491",
@@ -610,6 +631,13 @@
    "league": "Morocco Championship. Women",
    "home": "Phoenix Marrakech (Women)",
    "away": "Casablanca (Women)"
+  },
+  {
+   "eventId": "s9-99.769067645",
+   "time": "2026-11-09T15:00:00+00:00",
+   "league": "Nigeria. Premier League",
+   "home": "Ikorodu City",
+   "away": "Inter Lagos"
   },
   {
    "eventId": "s9-99.769151341",
@@ -808,7 +836,7 @@
    "away": "Ebbsfleet United"
   },
   {
-   "eventId": "s9-99.769151344",
+   "eventId": "s9-99.769165970",
    "time": "2026-11-09T19:45:00+00:00",
    "league": "England. South Division 1. South",
    "home": "Swindon Supermarine",
