@@ -1,15 +1,15 @@
 {
  "schemaVersion": 2,
- "generatedAt": "2026-11-04T21:29:51.555324+00:00",
+ "generatedAt": "2026-11-09T05:12:03.591918+00:00",
  "status": "experimental-internal",
  "disclaimer": "Экспериментальная внутренняя модель еврокубков (Лига чемпионов, Лига Европы, Лига Конференций). Обучена на матчах BSD (sports.bzzoiro.com) 2021–2026; единый кросс-страновой Elo и форма ведутся по всем турнирам в общей хронологии. Валидация out-of-sample лучше базового среднего, но проверки против рынка не было (нет исторических коэффициентов), выборка по ЛЕ/ЛК тоньше ЛЧ. Исследовательская оценка, не рекомендация к ставке.",
- "trainingMatches": 4926,
+ "trainingMatches": 4968,
  "trainingMatchesByCompetition": {
-  "CL": 1361,
-  "ECL": 2365,
-  "EL": 1200
+  "CL": 1368,
+  "ECL": 2383,
+  "EL": 1217
  },
- "trainingThrough": "2026-11-04 00:00:00",
+ "trainingThrough": "2026-11-05 00:00:00",
  "competitions": [
   {
    "code": "CL",
@@ -91,16 +91,16 @@
   "comp_is_ecl"
  ],
  "imputerMedian": [
-  1514.017386831863,
-  1512.825011322972,
-  1.5140343905443108,
-  1.132306408305715,
-  1.6086891488366395,
-  1.0197130693936252,
-  1.79881,
-  1.0668250000000001,
-  1.8054649999999999,
-  1.07721,
+  1514.138450557607,
+  1512.9576600070961,
+  1.5133217854288104,
+  1.1349593190529972,
+  1.6110986697788314,
+  1.0223742209046611,
+  1.7984,
+  1.06759,
+  1.80647,
+  1.07911,
   1.8,
   1.0,
   1.8,
@@ -123,139 +123,139 @@
   0.0
  ],
  "scalerMean": [
-  1522.7279093769307,
-  1521.890033566221,
-  1.5485331635852815,
-  1.234648981515411,
-  1.674561170231429,
-  1.1220796572657787,
-  1.817323004466098,
-  1.0787236439301666,
-  1.8226821944782785,
-  1.0851207348761673,
-  1.8131140885099475,
-  1.041494112870483,
-  1.8162809581810804,
-  1.0450669914738124,
-  0.6272838002436053,
-  0.6272838002436053,
-  0.243605359317905,
-  0.4801055623223711,
-  0.14129110840438489,
-  0.14129110840438489,
-  0.14514819326025172,
-  0.14514819326025172,
-  0.6272838002436053,
-  0.6272838002436053,
-  0.6272838002436053,
-  0.6272838002436053,
-  0.6386520503451076,
-  0.6386520503451076,
-  0.6388550548112059,
-  0.6388550548112059
+  1522.74273826188,
+  1521.9735494436788,
+  1.5486893021442656,
+  1.236941626385629,
+  1.675561418640231,
+  1.1249232236695283,
+  1.8168945249597424,
+  1.0800108353462157,
+  1.8235011956521738,
+  1.086854599436393,
+  1.8130434782608698,
+  1.0426328502415458,
+  1.8170692431561999,
+  1.0456521739130435,
+  0.626207729468599,
+  0.626207729468599,
+  0.24496779388083736,
+  0.47966988727858295,
+  0.14009661835748793,
+  0.14009661835748793,
+  0.14392109500805153,
+  0.14392109500805153,
+  0.626207729468599,
+  0.626207729468599,
+  0.626207729468599,
+  0.626207729468599,
+  0.6376811594202898,
+  0.6376811594202898,
+  0.6378824476650563,
+  0.6378824476650563
  ],
  "scalerScale": [
-  50.4496223640859,
-  50.97713299977464,
-  0.8037412389045187,
-  0.7315737770530658,
-  0.8520288067755214,
-  0.6885673913620965,
-  0.2974128736112039,
-  0.19529641051014965,
-  0.29456332962490295,
-  0.1899398233278584,
-  0.43185970815516456,
-  0.3286553404269644,
-  0.43075396493794454,
-  0.3237754117187102,
-  0.4835274906306217,
-  0.48352749063062167,
-  0.42925725180770025,
-  0.49960405457671275,
-  0.3483215914786869,
-  0.3483215914786869,
-  0.3522501884364809,
-  0.3522501884364809,
-  0.4835274906306217,
-  0.4835274906306217,
-  0.48352749063062167,
-  0.48352749063062167,
-  0.4803910999749035,
-  0.4803910999749035,
-  0.48033246169020993,
-  0.48033246169020993
+  50.49374428015133,
+  51.075579032884384,
+  0.8030265541139027,
+  0.7312211070536008,
+  0.8510935100460938,
+  0.687956033606824,
+  0.29837556821115546,
+  0.19674853417447719,
+  0.2944244360446957,
+  0.1905098701058033,
+  0.4325975690231947,
+  0.33033992956618063,
+  0.43126422779403983,
+  0.32388980668632705,
+  0.48380947595348,
+  0.48380947595348,
+  0.4300681037254367,
+  0.49958651554734185,
+  0.3470872453465905,
+  0.3470872453465905,
+  0.35100970559193223,
+  0.35100970559193223,
+  0.48380947595348,
+  0.48380947595348,
+  0.48380947595348,
+  0.48380947595348,
+  0.48067025947179703,
+  0.48067025947179703,
+  0.4806125577072378,
+  0.4806125577072378
  ],
  "models": {
   "home": {
    "coefficients": [
-    0.0606554108016334,
-    -0.04538812152389987,
-    0.030117392363933883,
-    -0.0002384462612597927,
-    -0.017091510122914027,
-    0.016518889167020556,
-    0.02330594024772253,
-    0.0017840435312816512,
-    0.007829374221316299,
-    0.009613258743020403,
-    0.012330225471947492,
-    0.0015871560701936932,
-    0.007601531087759953,
-    -0.00011909346134843301,
-    -0.025338296714596028,
-    0.020406811149084363,
-    -0.018142315752469454,
-    -0.0075253289579439225,
-    0.012673111508346883,
-    0.012673111508346883,
-    -0.025780999828532863,
-    -0.025780999828532863,
-    -0.025338296714596028,
-    -0.025338296714596028,
-    0.020406811149084363,
-    0.020406811149084363,
-    -0.01998915583175804,
-    -0.01998915583175804,
-    0.018531118640112625,
-    0.018531118640112625
+    0.06017513279843014,
+    -0.04582327463882988,
+    0.030022028167947846,
+    0.0014577591606751191,
+    -0.017083562220068817,
+    0.01715093049959588,
+    0.025633624129809324,
+    -0.0023982853542135704,
+    0.007702024686521209,
+    0.006973437002688255,
+    0.012006560565671892,
+    -0.0005358673906991001,
+    0.006492830301886654,
+    0.0012076955118432945,
+    -0.02545004493991472,
+    0.020863161909519264,
+    -0.019359324766058394,
+    -0.008605955139224483,
+    0.01266325040249872,
+    0.01266325040249872,
+    -0.025463766632088266,
+    -0.025463766632088266,
+    -0.02545004493991472,
+    -0.02545004493991472,
+    0.020863161909519264,
+    0.020863161909519264,
+    -0.01878682804631494,
+    -0.01878682804631494,
+    0.01880062193640905,
+    0.01880062193640905
    ],
-   "intercept": 0.5001633507943236
+   "intercept": 0.4981192313191301
   },
   "away": {
    "coefficients": [
-    -0.048230470150224344,
-    0.07627395169337077,
-    -0.039283671660467964,
-    0.027176489446155062,
-    0.04845990278932767,
-    0.00722682953824067,
-    0.0009386674722165271,
-    0.0029843481738083023,
-    0.036996866557662406,
-    0.014235061639866176,
-    -0.00816017391511439,
-    -0.022810872152354184,
-    0.018995138594751753,
-    0.011568937653634044,
-    0.0186008168744521,
-    -0.025770005699448685,
-    -0.01855693398810492,
-    -0.009318691541454503,
-    -0.031857878948149364,
-    -0.031857878948149364,
-    0.01843601783964095,
-    0.01843601783964095,
-    0.0186008168744521,
-    0.0186008168744521,
-    -0.025770005699448685,
-    -0.025770005699448685,
-    0.025758198865952545,
-    0.025758198865952545,
-    -0.024804353971042997,
-    -0.024804353971042997
+    -0.04705654074888284,
+    0.06980738590596047,
+    -0.04328011360156793,
+    0.0268331061687249,
+    0.056144341531958866,
+    0.00949940492652619,
+    0.0028385941880673085,
+    0.006582658835200595,
+    0.039446887475894726,
+    0.011580154233985196,
+    -0.0064515722039073155,
+    -0.02000854403283649,
+    0.017900226836722658,
+    0.013689920511150604,
+    0.01827517780748058,
+    -0.02638401112893485,
+    -0.017143837299008747,
+    -0.012612159186898467,
+    -0.03179961575640247,
+    -0.03179961575640247,
+    0.018265466151144074,
+    0.018265466151144074,
+    0.01827517780748058,
+    0.01827517780748058,
+    -0.02638401112893485,
+    -0.02638401112893485,
+    0.024630800754387998,
+    0.024630800754387998,
+    -0.02604384427051968,
+    -0.02604384427051968
    ],
-   "intercept": 0.1780551496763452
+   "intercept": 0.18030209414739018
   }
  },
  "modelsMeta": {
@@ -276,7 +276,7 @@
   3.5,
   4.5
  ],
- "leagueAvgGoals": 2.865205,
+ "leagueAvgGoals": 2.865942,
  "teams": {
   "heidenheim": {
    "name": "Heidenheim",
@@ -371,11 +371,11 @@
    "domesticName": "Milan",
    "fdoName": "AC Milan",
    "euro": {
-    "euroElo": 1522.459136,
-    "euroGf": 1.412566,
-    "euroGa": 1.67046,
-    "euroGames": 43,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1505.34631,
+    "euroGf": 0.98865,
+    "euroGa": 1.769356,
+    "euroGames": 44,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1855.222,
@@ -415,11 +415,11 @@
    "domesticName": "Ajax",
    "fdoName": "AFC Ajax",
    "euro": {
-    "euroElo": 1566.728635,
-    "euroGf": 2.848656,
-    "euroGa": 1.442512,
-    "euroGames": 62,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1599.621104,
+    "euroGf": 3.433184,
+    "euroGa": 1.360433,
+    "euroGames": 63,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1755.39,
@@ -437,11 +437,11 @@
    "domesticName": "Monaco",
    "fdoName": "AS Monaco FC",
    "euro": {
-    "euroElo": 1570.916936,
-    "euroGf": 2.889593,
-    "euroGa": 0.857258,
-    "euroGames": 46,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1584.620371,
+    "euroGf": 2.650244,
+    "euroGa": 0.626608,
+    "euroGames": 47,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1830.842,
@@ -481,11 +481,11 @@
    "domesticName": "AZ Alkmaar",
    "fdoName": "AZ Alkmaar",
    "euro": {
-    "euroElo": 1598.718515,
-    "euroGf": 2.213253,
-    "euroGa": 0.623257,
-    "euroGames": 71,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1582.468506,
+    "euroGf": 1.849152,
+    "euroGa": 1.036423,
+    "euroGames": 72,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1667.454,
@@ -566,11 +566,11 @@
    "domesticName": "Arsenal",
    "fdoName": "Arsenal FC",
    "euro": {
-    "euroElo": 1708.635168,
-    "euroGf": 2.096059,
-    "euroGa": 0.767155,
-    "euroGames": 50,
-    "euroLastDate": "2026-10-21"
+    "euroElo": 1715.473611,
+    "euroGf": 2.066867,
+    "euroGa": 0.837915,
+    "euroGames": 51,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 2143.936,
@@ -610,11 +610,11 @@
    "domesticName": "Atalanta",
    "fdoName": "Atalanta BC",
    "euro": {
-    "euroElo": 1552.569856,
-    "euroGf": 1.102221,
-    "euroGa": 0.949992,
-    "euroGames": 51,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1545.419926,
+    "euroGf": 1.074718,
+    "euroGa": 0.963447,
+    "euroGames": 52,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1817.93,
@@ -676,11 +676,11 @@
    "domesticName": "Leverkusen",
    "fdoName": "Bayer 04 Leverkusen",
    "euro": {
-    "euroElo": 1628.425865,
-    "euroGf": 2.706283,
-    "euroGa": 0.0,
-    "euroGames": 60,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1608.837002,
+    "euroGf": 1.894118,
+    "euroGa": 0.300103,
+    "euroGames": 61,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1876.056,
@@ -720,11 +720,11 @@
    "domesticName": "Benfica",
    "fdoName": "Sport Lisboa e Benfica",
    "euro": {
-    "euroElo": 1632.099713,
-    "euroGf": 3.298043,
-    "euroGa": 0.869497,
-    "euroGames": 75,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1641.286335,
+    "euroGf": 3.248544,
+    "euroGa": 0.891171,
+    "euroGames": 76,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1932.18,
@@ -742,11 +742,11 @@
    "domesticName": "Besiktas",
    "fdoName": "Beşiktaş JK",
    "euro": {
-    "euroElo": 1574.085062,
-    "euroGf": 2.053404,
-    "euroGa": 0.907866,
-    "euroGames": 43,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1561.138612,
+    "euroGf": 2.044543,
+    "euroGa": 1.254988,
+    "euroGames": 44,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1723.431,
@@ -786,11 +786,11 @@
    "domesticName": "Dortmund",
    "fdoName": "Borussia Dortmund",
    "euro": {
-    "euroElo": 1571.252233,
-    "euroGf": 1.537482,
-    "euroGa": 1.258464,
-    "euroGames": 56,
-    "euroLastDate": "2026-10-20"
+    "euroElo": 1580.854424,
+    "euroGf": 1.678295,
+    "euroGa": 1.179775,
+    "euroGames": 57,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1942.386,
@@ -807,11 +807,11 @@
    "bsdName": "Bournemouth",
    "domesticName": "Bournemouth",
    "euro": {
-    "euroElo": 1544.38489,
-    "euroGf": 2.728058,
-    "euroGa": 0.271942,
-    "euroGames": 3,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1567.159546,
+    "euroGf": 2.809526,
+    "euroGa": 0.490052,
+    "euroGames": 4,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1952.506,
@@ -828,11 +828,11 @@
    "bsdName": "Brighton & Hove Albion",
    "domesticName": "Brighton",
    "euro": {
-    "euroElo": 1554.427796,
-    "euroGf": 1.983629,
+    "euroElo": 1567.544078,
+    "euroGf": 1.718979,
     "euroGa": 0.0,
-    "euroGames": 12,
-    "euroLastDate": "2026-10-22"
+    "euroGames": 13,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1982.089,
@@ -849,11 +849,11 @@
    "bsdName": "Celta Vigo",
    "domesticName": "Celta",
    "euro": {
-    "euroElo": 1524.471514,
-    "euroGf": 1.106627,
-    "euroGa": 1.353141,
-    "euroGames": 17,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1509.57369,
+    "euroGf": 1.074628,
+    "euroGa": 1.547266,
+    "euroGames": 18,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1719.733,
@@ -871,11 +871,11 @@
    "domesticName": "Celtic",
    "fdoName": "Celtic FC",
    "euro": {
-    "euroElo": 1446.625483,
-    "euroGf": 1.291352,
-    "euroGa": 2.700467,
-    "euroGames": 53,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1459.571934,
+    "euroGf": 1.685193,
+    "euroGa": 2.53901,
+    "euroGames": 54,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1996.877,
@@ -936,11 +936,11 @@
    "domesticName": "Club Brugge",
    "fdoName": "Club Brugge KV",
    "euro": {
-    "euroElo": 1566.427102,
-    "euroGf": 3.098689,
-    "euroGa": 1.846506,
-    "euroGames": 61,
-    "euroLastDate": "2026-10-21"
+    "euroElo": 1580.555578,
+    "euroGf": 2.764247,
+    "euroGa": 1.588829,
+    "euroGames": 62,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1903.612,
@@ -958,11 +958,11 @@
    "domesticName": "Como",
    "fdoName": "Como 1907",
    "euro": {
-    "euroElo": 1524.29248,
-    "euroGf": 3.284996,
-    "euroGa": 1.715004,
-    "euroGames": 3,
-    "euroLastDate": "2026-10-21"
+    "euroElo": 1557.126785,
+    "euroGf": 5.014856,
+    "euroGa": 1.498581,
+    "euroGames": 4,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1892.54,
@@ -979,11 +979,11 @@
    "bsdName": "Crystal Palace",
    "domesticName": "Crystal Palace",
    "euro": {
-    "euroElo": 1594.900555,
-    "euroGf": 2.543884,
-    "euroGa": 1.808374,
-    "euroGames": 20,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1588.672663,
+    "euroGf": 2.081371,
+    "euroGa": 1.566203,
+    "euroGames": 21,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1837.185,
@@ -1109,11 +1109,11 @@
    "domesticName": "Porto",
    "fdoName": "FC Porto",
    "euro": {
-    "euroElo": 1513.689259,
-    "euroGf": 0.720982,
-    "euroGa": 1.979446,
-    "euroGames": 51,
-    "euroLastDate": "2026-10-20"
+    "euroElo": 1527.908796,
+    "euroGf": 1.719271,
+    "euroGa": 1.681256,
+    "euroGames": 52,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1927.248,
@@ -1196,11 +1196,11 @@
    "bsdName": "Getafe",
    "domesticName": "Getafe",
    "euro": {
-    "euroElo": 1486.841162,
-    "euroGf": 1.684768,
-    "euroGa": 2.486421,
-    "euroGames": 4,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1473.724881,
+    "euroGf": 1.231473,
+    "euroGa": 2.086492,
+    "euroGames": 5,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1652.481,
@@ -1260,11 +1260,11 @@
    "bsdName": "Heart of Midlothian",
    "domesticName": "Hearts",
    "euro": {
-    "euroElo": 1417.085253,
-    "euroGf": 0.735452,
-    "euroGa": 2.152455,
-    "euroGames": 28,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1406.708225,
+    "euroGf": 0.784697,
+    "euroGa": 2.310223,
+    "euroGames": 29,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1864.982,
@@ -1325,11 +1325,11 @@
    "domesticName": "Juventus",
    "fdoName": "Juventus FC",
    "euro": {
-    "euroElo": 1570.097566,
-    "euroGf": 2.815826,
-    "euroGa": 1.103858,
-    "euroGames": 45,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1586.347575,
+    "euroGf": 2.571423,
+    "euroGa": 1.072745,
+    "euroGames": 46,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1843.06,
@@ -1347,11 +1347,11 @@
    "domesticName": "Gent",
    "fdoName": "KAA Gent",
    "euro": {
-    "euroElo": 1555.66893,
-    "euroGf": 0.748281,
-    "euroGa": 0.743443,
-    "euroGames": 64,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1554.61279,
+    "euroGf": 0.609486,
+    "euroGa": 0.605546,
+    "euroGames": 65,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1693.956,
@@ -1520,11 +1520,11 @@
    "domesticName": "Man City",
    "fdoName": "Manchester City FC",
    "euro": {
-    "euroElo": 1585.382675,
-    "euroGf": 3.143136,
-    "euroGa": 1.823009,
-    "euroGames": 58,
-    "euroLastDate": "2026-10-20"
+    "euroElo": 1597.03605,
+    "euroGf": 3.099559,
+    "euroGa": 1.876893,
+    "euroGames": 59,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 2140.23,
@@ -1692,11 +1692,11 @@
    "bsdName": "OFI Crete",
    "domesticName": "OFI Crete",
    "euro": {
-    "euroElo": 1519.738899,
-    "euroGf": 1.376585,
-    "euroGa": 1.015488,
-    "euroGames": 5,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1542.658855,
+    "euroGf": 1.519815,
+    "euroGa": 0.782178,
+    "euroGames": 6,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1581.247,
@@ -1736,11 +1736,11 @@
    "domesticName": "Lyon",
    "fdoName": "Olympique Lyonnais",
    "euro": {
-    "euroElo": 1578.87033,
-    "euroGf": 1.547028,
-    "euroGa": 1.72991,
-    "euroGames": 39,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1581.587954,
+    "euroGf": 1.44199,
+    "euroGa": 1.589756,
+    "euroGames": 40,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1835.215,
@@ -1758,11 +1758,11 @@
    "domesticName": "Marseille",
    "fdoName": "Olympique de Marseille",
    "euro": {
-    "euroElo": 1469.442414,
-    "euroGf": 0.271942,
-    "euroGa": 1.815826,
-    "euroGames": 47,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1489.031276,
+    "euroGf": 0.490052,
+    "euroGa": 1.271845,
+    "euroGames": 48,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1809.365,
@@ -1823,11 +1823,11 @@
    "domesticName": "Panathinaikos",
    "fdoName": "Panathinaikos FC",
    "euro": {
-    "euroElo": 1563.963469,
-    "euroGf": 2.281644,
-    "euroGa": 1.204413,
-    "euroGames": 56,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1569.718361,
+    "euroGf": 2.229283,
+    "euroGa": 1.16641,
+    "euroGames": 57,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1820.604,
@@ -1888,11 +1888,11 @@
    "domesticName": "RB Leipzig",
    "fdoName": "RB Leipzig",
    "euro": {
-    "euroElo": 1475.344058,
-    "euroGf": 1.0,
-    "euroGa": 2.578471,
-    "euroGames": 39,
-    "euroLastDate": "2026-10-21"
+    "euroElo": 1463.690683,
+    "euroGf": 1.303383,
+    "euroGa": 2.706356,
+    "euroGames": 40,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1841.035,
@@ -1910,11 +1910,11 @@
    "domesticName": "Lens",
    "fdoName": "Racing Club de Lens",
    "euro": {
-    "euroElo": 1477.543901,
-    "euroGf": 0.785893,
-    "euroGa": 2.382653,
-    "euroGames": 13,
-    "euroLastDate": "2026-10-21"
+    "euroElo": 1444.709596,
+    "euroGf": 0.85085,
+    "euroGa": 4.390246,
+    "euroGames": 14,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1850.993,
@@ -1974,11 +1974,11 @@
    "domesticName": "Anderlecht",
    "fdoName": "RSC Anderlecht",
    "euro": {
-    "euroElo": 1591.788048,
-    "euroGf": 1.934305,
-    "euroGa": 0.754175,
-    "euroGames": 47,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1600.330183,
+    "euroGf": 1.945215,
+    "euroGa": 0.628923,
+    "euroGames": 48,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1639.448,
@@ -2039,11 +2039,11 @@
    "domesticName": "Betis",
    "fdoName": "Real Betis Balompié",
    "euro": {
-    "euroElo": 1600.881808,
-    "euroGf": 2.233545,
-    "euroGa": 1.233545,
-    "euroGames": 58,
-    "euroLastDate": "2026-10-21"
+    "euroElo": 1591.279617,
+    "euroGf": 1.858917,
+    "euroGa": 1.466318,
+    "euroGames": 59,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1807.846,
@@ -2083,11 +2083,11 @@
    "domesticName": "Sociedad",
    "fdoName": "Real Sociedad de Fútbol",
    "euro": {
-    "euroElo": 1558.941754,
-    "euroGf": 2.879001,
-    "euroGa": 0.896142,
-    "euroGames": 39,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1556.22413,
+    "euroGf": 2.316094,
+    "euroGa": 0.927255,
+    "euroGames": 40,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1726.519,
@@ -2149,11 +2149,11 @@
    "domesticName": "St. Gilloise",
    "fdoName": "Royale Union Saint-Gilloise",
    "euro": {
-    "euroElo": 1538.880472,
-    "euroGf": 2.620234,
-    "euroGa": 0.932765,
-    "euroGames": 49,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1553.778296,
+    "euroGf": 2.473018,
+    "euroGa": 0.948724,
+    "euroGames": 50,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1891.147,
@@ -2171,11 +2171,11 @@
    "domesticName": "Freiburg",
    "fdoName": "SC Freiburg",
    "euro": {
-    "euroElo": 1599.00961,
-    "euroGf": 2.222497,
-    "euroGa": 1.949992,
-    "euroGames": 37,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1611.37383,
+    "euroGf": 1.893578,
+    "euroGa": 1.425337,
+    "euroGames": 38,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1766.775,
@@ -2193,11 +2193,11 @@
    "domesticName": "Brann",
    "fdoName": "SK Brann",
    "euro": {
-    "euroElo": 1554.249384,
-    "euroGf": 2.305951,
-    "euroGa": 1.206121,
-    "euroGames": 34,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1556.689925,
+    "euroGf": 2.063158,
+    "euroGa": 1.1678,
+    "euroGames": 35,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1595.273,
@@ -2215,11 +2215,11 @@
    "domesticName": "Napoli",
    "fdoName": "SSC Napoli",
    "euro": {
-    "euroElo": 1497.34764,
-    "euroGf": 1.883082,
-    "euroGa": 2.477794,
-    "euroGames": 37,
-    "euroLastDate": "2026-10-20"
+    "euroElo": 1483.128104,
+    "euroGf": 1.614058,
+    "euroGa": 2.941522,
+    "euroGames": 38,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1890.464,
@@ -2300,11 +2300,11 @@
    "bsdName": "Sint-Truidense VV",
    "domesticName": "St Truiden",
    "euro": {
-    "euroElo": 1525.909448,
-    "euroGf": 1.495907,
-    "euroGa": 0.771001,
-    "euroGames": 4,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1523.468907,
+    "euroGf": 1.362481,
+    "euroGa": 0.832614,
+    "euroGames": 5,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1619.259,
@@ -2344,11 +2344,11 @@
    "domesticName": "Sp Braga",
    "fdoName": "Sporting Clube de Braga",
    "euro": {
-    "euroElo": 1624.576148,
-    "euroGf": 1.176606,
-    "euroGa": 0.563104,
-    "euroGames": 74,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1622.386131,
+    "euroGf": 0.958221,
+    "euroGa": 0.458589,
+    "euroGames": 75,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1699.251,
@@ -2473,11 +2473,11 @@
    "bsdName": "Sunderland",
    "domesticName": "Sunderland",
    "euro": {
-    "euroElo": 1530.874216,
-    "euroGf": 1.353141,
-    "euroGa": 0.729884,
-    "euroGames": 3,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1507.294959,
+    "euroGf": 0.947059,
+    "euroGa": 1.11105,
+    "euroGames": 4,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1791.036,
@@ -2495,11 +2495,11 @@
    "domesticName": "Hoffenheim",
    "fdoName": "TSG 1899 Hoffenheim",
    "euro": {
-    "euroElo": 1495.139762,
-    "euroGf": 1.831916,
-    "euroGa": 1.600658,
-    "euroGames": 11,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1501.367654,
+    "euroGf": 1.582693,
+    "euroGa": 1.420714,
+    "euroGames": 12,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1758.36,
@@ -2561,11 +2561,11 @@
    "domesticName": "Trabzonspor",
    "fdoName": "Trabzonspor",
    "euro": {
-    "euroElo": 1509.558097,
-    "euroGf": 1.859463,
-    "euroGa": 1.55799,
-    "euroGames": 24,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1497.193877,
+    "euroGf": 1.359166,
+    "euroGa": 1.40786,
+    "euroGames": 25,
+    "euroLastDate": "2026-11-05"
    },
    "domestic": {
     "elo": 1771.116,
@@ -2627,11 +2627,11 @@
    "domesticName": "Viking",
    "fdoName": "Viking FK",
    "euro": {
-    "euroElo": 1521.304292,
-    "euroGf": 1.959113,
-    "euroGa": 2.535351,
-    "euroGames": 15,
-    "euroLastDate": "2026-10-21"
+    "euroElo": 1537.056134,
+    "euroGf": 2.433672,
+    "euroGa": 2.178342,
+    "euroGames": 16,
+    "euroLastDate": "2026-11-04"
    },
    "domestic": {
     "elo": 1826.643,
@@ -2699,13 +2699,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1841.301,
-    "att_decay": 2.27843,
-    "def_decay": 1.29467,
-    "goal_for_avg5": 2.4,
-    "goal_against_avg5": 1.2,
+    "elo": 1816.413,
+    "att_decay": 2.17502,
+    "def_decay": 1.43261,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.4,
     "goal_for_avg10": 2.9,
-    "goal_against_avg10": 1.1
+    "goal_against_avg10": 1.3
    }
   },
   "1 fc slovacko": {
@@ -2726,11 +2726,11 @@
    "domesticName": null,
    "fdoName": "AC Sparta Praha",
    "euro": {
-    "euroElo": 1538.802822,
-    "euroGf": 1.306481,
-    "euroGa": 1.281656,
-    "euroGames": 61,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1516.028167,
+    "euroGf": 1.233635,
+    "euroGa": 1.690083,
+    "euroGames": 62,
+    "euroLastDate": "2026-11-05"
    }
   },
   "aek larnaca": {
@@ -2774,11 +2774,11 @@
    "bsdName": "AGF",
    "domesticName": null,
    "euro": {
-    "euroElo": 1460.450263,
-    "euroGf": 0.989267,
-    "euroGa": 1.938466,
-    "euroGames": 12,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1462.640281,
+    "euroGf": 0.804984,
+    "euroGa": 1.577365,
+    "euroGames": 13,
+    "euroLastDate": "2026-11-05"
    }
   },
   "aik": {
@@ -3160,11 +3160,11 @@
    "bsdName": "CSKA Sofia",
    "domesticName": null,
    "euro": {
-    "euroElo": 1463.519756,
-    "euroGf": 1.189899,
-    "euroGa": 1.639098,
-    "euroGames": 30,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1457.764865,
+    "euroGf": 1.158663,
+    "euroGa": 1.698463,
+    "euroGames": 31,
+    "euroLastDate": "2026-11-05"
    }
   },
   "caernarfon town": {
@@ -3472,11 +3472,11 @@
    "bsdName": "FC Ararat-Armenia",
    "domesticName": null,
    "euro": {
-    "euroElo": 1455.076948,
-    "euroGf": 1.024812,
-    "euroGa": 2.146537,
-    "euroGames": 25,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1447.546932,
+    "euroGf": 1.171103,
+    "euroGa": 2.274568,
+    "euroGames": 26,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc bruno s magpies": {
@@ -3604,11 +3604,11 @@
    "bsdName": "FC Iberia 1999",
    "domesticName": null,
    "euro": {
-    "euroElo": 1414.077998,
-    "euroGf": 0.7816,
-    "euroGa": 1.683533,
-    "euroGames": 22,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1410.369553,
+    "euroGf": 0.817742,
+    "euroGa": 1.735903,
+    "euroGames": 23,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc isloch minsk region": {
@@ -3628,11 +3628,11 @@
    "bsdName": "FC Kairat Almaty",
    "domesticName": null,
    "euro": {
-    "euroElo": 1414.002171,
-    "euroGf": 0.686471,
-    "euroGa": 1.948812,
-    "euroGames": 42,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1421.152101,
+    "euroGf": 0.738298,
+    "euroGa": 1.791971,
+    "euroGames": 43,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc koper": {
@@ -3689,11 +3689,11 @@
    "domesticName": null,
    "fdoName": "FC København",
    "euro": {
-    "euroElo": 1609.327438,
-    "euroGf": 2.699696,
-    "euroGa": 0.975084,
-    "euroGames": 74,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1613.035882,
+    "euroGf": 2.569721,
+    "euroGa": 0.979713,
+    "euroGames": 75,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc lausanne sport": {
@@ -3713,11 +3713,11 @@
    "bsdName": "FC Lugano",
    "domesticName": null,
    "euro": {
-    "euroElo": 1579.973277,
-    "euroGf": 2.856634,
-    "euroGa": 1.308172,
-    "euroGames": 36,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1588.527076,
+    "euroGf": 2.883245,
+    "euroGa": 1.065358,
+    "euroGames": 37,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc luzern": {
@@ -3749,11 +3749,11 @@
    "bsdName": "FC Midtjylland",
    "domesticName": null,
    "euro": {
-    "euroElo": 1601.889825,
-    "euroGf": 1.398843,
-    "euroGa": 0.986845,
-    "euroGames": 70,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1568.997356,
+    "euroGf": 1.324864,
+    "euroGa": 1.916712,
+    "euroGames": 71,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc milsami orhei": {
@@ -3785,11 +3785,11 @@
    "bsdName": "FC Nordsjælland",
    "domesticName": null,
    "euro": {
-    "euroElo": 1586.353544,
-    "euroGf": 2.329894,
-    "euroGa": 0.912512,
-    "euroGames": 18,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1572.650108,
+    "euroGf": 1.897733,
+    "euroGa": 1.114225,
+    "euroGames": 19,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc ordabasy": {
@@ -3941,11 +3941,11 @@
    "bsdName": "FC Thun",
    "domesticName": null,
    "euro": {
-    "euroElo": 1474.107874,
-    "euroGf": 1.011439,
-    "euroGa": 1.994871,
-    "euroGames": 8,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1484.484901,
+    "euroGf": 1.381271,
+    "euroGa": 1.809845,
+    "euroGames": 9,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc tobol": {
@@ -3989,11 +3989,11 @@
    "bsdName": "FC Twente",
    "domesticName": null,
    "euro": {
-    "euroElo": 1552.626086,
-    "euroGf": 2.400395,
-    "euroGa": 1.102137,
-    "euroGames": 30,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1563.232104,
+    "euroGf": 2.511613,
+    "euroGa": 1.083192,
+    "euroGames": 31,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc universitatea cluj": {
@@ -4037,11 +4037,11 @@
    "bsdName": "FC Viktoria Plzeň",
    "domesticName": null,
    "euro": {
-    "euroElo": 1512.030353,
-    "euroGf": 1.132524,
-    "euroGa": 2.179866,
-    "euroGames": 69,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1525.633736,
+    "euroGf": 1.102076,
+    "euroGa": 1.679038,
+    "euroGames": 70,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fc zimbru chisinau": {
@@ -4181,11 +4181,11 @@
    "bsdName": "FK Borac Banja Luka",
    "domesticName": null,
    "euro": {
-    "euroElo": 1521.19809,
-    "euroGf": 1.723377,
-    "euroGa": 1.195256,
-    "euroGames": 38,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1505.639885,
+    "euroGf": 1.43931,
+    "euroGa": 1.327904,
+    "euroGames": 39,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fk buducnost podgorica": {
@@ -4206,11 +4206,11 @@
    "domesticName": null,
    "fdoName": "FK Crvena Zvezda",
    "euro": {
-    "euroElo": 1519.501108,
-    "euroGf": 2.03728,
-    "euroGa": 1.752715,
-    "euroGames": 64,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1526.223065,
+    "euroGf": 2.03033,
+    "euroGa": 1.612395,
+    "euroGames": 65,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fk decic tuzi": {
@@ -4242,11 +4242,11 @@
    "bsdName": "FK Jablonec",
    "domesticName": null,
    "euro": {
-    "euroElo": 1517.337431,
-    "euroGf": 1.257025,
-    "euroGa": 1.038084,
-    "euroGames": 18,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1520.786778,
+    "euroGf": 1.20935,
+    "euroGa": 1.03102,
+    "euroGames": 19,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fk kauno zalgiris": {
@@ -4254,11 +4254,11 @@
    "bsdName": "FK Kauno Žalgiris",
    "domesticName": null,
    "euro": {
-    "euroElo": 1443.098188,
-    "euroGf": 0.719746,
-    "euroGa": 2.445697,
-    "euroGames": 24,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1434.544388,
+    "euroGf": 0.600579,
+    "euroGa": 2.537472,
+    "euroGames": 25,
+    "euroLastDate": "2026-11-05"
    }
   },
   "fk liepaja": {
@@ -4542,11 +4542,11 @@
    "bsdName": "Ferencváros TC",
    "domesticName": null,
    "euro": {
-    "euroElo": 1639.597246,
-    "euroGf": 2.423257,
-    "euroGa": 0.756142,
-    "euroGames": 91,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1656.710071,
+    "euroGf": 2.36019,
+    "euroGa": 0.643474,
+    "euroGames": 92,
+    "euroLastDate": "2026-11-05"
    }
   },
   "feyenoord": {
@@ -4627,11 +4627,11 @@
    "domesticName": null,
    "fdoName": "GNK Dinamo Zagreb",
    "euro": {
-    "euroElo": 1519.521189,
-    "euroGf": 1.657565,
-    "euroGa": 1.537568,
-    "euroGames": 73,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1543.100446,
+    "euroGf": 1.714859,
+    "euroGa": 1.28031,
+    "euroGames": 74,
+    "euroLastDate": "2026-11-05"
    }
   },
   "glentoran": {
@@ -4723,11 +4723,11 @@
    "bsdName": "HNK Hajduk Split",
    "domesticName": null,
    "euro": {
-    "euroElo": 1564.647848,
-    "euroGf": 2.033797,
-    "euroGa": 1.030439,
-    "euroGames": 26,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1550.41723,
+    "euroGf": 1.699258,
+    "euroGa": 1.025432,
+    "euroGames": 27,
+    "euroLastDate": "2026-11-05"
    }
   },
   "hnk rijeka": {
@@ -4759,11 +4759,11 @@
    "bsdName": "Hapoel Be'er Sheva",
    "domesticName": null,
    "euro": {
-    "euroElo": 1517.180713,
-    "euroGf": 1.069073,
-    "euroGa": 1.593169,
-    "euroGames": 39,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1494.260757,
+    "euroGf": 0.890302,
+    "euroGa": 1.661199,
+    "euroGames": 40,
+    "euroLastDate": "2026-11-05"
    }
   },
   "hapoel tel aviv": {
@@ -4867,11 +4867,11 @@
    "bsdName": "Inter Club d'Escaldes",
    "domesticName": null,
    "euro": {
-    "euroElo": 1455.501589,
-    "euroGf": 1.22298,
-    "euroGa": 1.539352,
-    "euroGames": 28,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1448.779632,
+    "euroGf": 1.180777,
+    "euroGa": 1.626537,
+    "euroGames": 29,
+    "euroLastDate": "2026-11-05"
    }
   },
   "inter turku": {
@@ -4891,11 +4891,11 @@
    "bsdName": "Jagiellonia Białystok",
    "domesticName": null,
    "euro": {
-    "euroElo": 1552.702129,
-    "euroGf": 1.754121,
-    "euroGa": 1.447467,
-    "euroGames": 39,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1543.766075,
+    "euroGf": 1.41924,
+    "euroGa": 1.362041,
+    "euroGames": 40,
+    "euroLastDate": "2026-11-05"
    }
   },
   "ka akureyri": {
@@ -4927,11 +4927,11 @@
    "bsdName": "KF Egnatia",
    "domesticName": null,
    "euro": {
-    "euroElo": 1512.989849,
-    "euroGf": 1.763717,
-    "euroGa": 1.218981,
-    "euroGames": 22,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1501.79645,
+    "euroGf": 1.472399,
+    "euroGa": 1.347984,
+    "euroGames": 23,
+    "euroLastDate": "2026-11-05"
    }
   },
   "kf laci": {
@@ -5107,11 +5107,11 @@
    "bsdName": "Kuopion Palloseura",
    "domesticName": null,
    "euro": {
-    "euroElo": 1425.011212,
-    "euroGf": 0.832611,
-    "euroGa": 1.733218,
-    "euroGames": 46,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1426.067352,
+    "euroGf": 0.695045,
+    "euroGa": 1.446852,
+    "euroGames": 47,
+    "euroLastDate": "2026-11-05"
    }
   },
   "lask": {
@@ -5168,11 +5168,11 @@
    "bsdName": "Lech Poznań",
    "domesticName": null,
    "euro": {
-    "euroElo": 1546.021456,
-    "euroGf": 1.912664,
-    "euroGa": 1.859731,
-    "euroGames": 49,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1536.834833,
+    "euroGf": 1.761076,
+    "euroGa": 2.049123,
+    "euroGames": 50,
+    "euroLastDate": "2026-11-05"
    }
   },
   "legia warszawa": {
@@ -5192,11 +5192,11 @@
    "bsdName": "Levski Sofia",
    "domesticName": null,
    "euro": {
-    "euroElo": 1543.419303,
-    "euroGf": 1.121571,
-    "euroGa": 0.978112,
-    "euroGames": 29,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1552.355357,
+    "euroGf": 1.103332,
+    "euroGa": 0.831365,
+    "euroGames": 30,
+    "euroLastDate": "2026-11-05"
    }
   },
   "lillestrm sk": {
@@ -5204,11 +5204,11 @@
    "bsdName": "Lillestrøm SK",
    "domesticName": null,
    "euro": {
-    "euroElo": 1458.732321,
-    "euroGf": 0.591509,
-    "euroGa": 2.353647,
-    "euroGames": 9,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1445.128938,
+    "euroGf": 0.455609,
+    "euroGa": 2.042644,
+    "euroGames": 10,
+    "euroLastDate": "2026-11-05"
    }
   },
   "lincoln red imps": {
@@ -5216,11 +5216,11 @@
    "bsdName": "Lincoln Red Imps",
    "domesticName": null,
    "euro": {
-    "euroElo": 1399.305168,
-    "euroGf": 0.996279,
-    "euroGa": 1.746928,
-    "euroGames": 54,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1413.535786,
+    "euroGf": 0.996894,
+    "euroGa": 1.458297,
+    "euroGames": 55,
+    "euroLastDate": "2026-11-05"
    }
   },
   "linfield": {
@@ -5384,11 +5384,11 @@
    "bsdName": "Mjällby AIF",
    "domesticName": null,
    "euro": {
-    "euroElo": 1468.621915,
-    "euroGf": 0.932248,
-    "euroGa": 1.075656,
-    "euroGames": 8,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1484.18012,
+    "euroGf": 1.131434,
+    "euroGa": 0.874996,
+    "euroGames": 9,
+    "euroLastDate": "2026-11-05"
    }
   },
   "mlada boleslav": {
@@ -5444,11 +5444,11 @@
    "bsdName": "NEC Nijmegen",
    "domesticName": null,
    "euro": {
-    "euroElo": 1484.489519,
-    "euroGf": 1.252206,
-    "euroGa": 2.1865,
-    "euroGames": 7,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1500.589812,
+    "euroGf": 1.587453,
+    "euroGa": 1.958916,
+    "euroGames": 8,
+    "euroLastDate": "2026-11-05"
    }
   },
   "nk aluminij kidricevo": {
@@ -5480,11 +5480,11 @@
    "bsdName": "NK Celje",
    "domesticName": null,
    "euro": {
-    "euroElo": 1501.076204,
-    "euroGf": 1.125913,
-    "euroGa": 1.778058,
-    "euroGames": 53,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1514.982119,
+    "euroGf": 1.439061,
+    "euroGa": 1.815143,
+    "euroGames": 54,
+    "euroLastDate": "2026-11-05"
    }
   },
   "nk domzale": {
@@ -5672,11 +5672,11 @@
    "bsdName": "Omonia Nicosia",
    "domesticName": null,
    "euro": {
-    "euroElo": 1547.684349,
-    "euroGf": 1.464048,
-    "euroGa": 1.173605,
-    "euroGames": 61,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1531.584057,
+    "euroGf": 1.386887,
+    "euroGa": 1.477295,
+    "euroGames": 62,
+    "euroLastDate": "2026-11-05"
    }
   },
   "psv eindhoven": {
@@ -5684,11 +5684,11 @@
    "bsdName": "PSV Eindhoven",
    "domesticName": null,
    "euro": {
-    "euroElo": 1528.711558,
-    "euroGf": 0.643362,
-    "euroGa": 0.619528,
-    "euroGames": 65,
-    "euroLastDate": "2026-10-20"
+    "euroElo": 1514.583082,
+    "euroGf": 0.751826,
+    "euroGa": 1.039369,
+    "euroGames": 66,
+    "euroLastDate": "2026-11-04"
    }
   },
   "pafos fc": {
@@ -5697,11 +5697,11 @@
    "domesticName": null,
    "fdoName": "Paphos FC",
    "euro": {
-    "euroElo": 1500.95471,
-    "euroGf": 1.236353,
-    "euroGa": 1.698135,
-    "euroGames": 40,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1490.348692,
+    "euroGf": 1.192513,
+    "euroGa": 1.939612,
+    "euroGames": 41,
+    "euroLastDate": "2026-11-05"
    }
   },
   "paide linnameeskond": {
@@ -5879,11 +5879,11 @@
    "domesticName": null,
    "fdoName": "FC Red Bull Salzburg",
    "euro": {
-    "euroElo": 1488.94792,
-    "euroGf": 1.476573,
-    "euroGa": 1.51557,
-    "euroGames": 55,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1480.405785,
+    "euroGf": 1.194993,
+    "euroGa": 1.60795,
+    "euroGames": 56,
+    "euroLastDate": "2026-11-05"
    }
   },
   "riga fc": {
@@ -5891,11 +5891,11 @@
    "bsdName": "Riga FC",
    "domesticName": null,
    "euro": {
-    "euroElo": 1520.101756,
-    "euroGf": 1.228292,
-    "euroGa": 1.103979,
-    "euroGames": 38,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1516.65241,
+    "euroGf": 1.190594,
+    "euroGa": 1.086809,
+    "euroGames": 39,
+    "euroLastDate": "2026-11-05"
    }
   },
   "rubin kazan": {
@@ -5976,11 +5976,11 @@
    "domesticName": null,
    "fdoName": "SK Slavia Praha",
    "euro": {
-    "euroElo": 1448.795373,
-    "euroGf": 1.286725,
-    "euroGa": 2.26289,
-    "euroGames": 63,
-    "euroLastDate": "2026-10-20"
+    "euroElo": 1441.95693,
+    "euroGf": 1.199523,
+    "euroGa": 2.182937,
+    "euroGames": 64,
+    "euroLastDate": "2026-11-04"
    }
   },
   "sk sturm graz": {
@@ -5989,11 +5989,11 @@
    "domesticName": null,
    "fdoName": "SK Sturm Graz",
    "euro": {
-    "euroElo": 1456.729247,
-    "euroGf": 0.794044,
-    "euroGa": 0.949008,
-    "euroGames": 53,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1442.823332,
+    "euroGf": 1.036204,
+    "euroGa": 1.360854,
+    "euroGames": 54,
+    "euroLastDate": "2026-11-05"
    }
   },
   "sp tre fiori": {
@@ -6062,11 +6062,11 @@
    "domesticName": null,
    "fdoName": "Sabah FK",
    "euro": {
-    "euroElo": 1532.597295,
-    "euroGf": 1.656088,
-    "euroGa": 1.308064,
-    "euroGames": 25,
-    "euroLastDate": "2026-10-20"
+    "euroElo": 1516.845454,
+    "euroGf": 1.557319,
+    "euroGa": 1.713314,
+    "euroGames": 26,
+    "euroLastDate": "2026-11-04"
    }
   },
   "sepsi osk sfantu gheorghe": {
@@ -6315,11 +6315,11 @@
    "bsdName": "Torreense",
    "domesticName": null,
    "euro": {
-    "euroElo": 1491.03585,
-    "euroGf": 1.271942,
-    "euroGa": 2.479658,
-    "euroGames": 3,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1498.565867,
+    "euroGf": 1.789629,
+    "euroGa": 2.335963,
+    "euroGames": 4,
+    "euroLastDate": "2026-11-05"
    }
   },
   "troms il": {
@@ -6387,11 +6387,11 @@
    "bsdName": "Universitatea Craiova",
    "domesticName": null,
    "euro": {
-    "euroElo": 1551.231955,
-    "euroGf": 1.534645,
-    "euroGa": 1.009596,
-    "euroGames": 32,
-    "euroLastDate": "2026-10-22"
+    "euroElo": 1562.425355,
+    "euroGf": 1.611362,
+    "euroGa": 0.843157,
+    "euroGames": 33,
+    "euroLastDate": "2026-11-05"
    }
   },
   "urartu": {
@@ -6698,16 +6698,16 @@
  },
  "teamAliases": {
   "heidenheim": "heidenheim",
-  "1 fc heidenheim": "heidenheim",
   "1 fc heidenheim 1846": "heidenheim",
+  "1 fc heidenheim": "heidenheim",
   "fc heidenheim": "heidenheim",
   "fc koln": "fc koln",
   "1 fc koln": "fc koln",
   "union berlin": "union berlin",
   "1 fc union berlin": "union berlin",
   "mainz": "mainz",
-  "1 fsv mainz 05": "mainz",
   "mainz 05": "mainz",
+  "1 fsv mainz 05": "mainz",
   "milan": "milan",
   "ac milan": "milan",
   "aek": "aek",
@@ -6743,9 +6743,9 @@
   "bayer 04 leverkusen": "leverkusen",
   "bayer leverkusen": "leverkusen",
   "buyuksehyr": "buyuksehyr",
-  "basaksehir": "buyuksehyr",
   "istanbul basaksehir": "buyuksehyr",
   "basaksehir fk": "buyuksehyr",
+  "basaksehir": "buyuksehyr",
   "istanbul basaksehir fk": "buyuksehyr",
   "benfica": "benfica",
   "sport lisboa e benfica": "benfica",
@@ -6802,15 +6802,15 @@
   "juventus": "juventus",
   "juventus fc": "juventus",
   "gent": "gent",
-  "kaa gent": "gent",
   "aa gent": "gent",
+  "kaa gent": "gent",
   "genk": "genk",
   "krc genk": "genk",
   "kilmarnock": "kilmarnock",
   "konyaspor": "konyaspor",
   "lille": "lille",
-  "losc lille": "lille",
   "lille osc": "lille",
+  "losc lille": "lille",
   "lazio": "lazio",
   "ss lazio": "lazio",
   "leicester": "leicester",
@@ -6818,8 +6818,8 @@
   "liverpool": "liverpool",
   "liverpool fc": "liverpool",
   "man city": "man city",
-  "manchester city fc": "man city",
   "manchester city": "man city",
+  "manchester city fc": "man city",
   "man united": "man united",
   "manchester united": "man united",
   "manchester united fc": "man united",
@@ -6828,40 +6828,40 @@
   "motherwell": "motherwell",
   "nantes": "nantes",
   "newcastle": "newcastle",
-  "newcastle united": "newcastle",
   "newcastle united fc": "newcastle",
+  "newcastle united": "newcastle",
   "nice": "nice",
   "ogc nice": "nice",
   "nott m forest": "nott m forest",
   "nottingham forest": "nott m forest",
   "ofi crete": "ofi crete",
   "olympiakos": "olympiakos",
-  "olympiacos": "olympiakos",
-  "olympiacos fc": "olympiakos",
   "pae olympiakos sfp": "olympiakos",
+  "olympiacos fc": "olympiakos",
+  "olympiacos": "olympiakos",
   "lyon": "lyon",
   "olympique lyonnais": "lyon",
   "olympique lyon": "lyon",
   "marseille": "marseille",
-  "olympique de marseille": "marseille",
   "olympique marseille": "marseille",
+  "olympique de marseille": "marseille",
   "osasuna": "osasuna",
   "paok": "paok",
-  "paok fc": "paok",
   "paok salonika": "paok",
+  "paok fc": "paok",
   "panathinaikos": "panathinaikos",
   "panathinaikos fc": "panathinaikos",
   "paris sg": "paris sg",
-  "paris saint germain fc": "paris sg",
   "paris saint germain": "paris sg",
   "psg": "paris sg",
+  "paris saint germain fc": "paris sg",
   "pacos ferreira": "pacos ferreira",
   "pacos de ferreira": "pacos ferreira",
   "rb leipzig": "rb leipzig",
   "leipzig": "rb leipzig",
   "lens": "lens",
-  "rc lens": "lens",
   "racing club de lens": "lens",
+  "rc lens": "lens",
   "charleroi": "charleroi",
   "rc sporting charleroi": "charleroi",
   "strasbourg": "strasbourg",
@@ -6883,12 +6883,12 @@
   "rosenborg": "rosenborg",
   "rosenborg bk": "rosenborg",
   "antwerp": "antwerp",
-  "royal antwerp": "antwerp",
   "royal antwerp fc": "antwerp",
+  "royal antwerp": "antwerp",
   "st gilloise": "st gilloise",
   "union sg": "st gilloise",
-  "royale union saint gilloise": "st gilloise",
   "union st gilloise": "st gilloise",
+  "royale union saint gilloise": "st gilloise",
   "union saint gilloise": "st gilloise",
   "freiburg": "freiburg",
   "sc freiburg": "freiburg",
@@ -6904,30 +6904,30 @@
   "sint truidense vv": "st truiden",
   "sivasspor": "sivasspor",
   "sp braga": "sp braga",
-  "sporting braga": "sp braga",
-  "braga": "sp braga",
-  "sc braga": "sp braga",
   "sporting clube de braga": "sp braga",
+  "sc braga": "sp braga",
+  "braga": "sp braga",
+  "sporting braga": "sp braga",
   "sp lisbon": "sp lisbon",
-  "sporting cp": "sp lisbon",
-  "sporting lisbon": "sp lisbon",
   "sporting clube de portugal": "sp lisbon",
+  "sporting lisbon": "sp lisbon",
+  "sporting cp": "sp lisbon",
   "st johnstone": "st johnstone",
   "st mirren": "st mirren",
   "brest": "brest",
-  "stade brestois": "brest",
   "stade brestois 29": "brest",
+  "stade brestois": "brest",
   "rennes": "rennes",
   "stade rennais": "rennes",
   "stade rennais fc 1901": "rennes",
   "sunderland": "sunderland",
   "hoffenheim": "hoffenheim",
-  "tsg hoffenheim": "hoffenheim",
   "tsg 1899 hoffenheim": "hoffenheim",
   "1899 hoffenheim": "hoffenheim",
+  "tsg hoffenheim": "hoffenheim",
   "tottenham": "tottenham",
-  "tottenham hotspur fc": "tottenham",
   "tottenham hotspur": "tottenham",
+  "tottenham hotspur fc": "tottenham",
   "toulouse": "toulouse",
   "toulouse fc": "toulouse",
   "trabzonspor": "trabzonspor",
@@ -6946,8 +6946,8 @@
   "west ham united": "west ham",
   "1 fc slovacko": "1 fc slovacko",
   "ac sparta praha": "ac sparta praha",
-  "sparta praha": "ac sparta praha",
   "sparta prague": "ac sparta praha",
+  "sparta praha": "ac sparta praha",
   "aek larnaca": "aek larnaca",
   "ael limassol": "ael limassol",
   "af elbasani": "af elbasani",
@@ -7026,17 +7026,17 @@
   "fc iberia 1999": "fc iberia 1999",
   "fc isloch minsk region": "fc isloch minsk region",
   "kairat almaty": "kairat almaty",
-  "fk kairat": "kairat almaty",
   "kairat": "kairat almaty",
+  "fk kairat": "kairat almaty",
   "fc kairat almaty": "kairat almaty",
   "fc koper": "fc koper",
   "fc kosice": "fc kosice",
   "fc kryvbas kryvyi rih": "fc kryvbas kryvyi rih",
   "fc kyzylzhar": "fc kyzylzhar",
   "fc kbenhavn": "fc kbenhavn",
-  "copenhagen": "fc kbenhavn",
-  "fc copenhagen": "fc kbenhavn",
   "kbenhavn": "fc kbenhavn",
+  "fc copenhagen": "fc kbenhavn",
+  "copenhagen": "fc kbenhavn",
   "fc lausanne sport": "fc lausanne sport",
   "fc lugano": "fc lugano",
   "fc luzern": "fc luzern",
@@ -7224,16 +7224,16 @@
   "puskas akademia": "puskas akademia",
   "pyunik yerevan": "pyunik yerevan",
   "qarabag fk": "qarabag fk",
-  "qarabag agdam fk": "qarabag fk",
   "qarabag": "qarabag fk",
+  "qarabag agdam fk": "qarabag fk",
   "qbl fk": "qbl fk",
   "rfs": "rfs",
   "racing fc union luxembourg": "racing fc union luxembourg",
   "rakow czestochowa": "rakow czestochowa",
   "randers fc": "randers fc",
   "red bull salzburg": "red bull salzburg",
-  "salzburg": "red bull salzburg",
   "fc red bull salzburg": "red bull salzburg",
+  "salzburg": "red bull salzburg",
   "riga fc": "riga fc",
   "rubin kazan": "rubin kazan",
   "sc dnipro 1": "sc dnipro 1",
@@ -7310,29 +7310,29 @@
  },
  "validation": {
   "report": "data/euro_cups_model_validation.json",
-  "test1x2LogLoss": 0.994850093249115,
-  "testBaseline1x2LogLoss": 1.0552284467100859,
+  "test1x2LogLoss": 0.9930232706285508,
+  "testBaseline1x2LogLoss": 1.0551534195589232,
   "testByCompetition": {
    "CL": {
-    "rows": 155,
-    "model1x2LogLoss": 0.9711115323459604,
-    "baseline1x2LogLoss": 1.0215451716932347,
-    "modelBrier": 0.5750037386575302,
-    "baselineBrier": 0.6129999502239616
+    "rows": 162,
+    "model1x2LogLoss": 0.9605148921236785,
+    "baseline1x2LogLoss": 1.022318873346153,
+    "modelBrier": 0.5676526961910474,
+    "baselineBrier": 0.6139012709342253
    },
    "ECL": {
-    "rows": 294,
-    "model1x2LogLoss": 1.0178250623479101,
-    "baseline1x2LogLoss": 1.0734005923712655,
-    "modelBrier": 0.6083455958709906,
-    "baselineBrier": 0.6488796761753884
+    "rows": 312,
+    "model1x2LogLoss": 1.013486794726621,
+    "baseline1x2LogLoss": 1.0701193734174115,
+    "modelBrier": 0.6055382734445564,
+    "baselineBrier": 0.6464251851244734
    },
    "EL": {
-    "rows": 135,
-    "model1x2LogLoss": 0.9720711008412898,
-    "baseline1x2LogLoss": 1.05432694154878,
-    "modelBrier": 0.5780918007563859,
-    "baselineBrier": 0.6368411115174586
+    "rows": 152,
+    "model1x2LogLoss": 0.9856662824653362,
+    "baseline1x2LogLoss": 1.0594285437866762,
+    "modelBrier": 0.5879938464664413,
+    "baselineBrier": 0.6410474523498515
    }
   }
  }

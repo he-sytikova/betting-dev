@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-04T21:29:34.374574+00:00",
+  "generatedAt": "2026-11-09T05:11:45.622319+00:00",
   "dataset": "/home/runner/work/betting-dev/betting-dev/data/euro_cups_training.csv",
   "competitions": [
     "CL",
@@ -14,7 +14,7 @@
   "rows": {
     "train": 1761,
     "validation": 961,
-    "test": 584
+    "test": 626
   },
   "features": [
     "home_euro_elo",
@@ -222,32 +222,32 @@
       }
     },
     "test": {
-      "rows": 584,
-      "model1x2LogLoss": 0.994850093249115,
-      "baseline1x2LogLoss": 1.0552284467100859,
-      "modelBrier": 0.5925027016782551,
-      "baselineBrier": 0.636573916327286,
+      "rows": 626,
+      "model1x2LogLoss": 0.9930232706285508,
+      "baseline1x2LogLoss": 1.0551534195589232,
+      "modelBrier": 0.5914740299689308,
+      "baselineBrier": 0.6367026779670247,
       "byCompetition": {
         "CL": {
-          "rows": 155,
-          "model1x2LogLoss": 0.9711115323459604,
-          "baseline1x2LogLoss": 1.0215451716932347,
-          "modelBrier": 0.5750037386575302,
-          "baselineBrier": 0.6129999502239616
+          "rows": 162,
+          "model1x2LogLoss": 0.9605148921236785,
+          "baseline1x2LogLoss": 1.022318873346153,
+          "modelBrier": 0.5676526961910474,
+          "baselineBrier": 0.6139012709342253
         },
         "ECL": {
-          "rows": 294,
-          "model1x2LogLoss": 1.0178250623479101,
-          "baseline1x2LogLoss": 1.0734005923712655,
-          "modelBrier": 0.6083455958709906,
-          "baselineBrier": 0.6488796761753884
+          "rows": 312,
+          "model1x2LogLoss": 1.013486794726621,
+          "baseline1x2LogLoss": 1.0701193734174115,
+          "modelBrier": 0.6055382734445564,
+          "baselineBrier": 0.6464251851244734
         },
         "EL": {
-          "rows": 135,
-          "model1x2LogLoss": 0.9720711008412898,
-          "baseline1x2LogLoss": 1.05432694154878,
-          "modelBrier": 0.5780918007563859,
-          "baselineBrier": 0.6368411115174586
+          "rows": 152,
+          "model1x2LogLoss": 0.9856662824653362,
+          "baseline1x2LogLoss": 1.0594285437866762,
+          "modelBrier": 0.5879938464664413,
+          "baselineBrier": 0.6410474523498515
         }
       }
     }
