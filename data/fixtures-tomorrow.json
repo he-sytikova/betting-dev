@@ -1,6 +1,6 @@
 {
  "date": "2026-11-10",
- "generatedAt": "2026-11-09T02:56:47.462414+00:00",
+ "generatedAt": "2026-11-09T05:14:50.047737+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.769031189",
@@ -108,11 +108,25 @@
    "away": "Waterhouse"
   },
   {
+   "eventId": "s9-99.769180954",
+   "time": "2026-11-10T08:00:00+00:00",
+   "league": "Friendlies U23. National Teams",
+   "home": "Qatar U23",
+   "away": "Singapore U23"
+  },
+  {
    "eventId": "s9-99.768390503",
    "time": "2026-11-10T12:00:00+00:00",
    "league": "Friendlies U23. National Teams",
    "home": "Vietnam U23",
    "away": "Thailand U23"
+  },
+  {
+   "eventId": "s9-99.769351328",
+   "time": "2026-11-10T15:00:00+00:00",
+   "league": "Egypt Cup",
+   "home": "El Mokawloon",
+   "away": "Telecom Egypt"
   },
   {
    "eventId": "s9-99.768333581",
