@@ -1,6 +1,6 @@
 {
  "date": "2026-11-10",
- "generatedAt": "2026-11-09T07:36:32.207976+00:00",
+ "generatedAt": "2026-11-09T09:21:29.573248+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.769031189",
@@ -36,20 +36,6 @@
    "league": "Honduras. Liga Nacional. Reserve League",
    "home": "Olancho II",
    "away": "Lobos UPNFM II"
-  },
-  {
-   "eventId": "s9-99.769294401",
-   "time": "2026-11-09T22:00:00+00:00",
-   "league": "Brazil. Cearense Cup",
-   "home": "Vila Real",
-   "away": "Ceara XI"
-  },
-  {
-   "eventId": "s9-99.769380475",
-   "time": "2026-11-09T22:00:00+00:00",
-   "league": "Brazil. Fares Lopes Cup",
-   "home": "Vila Real",
-   "away": "Ceara SC Fortaleza II"
   },
   {
    "eventId": "s9-99.769039185",
@@ -442,6 +428,13 @@
    "league": "England. Southern Premier League. Central",
    "home": "Rushall Olympic",
    "away": "Halesowen Town"
+  },
+  {
+   "eventId": "s9-99.769403402",
+   "time": "2026-11-10T19:45:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Stamford",
+   "away": "Needham Market"
   },
   {
    "eventId": "s9-99.769162634",
