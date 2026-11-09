@@ -1,6 +1,6 @@
 {
  "date": "2026-11-10",
- "generatedAt": "2026-11-09T05:14:50.047737+00:00",
+ "generatedAt": "2026-11-09T07:36:32.207976+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.769031189",
@@ -45,6 +45,13 @@
    "away": "Ceara XI"
   },
   {
+   "eventId": "s9-99.769380475",
+   "time": "2026-11-09T22:00:00+00:00",
+   "league": "Brazil. Fares Lopes Cup",
+   "home": "Vila Real",
+   "away": "Ceara SC Fortaleza II"
+  },
+  {
    "eventId": "s9-99.769039185",
    "time": "2026-11-09T22:05:00+00:00",
    "league": "Jamaica. National Premier League",
@@ -78,13 +85,6 @@
    "league": "Uruguay Cup",
    "home": "Deportivo Maldonado",
    "away": "Club Nacional Montevideo"
-  },
-  {
-   "eventId": "s9-99.769345747",
-   "time": "2026-11-10T00:30:00+00:00",
-   "league": "Aruba Championship",
-   "home": "SV River Plate",
-   "away": "SV Deportivo Nacional"
   },
   {
    "eventId": "s9-99.767510888",
@@ -150,7 +150,7 @@
    "away": "Paris (Women)"
   },
   {
-   "eventId": "s9-99.768335758",
+   "eventId": "s9-99.769379726",
    "time": "2026-11-10T18:00:00+00:00",
    "league": "Spain Copa del Rey",
    "home": "Anaitasuna",
