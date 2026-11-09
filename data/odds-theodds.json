@@ -1,38 +1,38 @@
 {
  "date": "2026-11-09",
- "fetchedAt": "2026-11-09T02:43:13.057155+00:00",
+ "fetchedAt": "2026-11-09T09:06:42.633249+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 119,
-  "remaining": 381
+  "used": 121,
+  "remaining": 379
  },
  "matches": [
   {
    "home": "Kristiansund BK",
    "away": "Vålerenga",
    "commenceTime": "2026-11-09T18:00:00Z",
-   "bookmakers": 15,
+   "bookmakers": 16,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.38,
-       "under": 2.943
+       "over": 1.367,
+       "under": 3.017
       },
       "max": {
-       "over": 1.39,
-       "under": 2.98
+       "over": 1.37,
+       "under": 3.1
       }
      },
      "3.5": {
       "avg": {
-       "over": 1.914,
-       "under": 1.819
+       "over": 1.915,
+       "under": 1.827
       },
       "max": {
        "over": 2.02,
-       "under": 1.89
+       "under": 1.9
       }
      }
     }
@@ -47,24 +47,14 @@
    "bookmakers": 14,
    "markets": {
     "totals": {
-     "2.25": {
-      "avg": {
-       "over": 1.807,
-       "under": 1.99
-      },
-      "max": {
-       "over": 1.86,
-       "under": 2.01
-      }
-     },
      "2.5": {
       "avg": {
-       "over": 1.974,
-       "under": 1.755
+       "over": 1.969,
+       "under": 1.772
       },
       "max": {
-       "over": 2.12,
-       "under": 1.9
+       "over": 2.08,
+       "under": 1.84
       }
      }
     }
