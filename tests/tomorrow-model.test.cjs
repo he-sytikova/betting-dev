@@ -23,6 +23,20 @@ test('tomorrowKey adds one Moscow day', () => {
   assert.equal(tomorrow.tomorrowKey(new Date('2026-11-06T21:30:00Z')), '2026-11-08');
 });
 
+test('resolveTargetDate: валидный ?date= побеждает, мусор — нет', () => {
+  const now = new Date('2026-11-06T10:00:00Z');
+  assert.equal(tomorrow.resolveTargetDate(now, '2026-11-12'), '2026-11-12');
+  assert.equal(tomorrow.resolveTargetDate(now, null), '2026-11-07');
+  assert.equal(tomorrow.resolveTargetDate(now, '12.11.2026'), '2026-11-07');
+  assert.equal(tomorrow.resolveTargetDate(now, '2026-11-12;drop'), '2026-11-07');
+  assert.equal(tomorrow.resolveTargetDate(now, ''), '2026-11-07');
+});
+
+test('artifactPath: завтра — ежедневный файл, произвольная дата — датированный', () => {
+  assert.equal(tomorrow.artifactPath('2026-11-07', '2026-11-07'), './data/fixtures-tomorrow.json');
+  assert.equal(tomorrow.artifactPath('2026-11-12', '2026-11-07'), './data/fixtures-2026-11-12.json');
+});
+
 const fixture = { eventId: '1', time: '2026-11-07T15:00:00+00:00', league: 'X', home: 'A', away: 'B' };
 
 function apisWith({ club = null, euro = null, nt = null } = {}) {

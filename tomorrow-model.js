@@ -35,6 +35,22 @@
     return moscowDayKey(new Date(now.getTime() + DAY_MS));
   }
 
+  // Целевая дата страницы: ?date=YYYY-MM-DD (ручной прогноз на конкретный
+  // день, напр. Лига наций в четверг) или по умолчанию завтрашний день МСК.
+  function resolveTargetDate(now, param) {
+    if (typeof param === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(param)) return param;
+    return tomorrowKey(now);
+  }
+
+  // Артефакт расписания под целевую дату: завтра читается из ежедневного
+  // fixtures-tomorrow.json, произвольная дата — из data/fixtures-<date>.json
+  // (workflow «Fetch fixtures for a specific date»).
+  function artifactPath(target, defaultTarget) {
+    return target === defaultTarget
+      ? './data/fixtures-tomorrow.json'
+      : './data/fixtures-' + target + '.json';
+  }
+
   // Классификация матча: первая модель, способная его оценить, забирает его.
   // Порядок клубы → еврокубки → сборные безопасен, потому что каждая модель
   // гейтит по своим лигам/турнирам и командам и честно возвращает null.
@@ -67,7 +83,7 @@
     return { groups, unscored };
   }
 
-  const api = { moscowDayKey, tomorrowKey, classifyFixture, buildPredictions };
+  const api = { moscowDayKey, tomorrowKey, resolveTargetDate, artifactPath, classifyFixture, buildPredictions };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 
   // ---- Browser rendering на tomorrow-model.html ----
@@ -156,15 +172,18 @@
 
   async function load() {
     const status = $('tomorrow-status');
-    status.textContent = 'Загрузка прогнозов на завтра…';
+    status.textContent = 'Загрузка прогнозов…';
     try {
+      const dateParam = new URLSearchParams(window.location.search).get('date');
+      const target = resolveTargetDate(new Date(), dateParam);
+      const path = artifactPath(target, tomorrowKey(new Date()));
       const [fixturesRes, goalsRes, euroRes, ntRes] = await Promise.all([
-        fetch('./data/fixtures-tomorrow.json?t=' + Date.now(), { cache: 'no-store' }),
+        fetch(path + '?t=' + Date.now(), { cache: 'no-store' }),
         fetch('./data/goals_markets_models.json?t=' + Date.now(), { cache: 'no-store' }),
         fetch('./data/euro_cups_model.json?t=' + Date.now(), { cache: 'no-store' }),
         fetch('./data/nt_model.json?t=' + Date.now(), { cache: 'no-store' }),
       ]);
-      if (!fixturesRes.ok) throw Error('fixtures-tomorrow.json: HTTP ' + fixturesRes.status);
+      if (!fixturesRes.ok) throw Error(path.split('/').pop() + ': HTTP ' + fixturesRes.status);
       if (!goalsRes.ok) throw Error('goals_markets_models.json: HTTP ' + goalsRes.status);
       const artifact = await fixturesRes.json();
       const models = {
@@ -173,9 +192,8 @@
         nt: ntRes.ok ? await ntRes.json() : null,
       };
 
-      // Дневной гейт: артефакт обязан описывать именно завтрашний день (МСК),
+      // Дневной гейт: артефакт обязан описывать именно целевой день (МСК),
       // иначе показываем честное пустое состояние, а не вчерашний список.
-      const target = tomorrowKey(new Date());
       const fixtures = artifact && artifact.date === target && Array.isArray(artifact.fixtures)
         ? artifact.fixtures
         : [];
@@ -199,11 +217,11 @@
           ? 'Матчей в списке: ' + fixtures.length + ', оценено моделями: ' + scored +
             ' (клубные: ' + groups.club.length + ', еврокубки: ' + groups.euro.length +
             ', сборные: ' + groups.nt.length + '); без оценки (лига или команда неизвестны моделям): ' + unscored + '.'
-          : 'Список матчей на завтра ещё не загружен или пуст (артефакт от ' +
-            (artifact && artifact.date ? artifact.date : '—') + '). Обновляется каждые 2 часа вместе со снимком дня.');
-      status.textContent = fixtures.length ? 'Прогнозы на завтра загружены.' : 'Прогнозов на завтра пока нет.';
+          : 'Список матчей на ' + target + ' ещё не загружен или пуст (артефакт от ' +
+            (artifact && artifact.date ? artifact.date : '—') + '). Расписание завтрашнего дня обновляется каждые 2 часа; произвольная дата — по запросу через ?date=ГГГГ-ММ-ДД.');
+      status.textContent = fixtures.length ? 'Прогнозы загружены (' + target + ' МСК).' : 'Прогнозов на ' + target + ' пока нет.';
     } catch (e) {
-      status.textContent = 'Прогнозы на завтра недоступны: ' + e.message;
+      status.textContent = 'Прогнозы недоступны: ' + e.message;
       $('tomorrow-club-empty').hidden = false;
       $('tomorrow-euro-empty').hidden = false;
       $('tomorrow-nt-empty').hidden = false;

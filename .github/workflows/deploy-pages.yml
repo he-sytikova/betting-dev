@@ -15,7 +15,7 @@ on:
   # деплоим и по успешному завершению этих workflow — иначе сайт
   # продолжает отдавать вчерашний снимок.
   workflow_run:
-    workflows: ["Refresh dev fixture schedule", "Retrain internal models", "Fetch The Odds API consensus"]
+    workflows: ["Refresh dev fixture schedule", "Retrain internal models", "Fetch The Odds API consensus", "Fetch fixtures for a specific date"]
     types: [completed]
     branches: [main]
 

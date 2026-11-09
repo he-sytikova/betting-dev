@@ -1,0 +1,54 @@
+name: Fetch fixtures for a specific date
+
+# Ручной запуск: расписание конкретного московского дня из прематч-линии
+# Euro365 (только расписание, без кэфов) в data/fixtures-<date>.json —
+# страница tomorrow-model.html?date=ГГГГ-ММ-ДД читает этот артефакт.
+# Сценарий: прогноз на матчи через несколько дней (например, Лига наций
+# в четверг), когда ежедневный «завтрашний» файл их ещё не покрывает.
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Целевой московский день (YYYY-MM-DD)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-fixtures-date
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dev repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Validate date input
+        run: |
+          echo "${{ inputs.date }}" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' \
+            || { echo "date must be YYYY-MM-DD, got: ${{ inputs.date }}"; exit 1; }
+
+      - name: Fetch fixture list for the requested Moscow day (schedule only, no odds)
+        env:
+          EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
+        run: python3 scripts/models/fetch-tomorrow-fixtures.py --date "${{ inputs.date }}" --output "data/fixtures-${{ inputs.date }}.json"
+
+      - name: Commit fixture list
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "data/fixtures-${{ inputs.date }}.json"
+          if git diff --cached --quiet; then
+            echo "Fixture list for ${{ inputs.date }} is already current"
+          else
+            git commit -m "chore: fixture list for ${{ inputs.date }}"
+            git pull --rebase origin main
+            git push
+          fi
