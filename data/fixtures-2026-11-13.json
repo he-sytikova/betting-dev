@@ -1,0 +1,76 @@
+{
+ "date": "2026-11-13",
+ "generatedAt": "2026-11-10T19:50:56.129555+00:00",
+ "fixtures": [
+  {
+   "eventId": "uefa-2026-11-13-01",
+   "time": "2026-11-13T17:00:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Moldova",
+   "away": "Kazakhstan"
+  },
+  {
+   "eventId": "uefa-2026-11-13-09",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Andorra",
+   "away": "Gibraltar"
+  },
+  {
+   "eventId": "uefa-2026-11-13-07",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Bulgaria",
+   "away": "Iceland"
+  },
+  {
+   "eventId": "uefa-2026-11-13-10",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Liechtenstein",
+   "away": "Azerbaijan"
+  },
+  {
+   "eventId": "uefa-2026-11-13-08",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Luxembourg",
+   "away": "Estonia"
+  },
+  {
+   "eventId": "uefa-2026-11-13-02",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Netherlands",
+   "away": "Greece"
+  },
+  {
+   "eventId": "uefa-2026-11-13-04",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Scotland",
+   "away": "North Macedonia"
+  },
+  {
+   "eventId": "uefa-2026-11-13-03",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Serbia",
+   "away": "Germany"
+  },
+  {
+   "eventId": "uefa-2026-11-13-06",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Slovakia",
+   "away": "Faroe Islands"
+  },
+  {
+   "eventId": "uefa-2026-11-13-05",
+   "time": "2026-11-13T19:45:00+00:00",
+   "league": "UEFA Nations League",
+   "home": "Slovenia",
+   "away": "Switzerland"
+  }
+ ]
+}
