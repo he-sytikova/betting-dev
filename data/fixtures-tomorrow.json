@@ -1,6 +1,6 @@
 {
  "date": "2026-11-12",
- "generatedAt": "2026-11-11T01:56:10.103950+00:00",
+ "generatedAt": "2026-11-11T09:25:00.452215+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.769494190",
@@ -22,6 +22,13 @@
    "league": "Brazil. Campeonato Brasileiro. Serie B",
    "home": "Londrina",
    "away": "Clube Nautico Capibaribe"
+  },
+  {
+   "eventId": "s9-99.769871955",
+   "time": "2026-11-11T22:30:00+00:00",
+   "league": "Brazil. Mato Grossense Cup",
+   "home": "Sao Gabriel MS",
+   "away": "Pantanal"
   },
   {
    "eventId": "s9-99.769720076",
@@ -122,7 +129,7 @@
    "away": "Tigres Futbol Club"
   },
   {
-   "eventId": "s9-99.769553776",
+   "eventId": "s9-99.769893340",
    "time": "2026-11-12T02:00:00+00:00",
    "league": "Mexico. Liga de Expansion MX",
    "home": "Piratas Veracruz",
@@ -134,6 +141,13 @@
    "league": "Mexico. Liga MX. Women",
    "home": "Pachuca (Women)",
    "away": "Monterrey (Women)"
+  },
+  {
+   "eventId": "s9-99.769923634",
+   "time": "2026-11-12T04:00:00+00:00",
+   "league": "Cuba. Liga de Barrios",
+   "home": "Atletico de Boyeros",
+   "away": "Las Canas"
   },
   {
    "eventId": "s9-99.769808891",
@@ -290,6 +304,20 @@
    "away": "Meppen"
   },
   {
+   "eventId": "s9-99.769863341",
+   "time": "2026-11-12T12:00:00+00:00",
+   "league": "Club Friendlies",
+   "home": "Karpaty Lviv",
+   "away": "Veres Rivne"
+  },
+  {
+   "eventId": "s9-99.769922532",
+   "time": "2026-11-12T12:00:00+00:00",
+   "league": "Club Friendlies",
+   "home": "Pogon Szczecin",
+   "away": "Warta Poznan"
+  },
+  {
    "eventId": "s9-99.769644263",
    "time": "2026-11-12T12:00:00+00:00",
    "league": "Friendlies U23. National Teams",
@@ -367,6 +395,13 @@
    "away": "DAC 1904"
   },
   {
+   "eventId": "s9-99.769924031",
+   "time": "2026-11-12T13:00:00+00:00",
+   "league": "Club Friendlies",
+   "home": "St. Gallen",
+   "away": "Wil 1900"
+  },
+  {
    "eventId": "s9-99.769576843",
    "time": "2026-11-12T13:00:00+00:00",
    "league": "Club Friendlies. Top",
@@ -402,7 +437,7 @@
    "away": "Stade Lausanne-Ouchy"
   },
   {
-   "eventId": "s9-99.767012323",
+   "eventId": "s9-99.769815400",
    "time": "2026-11-12T13:30:00+00:00",
    "league": "Club Friendlies. Top",
    "home": "VfL Wolfsburg",
@@ -493,7 +528,7 @@
    "away": "Kolkheti-1913 Poti II"
   },
   {
-   "eventId": "s9-99.769816386",
+   "eventId": "s9-99.769853852",
    "time": "2026-11-12T17:00:00+00:00",
    "league": "Africa Cup of Nations U23",
    "home": "Tunisia U23",
