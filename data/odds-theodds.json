@@ -1,11 +1,54 @@
 {
- "date": "2026-11-09",
- "fetchedAt": "2026-11-10T02:40:09.598445+00:00",
+ "date": "2026-11-13",
+ "fetchedAt": "2026-11-13T08:57:07.021751+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 122,
-  "remaining": 378
+  "used": 123,
+  "remaining": 377
  },
- "matches": []
+ "matches": [
+  {
+   "home": "Leganés",
+   "away": "Burgos CF",
+   "commenceTime": "2026-11-13T19:30:00Z",
+   "bookmakers": 16,
+   "markets": {
+    "totals": {
+     "2.0": {
+      "avg": {
+       "over": 1.68,
+       "under": 2.15
+      },
+      "max": {
+       "over": 1.68,
+       "under": 2.15
+      }
+     },
+     "2.25": {
+      "avg": {
+       "over": 1.96,
+       "under": 1.843
+      },
+      "max": {
+       "over": 2.03,
+       "under": 1.87
+      }
+     },
+     "2.5": {
+      "avg": {
+       "over": 2.169,
+       "under": 1.618
+      },
+      "max": {
+       "over": 2.36,
+       "under": 1.71
+      }
+     }
+    }
+   },
+   "sportKey": "soccer_spain_segunda_division",
+   "leagueCode": "SP2"
+  }
+ ]
 }
