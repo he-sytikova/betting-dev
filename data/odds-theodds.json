@@ -1,50 +1,58 @@
 {
  "date": "2026-11-15",
- "fetchedAt": "2026-11-15T08:41:36.874551+00:00",
+ "fetchedAt": "2026-11-15T15:35:07.430229+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 132,
-  "remaining": 368
+  "used": 133,
+  "remaining": 367
  },
  "matches": [
-  {
-   "home": "Tenerife",
-   "away": "AD Ceuta FC",
-   "commenceTime": "2026-11-15T13:00:00Z",
-   "bookmakers": 16,
-   "markets": {
-    "totals": {
-     "2.5": {
-      "avg": {
-       "over": 1.904,
-       "under": 1.828
-      },
-      "max": {
-       "over": 2.04,
-       "under": 1.95
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_spain_segunda_division",
-   "leagueCode": "SP2"
-  },
   {
    "home": "Granada CF",
    "away": "Las Palmas",
    "commenceTime": "2026-11-15T15:15:00Z",
-   "bookmakers": 16,
+   "bookmakers": 10,
    "markets": {
     "totals": {
-     "2.5": {
+     "1.5": {
       "avg": {
-       "over": 1.87,
-       "under": 1.857
+       "over": 1.45,
+       "under": 2.48
       },
       "max": {
-       "over": 1.99,
-       "under": 1.98
+       "over": 1.45,
+       "under": 2.48
+      }
+     },
+     "2.0": {
+      "avg": {
+       "over": 1.64,
+       "under": 2.17
+      },
+      "max": {
+       "over": 1.64,
+       "under": 2.17
+      }
+     },
+     "2.25": {
+      "avg": {
+       "over": 1.9,
+       "under": 1.97
+      },
+      "max": {
+       "over": 1.9,
+       "under": 1.97
+      }
+     },
+     "2.5": {
+      "avg": {
+       "over": 2.231,
+       "under": 1.539
+      },
+      "max": {
+       "over": 2.42,
+       "under": 1.67
       }
      }
     }
@@ -59,34 +67,24 @@
    "bookmakers": 15,
    "markets": {
     "totals": {
-     "1.5": {
-      "avg": {
-       "over": 1.58,
-       "under": 2.62
-      },
-      "max": {
-       "over": 1.58,
-       "under": 2.62
-      }
-     },
      "2.0": {
       "avg": {
-       "over": 1.955,
-       "under": 1.847
+       "over": 1.95,
+       "under": 1.855
       },
       "max": {
-       "over": 2.02,
+       "over": 2.03,
        "under": 1.89
       }
      },
      "2.5": {
       "avg": {
-       "over": 2.474,
-       "under": 1.469
+       "over": 2.492,
+       "under": 1.48
       },
       "max": {
-       "over": 2.62,
-       "under": 1.55
+       "over": 2.72,
+       "under": 1.56
       }
      }
     }
@@ -103,22 +101,22 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.721,
-       "under": 2.021
+       "over": 1.687,
+       "under": 2.074
       },
       "max": {
-       "over": 1.81,
-       "under": 2.2
+       "over": 1.74,
+       "under": 2.32
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.93,
-       "under": 1.87
+       "over": 1.893,
+       "under": 1.907
       },
       "max": {
-       "over": 1.96,
-       "under": 1.93
+       "over": 1.92,
+       "under": 1.97
       }
      }
     }
