@@ -1,6 +1,6 @@
 {
  "date": "2026-11-17",
- "generatedAt": "2026-11-16T06:27:30.780309+00:00",
+ "generatedAt": "2026-11-16T18:32:12.418808+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.771170552",
@@ -66,6 +66,20 @@
    "away": "Antigua And Barbuda"
   },
   {
+   "eventId": "s9-99.771499616",
+   "time": "2026-11-17T00:25:00+00:00",
+   "league": "All Japan University Independence League Festival",
+   "home": "Kochi University B",
+   "away": "Tohoku Gakuin University NEXT"
+  },
+  {
+   "eventId": "s9-99.771500033",
+   "time": "2026-11-17T00:25:00+00:00",
+   "league": "All Japan University Independence League Festival",
+   "home": "Sapporo University II",
+   "away": "Niigata University of Health and Welfare A"
+  },
+  {
    "eventId": "s9-99.771191287",
    "time": "2026-11-17T00:30:00+00:00",
    "league": "Aruba Championship",
@@ -115,11 +129,88 @@
    "away": "Malaysia"
   },
   {
+   "eventId": "s9-99.771454677",
+   "time": "2026-11-17T07:00:00+00:00",
+   "league": "Ethiopia. Higher League. Women",
+   "home": "Arba Minch (Women)",
+   "away": "Addis Ketema (Women)"
+  },
+  {
+   "eventId": "s9-99.771446736",
+   "time": "2026-11-17T07:30:00+00:00",
+   "league": "Friendlies U19. National Teams",
+   "home": "Tajikistan U19",
+   "away": "Vietnam U19"
+  },
+  {
+   "eventId": "s9-99.771450365",
+   "time": "2026-11-17T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Gresik United",
+   "away": "Persika Karanganyar"
+  },
+  {
+   "eventId": "s9-99.771458438",
+   "time": "2026-11-17T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Persekat Kabupaten Tegal",
+   "away": "Persikota Tangerang"
+  },
+  {
+   "eventId": "s9-99.771455612",
+   "time": "2026-11-17T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Persikotas Nusantara",
+   "away": "Pekanbaru"
+  },
+  {
+   "eventId": "s9-99.771453471",
+   "time": "2026-11-17T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Persipa Pati",
+   "away": "Persiba Bantul"
+  },
+  {
+   "eventId": "s9-99.771458939",
+   "time": "2026-11-17T08:30:00+00:00",
+   "league": "Thailand. 3rd Division",
+   "home": "Lopburi Poma",
+   "away": "Ang Thong"
+  },
+  {
+   "eventId": "s9-99.771441376",
+   "time": "2026-11-17T08:30:00+00:00",
+   "league": "Thailand. 3rd Division",
+   "home": "Prime Bangkok",
+   "away": "Pathumthani University"
+  },
+  {
+   "eventId": "s9-99.771448515",
+   "time": "2026-11-17T08:30:00+00:00",
+   "league": "Thailand. 3rd Division",
+   "home": "Royal Thai Army",
+   "away": "Phetchaburi"
+  },
+  {
    "eventId": "s9-99.771077197",
    "time": "2026-11-17T09:00:00+00:00",
    "league": "Friendly Club Tournament",
    "home": "Luhansk",
    "away": "Shakhtar Sverdlovsk"
+  },
+  {
+   "eventId": "s9-99.771410905",
+   "time": "2026-11-17T09:15:00+00:00",
+   "league": "Czech Republic. 3 Liga",
+   "home": "Pardubice II",
+   "away": "Horni Redice"
+  },
+  {
+   "eventId": "s9-99.771447883",
+   "time": "2026-11-17T09:30:00+00:00",
+   "league": "Thailand. 3rd Division",
+   "home": "Customs United",
+   "away": "Fleet"
   },
   {
    "eventId": "s9-99.771235032",
@@ -129,11 +220,67 @@
    "away": "Brazil"
   },
   {
+   "eventId": "s9-99.771410211",
+   "time": "2026-11-17T10:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Denmark U19",
+   "away": "Bosnia and Herzegovina U19"
+  },
+  {
+   "eventId": "s9-99.771496091",
+   "time": "2026-11-17T10:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Slovakia U19",
+   "away": "Estonia U19"
+  },
+  {
+   "eventId": "s9-99.771452595",
+   "time": "2026-11-17T10:00:00+00:00",
+   "league": "Ukraine. First League",
+   "home": "UCSA",
+   "away": "Polissya Zhytomyr II"
+  },
+  {
    "eventId": "s9-99.771109030",
    "time": "2026-11-17T11:00:00+00:00",
    "league": "Portugal Championship U23",
    "home": "Vizela U23",
    "away": "Santa Clara U23"
+  },
+  {
+   "eventId": "s9-99.771464723",
+   "time": "2026-11-17T11:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Hungary U19",
+   "away": "Czech Republic U19"
+  },
+  {
+   "eventId": "s9-99.771464720",
+   "time": "2026-11-17T11:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Netherlands U19",
+   "away": "Croatia U19"
+  },
+  {
+   "eventId": "s9-99.771464732",
+   "time": "2026-11-17T11:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Poland U19",
+   "away": "Luxembourg U19"
+  },
+  {
+   "eventId": "s9-99.771386888",
+   "time": "2026-11-17T11:30:00+00:00",
+   "league": "Iran. Azadegan League",
+   "home": "Havadar",
+   "away": "Sanat Mes Kerman"
+  },
+  {
+   "eventId": "s9-99.771442996",
+   "time": "2026-11-17T11:35:00+00:00",
+   "league": "Friendlies U19. National Teams",
+   "home": "China U19",
+   "away": "South Korea U19"
   },
   {
    "eventId": "s9-99.771245591",
@@ -155,6 +302,90 @@
    "league": "Friendly Club Tournament",
    "home": "Sevastopol II",
    "away": "Avangard Melitopol"
+  },
+  {
+   "eventId": "s9-99.771464267",
+   "time": "2026-11-17T12:00:00+00:00",
+   "league": "Slovakia Cup. Women",
+   "home": "Kosice (Women)",
+   "away": "Dukla Banska Bystrica (Women)"
+  },
+  {
+   "eventId": "s9-99.771464711",
+   "time": "2026-11-17T12:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Finland U19",
+   "away": "Spain U19"
+  },
+  {
+   "eventId": "s9-99.771464708",
+   "time": "2026-11-17T12:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Iceland U19",
+   "away": "Wales U19"
+  },
+  {
+   "eventId": "s9-99.771425351",
+   "time": "2026-11-17T12:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Israel U19",
+   "away": "Italy U19"
+  },
+  {
+   "eventId": "s9-99.771424521",
+   "time": "2026-11-17T12:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Malta U19",
+   "away": "Republic of North Macedonia U19"
+  },
+  {
+   "eventId": "s9-99.771420119",
+   "time": "2026-11-17T12:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Northern Ireland U19",
+   "away": "Switzerland U19"
+  },
+  {
+   "eventId": "s9-99.771464717",
+   "time": "2026-11-17T12:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Romania U19",
+   "away": "Ukraine U19"
+  },
+  {
+   "eventId": "s9-99.771432049",
+   "time": "2026-11-17T12:30:00+00:00",
+   "league": "Czech Republic. 2 Liga. Women",
+   "home": "Slovan Liberec II (Women)",
+   "away": "Hradec Kralove (Women)"
+  },
+  {
+   "eventId": "s9-99.771435243",
+   "time": "2026-11-17T12:30:00+00:00",
+   "league": "Denmark. Future Cup",
+   "home": "HB Koge U21",
+   "away": "Brondby U21"
+  },
+  {
+   "eventId": "s9-99.771403062",
+   "time": "2026-11-17T12:30:00+00:00",
+   "league": "Thailand. King's Cup",
+   "home": "Tajikistan",
+   "away": "Thailand"
+  },
+  {
+   "eventId": "s9-99.771429825",
+   "time": "2026-11-17T12:30:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Cyprus U19",
+   "away": "Armenia U19"
+  },
+  {
+   "eventId": "s9-99.771464253",
+   "time": "2026-11-17T12:30:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Moldova U19",
+   "away": "Bulgaria U19"
   },
   {
    "eventId": "s9-99.771054586",
@@ -206,18 +437,81 @@
    "away": "Nigeria"
   },
   {
-   "eventId": "s9-99.771349305",
+   "eventId": "s9-99.771501150",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "Championship Congo DR. League 1",
+   "home": "AS New Soger",
+   "away": "Lubumbashi Sport"
+  },
+  {
+   "eventId": "s9-99.771412778",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "England. Development League U21",
+   "home": "Barnsley U21",
+   "away": "Wigan Athletic U21"
+  },
+  {
+   "eventId": "s9-99.771412781",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "England. Development League U21",
+   "home": "Sheffield Wednesday U21",
+   "away": "Hull City U21"
+  },
+  {
+   "eventId": "s9-99.771440785",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "Ethiopia. Higher League. Women",
+   "home": "Kirkos Addis Ababa (Women)",
+   "away": "Lemi Kura (Women)"
+  },
+  {
+   "eventId": "s9-99.771466479",
    "time": "2026-11-17T13:00:00+00:00",
    "league": "Friendlies U23. National Teams",
    "home": "Iraq U23",
    "away": "Lebanon U23"
   },
   {
-   "eventId": "s9-99.769438617",
+   "eventId": "s9-99.771466476",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "Friendlies U23. National Teams",
+   "home": "United Arab Emirates U23",
+   "away": "Jordan U23"
+  },
+  {
+   "eventId": "s9-99.771376552",
    "time": "2026-11-17T13:00:00+00:00",
    "league": "Friendlies. National Teams",
    "home": "Lebanon",
    "away": "Palestine"
+  },
+  {
+   "eventId": "s9-99.771467434",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "National Youth Teams Friendlies",
+   "home": "Ukraine U21",
+   "away": "USA U23"
+  },
+  {
+   "eventId": "s9-99.771465992",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "Slovakia Cup. Women",
+   "home": "ViOn Zlate Moravce (Women)",
+   "away": "Slovan Bratislava (Women)"
+  },
+  {
+   "eventId": "s9-99.771418669",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Belarus U19",
+   "away": "Slovenia U19"
+  },
+  {
+   "eventId": "s9-99.771420712",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "England U19",
+   "away": "Austria U19"
   },
   {
    "eventId": "s9-99.771245600",
@@ -227,6 +521,20 @@
    "away": "Paraguay"
   },
   {
+   "eventId": "s9-99.771436265",
+   "time": "2026-11-17T13:30:00+00:00",
+   "league": "India Championship. Women",
+   "home": "Juba Sangha (Women)",
+   "away": "Hops (Women)"
+  },
+  {
+   "eventId": "s9-99.771412784",
+   "time": "2026-11-17T14:00:00+00:00",
+   "league": "England. Development League U21",
+   "home": "Sheffield United U21",
+   "away": "Huddersfield Town U21"
+  },
+  {
    "eventId": "s9-99.771245612",
    "time": "2026-11-17T14:00:00+00:00",
    "league": "Friendlies. National Teams",
@@ -234,11 +542,25 @@
    "away": "South Korea"
   },
   {
-   "eventId": "s9-99.771375545",
+   "eventId": "s9-99.771399092",
    "time": "2026-11-17T14:00:00+00:00",
    "league": "SAFF Championship",
    "home": "India",
    "away": "Pakistan"
+  },
+  {
+   "eventId": "s9-99.771464726",
+   "time": "2026-11-17T14:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Greece U19",
+   "away": "France U19"
+  },
+  {
+   "eventId": "s9-99.771464729",
+   "time": "2026-11-17T14:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Norway U19",
+   "away": "Republic of Ireland U19"
   },
   {
    "eventId": "s9-99.771245594",
@@ -248,11 +570,102 @@
    "away": "Syria"
   },
   {
-   "eventId": "s9-99.765614163",
+   "eventId": "s9-99.771494208",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "Africa Cup of Nations U23",
+   "home": "Ghana U23",
+   "away": "Libya U23"
+  },
+  {
+   "eventId": "s9-99.771501942",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "Africa Cup of Nations U23",
+   "home": "Nigeria U23",
+   "away": "DR Congo U23"
+  },
+  {
+   "eventId": "s9-99.771492906",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "Colombia. Regional League",
+   "home": "Dimelo Jara",
+   "away": "Leones II"
+  },
+  {
+   "eventId": "s9-99.771443971",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "Jordan Championship. Women",
+   "home": "Al Naser (Women)",
+   "away": "Al Isteklal (Women)"
+  },
+  {
+   "eventId": "s9-99.771425937",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "Nigeria. Premier League",
+   "home": "Plateau United",
+   "away": "Kun Khalifat"
+  },
+  {
+   "eventId": "s9-99.771429828",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Faroe Islands U19",
+   "away": "Azerbaijan U19"
+  },
+  {
+   "eventId": "s9-99.771420716",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Kosovo U19",
+   "away": "Kazakhstan U19"
+  },
+  {
+   "eventId": "s9-99.771434207",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Lithuania U19",
+   "away": "Germany U19"
+  },
+  {
+   "eventId": "s9-99.771429831",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Montenegro U19",
+   "away": "Serbia U19"
+  },
+  {
+   "eventId": "s9-99.771421627",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Scotland U19",
+   "away": "Belgium U19"
+  },
+  {
+   "eventId": "s9-99.771425348",
+   "time": "2026-11-17T15:00:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "Sweden U19",
+   "away": "Portugal U19"
+  },
+  {
+   "eventId": "s9-99.771499659",
+   "time": "2026-11-17T15:30:00+00:00",
+   "league": "Africa Cup of Nations U23",
+   "home": "Morocco U23",
+   "away": "Ethiopia U23"
+  },
+  {
+   "eventId": "s9-99.771376549",
    "time": "2026-11-17T15:30:00+00:00",
    "league": "Friendlies. National Teams",
    "home": "Saudi Arabia",
    "away": "Uzbekistan"
+  },
+  {
+   "eventId": "s9-99.771464702",
+   "time": "2026-11-17T15:30:00+00:00",
+   "league": "UEFA European U19 Championship Qualification",
+   "home": "San Marino U19",
+   "away": "Georgia U19"
   },
   {
    "eventId": "s9-99.770207393",
@@ -297,6 +710,20 @@
    "away": "Algeria"
   },
   {
+   "eventId": "s9-99.771412282",
+   "time": "2026-11-17T16:00:00+00:00",
+   "league": "Croatia. 3. NL",
+   "home": "Hajduk Split II",
+   "away": "Jadran Kastel Sucurac"
+  },
+  {
+   "eventId": "s9-99.771446076",
+   "time": "2026-11-17T16:00:00+00:00",
+   "league": "Friendlies U21. National Teams",
+   "home": "Egypt U21",
+   "away": "Japan U21"
+  },
+  {
    "eventId": "s9-99.771090027",
    "time": "2026-11-17T16:00:00+00:00",
    "league": "Friendlies. National Teams",
@@ -311,25 +738,32 @@
    "away": "Venezuela"
   },
   {
-   "eventId": "s9-99.771362181",
+   "eventId": "s9-99.771446579",
    "time": "2026-11-17T16:00:00+00:00",
    "league": "Slovenia Championship. Women",
    "home": "Olimpija Ljubljana (Women)",
    "away": "Ljubljana (Women)"
   },
   {
-   "eventId": "s9-99.771367253",
+   "eventId": "s9-99.771399512",
    "time": "2026-11-17T16:00:00+00:00",
    "league": "UEFA European U21 Championship Qualification",
    "home": "Czech Republic U21",
    "away": "Turkey U21"
   },
   {
-   "eventId": "s9-99.769437183",
+   "eventId": "s9-99.771376546",
    "time": "2026-11-17T16:15:00+00:00",
    "league": "Friendlies. National Teams",
    "home": "Iraq",
    "away": "Iran"
+  },
+  {
+   "eventId": "s9-99.771421630",
+   "time": "2026-11-17T16:30:00+00:00",
+   "league": "Croatia. 2. NL",
+   "home": "NK Koprivnica",
+   "away": "Solin"
   },
   {
    "eventId": "s9-99.771245597",
@@ -346,35 +780,133 @@
    "away": "Newell's Old Boys (Women)"
   },
   {
-   "eventId": "s9-99.770916227",
+   "eventId": "s9-99.771492909",
+   "time": "2026-11-17T17:00:00+00:00",
+   "league": "Colombia. Regional League",
+   "home": "Deportivo Alexis Garcia",
+   "away": "Club Atletico Nacional Medellin II"
+  },
+  {
+   "eventId": "s9-99.771445102",
+   "time": "2026-11-17T17:00:00+00:00",
+   "league": "Elite League U20",
+   "home": "Romania U20",
+   "away": "Poland U20"
+  },
+  {
+   "eventId": "s9-99.771501945",
+   "time": "2026-11-17T17:00:00+00:00",
+   "league": "Friendlies U20. National Teams",
+   "home": "USA U20",
+   "away": "Paraguay U20"
+  },
+  {
+   "eventId": "s9-99.771375684",
    "time": "2026-11-17T17:00:00+00:00",
    "league": "Friendlies U21. National Teams",
    "home": "Croatia U21",
    "away": "Germany U21"
   },
   {
-   "eventId": "s9-99.770919446",
+   "eventId": "s9-99.771377435",
    "time": "2026-11-17T17:00:00+00:00",
    "league": "Friendlies U21. National Teams",
    "home": "Serbia U21",
    "away": "Poland U21"
   },
   {
-   "eventId": "s9-99.771367249",
+   "eventId": "s9-99.771512741",
+   "time": "2026-11-17T17:00:00+00:00",
+   "league": "Friendlies U23. National Teams",
+   "home": "Saudi Arabia U23",
+   "away": "Kuwait U23"
+  },
+  {
+   "eventId": "s9-99.771422821",
+   "time": "2026-11-17T17:30:00+00:00",
+   "league": "Friendlies U21. National Teams",
+   "home": "Portugal U21",
+   "away": "Norway U21"
+  },
+  {
+   "eventId": "s9-99.771420116",
    "time": "2026-11-17T17:30:00+00:00",
    "league": "UEFA European U21 Championship Qualification",
    "home": "Netherlands U21",
    "away": "Denmark U21"
   },
   {
-   "eventId": "s9-99.771367245",
+   "eventId": "s9-99.771429822",
    "time": "2026-11-17T17:45:00+00:00",
    "league": "UEFA European U21 Championship Qualification",
    "home": "Republic of Ireland U21",
    "away": "Finland U21"
   },
   {
-   "eventId": "s9-99.770924929",
+   "eventId": "s9-99.771464262",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Africa Cup of Nations U23",
+   "home": "Mali U23",
+   "away": "Zimbabwe U23"
+  },
+  {
+   "eventId": "s9-99.771464705",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Africa Cup of Nations U23",
+   "home": "South Africa U23",
+   "away": "Madagascar U23"
+  },
+  {
+   "eventId": "s9-99.771481176",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "Club de Gimnasia y Esgrima La Plata II",
+   "away": "Atletico Tucuman II"
+  },
+  {
+   "eventId": "s9-99.771481182",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "Defensa y Justicia II",
+   "away": "Huracan II"
+  },
+  {
+   "eventId": "s9-99.771481185",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "Estudiantes de Rio Cuarto II",
+   "away": "Colon de Santa Fe II"
+  },
+  {
+   "eventId": "s9-99.771481179",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "Independiente Rivadavia II",
+   "away": "Platense II"
+  },
+  {
+   "eventId": "s9-99.771481173",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "San Lorenzo II",
+   "away": "Club Atletico Tigre II"
+  },
+  {
+   "eventId": "s9-99.771481188",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "Union de Santa Fe II",
+   "away": "Instituto Atletico Central Cordoba II"
+  },
+  {
+   "eventId": "s9-99.771500906",
+   "time": "2026-11-17T18:00:00+00:00",
+   "league": "Brazil. Goiano Cup U20",
+   "home": "Atletico Clube Goianiense U20",
+   "away": "Trindeyd U20"
+  },
+  {
+   "eventId": "s9-99.771375681",
    "time": "2026-11-17T18:00:00+00:00",
    "league": "Friendlies U21. National Teams",
    "home": "Albania U21",
@@ -386,6 +918,20 @@
    "league": "Germany. Middle Rhine Cup",
    "home": "Bonner",
    "away": "Fortuna Koln"
+  },
+  {
+   "eventId": "s9-99.771488412",
+   "time": "2026-11-17T18:30:00+00:00",
+   "league": "Brazil. Campeonato Paraense. Women",
+   "home": "Paysandu (Women)",
+   "away": "Remo (Women)"
+  },
+  {
+   "eventId": "s9-99.771487703",
+   "time": "2026-11-17T18:30:00+00:00",
+   "league": "Brazil. Campeonato Pernambucano U20",
+   "home": "Ipojuca AC U20",
+   "away": "Santa Cruz PE U20"
   },
   {
    "eventId": "s9-99.771041928",
@@ -423,7 +969,28 @@
    "away": "Mali"
   },
   {
-   "eventId": "s9-99.771373558",
+   "eventId": "s9-99.771464259",
+   "time": "2026-11-17T19:00:00+00:00",
+   "league": "Africa Cup of Nations U23",
+   "home": "Cameroon U23",
+   "away": "Rwanda U23"
+  },
+  {
+   "eventId": "s9-99.771457334",
+   "time": "2026-11-17T19:00:00+00:00",
+   "league": "Africa Cup of Nations U23",
+   "home": "Ivory Coast U23",
+   "away": "Kenya U23"
+  },
+  {
+   "eventId": "s9-99.771481170",
+   "time": "2026-11-17T19:00:00+00:00",
+   "league": "Africa Cup of Nations U23",
+   "home": "Senegal U23",
+   "away": "South Sudan U23"
+  },
+  {
+   "eventId": "s9-99.771381612",
    "time": "2026-11-17T19:00:00+00:00",
    "league": "CONCACAF Nations League",
    "home": "Belize",
@@ -437,14 +1004,14 @@
    "away": "Cayman Islands"
   },
   {
-   "eventId": "s9-99.771373561",
+   "eventId": "s9-99.771465365",
    "time": "2026-11-17T19:00:00+00:00",
    "league": "CONCACAF Nations League",
    "home": "Saint Kitts and Nevis",
    "away": "Bonaire"
   },
   {
-   "eventId": "s9-99.771194727",
+   "eventId": "s9-99.771381618",
    "time": "2026-11-17T19:00:00+00:00",
    "league": "CONCACAF Nations League",
    "home": "Saint Lucia",
@@ -456,6 +1023,13 @@
    "league": "England. Football League Trophy",
    "home": "Luton Town",
    "away": "Peterborough United"
+  },
+  {
+   "eventId": "s9-99.771421204",
+   "time": "2026-11-17T19:00:00+00:00",
+   "league": "England. Premier League Cup U21",
+   "home": "Swansea City U21",
+   "away": "Gillingham U21"
   },
   {
    "eventId": "s9-99.771156275",
@@ -484,6 +1058,34 @@
    "league": "England. Isthmian League",
    "home": "Ramsgate",
    "away": "Cray Wanderers"
+  },
+  {
+   "eventId": "s9-99.771412171",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Isthmian League. 1st Division. North",
+   "home": "Cambridge City",
+   "away": "Concord Rangers"
+  },
+  {
+   "eventId": "s9-99.771412168",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Isthmian League. 1st Division. North",
+   "home": "Felixstowe & Walton United",
+   "away": "Wroxham"
+  },
+  {
+   "eventId": "s9-99.771414151",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Isthmian League. 1st Division. South Central",
+   "home": "Hayes & Yeading United",
+   "away": "Ashford Town"
+  },
+  {
+   "eventId": "s9-99.771414154",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Isthmian League. 1st Division. South Central",
+   "home": "Windsor & Eton",
+   "away": "Egham Town"
   },
   {
    "eventId": "s9-99.771144493",
@@ -535,6 +1137,48 @@
    "away": "Billericay Town"
   },
   {
+   "eventId": "s9-99.771412769",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Northern League Div One",
+   "home": "Boldmere St Michaels",
+   "away": "Loughborough University"
+  },
+  {
+   "eventId": "s9-99.771412766",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Northern League Div One",
+   "home": "Bridlington Town",
+   "away": "Dunston UTS"
+  },
+  {
+   "eventId": "s9-99.771412772",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Northern League Div One",
+   "home": "Hallam",
+   "away": "Blyth Spartans"
+  },
+  {
+   "eventId": "s9-99.771412165",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Northern League Div One",
+   "home": "Prescot Cables",
+   "away": "Witton Albion"
+  },
+  {
+   "eventId": "s9-99.771412775",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Northern League Div One",
+   "home": "Rushden & Diamonds",
+   "away": "Mickleover Sports"
+  },
+  {
+   "eventId": "s9-99.771412162",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Northern League Div One",
+   "home": "Stafford Rangers",
+   "away": "Atherton Collieries"
+  },
+  {
    "eventId": "s9-99.771148933",
    "time": "2026-11-17T19:45:00+00:00",
    "league": "England. Northern Premier League",
@@ -561,6 +1205,20 @@
    "league": "England. Northern Premier League",
    "home": "Quorn",
    "away": "Bury"
+  },
+  {
+   "eventId": "s9-99.771434264",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. South Division 1. Central",
+   "home": "Marlow",
+   "away": "Leverstock Green"
+  },
+  {
+   "eventId": "s9-99.771434258",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. South Division 1. Central",
+   "home": "Ware",
+   "away": "Didcot Town"
   },
   {
    "eventId": "s9-99.771154171",
@@ -605,11 +1263,39 @@
    "away": "Wimborne Town"
   },
   {
+   "eventId": "s9-99.771443974",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Velocity Cup",
+   "home": "Cheshunt",
+   "away": "Aveley"
+  },
+  {
+   "eventId": "s9-99.771460719",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "England. Velocity Cup",
+   "home": "Dulwich Hamlet",
+   "away": "Stanway Rovers"
+  },
+  {
    "eventId": "s9-99.770221598",
    "time": "2026-11-17T19:45:00+00:00",
    "league": "England. Velocity Cup",
    "home": "Newmarket Town",
    "away": "Grays Athletic"
+  },
+  {
+   "eventId": "s9-99.771430934",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "Northern Ireland. Country Antrim Shield",
+   "home": "Dundela",
+   "away": "Ballymena United"
+  },
+  {
+   "eventId": "s9-99.771429354",
+   "time": "2026-11-17T19:45:00+00:00",
+   "league": "Scotland. Lowland League",
+   "home": "Clydebank",
+   "away": "Albion Rovers"
   },
   {
    "eventId": "s9-99.770555630",
@@ -673,6 +1359,27 @@
    "league": "Africa Cup of Nations",
    "home": "Niger",
    "away": "Morocco"
+  },
+  {
+   "eventId": "s9-99.771481192",
+   "time": "2026-11-17T20:00:00+00:00",
+   "league": "Argentina. Reserve League",
+   "home": "CA San Martin de San Juan II",
+   "away": "Quilmes II"
+  },
+  {
+   "eventId": "s9-99.771440290",
+   "time": "2026-11-17T20:00:00+00:00",
+   "league": "North Scotland Cup",
+   "home": "Ross County",
+   "away": "Wick Academy"
+  },
+  {
+   "eventId": "s9-99.771457831",
+   "time": "2026-11-17T20:00:00+00:00",
+   "league": "Scotland. Regional Cup",
+   "home": "Ross County XI",
+   "away": "Wick Academy"
   }
  ]
 }
