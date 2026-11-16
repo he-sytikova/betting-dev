@@ -1,6 +1,6 @@
 {
  "date": "2026-11-17",
- "generatedAt": "2026-11-15T22:48:32.939538+00:00",
+ "generatedAt": "2026-11-16T06:27:30.780309+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.771170552",
@@ -85,6 +85,13 @@
    "league": "Costa Rica. Segunda Division",
    "home": "Pitbulls Santa Barbara",
    "away": "AD Rosario"
+  },
+  {
+   "eventId": "s9-99.771354536",
+   "time": "2026-11-17T02:00:00+00:00",
+   "league": "USA. USL",
+   "home": "New Mexico United",
+   "away": "Sacramento Republic"
   },
   {
    "eventId": "s9-99.771244836",
@@ -199,6 +206,13 @@
    "away": "Nigeria"
   },
   {
+   "eventId": "s9-99.771349305",
+   "time": "2026-11-17T13:00:00+00:00",
+   "league": "Friendlies U23. National Teams",
+   "home": "Iraq U23",
+   "away": "Lebanon U23"
+  },
+  {
    "eventId": "s9-99.769438617",
    "time": "2026-11-17T13:00:00+00:00",
    "league": "Friendlies. National Teams",
@@ -218,6 +232,13 @@
    "league": "Friendlies. National Teams",
    "home": "Qatar",
    "away": "South Korea"
+  },
+  {
+   "eventId": "s9-99.771375545",
+   "time": "2026-11-17T14:00:00+00:00",
+   "league": "SAFF Championship",
+   "home": "India",
+   "away": "Pakistan"
   },
   {
    "eventId": "s9-99.771245594",
@@ -290,6 +311,20 @@
    "away": "Venezuela"
   },
   {
+   "eventId": "s9-99.771362181",
+   "time": "2026-11-17T16:00:00+00:00",
+   "league": "Slovenia Championship. Women",
+   "home": "Olimpija Ljubljana (Women)",
+   "away": "Ljubljana (Women)"
+  },
+  {
+   "eventId": "s9-99.771367253",
+   "time": "2026-11-17T16:00:00+00:00",
+   "league": "UEFA European U21 Championship Qualification",
+   "home": "Czech Republic U21",
+   "away": "Turkey U21"
+  },
+  {
    "eventId": "s9-99.769437183",
    "time": "2026-11-17T16:15:00+00:00",
    "league": "Friendlies. National Teams",
@@ -323,6 +358,20 @@
    "league": "Friendlies U21. National Teams",
    "home": "Serbia U21",
    "away": "Poland U21"
+  },
+  {
+   "eventId": "s9-99.771367249",
+   "time": "2026-11-17T17:30:00+00:00",
+   "league": "UEFA European U21 Championship Qualification",
+   "home": "Netherlands U21",
+   "away": "Denmark U21"
+  },
+  {
+   "eventId": "s9-99.771367245",
+   "time": "2026-11-17T17:45:00+00:00",
+   "league": "UEFA European U21 Championship Qualification",
+   "home": "Republic of Ireland U21",
+   "away": "Finland U21"
   },
   {
    "eventId": "s9-99.770924929",
@@ -374,11 +423,25 @@
    "away": "Mali"
   },
   {
-   "eventId": "s9-99.771193555",
+   "eventId": "s9-99.771373558",
+   "time": "2026-11-17T19:00:00+00:00",
+   "league": "CONCACAF Nations League",
+   "home": "Belize",
+   "away": "Sint Maarten"
+  },
+  {
+   "eventId": "s9-99.771369972",
    "time": "2026-11-17T19:00:00+00:00",
    "league": "CONCACAF Nations League",
    "home": "Dominica",
    "away": "Cayman Islands"
+  },
+  {
+   "eventId": "s9-99.771373561",
+   "time": "2026-11-17T19:00:00+00:00",
+   "league": "CONCACAF Nations League",
+   "home": "Saint Kitts and Nevis",
+   "away": "Bonaire"
   },
   {
    "eventId": "s9-99.771194727",
