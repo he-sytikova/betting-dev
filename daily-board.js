@@ -31,7 +31,7 @@
       if (!row.home || !row.away) continue;
       const key = api.canonicalFixtureKey(model, row.league, row.home, row.away);
       if (!fixtures.has(key) || time < fixtures.get(key).time) {
-        fixtures.set(key, { time, league: row.league || '—', home: row.home, away: row.away });
+        fixtures.set(key, { key, time, league: row.league || '—', home: row.home, away: row.away });
       }
     }
     return [...fixtures.values()].sort((a, b) => a.time - b.time);
@@ -48,7 +48,7 @@
       if (!competition || !home || !away) continue;
       const key = `${competition.code}|${home.key}|${away.key}`;
       if (!fixtures.has(key) || time < fixtures.get(key).time) {
-        fixtures.set(key, { time, league: row.league, home: row.home, away: row.away });
+        fixtures.set(key, { key, time, league: row.league, home: row.home, away: row.away });
       }
     }
     return [...fixtures.values()].sort((a, b) => a.time - b.time);
@@ -59,6 +59,7 @@
     const min = minimumOdds(probability);
     return {
       time: fixture.time,
+      modelKey: fixture.key,
       league: prediction.leagueLabel || prediction.league || fixture.league,
       home: prediction.homeModel || prediction.home || fixture.home,
       away: prediction.awayModel || prediction.away || fixture.away,

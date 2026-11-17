@@ -1,5 +1,140 @@
 {
   "date": "2026-11-17",
-  "data_status": "not_processed",
-  "prepared_coupons": []
+  "generated_at_utc": "2026-11-17T15:54:45.546Z",
+  "data_status": "ok",
+  "prepared_coupons": [
+    {
+      "coupon_id": "single-1",
+      "type": "single",
+      "bookmaker": "Marathonbet",
+      "legs": [
+        {
+          "time": "2026-11-17T19:45:00.000Z",
+          "model_key": "UNL|poland|sweden",
+          "league": "UEFA Nations League",
+          "home": "Poland",
+          "away": "Sweden",
+          "model": "Лига наций",
+          "label": "ТМ 4.5",
+          "p_model": 0.8737793230197183,
+          "bookmaker": "Marathonbet",
+          "match_id": "30255612",
+          "market_key": "TOTAL_GOALS:4.5",
+          "odds": 1.22,
+          "fair": 0.7510204081632652,
+          "delta_pp": 12.275891485645307,
+          "ev": 1.0660107740840563,
+          "o_min_exact": 1.178787335502967,
+          "o_min_step": 1.18
+        }
+      ],
+      "odds": 1.22,
+      "probability": 0.8737793230197183,
+      "ev": 1.0660107740840563,
+      "status": "prepared"
+    },
+    {
+      "coupon_id": "single-2",
+      "type": "single",
+      "bookmaker": "Marathonbet",
+      "legs": [
+        {
+          "time": "2026-11-17T19:45:00.000Z",
+          "model_key": "UNL|wales|portugal",
+          "league": "UEFA Nations League",
+          "home": "Wales",
+          "away": "Portugal",
+          "model": "Лига наций",
+          "label": "ТМ 4.5",
+          "p_model": 0.8448106120387033,
+          "bookmaker": "Marathonbet",
+          "match_id": "29445991",
+          "market_key": "TOTAL_GOALS:4.5",
+          "odds": 1.23,
+          "fair": 0.7515151515151515,
+          "delta_pp": 9.329546052355187,
+          "ev": 1.039117052807605,
+          "o_min_exact": 1.2192081696445507,
+          "o_min_step": 1.22
+        }
+      ],
+      "odds": 1.23,
+      "probability": 0.8448106120387033,
+      "ev": 1.039117052807605,
+      "status": "prepared"
+    },
+    {
+      "coupon_id": "double-1",
+      "type": "double",
+      "bookmaker": "Marathonbet",
+      "legs": [
+        {
+          "time": "2026-11-17T19:45:00.000Z",
+          "model_key": "UNL|poland|sweden",
+          "league": "UEFA Nations League",
+          "home": "Poland",
+          "away": "Sweden",
+          "model": "Лига наций",
+          "label": "ТМ 4.5",
+          "p_model": 0.8737793230197183,
+          "bookmaker": "Marathonbet",
+          "match_id": "30255612",
+          "market_key": "TOTAL_GOALS:4.5",
+          "odds": 1.22,
+          "fair": 0.7510204081632652,
+          "delta_pp": 12.275891485645307,
+          "ev": 1.0660107740840563,
+          "o_min_exact": 1.178787335502967,
+          "o_min_step": 1.18
+        },
+        {
+          "time": "2026-11-17T19:45:00.000Z",
+          "model_key": "UNL|wales|portugal",
+          "league": "UEFA Nations League",
+          "home": "Wales",
+          "away": "Portugal",
+          "model": "Лига наций",
+          "label": "ТМ 4.5",
+          "p_model": 0.8448106120387033,
+          "bookmaker": "Marathonbet",
+          "match_id": "29445991",
+          "market_key": "TOTAL_GOALS:4.5",
+          "odds": 1.23,
+          "fair": 0.7515151515151515,
+          "delta_pp": 9.329546052355187,
+          "ev": 1.039117052807605,
+          "o_min_exact": 1.2192081696445507,
+          "o_min_step": 1.22
+        }
+      ],
+      "odds": 1.5006,
+      "probability": 0.7381780446670521,
+      "ev": 1.1077099738273783,
+      "o_min_AB": 1.4396,
+      "status": "prepared"
+    }
+  ],
+  "summary": {
+    "model_candidates": 34,
+    "eligible_prices_before_dedup": 12,
+    "eligible_legs": 9,
+    "double_candidates": 32,
+    "rejected": 59,
+    "rejection_reasons": {
+      "deduplicated_lower_price": 3,
+      "delta_anomaly": 1,
+      "ev_below_threshold": 37,
+      "incomplete_market": 18
+    }
+  },
+  "sources": {
+    "Fonbet": {
+      "status": "ok",
+      "captured_at_utc": "2026-11-17T15:43:06.844443+00:00"
+    },
+    "Marathonbet": {
+      "status": "ok",
+      "captured_at_utc": "2026-11-17T15:46:55.508799+00:00"
+    }
+  }
 }
