@@ -8,7 +8,7 @@ const board = require('../../daily-board.js');
 const goalsApi = require('../../goals-internal-model.js');
 const ntApi = require('../../nt-internal-model.js');
 
-const BOOKMAKERS = ['Fonbet', 'Marathonbet'];
+const BOOKMAKERS = ['Fonbet', 'Marathonbet', 'Winline'];
 const SINGLE_LIMIT = 2;
 const DOUBLE_LIMIT = 1;
 const DELTA_LIMIT_PP = 15;
