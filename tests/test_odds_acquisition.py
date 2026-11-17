@@ -7,6 +7,7 @@ from email.message import Message
 from pathlib import Path
 from unittest import mock
 
+from scripts import acquire_bookmaker_lines as acquisition_cli
 from scripts.lines import acquire as acquisition
 from scripts.lines.common import (
     AcquisitionError,
@@ -274,6 +275,26 @@ class MatchingAndIntegrationTests(unittest.TestCase):
             self.assertEqual(summary["detail"], {"limit_exceeded": 1})
             enriched = json.loads((root / "out/enriched/marathonbet.json").read_text(encoding="utf-8"))
             self.assertEqual(enriched["matches"][0]["detail_status"], "limit_exceeded")
+
+
+class ModelGateCliTests(unittest.TestCase):
+    def test_python_cli_uses_active_models_before_acquisition(self):
+        payload = {"predictions": [
+            {"home": "Poland", "away": "Sweden", "league": "UEFA Nations League",
+             "time": "2099-11-17T19:45:00Z"},
+            {"home": "Hungary U19", "away": "Czech Republic U19",
+             "league": "UEFA European U19 Championship Qualification", "time": "2099-11-17T11:00:00Z"},
+        ]}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "data.json"
+            source.write_text(json.dumps(payload), encoding="utf-8")
+            gated_path, gate = acquisition_cli.apply_model_gate(source, root / "out")
+            gated = json.loads(gated_path.read_text(encoding="utf-8"))
+        self.assertEqual(gate["sourceFixtures"], 2)
+        self.assertEqual(gate["acceptedFixtures"], 1)
+        self.assertEqual(gate["rejected"]["unsupported_by_models"], 1)
+        self.assertEqual(gated["fixtures"][0]["modelCoverage"], "nt")
 
 
 if __name__ == "__main__":
