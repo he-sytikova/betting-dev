@@ -311,12 +311,21 @@
       },
       "bookmakers": {
         "Fonbet": {
-          "status": "code_audit_required",
-          "codes": {},
-          "channel": null,
+          "status": "code_confirmed_admission_blocked",
+          "codes": {
+            "event_kind": 1,
+            "grid": "36847",
+            "line_parameter": "pt",
+            "model_line_factor_pairs": [
+              {"line": "0.5", "over": 1809, "under": 1810},
+              {"line": "1.5", "over": 1815, "under": 1816},
+              {"line": "2.5", "over": 1821, "under": 1822}
+            ]
+          },
+          "channel": "detail",
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Числовые factor-коды и pt не подтверждены."
+          "note": "Коды и pt подтверждены UI+JSON на двух событиях и JSON на третьем; парсер и денежный контур в этом этапе не изменены."
         },
         "Marathonbet": {
           "status": "confirmed",
@@ -361,12 +370,21 @@
       },
       "bookmakers": {
         "Fonbet": {
-          "status": "code_audit_required",
-          "codes": {},
-          "channel": null,
+          "status": "code_confirmed_admission_blocked",
+          "codes": {
+            "event_kind": 1,
+            "grid": "36848",
+            "line_parameter": "pt",
+            "model_line_factor_pairs": [
+              {"line": "0.5", "over": 1854, "under": 1871},
+              {"line": "1.5", "over": 1880, "under": 1881},
+              {"line": "2.5", "over": 1886, "under": 1887}
+            ]
+          },
+          "channel": "detail",
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Числовые factor-коды и pt не подтверждены."
+          "note": "Коды и pt подтверждены UI+JSON на двух событиях и JSON на третьем; парсер и денежный контур в этом этапе не изменены."
         },
         "Marathonbet": {
           "status": "confirmed",
@@ -414,12 +432,22 @@
       },
       "bookmakers": {
         "Fonbet": {
-          "status": "code_audit_required",
-          "codes": {},
-          "channel": null,
+          "status": "code_confirmed_admission_blocked",
+          "codes": {
+            "event_kind": 400100,
+            "grid": "36849",
+            "line_parameter": "pt",
+            "observed_factor_pairs": [
+              {"over": 930, "under": 931},
+              {"over": 1696, "under": 1697},
+              {"over": 1727, "under": 1728},
+              {"over": 1730, "under": 1731}
+            ]
+          },
+          "channel": "detail",
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Числовые factor-коды и pt не подтверждены."
+          "note": "UI+JSON и JSON-снимки подтверждают коды только вместе с subevent kind=400100 и точным pt; код не закреплён за постоянной линией. Парсер и денежный контур не изменены."
         },
         "Marathonbet": {
           "status": "confirmed",
@@ -463,16 +491,16 @@
         "basis": "full_time",
         "push_on_model_lines": false,
         "integer_two_way_lines": "excluded_until_push_probability_model",
-        "bookmaker_rules_status": "audit_required"
+        "bookmaker_rules_status": "partial"
       },
       "bookmakers": {
         "Fonbet": {
-          "status": "code_and_settlement_audit_required",
+          "status": "code_audit_required",
           "codes": {},
           "channel": null,
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Нужны коды и правила второй жёлтой, карточек заменённым, запасным и персоналу."
+          "note": "Официальные правила ЖК подтверждены. Catalog-only kind=400200/grid=36849 не является acquisition-маппингом: нужен фактический detail-рынок и числовые factor-коды."
         },
         "Marathonbet": {
           "status": "code_and_settlement_audit_required",
@@ -480,7 +508,7 @@
           "channel": "tournament_label_only",
           "normalized_key": "TOTAL_CARDS",
           "admission": "blocked",
-          "note": "Подпись в snapshot распознана; detail-код и правила расчёта не подтверждены."
+          "note": "Основные правила ЖК подтверждены, но случай уже заменённого игрока остаётся открытым; detail-код не найден в трёх проверенных снимках."
         }
       }
     },
@@ -511,24 +539,24 @@
         "basis": "full_time",
         "push_on_model_lines": false,
         "integer_two_way_lines": "excluded_until_push_probability_model",
-        "bookmaker_rules_status": "audit_required"
+        "bookmaker_rules_status": "confirmed"
       },
       "bookmakers": {
         "Fonbet": {
-          "status": "code_and_settlement_audit_required",
+          "status": "code_audit_required",
           "codes": {},
           "channel": null,
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Нужны коды и подтверждение статистического определения фола."
+          "note": "Официальное определение фола по свистку судьи подтверждено. Catalog-only kind=400300/grid=36849 не активирует сбор: нужны фактический detail-рынок и числовые factor-коды."
         },
         "Marathonbet": {
-          "status": "code_and_settlement_audit_required",
+          "status": "code_audit_required",
           "codes": {},
           "channel": null,
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Нужны detail-код и подтверждение статистического определения фола."
+          "note": "Правило подтверждено: фол учитывается после фактического выполнения назначенного штрафного/свободного удара. Detail-код в трёх снимках не найден."
         }
       }
     },
@@ -559,7 +587,7 @@
         "basis": "full_time",
         "push_on_model_lines": false,
         "integer_two_way_lines": "excluded_until_push_probability_model",
-        "bookmaker_rules_status": "audit_required"
+        "bookmaker_rules_status": "partial"
       },
       "bookmakers": {
         "Fonbet": {
@@ -568,7 +596,7 @@
           "channel": null,
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Нужны коды и правила учёта заблокированных и других ударов."
+          "note": "Подтверждены учёт гола и исключение автогола; заблокированные удары не определены. Catalog-only kind=400700/grid=36849 не подтверждает detail-коды."
         },
         "Marathonbet": {
           "status": "code_and_settlement_audit_required",
@@ -576,7 +604,7 @@
           "channel": null,
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Нужны detail-код и правила учёта заблокированных и других ударов."
+          "note": "Подтверждены учёт гола и исключение автогола; заблокированные удары не определены, detail-код в трёх снимках не найден."
         }
       }
     },
@@ -607,7 +635,7 @@
         "basis": "full_time",
         "push_on_model_lines": false,
         "integer_two_way_lines": "excluded_until_push_probability_model",
-        "bookmaker_rules_status": "audit_required"
+        "bookmaker_rules_status": "partial"
       },
       "bookmakers": {
         "Fonbet": {
@@ -616,7 +644,7 @@
           "channel": null,
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Нужны коды и правила отнесения ударов к ударам в створ."
+          "note": "Гол учитывается как удар в створ, автогол исключён; полное определение SOT не подтверждено. Catalog-only kind=400400/grid=36849 не подтверждает detail-коды."
         },
         "Marathonbet": {
           "status": "code_and_settlement_audit_required",
@@ -624,7 +652,7 @@
           "channel": null,
           "normalized_key": null,
           "admission": "blocked",
-          "note": "Нужны detail-код и правила отнесения ударов к ударам в створ."
+          "note": "Гол учитывается как удар в створ, автогол исключён; полное определение SOT не подтверждено, detail-код в трёх снимках не найден."
         }
       }
     }
