@@ -5,3 +5,5 @@ data/raw-bsd/
 data/*.csv
 __pycache__/
 *.pyc
+# Bookmaker responses are uploaded as Actions artifacts, never committed.
+probe-out/
