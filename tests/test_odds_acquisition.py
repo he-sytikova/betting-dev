@@ -148,6 +148,70 @@ class ParserTests(unittest.TestCase):
         with self.assertRaises(MarketAbsentError):
             parse_fonbet_detail({"customFactors": [{"e": 999, "factors": []}]}, "100")
 
+    def test_fonbet_detail_separates_main_goals_and_parented_corner_subevents(self):
+        payload = {
+            "events": [
+                {"id": 100, "kind": 1},
+                {"id": 110, "kind": 400100, "parentId": 100},
+                {"id": 111, "kind": 10100201, "parentId": 100},
+                {"id": 210, "kind": 400100, "parentId": 200},
+            ],
+            "customFactors": [
+                {"e": 100, "factors": [
+                    {"f": 930, "v": 1.8, "pt": "2.5"}, {"f": 931, "v": 2.0, "pt": "2.5"},
+                    {"f": 1815, "v": 2.45, "pt": "1.5"}, {"f": 1816, "v": 1.48, "pt": "1.5"},
+                    {"f": 1880, "v": 1.85, "pt": "1.5"}, {"f": 1881, "v": 1.85, "pt": "1.5"},
+                ]},
+                {"e": 110, "factors": [
+                    {"f": 930, "v": 1.8, "pt": "10.5"}, {"f": 931, "v": 1.9, "pt": "10.5"},
+                    {"f": 1696, "v": 1.7, "pt": "9.5"}, {"f": 1697, "v": 2.05, "pt": "9.5"},
+                    {"f": 1815, "v": 2.03, "pt": "5.5"}, {"f": 1816, "v": 1.7, "pt": "5.5"},
+                ]},
+                {"e": 111, "factors": [
+                    {"f": 930, "v": 2.2, "pt": "5.5"}, {"f": 931, "v": 1.6, "pt": "5.5"},
+                ]},
+                {"e": 210, "factors": [
+                    {"f": 930, "v": 1.9, "pt": "7.5"}, {"f": 931, "v": 1.8, "pt": "7.5"},
+                ]},
+            ],
+        }
+        self.assertEqual(parse_fonbet_detail(payload, "100"), {
+            "TOTAL_GOALS:2.5": {"ТБ": 1.8, "ТМ": 2.0},
+            "IT_HOME_GOALS:1.5": {"ИТБ1": 2.45, "ИТМ1": 1.48},
+            "IT_AWAY_GOALS:1.5": {"ИТБ2": 1.85, "ИТМ2": 1.85},
+            "TOTAL_CORNERS:10.5": {"ТБ": 1.8, "ТМ": 1.9},
+            "TOTAL_CORNERS:9.5": {"ТБ": 1.7, "ТМ": 2.05},
+        })
+
+    def test_fonbet_detail_skips_incomplete_and_unconfirmed_new_markets(self):
+        payload = {
+            "events": [{"id": 100, "kind": 1}, {"id": 110, "kind": 400100, "parentId": 100}],
+            "customFactors": [
+                {"e": 100, "factors": [
+                    {"f": 930, "v": 1.8, "pt": "2.5"}, {"f": 931, "v": 2.0, "pt": "2.5"},
+                    {"f": 1815, "v": 2.45, "pt": "1.5"},
+                    {"f": 1881, "v": 1.85, "pt": "1.5"},
+                ]},
+                {"e": 110, "factors": [
+                    {"f": 930, "v": 1.8, "pt": "10.5"},
+                    {"f": 9998, "v": 1.7, "pt": "9.5"}, {"f": 9999, "v": 2.05, "pt": "9.5"},
+                ]},
+            ],
+        }
+        self.assertEqual(parse_fonbet_detail(payload, "100"), {
+            "TOTAL_GOALS:2.5": {"ТБ": 1.8, "ТМ": 2.0},
+        })
+
+    def test_fonbet_detail_requires_main_event_when_event_metadata_exists(self):
+        payload = {
+            "events": [{"id": 100, "kind": 400100, "parentId": 99}],
+            "customFactors": [{"e": 100, "factors": [
+                {"f": 930, "v": 1.8, "pt": "10.5"}, {"f": 931, "v": 1.9, "pt": "10.5"},
+            ]}],
+        }
+        with self.assertRaises(MarketAbsentError):
+            parse_fonbet_detail(payload, "100")
+
     def test_fonbet_host_extraction(self):
         self.assertEqual(extract_fonbet_hosts({"line": ["https://a.test/", {"url": "https://b.test"}]}),
                          ["https://a.test", "https://b.test"])
@@ -266,7 +330,18 @@ class MatchingAndIntegrationTests(unittest.TestCase):
                             "captured_at_utc": "now", "matches": [self.line]},
         }
         detail_payloads = {
-            "Fonbet": {"customFactors": [{"e": 100, "factors": [{"f": 930, "v": 1.8, "pt": "4.5"}]}]},
+            "Fonbet": {
+                "events": [{"id": 100, "kind": 1}, {"id": 110, "kind": 400100, "parentId": 100}],
+                "customFactors": [
+                    {"e": 100, "factors": [
+                        {"f": 930, "v": 1.8, "pt": "4.5"},
+                        {"f": 1815, "v": 2.45, "pt": "1.5"}, {"f": 1816, "v": 1.48, "pt": "1.5"},
+                    ]},
+                    {"e": 110, "factors": [
+                        {"f": 930, "v": 1.8, "pt": "10.5"}, {"f": 931, "v": 1.9, "pt": "10.5"},
+                    ]},
+                ],
+            },
             "Marathonbet": {"markets": {"1": {"model": "MTCH_CRNR_TTL", "name": "Тотал угловых", "selections": {
                 "1": selection(1, "Больше 9.5", 1, 1), "2": selection(2, "Меньше 9.5", 3, 4)}}}},
         }
@@ -289,6 +364,10 @@ class MatchingAndIntegrationTests(unittest.TestCase):
             self.assertTrue((root / "out/detail/fonbet_100.json").is_file())
             enriched = json.loads((root / "out/enriched/marathonbet.json").read_text(encoding="utf-8"))
             self.assertIn("TOTAL_CORNERS:9.5", enriched["matches"][0]["markets"])
+            fonbet_enriched = json.loads((root / "out/enriched/fonbet.json").read_text(encoding="utf-8"))
+            fonbet_markets = fonbet_enriched["matches"][0]["markets"]
+            self.assertEqual(fonbet_markets["IT_HOME_GOALS:1.5"], {"ИТБ1": 2.45, "ИТМ1": 1.48})
+            self.assertEqual(fonbet_markets["TOTAL_CORNERS:10.5"], {"ТБ": 1.8, "ТМ": 1.9})
 
     def test_failed_detail_request_is_counted(self):
         snapshots = {"Marathonbet": {"bookmaker": "Marathonbet", "target_date": "2026-11-17", "status": "ok",

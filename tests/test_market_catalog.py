@@ -166,7 +166,7 @@ class BookmakerMarketAuditTests(unittest.TestCase):
         self.assertFalse(any(self.audit["activation"].values()))
         self.assertFalse(self.catalog["policies"]["catalog_changes_selection"])
 
-    def test_confirmed_fonbet_audit_mappings_match_blocked_catalog_entries(self):
+    def test_confirmed_fonbet_audit_mappings_match_implemented_catalog_entries(self):
         expected = {
             "goals.team_total.home": {
                 "event_kind": 1,
@@ -200,6 +200,11 @@ class BookmakerMarketAuditTests(unittest.TestCase):
                 ],
             },
         }
+        normalized_keys = {
+            "goals.team_total.home": "IT_HOME_GOALS",
+            "goals.team_total.away": "IT_AWAY_GOALS",
+            "corners.total": "TOTAL_CORNERS",
+        }
         self.assertEqual(set(self.mappings), set(expected))
         for market_id, expected_codes in expected.items():
             mapping = self.mappings[market_id]
@@ -209,9 +214,9 @@ class BookmakerMarketAuditTests(unittest.TestCase):
             for key, value in expected_codes.items():
                 self.assertEqual(mapping[key], value)
                 self.assertEqual(fonbet["codes"][key], value)
-            self.assertEqual(fonbet["status"], "code_confirmed_admission_blocked")
-            self.assertEqual(fonbet["admission"], "blocked")
-            self.assertIsNone(fonbet["normalized_key"])
+            self.assertEqual(fonbet["status"], "confirmed")
+            self.assertEqual(fonbet["admission"], "existing_filters")
+            self.assertEqual(fonbet["normalized_key"], normalized_keys[market_id])
 
     def test_catalog_only_statistics_are_not_confirmed_mappings(self):
         catalog_only = self.audit["fonbet"]["catalog_only_unconfirmed"]
