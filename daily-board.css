@@ -1,0 +1,334 @@
+.daily-board {
+    margin: 24px 0 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.daily-board [hidden] {
+    display: none !important;
+}
+
+.daily-board__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 24px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.daily-board__header .dev-label {
+    margin-bottom: 8px;
+}
+
+.daily-board__header h2 {
+    font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+    line-height: 1.2;
+}
+
+.daily-board__date {
+    margin-top: 7px;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+}
+
+.daily-board__status {
+    flex: 0 0 auto;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-muted);
+    background: var(--bg);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.daily-board__status.is-ready {
+    border-color: rgba(74, 222, 128, 0.35);
+    color: var(--success);
+}
+
+.daily-board__status.is-warning {
+    border-color: rgba(251, 191, 36, 0.4);
+    color: var(--warning);
+}
+
+.daily-board__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.daily-panel {
+    min-width: 0;
+    padding: 22px 24px 24px;
+}
+
+.daily-panel + .daily-panel {
+    border-left: 1px solid var(--border);
+}
+
+.daily-panel__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 66px;
+    margin-bottom: 16px;
+}
+
+.daily-panel__header h3 {
+    font-size: 1.05rem;
+    line-height: 1.3;
+}
+
+.daily-panel__header p {
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.daily-panel__count {
+    display: grid;
+    place-items: center;
+    flex: 0 0 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--accent);
+    background: var(--bg);
+    font-variant-numeric: tabular-nums;
+}
+
+.daily-list {
+    display: grid;
+    gap: 0;
+    max-height: 560px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--surface-alt) transparent;
+}
+
+.daily-list:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.daily-row {
+    padding: 15px 2px;
+    border-top: 1px solid var(--border);
+}
+
+.daily-row:first-child {
+    padding-top: 4px;
+    border-top: 0;
+}
+
+.daily-row__meta,
+.coupon__header,
+.coupon-leg__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.daily-row__meta {
+    color: var(--text-muted);
+    font-size: 0.73rem;
+}
+
+.daily-row__meta span {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.daily-row__match {
+    margin-top: 7px;
+    font-size: 0.94rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.daily-row__league {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    overflow-wrap: anywhere;
+}
+
+.daily-row__market,
+.coupon__metrics {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 11px;
+}
+
+.daily-row__market > strong {
+    margin-right: auto;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.daily-metric {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.daily-metric__label {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.daily-metric strong {
+    color: var(--text);
+    font-size: 0.82rem;
+}
+
+.daily-row__status {
+    margin-top: 9px;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.daily-empty,
+.daily-warning {
+    padding: 16px 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+.daily-warning {
+    padding: 10px 12px;
+    border-left: 2px solid var(--warning);
+    color: var(--warning);
+    background: rgba(251, 191, 36, 0.06);
+}
+
+.daily-board__note {
+    padding: 13px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    background: var(--bg);
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+.coupon {
+    padding: 16px 0 18px;
+    border-top: 1px solid var(--border);
+}
+
+.coupon:first-child {
+    padding-top: 2px;
+    border-top: 0;
+}
+
+.coupon__header h4 {
+    font-size: 0.98rem;
+}
+
+.coupon__status {
+    color: var(--warning);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: right;
+}
+
+.coupon__metrics {
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border);
+}
+
+.coupon-legs {
+    list-style: none;
+}
+
+.coupon-leg {
+    padding-top: 13px;
+}
+
+.coupon-leg__heading strong,
+.coupon-leg__heading span {
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+}
+
+.coupon-leg__heading span {
+    flex: 0 0 auto;
+    color: var(--accent);
+}
+
+.coupon-leg__meta {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+}
+
+.coupon-leg .daily-row__market {
+    margin-top: 7px;
+}
+
+@media (max-width: 760px) {
+    .daily-board__header {
+        display: block;
+        padding: 18px;
+    }
+
+    .daily-board__status {
+        display: inline-block;
+        margin-top: 14px;
+        white-space: normal;
+    }
+
+    .daily-board__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .daily-panel {
+        padding: 18px;
+    }
+
+    .daily-panel + .daily-panel {
+        border-top: 1px solid var(--border);
+        border-left: 0;
+    }
+
+    .daily-panel__header {
+        min-height: 0;
+    }
+
+    .daily-list {
+        max-height: 480px;
+    }
+
+    .daily-board__note {
+        padding: 13px 18px;
+    }
+}
+
+@media (max-width: 390px) {
+    .daily-row__market > strong {
+        flex-basis: 100%;
+    }
+
+    .coupon__header,
+    .coupon-leg__heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .coupon__status {
+        text-align: left;
+    }
+}
