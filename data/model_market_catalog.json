@@ -311,7 +311,7 @@
       },
       "bookmakers": {
         "Fonbet": {
-          "status": "code_confirmed_admission_blocked",
+          "status": "confirmed",
           "codes": {
             "event_kind": 1,
             "grid": "36847",
@@ -323,9 +323,9 @@
             ]
           },
           "channel": "detail",
-          "normalized_key": null,
-          "admission": "blocked",
-          "note": "Коды и pt подтверждены UI+JSON на двух событиях и JSON на третьем; парсер и денежный контур в этом этапе не изменены."
+          "normalized_key": "IT_HOME_GOALS",
+          "admission": "existing_filters",
+          "note": "Коды и pt подтверждены UI+JSON; основное событие kind=1 обрабатывается subevent-aware парсером."
         },
         "Marathonbet": {
           "status": "confirmed",
@@ -370,7 +370,7 @@
       },
       "bookmakers": {
         "Fonbet": {
-          "status": "code_confirmed_admission_blocked",
+          "status": "confirmed",
           "codes": {
             "event_kind": 1,
             "grid": "36848",
@@ -382,9 +382,9 @@
             ]
           },
           "channel": "detail",
-          "normalized_key": null,
-          "admission": "blocked",
-          "note": "Коды и pt подтверждены UI+JSON на двух событиях и JSON на третьем; парсер и денежный контур в этом этапе не изменены."
+          "normalized_key": "IT_AWAY_GOALS",
+          "admission": "existing_filters",
+          "note": "Коды и pt подтверждены UI+JSON; основное событие kind=1 обрабатывается subevent-aware парсером."
         },
         "Marathonbet": {
           "status": "confirmed",
@@ -432,7 +432,7 @@
       },
       "bookmakers": {
         "Fonbet": {
-          "status": "code_confirmed_admission_blocked",
+          "status": "confirmed",
           "codes": {
             "event_kind": 400100,
             "grid": "36849",
@@ -445,9 +445,9 @@
             ]
           },
           "channel": "detail",
-          "normalized_key": null,
-          "admission": "blocked",
-          "note": "UI+JSON и JSON-снимки подтверждают коды только вместе с subevent kind=400100 и точным pt; код не закреплён за постоянной линией. Парсер и денежный контур не изменены."
+          "normalized_key": "TOTAL_CORNERS",
+          "admission": "existing_filters",
+          "note": "Парсер принимает только subevent kind=400100 с parentId основного события, подтверждённые factor-пары и точный pt."
         },
         "Marathonbet": {
           "status": "confirmed",
