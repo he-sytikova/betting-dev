@@ -94,6 +94,7 @@ class MarketCatalogTests(unittest.TestCase):
     def test_unconfirmed_markets_cannot_silently_enter_selection(self):
         allowed_statuses = {
             "confirmed",
+            "code_confirmed_admission_blocked",
             "code_audit_required",
             "code_and_settlement_audit_required",
         }
@@ -112,6 +113,12 @@ class MarketCatalogTests(unittest.TestCase):
                 if bookmaker["status"] == "confirmed":
                     self.assertTrue(bookmaker["codes"])
                     self.assertEqual(bookmaker["admission"], "existing_filters")
+                elif bookmaker["status"] == "code_confirmed_admission_blocked":
+                    self.assertTrue(bookmaker["codes"])
+                    self.assertEqual(bookmaker["channel"], "detail")
+                    self.assertIsNone(bookmaker["normalized_key"])
+                    self.assertEqual(bookmaker["admission"], "blocked")
+                    self.assertTrue(bookmaker["note"])
                 else:
                     self.assertEqual(bookmaker["codes"], {})
                     self.assertEqual(bookmaker["admission"], "blocked")
@@ -140,6 +147,152 @@ class MarketCatalogTests(unittest.TestCase):
         for code, item in excluded.items():
             self.assertEqual(item["reason"], "no_active_model_probability")
             self.assertEqual(MARATHON_DETAIL_MODELS[code], item["normalized_key"])
+
+
+class BookmakerMarketAuditTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.audit = load_json("data/bookmaker_market_audit.json")
+        cls.catalog = load_json("data/model_market_catalog.json")
+        cls.markets = {market["id"]: market for market in cls.catalog["markets"]}
+        cls.mappings = {
+            mapping["market_id"]: mapping
+            for mapping in cls.audit["fonbet"]["confirmed_mappings"]
+        }
+
+    def test_audit_has_no_activation_side_effects(self):
+        self.assertEqual(self.audit["mode"], "read_only")
+        self.assertTrue(self.audit["activation"])
+        self.assertFalse(any(self.audit["activation"].values()))
+        self.assertFalse(self.catalog["policies"]["catalog_changes_selection"])
+
+    def test_confirmed_fonbet_audit_mappings_match_blocked_catalog_entries(self):
+        expected = {
+            "goals.team_total.home": {
+                "event_kind": 1,
+                "grid": "36847",
+                "line_parameter": "pt",
+                "model_line_factor_pairs": [
+                    {"line": "0.5", "over": 1809, "under": 1810},
+                    {"line": "1.5", "over": 1815, "under": 1816},
+                    {"line": "2.5", "over": 1821, "under": 1822},
+                ],
+            },
+            "goals.team_total.away": {
+                "event_kind": 1,
+                "grid": "36848",
+                "line_parameter": "pt",
+                "model_line_factor_pairs": [
+                    {"line": "0.5", "over": 1854, "under": 1871},
+                    {"line": "1.5", "over": 1880, "under": 1881},
+                    {"line": "2.5", "over": 1886, "under": 1887},
+                ],
+            },
+            "corners.total": {
+                "event_kind": 400100,
+                "grid": "36849",
+                "line_parameter": "pt",
+                "observed_factor_pairs": [
+                    {"over": 930, "under": 931},
+                    {"over": 1696, "under": 1697},
+                    {"over": 1727, "under": 1728},
+                    {"over": 1730, "under": 1731},
+                ],
+            },
+        }
+        self.assertEqual(set(self.mappings), set(expected))
+        for market_id, expected_codes in expected.items():
+            mapping = self.mappings[market_id]
+            fonbet = self.markets[market_id]["bookmakers"]["Fonbet"]
+            self.assertEqual(mapping["status"], "confirmed")
+            self.assertEqual(mapping["admission"], "blocked_until_separate_implementation_stage")
+            for key, value in expected_codes.items():
+                self.assertEqual(mapping[key], value)
+                self.assertEqual(fonbet["codes"][key], value)
+            self.assertEqual(fonbet["status"], "code_confirmed_admission_blocked")
+            self.assertEqual(fonbet["admission"], "blocked")
+            self.assertIsNone(fonbet["normalized_key"])
+
+    def test_catalog_only_statistics_are_not_confirmed_mappings(self):
+        catalog_only = self.audit["fonbet"]["catalog_only_unconfirmed"]
+        expected = {
+            "yellow_cards.total": 400200,
+            "fouls.total": 400300,
+            "shots_on_target.total": 400400,
+            "shots.total": 400700,
+        }
+        self.assertEqual({item["market_id"]: item["event_kind"] for item in catalog_only}, expected)
+        self.assertTrue(set(expected).isdisjoint(self.mappings))
+        for item in catalog_only:
+            self.assertEqual(item["status"], "catalog_only")
+            self.assertNotIn("over", item)
+            self.assertNotIn("under", item)
+            fonbet = self.markets[item["market_id"]]["bookmakers"]["Fonbet"]
+            self.assertEqual(fonbet["codes"], {})
+            self.assertEqual(fonbet["admission"], "blocked")
+
+    def test_fonbet_ui_json_checks_reference_observed_event_and_subevent_ids(self):
+        expected = {
+            69626793: [
+                (69626793, 1, 1815, 1816),
+                (69626793, 1, 1880, 1881),
+                (69948855, 400100, 930, 931),
+            ],
+            69559405: [
+                (69559405, 1, 1815, 1816),
+                (69877534, 400100, 930, 931),
+            ],
+            69622774: [
+                (69622774, 1, 1815, 1816),
+                (69622774, 1, 1880, 1881),
+                (69910651, 400100, 930, 931),
+            ],
+        }
+        checks = self.audit["fonbet"]["ui_json_checks"]
+        self.assertEqual({item["event_id"] for item in checks}, set(expected))
+        for item in checks:
+            actual = [
+                (check["event_id"], check["event_kind"], check["over_factor"], check["under_factor"])
+                for check in item["checks"]
+            ]
+            self.assertEqual(actual, expected[item["event_id"]])
+
+    def test_marathon_samples_do_not_create_new_mappings(self):
+        marathon = self.audit["marathonbet"]
+        self.assertEqual(marathon["confirmed_new_mappings"], [])
+        self.assertEqual(marathon["search"]["result"], "not_observed")
+        self.assertEqual(
+            [(sample["event_id"], sample["tree_id"]) for sample in marathon["samples"]],
+            [(30045306, 33074527), (29431299, 32185545), (29427517, 32181150)],
+        )
+        self.assertTrue(all(sample["target_market_objects"] == 0 for sample in marathon["samples"]))
+
+    def test_unresolved_rule_topics_remain_explicit(self):
+        actual = {
+            (item["bookmaker"], item["topic"], item["status"])
+            for item in self.audit["unresolved_rule_topics"]
+        }
+        expected = {
+            ("Fonbet", "blocked_shots_in_total_shots", "unresolved"),
+            ("Fonbet", "complete_shot_on_target_definition", "unresolved"),
+            ("Marathonbet", "blocked_shots_in_total_shots", "unresolved"),
+            ("Marathonbet", "complete_shot_on_target_definition", "unresolved"),
+            ("Marathonbet", "cards_to_already_substituted_players", "unresolved"),
+        }
+        self.assertEqual(actual, expected)
+
+    def test_marathon_detail_whitelist_is_unchanged(self):
+        self.assertEqual(
+            MARATHON_DETAIL_MODELS,
+            {
+                "MTCH_TTLG": "TOTAL_GOALS",
+                "MTCH_T1TTLG": "IT_HOME_GOALS",
+                "MTCH_T2TTLG": "IT_AWAY_GOALS",
+                "MTCH_CRNR_TTL": "TOTAL_CORNERS",
+                "MTCH_CRNR_T1TTL": "IT_HOME_CORNERS",
+                "MTCH_CRNR_T2TTL": "IT_AWAY_CORNERS",
+            },
+        )
 
 
 if __name__ == "__main__":

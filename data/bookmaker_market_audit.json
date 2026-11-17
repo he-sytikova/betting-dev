@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-11-17",
+  "mode": "read_only",
+  "purpose": "Фиксация фактических кодов и официальных правил без подключения новых рынков к кандидатам, купонам или расчётам.",
+  "activation": {
+    "performed": false,
+    "candidate_selection_changed": false,
+    "coupon_generation_changed": false,
+    "model_probabilities_changed": false,
+    "marathon_detail_whitelist_changed": false
+  },
+  "status_vocabulary": {
+    "confirmed": "Подпись UI, event/subevent kind, factor-коды, сторона и pt сверены с JSON; это не разрешение на денежное использование.",
+    "catalog_only": "Связь найдена в официальном каталоге Fonbet, но соответствующее подсобытие не наблюдалось в детальных снимках; коды не подтверждены.",
+    "not_observed": "Рынок не найден в проверенных снимках; глобальное отсутствие рынка или его код не утверждаются.",
+    "partial": "Официальные правила подтверждают только часть необходимого статистического определения.",
+    "unresolved": "Недостаточно официальных данных для подтверждения."
+  },
+  "fonbet": {
+    "event_feed": {
+      "url": "https://line-lb51.bk6bba-resources.com/events/list?lang=en&version=0&scopeMarket=1600",
+      "captured_at_utc": "2026-11-17T14:21:19.087040+00:00",
+      "http_status": 200
+    },
+    "factor_catalog": {
+      "url": "https://line-lb51.bk6bba-resources.com/line/factorsCatalog/eventViewTables?version=0&lang=en&sysId=22",
+      "captured_at_utc": "2026-11-17T14:22:58.735213+00:00",
+      "http_status": 200,
+      "config_id": "1263",
+      "total_grid": "36849",
+      "home_team_total_grid": "36847",
+      "away_team_total_grid": "36848"
+    },
+    "confirmed_mappings": [
+      {
+        "market_id": "goals.team_total.home",
+        "status": "confirmed",
+        "event_kind": 1,
+        "grid": "36847",
+        "line_parameter": "pt",
+        "model_line_factor_pairs": [
+          {"line": "0.5", "over": 1809, "under": 1810},
+          {"line": "1.5", "over": 1815, "under": 1816},
+          {"line": "2.5", "over": 1821, "under": 1822}
+        ],
+        "admission": "blocked_until_separate_implementation_stage"
+      },
+      {
+        "market_id": "goals.team_total.away",
+        "status": "confirmed",
+        "event_kind": 1,
+        "grid": "36848",
+        "line_parameter": "pt",
+        "model_line_factor_pairs": [
+          {"line": "0.5", "over": 1854, "under": 1871},
+          {"line": "1.5", "over": 1880, "under": 1881},
+          {"line": "2.5", "over": 1886, "under": 1887}
+        ],
+        "admission": "blocked_until_separate_implementation_stage"
+      },
+      {
+        "market_id": "corners.total",
+        "status": "confirmed",
+        "event_kind": 400100,
+        "grid": "36849",
+        "line_parameter": "pt",
+        "observed_factor_pairs": [
+          {"over": 930, "under": 931},
+          {"over": 1696, "under": 1697},
+          {"over": 1727, "under": 1728},
+          {"over": 1730, "under": 1731}
+        ],
+        "note": "Код не закреплён за постоянной числовой линией: обязательны одновременно subevent kind=400100, factor-код и точное pt. На основном событии kind=1 те же 930/931 означают тотал голов.",
+        "admission": "blocked_until_separate_implementation_stage"
+      }
+    ],
+    "ui_json_checks": [
+      {
+        "event_id": 69626793,
+        "event": "Coritiba Parana - Santos SP",
+        "ui_url": "https://fon.bet/sports/football/country/brazil/11978/69626793",
+        "detail_url": "https://line-lb51.bk6bba-resources.com/events/event?eventId=69626793&lang=en&scopeMarket=1600&version=0",
+        "detail_captured_at_utc": "2026-11-17T14:21:49.891531+00:00",
+        "checks": [
+          {"ui_label": "Team total goals / Coritiba Parana", "line": "1.5", "over": 2.45, "under": 1.48, "event_id": 69626793, "event_kind": 1, "over_factor": 1815, "under_factor": 1816},
+          {"ui_label": "Team total goals / Santos SP", "line": "1.5", "over": 1.85, "under": 1.85, "event_id": 69626793, "event_kind": 1, "over_factor": 1880, "under_factor": 1881},
+          {"ui_label": "Total corners", "line": "10.5", "over": 1.8, "under": 1.9, "event_id": 69948855, "event_kind": 400100, "over_factor": 930, "under_factor": 931}
+        ]
+      },
+      {
+        "event_id": 69559405,
+        "event": "Rostov - Krylia Sovetov",
+        "ui_url": "https://fon.bet/sports/football/country/russia/11935/69559405",
+        "detail_url": "https://line-lb51.bk6bba-resources.com/events/event?eventId=69559405&lang=en&scopeMarket=1600&version=0",
+        "detail_captured_at_utc": "2026-11-17T14:21:51.736042+00:00",
+        "checks": [
+          {"ui_label": "Team total goals / Rostov", "line": "1.5", "over": 2.07, "under": 1.7, "event_id": 69559405, "event_kind": 1, "over_factor": 1815, "under_factor": 1816},
+          {"ui_label": "Total corners", "line": "8.5", "over": 1.85, "under": 1.85, "event_id": 69877534, "event_kind": 400100, "over_factor": 930, "under_factor": 931}
+        ]
+      },
+      {
+        "event_id": 69622774,
+        "event": "Manchester City - Fulham",
+        "ui_url": null,
+        "detail_url": "https://line-lb51.bk6bba-resources.com/events/event?eventId=69622774&lang=en&scopeMarket=1600&version=0",
+        "detail_captured_at_utc": "2026-11-17T14:21:53.504902+00:00",
+        "checks": [
+          {"ui_label": null, "line": "1.5", "over": 1.4, "under": 2.7, "event_id": 69622774, "event_kind": 1, "over_factor": 1815, "under_factor": 1816},
+          {"ui_label": null, "line": "1.5", "over": 3.6, "under": 1.25, "event_id": 69622774, "event_kind": 1, "over_factor": 1880, "under_factor": 1881},
+          {"ui_label": null, "line": "10.5", "over": 1.9, "under": 1.8, "event_id": 69910651, "event_kind": 400100, "over_factor": 930, "under_factor": 931}
+        ]
+      }
+    ],
+    "catalog_only_unconfirmed": [
+      {"market_id": "yellow_cards.total", "event_kind": 400200, "grid": "36849", "catalog_title": "Total yellow cards", "status": "catalog_only"},
+      {"market_id": "fouls.total", "event_kind": 400300, "grid": "36849", "catalog_title": "Total fouls", "status": "catalog_only"},
+      {"market_id": "shots_on_target.total", "event_kind": 400400, "grid": "36849", "catalog_title": "Total shots on goal", "status": "catalog_only"},
+      {"market_id": "shots.total", "event_kind": 400700, "grid": "36849", "catalog_title": "Total shots", "status": "catalog_only"}
+    ],
+    "sample_coverage": {
+      "event_ids": [69626793, 69559405, 69622774],
+      "observed_subevent_kinds": [1, 100201, 100202, 400100, 10100201],
+      "unobserved_target_kinds": [400200, 400300, 400400, 400700],
+      "conclusion": "Числовые коды ЖК, фолов, ударов в створ и общих ударов не подтверждены; catalog_only нельзя использовать как acquisition-маппинг."
+    }
+  },
+  "marathonbet": {
+    "detail_endpoint": "https://new.marathonbet.ru/eag/event-line/api/v1/events/{treeId}",
+    "samples": [
+      {
+        "event_id": 30045306,
+        "tree_id": 33074527,
+        "event": "Коритиба - Сантос",
+        "league": "BRA",
+        "ui_url": "https://new.marathonbet.ru/su/betting/event/football/brazil-serie-a/coritiba-vs-santos",
+        "detail_captured_at_utc": "2026-11-17T14:17:43.356498+00:00",
+        "market_objects": 500,
+        "target_market_objects": 0
+      },
+      {
+        "event_id": 29431299,
+        "tree_id": 32185545,
+        "event": "Ростов - Крылья Советов",
+        "league": "RUS",
+        "ui_url": null,
+        "detail_captured_at_utc": "2026-11-17T14:18:15.036673+00:00",
+        "market_objects": 416,
+        "target_market_objects": 0
+      },
+      {
+        "event_id": 29427517,
+        "tree_id": 32181150,
+        "event": "Манчестер Сити - Фулхэм",
+        "league": "E0",
+        "ui_url": null,
+        "detail_captured_at_utc": "2026-11-17T14:18:39.868288+00:00",
+        "market_objects": 512,
+        "target_market_objects": 0
+      }
+    ],
+    "search": {
+      "market_name_terms": ["жёлт", "желт", "карточ", "фол", "удар", "створ"],
+      "scope": "Весь detail JSON каждого выбранного события, включая markets, marketsInfo, electedMarkets и eventPartMarkets.",
+      "result": "not_observed"
+    },
+    "confirmed_new_mappings": [],
+    "conclusion": "Detail-коды ЖК, фолов, ударов и ударов в створ не подтверждены. Три снимка не доказывают, что таких рынков нет у БК вообще; нужен новый аудит, когда рынки появятся в линии."
+  },
+  "settlement_rules": [
+    {
+      "bookmaker": "Fonbet",
+      "market_id": "yellow_cards.total",
+      "topic": "second_yellow_and_non_players",
+      "status": "confirmed",
+      "source_url": "https://fon.bet/official-documents/sport_footballrules",
+      "source_title": "Football predictions explained",
+      "exact_quotes": [
+        "In all predictions associated with the number of player warnings, sending off players is not counted. If a player is dismissed for two yellow cards, one is counted.",
+        "Cards received by substitutes, reserve players, trainers, or other individuals not participating in the match are not counted.",
+        "Cards shown after the final whistle are also not counted. Cards shown during the half-time interval are considered shown in the second half."
+      ],
+      "finding_ru": "При удалении за две ЖК в тотал игрока засчитывается одна ЖК; карточки запасным, тренерам и другим не участвующим в матче лицам не учитываются."
+    },
+    {
+      "bookmaker": "Fonbet",
+      "market_id": "fouls.total",
+      "topic": "foul_definition",
+      "status": "confirmed",
+      "source_url": "https://fon.bet/official-documents/sport_footballrules",
+      "source_title": "Football predictions explained",
+      "exact_quotes": ["foul — in the event of an actual foul being determined (referee whistle)."],
+      "finding_ru": "Фол фиксируется при фактическом определении нарушения судьёй (свисток)."
+    },
+    {
+      "bookmaker": "Fonbet",
+      "market_id": "shots.total",
+      "topic": "goals_and_own_goals",
+      "status": "partial",
+      "source_url": "https://fon.bet/official-documents/sport_footballrules",
+      "source_title": "Football predictions explained",
+      "exact_quotes": ["In the statistics, \"Shots on target\" and \"Total shots\" according to RunningBall are added to goals, while own goals are not counted. In the event of a foul in the penalty area and a subsequent penalty kick, the data from RunningBall is added to the total fouls, and the second kick is not considered a foul."],
+      "finding_ru": "Голы добавляются к ударам всего и ударам в створ по RunningBall; автоголы не учитываются. Определение заблокированного удара этим пунктом не подтверждено."
+    },
+    {
+      "bookmaker": "Fonbet",
+      "market_id": "shots_on_target.total",
+      "topic": "goal_counts_as_shot_on_target",
+      "status": "partial",
+      "source_url": "https://fon.bet/official-documents/sport_footballrules",
+      "source_title": "Football predictions explained",
+      "exact_quotes": ["In the statistics, \"Shots on target\" and \"Total shots\" according to RunningBall are added to goals, while own goals are not counted."],
+      "finding_ru": "Гол засчитывается как удар в створ, автогол не учитывается; полное определение удара в створ остаётся неподтверждённым."
+    },
+    {
+      "bookmaker": "Fonbet",
+      "market_id": "all_statistics",
+      "topic": "stream_priority",
+      "status": "confirmed",
+      "source_url": "https://fon.bet/official-documents/rules",
+      "source_title": "FON.BET betting company rules",
+      "exact_quotes": ["6.4. The settlement of Predictions on statistics is carried out in accordance with Clause 4.4 of these Rules. The settlement of Predictions accepted only during breaks, as well as Predictions, the acceptance of which was interrupted during the match, is carried out according to the information sources determined by the Betting Organiser in accordance with Clause 4.4 of the Rules. Detailed information related to the calculation of statistical indicators in football matches is available on the Explanation of Football Predictions page. The Betting Organiser reserves the right when settling Predictions not to take into account fouls, yellow and/or red cards, corner kicks, and other statistics not shown in the stream."],
+      "finding_ru": "Fonbet оставляет за собой право не учитывать статистику, не показанную в трансляции."
+    },
+    {
+      "bookmaker": "Marathonbet",
+      "market_id": "yellow_cards.total",
+      "topic": "cards",
+      "status": "partial",
+      "source_url": "https://www.marathonbet.ru/su/help/sports-rules/rules-sport-by-sport/football",
+      "source_title": "Правила по видам спорта: Футбол",
+      "section": "09",
+      "exact_quotes": ["Жёлтые и красные карточки. Карточки, показанные за нарушения или инциденты, произошедшие в перерыве или после финального свистка, не учитываются. Карточки, показанные не участвующим в матче игрокам и персоналу (например, тренерам или игрокам на скамейке запасных), не учитываются. Вторая жёлтая карточка, показанная одному и тому же игроку, считается как красная (например, для выбора «Количество жёлтых карточек» вторая жёлтая карточка, показанная одному и тому же игроку, не будет учитываться). Если двум или более игрокам из разных команд жёлтые/красные карточки в матче предъявлены на основании одного происшествия, то пари на очередные жёлтые/красные карточки будут аннулированы."],
+      "finding_ru": "Вторая ЖК не добавляется в тотал ЖК; карточки запасным и персоналу не учитываются. Отдельная формулировка о уже заменённых игроках не найдена, поэтому этот случай не расширяется по догадке."
+    },
+    {
+      "bookmaker": "Marathonbet",
+      "market_id": "fouls.total",
+      "topic": "foul_definition",
+      "status": "confirmed",
+      "source_url": "https://www.marathonbet.ru/su/help/sports-rules/rules-sport-by-sport/football",
+      "source_title": "Правила по видам спорта: Футбол",
+      "section": "25",
+      "exact_quotes": ["Для статистических показателей основанием для расчёта пари является фактическое выполнение произошедшего события. Например, фол будет учтён в расчёте только по факту выполнения назначенного штрафного/свободного удара."],
+      "finding_ru": "Фол учитывается только после фактического выполнения назначенного штрафного или свободного удара."
+    },
+    {
+      "bookmaker": "Marathonbet",
+      "market_id": "shots.total",
+      "topic": "goals_and_own_goals",
+      "status": "partial",
+      "source_url": "https://www.marathonbet.ru/su/help/sports-rules/rules-sport-by-sport/football",
+      "source_title": "Правила по видам спорта: Футбол",
+      "section": "21",
+      "exact_quotes": ["Удары в створ и Удары всего. При расчёте пари забитые голы учитываются в статистике «Удары в створ» и «Удары всего», автоголы не учитываются."],
+      "finding_ru": "Голы входят в обе статистики, автоголы исключены; учёт заблокированных ударов отдельно не определён."
+    },
+    {
+      "bookmaker": "Marathonbet",
+      "market_id": "shots_on_target.total",
+      "topic": "goal_counts_as_shot_on_target",
+      "status": "partial",
+      "source_url": "https://www.marathonbet.ru/su/help/sports-rules/rules-sport-by-sport/football",
+      "source_title": "Правила по видам спорта: Футбол",
+      "section": "21",
+      "exact_quotes": ["Удары в створ и Удары всего. При расчёте пари забитые голы учитываются в статистике «Удары в створ» и «Удары всего», автоголы не учитываются."],
+      "finding_ru": "Гол засчитывается как удар в створ, автогол исключён; полное определение удара в створ остаётся неподтверждённым."
+    }
+  ],
+  "unresolved_rule_topics": [
+    {"bookmaker": "Fonbet", "topic": "blocked_shots_in_total_shots", "status": "unresolved"},
+    {"bookmaker": "Fonbet", "topic": "complete_shot_on_target_definition", "status": "unresolved"},
+    {"bookmaker": "Marathonbet", "topic": "blocked_shots_in_total_shots", "status": "unresolved"},
+    {"bookmaker": "Marathonbet", "topic": "complete_shot_on_target_definition", "status": "unresolved"},
+    {"bookmaker": "Marathonbet", "topic": "cards_to_already_substituted_players", "status": "unresolved"}
+  ],
+  "next_stage_gate": "Подключение любого подтверждённого кода выполняется отдельным PR с парсером, regression-тестами и сохранением admission-фильтров. ЖК, фолы, удары и удары в створ остаются заблокированными до наблюдения фактических detail-рынков и закрытия относящихся к ним правил."
+}
