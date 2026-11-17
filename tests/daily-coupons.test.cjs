@@ -114,17 +114,18 @@ test('incomplete pairs, integer lines and unconfirmed model markets never enter 
   assert.equal(euro.rejection.reason, 'market_not_confirmed');
 });
 
-test('deduplication keeps the best bookmaker price and audits the loser', () => {
-  const best = eligibleLeg({ bookmaker: 'Marathonbet', odds: 1.5, ev: 1.2 });
+test('deduplication keeps the best price across three bookmakers and audits losers', () => {
+  const best = eligibleLeg({ bookmaker: 'Winline', odds: 1.55, ev: 1.24 });
+  const marathon = eligibleLeg({ bookmaker: 'Marathonbet', odds: 1.5, ev: 1.2 });
   const lower = eligibleLeg({ odds: 1.4, ev: 1.12 });
   const otherLine = eligibleLeg({ label: 'ТБ 2.5', market_key: 'TOTAL_GOALS:2.5', odds: 1.45 });
-  const result = coupons.dedupeEligible([lower, otherLine, best]);
+  const result = coupons.dedupeEligible([lower, otherLine, marathon, best]);
   assert.equal(result.selected.length, 2);
-  assert.equal(result.selected.find(row => row.label === '1X').bookmaker, 'Marathonbet');
-  assert.equal(result.rejected.length, 1);
-  assert.equal(result.rejected[0].reason, 'deduplicated_lower_price');
-  assert.equal(result.rejected[0].selected_bookmaker, 'Marathonbet');
-  assert.equal(result.rejected[0].selected_odds, 1.5);
+  assert.equal(result.selected.find(row => row.label === '1X').bookmaker, 'Winline');
+  assert.equal(result.rejected.length, 2);
+  assert.ok(result.rejected.every(row => row.reason === 'deduplicated_lower_price'));
+  assert.ok(result.rejected.every(row => row.selected_bookmaker === 'Winline'));
+  assert.ok(result.rejected.every(row => row.selected_odds === 1.55));
 });
 
 test('doubles use one bookmaker, different matches and exact combined formulas', () => {
@@ -135,6 +136,15 @@ test('doubles use one bookmaker, different matches and exact combined formulas',
   });
   const crossBookmaker = coupons.selectDoubles([a, { ...b, bookmaker: 'Marathonbet' }]);
   assert.equal(crossBookmaker.candidates, 0);
+  const crossWinline = coupons.selectDoubles([
+    { ...a, bookmaker: 'Winline' }, { ...b, bookmaker: 'Marathonbet' },
+  ]);
+  assert.equal(crossWinline.candidates, 0);
+  const sameWinline = coupons.selectDoubles([
+    { ...a, bookmaker: 'Winline' }, { ...b, bookmaker: 'Winline' },
+  ]);
+  assert.equal(sameWinline.coupons.length, 1);
+  assert.ok(sameWinline.coupons[0].legs.every(leg => leg.bookmaker === 'Winline'));
   const sameMatch = coupons.selectDoubles([a, { ...b, model_key: a.model_key }]);
   assert.equal(sameMatch.candidates, 0);
   const result = coupons.selectDoubles([a, b]);
@@ -158,6 +168,13 @@ test('double selection excludes teams used in earlier sessions and repeated team
   assert.equal(coupons.selectDoubles([a, b], { usedTeams: ['  newcastle  '] }).candidates, 0);
 });
 
+test('Winline enriched lines participate in the common builder index', () => {
+  const index = coupons.indexLines({
+    Winline: { status: 'ok', matches: [line({ bookmaker: 'Winline', match_id: '17132350' })] },
+  });
+  assert.equal(index.get('Winline|17132350').bookmaker, 'Winline');
+});
+
 test('processed empty day is ok; missing sources and matches have distinct statuses', () => {
   const base = {
     date: DAY, data: {}, models: {}, gated: { generatedAt: NOW, fixtures: [] },
@@ -165,9 +182,14 @@ test('processed empty day is ok; missing sources and matches have distinct statu
   };
   const ok = coupons.buildArtifact({
     ...base, matching: [{ status: 'matched', bookmaker: 'Fonbet' }],
-    snapshots: { Fonbet: { status: 'ok', matches: [] }, Marathonbet: { status: 'source_unavailable' } },
+    snapshots: {
+      Fonbet: { status: 'ok', matches: [] },
+      Marathonbet: { status: 'source_unavailable' },
+      Winline: { status: 'source_unavailable' },
+    },
   });
   assert.equal(ok.artifact.data_status, 'ok');
+  assert.equal(ok.artifact.sources.Winline.status, 'source_unavailable');
   assert.deepEqual(ok.artifact.prepared_coupons, []);
   assert.deepEqual(ok.diagnostics.rejected, []);
   const noMatch = coupons.buildArtifact({
