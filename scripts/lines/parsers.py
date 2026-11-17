@@ -16,6 +16,18 @@ FONBET_SEED_HOSTS = (
     "https://line-vk02-w.bk6bba-resources.ru",
 )
 FONBET_CONFIG_URL = "https://fon.bet/urls.json"
+FONBET_TEAM_GOAL_FACTORS = {
+    1809: ("IT_HOME_GOALS", "ИТБ1"), 1810: ("IT_HOME_GOALS", "ИТМ1"),
+    1815: ("IT_HOME_GOALS", "ИТБ1"), 1816: ("IT_HOME_GOALS", "ИТМ1"),
+    1821: ("IT_HOME_GOALS", "ИТБ1"), 1822: ("IT_HOME_GOALS", "ИТМ1"),
+    1854: ("IT_AWAY_GOALS", "ИТБ2"), 1871: ("IT_AWAY_GOALS", "ИТМ2"),
+    1880: ("IT_AWAY_GOALS", "ИТБ2"), 1881: ("IT_AWAY_GOALS", "ИТМ2"),
+    1886: ("IT_AWAY_GOALS", "ИТБ2"), 1887: ("IT_AWAY_GOALS", "ИТМ2"),
+}
+FONBET_CORNER_FACTORS = {
+    930: "ТБ", 931: "ТМ", 1696: "ТБ", 1697: "ТМ",
+    1727: "ТБ", 1728: "ТМ", 1730: "ТБ", 1731: "ТМ",
+}
 MARATHON_MAIN_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/main/sports/events"
 MARATHON_TOURNAMENT_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/tournaments/by-slug"
 MARATHON_NATIONS_SLUG = "uefa-nations-league"
@@ -371,10 +383,10 @@ def parse_marathon_snapshots(
     return sorted(combined.values(), key=lambda item: (item["start_time"], item["team1"], item["match_id"]))
 
 
-def parse_fonbet_detail(payload: dict[str, Any], event_id: str) -> dict[str, dict[str, float]]:
-    blocks = [block for block in payload.get("customFactors", [])
-              if isinstance(block, dict) and str(block.get("e")) == str(event_id)]
-    totals: dict[str, dict[str, float]] = {}
+def _fonbet_total_factors(
+    blocks: Iterable[dict[str, Any]],
+    allowed_codes: set[int],
+) -> Iterable[tuple[int, float, str]]:
     for block in blocks:
         for factor in block.get("factors", []):
             if not isinstance(factor, dict):
@@ -384,15 +396,58 @@ def parse_fonbet_detail(payload: dict[str, Any], event_id: str) -> dict[str, dic
                 value = float(factor.get("v"))
             except (TypeError, ValueError):
                 continue
-            if code not in (930, 931) or not valid_odds(value):
+            if code not in allowed_codes or not valid_odds(value):
                 continue
             line = str(factor.get("pt") or "").strip().replace(",", ".")
-            if not re.fullmatch(r"\d+(?:\.\d+)?", line):
-                continue
-            totals.setdefault(line, {})["ТБ" if code == 930 else "ТМ"] = value
-    if not totals:
+            if re.fullmatch(r"\d+(?:\.\d+)?", line):
+                yield code, value, line
+
+
+def parse_fonbet_detail(payload: dict[str, Any], event_id: str) -> dict[str, dict[str, float]]:
+    events = [event for event in payload.get("events", []) if isinstance(event, dict)]
+    if events and not any(
+        str(event.get("id")) == str(event_id) and event.get("kind") == 1
+        for event in events
+    ):
+        raise MarketAbsentError("основное событие отсутствует в снимке")
+
+    blocks = [block for block in payload.get("customFactors", []) if isinstance(block, dict)]
+    main_blocks = [block for block in blocks if str(block.get("e")) == str(event_id)]
+    main_codes = {930, 931, *FONBET_TEAM_GOAL_FACTORS}
+    goal_totals: dict[str, dict[str, float]] = {}
+    team_totals: dict[str, dict[str, dict[str, float]]] = {}
+    for code, value, line in _fonbet_total_factors(main_blocks, main_codes):
+        if code in (930, 931):
+            goal_totals.setdefault(line, {})["ТБ" if code == 930 else "ТМ"] = value
+            continue
+        market, side = FONBET_TEAM_GOAL_FACTORS[code]
+        team_totals.setdefault(market, {}).setdefault(line, {})[side] = value
+
+    result = {f"TOTAL_GOALS:{line}": sides for line, sides in goal_totals.items()}
+    expected_team_sides = {
+        "IT_HOME_GOALS": {"ИТБ1", "ИТМ1"},
+        "IT_AWAY_GOALS": {"ИТБ2", "ИТМ2"},
+    }
+    for market, totals in team_totals.items():
+        for line, sides in totals.items():
+            if set(sides) == expected_team_sides[market]:
+                result[f"{market}:{line}"] = sides
+
+    corner_event_ids = {
+        str(event.get("id")) for event in events
+        if event.get("kind") == 400100 and str(event.get("parentId")) == str(event_id)
+    }
+    corner_blocks = [block for block in blocks if str(block.get("e")) in corner_event_ids]
+    corner_totals: dict[str, dict[str, float]] = {}
+    for code, value, line in _fonbet_total_factors(corner_blocks, set(FONBET_CORNER_FACTORS)):
+        corner_totals.setdefault(line, {})[FONBET_CORNER_FACTORS[code]] = value
+    for line, sides in corner_totals.items():
+        if set(sides) == {"ТБ", "ТМ"}:
+            result[f"TOTAL_CORNERS:{line}"] = sides
+
+    if not result:
         raise MarketAbsentError("рынок отсутствует в снимке")
-    return {f"TOTAL_GOALS:{line}": sides for line, sides in totals.items()}
+    return result
 
 
 def parse_marathon_detail(
