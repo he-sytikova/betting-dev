@@ -52,3 +52,13 @@ Calculations and admission rules:
 - For a later session, `--used-teams session-teams.json` accepts an array (or `{ "teams": [] }`) of teams already used in doubles. Such teams are excluded from new doubles.
 
 The full rejection journal is written to `probe-out/lines_YYYY-MM-DD/coupon-diagnostics.json` by default. The public JSON contains aggregate diagnostics only. Raw responses, snapshots and the detailed journal are not committed. A processed day with no qualifying coupons is published as `data_status: "ok"` with an empty `prepared_coupons` array; no demonstration probabilities or coupons are synthesized.
+
+## Automated daily publication
+
+The **Build daily prepared coupons** workflow runs at 09:35 Moscow time, after the 09:17 fixture refresh, and also supports manual `workflow_dispatch` with an optional date and detail limit. A requested date must exactly match `data.json`; a stale or malformed model snapshot stops the run before any bookmaker request and does not change the homepage artifact.
+
+The workflow has non-cancelling concurrency, so overlapping runs cannot replace each other's result. It validates acquisition, pricing, homepage normalization, source capture times, coupon limits and the mandatory `prepared` status before publication. Bookmaker responses are read-only inputs: no bet placement, stake or financial result is recorded.
+
+Only `analysis/doubles_YYYY-MM-DD.json` can be committed by this automation. Raw responses, snapshots, enriched lines and detailed diagnostics remain in the ignored `probe-out/` directory and are uploaded only as retained Actions artifacts. Unexpected acquisition or validation failures produce no repository commit. If both bookmakers complete with an unavailable status, the validated `source_unavailable` artifact is published instead.
+
+GitHub Pages deploys `analysis/*.json` changes and also runs after successful completion of **Build daily prepared coupons**, because commits made with the Actions token do not trigger an ordinary push event.
