@@ -17,9 +17,12 @@ from scripts.lines.common import (
     request_json,
 )
 from scripts.lines.parsers import (
+    MARATHON_CLUB_TOURNAMENTS,
+    MARATHON_DETAIL_MODELS,
     decode_marathon_odds,
     extract_fonbet_hosts,
     marathon_coefficient_table,
+    marathon_tournament_url,
     parse_fonbet_detail,
     parse_fonbet_snapshot,
     parse_marathon_detail,
@@ -162,6 +165,47 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(row["odds"]["home"], 2.0)
         self.assertEqual(row["markets"]["TOTAL_GOALS:3.5"], {"ТБ": 1.8, "ТМ": 2.0})
 
+    def test_marathon_club_tournament_mapping_is_complete(self):
+        expected = {
+            "B1": "belgium-1st-division-a", "BRA": "brazil-serie-a",
+            "D1": "germany-bundesliga", "D2": "germany-bundesliga-2",
+            "E0": "england-premier-league", "E1": "england-championship",
+            "E2": "england-league-1", "E3": "england-league-2",
+            "F1": "france-ligue-1", "F2": "france-ligue-2",
+            "G1": "greece-super-league", "I1": "italy-serie-a", "I2": "italy-serie-b",
+            "N1": "netherlands-eredivisie", "NOR": "norway-eliteserien",
+            "P1": "portugal-primeira-liga", "RUS": "russia-premier-league",
+            "SC0": "scotland-premiership", "SC1": "scotland-championship",
+            "SP1": "spain-primera-division", "SP2": "spain-segunda-division",
+            "SWE": "sweden-allsvenskan", "T1": "turkey-super-lig", "USA": "usa-mls",
+        }
+        self.assertEqual(MARATHON_CLUB_TOURNAMENTS, expected)
+        self.assertEqual(len(set(expected.values())), 24)
+        self.assertEqual(marathon_tournament_url("belgium-1st-division-a"),
+                         "https://new.marathonbet.ru/eag/event-line/api/v1/tournaments/by-slug"
+                         "?sportSlug=football&champSlug=belgium-1st-division-a")
+
+    def test_marathon_tournament_snapshots_deduplicate_by_event_id(self):
+        club_event = dict(marathon_event(), eventId=201, treeId=301,
+                          seo={"tournament": {"name": "Бельгия. 1-й дивизион A"},
+                               "matchSlug": "denmark-vs-norway"})
+        rows = parse_marathon_snapshots(
+            {"items": [{"events": [marathon_event()]}]},
+            {"prematchEvents": [marathon_event()]},
+            {"payload": {}}, "2026-11-17",
+            {"B1": {"prematchEvents": [marathon_event(), club_event]}},
+        )
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[0]["sources"], ["main", "nations", "tournament:B1"])
+        self.assertEqual(rows[1]["match_id"], "201")
+        self.assertEqual(rows[1]["sources"], ["tournament:B1"])
+        self.assertEqual(set(rows[0]["markets"]), {"DC", "TOTAL_GOALS:3.5"})
+        self.assertEqual(MARATHON_DETAIL_MODELS, {
+            "MTCH_TTLG": "TOTAL_GOALS", "MTCH_T1TTLG": "IT_HOME_GOALS",
+            "MTCH_T2TTLG": "IT_AWAY_GOALS", "MTCH_CRNR_TTL": "TOTAL_CORNERS",
+            "MTCH_CRNR_T1TTL": "IT_HOME_CORNERS", "MTCH_CRNR_T2TTL": "IT_AWAY_CORNERS",
+        })
+
     def test_marathon_detail_whitelist_and_three_way_exclusion(self):
         payload = {"markets": {
             "1": {"model": "MTCH_T1TTLG", "name": "Тотал голов (Дания)", "selections": {
@@ -275,6 +319,45 @@ class MatchingAndIntegrationTests(unittest.TestCase):
             self.assertEqual(summary["detail"], {"limit_exceeded": 1})
             enriched = json.loads((root / "out/enriched/marathonbet.json").read_text(encoding="utf-8"))
             self.assertEqual(enriched["matches"][0]["detail_status"], "limit_exceeded")
+
+
+class MarathonAcquisitionTests(unittest.TestCase):
+    def test_club_tournament_failure_is_partial_and_raw_files_are_audited(self):
+        calls = []
+
+        def fake_request(url, **kwargs):
+            calls.append(url)
+            if "champSlug=belgium-1st-division-a" in url:
+                raise AcquisitionError("source_unavailable", "B1 unavailable", url=url, http_status=503)
+            if "tournaments/by-slug" in url:
+                has_event = "champSlug=uefa-nations-league" in url or "champSlug=england-premier-league" in url
+                payload = {"prematchEvents": [marathon_event()] if has_event else []}
+            elif url == acquisition.MARATHON_TABLE_URL:
+                payload = {"payload": {}}
+            else:
+                payload = {"items": []}
+            body = json.dumps(payload).encode()
+            return acquisition.FetchResult(payload, body, url, "requested", "received", 200, 1)
+
+        with tempfile.TemporaryDirectory() as directory:
+            raw_dir = Path(directory) / "raw"
+            with mock.patch.object(acquisition, "request_json", side_effect=fake_request):
+                snapshot = acquisition._fetch_marathon(
+                    "2026-11-17", raw_dir, opener=mock.Mock(), sleeper=lambda _: None,
+                )
+            self.assertEqual(snapshot["status"], "partial")
+            self.assertEqual(len(calls), 27)
+            self.assertEqual(snapshot["tournaments"]["B1"]["status"], "unavailable")
+            self.assertEqual(snapshot["tournaments"]["E0"]["status"], "ok")
+            self.assertEqual(snapshot["tournaments"]["NATIONS"]["status"], "ok")
+            self.assertEqual(snapshot["matches"][0]["sources"], ["nations", "tournament:E0"])
+            self.assertEqual(snapshot["errors"][0]["league_code"], "B1")
+            self.assertNotIn("tournament_b1", snapshot["raw_paths"])
+            self.assertTrue((raw_dir / "marathonbet_tournament_e0.json").is_file())
+            self.assertFalse((raw_dir / "marathonbet_tournament_b1.json").exists())
+            self.assertTrue((raw_dir / "marathonbet_main.json").is_file())
+            self.assertTrue((raw_dir / "marathonbet_nations.json").is_file())
+            self.assertTrue((raw_dir / "marathonbet_table.json").is_file())
 
 
 class ModelGateCliTests(unittest.TestCase):
