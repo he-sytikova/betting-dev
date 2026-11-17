@@ -1,0 +1,661 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-17",
+  "purpose": "Единый справочник активных модельных рынков и фактического read-only покрытия Fonbet/Marathonbet; не изменяет отбор и расчёты.",
+  "source_models": [
+    {
+      "id": "club_goals",
+      "data": "data/goals_markets_models.json",
+      "runtime": "goals-internal-model.js",
+      "page": "goals-model.html"
+    },
+    {
+      "id": "club_corners_cards",
+      "data": "data/corners_cards_models.json",
+      "runtime": "internal-model.js",
+      "page": "model-v1.html"
+    },
+    {
+      "id": "club_stats",
+      "data": "data/stats_markets_models.json",
+      "runtime": "stats-internal-model.js",
+      "page": "stats-model.html"
+    },
+    {
+      "id": "nations",
+      "data": "data/nt_model.json",
+      "runtime": "nt-internal-model.js",
+      "page": "nt-model.html"
+    }
+  ],
+  "competition_groups": {
+    "club_goals": {
+      "kind": "clubs",
+      "leagues": {
+        "B1": "Belgium - First Division",
+        "BRA": "Brazil - Serie A",
+        "D1": "Germany - Bundesliga",
+        "D2": "Germany - 2. Bundesliga",
+        "E0": "England - Premier League",
+        "E1": "England - Championship",
+        "E2": "England - League One",
+        "E3": "England - League Two",
+        "F1": "France - Ligue 1",
+        "F2": "France - Ligue 2",
+        "G1": "Greece - Super League",
+        "I1": "Italy - Serie A",
+        "I2": "Italy - Serie B",
+        "N1": "Netherlands - Eredivisie",
+        "NOR": "Norway - Eliteserien",
+        "P1": "Portugal - Primeira Liga",
+        "RUS": "Russia - Premier League",
+        "SC0": "Scotland - Premiership",
+        "SC1": "Scotland - Championship",
+        "SP1": "Spain - La Liga",
+        "SP2": "Spain - Segunda",
+        "SWE": "Sweden - Allsvenskan",
+        "T1": "Turkey - Super Lig",
+        "USA": "USA - MLS"
+      }
+    },
+    "club_statistics": {
+      "kind": "clubs",
+      "leagues": {
+        "B1": "Belgium - First Division",
+        "D1": "Germany - Bundesliga",
+        "D2": "Germany - 2. Bundesliga",
+        "E0": "England - Premier League",
+        "E1": "England - Championship",
+        "E2": "England - League One",
+        "E3": "England - League Two",
+        "F1": "France - Ligue 1",
+        "F2": "France - Ligue 2",
+        "G1": "Greece - Super League",
+        "I1": "Italy - Serie A",
+        "I2": "Italy - Serie B",
+        "P1": "Portugal - Primeira Liga",
+        "SC0": "Scotland - Premiership",
+        "SC1": "Scotland - Championship",
+        "SP1": "Spain - La Liga",
+        "SP2": "Spain - Segunda",
+        "T1": "Turkey - Super Lig"
+      }
+    },
+    "uefa_nations_league": {
+      "kind": "national_teams",
+      "competition_code": "UNL",
+      "names": [
+        "UEFA Nations League",
+        "Nations League",
+        "UEFA Nations League A",
+        "UEFA Nations League B",
+        "UEFA Nations League C",
+        "UEFA Nations League D"
+      ]
+    }
+  },
+  "policies": {
+    "period": "full_time",
+    "catalog_changes_selection": false,
+    "confirmed_means": "Код, период и нормализация проверены парсером/тестом; модельные и ценовые фильтры сохраняются.",
+    "integer_two_way_lines": "excluded_until_push_probability_model",
+    "european_cups": "excluded_from_monetary_contour",
+    "deferred_bookmakers": [
+      "Winline"
+    ],
+    "inactive_legacy_markets": [
+      "both_teams_to_score",
+      "draw_no_bet",
+      "handicaps"
+    ]
+  },
+  "markets": [
+    {
+      "id": "goals.match_result",
+      "name": "Исход матча (1X2)",
+      "statistic": "goals",
+      "scope": "match",
+      "sides": [
+        "home",
+        "draw",
+        "away"
+      ],
+      "lines": null,
+      "models": [
+        {
+          "model": "club_goals",
+          "competition_group": "club_goals",
+          "output": "p1/x/p2"
+        },
+        {
+          "model": "nations",
+          "competition_group": "uefa_nations_league",
+          "output": "p1/x/p2"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "not_applicable",
+        "bookmaker_rules_status": "existing_market"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "confirmed",
+          "codes": {
+            "home": 921,
+            "draw": 922,
+            "away": 923
+          },
+          "channel": "tournament_and_detail",
+          "normalized_key": "odds",
+          "admission": "existing_filters",
+          "note": ""
+        },
+        "Marathonbet": {
+          "status": "confirmed",
+          "codes": {
+            "home": "MTCH_R:1",
+            "draw": "MTCH_R:X",
+            "away": "MTCH_R:2"
+          },
+          "channel": "tournament",
+          "normalized_key": "odds",
+          "admission": "existing_filters",
+          "note": ""
+        }
+      }
+    },
+    {
+      "id": "goals.double_chance",
+      "name": "Двойной шанс",
+      "statistic": "goals",
+      "scope": "match",
+      "sides": [
+        "1X",
+        "12",
+        "X2"
+      ],
+      "lines": null,
+      "models": [
+        {
+          "model": "club_goals",
+          "competition_group": "club_goals",
+          "output": "dc1x/dc12/dcx2"
+        },
+        {
+          "model": "nations",
+          "competition_group": "uefa_nations_league",
+          "output": "dc1x/dc12/dcx2"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "not_applicable",
+        "bookmaker_rules_status": "existing_market"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "confirmed",
+          "codes": {
+            "1X": 924,
+            "12": 1571,
+            "X2": 925
+          },
+          "channel": "tournament_and_detail",
+          "normalized_key": "DC",
+          "admission": "existing_filters",
+          "note": ""
+        },
+        "Marathonbet": {
+          "status": "confirmed",
+          "codes": {
+            "1X": "MTCH_DC:1X",
+            "12": "MTCH_DC:12",
+            "X2": "MTCH_DC:X2"
+          },
+          "channel": "tournament",
+          "normalized_key": "DC",
+          "admission": "existing_filters",
+          "note": ""
+        }
+      }
+    },
+    {
+      "id": "goals.total",
+      "name": "Общий тотал голов",
+      "statistic": "goals",
+      "scope": "match",
+      "sides": [
+        "over",
+        "under"
+      ],
+      "lines": [
+        1.5,
+        2.5,
+        3.5,
+        4.5
+      ],
+      "models": [
+        {
+          "model": "club_goals",
+          "competition_group": "club_goals",
+          "output": "totalGoals"
+        },
+        {
+          "model": "nations",
+          "competition_group": "uefa_nations_league",
+          "output": "totals"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "excluded_until_push_probability_model",
+        "bookmaker_rules_status": "existing_market"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "confirmed",
+          "codes": {
+            "over": 930,
+            "under": 931,
+            "line_parameter": "pt"
+          },
+          "channel": "tournament_and_detail",
+          "normalized_key": "TOTAL_GOALS",
+          "admission": "existing_filters",
+          "note": ""
+        },
+        "Marathonbet": {
+          "status": "confirmed",
+          "codes": {
+            "market": "MTCH_TTLG",
+            "over": "Больше",
+            "under": "Меньше"
+          },
+          "channel": "detail",
+          "normalized_key": "TOTAL_GOALS",
+          "admission": "existing_filters",
+          "note": ""
+        }
+      }
+    },
+    {
+      "id": "goals.team_total.home",
+      "name": "Индивидуальный тотал голов хозяев",
+      "statistic": "goals",
+      "scope": "home_team",
+      "sides": [
+        "over",
+        "under"
+      ],
+      "lines": [
+        0.5,
+        1.5,
+        2.5
+      ],
+      "models": [
+        {
+          "model": "club_goals",
+          "competition_group": "club_goals",
+          "output": "teamGoals.home"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "excluded_until_push_probability_model",
+        "bookmaker_rules_status": "existing_market"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "code_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Числовые factor-коды и pt не подтверждены."
+        },
+        "Marathonbet": {
+          "status": "confirmed",
+          "codes": {
+            "market": "MTCH_T1TTLG",
+            "over": "Больше",
+            "under": "Меньше"
+          },
+          "channel": "detail",
+          "normalized_key": "IT_HOME_GOALS",
+          "admission": "existing_filters",
+          "note": ""
+        }
+      }
+    },
+    {
+      "id": "goals.team_total.away",
+      "name": "Индивидуальный тотал голов гостей",
+      "statistic": "goals",
+      "scope": "away_team",
+      "sides": [
+        "over",
+        "under"
+      ],
+      "lines": [
+        0.5,
+        1.5,
+        2.5
+      ],
+      "models": [
+        {
+          "model": "club_goals",
+          "competition_group": "club_goals",
+          "output": "teamGoals.away"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "excluded_until_push_probability_model",
+        "bookmaker_rules_status": "existing_market"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "code_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Числовые factor-коды и pt не подтверждены."
+        },
+        "Marathonbet": {
+          "status": "confirmed",
+          "codes": {
+            "market": "MTCH_T2TTLG",
+            "over": "Больше",
+            "under": "Меньше"
+          },
+          "channel": "detail",
+          "normalized_key": "IT_AWAY_GOALS",
+          "admission": "existing_filters",
+          "note": ""
+        }
+      }
+    },
+    {
+      "id": "corners.total",
+      "name": "Общий тотал угловых",
+      "statistic": "corners",
+      "scope": "match",
+      "sides": [
+        "over",
+        "under"
+      ],
+      "lines": [
+        7.5,
+        8.5,
+        9.5,
+        10.5,
+        11.5,
+        12.5
+      ],
+      "models": [
+        {
+          "model": "club_corners_cards",
+          "competition_group": "club_statistics",
+          "output": "corners.lines"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "excluded_until_push_probability_model",
+        "bookmaker_rules_status": "existing_market"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "code_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Числовые factor-коды и pt не подтверждены."
+        },
+        "Marathonbet": {
+          "status": "confirmed",
+          "codes": {
+            "market": "MTCH_CRNR_TTL",
+            "over": "Больше",
+            "under": "Меньше"
+          },
+          "channel": "detail",
+          "normalized_key": "TOTAL_CORNERS",
+          "admission": "existing_filters",
+          "note": ""
+        }
+      }
+    },
+    {
+      "id": "yellow_cards.total",
+      "name": "Общий тотал жёлтых карточек",
+      "statistic": "yellow_cards",
+      "scope": "match",
+      "sides": [
+        "over",
+        "under"
+      ],
+      "lines": [
+        1.5,
+        2.5,
+        3.5,
+        4.5,
+        5.5,
+        6.5
+      ],
+      "models": [
+        {
+          "model": "club_corners_cards",
+          "competition_group": "club_statistics",
+          "output": "yellowCards.lines"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "excluded_until_push_probability_model",
+        "bookmaker_rules_status": "audit_required"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "code_and_settlement_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Нужны коды и правила второй жёлтой, карточек заменённым, запасным и персоналу."
+        },
+        "Marathonbet": {
+          "status": "code_and_settlement_audit_required",
+          "codes": {},
+          "channel": "tournament_label_only",
+          "normalized_key": "TOTAL_CARDS",
+          "admission": "blocked",
+          "note": "Подпись в snapshot распознана; detail-код и правила расчёта не подтверждены."
+        }
+      }
+    },
+    {
+      "id": "fouls.total",
+      "name": "Общий тотал фолов",
+      "statistic": "fouls",
+      "scope": "match",
+      "sides": [
+        "over",
+        "under"
+      ],
+      "lines": [
+        20.5,
+        22.5,
+        24.5,
+        26.5,
+        28.5
+      ],
+      "models": [
+        {
+          "model": "club_stats",
+          "competition_group": "club_statistics",
+          "output": "fouls.lines"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "excluded_until_push_probability_model",
+        "bookmaker_rules_status": "audit_required"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "code_and_settlement_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Нужны коды и подтверждение статистического определения фола."
+        },
+        "Marathonbet": {
+          "status": "code_and_settlement_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Нужны detail-код и подтверждение статистического определения фола."
+        }
+      }
+    },
+    {
+      "id": "shots.total",
+      "name": "Общий тотал ударов",
+      "statistic": "shots",
+      "scope": "match",
+      "sides": [
+        "over",
+        "under"
+      ],
+      "lines": [
+        19.5,
+        21.5,
+        23.5,
+        25.5,
+        27.5
+      ],
+      "models": [
+        {
+          "model": "club_stats",
+          "competition_group": "club_statistics",
+          "output": "shots.lines"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "excluded_until_push_probability_model",
+        "bookmaker_rules_status": "audit_required"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "code_and_settlement_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Нужны коды и правила учёта заблокированных и других ударов."
+        },
+        "Marathonbet": {
+          "status": "code_and_settlement_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Нужны detail-код и правила учёта заблокированных и других ударов."
+        }
+      }
+    },
+    {
+      "id": "shots_on_target.total",
+      "name": "Общий тотал ударов в створ",
+      "statistic": "shots_on_target",
+      "scope": "match",
+      "sides": [
+        "over",
+        "under"
+      ],
+      "lines": [
+        7.5,
+        8.5,
+        9.5,
+        10.5,
+        11.5
+      ],
+      "models": [
+        {
+          "model": "club_stats",
+          "competition_group": "club_statistics",
+          "output": "shotsOnTarget.lines"
+        }
+      ],
+      "settlement": {
+        "basis": "full_time",
+        "push_on_model_lines": false,
+        "integer_two_way_lines": "excluded_until_push_probability_model",
+        "bookmaker_rules_status": "audit_required"
+      },
+      "bookmakers": {
+        "Fonbet": {
+          "status": "code_and_settlement_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Нужны коды и правила отнесения ударов к ударам в створ."
+        },
+        "Marathonbet": {
+          "status": "code_and_settlement_audit_required",
+          "codes": {},
+          "channel": null,
+          "normalized_key": null,
+          "admission": "blocked",
+          "note": "Нужны detail-код и правила отнесения ударов к ударам в створ."
+        }
+      }
+    }
+  ],
+  "excluded_collected_markets": [
+    {
+      "id": "corners.team_total.home",
+      "bookmaker": "Marathonbet",
+      "code": "MTCH_CRNR_T1TTL",
+      "normalized_key": "IT_HOME_CORNERS",
+      "reason": "no_active_model_probability"
+    },
+    {
+      "id": "corners.team_total.away",
+      "bookmaker": "Marathonbet",
+      "code": "MTCH_CRNR_T2TTL",
+      "normalized_key": "IT_AWAY_CORNERS",
+      "reason": "no_active_model_probability"
+    }
+  ],
+  "excluded_models": [
+    {
+      "model": "european_cups",
+      "data": "data/euro_cups_model.json",
+      "runtime": "euro-internal-model.js",
+      "reason": "excluded_from_monetary_contour"
+    },
+    {
+      "model": "legacy_goals",
+      "runtime": "goals-model.js",
+      "reason": "not_used_by_active_goals_page"
+    }
+  ]
+}
