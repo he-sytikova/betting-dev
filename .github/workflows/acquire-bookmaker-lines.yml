@@ -38,9 +38,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install the pinned read-only browser dependency
+        run: |
+          python3 -m pip install --requirement scripts/lines/requirements-winline.txt
+          python3 -m playwright install --with-deps chromium
+
       - name: Test acquisition, pricing and homepage contracts
         run: |
-          python3 -m unittest tests.test_odds_acquisition -v
+          python3 -m unittest tests.test_odds_acquisition tests.test_winline_acquisition -v
           node --test tests/daily-coupons.test.cjs tests/daily-board.test.cjs
 
       - name: Resolve Moscow date
@@ -138,7 +143,7 @@ jobs:
             }
           }
           console.log(`Homepage artifact accepted: ${artifact.data_status}, coupons=${coupons.length}`);
-          if (!available) console.warn('Both bookmakers unavailable; source_unavailable artifact will be published');
+          if (!available) console.warn('All bookmakers unavailable; source_unavailable artifact will be published');
           NODE
 
       - name: Upload raw responses, snapshots and audit
