@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Acquire Fonbet/Marathonbet lines for a Moscow day without forming coupons."""
+"""Acquire Fonbet/Marathonbet/Winline lines for a Moscow day without forming coupons."""
 
 import argparse
 import json

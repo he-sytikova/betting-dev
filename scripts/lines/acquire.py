@@ -40,6 +40,7 @@ from .parsers import (
     parse_marathon_detail,
     parse_marathon_snapshots,
 )
+from .winline import WinlineBrowser, parse_winline_detail, fetch_winline_snapshot
 
 BROWSER_HEADERS = {"User-Agent": "Mozilla/5.0", "Accept-Encoding": "identity"}
 
@@ -242,6 +243,10 @@ def _fetch_marathon(
     }
 
 
+def _fetch_winline(target_date: str, raw_dir: Path, *, browser: WinlineBrowser) -> dict[str, Any]:
+    return fetch_winline_snapshot(target_date, raw_dir, browser)
+
+
 def _detail_url(bookmaker: str, line: dict[str, Any], fonbet_host: str | None) -> tuple[str, str]:
     if bookmaker == "Fonbet":
         if not fonbet_host:
@@ -274,14 +279,15 @@ def incomplete_markets(line: dict[str, Any]) -> list[str]:
     return sorted(incomplete)
 
 
-def acquire_lines(
+def _acquire_lines(
     target_date: str,
     fixtures_path: Path,
     output_dir: Path,
     *,
-    limit: int = 40,
-    opener: Callable[..., Any] = urllib.request.urlopen,
-    sleeper: Callable[[float], None] = time.sleep,
+    limit: int,
+    opener: Callable[..., Any],
+    sleeper: Callable[[float], None],
+    winline_browser: WinlineBrowser,
 ) -> dict[str, Any]:
     if not 0 <= limit <= 40:
         raise ValueError("Detail request limit must be between 0 and 40")
@@ -292,7 +298,8 @@ def acquire_lines(
 
     fonbet, fonbet_host = _fetch_fonbet(target_date, raw_dir, opener=opener, sleeper=sleeper)
     marathon = _fetch_marathon(target_date, raw_dir, opener=opener, sleeper=sleeper)
-    snapshots = {"Fonbet": fonbet, "Marathonbet": marathon}
+    winline = _fetch_winline(target_date, raw_dir, browser=winline_browser)
+    snapshots = {"Fonbet": fonbet, "Marathonbet": marathon, "Winline": winline}
     for bookmaker, snapshot in snapshots.items():
         write_json(snapshot_dir / f"{bookmaker.lower()}.json", snapshot)
         print(f"{bookmaker}: {snapshot['status']}, matches={len(snapshot.get('matches', []))}", flush=True)
@@ -318,22 +325,39 @@ def acquire_lines(
             continue
         attempted = False
         try:
-            detail_id, url = _detail_url(bookmaker, line, fonbet_host)
+            detail_id = str(line["match_id"])
             record["detail_id"] = detail_id
             if requests_by_bookmaker[bookmaker]:
                 sleeper(1.0)
-            headers = BROWSER_HEADERS if bookmaker == "Fonbet" else MARATHON_HEADERS
             attempted = True
-            response = request_json(url, headers=headers, opener=opener, sleeper=sleeper)
             raw_path = detail_dir / f"{bookmaker.lower()}_{detail_id}.json"
-            write_raw(raw_path, response.raw_body)
-            markets = (parse_fonbet_detail(response.payload, detail_id) if bookmaker == "Fonbet"
-                       else parse_marathon_detail(response.payload, marathon_table))
+            if bookmaker == "Winline":
+                url = str(line.get("detail_url") or "")
+                if not url:
+                    raise AcquisitionError("source_unavailable", "Winline: URL события отсутствует")
+                response = winline_browser.detail(url)
+                write_json(raw_path, response.payload)
+                parsed = parse_winline_detail(
+                    response.payload,
+                    str(line.get("source_team1") or line["team1"]),
+                    str(line.get("source_team2") or line["team2"]),
+                )
+                line.setdefault("odds", {}).update(parsed.pop("1X2", {}))
+                markets = parsed
+                record["url"] = response.url
+            else:
+                detail_id, url = _detail_url(bookmaker, line, fonbet_host)
+                record["detail_id"] = detail_id
+                headers = BROWSER_HEADERS if bookmaker == "Fonbet" else MARATHON_HEADERS
+                response = request_json(url, headers=headers, opener=opener, sleeper=sleeper)
+                write_raw(raw_path, response.raw_body)
+                markets = (parse_fonbet_detail(response.payload, detail_id) if bookmaker == "Fonbet"
+                           else parse_marathon_detail(response.payload, marathon_table))
             line.setdefault("markets", {}).update(markets)
             line["detail_status"] = "ok"
             line["detail_captured_at_utc"] = response.received_at_utc
             record.update(status="ok", raw_path=raw_path.as_posix(),
-                          captured_at_utc=response.received_at_utc, attempts=response.attempts)
+                          captured_at_utc=response.received_at_utc, attempts=getattr(response, "attempts", 1))
         except MarketAbsentError as exc:
             line["detail_status"] = "market_absent"
             record.update(status="market_absent", message=str(exc))
@@ -376,3 +400,26 @@ def acquire_lines(
     write_json(output_dir / "summary.json", summary)
     write_json(output_dir / "matching.json", matching)
     return summary
+
+
+def acquire_lines(
+    target_date: str,
+    fixtures_path: Path,
+    output_dir: Path,
+    *,
+    limit: int = 40,
+    opener: Callable[..., Any] = urllib.request.urlopen,
+    sleeper: Callable[[float], None] = time.sleep,
+    winline_browser: WinlineBrowser | None = None,
+) -> dict[str, Any]:
+    """Acquire all sources; one Winline browser session is always closed."""
+    owned_browser = winline_browser is None
+    browser = winline_browser or WinlineBrowser()
+    try:
+        return _acquire_lines(
+            target_date, fixtures_path, output_dir,
+            limit=limit, opener=opener, sleeper=sleeper, winline_browser=browser,
+        )
+    finally:
+        if owned_browser:
+            browser.close()
