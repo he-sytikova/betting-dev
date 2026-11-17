@@ -25,11 +25,14 @@ from .common import (
 from .parsers import (
     FONBET_CONFIG_URL,
     FONBET_SEED_HOSTS,
+    MARATHON_CLUB_TOURNAMENTS,
     MARATHON_DETAIL_URL,
     MARATHON_HEADERS,
     MARATHON_MAIN_URL,
+    MARATHON_NATIONS_SLUG,
     MARATHON_NATIONS_URL,
     MARATHON_TABLE_URL,
+    marathon_tournament_url,
     extract_fonbet_hosts,
     marathon_coefficient_table,
     parse_fonbet_detail,
@@ -179,36 +182,60 @@ def _fetch_marathon(
     sleeper: Callable[[float], None],
 ) -> dict[str, Any]:
     responses: dict[str, FetchResult | None] = {"main": None, "nations": None, "table": None}
+    responses.update({f"tournament_{code.lower()}": None for code in MARATHON_CLUB_TOURNAMENTS})
+    resources: list[tuple[str, str, dict[str, Any]]] = [
+        ("main", MARATHON_MAIN_URL, {}),
+        ("nations", MARATHON_NATIONS_URL, {"champ_slug": MARATHON_NATIONS_SLUG}),
+        ("table", MARATHON_TABLE_URL, {}),
+    ]
+    resources.extend(
+        (f"tournament_{code.lower()}", marathon_tournament_url(slug),
+         {"league_code": code, "champ_slug": slug})
+        for code, slug in MARATHON_CLUB_TOURNAMENTS.items()
+    )
     errors: list[dict[str, Any]] = []
-    for name, url in (("main", MARATHON_MAIN_URL), ("nations", MARATHON_NATIONS_URL), ("table", MARATHON_TABLE_URL)):
+    for name, url, context in resources:
         try:
             response = request_json(url, headers=MARATHON_HEADERS, opener=opener, sleeper=sleeper)
             responses[name] = response
             write_raw(raw_dir / f"marathonbet_{name}.json", response.raw_body)
         except AcquisitionError as exc:
-            errors.append({"stage": name, **exc.as_dict()})
+            errors.append({"stage": name, **context, **exc.as_dict()})
     main = responses["main"].payload if responses["main"] else None
     nations = responses["nations"].payload if responses["nations"] else None
     table = responses["table"].payload if responses["table"] else {}
-    if main is None and nations is None:
+    tournament_payloads = {
+        code: responses[f"tournament_{code.lower()}"].payload if responses[f"tournament_{code.lower()}"] else None
+        for code in MARATHON_CLUB_TOURNAMENTS
+    }
+    if not any(responses[name] for name in responses if name != "table"):
         status = errors[-1]["status"] if errors else "source_unavailable"
         snapshot = _error_snapshot("Marathonbet", target_date, AcquisitionError(status, "Marathonbet: линия недоступна"))
         snapshot["errors"] = errors
         return snapshot
     try:
-        matches = parse_marathon_snapshots(main, nations, table, target_date)
+        matches = parse_marathon_snapshots(main, nations, table, target_date, tournament_payloads)
     except (ValueError, TypeError, KeyError) as exc:
         snapshot = _error_snapshot("Marathonbet", target_date, AcquisitionError("schema_changed", str(exc)))
         snapshot["errors"] = errors
         return snapshot
     received = [response.received_at_utc for response in responses.values() if response]
+    event_sources = ("main", "nations", *(f"tournament_{code.lower()}" for code in MARATHON_CLUB_TOURNAMENTS))
+    tournaments = {
+        "NATIONS": {"champ_slug": MARATHON_NATIONS_SLUG,
+                    "status": "ok" if responses["nations"] else "unavailable"},
+        **{code: {"champ_slug": slug,
+                  "status": "ok" if responses[f"tournament_{code.lower()}"] else "unavailable"}
+           for code, slug in MARATHON_CLUB_TOURNAMENTS.items()},
+    }
     return {
         "bookmaker": "Marathonbet", "target_date": target_date,
-        "status": "partial" if main is None or nations is None else "ok",
+        "status": "partial" if any(responses[name] is None for name in event_sources) else "ok",
         "captured_at_utc": max(received) if received else utc_now_iso(),
         "sources": {name: response.metadata() for name, response in responses.items() if response},
         "raw_paths": {name: (raw_dir / f"marathonbet_{name}.json").as_posix()
                       for name, response in responses.items() if response},
+        "tournaments": tournaments,
         "errors": errors,
         "coefficient_table": "server" if responses["table"] else "formula_fallback",
         "matches": matches,

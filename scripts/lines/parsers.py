@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import math
 import re
+import urllib.parse
 from typing import Any, Iterable
 
 from .common import MarketAbsentError, moscow_day, parse_moment, valid_odds
@@ -16,10 +17,43 @@ FONBET_SEED_HOSTS = (
 )
 FONBET_CONFIG_URL = "https://fon.bet/urls.json"
 MARATHON_MAIN_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/main/sports/events"
-MARATHON_NATIONS_URL = (
-    "https://new.marathonbet.ru/eag/event-line/api/v1/tournaments/by-slug"
-    "?sportSlug=football&champSlug=uefa-nations-league"
-)
+MARATHON_TOURNAMENT_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/tournaments/by-slug"
+MARATHON_NATIONS_SLUG = "uefa-nations-league"
+MARATHON_CLUB_TOURNAMENTS = {
+    "B1": "belgium-1st-division-a",
+    "BRA": "brazil-serie-a",
+    "D1": "germany-bundesliga",
+    "D2": "germany-bundesliga-2",
+    "E0": "england-premier-league",
+    "E1": "england-championship",
+    "E2": "england-league-1",
+    "E3": "england-league-2",
+    "F1": "france-ligue-1",
+    "F2": "france-ligue-2",
+    "G1": "greece-super-league",
+    "I1": "italy-serie-a",
+    "I2": "italy-serie-b",
+    "N1": "netherlands-eredivisie",
+    "NOR": "norway-eliteserien",
+    "P1": "portugal-primeira-liga",
+    "RUS": "russia-premier-league",
+    "SC0": "scotland-premiership",
+    "SC1": "scotland-championship",
+    "SP1": "spain-primera-division",
+    "SP2": "spain-segunda-division",
+    "SWE": "sweden-allsvenskan",
+    "T1": "turkey-super-lig",
+    "USA": "usa-mls",
+}
+
+
+def marathon_tournament_url(champ_slug: str) -> str:
+    return MARATHON_TOURNAMENT_URL + "?" + urllib.parse.urlencode({
+        "sportSlug": "football", "champSlug": champ_slug,
+    })
+
+
+MARATHON_NATIONS_URL = marathon_tournament_url(MARATHON_NATIONS_SLUG)
 MARATHON_TABLE_URL = "https://new.marathonbet.ru/client-gate/dictionary/coefficient-table?oddsType=Decimal"
 MARATHON_DETAIL_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/events/{}"
 MARATHON_HEADERS = {
@@ -307,20 +341,24 @@ def parse_marathon_snapshots(
     nations_payload: dict[str, Any] | None,
     table_payload: Any,
     target_date: str,
+    tournament_payloads: dict[str, dict[str, Any] | None] | None = None,
 ) -> list[dict[str, Any]]:
+    """Combine main and tournament snapshots by Marathon eventId."""
     table = marathon_coefficient_table(table_payload)
     sources: list[tuple[str, Any]] = [("main", main_payload), ("nations", nations_payload)]
+    for league_code, payload in (tournament_payloads or {}).items():
+        sources.append((f"tournament:{league_code}", payload))
     combined: dict[str, dict[str, Any]] = {}
     for source, payload in sources:
         if not isinstance(payload, dict):
             continue
         events: list[dict[str, Any]] = []
-        if source == "nations":
-            events = [item for item in payload.get("prematchEvents", []) if isinstance(item, dict)]
-        else:
+        if source == "main":
             for item in payload.get("items", []):
                 if isinstance(item, dict):
                     events.extend(event for event in item.get("events", []) if isinstance(event, dict))
+        else:
+            events = [item for item in payload.get("prematchEvents", []) if isinstance(item, dict)]
         for event in events:
             parsed = parse_marathon_event(event, target_date, table, source)
             if not parsed:
