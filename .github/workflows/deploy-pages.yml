@@ -10,12 +10,13 @@ on:
       - "styles.css"
       - "data.json"
       - "data/*.json"
+      - "analysis/*.json"
       - ".github/workflows/deploy-pages.yml"
   # Коммиты ботов (Refresh/Retrain) не триггерят push-ивенты, поэтому
   # деплоим и по успешному завершению этих workflow — иначе сайт
   # продолжает отдавать вчерашний снимок.
   workflow_run:
-    workflows: ["Refresh dev fixture schedule", "Retrain internal models", "Fetch The Odds API consensus", "Fetch fixtures for a specific date"]
+    workflows: ["Refresh dev fixture schedule", "Retrain internal models", "Fetch The Odds API consensus", "Fetch fixtures for a specific date", "Build daily prepared coupons"]
     types: [completed]
     branches: [main]
 
