@@ -1,12 +1,15 @@
 :root {
-  --access-bg: oklch(0.17 0.018 215);
-  --access-card: oklch(0.22 0.025 215);
-  --access-line: oklch(0.37 0.035 200);
-  --access-text: oklch(0.96 0.008 190);
-  --access-muted: oklch(0.73 0.025 200);
-  --access-accent: oklch(0.82 0.14 165);
-  --access-accent-dark: oklch(0.24 0.055 185);
-  --access-error: oklch(0.76 0.15 25);
+  --access-ink-950: oklch(0.145 0.008 260);
+  --access-ink-900: oklch(0.21 0.01 260);
+  --access-mint-400: oklch(0.85 0.18 165);
+  --access-text-100: oklch(0.96 0.005 165);
+  --access-text-400: oklch(0.76 0.01 260);
+  --access-danger-400: oklch(0.75 0.15 25);
+}
+
+html.access-pending,
+html.access-locked {
+  background: var(--access-ink-950);
 }
 
 html.access-pending body > :not(.access-gate),
@@ -19,6 +22,9 @@ html.access-locked body {
 }
 
 .access-gate {
+  --access-bg: var(--access-ink-950);
+  --access-surface: var(--access-ink-900);
+  --access-accent: var(--access-mint-400);
   position: fixed;
   inset: 0;
   z-index: 100;
@@ -27,141 +33,129 @@ html.access-locked body {
   min-height: 100dvh;
   padding: 24px;
   overflow-y: auto;
-  color: var(--access-text);
-  background:
-    radial-gradient(circle at 15% 10%, oklch(0.32 0.07 190 / 0.34), transparent 36rem),
-    radial-gradient(circle at 90% 85%, oklch(0.3 0.09 165 / 0.2), transparent 32rem),
-    var(--access-bg);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--access-bg);
+  color: var(--access-text-100);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.access-card {
-  width: min(100%, 440px);
-  padding: clamp(28px, 5vw, 46px);
-  border: 1px solid var(--access-line);
-  border-radius: 24px;
-  background: var(--access-card);
-  box-shadow: 0 28px 80px oklch(0.08 0.02 220 / 0.46);
+.access-gate__panel {
+  width: min(100%, 420px);
+  padding: 32px;
+  border: 1px solid color-mix(in oklch, var(--access-text-100) 16%, transparent);
+  border-radius: 8px;
+  background: var(--access-surface);
 }
 
-.access-kicker {
-  margin: 0 0 22px;
+.access-gate__label {
+  margin: 0 0 24px;
   color: var(--access-accent);
-  font-size: 11px;
-  font-weight: 750;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
-.access-card h1 {
-  margin: 0;
-  font-size: clamp(30px, 7vw, 40px);
-  line-height: 1.08;
-  letter-spacing: -0.035em;
+.access-gate h1 {
+  margin: 0 0 12px;
+  font-size: clamp(28px, 7vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
 }
 
-.access-description {
-  margin: 16px 0 28px;
-  color: var(--access-muted);
-  font-size: 15px;
+.access-gate__intro {
+  margin: 0 0 28px;
+  color: var(--access-text-400);
+  font-size: 16px;
   line-height: 1.6;
 }
 
-.access-label {
-  display: block;
-  margin: 18px 0 8px;
-  font-size: 13px;
-  font-weight: 650;
+.access-form {
+  display: grid;
+  gap: 12px;
 }
 
-.access-input {
+.access-form label {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.access-form input {
   box-sizing: border-box;
   width: 100%;
   min-height: 48px;
   padding: 12px 14px;
-  border: 1px solid var(--access-line);
-  border-radius: 12px;
+  border: 1px solid color-mix(in oklch, var(--access-text-100) 24%, transparent);
+  border-radius: 6px;
   outline: none;
-  color: var(--access-text);
-  background: oklch(0.17 0.018 215 / 0.7);
-  font: inherit;
+  background: var(--access-bg);
+  color: var(--access-text-100);
   font-size: 16px;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  line-height: 1.5;
 }
 
-.access-input:focus {
-  border-color: var(--access-accent);
-  box-shadow: 0 0 0 3px oklch(0.82 0.14 165 / 0.14);
-}
-
-.access-password-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 8px;
-}
-
-.access-toggle {
-  min-width: 92px;
-  padding: 0 12px;
-  border: 1px solid var(--access-line);
-  border-radius: 12px;
-  color: var(--access-muted);
-  background: transparent;
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.access-toggle:hover {
-  color: var(--access-text);
-  border-color: var(--access-muted);
-}
-
-.access-error {
-  min-height: 22px;
-  margin: 12px 0 4px;
-  color: var(--access-error);
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.access-submit {
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 18px;
-  border: 0;
-  border-radius: 12px;
-  color: var(--access-accent-dark);
-  background: var(--access-accent);
-  font: inherit;
-  font-weight: 750;
-  cursor: pointer;
-  transition: transform 160ms ease, filter 160ms ease;
-}
-
-.access-submit:hover {
-  filter: brightness(1.06);
-  transform: translateY(-1px);
-}
-
-.access-submit:disabled {
-  cursor: wait;
-  opacity: 0.7;
-  transform: none;
-}
-
-.access-toggle:focus-visible,
-.access-submit:focus-visible,
+.access-form input:focus-visible,
+.access-form button:focus-visible,
 .access-logout:focus-visible {
   outline: 3px solid var(--access-accent);
   outline-offset: 3px;
 }
 
-.access-note {
-  margin: 24px 0 0;
-  color: var(--access-muted);
-  font-size: 12px;
-  line-height: 1.55;
-  text-align: center;
+.access-form__password {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.access-form__toggle {
+  min-width: 92px;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid color-mix(in oklch, var(--access-text-100) 24%, transparent);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--access-text-100);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.access-form__toggle:hover {
+  border-color: var(--access-accent);
+}
+
+.access-form__error {
+  margin: 4px 0 0;
+  color: var(--access-danger-400);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.access-form__submit {
+  min-height: 48px;
+  margin-top: 8px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--access-accent);
+  color: var(--access-bg);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  transition: opacity 160ms ease-out, transform 160ms ease-out;
+}
+
+.access-form__submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.access-form__submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.access-form__submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
 }
 
 .access-logout {
@@ -169,15 +163,21 @@ html.access-locked body {
   right: 16px;
   bottom: 16px;
   z-index: 90;
+  min-width: 72px;
   min-height: 44px;
-  padding: 10px 18px;
-  border: 1px solid var(--access-line);
-  border-radius: 999px;
-  color: var(--access-text);
-  background: var(--access-card);
-  box-shadow: 0 8px 28px oklch(0.08 0.02 220 / 0.28);
-  font: 600 14px/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
+  padding: 8px 14px;
+  border: 1px solid var(--access-ink-900);
+  border-radius: 6px;
+  background: var(--access-ink-950);
+  color: var(--access-text-100);
   cursor: pointer;
+  font-size: 14px;
+  opacity: 0.82;
+  transition: opacity 160ms ease-out;
+}
+
+.access-logout:hover {
+  opacity: 1;
 }
 
 @media (max-width: 480px) {
@@ -185,23 +185,14 @@ html.access-locked body {
     padding: 16px;
   }
 
-  .access-card {
-    padding: 28px 22px;
-    border-radius: 20px;
-  }
-
-  .access-password-row {
-    grid-template-columns: minmax(0, 1fr) 84px;
-  }
-
-  .access-toggle {
-    min-width: 84px;
+  .access-gate__panel {
+    padding: 24px 20px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .access-input,
-  .access-submit {
+  .access-form__submit,
+  .access-logout {
     transition: none;
   }
 }
