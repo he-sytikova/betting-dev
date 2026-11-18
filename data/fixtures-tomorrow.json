@@ -1,6 +1,6 @@
 {
  "date": "2026-11-19",
- "generatedAt": "2026-11-17T22:23:08.214389+00:00",
+ "generatedAt": "2026-11-18T07:27:17.337336+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.771815346",
@@ -38,7 +38,7 @@
    "away": "Santos"
   },
   {
-   "eventId": "s9-99.771762163",
+   "eventId": "s9-99.771853831",
    "time": "2026-11-18T22:30:00+00:00",
    "league": "Brazil. Campeonato Paraibano. Women",
    "home": "Mixto PB (Women)",
@@ -59,7 +59,7 @@
    "away": "Chapecoense"
   },
   {
-   "eventId": "s9-99.771762157",
+   "eventId": "s9-99.771853174",
    "time": "2026-11-18T23:00:00+00:00",
    "league": "Brazil. Paraiba Cup",
    "home": "Campinense Clube",
@@ -129,6 +129,41 @@
    "away": "Tauro"
   },
   {
+   "eventId": "s9-99.771867549",
+   "time": "2026-11-19T05:30:00+00:00",
+   "league": "India. Bangalore. Super Division",
+   "home": "Bangalore Dream United",
+   "away": "Agniputhra"
+  },
+  {
+   "eventId": "s9-99.771889536",
+   "time": "2026-11-19T06:00:00+00:00",
+   "league": "Friendlies",
+   "home": "Western Springs",
+   "away": "Tonga"
+  },
+  {
+   "eventId": "s9-99.771873576",
+   "time": "2026-11-19T06:00:00+00:00",
+   "league": "Philippines. UAAP",
+   "home": "Ateneo Blue Eagles",
+   "away": "UST Golden Booters"
+  },
+  {
+   "eventId": "s9-99.771870849",
+   "time": "2026-11-19T08:00:00+00:00",
+   "league": "India. Bangalore. Super Division",
+   "home": "Technico FF",
+   "away": "Kickstart"
+  },
+  {
+   "eventId": "s9-99.771846908",
+   "time": "2026-11-19T08:30:00+00:00",
+   "league": "Australian Championship",
+   "home": "Preston Lions",
+   "away": "South Hobart"
+  },
+  {
    "eventId": "s9-99.771643905",
    "time": "2026-11-19T08:30:00+00:00",
    "league": "Australian Championship",
@@ -136,11 +171,39 @@
    "away": "Wollongong Wolves"
   },
   {
+   "eventId": "s9-99.771887350",
+   "time": "2026-11-19T08:30:00+00:00",
+   "league": "Thailand. 3rd Division",
+   "home": "North Bangkok University FC",
+   "away": "Bangkapi"
+  },
+  {
    "eventId": "s9-99.771629772",
    "time": "2026-11-19T09:00:00+00:00",
    "league": "Japan. WE League. Women",
    "home": "RB Omiya Ardija (Women)",
    "away": "INAC Kobe Leonessa (Women)"
+  },
+  {
+   "eventId": "s9-99.771892240",
+   "time": "2026-11-19T09:00:00+00:00",
+   "league": "Myanmar. League 2",
+   "home": "Manaw",
+   "away": "Enjoy Brother"
+  },
+  {
+   "eventId": "s9-99.771893944",
+   "time": "2026-11-19T09:00:00+00:00",
+   "league": "Myanmar. League 2",
+   "home": "Myanmar University",
+   "away": "VUE Nay Pyi Taw"
+  },
+  {
+   "eventId": "s9-99.771894982",
+   "time": "2026-11-19T09:00:00+00:00",
+   "league": "Thailand Championship U21",
+   "home": "BG Pathum United U21",
+   "away": "Rayong U21"
   },
   {
    "eventId": "s9-99.771692335",
@@ -199,6 +262,13 @@
    "away": "Locomotive Tbilisi II"
   },
   {
+   "eventId": "s9-99.771865513",
+   "time": "2026-11-19T10:30:00+00:00",
+   "league": "India. Bangalore. Super Division",
+   "home": "HAL",
+   "away": "Real Bengaluru"
+  },
+  {
    "eventId": "s9-99.771709218",
    "time": "2026-11-19T10:30:00+00:00",
    "league": "India. I-League",
@@ -206,11 +276,53 @@
    "away": "Shillong Lajong"
   },
   {
+   "eventId": "s9-99.771872193",
+   "time": "2026-11-19T11:00:00+00:00",
+   "league": "Philippines. UAAP",
+   "home": "Adamson Falcons",
+   "away": "De La Salle Green Archers"
+  },
+  {
+   "eventId": "s9-99.771878999",
+   "time": "2026-11-19T11:00:00+00:00",
+   "league": "Thailand Championship U21",
+   "home": "Kanchanaburi Power U21",
+   "away": "Chainat Hornbill U21"
+  },
+  {
+   "eventId": "s9-99.771874573",
+   "time": "2026-11-19T12:00:00+00:00",
+   "league": "ASEAN Club Championship",
+   "home": "Persib Bandung",
+   "away": "Shan United"
+  },
+  {
+   "eventId": "s9-99.771859977",
+   "time": "2026-11-19T12:00:00+00:00",
+   "league": "ASEAN Club Championship",
+   "home": "Preah Khan Reach Svay Rieng",
+   "away": "Port"
+  },
+  {
    "eventId": "s9-99.771692338",
    "time": "2026-11-19T12:00:00+00:00",
    "league": "Azerbaijan. Division 1",
    "home": "Khankendi",
    "away": "Karvan FK"
+  },
+  {
+   "eventId": "s9-99.771890483",
+   "time": "2026-11-19T12:00:00+00:00",
+   "league": "Bosnia and Herzegovina. First League of the Republika Srpska",
+   "home": "Velez Nevesinje",
+   "away": "Rudar Prijedor"
+  },
+  {
+   "eventId": "s9-99.771868276",
+   "time": "2026-11-19T12:30:00+00:00",
+   "league": "ASEAN Club Championship",
+   "home": "Hanoi Police",
+   "away": "Darul Takzim"
   },
   {
    "eventId": "s9-99.770068887",
@@ -297,6 +409,41 @@
    "away": "Gol Gohar"
   },
   {
+   "eventId": "s9-99.771879460",
+   "time": "2026-11-19T13:00:00+00:00",
+   "league": "Republic of Malawi. Super League. Women",
+   "home": "Ascent Academy (Women)",
+   "away": "Ntopwa (Women)"
+  },
+  {
+   "eventId": "s9-99.771875689",
+   "time": "2026-11-19T13:00:00+00:00",
+   "league": "Uzbekistan. Professional League",
+   "home": "Surkhon Termez",
+   "away": "PFK Andijon"
+  },
+  {
+   "eventId": "s9-99.771884558",
+   "time": "2026-11-19T13:00:00+00:00",
+   "league": "Zambia. Super League",
+   "home": "Mufulira Wanderers",
+   "away": "Kabwe Warriors"
+  },
+  {
+   "eventId": "s9-99.771923805",
+   "time": "2026-11-19T13:00:00+00:00",
+   "league": "Zambia. Super League",
+   "home": "Nkwazi",
+   "away": "Mutondo Stars"
+  },
+  {
+   "eventId": "s9-99.771923808",
+   "time": "2026-11-19T13:00:00+00:00",
+   "league": "Zambia. Super League",
+   "home": "ZESCO United",
+   "away": "Red Arrows"
+  },
+  {
    "eventId": "s9-99.771725508",
    "time": "2026-11-19T13:30:00+00:00",
    "league": "India Championship. Women",
@@ -311,11 +458,32 @@
    "away": "Tractor Tabriz"
   },
   {
+   "eventId": "s9-99.771864417",
+   "time": "2026-11-19T13:45:00+00:00",
+   "league": "Iraq. Stars League",
+   "home": "Al-Kahrabaa",
+   "away": "Diyala"
+  },
+  {
    "eventId": "s9-99.771574307",
    "time": "2026-11-19T14:00:00+00:00",
    "league": "Championship Congo DR. League 1",
    "home": "Novakin",
    "away": "Ufalya Simba"
+  },
+  {
+   "eventId": "s9-99.771895498",
+   "time": "2026-11-19T14:20:00+00:00",
+   "league": "Kuwait. Division 1",
+   "home": "Al-Shorta Kuwait",
+   "away": "Al Jazira Kuwait"
+  },
+  {
+   "eventId": "s9-99.771879002",
+   "time": "2026-11-19T14:20:00+00:00",
+   "league": "Kuwait. Division 1",
+   "home": "Khaitan",
+   "away": "Al Yarmouk Kuwait"
   },
   {
    "eventId": "s9-99.771697875",
@@ -325,7 +493,14 @@
    "away": "Colombe du Dja et Lobo"
   },
   {
-   "eventId": "s9-99.770058729",
+   "eventId": "s9-99.771879453",
+   "time": "2026-11-19T14:30:00+00:00",
+   "league": "Seychelles Championship",
+   "home": "Saint Louis Suns United",
+   "away": "Bel Air Mont Fleuri"
+  },
+  {
+   "eventId": "s9-99.771917352",
    "time": "2026-11-19T15:00:00+00:00",
    "league": "Bulgaria. Second League",
    "home": "Dobrudzha Dobrich",
@@ -353,11 +528,25 @@
    "away": "Al Dhafra"
   },
   {
+   "eventId": "s9-99.771863818",
+   "time": "2026-11-19T15:30:00+00:00",
+   "league": "Iraq. Stars League",
+   "home": "Al-Gharraf",
+   "away": "Al-Quwa Al-Jawiya"
+  },
+  {
    "eventId": "s9-99.771107310",
    "time": "2026-11-19T15:30:00+00:00",
    "league": "Qatar Championship",
    "home": "Al Ahli Doha",
    "away": "Al Shamal"
+  },
+  {
+   "eventId": "s9-99.771865510",
+   "time": "2026-11-19T16:00:00+00:00",
+   "league": "Iraq. Stars League",
+   "home": "Ghaz Al-Shamal",
+   "away": "Al-Karkh SC"
   },
   {
    "eventId": "s9-99.771571636",
@@ -374,7 +563,14 @@
    "away": "Olympique Akbou"
   },
   {
-   "eventId": "s9-99.771417032",
+   "eventId": "s9-99.771873573",
+   "time": "2026-11-19T17:00:00+00:00",
+   "league": "Mauritania. Championnat D1",
+   "home": "AS Douanes Nouakchott",
+   "away": "Kaedi"
+  },
+  {
+   "eventId": "s9-99.771868592",
    "time": "2026-11-19T17:00:00+00:00",
    "league": "Saudi Arabia Championship U21",
    "home": "Al-Okhdood U21",
@@ -486,7 +682,7 @@
    "away": "Stade Malherbe Caen"
   },
   {
-   "eventId": "s9-99.771486465",
+   "eventId": "s9-99.771879457",
    "time": "2026-11-19T19:45:00+00:00",
    "league": "Ireland. Leinster League",
    "home": "Glebe North",
@@ -498,6 +694,13 @@
    "league": "Ireland. Munster Senior League",
    "home": "Ringmahon Rangers",
    "away": "Mayfield United"
+  },
+  {
+   "eventId": "s9-99.771886014",
+   "time": "2026-11-19T19:50:00+00:00",
+   "league": "Mauritania. Championnat D1",
+   "home": "Nouadhibou",
+   "away": "Chemal"
   },
   {
    "eventId": "s9-99.771244815",
