@@ -112,6 +112,32 @@ def normalize_team(value: Any) -> str:
         "czechia": "czech republic",
         "republic of ireland": "ireland",
         "bosnia herzegovina": "bosnia and herzegovina",
+        # Exact club-name variants observed in bookmaker snapshots. These are
+        # explicit identities, not fuzzy or partial team-name matching.
+        "cr vasco da gama": "vasco da gama",
+        "vasco da gama rj": "vasco da gama",
+        "sport club internacional": "internacional",
+        "internacional rs": "internacional",
+        "ec vitoria salvador": "vitoria salvador",
+        "vitoria ba": "vitoria salvador",
+        "red bull bragantino": "bragantino",
+        "rb bragantino": "bragantino",
+        "fluminense rj": "fluminense",
+        "orlando city fc": "orlando city",
+        "fc cincinnati": "cincinnati",
+        "1 magdeburg": "magdeburg",
+        "1 heidenheim": "heidenheim",
+        "en avant de guingamp": "guingamp",
+        "clermont foot": "clermont",
+        "rodez aveyron": "rodez",
+        "dijon fco": "dijon",
+        "red star saint ouen": "red star",
+        "bayern": "bayern munich",
+        "1 koln": "koln",
+        "hellas verona": "verona",
+        "andorra andorra la vella": "andorra",
+        "fc andorra": "andorra",
+        "troyes ac": "troyes",
     }
     return aliases.get(text, text)
 
