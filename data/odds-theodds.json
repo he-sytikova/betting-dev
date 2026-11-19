@@ -1,54 +1,11 @@
 {
- "date": "2026-11-16",
- "fetchedAt": "2026-11-16T18:20:41.849632+00:00",
+ "date": "2026-11-19",
+ "fetchedAt": "2026-11-19T09:42:35.459550+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 135,
-  "remaining": 365
+  "used": 136,
+  "remaining": 364
  },
- "matches": [
-  {
-   "home": "Albacete",
-   "away": "Celta Fortuna",
-   "commenceTime": "2026-11-16T19:30:00Z",
-   "bookmakers": 15,
-   "markets": {
-    "totals": {
-     "2.5": {
-      "avg": {
-       "over": 1.598,
-       "under": 2.21
-      },
-      "max": {
-       "over": 1.7,
-       "under": 2.4
-      }
-     },
-     "3.0": {
-      "avg": {
-       "over": 2.018,
-       "under": 1.792
-      },
-      "max": {
-       "over": 2.07,
-       "under": 1.83
-      }
-     },
-     "3.5": {
-      "avg": {
-       "over": 2.4,
-       "under": 1.53
-      },
-      "max": {
-       "over": 2.4,
-       "under": 1.53
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_spain_segunda_division",
-   "leagueCode": "SP2"
-  }
- ]
+ "matches": []
 }
