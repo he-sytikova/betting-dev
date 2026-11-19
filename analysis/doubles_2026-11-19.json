@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-19",
+  "generated_at_utc": "2026-11-19T16:00:47.580Z",
+  "data_status": "no_line_match",
+  "prepared_coupons": [],
+  "summary": {
+    "model_candidates": 0,
+    "eligible_prices_before_dedup": 0,
+    "eligible_legs": 0,
+    "double_candidates": 0,
+    "rejected": 0,
+    "rejection_reasons": {}
+  },
+  "sources": {
+    "Fonbet": {
+      "status": "ok",
+      "captured_at_utc": "2026-11-19T16:00:10.476953+00:00"
+    },
+    "Marathonbet": {
+      "status": "ok",
+      "captured_at_utc": "2026-11-19T16:00:34.949117+00:00"
+    },
+    "Winline": {
+      "status": "ok",
+      "captured_at_utc": "2026-11-19T16:00:47.451474+00:00"
+    }
+  }
+}
