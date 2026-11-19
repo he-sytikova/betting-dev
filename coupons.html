@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>document.documentElement.classList.add('access-pending');</script>
+  <script src="access-gate.js"></script>
+  <link rel="stylesheet" href="access-gate.css" />
+  <title>Претенденты и купоны — Betting Dev</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e293b'/%3E%3Cpath d='M32 10 50 23 43 45H21L14 23Z' fill='none' stroke='%2338bdf8' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%234ade80'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="daily-board.css" />
+  <style>
+    .dev-label{display:inline-block;margin-bottom:8px;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+    .back{display:inline-block;margin:8px 12px 0 0;color:var(--accent)}
+    .app-header .refresh-btn{margin-left:12px}
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <h1>⚽ Претенденты и купоны</h1>
+    <p class="subtitle">Рабочий экран текущего игрового дня · время МСК</p>
+    <button id="daily-board-refresh" class="refresh-btn" type="button">Обновить данные</button>
+    <a class="back" href="./">← Dev-панель</a>
+  </header>
+  <main class="coupon-page">
+    <p class="coupon-page__intro">Сначала модель отбирает претендентов с вероятностью от 70%. После сопоставления с фактическими линиями Fonbet и Marathonbet и проверки fair, EV и цены здесь появляются подготовленные одинары и двойники.</p>
+    <section id="daily-board" class="daily-board" data-confirmations="true" aria-labelledby="daily-board-title">
+      <div class="daily-board__header">
+        <div>
+          <span class="dev-label">Текущий игровой день</span>
+          <h2 id="daily-board-title">Претенденты и сценарии дня</h2>
+          <p id="daily-board-date" class="daily-board__date">Определение московской даты…</p>
+        </div>
+        <span id="daily-board-status" class="daily-board__status is-loading" role="status">Загрузка модельного снимка…</span>
+      </div>
+      <div class="daily-board__grid">
+        <section class="daily-panel" aria-labelledby="daily-candidates-title">
+          <div class="daily-panel__header">
+            <div>
+              <h3 id="daily-candidates-title">Претенденты на сегодня</h3>
+              <p>Модельная вероятность от 70%. До получения линий БК.</p>
+            </div>
+            <span class="daily-panel__count" aria-label="Количество претендентов"><strong id="daily-candidates-count">0</strong></span>
+          </div>
+          <p id="daily-candidates-empty" class="daily-empty">Загрузка претендентов…</p>
+          <div id="daily-candidates-list" class="daily-list" tabindex="0" role="region" aria-label="Список претендентов текущего дня" hidden></div>
+        </section>
+        <section class="daily-panel" aria-labelledby="daily-coupons-title">
+          <div class="daily-panel__header">
+            <div>
+              <h3 id="daily-coupons-title">Одинары и двойники</h3>
+              <p>После обработки коэффициентов Fonbet и Marathonbet.</p>
+            </div>
+            <span class="daily-panel__count" aria-label="Количество подготовленных купонов"><strong id="daily-coupons-count">0</strong></span>
+          </div>
+          <p id="daily-coupons-empty" class="daily-empty">Проверка публикации купонов…</p>
+          <p id="daily-coupons-warning" class="daily-warning" role="alert" hidden></p>
+          <div id="daily-coupons-list" class="daily-list" tabindex="0" role="region" aria-label="Подготовленные одинары и двойники" hidden></div>
+        </section>
+      </div>
+      <p class="daily-board__note">Публикация купона означает только статус «подготовлен». Нажатие «Проставлено» — ваша ручная отметка о уже сделанной ставке деньгами или фрибетом, а не команда букмекеру.</p>
+    </section>
+    <p class="coupon-storage-note">Сумма, тип и отметка сохраняются только в localStorage текущего браузера. Синхронизации между устройствами нет; очистка данных браузера удалит отметки. Файл подготовленных купонов и финансовый учёт эта страница не изменяет.</p>
+  </main>
+  <script src="goals-internal-model.js"></script>
+  <script src="internal-model.js"></script>
+  <script src="stats-internal-model.js"></script>
+  <script src="nt-internal-model.js"></script>
+  <script src="euro-internal-model.js"></script>
+  <script src="express-model.js"></script>
+  <script src="coupon-confirmation.js"></script>
+  <script src="daily-board.js"></script>
+</body>
+</html>
