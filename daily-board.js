@@ -326,16 +326,18 @@
     return item;
   }
 
-  function renderCoupons(payload) {
+  function renderCoupons(payload, day) {
     const { coupons, rejected } = normalizeCoupons(payload);
     const list = $('daily-coupons-list');
     const fragment = document.createDocumentFragment();
+    const confirmationApi = host.dataset.confirmations === 'true' ? root.CouponConfirmation : null;
     for (const coupon of coupons) {
       const item = node('article', `coupon coupon--${coupon.type}`);
       const header = node('div', 'coupon__header');
+      const status = node('span', 'coupon__status', 'Подготовлен · не проставлен');
       header.append(
         node('h4', '', coupon.type === 'double' ? 'Двойник' : 'Одинар'),
-        node('span', 'coupon__status', 'Подготовлен · не проставлен'),
+        status,
       );
       item.append(header);
       const metrics = node('div', 'coupon__metrics');
@@ -349,6 +351,9 @@
       const legs = node(coupon.type === 'double' ? 'ol' : 'ul', 'coupon-legs');
       for (const leg of coupon.legs) legs.append(renderCouponLeg(leg));
       item.append(legs);
+      if (confirmationApi) {
+        item.append(confirmationApi.mountCoupon({ coupon, day, statusElement: status }));
+      }
       fragment.append(item);
     }
     list.replaceChildren(fragment);
@@ -399,7 +404,7 @@
         try {
           const couponPayload = await fetchJson(`./analysis/doubles_${data.date}.json`);
           if (couponPayload.date && couponPayload.date !== data.date) throw new Error('Дата файла купонов не совпадает со снимком');
-          renderCoupons(couponPayload);
+          renderCoupons(couponPayload, data.date);
         } catch (error) {
           renderCoupons({ data_status: 'not_processed', prepared_coupons: [] });
           $('daily-coupons-empty').textContent = error.message.includes('HTTP 404')
@@ -417,6 +422,20 @@
       $('daily-board-status').className = 'daily-board__status is-warning';
       $('daily-board-date').textContent = error.message;
     }
+  }
+
+  const refresh = $('daily-board-refresh');
+  if (refresh) {
+    refresh.addEventListener('click', async () => {
+      refresh.disabled = true;
+      refresh.textContent = 'Обновление…';
+      try {
+        await load();
+      } finally {
+        refresh.disabled = false;
+        refresh.textContent = 'Обновить данные';
+      }
+    });
   }
 
   load();
