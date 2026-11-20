@@ -132,7 +132,7 @@ jobs:
           for (const coupon of coupons) {
             if (coupon.status !== 'prepared') throw new Error('Every coupon must remain prepared, not placed');
             for (const leg of coupon.legs || []) {
-              if (!(leg.p_model >= 0.70 - 1e-12) || !(leg.ev >= 1.03 - 1e-12)) throw new Error('Ineligible model probability or EV');
+              if (!(leg.p_model >= board.MIN_PROBABILITY - 1e-12) || !(leg.ev >= board.EV_MIN - 1e-12)) throw new Error('Ineligible model probability or EV');
               if (!(Math.abs(leg.delta_pp) < 15 - 1e-12)) throw new Error('Delta anomaly in published coupon');
               if (!(leg.odds >= leg.o_min_step - 1e-12)) throw new Error('Price below rounded minimum');
               if (/^(ТБ|ИТБ1|ИТБ2)/.test(leg.label) && !(leg.p_model >= leg.fair - 1e-12)) throw new Error('Over selection below fair');
