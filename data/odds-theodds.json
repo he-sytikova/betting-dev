@@ -1,38 +1,38 @@
 {
  "date": "2026-11-20",
- "fetchedAt": "2026-11-20T09:29:55.290401+00:00",
+ "fetchedAt": "2026-11-20T16:54:36.843589+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 149,
-  "remaining": 351
+  "used": 161,
+  "remaining": 339
  },
  "matches": [
   {
    "home": "FK Rostov",
    "away": "Kryliya Sovetov",
    "commenceTime": "2026-11-20T16:30:00Z",
-   "bookmakers": 4,
+   "bookmakers": 2,
    "markets": {
     "totals": {
-     "2.25": {
-      "avg": {
-       "over": 1.91,
-       "under": 1.915
-      },
-      "max": {
-       "over": 1.95,
-       "under": 1.93
-      }
-     },
      "2.5": {
       "avg": {
-       "over": 2.235,
-       "under": 1.71
+       "over": 1.7,
+       "under": 2.14
       },
       "max": {
-       "over": 2.27,
-       "under": 1.74
+       "over": 1.7,
+       "under": 2.14
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 2.02,
+       "under": 1.84
+      },
+      "max": {
+       "over": 2.02,
+       "under": 1.84
       }
      }
     }
@@ -49,12 +49,12 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.957,
-       "under": 1.771
+       "over": 1.954,
+       "under": 1.775
       },
       "max": {
-       "over": 2.05,
-       "under": 1.86
+       "over": 2.02,
+       "under": 1.88
       }
      }
     }
@@ -69,24 +69,14 @@
    "bookmakers": 15,
    "markets": {
     "totals": {
-     "2.25": {
-      "avg": {
-       "over": 1.81,
-       "under": 2.08
-      },
-      "max": {
-       "over": 1.81,
-       "under": 2.08
-      }
-     },
      "2.5": {
       "avg": {
-       "over": 1.949,
-       "under": 1.769
+       "over": 1.921,
+       "under": 1.805
       },
       "max": {
-       "over": 2.06,
-       "under": 1.85
+       "over": 1.97,
+       "under": 1.94
       }
      }
     }
@@ -103,22 +93,32 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.698,
-       "under": 2.028
+       "over": 1.566,
+       "under": 2.223
       },
       "max": {
-       "over": 1.77,
-       "under": 2.19
+       "over": 1.62,
+       "under": 2.35
       }
      },
-     "2.75": {
+     "3.0": {
       "avg": {
-       "over": 1.93,
-       "under": 1.885
+       "over": 1.903,
+       "under": 1.91
       },
       "max": {
-       "over": 1.94,
+       "over": 1.95,
        "under": 1.93
+      }
+     },
+     "3.5": {
+      "avg": {
+       "over": 2.307,
+       "under": 1.553
+      },
+      "max": {
+       "over": 2.33,
+       "under": 1.56
       }
      }
     }
@@ -145,21 +145,21 @@
      },
      "2.75": {
       "avg": {
-       "over": 1.8,
-       "under": 2.02
+       "over": 1.79,
+       "under": 2.0
       },
       "max": {
-       "over": 1.82,
-       "under": 2.06
+       "over": 1.79,
+       "under": 2.0
       }
      },
      "3.0": {
       "avg": {
-       "over": 1.93,
-       "under": 1.85
+       "over": 2.0,
+       "under": 1.835
       },
       "max": {
-       "over": 1.93,
+       "over": 2.07,
        "under": 1.85
       }
      }
@@ -177,18 +177,18 @@
     "totals": {
      "2.25": {
       "avg": {
-       "over": 1.815,
-       "under": 2.005
+       "over": 1.825,
+       "under": 2.01
       },
       "max": {
-       "over": 1.84,
-       "under": 2.04
+       "over": 1.85,
+       "under": 2.03
       }
      },
      "2.5": {
       "avg": {
        "over": 1.945,
-       "under": 1.772
+       "under": 1.771
       },
       "max": {
        "over": 2.12,
@@ -204,37 +204,47 @@
    "home": "SV Darmstadt 98",
    "away": "1. FC Heidenheim",
    "commenceTime": "2026-11-20T17:30:00Z",
-   "bookmakers": 13,
+   "bookmakers": 15,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.51,
-       "under": 2.4
+       "over": 1.44,
+       "under": 2.593
       },
       "max": {
-       "over": 1.53,
-       "under": 2.4
+       "over": 1.44,
+       "under": 2.62
       }
      },
      "3.0": {
       "avg": {
-       "over": 1.8,
-       "under": 2.02
+       "over": 1.71,
+       "under": 2.13
       },
       "max": {
-       "over": 1.84,
-       "under": 2.05
+       "over": 1.71,
+       "under": 2.13
+      }
+     },
+     "3.25": {
+      "avg": {
+       "over": 1.94,
+       "under": 1.94
+      },
+      "max": {
+       "over": 1.94,
+       "under": 1.94
       }
      },
      "3.5": {
       "avg": {
-       "over": 2.201,
-       "under": 1.594
+       "over": 2.091,
+       "under": 1.673
       },
       "max": {
-       "over": 2.27,
-       "under": 1.6
+       "over": 2.22,
+       "under": 1.79
       }
      }
     }
@@ -246,27 +256,27 @@
    "home": "Arminia Bielefeld",
    "away": "1. FC Magdeburg",
    "commenceTime": "2026-11-20T17:30:00Z",
-   "bookmakers": 14,
+   "bookmakers": 15,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.705,
-       "under": 2.074
+       "over": 1.693,
+       "under": 2.064
       },
       "max": {
-       "over": 1.82,
-       "under": 2.2
+       "over": 1.8,
+       "under": 2.24
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.98,
-       "under": 1.91
+       "over": 2.0,
+       "under": 1.88
       },
       "max": {
-       "over": 1.98,
-       "under": 1.91
+       "over": 2.0,
+       "under": 1.88
       }
      }
     }
@@ -278,47 +288,57 @@
    "home": "Molde",
    "away": "Bodø/Glimt",
    "commenceTime": "2026-11-20T18:00:00Z",
-   "bookmakers": 16,
+   "bookmakers": 17,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.197,
-       "under": 4.333
+       "over": 1.183,
+       "under": 4.6
       },
       "max": {
-       "over": 1.2,
-       "under": 4.55
+       "over": 1.19,
+       "under": 4.75
       }
      },
      "3.5": {
       "avg": {
-       "over": 1.568,
-       "under": 2.232
+       "over": 1.538,
+       "under": 2.26
       },
       "max": {
-       "over": 1.57,
-       "under": 2.33
+       "over": 1.56,
+       "under": 2.45
       }
      },
      "4.0": {
       "avg": {
-       "over": 1.823,
-       "under": 1.99
+       "over": 1.83,
+       "under": 2.03
       },
       "max": {
-       "over": 1.85,
-       "under": 2.05
+       "over": 1.83,
+       "under": 2.03
+      }
+     },
+     "4.25": {
+      "avg": {
+       "over": 1.927,
+       "under": 1.88
+      },
+      "max": {
+       "over": 1.98,
+       "under": 1.91
       }
      },
      "4.5": {
       "avg": {
-       "over": 2.256,
-       "under": 1.622
+       "over": 2.116,
+       "under": 1.694
       },
       "max": {
-       "over": 2.38,
-       "under": 1.69
+       "over": 2.24,
+       "under": 1.77
       }
      }
     }
@@ -335,12 +355,22 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.777,
-       "under": 1.943
+       "over": 1.731,
+       "under": 1.978
       },
       "max": {
-       "over": 1.86,
-       "under": 2.09
+       "over": 1.8,
+       "under": 2.19
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.92,
+       "under": 1.887
+      },
+      "max": {
+       "over": 1.97,
+       "under": 1.92
       }
      }
     }
@@ -352,27 +382,27 @@
    "home": "Hellas Verona",
    "away": "Cesena FC",
    "commenceTime": "2026-11-20T19:30:00Z",
-   "bookmakers": 13,
+   "bookmakers": 14,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.728,
-       "under": 2.018
+       "over": 1.722,
+       "under": 2.005
       },
       "max": {
-       "over": 1.84,
-       "under": 2.16
+       "over": 1.81,
+       "under": 2.2
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.995,
-       "under": 1.835
+       "over": 1.985,
+       "under": 1.855
       },
       "max": {
-       "over": 2.04,
-       "under": 1.86
+       "over": 2.01,
+       "under": 1.88
       }
      }
     }
@@ -384,27 +414,27 @@
    "home": "Bayern Munich",
    "away": "1. FC Köln",
    "commenceTime": "2026-11-20T19:30:00Z",
-   "bookmakers": 15,
+   "bookmakers": 16,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.143,
-       "under": 5.427
+       "over": 1.123,
+       "under": 5.92
       },
       "max": {
-       "over": 1.15,
-       "under": 5.83
+       "over": 1.13,
+       "under": 6.06
       }
      },
      "4.5": {
       "avg": {
-       "over": 1.903,
-       "under": 1.883
+       "over": 1.891,
+       "under": 1.912
       },
       "max": {
-       "over": 2.0,
-       "under": 1.98
+       "over": 1.97,
+       "under": 2.06
       }
      }
     }
@@ -421,8 +451,8 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.859,
-       "under": 1.924
+       "over": 1.865,
+       "under": 1.918
       },
       "max": {
        "over": 1.96,
@@ -438,17 +468,17 @@
    "home": "Barnsley",
    "away": "Sheffield Wednesday",
    "commenceTime": "2026-11-20T20:00:00Z",
-   "bookmakers": 11,
+   "bookmakers": 12,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
        "over": 1.44,
-       "under": 2.6
+       "under": 2.5
       },
       "max": {
        "over": 1.44,
-       "under": 2.6
+       "under": 2.5
       }
      },
      "3.0": {
@@ -463,22 +493,22 @@
      },
      "3.25": {
       "avg": {
-       "over": 2.005,
-       "under": 1.81
+       "over": 1.965,
+       "under": 1.855
       },
       "max": {
-       "over": 2.04,
-       "under": 1.83
+       "over": 1.99,
+       "under": 1.88
       }
      },
      "3.5": {
       "avg": {
-       "over": 2.139,
-       "under": 1.621
+       "over": 2.15,
+       "under": 1.646
       },
       "max": {
-       "over": 2.19,
-       "under": 1.67
+       "over": 2.3,
+       "under": 1.76
       }
      }
     }
@@ -495,32 +525,32 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.711,
-       "under": 2.121
+       "over": 1.671,
+       "under": 2.181
       },
       "max": {
-       "over": 1.78,
-       "under": 2.24
+       "over": 1.76,
+       "under": 2.36
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.91,
-       "under": 1.98
+       "over": 1.83,
+       "under": 2.1
       },
       "max": {
-       "over": 1.91,
-       "under": 1.98
+       "over": 1.83,
+       "under": 2.1
       }
      },
      "3.0": {
       "avg": {
-       "over": 2.18,
-       "under": 1.75
+       "over": 2.135,
+       "under": 1.77
       },
       "max": {
-       "over": 2.18,
-       "under": 1.75
+       "over": 2.15,
+       "under": 1.77
       }
      }
     }
