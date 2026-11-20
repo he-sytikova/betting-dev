@@ -9,7 +9,7 @@
   const ntApi = isNode ? require('./nt-internal-model.js') : root.NtInternalModel;
 
   const MOSCOW_OFFSET_MS = 180 * 60000;
-  const MIN_PROBABILITY = 0.70;
+  const MIN_PROBABILITY = 0.75;
   const EV_MIN = 1.03;
 
   function dayKeyMsk(value) {
@@ -244,6 +244,7 @@
     EV_MIN,
     dayKeyMsk,
     minimumOdds,
+    candidate,
     modelFixtures,
     nationsFixtures,
     buildCandidates,
@@ -394,7 +395,7 @@
       renderCandidates(candidates);
       $('daily-board-date').textContent = `${dateRu(data.date)} · время МСК`;
       $('daily-candidates-empty').textContent = isCurrent
-        ? 'На оставшуюся часть игрового дня нет модельных рынков с вероятностью от 70%.'
+        ? 'На оставшуюся часть игрового дня нет модельных рынков с вероятностью от 75%.'
         : `Снимок относится к ${dateRu(data.date)}, а не к текущему московскому дню. Данные нужно обновить.`;
 
       if (!isCurrent) {

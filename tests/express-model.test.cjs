@@ -88,7 +88,7 @@ test('selectExpresses picks pairs of distinct matches by joint probability', () 
     leg('m3', 0.75, 3),
     leg('m4', 0.70, 4),
   ];
-  const top = selectExpresses(legs, { limit: 5 });
+  const top = selectExpresses(legs, { limit: 5, minLegProbability: 0.60 });
   assert.equal(top[0].probability, 0.90 * 0.80);
   assert.deepEqual(top[0].legs.map(l => l.matchKey), ['m1', 'm2']);
   assert.equal(top[0].legs[0].label, '1X'); // strongest leg of m1, not the 0.85 one
@@ -98,6 +98,18 @@ test('selectExpresses picks pairs of distinct matches by joint probability', () 
   // No repeated unordered match pair.
   const pairKeys = top.map(e => e.legs.map(l => l.matchKey).sort().join('|'));
   assert.equal(new Set(pairKeys).size, pairKeys.length);
+});
+
+test('default admission uses exactly 75% and the daily limit is seven', () => {
+  assert.equal(MIN_LEG_PROBABILITY, 0.75);
+  assert.equal(EXPRESS_LIMIT, 7);
+  const top = selectExpresses([
+    leg('m1', 0.75, 1),
+    leg('m2', 0.749999999999, 2),
+    leg('m3', 0.80, 3),
+  ]);
+  assert.equal(top.length, 1);
+  assert.deepEqual(top[0].legs.map(l => l.matchKey), ['m1', 'm3']);
 });
 
 test('selectExpresses respects the probability floor and the limit', () => {
@@ -130,7 +142,7 @@ test('selectExpresses in value mode requires positive EV and ranks by joint EV',
     valueLeg('m3', 0.65, 1.70, 3),          // ev 1.105
     valueLeg('m4', 0.80, 1.30, 4),          // ev 1.04
   ];
-  const top = selectExpresses(legs, { limit: 5 });
+  const top = selectExpresses(legs, { limit: 5, minLegProbability: 0.60 });
   assert.ok(top.length > 0);
   for (const exp of top) {
     assert.ok(Number.isFinite(exp.combinedOdds));
@@ -148,7 +160,7 @@ test('value mode prefers the higher-EV leg of a match over the safer one', () =>
     valueLeg('m1', 0.62, 1.80, 1, 'X2'),    // ev 1.116 — best for m1
     valueLeg('m2', 0.70, 1.50, 2),          // ev 1.05
   ];
-  const top = selectExpresses(legs, { limit: 5 });
+  const top = selectExpresses(legs, { limit: 5, minLegProbability: 0.60 });
   assert.equal(top.length, 1);
   assert.equal(top[0].legs[0].label, 'X2');
 });
@@ -159,13 +171,13 @@ test('value mode drops pairs whose combined bookmaker odds exceed the cap', () =
     valueLeg('m2', 0.61, 2.50, 2),   // ev 1.525, pair odds 7.5 > cap
     valueLeg('m3', 0.65, 1.20, 3),   // ev 0.78 — excluded
   ];
-  const top = selectExpresses(legs, { limit: 5, maxCombinedOdds: MAX_COMBINED_ODDS });
+  const top = selectExpresses(legs, { limit: 5, minLegProbability: 0.60, maxCombinedOdds: MAX_COMBINED_ODDS });
   assert.deepEqual(top, []);
 });
 
 test('probability mode is unchanged when no leg carries odds', () => {
   const legs = [leg('m1', 0.90, 1), leg('m2', 0.80, 2), leg('m3', 0.75, 3)];
-  const top = selectExpresses(legs, { limit: 5 });
+  const top = selectExpresses(legs, { limit: 5, minLegProbability: 0.60 });
   assert.deepEqual(top[0].legs.map(l => l.matchKey), ['m1', 'm2']);
   assert.equal(top[0].combinedOdds, null);
   assert.equal(top[0].ev, null);
@@ -219,7 +231,7 @@ test('value mode admits the neutral zone 0.97-1.00 but not below it', () => {
     valueLeg('m2', 0.70, 1.50, 2),   // ev 1.05
     valueLeg('m3', 0.60, 1.60, 3),   // ev 0.96 — below the floor, excluded
   ];
-  const top = selectExpresses(legs, { limit: 5 });
+  const top = selectExpresses(legs, { limit: 5, minLegProbability: 0.60 });
   assert.equal(top.length, 1);
   assert.deepEqual(top[0].legs.map(l => l.matchKey), ['m1', 'm2']);
   assert.ok(Math.abs(top[0].combinedOdds - 1.58 * 1.50) < 1e-9);
@@ -266,7 +278,7 @@ test('attachOdds selects on the current Euro365 price; FDO snapshot is display-o
   // and it must not enter value selection.
   assert.deepEqual(legs[2].prices, { fdoAvg: 2.05 });
   assert.equal(legs[2].odds, undefined);
-  assert.equal(selectExpresses([legs[2], valueLeg('mX', 0.7, 1.5, 1)], { limit: 5 }).length, 0);
+  assert.equal(selectExpresses([legs[2], valueLeg('mX', 0.7, 1.5, 1)], { limit: 5, minLegProbability: 0.60 }).length, 0);
 });
 
 test('attachOdds without FDO data behaves exactly as before', () => {

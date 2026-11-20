@@ -4,7 +4,7 @@
   // Daily accumulator ("express") selector on top of the internal goals model.
   // From today's fixtures it takes only the safest markets — double chance
   // (1X/12/X2) and goal totals (over/under every exported line) — and builds the
-  // top-5 two-leg accumulators by joint model probability. Probabilities are
+  // top-7 two-leg accumulators by joint model probability. Probabilities are
   // never invented: a leg exists only when the goals model can score the match.
 
   const goalsApi = (typeof module !== 'undefined' && module.exports)
@@ -12,8 +12,8 @@
     : (typeof window !== 'undefined' ? window.GoalsInternalModel : null);
 
   const MOSCOW_OFFSET_MIN = 180; // Europe/Moscow has no DST since 2014.
-  const MIN_LEG_PROBABILITY = 0.60;
-  const EXPRESS_LIMIT = 5;
+  const MIN_LEG_PROBABILITY = 0.75;
+  const EXPRESS_LIMIT = 7;
   // Value mode (active only when bookmaker odds are attached): a leg must stay
   // within reach of its break-even price (p * odds >= 0.97 — neutral zone,
   // absorbing model error and rounding; strictly positive value starts at 1.00)
