@@ -94,6 +94,19 @@ test('minimumOdds uses EV 1.03 and rounds upward to a 0.01 step', () => {
   assert.equal(board.minimumOdds(0.7).step, 1.48);
 });
 
+test('candidate admission uses the exact 75% model-probability boundary', () => {
+  assert.equal(board.MIN_PROBABILITY, 0.75);
+  const fixture = {
+    time: Date.parse(`${DAY}T18:00:00Z`), key: 'model|E0|newcastle|everton',
+    league: 'England. Premier League', home: 'Newcastle', away: 'Everton',
+  };
+  assert.equal(board.candidate(fixture, {}, 'Голы', '1X', 0.749999999999), null);
+  const accepted = board.candidate(fixture, {}, 'Голы', '1X', 0.75);
+  assert.ok(accepted);
+  assert.equal(accepted.probability, 0.75);
+  assert.equal(accepted.oMinStep, 1.38);
+});
+
 test('modelFixtures keeps future current-day matches and deduplicates by model identity', () => {
   const fixtures = board.modelFixtures(goalsApi, goalsModel(), [
     clubFixture(`${DAY}T19:00:00Z`),

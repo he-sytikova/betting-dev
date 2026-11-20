@@ -69,9 +69,18 @@ test('DC needs its selected price and full 1X2, but not the other DC prices', ()
   assert.equal(no1x2.rejection.reason, 'incomplete_1x2');
 });
 
+test('money-coupon admission rejects 74.999…% and accepts exactly 75%', () => {
+  const below = coupons.evaluatePrice(candidate({ probability: 0.749999 }), line());
+  assert.equal(below.rejection.reason, 'invalid_or_low_model_probability');
+  const boundary = coupons.evaluatePrice(candidate({ probability: 0.75 }), line());
+  assert.ok(boundary.leg, boundary.rejection?.reason);
+  assert.equal(boundary.leg.p_model, 0.75);
+  assert.equal(boundary.leg.o_min_step, 1.38);
+});
+
 test('filter order rejects low EV before interpreting a large delta', () => {
-  const result = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5', probability: 0.7 }), line({
-    markets: { 'TOTAL_GOALS:2.5': { ТБ: 1.47, ТМ: 5 } },
+  const result = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5', probability: 0.75 }), line({
+    markets: { 'TOTAL_GOALS:2.5': { ТБ: 1.37, ТМ: 5 } },
   }));
   assert.equal(result.rejection.reason, 'ev_below_threshold');
   assert.ok(result.rejection.ev < 1.03);
@@ -91,9 +100,9 @@ test('absolute delta of 15 percentage points is an anomaly in either direction',
 
 test('over below fair is rejected while the opposite side has no over-only rule', () => {
   const markets = { 'TOTAL_GOALS:2.5': { ТБ: 1.5, ТМ: 5 } };
-  const over = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5', probability: 0.72 }), line({ markets }));
+  const over = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5', probability: 0.75 }), line({ markets }));
   assert.equal(over.rejection.reason, 'over_below_market');
-  const under = coupons.evaluatePrice(candidate({ label: 'ТМ 2.5', probability: 0.72 }), line({
+  const under = coupons.evaluatePrice(candidate({ label: 'ТМ 2.5', probability: 0.75 }), line({
     markets: { 'TOTAL_GOALS:2.5': { ТБ: 5, ТМ: 1.5 } },
   }));
   assert.ok(under.leg, under.rejection?.reason);
