@@ -1,6 +1,6 @@
 {
   "date": "2026-11-20",
-  "generated_at_utc": "2026-11-20T05:53:53.334Z",
+  "generated_at_utc": "2026-11-20T15:45:25.656Z",
   "data_status": "ok",
   "prepared_coupons": [
     {
@@ -20,17 +20,17 @@
           "bookmaker": "Fonbet",
           "match_id": "69928109",
           "market_key": "IT_AWAY_GOALS:2.5",
-          "odds": 1.33,
-          "fair": 0.6963470319634703,
-          "delta_pp": 10.78500670584811,
-          "ev": 1.0695821416991953,
+          "odds": 1.35,
+          "fair": 0.6823529411764706,
+          "delta_pp": 12.184415784548076,
+          "ev": 1.0856660836796344,
           "o_min_exact": 1.2807805465260516,
           "o_min_step": 1.29
         }
       ],
-      "odds": 1.33,
+      "odds": 1.35,
       "probability": 0.8041970990219514,
-      "ev": 1.0695821416991953,
+      "ev": 1.0856660836796344,
       "status": "prepared"
     },
     {
@@ -50,17 +50,17 @@
           "bookmaker": "Fonbet",
           "match_id": "69779673",
           "market_key": "IT_HOME_GOALS:2.5",
-          "odds": 1.32,
-          "fair": 0.7013574660633485,
-          "delta_pp": 8.413758392169235,
-          "ev": 1.036853465980254,
+          "odds": 1.43,
+          "fair": 0.6495098039215685,
+          "delta_pp": 13.59852460634723,
+          "ev": 1.1232579214786083,
           "o_min_exact": 1.3112749724134043,
           "o_min_step": 1.32
         }
       ],
-      "odds": 1.32,
+      "odds": 1.43,
       "probability": 0.7854950499850408,
-      "ev": 1.036853465980254,
+      "ev": 1.1232579214786083,
       "status": "prepared"
     },
     {
@@ -80,10 +80,10 @@
           "bookmaker": "Fonbet",
           "match_id": "69928109",
           "market_key": "IT_AWAY_GOALS:2.5",
-          "odds": 1.33,
-          "fair": 0.6963470319634703,
-          "delta_pp": 10.78500670584811,
-          "ev": 1.0695821416991953,
+          "odds": 1.35,
+          "fair": 0.6823529411764706,
+          "delta_pp": 12.184415784548076,
+          "ev": 1.0856660836796344,
           "o_min_exact": 1.2807805465260516,
           "o_min_step": 1.29
         },
@@ -99,17 +99,17 @@
           "bookmaker": "Fonbet",
           "match_id": "69779673",
           "market_key": "IT_HOME_GOALS:2.5",
-          "odds": 1.32,
-          "fair": 0.7013574660633485,
-          "delta_pp": 8.413758392169235,
-          "ev": 1.036853465980254,
+          "odds": 1.43,
+          "fair": 0.6495098039215685,
+          "delta_pp": 13.59852460634723,
+          "ev": 1.1232579214786083,
           "o_min_exact": 1.3112749724134043,
           "o_min_step": 1.32
         }
       ],
-      "odds": 1.7556000000000003,
+      "odds": 1.9305,
       "probability": 0.6316928404940725,
-      "ev": 1.1089999507713937,
+      "ev": 1.219483028573807,
       "o_min_AB": 1.7028,
       "status": "prepared"
     }
@@ -121,8 +121,7 @@
     "double_candidates": 1,
     "rejected": 712,
     "rejection_reasons": {
-      "deduplicated_lower_price": 1,
-      "deduplicated_tie": 1,
+      "deduplicated_lower_price": 2,
       "ev_below_threshold": 47,
       "incomplete_market": 35,
       "market_not_confirmed": 86,
@@ -132,15 +131,15 @@
   "sources": {
     "Fonbet": {
       "status": "ok",
-      "captured_at_utc": "2026-11-20T05:42:16.509215+00:00"
+      "captured_at_utc": "2026-11-20T15:44:09.283472+00:00"
     },
     "Marathonbet": {
       "status": "ok",
-      "captured_at_utc": "2026-11-20T05:44:35.342330+00:00"
+      "captured_at_utc": "2026-11-20T15:44:25.702237+00:00"
     },
     "Winline": {
-      "status": "source_unavailable",
-      "captured_at_utc": "2026-11-20T05:45:27.314601+00:00"
+      "status": "ok",
+      "captured_at_utc": "2026-11-20T15:44:38.554888+00:00"
     }
   }
 }
