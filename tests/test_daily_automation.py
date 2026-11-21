@@ -39,6 +39,10 @@ class DailyAutomationWorkflowTest(unittest.TestCase):
         self.assertIn("no_line_match", PIPELINE)
         self.assertIn("captured_at_utc", PIPELINE)
         self.assertIn("coupon.status !== 'prepared'", PIPELINE)
+        self.assertIn("board.gameSessionForTime(coupon.legs?.[0]?.time)", PIPELINE)
+        self.assertIn("coupon.session_id !== session.id", PIPELINE)
+        self.assertIn("sessionCounts[session.id][coupon.type]", PIPELINE)
+        self.assertNotIn("coupons.filter(item => item.type === 'single').length > 2", PIPELINE)
 
     def test_only_the_dated_homepage_json_can_be_committed(self):
         self.assertIn('ARTIFACT="analysis/doubles_${TARGET_DATE}.json"', PIPELINE)
@@ -52,7 +56,7 @@ class DailyAutomationWorkflowTest(unittest.TestCase):
 
     def test_pages_deploys_daily_artifacts_after_bot_commits(self):
         self.assertIn('"analysis/*.json"', DEPLOY)
-        self.assertIn('"Build daily prepared coupons"', DEPLOY)
+        self.assertIn('"Формирование купонов"', DEPLOY)
         self.assertIn("types: [completed]", DEPLOY)
         self.assertIn("workflow_run.conclusion == 'success'", DEPLOY)
 

@@ -1,4 +1,4 @@
-name: Build daily prepared coupons
+name: "Формирование купонов"
 
 # Read-only line acquisition. No bet placement or financial accounting.
 # The only committable result is analysis/doubles_YYYY-MM-DD.json.
@@ -118,8 +118,7 @@ jobs:
           if (normalized.rejected.length) throw new Error(`Homepage rejected coupons: ${normalized.rejected}`);
           const coupons = artifact.prepared_coupons || [];
           if (normalized.coupons.length !== coupons.length) throw new Error('Coupon normalization count mismatch');
-          if (coupons.filter(item => item.type === 'single').length > 2) throw new Error('Single limit exceeded');
-          if (coupons.filter(item => item.type === 'double').length > 1) throw new Error('Double limit exceeded');
+          const sessionCounts = Object.fromEntries(board.GAME_SESSIONS.map(session => [session.id, { single: 0, double: 0 }]));
           const forbidden = new Set(['amount', 'stake', 'placed', 'is_placed', 'financial_result']);
           function inspect(value) {
             if (!value || typeof value !== 'object') return;
@@ -131,6 +130,17 @@ jobs:
           inspect(coupons);
           for (const coupon of coupons) {
             if (coupon.status !== 'prepared') throw new Error('Every coupon must remain prepared, not placed');
+            if (!['single', 'double'].includes(coupon.type)) throw new Error('Unsupported coupon type');
+            const session = board.gameSessionForTime(coupon.legs?.[0]?.time);
+            if (!session || coupon.session_id !== session.id) throw new Error('Coupon session mismatch');
+            if (coupon.legs.some(leg => board.gameSessionForTime(leg.time)?.id !== session.id)) {
+              throw new Error('Coupon legs cross game sessions');
+            }
+            sessionCounts[session.id][coupon.type] += 1;
+            const limit = coupon.type === 'single' ? 2 : 1;
+            if (sessionCounts[session.id][coupon.type] > limit) {
+              throw new Error(`${session.id} ${coupon.type} limit exceeded`);
+            }
             for (const leg of coupon.legs || []) {
               if (!(leg.p_model >= board.MIN_PROBABILITY - 1e-12) || !(leg.ev >= board.EV_MIN - 1e-12)) throw new Error('Ineligible model probability or EV');
               if (!(Math.abs(leg.delta_pp) < 15 - 1e-12)) throw new Error('Delta anomaly in published coupon');
