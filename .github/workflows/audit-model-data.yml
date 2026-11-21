@@ -1,4 +1,4 @@
-name: Audit experimental model data
+name: "Аудит данных экспериментальных моделей"
 
 on:
   workflow_dispatch:

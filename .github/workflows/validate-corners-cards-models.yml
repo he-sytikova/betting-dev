@@ -1,4 +1,4 @@
-name: Validate non-CSV dev pipeline
+name: "Проверка конвейера разработки без CSV"
 
 on:
   workflow_dispatch:
@@ -47,7 +47,7 @@ on:
   # Артефакты Retrain коммитит бот, чьи push-ивенты не запускают workflow —
   # валидируем свежие модели по завершении Retrain.
   workflow_run:
-    workflows: ["Retrain internal models"]
+    workflows: ["Переобучение внутренних моделей"]
     types: [completed]
     branches: [main]
 

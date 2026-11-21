@@ -1,4 +1,4 @@
-name: Fetch The Odds API consensus
+name: "Получение консенсуса The Odds API"
 
 on:
   workflow_dispatch:

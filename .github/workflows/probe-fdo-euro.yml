@@ -1,4 +1,4 @@
-name: Probe FDO euro-cup access
+name: "Проверка доступа к еврокубкам FDO"
 
 on:
   workflow_dispatch:

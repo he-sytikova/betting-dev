@@ -1,4 +1,4 @@
-name: Build historical dataset (paused)
+name: "Сборка исторического набора данных (приостановлена)"
 
 on:
   workflow_dispatch:

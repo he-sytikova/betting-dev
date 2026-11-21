@@ -1,4 +1,4 @@
-name: Refresh dev fixture schedule
+name: "Обновление календаря и модельного снимка"
 
 on:
   workflow_dispatch:

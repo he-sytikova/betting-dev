@@ -1,4 +1,4 @@
-name: Probe BSD euro-cup coverage
+name: "Проверка покрытия еврокубков BSD"
 
 on:
   workflow_dispatch:

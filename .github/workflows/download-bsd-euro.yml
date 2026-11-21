@@ -1,4 +1,4 @@
-name: Download BSD euro-cup history (diagnostic)
+name: "Загрузка истории еврокубков BSD (диагностика)"
 
 on:
   workflow_dispatch:

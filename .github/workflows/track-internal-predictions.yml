@@ -1,4 +1,4 @@
-name: Track internal model predictions
+name: "Фиксация прогнозов внутренних моделей"
 
 on:
   workflow_dispatch:

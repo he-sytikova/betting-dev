@@ -1,4 +1,4 @@
-name: Deploy dev preview to GitHub Pages
+name: "Публикация сайта разработки на GitHub Pages"
 
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ on:
   # деплоим и по успешному завершению этих workflow — иначе сайт
   # продолжает отдавать вчерашний снимок.
   workflow_run:
-    workflows: ["Refresh dev fixture schedule", "Retrain internal models", "Fetch The Odds API consensus", "Fetch fixtures for a specific date", "Формирование купонов"]
+    workflows: ["Обновление календаря и модельного снимка", "Переобучение внутренних моделей", "Получение консенсуса The Odds API", "Получение матчей на выбранную дату", "Формирование купонов"]
     types: [completed]
     branches: [main]
 
