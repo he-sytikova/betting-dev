@@ -16,9 +16,12 @@ Prepared singles and doubles are read from `analysis/doubles_YYYY-MM-DD.json`:
 {
   "date": "YYYY-MM-DD",
   "data_status": "not_processed | source_unavailable | no_line_match | ok",
+  "candidate_prices": [],
   "prepared_coupons": []
 }
 ```
+
+`candidate_prices` contains at most one reference price per candidate: the highest available exact-market quote from Fonbet, Marathonbet and Winline, with its `bookmaker`, `match_id`, `market_key` and `odds`. The UI joins it by the canonical model key, kickoff, model and market label. These quotes are informational, may fail coupon admission, and do not replace fair/EV checks. Missing, unsupported or unconfirmed markets have no price and are shown as `—`.
 
 Each coupon has either one or two `legs`. Legs contain fixture identity, market `label`, `p_model`, decimal `odds`, and `bookmaker`; optional `fair`, `delta_pp`, and `ev` are display metrics. Coupon-level values may be supplied as `odds`, `probability`, and `ev`, or derived from the legs. A double with legs from different bookmakers is rejected. Every rendered coupon is labelled **prepared, not placed**, regardless of input status. This module never places bets or records financial results.
 
@@ -64,6 +67,6 @@ The **Формирование купонов** workflow runs at 09:35 Moscow ti
 
 The workflow has non-cancelling concurrency, so overlapping runs cannot replace each other's result. It validates acquisition, pricing, homepage normalization, source capture times, coupon limits and the mandatory `prepared` status before publication. Bookmaker responses are read-only inputs: no bet placement, stake or financial result is recorded.
 
-Only `analysis/doubles_YYYY-MM-DD.json` can be committed by this automation. Raw responses, snapshots, enriched lines and detailed diagnostics remain in the ignored `probe-out/` directory and are uploaded only as retained Actions artifacts. Unexpected acquisition or validation failures produce no repository commit. If both bookmakers complete with an unavailable status, the validated `source_unavailable` artifact is published instead.
+Only `analysis/doubles_YYYY-MM-DD.json` can be committed by this automation. Raw responses, snapshots, enriched lines and detailed diagnostics remain in the ignored `probe-out/` directory and are uploaded only as retained Actions artifacts. Unexpected acquisition or validation failures produce no repository commit. If all bookmakers complete with an unavailable status, the validated `source_unavailable` artifact is published instead.
 
 GitHub Pages deploys `analysis/*.json` changes and also runs after successful completion of **Формирование купонов**, because commits made with the Actions token do not trigger an ordinary push event.
