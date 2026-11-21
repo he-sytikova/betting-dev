@@ -117,6 +117,83 @@
     outline-offset: 4px;
 }
 
+.session-schedule {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.session-schedule__item {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    padding: 13px 18px;
+    border-left: 1px solid var(--border);
+}
+
+.session-schedule__item:first-child {
+    border-left: 0;
+}
+
+.session-schedule__item strong {
+    color: var(--text);
+    font-size: 0.82rem;
+}
+
+.session-schedule__item span {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.session-schedule__note {
+    margin: 0;
+    padding: 10px 24px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.5;
+}
+
+.daily-session + .daily-session {
+    border-top: 2px solid var(--border);
+}
+
+.daily-session__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 2px 10px;
+}
+
+.daily-session__heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 9px;
+    min-width: 0;
+}
+
+.daily-session__heading h4 {
+    color: var(--text);
+    font-size: 0.88rem;
+}
+
+.daily-session__time,
+.daily-session__count {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.daily-session__count {
+    flex: 0 0 auto;
+    text-align: right;
+}
+
 .daily-match {
     border-top: 1px solid var(--border);
 }
@@ -367,6 +444,26 @@
 }
 
 @media (max-width: 760px) {
+    .session-schedule {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .session-schedule__item {
+        padding: 11px 18px;
+    }
+
+    .session-schedule__item:nth-child(odd) {
+        border-left: 0;
+    }
+
+    .session-schedule__item:nth-child(n + 3) {
+        border-top: 1px solid var(--border);
+    }
+
+    .session-schedule__note {
+        padding: 10px 18px;
+    }
+
     .daily-board__header {
         display: block;
         padding: 18px;
