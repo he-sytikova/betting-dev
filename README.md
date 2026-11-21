@@ -21,7 +21,7 @@ Prepared singles and doubles are read from `analysis/doubles_YYYY-MM-DD.json`:
 }
 ```
 
-`candidate_prices` contains at most one reference price per candidate: the highest available exact-market quote from Fonbet, Marathonbet and Winline, with its `bookmaker`, `match_id`, `market_key` and `odds`. The UI joins it by the canonical model key, kickoff, model and market label. These quotes are informational, may fail coupon admission, and do not replace fair/EV checks. Missing, unsupported or unconfirmed markets have no price and are shown as `—`.
+`candidate_prices` contains at most one reference price per candidate: the highest available exact-market quote from Fonbet, Marathonbet and Winline, with its `bookmaker`, `match_id`, `market_key` and `odds`. The UI joins it by the canonical model key, kickoff, model and market label. These quotes are informational, may fail coupon admission, and do not replace fair/EV checks. Missing, unsupported or unconfirmed markets have no price and are shown as `—`. Acquisition is bounded by a shared `detail_limit` of at most 40 matched-event detail requests across all bookmakers. Winline currently discovers only the public UEFA Nations League tournament; its successful source status does not imply club-league coverage.
 
 Each coupon has either one or two `legs`. Legs contain fixture identity, market `label`, `p_model`, decimal `odds`, and `bookmaker`; optional `fair`, `delta_pp`, and `ev` are display metrics. Coupon-level values may be supplied as `odds`, `probability`, and `ev`, or derived from the legs. A double with legs from different bookmakers is rejected. Every rendered coupon is labelled **prepared, not placed**, regardless of input status. This module never places bets or records financial results.
 
@@ -34,7 +34,7 @@ Each coupon has either one or two `legs`. Legs contain fixture identity, market 
 - a structured scores response is primary, while the already published `actualResult` snapshot is a bounded fallback only after a finished/full-time state;
 - live or incomplete matches stay unsettled; postponed matches remain pending, while cancelled and abandoned matches produce a void result.
 
-The homepage **Результаты и отчётность** block uses only coupons explicitly marked **Проставлено** by the owner. Confirmed amount, money/freebet type, bookmaker, odds and coupon composition remain in browser `localStorage`; neither these financial records nor manual reconciliation payouts are written to `data.json`, results artifacts or the repository. GitHub Actions therefore cannot read or overwrite them.
+The homepage links to the dedicated `financial-report.html` page **Результаты и отчётность**, which uses only coupons explicitly marked **Проставлено** by the owner. Confirmed amount, money/freebet type, bookmaker, odds and coupon composition remain in browser `localStorage`; neither these financial records nor manual reconciliation payouts are written to `data.json`, results artifacts or the repository. GitHub Actions therefore cannot read or overwrite them.
 
 Automatic settlement supports the proven 1X2, double-chance, goal-total and individual-total markets. Corners are settled only when both the corners model and total-corners result are present. Results are matched by Euro365 event ID, with an exact canonical home/away/kickoff fallback for older records. Unsupported or ambiguous matches remain pending rather than being guessed. A double with a winning and a void leg uses the remaining frozen leg odds; any losing leg makes the double a loss.
 
