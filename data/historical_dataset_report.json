@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-16T05:16:04.723574Z",
+  "generatedAt": "2026-11-21T18:43:50.341233Z",
   "sourceFiles": 513,
-  "rows": 201306,
+  "rows": 201347,
   "invalidRows": 129,
   "duplicatesRemoved": 0,
   "leagues": {
@@ -43,39 +43,39 @@
     },
     "E2": {
       "name": "England League One",
-      "rows": 14358,
-      "cornersRows": 14357,
-      "cardsRows": 14358,
+      "rows": 14363,
+      "cornersRows": 14362,
+      "cardsRows": 14363,
       "cornersEligible": true,
       "cardsEligible": true,
       "resultsOnly": false,
-      "cornersEligibleRows": 14357,
-      "cardsEligibleRows": 14358,
+      "cornersEligibleRows": 14362,
+      "cardsEligibleRows": 14363,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 100.0,
       "foulsCoveragePct": 99.99,
       "shotsCoveragePct": 99.99,
       "sotCoveragePct": 99.99,
       "from": "2000-08-12",
-      "through": "2026-11-04"
+      "through": "2026-11-14"
     },
     "E3": {
       "name": "England League Two",
-      "rows": 14404,
-      "cornersRows": 14402,
-      "cardsRows": 14403,
+      "rows": 14414,
+      "cornersRows": 14412,
+      "cardsRows": 14413,
       "cornersEligible": true,
       "cardsEligible": true,
       "resultsOnly": false,
-      "cornersEligibleRows": 14402,
-      "cardsEligibleRows": 14403,
+      "cornersEligibleRows": 14412,
+      "cardsEligibleRows": 14413,
       "cornersCoveragePct": 99.99,
       "cardsCoveragePct": 99.99,
       "foulsCoveragePct": 99.97,
       "shotsCoveragePct": 99.97,
       "sotCoveragePct": 99.97,
       "from": "2000-08-12",
-      "through": "2026-11-03"
+      "through": "2026-11-14"
     },
     "SC0": {
       "name": "Scotland Premiership",
@@ -97,21 +97,21 @@
     },
     "SC1": {
       "name": "Scotland Championship",
-      "rows": 4661,
-      "cornersRows": 1951,
-      "cardsRows": 1958,
+      "rows": 4665,
+      "cornersRows": 1955,
+      "cardsRows": 1962,
       "cornersEligible": true,
       "cardsEligible": true,
       "resultsOnly": false,
-      "cornersEligibleRows": 1951,
-      "cardsEligibleRows": 1958,
-      "cornersCoveragePct": 41.86,
-      "cardsCoveragePct": 42.01,
-      "foulsCoveragePct": 41.86,
-      "shotsCoveragePct": 41.86,
-      "sotCoveragePct": 41.86,
+      "cornersEligibleRows": 1955,
+      "cardsEligibleRows": 1962,
+      "cornersCoveragePct": 41.91,
+      "cardsCoveragePct": 42.06,
+      "foulsCoveragePct": 41.91,
+      "shotsCoveragePct": 41.91,
+      "sotCoveragePct": 41.91,
       "from": "2000-08-05",
-      "through": "2026-11-07"
+      "through": "2026-11-14"
     },
     "SC2": {
       "name": "Scotland League One",
@@ -241,21 +241,21 @@
     },
     "SP2": {
       "name": "Spain Segunda",
-      "rows": 12152,
-      "cornersRows": 4277,
-      "cardsRows": 4277,
+      "rows": 12163,
+      "cornersRows": 4288,
+      "cardsRows": 4288,
       "cornersEligible": true,
       "cardsEligible": true,
       "resultsOnly": false,
-      "cornersEligibleRows": 4277,
-      "cardsEligibleRows": 4277,
-      "cornersCoveragePct": 35.2,
-      "cardsCoveragePct": 35.2,
-      "foulsCoveragePct": 35.2,
-      "shotsCoveragePct": 35.2,
-      "sotCoveragePct": 35.2,
+      "cornersEligibleRows": 4288,
+      "cardsEligibleRows": 4288,
+      "cornersCoveragePct": 35.25,
+      "cardsCoveragePct": 35.25,
+      "foulsCoveragePct": 35.25,
+      "shotsCoveragePct": 35.25,
+      "sotCoveragePct": 35.25,
       "from": "2000-09-02",
-      "through": "2026-11-09"
+      "through": "2026-11-16"
     },
     "F1": {
       "name": "France Ligue 1",
@@ -403,7 +403,7 @@
     },
     "BRA": {
       "name": "Brazil Serie A",
-      "rows": 5658,
+      "rows": 5669,
       "cornersRows": 0,
       "cardsRows": 0,
       "cornersEligible": false,
@@ -417,7 +417,7 @@
       "shotsCoveragePct": 0.0,
       "sotCoveragePct": 0.0,
       "from": "2012-05-19",
-      "through": "2026-11-06"
+      "through": "2026-11-20"
     },
     "USA": {
       "name": "USA MLS",
@@ -639,8 +639,8 @@
     },
     {
       "file": "BRA_results.csv",
-      "rows": 5659,
-      "accepted": 5658,
+      "rows": 5670,
+      "accepted": 5669,
       "duplicates": 0
     },
     {
@@ -1449,8 +1449,8 @@
     },
     {
       "file": "E2_2627.csv",
-      "rows": 158,
-      "accepted": 158,
+      "rows": 163,
+      "accepted": 163,
       "duplicates": 0
     },
     {
@@ -1611,8 +1611,8 @@
     },
     {
       "file": "E3_2627.csv",
-      "rows": 164,
-      "accepted": 164,
+      "rows": 174,
+      "accepted": 174,
       "duplicates": 0
     },
     {
@@ -3051,8 +3051,8 @@
     },
     {
       "file": "SC1_2627.csv",
-      "rows": 69,
-      "accepted": 69,
+      "rows": 73,
+      "accepted": 73,
       "duplicates": 0
     },
     {
@@ -3375,8 +3375,8 @@
     },
     {
       "file": "SP2_2627.csv",
-      "rows": 140,
-      "accepted": 140,
+      "rows": 151,
+      "accepted": 151,
       "duplicates": 0
     },
     {
@@ -3555,9 +3555,9 @@
     }
   ],
   "output": "/home/runner/work/betting-dev/betting-dev/data/corners_cards_training.csv",
-  "cornersAvailableRows": 120845,
-  "cardsAvailableRows": 121409,
-  "cornersEligibleRows": 118057,
-  "cardsEligibleRows": 118621,
+  "cornersAvailableRows": 120875,
+  "cardsAvailableRows": 121439,
+  "cornersEligibleRows": 118087,
+  "cardsEligibleRows": 118651,
   "note": "Features use strictly prior match dates; all matches on a given date (all leagues) are added to histories only after that date is processed. Team rolling histories, Elo ratings and time-decayed attack/defence goal ratings are keyed by country family, so clubs keep their form and ratings across promotion/relegation between divisions of the same country; league averages and referee histories remain per league. Elo: start 1500, K=20, home advantage 65 points, margin multiplier 1/1.5/1.5+0.25*(N-2). Decayed ratings use a 75-day half-life over goals for/against. Results-only leagues (RUS/BRA/USA/NOR/SWE, /new/ single-file CSVs) carry results only: all stats-availability flags are zero, so they train the goals model but never the stats models."
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T05:35:37.188Z",
+  "generatedAt": "2026-11-21T19:04:00.608Z",
   "ledgerFiles": [
     "2026-11-01.jsonl",
     "2026-11-02.jsonl",
@@ -13,63 +13,67 @@
     "2026-11-13.jsonl",
     "2026-11-14.jsonl",
     "2026-11-15.jsonl",
-    "2026-11-16.jsonl"
+    "2026-11-16.jsonl",
+    "2026-11-18.jsonl",
+    "2026-11-19.jsonl",
+    "2026-11-20.jsonl",
+    "2026-11-21.jsonl"
   ],
   "dataset": "data/corners_cards_training.csv",
   "selectionPolicy": "latest capture strictly before kickoff per fixture; actuals from football-data.co.uk via the training dataset",
   "coverage": {
-    "ledgerRecords": 1071,
-    "uniquePreKickoffFixtures": 639,
+    "ledgerRecords": 1408,
+    "uniquePreKickoffFixtures": 976,
     "unresolvedLeague": 0,
     "unresolvedTeam": 0,
-    "noDatasetRow": 132,
-    "evaluated": 507
+    "noDatasetRow": 389,
+    "evaluated": 587
   },
   "models": {
     "corners-cards": {
       "markets": {
         "corners": {
           "7.5": {
-            "n": 156,
-            "logLoss": 0.56235,
-            "brier": 0.18805,
-            "meanPredicted": 0.7296,
-            "observedRate": 0.7436
+            "n": 180,
+            "logLoss": 0.54928,
+            "brier": 0.18222,
+            "meanPredicted": 0.732,
+            "observedRate": 0.7556
           },
           "8.5": {
-            "n": 156,
-            "logLoss": 0.64448,
-            "brier": 0.22653,
-            "meanPredicted": 0.6187,
-            "observedRate": 0.6474
+            "n": 180,
+            "logLoss": 0.63008,
+            "brier": 0.21969,
+            "meanPredicted": 0.6215,
+            "observedRate": 0.6722
           },
           "9.5": {
-            "n": 156,
-            "logLoss": 0.67766,
-            "brier": 0.24269,
-            "meanPredicted": 0.5027,
-            "observedRate": 0.4936
+            "n": 180,
+            "logLoss": 0.67488,
+            "brier": 0.24132,
+            "meanPredicted": 0.5058,
+            "observedRate": 0.5222
           },
           "10.5": {
-            "n": 156,
-            "logLoss": 0.64745,
-            "brier": 0.22773,
-            "meanPredicted": 0.3909,
-            "observedRate": 0.3654
+            "n": 180,
+            "logLoss": 0.65674,
+            "brier": 0.23208,
+            "meanPredicted": 0.3941,
+            "observedRate": 0.3889
           },
           "11.5": {
-            "n": 156,
-            "logLoss": 0.59614,
-            "brier": 0.2027,
-            "meanPredicted": 0.2913,
-            "observedRate": 0.2692
+            "n": 180,
+            "logLoss": 0.61615,
+            "brier": 0.21196,
+            "meanPredicted": 0.2943,
+            "observedRate": 0.3
           },
           "12.5": {
-            "n": 156,
-            "logLoss": 0.50419,
-            "brier": 0.16072,
-            "meanPredicted": 0.2083,
-            "observedRate": 0.1987
+            "n": 180,
+            "logLoss": 0.50412,
+            "brier": 0.16111,
+            "meanPredicted": 0.2109,
+            "observedRate": 0.2
           }
         },
         "cards": {
@@ -81,46 +85,46 @@
             "observedRate": 0.6667
           },
           "1.5": {
-            "n": 156,
-            "logLoss": 0.31514,
-            "brier": 0.08962,
-            "meanPredicted": 0.89,
-            "observedRate": 0.8974
+            "n": 180,
+            "logLoss": 0.29659,
+            "brier": 0.08315,
+            "meanPredicted": 0.8915,
+            "observedRate": 0.9056
           },
           "2.5": {
-            "n": 156,
-            "logLoss": 0.521,
-            "brier": 0.17122,
-            "meanPredicted": 0.73,
-            "observedRate": 0.7756
+            "n": 180,
+            "logLoss": 0.50826,
+            "brier": 0.16634,
+            "meanPredicted": 0.7337,
+            "observedRate": 0.7833
           },
           "3.5": {
-            "n": 156,
-            "logLoss": 0.66826,
-            "brier": 0.23836,
-            "meanPredicted": 0.5303,
-            "observedRate": 0.5833
+            "n": 180,
+            "logLoss": 0.65874,
+            "brier": 0.23416,
+            "meanPredicted": 0.5361,
+            "observedRate": 0.5944
           },
           "4.5": {
-            "n": 156,
-            "logLoss": 0.63759,
-            "brier": 0.22193,
-            "meanPredicted": 0.3411,
-            "observedRate": 0.3654
+            "n": 180,
+            "logLoss": 0.64486,
+            "brier": 0.22517,
+            "meanPredicted": 0.3478,
+            "observedRate": 0.3722
           },
           "5.5": {
-            "n": 156,
-            "logLoss": 0.54191,
-            "brier": 0.17709,
-            "meanPredicted": 0.1956,
-            "observedRate": 0.25
+            "n": 180,
+            "logLoss": 0.54842,
+            "brier": 0.17985,
+            "meanPredicted": 0.202,
+            "observedRate": 0.2556
           },
           "6.5": {
-            "n": 153,
-            "logLoss": 0.35646,
-            "brier": 0.10609,
-            "meanPredicted": 0.1018,
-            "observedRate": 0.1307
+            "n": 177,
+            "logLoss": 0.3587,
+            "brier": 0.10618,
+            "meanPredicted": 0.1067,
+            "observedRate": 0.1299
           }
         }
       },
@@ -405,90 +409,90 @@
         "SP2": {
           "corners": {
             "7.5": {
-              "n": 8,
-              "logLoss": 0.47327,
-              "brier": 0.14517,
-              "meanPredicted": 0.6914,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.56948,
+              "brier": 0.1903,
+              "meanPredicted": 0.6841,
+              "observedRate": 0.7647
             },
             "8.5": {
-              "n": 8,
-              "logLoss": 0.59924,
-              "brier": 0.20367,
-              "meanPredicted": 0.572,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.64217,
+              "brier": 0.22481,
+              "meanPredicted": 0.5636,
+              "observedRate": 0.7647
             },
             "9.5": {
-              "n": 8,
-              "logLoss": 0.73112,
-              "brier": 0.2687,
-              "meanPredicted": 0.451,
-              "observedRate": 0.75
+              "n": 17,
+              "logLoss": 0.7394,
+              "brier": 0.27276,
+              "meanPredicted": 0.4425,
+              "observedRate": 0.6471
             },
             "10.5": {
-              "n": 8,
-              "logLoss": 0.83411,
-              "brier": 0.31652,
-              "meanPredicted": 0.3386,
-              "observedRate": 0.625
+              "n": 17,
+              "logLoss": 0.83347,
+              "brier": 0.31546,
+              "meanPredicted": 0.3306,
+              "observedRate": 0.5882
             },
             "11.5": {
-              "n": 8,
-              "logLoss": 0.8749,
-              "brier": 0.32532,
-              "meanPredicted": 0.2425,
-              "observedRate": 0.5
+              "n": 17,
+              "logLoss": 0.84907,
+              "brier": 0.31307,
+              "meanPredicted": 0.2356,
+              "observedRate": 0.4706
             },
             "12.5": {
-              "n": 8,
-              "logLoss": 0.80688,
-              "brier": 0.28217,
-              "meanPredicted": 0.1659,
-              "observedRate": 0.375
+              "n": 17,
+              "logLoss": 0.57456,
+              "brier": 0.1877,
+              "meanPredicted": 0.1604,
+              "observedRate": 0.2353
             }
           },
           "cards": {
             "1.5": {
-              "n": 8,
-              "logLoss": 0.03707,
-              "brier": 0.00135,
-              "meanPredicted": 0.9636,
+              "n": 17,
+              "logLoss": 0.03835,
+              "brier": 0.00147,
+              "meanPredicted": 0.9624,
               "observedRate": 1
             },
             "2.5": {
-              "n": 8,
-              "logLoss": 0.12117,
-              "brier": 0.0132,
-              "meanPredicted": 0.886,
+              "n": 17,
+              "logLoss": 0.12454,
+              "brier": 0.01405,
+              "meanPredicted": 0.8831,
               "observedRate": 1
             },
             "3.5": {
-              "n": 8,
-              "logLoss": 0.28356,
-              "brier": 0.06138,
-              "meanPredicted": 0.7535,
-              "observedRate": 1
+              "n": 17,
+              "logLoss": 0.33316,
+              "brier": 0.08475,
+              "meanPredicted": 0.7489,
+              "observedRate": 0.9412
             },
             "4.5": {
-              "n": 8,
-              "logLoss": 0.56381,
-              "brier": 0.18632,
-              "meanPredicted": 0.5835,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.62971,
+              "brier": 0.21874,
+              "meanPredicted": 0.5779,
+              "observedRate": 0.7059
             },
             "5.5": {
-              "n": 8,
-              "logLoss": 0.83224,
-              "brier": 0.31863,
-              "meanPredicted": 0.4089,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.75566,
+              "brier": 0.28075,
+              "meanPredicted": 0.4038,
+              "observedRate": 0.6471
             },
             "6.5": {
-              "n": 8,
-              "logLoss": 0.98997,
-              "brier": 0.38135,
-              "meanPredicted": 0.2596,
-              "observedRate": 0.625
+              "n": 17,
+              "logLoss": 0.74692,
+              "brier": 0.27177,
+              "meanPredicted": 0.2554,
+              "observedRate": 0.4118
             }
           }
         },
@@ -945,179 +949,179 @@
         "E2": {
           "corners": {
             "7.5": {
-              "n": 3,
-              "logLoss": 0.70048,
-              "brier": 0.24521,
-              "meanPredicted": 0.8213,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.57723,
+              "brier": 0.19271,
+              "meanPredicted": 0.8354,
+              "observedRate": 0.75
             },
             "8.5": {
-              "n": 3,
-              "logLoss": 0.63896,
-              "brier": 0.22398,
-              "meanPredicted": 0.7287,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.55321,
+              "brier": 0.18456,
+              "meanPredicted": 0.7475,
+              "observedRate": 0.75
             },
             "9.5": {
-              "n": 3,
-              "logLoss": 0.63353,
-              "brier": 0.22131,
-              "meanPredicted": 0.6223,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.57839,
+              "brier": 0.19473,
+              "meanPredicted": 0.645,
+              "observedRate": 0.75
             },
             "10.5": {
-              "n": 3,
-              "logLoss": 0.75985,
-              "brier": 0.28323,
-              "meanPredicted": 0.5097,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.71732,
+              "brier": 0.26209,
+              "meanPredicted": 0.5354,
+              "observedRate": 0.5
             },
             "11.5": {
-              "n": 3,
-              "logLoss": 0.70569,
-              "brier": 0.25525,
-              "meanPredicted": 0.4007,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.72564,
+              "brier": 0.26553,
+              "meanPredicted": 0.427,
+              "observedRate": 0.5
             },
             "12.5": {
-              "n": 3,
-              "logLoss": 0.70031,
-              "brier": 0.24883,
-              "meanPredicted": 0.3017,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.52516,
+              "brier": 0.16717,
+              "meanPredicted": 0.327,
+              "observedRate": 0.125
             }
           },
           "cards": {
             "1.5": {
-              "n": 3,
-              "logLoss": 0.72301,
-              "brier": 0.25283,
-              "meanPredicted": 0.8843,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.58244,
+              "brier": 0.19514,
+              "meanPredicted": 0.866,
+              "observedRate": 0.75
             },
             "2.5": {
-              "n": 3,
-              "logLoss": 0.56745,
-              "brier": 0.19451,
-              "meanPredicted": 0.7177,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.54537,
+              "brier": 0.1819,
+              "meanPredicted": 0.6855,
+              "observedRate": 0.75
             },
             "3.5": {
-              "n": 3,
-              "logLoss": 0.60965,
-              "brier": 0.20877,
-              "meanPredicted": 0.5127,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.69619,
+              "brier": 0.25144,
+              "meanPredicted": 0.4747,
+              "observedRate": 0.75
             },
             "4.5": {
-              "n": 3,
-              "logLoss": 0.69192,
-              "brier": 0.24795,
-              "meanPredicted": 0.322,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.90862,
+              "brier": 0.3423,
+              "meanPredicted": 0.2882,
+              "observedRate": 0.5
             },
             "5.5": {
-              "n": 3,
-              "logLoss": 0.76918,
-              "brier": 0.26579,
-              "meanPredicted": 0.1787,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.65201,
+              "brier": 0.21234,
+              "meanPredicted": 0.1547,
+              "observedRate": 0.25
             },
             "6.5": {
-              "n": 3,
-              "logLoss": 0.09384,
-              "brier": 0.00895,
-              "meanPredicted": 0.089,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.46266,
+              "brier": 0.12066,
+              "meanPredicted": 0.0743,
+              "observedRate": 0.125
             }
           }
         },
         "E3": {
           "corners": {
             "7.5": {
-              "n": 1,
-              "logLoss": 1.61445,
-              "brier": 0.6416,
-              "meanPredicted": 0.801,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.43541,
+              "brier": 0.12932,
+              "meanPredicted": 0.7711,
+              "observedRate": 0.875
             },
             "8.5": {
-              "n": 1,
-              "logLoss": 1.20731,
-              "brier": 0.4914,
-              "meanPredicted": 0.701,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.51435,
+              "brier": 0.16366,
+              "meanPredicted": 0.667,
+              "observedRate": 0.875
             },
             "9.5": {
-              "n": 1,
-              "logLoss": 0.88916,
-              "brier": 0.34692,
-              "meanPredicted": 0.589,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.64226,
+              "brier": 0.22502,
+              "meanPredicted": 0.5531,
+              "observedRate": 0.875
             },
             "10.5": {
-              "n": 1,
-              "logLoss": 0.64245,
-              "brier": 0.22468,
-              "meanPredicted": 0.474,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.62735,
+              "brier": 0.21791,
+              "meanPredicted": 0.4396,
+              "observedRate": 0.5
             },
             "11.5": {
-              "n": 1,
-              "logLoss": 0.45256,
-              "brier": 0.1325,
-              "meanPredicted": 0.364,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.67534,
+              "brier": 0.24355,
+              "meanPredicted": 0.3344,
+              "observedRate": 0.5
             },
             "12.5": {
-              "n": 1,
-              "logLoss": 0.31197,
-              "brier": 0.07182,
-              "meanPredicted": 0.268,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.63247,
+              "brier": 0.22451,
+              "meanPredicted": 0.2438,
+              "observedRate": 0.375
             }
           },
           "cards": {
             "1.5": {
-              "n": 1,
-              "logLoss": 1.93102,
-              "brier": 0.73102,
-              "meanPredicted": 0.855,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.36254,
+              "brier": 0.10623,
+              "meanPredicted": 0.8689,
+              "observedRate": 0.875
             },
             "2.5": {
-              "n": 1,
-              "logLoss": 1.08767,
-              "brier": 0.43957,
-              "meanPredicted": 0.663,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.79931,
+              "brier": 0.29783,
+              "meanPredicted": 0.6879,
+              "observedRate": 0.5
             },
             "3.5": {
-              "n": 1,
-              "logLoss": 0.58699,
-              "brier": 0.19714,
-              "meanPredicted": 0.444,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.69813,
+              "brier": 0.25244,
+              "meanPredicted": 0.4745,
+              "observedRate": 0.375
             },
             "4.5": {
-              "n": 1,
-              "logLoss": 0.29841,
-              "brier": 0.06656,
-              "meanPredicted": 0.258,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.43071,
+              "brier": 0.12725,
+              "meanPredicted": 0.285,
+              "observedRate": 0.125
             },
             "5.5": {
-              "n": 1,
-              "logLoss": 0.14041,
-              "brier": 0.01716,
-              "meanPredicted": 0.131,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.3563,
+              "brier": 0.10416,
+              "meanPredicted": 0.1504,
+              "observedRate": 0.125
             },
             "6.5": {
-              "n": 1,
-              "logLoss": 0.06081,
-              "brier": 0.00348,
-              "meanPredicted": 0.059,
+              "n": 8,
+              "logLoss": 0.07295,
+              "brier": 0.00512,
+              "meanPredicted": 0.0703,
               "observedRate": 0
             }
           }
@@ -1485,90 +1489,90 @@
         "SC1": {
           "corners": {
             "7.5": {
-              "n": 4,
-              "logLoss": 0.51633,
-              "brier": 0.16919,
-              "meanPredicted": 0.732,
-              "observedRate": 0.75
+              "n": 7,
+              "logLoss": 0.41833,
+              "brier": 0.12388,
+              "meanPredicted": 0.7401,
+              "observedRate": 0.8571
             },
             "8.5": {
-              "n": 4,
-              "logLoss": 0.55437,
-              "brier": 0.18271,
-              "meanPredicted": 0.6192,
-              "observedRate": 0.75
+              "n": 7,
+              "logLoss": 0.50762,
+              "brier": 0.16013,
+              "meanPredicted": 0.6291,
+              "observedRate": 0.8571
             },
             "9.5": {
-              "n": 4,
-              "logLoss": 0.64125,
-              "brier": 0.22414,
-              "meanPredicted": 0.5008,
-              "observedRate": 0.5
+              "n": 7,
+              "logLoss": 0.66168,
+              "brier": 0.23427,
+              "meanPredicted": 0.5116,
+              "observedRate": 0.4286
             },
             "10.5": {
-              "n": 4,
-              "logLoss": 0.54847,
-              "brier": 0.17962,
-              "meanPredicted": 0.387,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.58174,
+              "brier": 0.19593,
+              "meanPredicted": 0.3979,
+              "observedRate": 0.2857
             },
             "11.5": {
-              "n": 4,
-              "logLoss": 0.50646,
-              "brier": 0.16414,
-              "meanPredicted": 0.2855,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.55179,
+              "brier": 0.18498,
+              "meanPredicted": 0.2956,
+              "observedRate": 0.2857
             },
             "12.5": {
-              "n": 4,
-              "logLoss": 0.50702,
-              "brier": 0.1689,
-              "meanPredicted": 0.2015,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.56501,
+              "brier": 0.19344,
+              "meanPredicted": 0.2104,
+              "observedRate": 0.2857
             }
           },
           "cards": {
             "1.5": {
-              "n": 4,
-              "logLoss": 0.13161,
-              "brier": 0.0153,
-              "meanPredicted": 0.8768,
+              "n": 7,
+              "logLoss": 0.13367,
+              "brier": 0.01584,
+              "meanPredicted": 0.875,
               "observedRate": 1
             },
             "2.5": {
-              "n": 4,
-              "logLoss": 0.35382,
-              "brier": 0.089,
-              "meanPredicted": 0.7023,
+              "n": 7,
+              "logLoss": 0.35862,
+              "brier": 0.09122,
+              "meanPredicted": 0.6991,
               "observedRate": 1
             },
             "3.5": {
-              "n": 4,
-              "logLoss": 0.72437,
-              "brier": 0.26558,
-              "meanPredicted": 0.491,
-              "observedRate": 0.5
+              "n": 7,
+              "logLoss": 0.72705,
+              "brier": 0.26691,
+              "meanPredicted": 0.4877,
+              "observedRate": 0.4286
             },
             "4.5": {
-              "n": 4,
-              "logLoss": 0.60757,
-              "brier": 0.2061,
-              "meanPredicted": 0.2995,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.64382,
+              "brier": 0.22299,
+              "meanPredicted": 0.2969,
+              "observedRate": 0.2857
             },
             "5.5": {
-              "n": 4,
-              "logLoss": 0.6331,
-              "brier": 0.20697,
-              "meanPredicted": 0.1605,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.70039,
+              "brier": 0.23341,
+              "meanPredicted": 0.1589,
+              "observedRate": 0.2857
             },
             "6.5": {
-              "n": 4,
-              "logLoss": 0.75424,
-              "brier": 0.22439,
-              "meanPredicted": 0.0762,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.46402,
+              "brier": 0.13069,
+              "meanPredicted": 0.0753,
+              "observedRate": 0.1429
             }
           }
         },
@@ -1667,107 +1671,107 @@
     "goals": {
       "markets": {
         "1x2": {
-          "n": 196,
-          "logLoss": 0.94605,
-          "brier": 0.55865,
-          "meanPredicted": 0.4201,
-          "observedRate": 0.449
+          "n": 222,
+          "logLoss": 0.9435,
+          "brier": 0.55725,
+          "meanPredicted": 0.4218,
+          "observedRate": 0.4685
         },
         "dc_1X": {
-          "n": 196,
-          "logLoss": 0.55507,
-          "brier": 0.18933,
-          "meanPredicted": 0.6619,
-          "observedRate": 0.6633
+          "n": 222,
+          "logLoss": 0.53949,
+          "brier": 0.18198,
+          "meanPredicted": 0.6661,
+          "observedRate": 0.6802
         },
         "dc_12": {
-          "n": 196,
-          "logLoss": 0.50908,
-          "brier": 0.16524,
-          "meanPredicted": 0.7582,
-          "observedRate": 0.7857
+          "n": 222,
+          "logLoss": 0.50926,
+          "brier": 0.16499,
+          "meanPredicted": 0.7556,
+          "observedRate": 0.7883
         },
         "dc_X2": {
-          "n": 196,
-          "logLoss": 0.59536,
-          "brier": 0.20407,
-          "meanPredicted": 0.5799,
-          "observedRate": 0.551
+          "n": 222,
+          "logLoss": 0.60848,
+          "brier": 0.21027,
+          "meanPredicted": 0.5782,
+          "observedRate": 0.5315
         },
         "goalTotals": {
           "1.5": {
-            "n": 196,
-            "logLoss": 0.56283,
-            "brier": 0.1869,
-            "meanPredicted": 0.785,
+            "n": 228,
+            "logLoss": 0.56228,
+            "brier": 0.18689,
+            "meanPredicted": 0.7794,
             "observedRate": 0.75
           },
           "2.5": {
-            "n": 196,
-            "logLoss": 0.67971,
-            "brier": 0.24356,
-            "meanPredicted": 0.551,
-            "observedRate": 0.5357
+            "n": 222,
+            "logLoss": 0.67861,
+            "brier": 0.24299,
+            "meanPredicted": 0.5438,
+            "observedRate": 0.527
           },
           "3.5": {
-            "n": 196,
-            "logLoss": 0.58678,
-            "brier": 0.19897,
-            "meanPredicted": 0.3322,
-            "observedRate": 0.2857
+            "n": 222,
+            "logLoss": 0.59172,
+            "brier": 0.20112,
+            "meanPredicted": 0.3252,
+            "observedRate": 0.2883
           },
           "4.5": {
-            "n": 196,
-            "logLoss": 0.43518,
-            "brier": 0.1348,
-            "meanPredicted": 0.1733,
-            "observedRate": 0.1735
+            "n": 222,
+            "logLoss": 0.44405,
+            "brier": 0.13777,
+            "meanPredicted": 0.1681,
+            "observedRate": 0.1757
           }
         },
         "homeTeamGoals": {
           "0.5": {
-            "n": 196,
-            "logLoss": 0.49466,
-            "brier": 0.1634,
-            "meanPredicted": 0.769,
-            "observedRate": 0.7704
+            "n": 228,
+            "logLoss": 0.48275,
+            "brier": 0.15783,
+            "meanPredicted": 0.7685,
+            "observedRate": 0.7807
           },
           "1.5": {
-            "n": 196,
-            "logLoss": 0.6201,
-            "brier": 0.21375,
-            "meanPredicted": 0.4485,
-            "observedRate": 0.4235
+            "n": 222,
+            "logLoss": 0.63073,
+            "brier": 0.21897,
+            "meanPredicted": 0.446,
+            "observedRate": 0.4369
           },
           "2.5": {
-            "n": 196,
-            "logLoss": 0.48557,
-            "brier": 0.15755,
-            "meanPredicted": 0.211,
-            "observedRate": 0.2194
+            "n": 222,
+            "logLoss": 0.50161,
+            "brier": 0.16337,
+            "meanPredicted": 0.2079,
+            "observedRate": 0.2252
           }
         },
         "awayTeamGoals": {
           "0.5": {
-            "n": 196,
-            "logLoss": 0.59413,
-            "brier": 0.20349,
-            "meanPredicted": 0.7227,
-            "observedRate": 0.6888
+            "n": 228,
+            "logLoss": 0.59602,
+            "brier": 0.20436,
+            "meanPredicted": 0.7166,
+            "observedRate": 0.6842
           },
           "1.5": {
-            "n": 196,
-            "logLoss": 0.6268,
-            "brier": 0.21969,
-            "meanPredicted": 0.3834,
-            "observedRate": 0.398
+            "n": 222,
+            "logLoss": 0.62314,
+            "brier": 0.21787,
+            "meanPredicted": 0.3767,
+            "observedRate": 0.3874
           },
           "2.5": {
-            "n": 196,
-            "logLoss": 0.42349,
-            "brier": 0.1282,
-            "meanPredicted": 0.1613,
-            "observedRate": 0.1531
+            "n": 222,
+            "logLoss": 0.40621,
+            "brier": 0.12158,
+            "meanPredicted": 0.1563,
+            "observedRate": 0.1441
           }
         }
       },
@@ -1986,107 +1990,107 @@
         },
         "SP2": {
           "1x2": {
-            "n": 8,
-            "logLoss": 0.90042,
-            "brier": 0.52498,
-            "meanPredicted": 0.4697,
-            "observedRate": 0.5
+            "n": 17,
+            "logLoss": 0.95004,
+            "brier": 0.56423,
+            "meanPredicted": 0.4459,
+            "observedRate": 0.5294
           },
           "dc_1X": {
-            "n": 8,
-            "logLoss": 0.7084,
-            "brier": 0.25963,
-            "meanPredicted": 0.7274,
-            "observedRate": 0.5
+            "n": 17,
+            "logLoss": 0.56793,
+            "brier": 0.19446,
+            "meanPredicted": 0.7052,
+            "observedRate": 0.6471
           },
           "dc_12": {
-            "n": 8,
-            "logLoss": 0.29818,
-            "brier": 0.06681,
-            "meanPredicted": 0.7425,
-            "observedRate": 1
+            "n": 17,
+            "logLoss": 0.43523,
+            "brier": 0.12853,
+            "meanPredicted": 0.7407,
+            "observedRate": 0.8824
           },
           "dc_X2": {
-            "n": 8,
-            "logLoss": 0.58671,
-            "brier": 0.19848,
-            "meanPredicted": 0.5304,
-            "observedRate": 0.5
+            "n": 17,
+            "logLoss": 0.67517,
+            "brier": 0.2412,
+            "meanPredicted": 0.5542,
+            "observedRate": 0.4706
           },
           "goalTotals": {
             "1.5": {
-              "n": 8,
-              "logLoss": 0.44123,
-              "brier": 0.13153,
-              "meanPredicted": 0.7476,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.48584,
+              "brier": 0.15287,
+              "meanPredicted": 0.7487,
+              "observedRate": 0.8235
             },
             "2.5": {
-              "n": 8,
-              "logLoss": 0.70223,
-              "brier": 0.25454,
-              "meanPredicted": 0.4965,
-              "observedRate": 0.75
+              "n": 17,
+              "logLoss": 0.68512,
+              "brier": 0.24602,
+              "meanPredicted": 0.4972,
+              "observedRate": 0.5882
             },
             "3.5": {
-              "n": 8,
-              "logLoss": 0.57013,
-              "brier": 0.19033,
-              "meanPredicted": 0.2781,
-              "observedRate": 0.25
+              "n": 17,
+              "logLoss": 0.56424,
+              "brier": 0.18734,
+              "meanPredicted": 0.2789,
+              "observedRate": 0.2353
             },
             "4.5": {
-              "n": 8,
-              "logLoss": 0.34965,
-              "brier": 0.10309,
-              "meanPredicted": 0.1324,
-              "observedRate": 0.125
+              "n": 17,
+              "logLoss": 0.34641,
+              "brier": 0.1004,
+              "meanPredicted": 0.1329,
+              "observedRate": 0.1176
             }
           },
           "homeTeamGoals": {
             "0.5": {
-              "n": 8,
-              "logLoss": 0.42511,
-              "brier": 0.1263,
-              "meanPredicted": 0.7821,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.39207,
+              "brier": 0.11372,
+              "meanPredicted": 0.7685,
+              "observedRate": 0.8824
             },
             "1.5": {
-              "n": 8,
-              "logLoss": 0.60824,
-              "brier": 0.20867,
-              "meanPredicted": 0.4557,
-              "observedRate": 0.5
+              "n": 17,
+              "logLoss": 0.67386,
+              "brier": 0.23986,
+              "meanPredicted": 0.4389,
+              "observedRate": 0.5294
             },
             "2.5": {
-              "n": 8,
-              "logLoss": 0.46661,
-              "brier": 0.15384,
-              "meanPredicted": 0.206,
-              "observedRate": 0.25
+              "n": 17,
+              "logLoss": 0.53094,
+              "brier": 0.17105,
+              "meanPredicted": 0.1955,
+              "observedRate": 0.2353
             }
           },
           "awayTeamGoals": {
             "0.5": {
-              "n": 8,
-              "logLoss": 0.59822,
-              "brier": 0.20426,
-              "meanPredicted": 0.6659,
-              "observedRate": 0.75
+              "n": 17,
+              "logLoss": 0.61341,
+              "brier": 0.21258,
+              "meanPredicted": 0.6809,
+              "observedRate": 0.7059
             },
             "1.5": {
-              "n": 8,
-              "logLoss": 0.77525,
-              "brier": 0.28408,
-              "meanPredicted": 0.3045,
-              "observedRate": 0.5
+              "n": 17,
+              "logLoss": 0.66559,
+              "brier": 0.23379,
+              "meanPredicted": 0.3224,
+              "observedRate": 0.3529
             },
             "2.5": {
-              "n": 8,
-              "logLoss": 0.71936,
-              "brier": 0.21844,
-              "meanPredicted": 0.1042,
-              "observedRate": 0.25
+              "n": 17,
+              "logLoss": 0.55676,
+              "brier": 0.16203,
+              "meanPredicted": 0.1151,
+              "observedRate": 0.1765
             }
           }
         },
@@ -2834,213 +2838,213 @@
         },
         "E2": {
           "1x2": {
-            "n": 3,
-            "logLoss": 1.18845,
-            "brier": 0.73571,
-            "meanPredicted": 0.3777,
-            "observedRate": 0.3333
+            "n": 8,
+            "logLoss": 0.98892,
+            "brier": 0.59245,
+            "meanPredicted": 0.4071,
+            "observedRate": 0.75
           },
           "dc_1X": {
-            "n": 3,
-            "logLoss": 0.47841,
-            "brier": 0.14924,
-            "meanPredicted": 0.6317,
+            "n": 8,
+            "logLoss": 0.41819,
+            "brier": 0.12021,
+            "meanPredicted": 0.665,
             "observedRate": 1
           },
           "dc_12": {
-            "n": 3,
-            "logLoss": 1.02191,
-            "brier": 0.39653,
-            "meanPredicted": 0.746,
-            "observedRate": 0.3333
+            "n": 8,
+            "logLoss": 0.57181,
+            "brier": 0.19116,
+            "meanPredicted": 0.742,
+            "observedRate": 0.75
           },
           "dc_X2": {
-            "n": 3,
-            "logLoss": 0.5586,
-            "brier": 0.18993,
-            "meanPredicted": 0.6223,
-            "observedRate": 0.6667
+            "n": 8,
+            "logLoss": 0.7526,
+            "brier": 0.28104,
+            "meanPredicted": 0.5929,
+            "observedRate": 0.25
           },
           "goalTotals": {
             "1.5": {
-              "n": 3,
-              "logLoss": 0.63435,
-              "brier": 0.22257,
-              "meanPredicted": 0.7803,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.53474,
+              "brier": 0.17773,
+              "meanPredicted": 0.7754,
+              "observedRate": 0.75
             },
             "2.5": {
-              "n": 3,
-              "logLoss": 0.77444,
-              "brier": 0.29044,
-              "meanPredicted": 0.5383,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.68657,
+              "brier": 0.24668,
+              "meanPredicted": 0.5316,
+              "observedRate": 0.5
             },
             "3.5": {
-              "n": 3,
-              "logLoss": 0.37994,
-              "brier": 0.10023,
-              "meanPredicted": 0.3157,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.5592,
+              "brier": 0.18619,
+              "meanPredicted": 0.3094,
+              "observedRate": 0.25
             },
             "4.5": {
-              "n": 3,
-              "logLoss": 0.17218,
-              "brier": 0.02526,
-              "meanPredicted": 0.158,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.37975,
+              "brier": 0.1103,
+              "meanPredicted": 0.1535,
+              "observedRate": 0.125
             }
           },
           "homeTeamGoals": {
             "0.5": {
-              "n": 3,
-              "logLoss": 0.4789,
-              "brier": 0.15917,
-              "meanPredicted": 0.7487,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.3375,
+              "brier": 0.09146,
+              "meanPredicted": 0.7667,
+              "observedRate": 0.875
             },
             "1.5": {
-              "n": 3,
-              "logLoss": 0.5926,
-              "brier": 0.20395,
-              "meanPredicted": 0.414,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.67177,
+              "brier": 0.24087,
+              "meanPredicted": 0.4343,
+              "observedRate": 0.625
             },
             "2.5": {
-              "n": 3,
-              "logLoss": 0.20039,
-              "brier": 0.03687,
-              "meanPredicted": 0.1787,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.69618,
+              "brier": 0.24962,
+              "meanPredicted": 0.1901,
+              "observedRate": 0.375
             }
           },
           "awayTeamGoals": {
             "0.5": {
-              "n": 3,
-              "logLoss": 1.08983,
-              "brier": 0.4167,
-              "meanPredicted": 0.7493,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.89174,
+              "brier": 0.33179,
+              "meanPredicted": 0.7293,
+              "observedRate": 0.5
             },
             "1.5": {
-              "n": 3,
-              "logLoss": 0.53138,
-              "brier": 0.17134,
-              "meanPredicted": 0.4073,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.56815,
+              "brier": 0.18899,
+              "meanPredicted": 0.3791,
+              "observedRate": 0.125
             },
             "2.5": {
-              "n": 3,
-              "logLoss": 0.18813,
-              "brier": 0.03172,
-              "meanPredicted": 0.1697,
+              "n": 8,
+              "logLoss": 0.16312,
+              "brier": 0.02416,
+              "meanPredicted": 0.1494,
               "observedRate": 0
             }
           }
         },
         "E3": {
           "1x2": {
-            "n": 1,
-            "logLoss": 1.25427,
-            "brier": 0.77842,
-            "meanPredicted": 0.4354,
-            "observedRate": 0
+            "n": 8,
+            "logLoss": 0.99652,
+            "brier": 0.59938,
+            "meanPredicted": 0.4353,
+            "observedRate": 0.375
           },
           "dc_1X": {
-            "n": 1,
-            "logLoss": 1.25527,
-            "brier": 0.51122,
-            "meanPredicted": 0.715,
-            "observedRate": 0
+            "n": 8,
+            "logLoss": 0.55783,
+            "brier": 0.19022,
+            "meanPredicted": 0.7009,
+            "observedRate": 0.625
           },
           "dc_12": {
-            "n": 1,
-            "logLoss": 0.32712,
-            "brier": 0.07784,
-            "meanPredicted": 0.721,
-            "observedRate": 1
+            "n": 8,
+            "logLoss": 0.56906,
+            "brier": 0.18999,
+            "meanPredicted": 0.7344,
+            "observedRate": 0.75
           },
           "dc_X2": {
-            "n": 1,
-            "logLoss": 0.57093,
-            "brier": 0.18923,
-            "meanPredicted": 0.565,
-            "observedRate": 1
+            "n": 8,
+            "logLoss": 0.62916,
+            "brier": 0.21911,
+            "meanPredicted": 0.5646,
+            "observedRate": 0.625
           },
           "goalTotals": {
             "1.5": {
-              "n": 1,
-              "logLoss": 1.27654,
-              "brier": 0.51984,
-              "meanPredicted": 0.721,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.83078,
+              "brier": 0.3101,
+              "meanPredicted": 0.7419,
+              "observedRate": 0.5
             },
             "2.5": {
-              "n": 1,
-              "logLoss": 0.61249,
-              "brier": 0.20976,
-              "meanPredicted": 0.458,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.70076,
+              "brier": 0.25378,
+              "meanPredicted": 0.4863,
+              "observedRate": 0.375
             },
             "3.5": {
-              "n": 1,
-              "logLoss": 0.27971,
-              "brier": 0.05954,
-              "meanPredicted": 0.244,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.70424,
+              "brier": 0.25137,
+              "meanPredicted": 0.2687,
+              "observedRate": 0.375
             },
             "4.5": {
-              "n": 1,
-              "logLoss": 0.11653,
-              "brier": 0.0121,
-              "meanPredicted": 0.11,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.61351,
+              "brier": 0.20112,
+              "meanPredicted": 0.1259,
+              "observedRate": 0.25
             }
           },
           "homeTeamGoals": {
             "0.5": {
-              "n": 1,
-              "logLoss": 1.41059,
-              "brier": 0.57154,
-              "meanPredicted": 0.756,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.53552,
+              "brier": 0.17872,
+              "meanPredicted": 0.7629,
+              "observedRate": 0.75
             },
             "1.5": {
-              "n": 1,
-              "logLoss": 0.53103,
-              "brier": 0.16974,
-              "meanPredicted": 0.412,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.68809,
+              "brier": 0.24742,
+              "meanPredicted": 0.4261,
+              "observedRate": 0.25
             },
             "2.5": {
-              "n": 1,
-              "logLoss": 0.18513,
-              "brier": 0.02856,
-              "meanPredicted": 0.169,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.44113,
+              "brier": 0.12828,
+              "meanPredicted": 0.1826,
+              "observedRate": 0.125
             }
           },
           "awayTeamGoals": {
             "0.5": {
-              "n": 1,
-              "logLoss": 0.40647,
-              "brier": 0.11156,
-              "meanPredicted": 0.666,
-              "observedRate": 1
+              "n": 8,
+              "logLoss": 0.5117,
+              "brier": 0.16626,
+              "meanPredicted": 0.6796,
+              "observedRate": 0.75
             },
             "1.5": {
-              "n": 1,
-              "logLoss": 0.35525,
-              "brier": 0.0894,
-              "meanPredicted": 0.299,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.59664,
+              "brier": 0.20626,
+              "meanPredicted": 0.3221,
+              "observedRate": 0.375
             },
             "2.5": {
-              "n": 1,
-              "logLoss": 0.10425,
-              "brier": 0.0098,
-              "meanPredicted": 0.099,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.29412,
+              "brier": 0.08953,
+              "meanPredicted": 0.1159,
+              "observedRate": 0.125
             }
           }
         },
@@ -3152,107 +3156,107 @@
         },
         "BRA": {
           "1x2": {
-            "n": 8,
-            "logLoss": 0.85002,
-            "brier": 0.49241,
-            "meanPredicted": 0.505,
-            "observedRate": 0.5
+            "n": 10,
+            "logLoss": 0.89007,
+            "brier": 0.51993,
+            "meanPredicted": 0.4749,
+            "observedRate": 0.4
           },
           "dc_1X": {
-            "n": 8,
-            "logLoss": 0.5497,
-            "brier": 0.19091,
-            "meanPredicted": 0.7483,
-            "observedRate": 0.625
+            "n": 10,
+            "logLoss": 0.55961,
+            "brier": 0.19407,
+            "meanPredicted": 0.7247,
+            "observedRate": 0.6
           },
           "dc_12": {
-            "n": 8,
-            "logLoss": 0.40639,
-            "brier": 0.11911,
-            "meanPredicted": 0.7567,
-            "observedRate": 0.875
+            "n": 10,
+            "logLoss": 0.48317,
+            "brier": 0.15413,
+            "meanPredicted": 0.7502,
+            "observedRate": 0.8
           },
           "dc_X2": {
-            "n": 8,
-            "logLoss": 0.5484,
-            "brier": 0.18238,
-            "meanPredicted": 0.495,
-            "observedRate": 0.5
+            "n": 10,
+            "logLoss": 0.52709,
+            "brier": 0.17172,
+            "meanPredicted": 0.5251,
+            "observedRate": 0.6
           },
           "goalTotals": {
             "1.5": {
-              "n": 8,
-              "logLoss": 0.51461,
-              "brier": 0.17014,
-              "meanPredicted": 0.7606,
+              "n": 16,
+              "logLoss": 0.52396,
+              "brier": 0.17353,
+              "meanPredicted": 0.7536,
               "observedRate": 0.75
             },
             "2.5": {
-              "n": 8,
-              "logLoss": 0.63318,
-              "brier": 0.22027,
-              "meanPredicted": 0.5136,
-              "observedRate": 0.75
+              "n": 10,
+              "logLoss": 0.63464,
+              "brier": 0.22097,
+              "meanPredicted": 0.5054,
+              "observedRate": 0.6
             },
             "3.5": {
-              "n": 8,
-              "logLoss": 0.69151,
-              "brier": 0.25219,
-              "meanPredicted": 0.2942,
-              "observedRate": 0.5
+              "n": 10,
+              "logLoss": 0.61242,
+              "brier": 0.21493,
+              "meanPredicted": 0.2866,
+              "observedRate": 0.4
             },
             "4.5": {
-              "n": 8,
-              "logLoss": 0.55986,
-              "brier": 0.18864,
-              "meanPredicted": 0.144,
-              "observedRate": 0.25
+              "n": 10,
+              "logLoss": 0.47302,
+              "brier": 0.15373,
+              "meanPredicted": 0.1388,
+              "observedRate": 0.2
             }
           },
           "homeTeamGoals": {
             "0.5": {
-              "n": 8,
-              "logLoss": 0.5135,
-              "brier": 0.17415,
-              "meanPredicted": 0.7951,
-              "observedRate": 0.75
+              "n": 16,
+              "logLoss": 0.56689,
+              "brier": 0.19801,
+              "meanPredicted": 0.7795,
+              "observedRate": 0.6875
             },
             "1.5": {
-              "n": 8,
-              "logLoss": 0.5099,
-              "brier": 0.16149,
-              "meanPredicted": 0.487,
-              "observedRate": 0.375
+              "n": 10,
+              "logLoss": 0.49742,
+              "brier": 0.1553,
+              "meanPredicted": 0.4616,
+              "observedRate": 0.3
             },
             "2.5": {
-              "n": 8,
-              "logLoss": 0.51008,
-              "brier": 0.1757,
-              "meanPredicted": 0.24,
-              "observedRate": 0.375
+              "n": 10,
+              "logLoss": 0.43724,
+              "brier": 0.14431,
+              "meanPredicted": 0.2191,
+              "observedRate": 0.3
             }
           },
           "awayTeamGoals": {
             "0.5": {
-              "n": 8,
-              "logLoss": 0.61344,
-              "brier": 0.21297,
-              "meanPredicted": 0.6442,
+              "n": 16,
+              "logLoss": 0.57136,
+              "brier": 0.19327,
+              "meanPredicted": 0.6629,
               "observedRate": 0.75
             },
             "1.5": {
-              "n": 8,
-              "logLoss": 0.67319,
-              "brier": 0.24542,
-              "meanPredicted": 0.2866,
+              "n": 10,
+              "logLoss": 0.65913,
+              "brier": 0.23798,
+              "meanPredicted": 0.3037,
               "observedRate": 0.5
             },
             "2.5": {
-              "n": 8,
-              "logLoss": 0.61923,
-              "brier": 0.2042,
-              "meanPredicted": 0.0971,
-              "observedRate": 0.25
+              "n": 10,
+              "logLoss": 0.52693,
+              "brier": 0.16788,
+              "meanPredicted": 0.1067,
+              "observedRate": 0.2
             }
           }
         },
@@ -3682,107 +3686,107 @@
         },
         "SC1": {
           "1x2": {
-            "n": 4,
-            "logLoss": 1.0608,
-            "brier": 0.64011,
-            "meanPredicted": 0.3304,
-            "observedRate": 0.25
+            "n": 7,
+            "logLoss": 0.8802,
+            "brier": 0.51059,
+            "meanPredicted": 0.4159,
+            "observedRate": 0.5714
           },
           "dc_1X": {
-            "n": 4,
-            "logLoss": 0.45049,
-            "brier": 0.13408,
-            "meanPredicted": 0.625,
-            "observedRate": 0.75
+            "n": 7,
+            "logLoss": 0.35316,
+            "brier": 0.09422,
+            "meanPredicted": 0.7003,
+            "observedRate": 0.8571
           },
           "dc_12": {
-            "n": 4,
-            "logLoss": 0.78208,
-            "brier": 0.29073,
-            "meanPredicted": 0.705,
-            "observedRate": 0.5
+            "n": 7,
+            "logLoss": 0.58242,
+            "brier": 0.19767,
+            "meanPredicted": 0.7153,
+            "observedRate": 0.7143
           },
           "dc_X2": {
-            "n": 4,
-            "logLoss": 0.61542,
-            "brier": 0.21525,
-            "meanPredicted": 0.6695,
-            "observedRate": 0.75
+            "n": 7,
+            "logLoss": 0.62555,
+            "brier": 0.21864,
+            "meanPredicted": 0.584,
+            "observedRate": 0.4286
           },
           "goalTotals": {
             "1.5": {
-              "n": 4,
-              "logLoss": 0.73834,
-              "brier": 0.27175,
-              "meanPredicted": 0.6568,
-              "observedRate": 0.5
+              "n": 7,
+              "logLoss": 0.58515,
+              "brier": 0.19831,
+              "meanPredicted": 0.6681,
+              "observedRate": 0.7143
             },
             "2.5": {
-              "n": 4,
-              "logLoss": 0.6314,
-              "brier": 0.21905,
-              "meanPredicted": 0.3828,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.64027,
+              "brier": 0.2236,
+              "meanPredicted": 0.3959,
+              "observedRate": 0.2857
             },
             "3.5": {
-              "n": 4,
-              "logLoss": 0.61018,
-              "brier": 0.20204,
-              "meanPredicted": 0.185,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.64051,
+              "brier": 0.21774,
+              "meanPredicted": 0.1949,
+              "observedRate": 0.2857
             },
             "4.5": {
-              "n": 4,
-              "logLoss": 0.7487,
-              "brier": 0.22373,
-              "meanPredicted": 0.075,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.80315,
+              "brier": 0.24917,
+              "meanPredicted": 0.0806,
+              "observedRate": 0.2857
             }
           },
           "homeTeamGoals": {
             "0.5": {
-              "n": 4,
-              "logLoss": 0.66222,
-              "brier": 0.23646,
-              "meanPredicted": 0.647,
-              "observedRate": 0.5
+              "n": 7,
+              "logLoss": 0.48562,
+              "brier": 0.15626,
+              "meanPredicted": 0.7036,
+              "observedRate": 0.7143
             },
             "1.5": {
-              "n": 4,
-              "logLoss": 0.60823,
-              "brier": 0.20958,
-              "meanPredicted": 0.2875,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.6945,
+              "brier": 0.25161,
+              "meanPredicted": 0.3556,
+              "observedRate": 0.5714
             },
             "2.5": {
-              "n": 4,
-              "logLoss": 0.72039,
-              "brier": 0.22225,
-              "meanPredicted": 0.0968,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.73854,
+              "brier": 0.23985,
+              "meanPredicted": 0.1389,
+              "observedRate": 0.2857
             }
           },
           "awayTeamGoals": {
             "0.5": {
-              "n": 4,
-              "logLoss": 0.54171,
-              "brier": 0.1797,
-              "meanPredicted": 0.6793,
-              "observedRate": 0.75
+              "n": 7,
+              "logLoss": 0.59725,
+              "brier": 0.20536,
+              "meanPredicted": 0.6279,
+              "observedRate": 0.5714
             },
             "1.5": {
-              "n": 4,
-              "logLoss": 0.58704,
-              "brier": 0.20043,
-              "meanPredicted": 0.3203,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.59204,
+              "brier": 0.20492,
+              "meanPredicted": 0.2686,
+              "observedRate": 0.2857
             },
             "2.5": {
-              "n": 4,
-              "logLoss": 0.65243,
-              "brier": 0.21132,
-              "meanPredicted": 0.1138,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.3956,
+              "brier": 0.12198,
+              "meanPredicted": 0.0871,
+              "observedRate": 0.1429
             }
           }
         },
@@ -4110,113 +4114,113 @@
       "markets": {
         "fouls": {
           "20.5": {
-            "n": 155,
-            "logLoss": 0.49212,
-            "brier": 0.16413,
-            "meanPredicted": 0.7564,
-            "observedRate": 0.7419
+            "n": 179,
+            "logLoss": 0.49391,
+            "brier": 0.1646,
+            "meanPredicted": 0.7584,
+            "observedRate": 0.7374
           },
           "22.5": {
-            "n": 155,
-            "logLoss": 0.58577,
-            "brier": 0.20041,
-            "meanPredicted": 0.6269,
-            "observedRate": 0.6065
+            "n": 179,
+            "logLoss": 0.58897,
+            "brier": 0.20217,
+            "meanPredicted": 0.6287,
+            "observedRate": 0.5978
           },
           "24.5": {
-            "n": 155,
-            "logLoss": 0.60066,
-            "brier": 0.20717,
-            "meanPredicted": 0.4877,
-            "observedRate": 0.4903
+            "n": 179,
+            "logLoss": 0.61456,
+            "brier": 0.21333,
+            "meanPredicted": 0.4888,
+            "observedRate": 0.4804
           },
           "26.5": {
-            "n": 155,
-            "logLoss": 0.55871,
-            "brier": 0.18678,
-            "meanPredicted": 0.3555,
-            "observedRate": 0.3548
+            "n": 179,
+            "logLoss": 0.57003,
+            "brier": 0.1922,
+            "meanPredicted": 0.3558,
+            "observedRate": 0.3575
           },
           "28.5": {
-            "n": 155,
-            "logLoss": 0.42225,
-            "brier": 0.13382,
-            "meanPredicted": 0.2429,
-            "observedRate": 0.2581
+            "n": 179,
+            "logLoss": 0.43941,
+            "brier": 0.14056,
+            "meanPredicted": 0.2426,
+            "observedRate": 0.2514
           }
         },
         "shots": {
           "19.5": {
-            "n": 155,
-            "logLoss": 0.34439,
-            "brier": 0.09865,
-            "meanPredicted": 0.8291,
-            "observedRate": 0.8645
+            "n": 179,
+            "logLoss": 0.33999,
+            "brier": 0.09661,
+            "meanPredicted": 0.8167,
+            "observedRate": 0.8659
           },
           "21.5": {
-            "n": 155,
-            "logLoss": 0.44353,
-            "brier": 0.13602,
-            "meanPredicted": 0.7273,
-            "observedRate": 0.8
+            "n": 179,
+            "logLoss": 0.45012,
+            "brier": 0.13826,
+            "meanPredicted": 0.7136,
+            "observedRate": 0.7989
           },
           "23.5": {
-            "n": 155,
-            "logLoss": 0.57903,
-            "brier": 0.19693,
-            "meanPredicted": 0.6054,
-            "observedRate": 0.6516
+            "n": 179,
+            "logLoss": 0.56873,
+            "brier": 0.19275,
+            "meanPredicted": 0.5916,
+            "observedRate": 0.6425
           },
           "25.5": {
-            "n": 155,
-            "logLoss": 0.64306,
-            "brier": 0.22752,
-            "meanPredicted": 0.4757,
-            "observedRate": 0.5484
+            "n": 179,
+            "logLoss": 0.63554,
+            "brier": 0.22481,
+            "meanPredicted": 0.463,
+            "observedRate": 0.5363
           },
           "27.5": {
-            "n": 155,
-            "logLoss": 0.65499,
-            "brier": 0.23316,
-            "meanPredicted": 0.3521,
-            "observedRate": 0.4258
+            "n": 179,
+            "logLoss": 0.64362,
+            "brier": 0.22863,
+            "meanPredicted": 0.3414,
+            "observedRate": 0.4134
           }
         },
         "sot": {
           "7.5": {
-            "n": 155,
-            "logLoss": 0.64332,
-            "brier": 0.22492,
-            "meanPredicted": 0.7256,
-            "observedRate": 0.6452
+            "n": 179,
+            "logLoss": 0.6473,
+            "brier": 0.22724,
+            "meanPredicted": 0.7145,
+            "observedRate": 0.6369
           },
           "8.5": {
-            "n": 155,
-            "logLoss": 0.71615,
-            "brier": 0.25948,
-            "meanPredicted": 0.607,
-            "observedRate": 0.4903
+            "n": 179,
+            "logLoss": 0.70709,
+            "brier": 0.25529,
+            "meanPredicted": 0.5942,
+            "observedRate": 0.4916
           },
           "9.5": {
-            "n": 155,
-            "logLoss": 0.68017,
-            "brier": 0.24352,
-            "meanPredicted": 0.4829,
-            "observedRate": 0.3806
+            "n": 179,
+            "logLoss": 0.67667,
+            "brier": 0.24155,
+            "meanPredicted": 0.4697,
+            "observedRate": 0.3855
           },
           "10.5": {
-            "n": 155,
-            "logLoss": 0.62661,
-            "brier": 0.21779,
-            "meanPredicted": 0.3649,
-            "observedRate": 0.271
+            "n": 179,
+            "logLoss": 0.62259,
+            "brier": 0.21591,
+            "meanPredicted": 0.3525,
+            "observedRate": 0.2737
           },
           "11.5": {
-            "n": 155,
-            "logLoss": 0.49703,
-            "brier": 0.15889,
-            "meanPredicted": 0.262,
-            "observedRate": 0.1806
+            "n": 179,
+            "logLoss": 0.48807,
+            "brier": 0.15545,
+            "meanPredicted": 0.2513,
+            "observedRate": 0.1788
           }
         }
       },
@@ -4450,113 +4454,113 @@
         "SP2": {
           "fouls": {
             "20.5": {
-              "n": 8,
-              "logLoss": 0.11097,
-              "brier": 0.0125,
-              "meanPredicted": 0.8959,
-              "observedRate": 1
+              "n": 17,
+              "logLoss": 0.25026,
+              "brier": 0.06373,
+              "meanPredicted": 0.8898,
+              "observedRate": 0.9412
             },
             "22.5": {
-              "n": 8,
-              "logLoss": 0.21801,
-              "brier": 0.04177,
-              "meanPredicted": 0.8067,
-              "observedRate": 1
+              "n": 17,
+              "logLoss": 0.38208,
+              "brier": 0.11538,
+              "meanPredicted": 0.7991,
+              "observedRate": 0.8824
             },
             "24.5": {
-              "n": 8,
-              "logLoss": 0.50223,
-              "brier": 0.1616,
-              "meanPredicted": 0.6872,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.69143,
+              "brier": 0.24625,
+              "meanPredicted": 0.6787,
+              "observedRate": 0.6471
             },
             "26.5": {
-              "n": 8,
-              "logLoss": 0.61266,
-              "brier": 0.21274,
-              "meanPredicted": 0.5488,
-              "observedRate": 0.625
+              "n": 17,
+              "logLoss": 0.6905,
+              "brier": 0.2459,
+              "meanPredicted": 0.5402,
+              "observedRate": 0.5294
             },
             "28.5": {
-              "n": 8,
-              "logLoss": 0.70233,
-              "brier": 0.25478,
-              "meanPredicted": 0.4085,
-              "observedRate": 0.625
+              "n": 17,
+              "logLoss": 0.72178,
+              "brier": 0.25516,
+              "meanPredicted": 0.4003,
+              "observedRate": 0.4118
             }
           },
           "shots": {
             "19.5": {
-              "n": 8,
-              "logLoss": 0.32005,
-              "brier": 0.09109,
-              "meanPredicted": 0.8053,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.3238,
+              "brier": 0.09082,
+              "meanPredicted": 0.8035,
+              "observedRate": 0.8824
             },
             "21.5": {
-              "n": 8,
-              "logLoss": 0.4076,
-              "brier": 0.11854,
-              "meanPredicted": 0.6868,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.45587,
+              "brier": 0.14041,
+              "meanPredicted": 0.685,
+              "observedRate": 0.8235
             },
             "23.5": {
-              "n": 8,
-              "logLoss": 0.56701,
-              "brier": 0.18877,
-              "meanPredicted": 0.5499,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.58177,
+              "brier": 0.19591,
+              "meanPredicted": 0.5487,
+              "observedRate": 0.7647
             },
             "25.5": {
-              "n": 8,
-              "logLoss": 0.80096,
-              "brier": 0.30002,
-              "meanPredicted": 0.4111,
-              "observedRate": 0.875
+              "n": 17,
+              "logLoss": 0.74762,
+              "brier": 0.27541,
+              "meanPredicted": 0.411,
+              "observedRate": 0.7647
             },
             "27.5": {
-              "n": 8,
-              "logLoss": 0.98679,
-              "brier": 0.37401,
-              "meanPredicted": 0.2865,
-              "observedRate": 0.625
+              "n": 17,
+              "logLoss": 0.83119,
+              "brier": 0.30928,
+              "meanPredicted": 0.2876,
+              "observedRate": 0.5294
             }
           },
           "sot": {
             "7.5": {
-              "n": 8,
-              "logLoss": 0.56909,
-              "brier": 0.19051,
-              "meanPredicted": 0.6942,
-              "observedRate": 0.75
+              "n": 17,
+              "logLoss": 0.61163,
+              "brier": 0.21188,
+              "meanPredicted": 0.6881,
+              "observedRate": 0.6471
             },
             "8.5": {
-              "n": 8,
-              "logLoss": 0.67898,
-              "brier": 0.24318,
-              "meanPredicted": 0.5664,
-              "observedRate": 0.625
+              "n": 17,
+              "logLoss": 0.64475,
+              "brier": 0.22632,
+              "meanPredicted": 0.5596,
+              "observedRate": 0.5882
             },
             "9.5": {
-              "n": 8,
-              "logLoss": 0.72637,
-              "brier": 0.26568,
-              "meanPredicted": 0.4364,
-              "observedRate": 0.5
+              "n": 17,
+              "logLoss": 0.65266,
+              "brier": 0.22994,
+              "meanPredicted": 0.4297,
+              "observedRate": 0.4118
             },
             "10.5": {
-              "n": 8,
-              "logLoss": 0.7932,
-              "brier": 0.29323,
-              "meanPredicted": 0.3173,
-              "observedRate": 0.5
+              "n": 17,
+              "logLoss": 0.65213,
+              "brier": 0.22899,
+              "meanPredicted": 0.3113,
+              "observedRate": 0.3529
             },
             "11.5": {
-              "n": 8,
-              "logLoss": 0.70298,
-              "brier": 0.2498,
-              "meanPredicted": 0.2174,
-              "observedRate": 0.375
+              "n": 17,
+              "logLoss": 0.51141,
+              "brier": 0.16792,
+              "meanPredicted": 0.2125,
+              "observedRate": 0.2353
             }
           }
         },
@@ -5241,226 +5245,226 @@
         "E2": {
           "fouls": {
             "20.5": {
-              "n": 3,
-              "logLoss": 0.2246,
-              "brier": 0.04105,
-              "meanPredicted": 0.7993,
-              "observedRate": 1
+              "n": 8,
+              "logLoss": 0.45832,
+              "brier": 0.14489,
+              "meanPredicted": 0.7255,
+              "observedRate": 0.75
             },
             "22.5": {
-              "n": 3,
-              "logLoss": 0.57041,
-              "brier": 0.19273,
-              "meanPredicted": 0.673,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.6935,
+              "brier": 0.25029,
+              "meanPredicted": 0.5799,
+              "observedRate": 0.375
             },
             "24.5": {
-              "n": 3,
-              "logLoss": 0.6183,
-              "brier": 0.21274,
-              "meanPredicted": 0.5273,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.60899,
+              "brier": 0.21039,
+              "meanPredicted": 0.4275,
+              "observedRate": 0.375
             },
             "26.5": {
-              "n": 3,
-              "logLoss": 0.65722,
-              "brier": 0.23241,
-              "meanPredicted": 0.3827,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.41742,
+              "brier": 0.12608,
+              "meanPredicted": 0.2899,
+              "observedRate": 0.125
             },
             "28.5": {
-              "n": 3,
-              "logLoss": 0.68325,
-              "brier": 0.24082,
-              "meanPredicted": 0.2563,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.34886,
+              "brier": 0.10422,
+              "meanPredicted": 0.1807,
+              "observedRate": 0.125
             }
           },
           "shots": {
             "19.5": {
-              "n": 3,
-              "logLoss": 0.1332,
-              "brier": 0.01561,
-              "meanPredicted": 0.8753,
+              "n": 8,
+              "logLoss": 0.13219,
+              "brier": 0.01582,
+              "meanPredicted": 0.8765,
               "observedRate": 1
             },
             "21.5": {
-              "n": 3,
-              "logLoss": 0.6886,
-              "brier": 0.24146,
-              "meanPredicted": 0.772,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.41,
+              "brier": 0.12048,
+              "meanPredicted": 0.7805,
+              "observedRate": 0.875
             },
             "23.5": {
-              "n": 3,
-              "logLoss": 0.80106,
-              "brier": 0.30281,
-              "meanPredicted": 0.637,
-              "observedRate": 0.3333
+              "n": 8,
+              "logLoss": 0.55418,
+              "brier": 0.1842,
+              "meanPredicted": 0.6567,
+              "observedRate": 0.75
             },
             "25.5": {
-              "n": 3,
-              "logLoss": 0.66969,
-              "brier": 0.23831,
-              "meanPredicted": 0.4873,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.66342,
+              "brier": 0.23544,
+              "meanPredicted": 0.5189,
+              "observedRate": 0.25
             },
             "27.5": {
-              "n": 3,
-              "logLoss": 0.422,
-              "brier": 0.11909,
-              "meanPredicted": 0.3433,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.48254,
+              "brier": 0.14769,
+              "meanPredicted": 0.383,
+              "observedRate": 0.125
             }
           },
           "sot": {
             "7.5": {
-              "n": 3,
-              "logLoss": 0.62529,
-              "brier": 0.22151,
-              "meanPredicted": 0.7863,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.64491,
+              "brier": 0.22997,
+              "meanPredicted": 0.7314,
+              "observedRate": 0.625
             },
             "8.5": {
-              "n": 3,
-              "logLoss": 0.58933,
-              "brier": 0.20385,
-              "meanPredicted": 0.6777,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.61891,
+              "brier": 0.21597,
+              "meanPredicted": 0.6114,
+              "observedRate": 0.625
             },
             "9.5": {
-              "n": 3,
-              "logLoss": 0.61579,
-              "brier": 0.21315,
-              "meanPredicted": 0.5563,
-              "observedRate": 0.6667
+              "n": 8,
+              "logLoss": 0.65963,
+              "brier": 0.23356,
+              "meanPredicted": 0.4851,
+              "observedRate": 0.625
             },
             "10.5": {
-              "n": 3,
-              "logLoss": 0.5831,
-              "brier": 0.19645,
-              "meanPredicted": 0.4347,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.68683,
+              "brier": 0.24432,
+              "meanPredicted": 0.3649,
+              "observedRate": 0.25
             },
             "11.5": {
-              "n": 3,
-              "logLoss": 0.39582,
-              "brier": 0.11013,
-              "meanPredicted": 0.3217,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.51571,
+              "brier": 0.15948,
+              "meanPredicted": 0.2598,
+              "observedRate": 0.125
             }
           }
         },
         "E3": {
           "fouls": {
             "20.5": {
-              "n": 1,
-              "logLoss": 0.2705,
-              "brier": 0.05617,
-              "meanPredicted": 0.763,
-              "observedRate": 1
+              "n": 8,
+              "logLoss": 0.54261,
+              "brier": 0.18444,
+              "meanPredicted": 0.7126,
+              "observedRate": 0.625
             },
             "22.5": {
-              "n": 1,
-              "logLoss": 0.99696,
-              "brier": 0.39816,
-              "meanPredicted": 0.631,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.66459,
+              "brier": 0.2369,
+              "meanPredicted": 0.562,
+              "observedRate": 0.375
             },
             "24.5": {
-              "n": 1,
-              "logLoss": 0.66553,
-              "brier": 0.2362,
-              "meanPredicted": 0.486,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.59583,
+              "brier": 0.20448,
+              "meanPredicted": 0.4065,
+              "observedRate": 0.375
             },
             "26.5": {
-              "n": 1,
-              "logLoss": 0.42771,
-              "brier": 0.1211,
-              "meanPredicted": 0.348,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.62339,
+              "brier": 0.21941,
+              "meanPredicted": 0.269,
+              "observedRate": 0.375
             },
             "28.5": {
-              "n": 1,
-              "logLoss": 0.26266,
-              "brier": 0.05336,
-              "meanPredicted": 0.231,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.52991,
+              "brier": 0.17569,
+              "meanPredicted": 0.1626,
+              "observedRate": 0.25
             }
           },
           "shots": {
             "19.5": {
-              "n": 1,
-              "logLoss": 0.22439,
-              "brier": 0.0404,
-              "meanPredicted": 0.799,
+              "n": 8,
+              "logLoss": 0.24652,
+              "brier": 0.05039,
+              "meanPredicted": 0.7839,
               "observedRate": 1
             },
             "21.5": {
-              "n": 1,
-              "logLoss": 0.41855,
-              "brier": 0.11696,
-              "meanPredicted": 0.658,
-              "observedRate": 1
+              "n": 8,
+              "logLoss": 0.49779,
+              "brier": 0.15816,
+              "meanPredicted": 0.6581,
+              "observedRate": 0.875
             },
             "23.5": {
-              "n": 1,
-              "logLoss": 0.68518,
-              "brier": 0.24602,
-              "meanPredicted": 0.496,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.64965,
+              "brier": 0.22889,
+              "meanPredicted": 0.5175,
+              "observedRate": 0.375
             },
             "25.5": {
-              "n": 1,
-              "logLoss": 0.414,
-              "brier": 0.11492,
-              "meanPredicted": 0.339,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.60462,
+              "brier": 0.20474,
+              "meanPredicted": 0.3794,
+              "observedRate": 0.375
             },
             "27.5": {
-              "n": 1,
-              "logLoss": 0.23446,
-              "brier": 0.04368,
-              "meanPredicted": 0.209,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.63286,
+              "brier": 0.21732,
+              "meanPredicted": 0.2594,
+              "observedRate": 0.375
             }
           },
           "sot": {
             "7.5": {
-              "n": 1,
-              "logLoss": 1.37437,
-              "brier": 0.55801,
-              "meanPredicted": 0.747,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.77245,
+              "brier": 0.28738,
+              "meanPredicted": 0.6381,
+              "observedRate": 0.375
             },
             "8.5": {
-              "n": 1,
-              "logLoss": 0.98618,
-              "brier": 0.39313,
-              "meanPredicted": 0.627,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.67032,
+              "brier": 0.23877,
+              "meanPredicted": 0.5052,
+              "observedRate": 0.25
             },
             "9.5": {
-              "n": 1,
-              "logLoss": 0.68916,
-              "brier": 0.248,
-              "meanPredicted": 0.498,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.56749,
+              "brier": 0.18933,
+              "meanPredicted": 0.3769,
+              "observedRate": 0.25
             },
             "10.5": {
-              "n": 1,
-              "logLoss": 0.4684,
-              "brier": 0.13988,
-              "meanPredicted": 0.374,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.53004,
+              "brier": 0.17401,
+              "meanPredicted": 0.2653,
+              "observedRate": 0.25
             },
             "11.5": {
-              "n": 1,
-              "logLoss": 0.30653,
-              "brier": 0.0697,
-              "meanPredicted": 0.264,
-              "observedRate": 0
+              "n": 8,
+              "logLoss": 0.54611,
+              "brier": 0.18066,
+              "meanPredicted": 0.1756,
+              "observedRate": 0.25
             }
           }
         },
@@ -5919,113 +5923,113 @@
         "SC1": {
           "fouls": {
             "20.5": {
-              "n": 4,
-              "logLoss": 0.27574,
-              "brier": 0.05886,
-              "meanPredicted": 0.7597,
-              "observedRate": 1
+              "n": 7,
+              "logLoss": 0.4006,
+              "brier": 0.11716,
+              "meanPredicted": 0.7487,
+              "observedRate": 0.8571
             },
             "22.5": {
-              "n": 4,
-              "logLoss": 0.70254,
-              "brier": 0.25538,
-              "meanPredicted": 0.612,
-              "observedRate": 0.5
+              "n": 7,
+              "logLoss": 0.64759,
+              "brier": 0.22825,
+              "meanPredicted": 0.5987,
+              "observedRate": 0.5714
             },
             "24.5": {
-              "n": 4,
-              "logLoss": 0.58067,
-              "brier": 0.19419,
-              "meanPredicted": 0.4512,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.62448,
+              "brier": 0.21617,
+              "meanPredicted": 0.4377,
+              "observedRate": 0.4286
             },
             "26.5": {
-              "n": 4,
-              "logLoss": 0.49724,
-              "brier": 0.15925,
-              "meanPredicted": 0.3018,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.66572,
+              "brier": 0.23812,
+              "meanPredicted": 0.2901,
+              "observedRate": 0.4286
             },
             "28.5": {
-              "n": 4,
-              "logLoss": 0.20196,
-              "brier": 0.03422,
-              "meanPredicted": 0.1822,
-              "observedRate": 0
+              "n": 7,
+              "logLoss": 0.37763,
+              "brier": 0.11319,
+              "meanPredicted": 0.1737,
+              "observedRate": 0.1429
             }
           },
           "shots": {
             "19.5": {
-              "n": 4,
-              "logLoss": 0.56851,
-              "brier": 0.18995,
-              "meanPredicted": 0.1873,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.62886,
+              "brier": 0.21478,
+              "meanPredicted": 0.1936,
+              "observedRate": 0.2857
             },
             "21.5": {
-              "n": 4,
-              "logLoss": 0.10186,
-              "brier": 0.00953,
-              "meanPredicted": 0.0968,
-              "observedRate": 0
+              "n": 7,
+              "logLoss": 0.42353,
+              "brier": 0.12523,
+              "meanPredicted": 0.1009,
+              "observedRate": 0.1429
             },
             "23.5": {
-              "n": 4,
-              "logLoss": 0.04581,
-              "brier": 0.00205,
-              "meanPredicted": 0.0447,
+              "n": 7,
+              "logLoss": 0.04848,
+              "brier": 0.0023,
+              "meanPredicted": 0.0473,
               "observedRate": 0
             },
             "25.5": {
-              "n": 4,
-              "logLoss": 0.01893,
-              "brier": 0.00036,
-              "meanPredicted": 0.0187,
+              "n": 7,
+              "logLoss": 0.02007,
+              "brier": 0.00041,
+              "meanPredicted": 0.0199,
               "observedRate": 0
             },
             "27.5": {
-              "n": 4,
-              "logLoss": 0.00703,
-              "brier": 0.00005,
-              "meanPredicted": 0.007,
+              "n": 7,
+              "logLoss": 0.0076,
+              "brier": 0.00006,
+              "meanPredicted": 0.0076,
               "observedRate": 0
             }
           },
           "sot": {
             "7.5": {
-              "n": 4,
-              "logLoss": 0.66222,
-              "brier": 0.23461,
-              "meanPredicted": 0.4595,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.69533,
+              "brier": 0.2511,
+              "meanPredicted": 0.4676,
+              "observedRate": 0.5714
             },
             "8.5": {
-              "n": 4,
-              "logLoss": 0.58203,
-              "brier": 0.19607,
-              "meanPredicted": 0.3235,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.68646,
+              "brier": 0.24663,
+              "meanPredicted": 0.3311,
+              "observedRate": 0.4286
             },
             "9.5": {
-              "n": 4,
-              "logLoss": 0.57394,
-              "brier": 0.19162,
-              "meanPredicted": 0.2117,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.77558,
+              "brier": 0.28264,
+              "meanPredicted": 0.2181,
+              "observedRate": 0.4286
             },
             "10.5": {
-              "n": 4,
-              "logLoss": 0.62441,
-              "brier": 0.20423,
-              "meanPredicted": 0.1288,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.65129,
+              "brier": 0.22044,
+              "meanPredicted": 0.1337,
+              "observedRate": 0.2857
             },
             "11.5": {
-              "n": 4,
-              "logLoss": 0.71924,
-              "brier": 0.21998,
-              "meanPredicted": 0.0735,
-              "observedRate": 0.25
+              "n": 7,
+              "logLoss": 0.44724,
+              "brier": 0.12859,
+              "meanPredicted": 0.0767,
+              "observedRate": 0.1429
             }
           }
         },

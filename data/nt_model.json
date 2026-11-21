@@ -1,8 +1,8 @@
 {
  "schemaVersion": 2,
- "generatedAt": "2026-11-16T05:35:33.945519+00:00",
- "trainingThrough": "2026-10-06",
- "trainingMatches": 5068,
+ "generatedAt": "2026-11-21T19:03:57.334567+00:00",
+ "trainingThrough": "2026-11-17",
+ "trainingMatches": 5247,
  "dataset": "martj42/international_results (CC0-1.0)",
  "competitions": [
   {
@@ -34,12 +34,12 @@
   "ctx_is_finals"
  ],
  "imputerMedian": [
-  1569.668051621884,
-  1539.0183592389508,
-  1.3555304412868594,
-  1.197237068681528,
-  1.2834904456160823,
-  1.2381201675053075,
+  1569.1576854234863,
+  1538.9533454695124,
+  1.3538494991279926,
+  1.200956614282844,
+  1.2841543315840682,
+  1.2424600443258187,
   1.2,
   1.2,
   1.2,
@@ -49,73 +49,73 @@
   0.0
  ],
  "scalerMean": [
-  1570.731757158406,
-  1545.5636642890229,
-  1.4045019284990554,
-  1.3299580755173845,
-  1.337257085244266,
-  1.3820036198154144,
-  1.398901006578789,
-  1.356306952382522,
-  1.3405644007013309,
-  1.404817228904433,
-  0.35043409629044986,
-  0.287095501183899,
-  0.1026045777426993
+  1570.4897966969827,
+  1545.0500105645765,
+  1.4038781918486523,
+  1.3308520561780426,
+  1.3361893854580191,
+  1.3846588376930875,
+  1.3976795866742102,
+  1.3596642128097762,
+  1.3384368191500375,
+  1.4100650511556259,
+  0.34553077949304367,
+  0.28416237850200116,
+  0.09910425004764628
  ],
  "scalerScale": [
-  219.39335518093353,
-  215.17804899922717,
-  0.5549242222164262,
-  0.6442744898664328,
-  0.5523380536684338,
-  0.6772271841226675,
-  0.8107559483941176,
-  0.8476462942685249,
-  0.7906588908518541,
-  0.8732953518514925,
-  0.47710590066309794,
-  0.4524065366281084,
-  0.30344172153635585
+  219.04156389386932,
+  215.60695069098028,
+  0.5543378495085667,
+  0.638784557290891,
+  0.5493174272908142,
+  0.6729474945803039,
+  0.8102146140461521,
+  0.8462157091320709,
+  0.7881088777093184,
+  0.87411033422305,
+  0.4755410181214348,
+  0.4510145464905769,
+  0.2988019371927619
  ],
  "models": {
   "home": {
    "type": "poisson",
    "coefficients": [
-    0.3688361051111168,
-    -0.41154303038861545,
-    0.12413824067376468,
-    -0.009784737356099827,
-    0.0660405062862767,
-    0.08692957576586681,
-    -0.0192594128516333,
-    0.0013805128469744404,
-    -0.029571349876306857,
-    0.021865464489313327,
-    -0.043404921817326726,
-    0.0030970932352981815,
-    0.006772958259996383
+    0.372264764018085,
+    -0.4120495049603486,
+    0.11971527052059423,
+    -0.001117616896892372,
+    0.07657194097272797,
+    0.08251753558825664,
+    -0.005416026418840423,
+    -0.0028234471554911583,
+    -0.032495170182548744,
+    0.032722675830013766,
+    -0.043727534211795434,
+    0.004165123779797399,
+    0.0005445801760486038
    ],
-   "intercept": 0.3704821500870667
+   "intercept": 0.3817990633218546
   },
   "away": {
    "type": "poisson",
    "coefficients": [
-    -0.3839620972789064,
-    0.37344918071340094,
-    0.05177687298283024,
-    0.14524982795677477,
-    0.11938913416497046,
-    -0.017633890043536105,
-    -0.0038756055258080007,
-    0.015547372493812099,
-    0.010064095996464566,
-    -0.0006782187937079563,
-    0.0952494997191216,
-    -0.010774454060400574,
-    -0.03372708312251168
+    -0.38083555632477234,
+    0.37420817932147643,
+    0.06008846830544953,
+    0.14807202372749026,
+    0.1162269952464339,
+    -0.017788177545580104,
+    -0.01036181093912192,
+    0.010910800318352114,
+    0.012815107263691332,
+    -0.00011933661045205709,
+    0.09758063200850067,
+    -0.015328615828425344,
+    -0.036366818860456375
    ],
-   "intercept": 0.019153645223314066
+   "intercept": 0.018921064816312873
   }
  },
  "dcRho": 0.0,
@@ -129,151 +129,151 @@
  "teams": {
   "scotland": {
    "name": "Scotland",
-   "ntElo": 1706.24,
-   "gfDecay": 1.3589,
-   "gaDecay": 1.2673,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.6,
-   "matches": 54
+   "ntElo": 1707.03,
+   "gfDecay": 1.3222,
+   "gaDecay": 1.3928,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.0,
+   "matches": 56
   },
   "england": {
    "name": "England",
-   "ntElo": 2005.36,
-   "gfDecay": 2.428,
-   "gaDecay": 0.8215,
-   "gfAvg5": 4.0,
-   "gaAvg5": 1.4,
-   "matches": 66
+   "ntElo": 2034.55,
+   "gfDecay": 2.4339,
+   "gaDecay": 0.8762,
+   "gfAvg5": 3.4,
+   "gaAvg5": 0.6,
+   "matches": 68
   },
   "wales": {
    "name": "Wales",
-   "ntElo": 1675.12,
-   "gfDecay": 1.2682,
-   "gaDecay": 1.2559,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.4,
-   "matches": 50
+   "ntElo": 1661.34,
+   "gfDecay": 1.2957,
+   "gaDecay": 1.4611,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.0,
+   "matches": 52
   },
   "northern ireland": {
    "name": "Northern Ireland",
-   "ntElo": 1621.98,
-   "gfDecay": 1.0755,
-   "gaDecay": 0.9499,
+   "ntElo": 1646.22,
+   "gfDecay": 1.0665,
+   "gaDecay": 0.8961,
    "gfAvg5": 1.0,
-   "gaAvg5": 0.6,
-   "matches": 46
+   "gaAvg5": 0.2,
+   "matches": 48
   },
   "united states": {
    "name": "United States",
-   "ntElo": 1772.38,
-   "gfDecay": 2.0389,
-   "gaDecay": 1.3193,
-   "gfAvg5": 2.6,
-   "gaAvg5": 1.4,
-   "matches": 79
+   "ntElo": 1784.56,
+   "gfDecay": 2.1927,
+   "gaDecay": 1.2156,
+   "gfAvg5": 3.2,
+   "gaAvg5": 0.4,
+   "matches": 81
   },
   "canada": {
    "name": "Canada",
-   "ntElo": 1770.56,
-   "gfDecay": 1.4487,
-   "gaDecay": 0.7944,
-   "gfAvg5": 0.8,
+   "ntElo": 1787.69,
+   "gfDecay": 1.6322,
+   "gaDecay": 0.8574,
+   "gfAvg5": 2.0,
    "gaAvg5": 0.8,
-   "matches": 66
+   "matches": 68
   },
   "uruguay": {
    "name": "Uruguay",
-   "ntElo": 1857.29,
-   "gfDecay": 1.5898,
-   "gaDecay": 0.8972,
-   "gfAvg5": 2.6,
-   "gaAvg5": 1.2,
-   "matches": 56
+   "ntElo": 1875.76,
+   "gfDecay": 1.8107,
+   "gaDecay": 0.8511,
+   "gfAvg5": 3.4,
+   "gaAvg5": 0.8,
+   "matches": 58
   },
   "argentina": {
    "name": "Argentina",
-   "ntElo": 2092.99,
-   "gfDecay": 2.6785,
-   "gaDecay": 0.4938,
-   "gfAvg5": 3.6,
-   "gaAvg5": 0.2,
-   "matches": 67
+   "ntElo": 2076.37,
+   "gfDecay": 2.7888,
+   "gaDecay": 0.5354,
+   "gfAvg5": 4.4,
+   "gaAvg5": 0.4,
+   "matches": 69
   },
   "austria": {
    "name": "Austria",
-   "ntElo": 1801.94,
-   "gfDecay": 2.0874,
-   "gaDecay": 1.1086,
-   "gfAvg5": 1.8,
-   "gaAvg5": 1.6,
-   "matches": 55
+   "ntElo": 1801.11,
+   "gfDecay": 1.9784,
+   "gaDecay": 1.0478,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.0,
+   "matches": 57
   },
   "hungary": {
    "name": "Hungary",
-   "ntElo": 1727.42,
-   "gfDecay": 1.2501,
-   "gaDecay": 1.1006,
+   "ntElo": 1733.38,
+   "gfDecay": 1.2786,
+   "gaDecay": 1.032,
    "gfAvg5": 1.2,
-   "gaAvg5": 0.6,
-   "matches": 51
+   "gaAvg5": 0.4,
+   "matches": 53
   },
   "belgium": {
    "name": "Belgium",
-   "ntElo": 1889.69,
-   "gfDecay": 2.3398,
-   "gaDecay": 1.0053,
-   "gfAvg5": 1.4,
+   "ntElo": 1914.87,
+   "gfDecay": 2.3987,
+   "gaDecay": 1.0049,
+   "gfAvg5": 2.0,
    "gaAvg5": 1.4,
-   "matches": 60
+   "matches": 62
   },
   "france": {
    "name": "France",
-   "ntElo": 2023.7,
-   "gfDecay": 2.2122,
-   "gaDecay": 0.9869,
-   "gfAvg5": 2.2,
-   "gaAvg5": 1.6,
-   "matches": 67
+   "ntElo": 2010.54,
+   "gfDecay": 2.1546,
+   "gaDecay": 1.0688,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.2,
+   "matches": 69
   },
   "switzerland": {
    "name": "Switzerland",
-   "ntElo": 1897.53,
-   "gfDecay": 2.043,
-   "gaDecay": 0.9317,
+   "ntElo": 1898.73,
+   "gfDecay": 2.0397,
+   "gaDecay": 0.8497,
    "gfAvg5": 2.4,
-   "gaAvg5": 0.8,
-   "matches": 62
+   "gaAvg5": 0.2,
+   "matches": 64
   },
   "jersey": {
    "name": "Jersey",
-   "ntElo": 1757.76,
-   "gfDecay": 2.5018,
-   "gaDecay": 1.3411,
+   "ntElo": 1758.25,
+   "gfDecay": 2.4903,
+   "gaDecay": 1.3333,
    "gfAvg5": 2.8,
    "gaAvg5": 1.8,
    "matches": 11
   },
   "netherlands": {
    "name": "Netherlands",
-   "ntElo": 1917.61,
-   "gfDecay": 2.2823,
-   "gaDecay": 1.0527,
-   "gfAvg5": 1.6,
-   "gaAvg5": 1.2,
-   "matches": 61
+   "ntElo": 1910.68,
+   "gfDecay": 2.3957,
+   "gaDecay": 1.1892,
+   "gfAvg5": 2.6,
+   "gaAvg5": 1.8,
+   "matches": 63
   },
   "guyana": {
    "name": "Guyana",
-   "ntElo": 1505.22,
-   "gfDecay": 2.7589,
-   "gaDecay": 1.1421,
-   "gfAvg5": 3.8,
-   "gaAvg5": 0.6,
-   "matches": 41
+   "ntElo": 1514.48,
+   "gfDecay": 3.0949,
+   "gaDecay": 1.1213,
+   "gfAvg5": 5.0,
+   "gaAvg5": 0.8,
+   "matches": 43
   },
   "trinidad and tobago": {
    "name": "Trinidad and Tobago",
-   "ntElo": 1484.0,
+   "ntElo": 1483.9,
    "gfDecay": 1.2411,
    "gaDecay": 1.9271,
    "gfAvg5": 0.8,
@@ -282,97 +282,97 @@
   },
   "south africa": {
    "name": "South Africa",
-   "ntElo": 1664.62,
-   "gfDecay": 1.4551,
-   "gaDecay": 0.7805,
-   "gfAvg5": 1.8,
-   "gaAvg5": 0.4,
-   "matches": 66
+   "ntElo": 1665.62,
+   "gfDecay": 1.5042,
+   "gaDecay": 0.8452,
+   "gfAvg5": 2.4,
+   "gaAvg5": 0.8,
+   "matches": 68
   },
   "germany": {
    "name": "Germany",
-   "ntElo": 1873.55,
-   "gfDecay": 2.1434,
-   "gaDecay": 0.9865,
-   "gfAvg5": 0.8,
-   "gaAvg5": 0.6,
-   "matches": 60
+   "ntElo": 1897.4,
+   "gfDecay": 2.3193,
+   "gaDecay": 0.9404,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.4,
+   "matches": 62
   },
   "sweden": {
    "name": "Sweden",
-   "ntElo": 1755.16,
-   "gfDecay": 1.8018,
-   "gaDecay": 1.59,
-   "gfAvg5": 1.4,
-   "gaAvg5": 1.2,
-   "matches": 55
+   "ntElo": 1762.82,
+   "gfDecay": 1.8211,
+   "gaDecay": 1.581,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.0,
+   "matches": 57
   },
   "norway": {
    "name": "Norway",
-   "ntElo": 1825.41,
-   "gfDecay": 2.283,
-   "gaDecay": 1.3372,
-   "gfAvg5": 1.4,
-   "gaAvg5": 2.0,
-   "matches": 54
+   "ntElo": 1850.61,
+   "gfDecay": 2.3501,
+   "gaDecay": 1.3526,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.8,
+   "matches": 56
   },
   "denmark": {
    "name": "Denmark",
-   "ntElo": 1819.11,
-   "gfDecay": 1.9178,
-   "gaDecay": 1.1592,
-   "gfAvg5": 1.8,
+   "ntElo": 1823.6,
+   "gfDecay": 2.0392,
+   "gaDecay": 1.2541,
+   "gfAvg5": 2.2,
    "gaAvg5": 1.6,
-   "matches": 53
+   "matches": 55
   },
   "italy": {
    "name": "Italy",
-   "ntElo": 1884.67,
-   "gfDecay": 1.916,
-   "gaDecay": 1.1164,
-   "gfAvg5": 1.8,
-   "gaAvg5": 1.0,
-   "matches": 53
+   "ntElo": 1890.42,
+   "gfDecay": 1.9251,
+   "gaDecay": 1.272,
+   "gfAvg5": 2.4,
+   "gaAvg5": 1.6,
+   "matches": 55
   },
   "chile": {
    "name": "Chile",
-   "ntElo": 1735.76,
-   "gfDecay": 1.3258,
-   "gaDecay": 1.4615,
-   "gfAvg5": 1.4,
-   "gaAvg5": 1.6,
-   "matches": 50
+   "ntElo": 1735.8,
+   "gfDecay": 1.1632,
+   "gaDecay": 1.3433,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.2,
+   "matches": 52
   },
   "russia": {
    "name": "Russia",
-   "ntElo": 1768.46,
-   "gfDecay": 2.4946,
-   "gaDecay": 0.6818,
-   "gfAvg5": 3.4,
-   "gaAvg5": 0.6,
-   "matches": 31
+   "ntElo": 1785.82,
+   "gfDecay": 2.495,
+   "gaDecay": 0.7241,
+   "gfAvg5": 3.2,
+   "gaAvg5": 1.0,
+   "matches": 33
   },
   "finland": {
    "name": "Finland",
-   "ntElo": 1553.92,
-   "gfDecay": 1.3806,
-   "gaDecay": 1.3754,
-   "gfAvg5": 2.0,
-   "gaAvg5": 0.8,
-   "matches": 50
+   "ntElo": 1544.87,
+   "gfDecay": 1.63,
+   "gaDecay": 1.4486,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.2,
+   "matches": 52
   },
   "luxembourg": {
    "name": "Luxembourg",
-   "ntElo": 1411.07,
-   "gfDecay": 0.5137,
-   "gaDecay": 1.5792,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.4,
-   "matches": 46
+   "ntElo": 1389.39,
+   "gfDecay": 0.4473,
+   "gaDecay": 1.6339,
+   "gfAvg5": 0.0,
+   "gaAvg5": 2.0,
+   "matches": 48
   },
   "philippines": {
    "name": "Philippines",
-   "ntElo": 1334.72,
+   "ntElo": 1335.12,
    "gfDecay": 1.808,
    "gaDecay": 1.4343,
    "gfAvg5": 0.8,
@@ -381,106 +381,106 @@
   },
   "china": {
    "name": "China",
-   "ntElo": 1494.78,
-   "gfDecay": 0.9391,
-   "gaDecay": 1.5408,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.8,
-   "matches": 44
+   "ntElo": 1499.07,
+   "gfDecay": 1.0823,
+   "gaDecay": 1.4682,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.2,
+   "matches": 46
   },
   "brazil": {
    "name": "Brazil",
-   "ntElo": 1960.37,
-   "gfDecay": 2.178,
-   "gaDecay": 0.9799,
-   "gfAvg5": 2.4,
+   "ntElo": 1942.89,
+   "gfDecay": 2.4035,
+   "gaDecay": 1.0298,
+   "gfAvg5": 3.6,
    "gaAvg5": 1.2,
-   "matches": 58
+   "matches": 60
   },
   "japan": {
    "name": "Japan",
-   "ntElo": 1863.21,
-   "gfDecay": 2.0983,
-   "gaDecay": 0.7133,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.0,
-   "matches": 63
+   "ntElo": 1864.92,
+   "gfDecay": 2.0878,
+   "gaDecay": 0.8462,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.2,
+   "matches": 65
   },
   "paraguay": {
    "name": "Paraguay",
-   "ntElo": 1826.26,
-   "gfDecay": 1.0727,
-   "gaDecay": 0.9384,
-   "gfAvg5": 0.8,
-   "gaAvg5": 0.4,
-   "matches": 51
+   "ntElo": 1846.69,
+   "gfDecay": 1.2818,
+   "gaDecay": 0.9451,
+   "gfAvg5": 1.8,
+   "gaAvg5": 0.6,
+   "matches": 53
   },
   "romania": {
    "name": "Romania",
-   "ntElo": 1595.23,
-   "gfDecay": 1.4057,
-   "gaDecay": 1.6423,
+   "ntElo": 1600.57,
+   "gfDecay": 1.4163,
+   "gaDecay": 1.6263,
    "gfAvg5": 1.0,
    "gaAvg5": 2.8,
-   "matches": 52
+   "matches": 54
   },
   "greece": {
    "name": "Greece",
-   "ntElo": 1763.79,
-   "gfDecay": 1.4506,
-   "gaDecay": 1.0138,
-   "gfAvg5": 1.0,
-   "gaAvg5": 0.8,
-   "matches": 48
+   "ntElo": 1765.97,
+   "gfDecay": 1.3378,
+   "gaDecay": 1.3081,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.8,
+   "matches": 50
   },
   "spain": {
    "name": "Spain",
-   "ntElo": 2145.85,
-   "gfDecay": 2.4117,
-   "gaDecay": 0.6995,
+   "ntElo": 2124.82,
+   "gfDecay": 2.3785,
+   "gaDecay": 0.7645,
    "gfAvg5": 2.6,
-   "gaAvg5": 1.0,
-   "matches": 66
+   "gaAvg5": 1.2,
+   "matches": 68
   },
   "egypt": {
    "name": "Egypt",
-   "ntElo": 1744.8,
-   "gfDecay": 1.4637,
-   "gaDecay": 0.7937,
-   "gfAvg5": 1.6,
-   "gaAvg5": 1.0,
-   "matches": 70
+   "ntElo": 1738.78,
+   "gfDecay": 1.5449,
+   "gaDecay": 0.7309,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.2,
+   "matches": 72
   },
   "estonia": {
    "name": "Estonia",
-   "ntElo": 1460.19,
-   "gfDecay": 0.8324,
-   "gaDecay": 1.3967,
-   "gfAvg5": 0.6,
+   "ntElo": 1487.87,
+   "gfDecay": 0.9095,
+   "gaDecay": 1.2935,
+   "gfAvg5": 0.8,
    "gaAvg5": 0.2,
-   "matches": 52
+   "matches": 54
   },
   "suriname": {
    "name": "Suriname",
-   "ntElo": 1559.08,
-   "gfDecay": 1.3564,
-   "gaDecay": 1.094,
+   "ntElo": 1559.53,
+   "gfDecay": 1.4443,
+   "gaDecay": 0.9458,
    "gfAvg5": 1.2,
-   "gaAvg5": 1.2,
-   "matches": 40
+   "gaAvg5": 0.4,
+   "matches": 42
   },
   "costa rica": {
    "name": "Costa Rica",
-   "ntElo": 1670.51,
-   "gfDecay": 1.7403,
-   "gaDecay": 1.5262,
-   "gfAvg5": 1.6,
-   "gaAvg5": 1.8,
-   "matches": 66
+   "ntElo": 1666.18,
+   "gfDecay": 1.5675,
+   "gaDecay": 1.8225,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.2,
+   "matches": 68
   },
   "el salvador": {
    "name": "El Salvador",
-   "ntElo": 1481.2,
+   "ntElo": 1481.1,
    "gfDecay": 0.8471,
    "gaDecay": 1.5012,
    "gfAvg5": 0.8,
@@ -489,88 +489,88 @@
   },
   "guatemala": {
    "name": "Guatemala",
-   "ntElo": 1610.15,
-   "gfDecay": 1.4502,
-   "gaDecay": 1.565,
-   "gfAvg5": 1.8,
-   "gaAvg5": 1.2,
-   "matches": 66
+   "ntElo": 1592.75,
+   "gfDecay": 1.4551,
+   "gaDecay": 1.7606,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.4,
+   "matches": 68
   },
   "poland": {
    "name": "Poland",
-   "ntElo": 1689.65,
-   "gfDecay": 1.6304,
-   "gaDecay": 1.3037,
+   "ntElo": 1674.11,
+   "gfDecay": 1.5589,
+   "gaDecay": 1.3258,
    "gfAvg5": 1.8,
-   "gaAvg5": 1.2,
-   "matches": 54
+   "gaAvg5": 1.4,
+   "matches": 56
   },
   "portugal": {
    "name": "Portugal",
-   "ntElo": 1976.28,
-   "gfDecay": 2.199,
-   "gaDecay": 0.8568,
-   "gfAvg5": 1.8,
-   "gaAvg5": 1.0,
-   "matches": 63
+   "ntElo": 1959.38,
+   "gfDecay": 2.1813,
+   "gaDecay": 1.05,
+   "gfAvg5": 2.4,
+   "gaAvg5": 2.0,
+   "matches": 65
   },
   "new zealand": {
    "name": "New Zealand",
-   "ntElo": 1642.43,
-   "gfDecay": 1.6434,
-   "gaDecay": 1.564,
-   "gfAvg5": 1.6,
-   "gaAvg5": 2.0,
-   "matches": 51
+   "ntElo": 1645.64,
+   "gfDecay": 1.894,
+   "gaDecay": 1.3975,
+   "gfAvg5": 2.6,
+   "gaAvg5": 0.6,
+   "matches": 53
   },
   "australia": {
    "name": "Australia",
-   "ntElo": 1797.32,
-   "gfDecay": 1.4696,
-   "gaDecay": 0.981,
-   "gfAvg5": 0.8,
+   "ntElo": 1790.1,
+   "gfDecay": 1.4722,
+   "gaDecay": 0.9835,
+   "gfAvg5": 1.4,
    "gaAvg5": 1.6,
-   "matches": 57
+   "matches": 59
   },
   "latvia": {
    "name": "Latvia",
-   "ntElo": 1305.86,
-   "gfDecay": 0.6074,
-   "gaDecay": 1.5185,
-   "gfAvg5": 0.4,
-   "gaAvg5": 1.4,
-   "matches": 46
+   "ntElo": 1302.15,
+   "gfDecay": 0.5934,
+   "gaDecay": 1.4517,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.2,
+   "matches": 48
   },
   "mexico": {
    "name": "Mexico",
-   "ntElo": 1861.41,
-   "gfDecay": 1.4443,
-   "gaDecay": 0.917,
+   "ntElo": 1845.73,
+   "gfDecay": 1.4482,
+   "gaDecay": 0.9588,
    "gfAvg5": 0.8,
-   "gaAvg5": 2.0,
-   "matches": 86
+   "gaAvg5": 1.8,
+   "matches": 88
   },
   "lithuania": {
    "name": "Lithuania",
-   "ntElo": 1330.58,
-   "gfDecay": 0.8887,
-   "gaDecay": 1.3152,
+   "ntElo": 1337.09,
+   "gfDecay": 0.9023,
+   "gaDecay": 1.2188,
    "gfAvg5": 1.2,
    "gaAvg5": 0.6,
-   "matches": 48
+   "matches": 50
   },
   "turkey": {
    "name": "Turkey",
-   "ntElo": 1783.48,
-   "gfDecay": 1.5929,
-   "gaDecay": 1.5711,
-   "gfAvg5": 1.0,
-   "gaAvg5": 2.6,
-   "matches": 56
+   "ntElo": 1764.76,
+   "gfDecay": 1.5342,
+   "gaDecay": 1.6136,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.8,
+   "matches": 58
   },
   "aruba": {
    "name": "Aruba",
-   "ntElo": 1279.27,
+   "ntElo": 1279.33,
    "gfDecay": 1.7698,
    "gaDecay": 1.6932,
    "gfAvg5": 1.6,
@@ -579,124 +579,124 @@
   },
   "curacao": {
    "name": "Curaçao",
-   "ntElo": 1581.57,
-   "gfDecay": 1.9256,
-   "gaDecay": 1.5164,
-   "gfAvg5": 2.4,
-   "gaAvg5": 1.4,
-   "matches": 46
-  },
-  "bulgaria": {
-   "name": "Bulgaria",
-   "ntElo": 1491.21,
-   "gfDecay": 1.1742,
-   "gaDecay": 1.7113,
-   "gfAvg5": 1.0,
-   "gaAvg5": 1.4,
-   "matches": 48
-  },
-  "republic of ireland": {
-   "name": "Republic of Ireland",
-   "ntElo": 1679.51,
-   "gfDecay": 1.3821,
-   "gaDecay": 1.0332,
-   "gfAvg5": 1.4,
-   "gaAvg5": 1.0,
-   "matches": 49
-  },
-  "haiti": {
-   "name": "Haiti",
-   "ntElo": 1643.76,
-   "gfDecay": 1.9355,
-   "gaDecay": 1.3595,
-   "gfAvg5": 2.2,
-   "gaAvg5": 1.8,
-   "matches": 46
-  },
-  "jamaica": {
-   "name": "Jamaica",
-   "ntElo": 1632.44,
-   "gfDecay": 1.3158,
-   "gaDecay": 1.014,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.0,
-   "matches": 71
-  },
-  "kenya": {
-   "name": "Kenya",
-   "ntElo": 1464.52,
-   "gfDecay": 1.0586,
-   "gaDecay": 1.2751,
-   "gfAvg5": 1.0,
-   "gaAvg5": 0.6,
-   "matches": 34
-  },
-  "uganda": {
-   "name": "Uganda",
-   "ntElo": 1545.96,
-   "gfDecay": 1.165,
-   "gaDecay": 1.1716,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.0,
-   "matches": 46
-  },
-  "bolivia": {
-   "name": "Bolivia",
-   "ntElo": 1625.34,
-   "gfDecay": 0.6699,
-   "gaDecay": 2.1838,
-   "gfAvg5": 0.0,
-   "gaAvg5": 3.6,
-   "matches": 52
-  },
-  "peru": {
-   "name": "Peru",
-   "ntElo": 1697.14,
-   "gfDecay": 0.7371,
-   "gaDecay": 1.5633,
-   "gfAvg5": 0.6,
-   "gaAvg5": 2.4,
-   "matches": 52
-  },
-  "honduras": {
-   "name": "Honduras",
-   "ntElo": 1620.84,
-   "gfDecay": 1.2642,
-   "gaDecay": 1.2757,
-   "gfAvg5": 1.0,
-   "gaAvg5": 1.6,
-   "matches": 61
-  },
-  "belarus": {
-   "name": "Belarus",
-   "ntElo": 1562.1,
-   "gfDecay": 1.3177,
-   "gaDecay": 1.3478,
-   "gfAvg5": 1.4,
+   "ntElo": 1576.49,
+   "gfDecay": 1.7239,
+   "gaDecay": 1.4626,
+   "gfAvg5": 1.6,
    "gaAvg5": 0.8,
    "matches": 48
   },
+  "bulgaria": {
+   "name": "Bulgaria",
+   "ntElo": 1465.26,
+   "gfDecay": 1.0943,
+   "gaDecay": 1.9232,
+   "gfAvg5": 0.6,
+   "gaAvg5": 2.0,
+   "matches": 50
+  },
+  "republic of ireland": {
+   "name": "Republic of Ireland",
+   "ntElo": 1682.92,
+   "gfDecay": 1.3961,
+   "gaDecay": 0.9721,
+   "gfAvg5": 1.8,
+   "gaAvg5": 0.8,
+   "matches": 51
+  },
+  "haiti": {
+   "name": "Haiti",
+   "ntElo": 1631.32,
+   "gfDecay": 1.7324,
+   "gaDecay": 1.6359,
+   "gfAvg5": 1.2,
+   "gaAvg5": 2.2,
+   "matches": 48
+  },
+  "jamaica": {
+   "name": "Jamaica",
+   "ntElo": 1647.86,
+   "gfDecay": 1.332,
+   "gaDecay": 1.0578,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.0,
+   "matches": 73
+  },
+  "kenya": {
+   "name": "Kenya",
+   "ntElo": 1463.35,
+   "gfDecay": 1.1198,
+   "gaDecay": 1.376,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.2,
+   "matches": 36
+  },
+  "uganda": {
+   "name": "Uganda",
+   "ntElo": 1537.71,
+   "gfDecay": 1.1436,
+   "gaDecay": 1.1493,
+   "gfAvg5": 1.2,
+   "gaAvg5": 0.6,
+   "matches": 48
+  },
+  "bolivia": {
+   "name": "Bolivia",
+   "ntElo": 1617.34,
+   "gfDecay": 0.5971,
+   "gaDecay": 2.1639,
+   "gfAvg5": 0.0,
+   "gaAvg5": 2.8,
+   "matches": 54
+  },
+  "peru": {
+   "name": "Peru",
+   "ntElo": 1702.42,
+   "gfDecay": 0.8152,
+   "gaDecay": 1.4666,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.8,
+   "matches": 53
+  },
+  "honduras": {
+   "name": "Honduras",
+   "ntElo": 1622.19,
+   "gfDecay": 1.2899,
+   "gaDecay": 1.2993,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.2,
+   "matches": 63
+  },
+  "belarus": {
+   "name": "Belarus",
+   "ntElo": 1550.13,
+   "gfDecay": 1.2797,
+   "gaDecay": 1.3069,
+   "gfAvg5": 1.4,
+   "gaAvg5": 0.4,
+   "matches": 50
+  },
   "ukraine": {
    "name": "Ukraine",
-   "ntElo": 1759.5,
-   "gfDecay": 1.2472,
-   "gaDecay": 1.4254,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.4,
-   "matches": 49
+   "ntElo": 1751.52,
+   "gfDecay": 1.1619,
+   "gaDecay": 1.3193,
+   "gfAvg5": 0.4,
+   "gaAvg5": 1.2,
+   "matches": 51
   },
   "barbados": {
    "name": "Barbados",
-   "ntElo": 1297.96,
-   "gfDecay": 1.8787,
-   "gaDecay": 1.9033,
-   "gfAvg5": 2.4,
-   "gaAvg5": 1.4,
-   "matches": 37
+   "ntElo": 1280.65,
+   "gfDecay": 1.5833,
+   "gaDecay": 1.9967,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.8,
+   "matches": 39
   },
   "nicaragua": {
    "name": "Nicaragua",
-   "ntElo": 1424.4,
+   "ntElo": 1424.31,
    "gfDecay": 0.9709,
    "gaDecay": 2.0838,
    "gfAvg5": 0.8,
@@ -705,16 +705,16 @@
   },
   "cuba": {
    "name": "Cuba",
-   "ntElo": 1436.37,
-   "gfDecay": 1.5486,
-   "gaDecay": 1.5901,
-   "gfAvg5": 2.2,
+   "ntElo": 1447.87,
+   "gfDecay": 2.4328,
+   "gaDecay": 1.4406,
+   "gfAvg5": 4.6,
    "gaAvg5": 1.2,
-   "matches": 44
+   "matches": 46
   },
   "martinique": {
    "name": "Martinique",
-   "ntElo": 1477.29,
+   "ntElo": 1477.2,
    "gfDecay": 0.9562,
    "gaDecay": 1.4928,
    "gfAvg5": 1.0,
@@ -723,34 +723,34 @@
   },
   "dominica": {
    "name": "Dominica",
-   "ntElo": 1233.19,
-   "gfDecay": 0.7796,
-   "gaDecay": 2.3858,
-   "gfAvg5": 0.6,
-   "gaAvg5": 3.0,
-   "matches": 31
+   "ntElo": 1237.52,
+   "gfDecay": 1.199,
+   "gaDecay": 2.3253,
+   "gfAvg5": 1.8,
+   "gaAvg5": 3.8,
+   "matches": 33
   },
   "guadeloupe": {
    "name": "Guadeloupe",
-   "ntElo": 1449.87,
-   "gfDecay": 1.3967,
-   "gaDecay": 1.4711,
-   "gfAvg5": 1.2,
-   "gaAvg5": 2.0,
-   "matches": 33
+   "ntElo": 1461.58,
+   "gfDecay": 1.7936,
+   "gaDecay": 1.2884,
+   "gfAvg5": 1.8,
+   "gaAvg5": 1.4,
+   "matches": 35
   },
   "israel": {
    "name": "Israel",
-   "ntElo": 1623.93,
-   "gfDecay": 1.3027,
-   "gaDecay": 1.7568,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.4,
-   "matches": 44
+   "ntElo": 1636.47,
+   "gfDecay": 1.1972,
+   "gaDecay": 1.5916,
+   "gfAvg5": 0.4,
+   "gaAvg5": 1.0,
+   "matches": 46
   },
   "indonesia": {
    "name": "Indonesia",
-   "ntElo": 1461.16,
+   "ntElo": 1461.33,
    "gfDecay": 1.9767,
    "gaDecay": 1.2204,
    "gfAvg5": 2.8,
@@ -759,124 +759,124 @@
   },
   "french guiana": {
    "name": "French Guiana",
-   "ntElo": 1454.08,
-   "gfDecay": 1.3291,
-   "gaDecay": 0.93,
-   "gfAvg5": 1.4,
-   "gaAvg5": 0.8,
-   "matches": 24
+   "ntElo": 1482.39,
+   "gfDecay": 1.7234,
+   "gaDecay": 0.8278,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.2,
+   "matches": 26
   },
   "saint lucia": {
    "name": "Saint Lucia",
-   "ntElo": 1359.53,
-   "gfDecay": 1.5514,
-   "gaDecay": 1.9727,
-   "gfAvg5": 2.0,
-   "gaAvg5": 2.0,
-   "matches": 33
+   "ntElo": 1384.83,
+   "gfDecay": 1.631,
+   "gaDecay": 1.7109,
+   "gfAvg5": 2.6,
+   "gaAvg5": 0.6,
+   "matches": 35
   },
   "colombia": {
    "name": "Colombia",
-   "ntElo": 1941.94,
-   "gfDecay": 1.6171,
-   "gaDecay": 0.758,
+   "ntElo": 1941.6,
+   "gfDecay": 1.5111,
+   "gaDecay": 0.6862,
    "gfAvg5": 0.8,
    "gaAvg5": 0.4,
-   "matches": 59
+   "matches": 61
   },
   "panama": {
    "name": "Panama",
-   "ntElo": 1712.96,
-   "gfDecay": 1.4129,
-   "gaDecay": 1.3156,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.2,
-   "matches": 77
+   "ntElo": 1717.82,
+   "gfDecay": 1.3786,
+   "gaDecay": 1.2053,
+   "gfAvg5": 1.0,
+   "gaAvg5": 0.6,
+   "matches": 79
   },
   "venezuela": {
    "name": "Venezuela",
-   "ntElo": 1751.37,
-   "gfDecay": 1.0095,
-   "gaDecay": 1.2126,
-   "gfAvg5": 0.8,
-   "gaAvg5": 0.8,
-   "matches": 49
+   "ntElo": 1736.61,
+   "gfDecay": 0.8842,
+   "gaDecay": 1.2484,
+   "gfAvg5": 0.2,
+   "gaAvg5": 1.0,
+   "matches": 51
   },
   "ecuador": {
    "name": "Ecuador",
-   "ntElo": 1858.87,
-   "gfDecay": 0.9218,
-   "gaDecay": 0.7588,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.4,
-   "matches": 59
+   "ntElo": 1864.37,
+   "gfDecay": 1.0288,
+   "gaDecay": 0.6835,
+   "gfAvg5": 1.0,
+   "gaAvg5": 0.8,
+   "matches": 61
   },
   "saint kitts and nevis": {
    "name": "Saint Kitts and Nevis",
-   "ntElo": 1362.78,
-   "gfDecay": 1.9403,
-   "gaDecay": 2.0349,
-   "gfAvg5": 2.8,
-   "gaAvg5": 1.6,
-   "matches": 41
+   "ntElo": 1356.25,
+   "gfDecay": 2.0178,
+   "gaDecay": 2.0988,
+   "gfAvg5": 2.6,
+   "gaAvg5": 2.0,
+   "matches": 43
   },
   "grenada": {
    "name": "Grenada",
-   "ntElo": 1301.24,
-   "gfDecay": 1.1646,
-   "gaDecay": 2.3773,
-   "gfAvg5": 0.8,
-   "gaAvg5": 3.4,
-   "matches": 41
+   "ntElo": 1312.28,
+   "gfDecay": 1.2107,
+   "gaDecay": 2.8136,
+   "gfAvg5": 1.4,
+   "gaAvg5": 4.0,
+   "matches": 43
   },
   "india": {
    "name": "India",
-   "ntElo": 1306.94,
-   "gfDecay": 0.6934,
-   "gaDecay": 1.7852,
-   "gfAvg5": 0.8,
-   "gaAvg5": 3.0,
-   "matches": 48
+   "ntElo": 1324.36,
+   "gfDecay": 0.8333,
+   "gaDecay": 1.9013,
+   "gfAvg5": 1.2,
+   "gaAvg5": 2.2,
+   "matches": 53
   },
   "slovakia": {
    "name": "Slovakia",
-   "ntElo": 1664.0,
-   "gfDecay": 1.6267,
-   "gaDecay": 1.1216,
+   "ntElo": 1646.88,
+   "gfDecay": 1.6689,
+   "gaDecay": 1.221,
    "gfAvg5": 2.2,
-   "gaAvg5": 0.8,
-   "matches": 52
+   "gaAvg5": 1.2,
+   "matches": 54
   },
   "croatia": {
    "name": "Croatia",
-   "ntElo": 1845.16,
-   "gfDecay": 1.6584,
-   "gaDecay": 1.6495,
+   "ntElo": 1844.65,
+   "gfDecay": 1.6434,
+   "gaDecay": 1.6351,
    "gfAvg5": 1.0,
    "gaAvg5": 3.2,
-   "matches": 61
+   "matches": 63
   },
   "lebanon": {
    "name": "Lebanon",
-   "ntElo": 1449.14,
-   "gfDecay": 1.7931,
-   "gaDecay": 0.9692,
-   "gfAvg5": 3.0,
+   "ntElo": 1464.71,
+   "gfDecay": 1.5083,
+   "gaDecay": 0.8153,
+   "gfAvg5": 1.6,
    "gaAvg5": 1.0,
-   "matches": 45
+   "matches": 47
   },
   "puerto rico": {
    "name": "Puerto Rico",
-   "ntElo": 1389.86,
-   "gfDecay": 1.7054,
-   "gaDecay": 1.1948,
-   "gfAvg5": 1.2,
-   "gaAvg5": 0.8,
-   "matches": 35
+   "ntElo": 1391.58,
+   "gfDecay": 1.8993,
+   "gaDecay": 1.4662,
+   "gfAvg5": 2.4,
+   "gaAvg5": 1.2,
+   "matches": 37
   },
   "afghanistan": {
    "name": "Afghanistan",
-   "ntElo": 1268.36,
+   "ntElo": 1268.77,
    "gfDecay": 0.481,
    "gaDecay": 1.463,
    "gfAvg5": 0.4,
@@ -885,16 +885,16 @@
   },
   "iran": {
    "name": "Iran",
-   "ntElo": 1799.49,
-   "gfDecay": 1.7292,
-   "gaDecay": 0.9739,
-   "gfAvg5": 0.8,
-   "gaAvg5": 1.6,
-   "matches": 58
+   "ntElo": 1803.54,
+   "gfDecay": 1.703,
+   "gaDecay": 0.9202,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.4,
+   "matches": 60
   },
   "mongolia": {
    "name": "Mongolia",
-   "ntElo": 1120.69,
+   "ntElo": 1122.87,
    "gfDecay": 0.334,
    "gaDecay": 2.429,
    "gfAvg5": 0.4,
@@ -903,70 +903,70 @@
   },
   "tanzania": {
    "name": "Tanzania",
-   "ntElo": 1406.46,
-   "gfDecay": 0.8656,
-   "gaDecay": 1.182,
-   "gfAvg5": 1.4,
-   "gaAvg5": 1.0,
-   "matches": 45
+   "ntElo": 1414.13,
+   "gfDecay": 0.8174,
+   "gaDecay": 1.2229,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.2,
+   "matches": 47
   },
   "zimbabwe": {
    "name": "Zimbabwe",
-   "ntElo": 1475.08,
-   "gfDecay": 1.0912,
-   "gaDecay": 1.3333,
+   "ntElo": 1485.28,
+   "gfDecay": 1.1487,
+   "gaDecay": 1.1483,
    "gfAvg5": 1.6,
-   "gaAvg5": 1.2,
-   "matches": 32
+   "gaAvg5": 0.8,
+   "matches": 34
   },
   "zambia": {
    "name": "Zambia",
-   "ntElo": 1537.97,
-   "gfDecay": 1.0121,
-   "gaDecay": 1.6556,
-   "gfAvg5": 0.6,
-   "gaAvg5": 2.2,
-   "matches": 47
+   "ntElo": 1530.61,
+   "gfDecay": 1.0103,
+   "gaDecay": 1.5589,
+   "gfAvg5": 1.0,
+   "gaAvg5": 2.0,
+   "matches": 49
   },
   "iceland": {
    "name": "Iceland",
-   "ntElo": 1592.48,
-   "gfDecay": 1.4237,
-   "gaDecay": 1.4844,
-   "gfAvg5": 1.4,
-   "gaAvg5": 0.8,
-   "matches": 57
+   "ntElo": 1611.42,
+   "gfDecay": 1.7075,
+   "gaDecay": 1.3206,
+   "gfAvg5": 2.8,
+   "gaAvg5": 0.0,
+   "matches": 59
   },
   "albania": {
    "name": "Albania",
-   "ntElo": 1589.62,
-   "gfDecay": 1.1884,
-   "gaDecay": 0.9147,
-   "gfAvg5": 1.6,
-   "gaAvg5": 0.8,
-   "matches": 51
+   "ntElo": 1612.27,
+   "gfDecay": 1.2816,
+   "gaDecay": 0.8096,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.6,
+   "matches": 53
   },
   "montenegro": {
    "name": "Montenegro",
-   "ntElo": 1537.93,
-   "gfDecay": 1.3719,
-   "gaDecay": 1.4823,
-   "gfAvg5": 1.8,
-   "gaAvg5": 1.2,
-   "matches": 48
+   "ntElo": 1554.96,
+   "gfDecay": 1.5655,
+   "gaDecay": 1.4251,
+   "gfAvg5": 2.2,
+   "gaAvg5": 1.0,
+   "matches": 50
   },
   "madagascar": {
    "name": "Madagascar",
-   "ntElo": 1471.54,
-   "gfDecay": 1.4201,
-   "gaDecay": 1.5778,
-   "gfAvg5": 1.6,
+   "ntElo": 1457.49,
+   "gfDecay": 1.2774,
+   "gaDecay": 1.5661,
+   "gfAvg5": 0.6,
    "gaAvg5": 2.0,
-   "matches": 39
+   "matches": 41
   },
   "mauritius": {
    "name": "Mauritius",
-   "ntElo": 1230.37,
+   "ntElo": 1230.44,
    "gfDecay": 0.8418,
    "gaDecay": 1.1519,
    "gfAvg5": 0.8,
@@ -975,7 +975,7 @@
   },
   "djibouti": {
    "name": "Djibouti",
-   "ntElo": 1172.52,
+   "ntElo": 1172.54,
    "gfDecay": 0.5248,
    "gaDecay": 2.6149,
    "gfAvg5": 0.4,
@@ -984,43 +984,43 @@
   },
   "ethiopia": {
    "name": "Ethiopia",
-   "ntElo": 1411.51,
-   "gfDecay": 0.9094,
-   "gaDecay": 1.1295,
-   "gfAvg5": 0.6,
-   "gaAvg5": 0.6,
-   "matches": 39
+   "ntElo": 1416.79,
+   "gfDecay": 0.8449,
+   "gaDecay": 1.0311,
+   "gfAvg5": 0.4,
+   "gaAvg5": 0.8,
+   "matches": 41
   },
   "dr congo": {
    "name": "DR Congo",
-   "ntElo": 1697.13,
-   "gfDecay": 1.2419,
-   "gaDecay": 0.7717,
-   "gfAvg5": 1.2,
+   "ntElo": 1690.89,
+   "gfDecay": 1.3082,
+   "gaDecay": 0.7918,
+   "gfAvg5": 1.4,
    "gaAvg5": 1.2,
-   "matches": 60
+   "matches": 62
   },
   "south korea": {
    "name": "South Korea",
-   "ntElo": 1776.41,
-   "gfDecay": 1.6382,
-   "gaDecay": 0.9649,
+   "ntElo": 1771.14,
+   "gfDecay": 1.6245,
+   "gaDecay": 1.0166,
    "gfAvg5": 1.2,
-   "gaAvg5": 1.0,
-   "matches": 68
+   "gaAvg5": 1.4,
+   "matches": 70
   },
   "vietnam": {
    "name": "Vietnam",
-   "ntElo": 1525.89,
-   "gfDecay": 2.1545,
-   "gaDecay": 0.82,
-   "gfAvg5": 1.8,
-   "gaAvg5": 1.0,
-   "matches": 64
+   "ntElo": 1506.1,
+   "gfDecay": 2.0989,
+   "gaDecay": 0.8357,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.4,
+   "matches": 66
   },
   "macau": {
    "name": "Macau",
-   "ntElo": 1014.49,
+   "ntElo": 1016.82,
    "gfDecay": 0.359,
    "gaDecay": 3.3404,
    "gfAvg5": 0.4,
@@ -1029,79 +1029,79 @@
   },
   "dominican republic": {
    "name": "Dominican Republic",
-   "ntElo": 1487.99,
-   "gfDecay": 1.9691,
-   "gaDecay": 1.5914,
-   "gfAvg5": 2.0,
-   "gaAvg5": 2.4,
-   "matches": 43
+   "ntElo": 1486.77,
+   "gfDecay": 1.8344,
+   "gaDecay": 1.8246,
+   "gfAvg5": 1.6,
+   "gaAvg5": 2.6,
+   "matches": 44
   },
   "cyprus": {
    "name": "Cyprus",
-   "ntElo": 1400.61,
-   "gfDecay": 1.2658,
-   "gaDecay": 1.5243,
-   "gfAvg5": 1.4,
-   "gaAvg5": 0.6,
-   "matches": 48
+   "ntElo": 1391.75,
+   "gfDecay": 1.2343,
+   "gaDecay": 1.6405,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.2,
+   "matches": 50
   },
   "sierra leone": {
    "name": "Sierra Leone",
-   "ntElo": 1442.67,
-   "gfDecay": 1.0843,
-   "gaDecay": 1.4691,
+   "ntElo": 1448.61,
+   "gfDecay": 1.0702,
+   "gaDecay": 1.5568,
    "gfAvg5": 1.0,
-   "gaAvg5": 1.6,
-   "matches": 39
+   "gaAvg5": 2.2,
+   "matches": 41
   },
   "nigeria": {
    "name": "Nigeria",
-   "ntElo": 1768.26,
-   "gfDecay": 1.8002,
-   "gaDecay": 1.0779,
+   "ntElo": 1760.41,
+   "gfDecay": 1.7726,
+   "gaDecay": 1.0256,
    "gfAvg5": 1.6,
-   "gaAvg5": 2.2,
-   "matches": 64
+   "gaAvg5": 1.6,
+   "matches": 66
   },
   "syria": {
    "name": "Syria",
-   "ntElo": 1569.23,
-   "gfDecay": 1.4432,
-   "gaDecay": 1.3703,
-   "gfAvg5": 0.6,
-   "gaAvg5": 2.0,
-   "matches": 50
+   "ntElo": 1553.38,
+   "gfDecay": 1.3843,
+   "gaDecay": 1.6559,
+   "gfAvg5": 1.0,
+   "gaAvg5": 3.2,
+   "matches": 52
   },
   "serbia": {
    "name": "Serbia",
-   "ntElo": 1696.47,
-   "gfDecay": 1.0325,
-   "gaDecay": 1.666,
-   "gfAvg5": 0.8,
-   "gaAvg5": 2.6,
-   "matches": 53
+   "ntElo": 1676.42,
+   "gfDecay": 0.9714,
+   "gaDecay": 1.7039,
+   "gfAvg5": 0.6,
+   "gaAvg5": 2.0,
+   "matches": 55
   },
   "taiwan": {
    "name": "Taiwan",
-   "ntElo": 1174.08,
-   "gfDecay": 1.1543,
-   "gaDecay": 2.844,
-   "gfAvg5": 0.6,
-   "gaAvg5": 4.0,
-   "matches": 23
+   "ntElo": 1167.6,
+   "gfDecay": 0.8464,
+   "gaDecay": 2.7526,
+   "gfAvg5": 0.4,
+   "gaAvg5": 3.2,
+   "matches": 25
   },
   "ghana": {
    "name": "Ghana",
-   "ntElo": 1584.22,
-   "gfDecay": 1.1159,
-   "gaDecay": 1.4149,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.8,
-   "matches": 58
+   "ntElo": 1586.85,
+   "gfDecay": 1.1573,
+   "gaDecay": 1.2616,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.4,
+   "matches": 60
   },
   "myanmar": {
    "name": "Myanmar",
-   "ntElo": 1220.79,
+   "ntElo": 1221.39,
    "gfDecay": 1.5465,
    "gaDecay": 2.267,
    "gfAvg5": 1.8,
@@ -1110,7 +1110,7 @@
   },
   "new caledonia": {
    "name": "New Caledonia",
-   "ntElo": 1522.54,
+   "ntElo": 1522.59,
    "gfDecay": 1.4561,
    "gaDecay": 1.6147,
    "gfAvg5": 0.8,
@@ -1119,7 +1119,7 @@
   },
   "vanuatu": {
    "name": "Vanuatu",
-   "ntElo": 1478.79,
+   "ntElo": 1478.88,
    "gfDecay": 1.6034,
    "gaDecay": 1.689,
    "gfAvg5": 1.8,
@@ -1128,7 +1128,7 @@
   },
   "fiji": {
    "name": "Fiji",
-   "ntElo": 1489.66,
+   "ntElo": 1489.75,
    "gfDecay": 1.45,
    "gaDecay": 1.6797,
    "gfAvg5": 1.6,
@@ -1137,43 +1137,43 @@
   },
   "pakistan": {
    "name": "Pakistan",
-   "ntElo": 1182.87,
-   "gfDecay": 1.0735,
-   "gaDecay": 2.0902,
-   "gfAvg5": 1.6,
-   "gaAvg5": 2.0,
-   "matches": 27
+   "ntElo": 1205.43,
+   "gfDecay": 1.3022,
+   "gaDecay": 1.8181,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.8,
+   "matches": 30
   },
   "sri lanka": {
    "name": "Sri Lanka",
-   "ntElo": 1134.02,
-   "gfDecay": 1.1207,
-   "gaDecay": 1.2546,
-   "gfAvg5": 1.4,
-   "gaAvg5": 1.6,
-   "matches": 28
+   "ntElo": 1120.49,
+   "gfDecay": 1.1007,
+   "gaDecay": 1.5378,
+   "gfAvg5": 1.2,
+   "gaAvg5": 2.0,
+   "matches": 30
   },
   "tahiti": {
    "name": "Tahiti",
-   "ntElo": 1514.92,
-   "gfDecay": 1.9698,
-   "gaDecay": 1.5574,
-   "gfAvg5": 2.0,
-   "gaAvg5": 1.4,
-   "matches": 21
+   "ntElo": 1510.39,
+   "gfDecay": 2.416,
+   "gaDecay": 1.5419,
+   "gfAvg5": 2.4,
+   "gaAvg5": 2.0,
+   "matches": 23
   },
   "gambia": {
    "name": "Gambia",
-   "ntElo": 1535.44,
-   "gfDecay": 2.031,
-   "gaDecay": 1.6301,
+   "ntElo": 1536.19,
+   "gfDecay": 1.9464,
+   "gaDecay": 1.6893,
    "gfAvg5": 2.0,
-   "gaAvg5": 2.2,
-   "matches": 41
+   "gaAvg5": 2.0,
+   "matches": 43
   },
   "hong kong": {
    "name": "Hong Kong",
-   "ntElo": 1344.7,
+   "ntElo": 1345.2,
    "gfDecay": 1.8584,
    "gaDecay": 0.9123,
    "gfAvg5": 2.0,
@@ -1182,52 +1182,52 @@
   },
   "singapore": {
    "name": "Singapore",
-   "ntElo": 1363.57,
-   "gfDecay": 1.3218,
-   "gaDecay": 1.6132,
-   "gfAvg5": 0.8,
-   "gaAvg5": 2.4,
-   "matches": 56
+   "ntElo": 1358.86,
+   "gfDecay": 1.2409,
+   "gaDecay": 1.9957,
+   "gfAvg5": 0.4,
+   "gaAvg5": 3.8,
+   "matches": 58
   },
   "malaysia": {
    "name": "Malaysia",
-   "ntElo": 1497.34,
-   "gfDecay": 1.7999,
-   "gaDecay": 0.8891,
-   "gfAvg5": 2.0,
-   "gaAvg5": 0.4,
-   "matches": 61
+   "ntElo": 1496.42,
+   "gfDecay": 1.7203,
+   "gaDecay": 0.9499,
+   "gfAvg5": 1.8,
+   "gaAvg5": 0.6,
+   "matches": 63
   },
   "guinea bissau": {
    "name": "Guinea-Bissau",
-   "ntElo": 1431.92,
-   "gfDecay": 1.0301,
-   "gaDecay": 1.2704,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.4,
-   "matches": 40
+   "ntElo": 1445.75,
+   "gfDecay": 1.1081,
+   "gaDecay": 1.1428,
+   "gfAvg5": 1.8,
+   "gaAvg5": 0.4,
+   "matches": 42
   },
   "burundi": {
    "name": "Burundi",
-   "ntElo": 1437.3,
-   "gfDecay": 1.2202,
-   "gaDecay": 1.4922,
-   "gfAvg5": 2.0,
-   "gaAvg5": 1.6,
-   "matches": 33
+   "ntElo": 1445.17,
+   "gfDecay": 1.1838,
+   "gaDecay": 1.4108,
+   "gfAvg5": 0.8,
+   "gaAvg5": 2.0,
+   "matches": 35
   },
   "cameroon": {
    "name": "Cameroon",
-   "ntElo": 1688.0,
-   "gfDecay": 1.347,
-   "gaDecay": 0.7244,
-   "gfAvg5": 1.4,
-   "gaAvg5": 0.6,
-   "matches": 57
+   "ntElo": 1697.6,
+   "gfDecay": 1.4823,
+   "gaDecay": 0.6395,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.4,
+   "matches": 59
   },
   "cambodia": {
    "name": "Cambodia",
-   "ntElo": 1147.44,
+   "ntElo": 1148.14,
    "gfDecay": 1.4523,
    "gaDecay": 1.6849,
    "gfAvg5": 1.4,
@@ -1236,43 +1236,43 @@
   },
   "thailand": {
    "name": "Thailand",
-   "ntElo": 1519.39,
-   "gfDecay": 2.053,
-   "gaDecay": 1.0172,
-   "gfAvg5": 2.2,
-   "gaAvg5": 1.2,
-   "matches": 77
+   "ntElo": 1526.02,
+   "gfDecay": 2.245,
+   "gaDecay": 0.9373,
+   "gfAvg5": 2.8,
+   "gaAvg5": 0.8,
+   "matches": 79
   },
   "kyrgyzstan": {
    "name": "Kyrgyzstan",
-   "ntElo": 1444.08,
-   "gfDecay": 1.5633,
-   "gaDecay": 1.3322,
-   "gfAvg5": 2.0,
-   "gaAvg5": 1.2,
-   "matches": 40
+   "ntElo": 1471.54,
+   "gfDecay": 1.7155,
+   "gaDecay": 1.197,
+   "gfAvg5": 2.6,
+   "gaAvg5": 0.4,
+   "matches": 42
   },
   "moldova": {
    "name": "Moldova",
-   "ntElo": 1351.29,
-   "gfDecay": 0.8809,
-   "gaDecay": 2.2687,
-   "gfAvg5": 0.8,
-   "gaAvg5": 1.8,
-   "matches": 49
+   "ntElo": 1356.86,
+   "gfDecay": 0.8948,
+   "gaDecay": 2.1173,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.6,
+   "matches": 51
   },
   "togo": {
    "name": "Togo",
-   "ntElo": 1476.23,
-   "gfDecay": 1.1584,
-   "gaDecay": 1.1263,
-   "gfAvg5": 1.6,
+   "ntElo": 1497.02,
+   "gfDecay": 1.2137,
+   "gaDecay": 1.0259,
+   "gfAvg5": 1.8,
    "gaAvg5": 0.8,
-   "matches": 35
+   "matches": 37
   },
   "north korea": {
    "name": "North Korea",
-   "ntElo": 1508.41,
+   "ntElo": 1508.46,
    "gfDecay": 1.1118,
    "gaDecay": 1.7525,
    "gfAvg5": 1.0,
@@ -1281,160 +1281,160 @@
   },
   "sudan": {
    "name": "Sudan",
-   "ntElo": 1480.89,
-   "gfDecay": 0.6014,
-   "gaDecay": 1.3558,
-   "gfAvg5": 0.8,
-   "gaAvg5": 1.8,
-   "matches": 46
+   "ntElo": 1474.2,
+   "gfDecay": 0.7186,
+   "gaDecay": 1.7,
+   "gfAvg5": 1.2,
+   "gaAvg5": 3.0,
+   "matches": 48
   },
   "malta": {
    "name": "Malta",
-   "ntElo": 1352.47,
-   "gfDecay": 1.0834,
-   "gaDecay": 1.4833,
-   "gfAvg5": 1.6,
-   "gaAvg5": 0.4,
-   "matches": 45
+   "ntElo": 1346.38,
+   "gfDecay": 1.0724,
+   "gaDecay": 1.42,
+   "gfAvg5": 1.2,
+   "gaAvg5": 0.6,
+   "matches": 47
   },
   "tunisia": {
    "name": "Tunisia",
-   "ntElo": 1623.95,
-   "gfDecay": 1.3374,
-   "gaDecay": 1.327,
+   "ntElo": 1601.31,
+   "gfDecay": 1.2632,
+   "gaDecay": 1.3422,
    "gfAvg5": 1.0,
-   "gaAvg5": 3.0,
-   "matches": 68
+   "gaAvg5": 1.8,
+   "matches": 70
   },
   "libya": {
    "name": "Libya",
-   "ntElo": 1500.4,
-   "gfDecay": 1.0829,
-   "gaDecay": 1.0072,
-   "gfAvg5": 0.8,
-   "gaAvg5": 1.0,
-   "matches": 40
+   "ntElo": 1522.77,
+   "gfDecay": 1.1502,
+   "gaDecay": 0.9253,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.2,
+   "matches": 42
   },
   "malawi": {
    "name": "Malawi",
-   "ntElo": 1430.09,
-   "gfDecay": 0.961,
-   "gaDecay": 1.2025,
+   "ntElo": 1435.87,
+   "gfDecay": 0.8178,
+   "gaDecay": 1.3943,
    "gfAvg5": 0.8,
-   "gaAvg5": 1.4,
-   "matches": 43
+   "gaAvg5": 2.0,
+   "matches": 45
   },
   "morocco": {
    "name": "Morocco",
-   "ntElo": 1894.33,
-   "gfDecay": 2.0348,
-   "gaDecay": 0.4629,
-   "gfAvg5": 1.6,
-   "gaAvg5": 0.6,
-   "matches": 80
+   "ntElo": 1896.82,
+   "gfDecay": 2.1003,
+   "gaDecay": 0.4653,
+   "gfAvg5": 2.2,
+   "gaAvg5": 0.4,
+   "matches": 82
   },
   "benin": {
    "name": "Benin",
-   "ntElo": 1556.31,
-   "gfDecay": 0.9512,
-   "gaDecay": 1.5085,
-   "gfAvg5": 1.0,
-   "gaAvg5": 2.2,
-   "matches": 44
+   "ntElo": 1568.87,
+   "gfDecay": 1.1357,
+   "gaDecay": 1.3877,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.2,
+   "matches": 46
   },
   "cape verde": {
    "name": "Cape Verde",
-   "ntElo": 1617.24,
-   "gfDecay": 1.2495,
-   "gaDecay": 1.2895,
-   "gfAvg5": 1.2,
-   "gaAvg5": 2.0,
-   "matches": 57
+   "ntElo": 1600.94,
+   "gfDecay": 1.3282,
+   "gaDecay": 1.3648,
+   "gfAvg5": 1.6,
+   "gaAvg5": 2.4,
+   "matches": 59
   },
   "ivory coast": {
    "name": "Ivory Coast",
-   "ntElo": 1748.34,
-   "gfDecay": 1.6997,
-   "gaDecay": 0.6483,
-   "gfAvg5": 1.4,
-   "gaAvg5": 0.6,
-   "matches": 63
+   "ntElo": 1747.43,
+   "gfDecay": 1.7272,
+   "gaDecay": 0.7264,
+   "gfAvg5": 1.6,
+   "gaAvg5": 0.8,
+   "matches": 65
   },
   "burkina faso": {
    "name": "Burkina Faso",
-   "ntElo": 1634.03,
-   "gfDecay": 1.5387,
-   "gaDecay": 1.3451,
-   "gfAvg5": 0.8,
-   "gaAvg5": 2.6,
-   "matches": 64
+   "ntElo": 1650.23,
+   "gfDecay": 1.5857,
+   "gaDecay": 1.2599,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.8,
+   "matches": 66
   },
   "gabon": {
    "name": "Gabon",
-   "ntElo": 1523.95,
-   "gfDecay": 1.5473,
-   "gaDecay": 1.5811,
+   "ntElo": 1509.74,
+   "gfDecay": 1.5402,
+   "gaDecay": 1.4988,
    "gfAvg5": 1.4,
-   "gaAvg5": 2.0,
-   "matches": 43
+   "gaAvg5": 1.2,
+   "matches": 45
   },
   "congo": {
    "name": "Congo",
-   "ntElo": 1369.39,
-   "gfDecay": 0.6806,
-   "gaDecay": 1.7183,
-   "gfAvg5": 0.6,
-   "gaAvg5": 1.4,
-   "matches": 24
+   "ntElo": 1361.97,
+   "gfDecay": 0.512,
+   "gaDecay": 1.417,
+   "gfAvg5": 0.2,
+   "gaAvg5": 0.8,
+   "matches": 26
   },
   "mali": {
    "name": "Mali",
-   "ntElo": 1682.65,
-   "gfDecay": 1.3877,
-   "gaDecay": 0.6849,
-   "gfAvg5": 1.0,
+   "ntElo": 1696.84,
+   "gfDecay": 1.5208,
+   "gaDecay": 0.7222,
+   "gfAvg5": 2.0,
    "gaAvg5": 0.8,
-   "matches": 51
+   "matches": 53
   },
   "central african republic": {
    "name": "Central African Republic",
-   "ntElo": 1379.83,
-   "gfDecay": 0.9035,
-   "gaDecay": 2.0546,
-   "gfAvg5": 1.0,
-   "gaAvg5": 2.0,
-   "matches": 31
+   "ntElo": 1367.07,
+   "gfDecay": 0.8321,
+   "gaDecay": 2.132,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.4,
+   "matches": 33
   },
   "iraq": {
    "name": "Iraq",
-   "ntElo": 1658.02,
-   "gfDecay": 1.1048,
-   "gaDecay": 1.3787,
-   "gfAvg5": 0.8,
-   "gaAvg5": 2.6,
-   "matches": 66
+   "ntElo": 1649.81,
+   "gfDecay": 1.0505,
+   "gaDecay": 1.2997,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.2,
+   "matches": 68
   },
   "saint vincent and the grenadines": {
    "name": "Saint Vincent and the Grenadines",
-   "ntElo": 1444.76,
-   "gfDecay": 2.2725,
-   "gaDecay": 1.3084,
-   "gfAvg5": 2.8,
-   "gaAvg5": 1.0,
-   "matches": 43
+   "ntElo": 1431.74,
+   "gfDecay": 2.0366,
+   "gaDecay": 1.2011,
+   "gfAvg5": 2.0,
+   "gaAvg5": 0.6,
+   "matches": 45
   },
   "senegal": {
    "name": "Senegal",
-   "ntElo": 1798.57,
-   "gfDecay": 1.9635,
-   "gaDecay": 0.8516,
-   "gfAvg5": 2.0,
+   "ntElo": 1804.96,
+   "gfDecay": 2.1338,
+   "gaDecay": 0.906,
+   "gfAvg5": 2.2,
    "gaAvg5": 0.8,
-   "matches": 72
+   "matches": 74
   },
   "laos": {
    "name": "Laos",
-   "ntElo": 1054.34,
+   "ntElo": 1054.99,
    "gfDecay": 0.9652,
    "gaDecay": 3.3923,
    "gfAvg5": 1.2,
@@ -1443,25 +1443,25 @@
   },
   "mauritania": {
    "name": "Mauritania",
-   "ntElo": 1455.68,
-   "gfDecay": 0.8437,
-   "gaDecay": 1.1918,
-   "gfAvg5": 1.4,
-   "gaAvg5": 1.2,
-   "matches": 49
+   "ntElo": 1439.29,
+   "gfDecay": 0.799,
+   "gaDecay": 1.298,
+   "gfAvg5": 1.2,
+   "gaAvg5": 1.4,
+   "matches": 51
   },
   "liberia": {
    "name": "Liberia",
-   "ntElo": 1398.57,
-   "gfDecay": 0.9711,
-   "gaDecay": 1.5753,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.6,
-   "matches": 36
+   "ntElo": 1414.56,
+   "gfDecay": 1.129,
+   "gaDecay": 1.6393,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.8,
+   "matches": 38
   },
   "chad": {
    "name": "Chad",
-   "ntElo": 1280.27,
+   "ntElo": 1280.22,
    "gfDecay": 0.5714,
    "gaDecay": 2.1804,
    "gfAvg5": 1.0,
@@ -1470,52 +1470,52 @@
   },
   "niger": {
    "name": "Niger",
-   "ntElo": 1460.76,
-   "gfDecay": 1.1402,
-   "gaDecay": 1.3679,
+   "ntElo": 1458.01,
+   "gfDecay": 1.0555,
+   "gaDecay": 1.5824,
    "gfAvg5": 0.8,
-   "gaAvg5": 1.4,
-   "matches": 41
+   "gaAvg5": 2.2,
+   "matches": 43
   },
   "guinea": {
    "name": "Guinea",
-   "ntElo": 1542.16,
-   "gfDecay": 1.2279,
-   "gaDecay": 0.9644,
-   "gfAvg5": 0.8,
-   "gaAvg5": 1.2,
-   "matches": 49
+   "ntElo": 1552.05,
+   "gfDecay": 1.4081,
+   "gaDecay": 0.9695,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.0,
+   "matches": 51
   },
   "algeria": {
    "name": "Algeria",
-   "ntElo": 1792.29,
-   "gfDecay": 2.1422,
-   "gaDecay": 0.8989,
-   "gfAvg5": 2.0,
-   "gaAvg5": 1.8,
-   "matches": 70
+   "ntElo": 1771.23,
+   "gfDecay": 2.0115,
+   "gaDecay": 0.9471,
+   "gfAvg5": 1.6,
+   "gaAvg5": 1.4,
+   "matches": 72
   },
   "kuwait": {
    "name": "Kuwait",
-   "ntElo": 1450.02,
-   "gfDecay": 1.1955,
-   "gaDecay": 1.8212,
+   "ntElo": 1452.09,
+   "gfDecay": 1.2313,
+   "gaDecay": 1.7233,
    "gfAvg5": 1.2,
-   "gaAvg5": 2.4,
-   "matches": 58
+   "gaAvg5": 1.8,
+   "matches": 60
   },
   "jordan": {
    "name": "Jordan",
-   "ntElo": 1661.18,
-   "gfDecay": 1.4242,
-   "gaDecay": 1.4651,
-   "gfAvg5": 0.8,
-   "gaAvg5": 1.8,
-   "matches": 67
+   "ntElo": 1674.99,
+   "gfDecay": 1.4503,
+   "gaDecay": 1.3987,
+   "gfAvg5": 1.0,
+   "gaAvg5": 1.2,
+   "matches": 68
   },
   "papua new guinea": {
    "name": "Papua New Guinea",
-   "ntElo": 1476.26,
+   "ntElo": 1476.33,
    "gfDecay": 1.2866,
    "gaDecay": 1.5703,
    "gfAvg5": 1.2,
@@ -1524,7 +1524,7 @@
   },
   "solomon islands": {
    "name": "Solomon Islands",
-   "ntElo": 1456.4,
+   "ntElo": 1456.47,
    "gfDecay": 1.7938,
    "gaDecay": 2.3072,
    "gfAvg5": 2.2,
@@ -1533,106 +1533,106 @@
   },
   "somalia": {
    "name": "Somalia",
-   "ntElo": 1160.29,
-   "gfDecay": 0.3552,
-   "gaDecay": 1.5145,
+   "ntElo": 1157.44,
+   "gfDecay": 0.2835,
+   "gaDecay": 1.5112,
    "gfAvg5": 0.2,
-   "gaAvg5": 0.8,
-   "matches": 22
+   "gaAvg5": 1.4,
+   "matches": 24
   },
   "saudi arabia": {
    "name": "Saudi Arabia",
-   "ntElo": 1681.56,
-   "gfDecay": 1.1535,
-   "gaDecay": 0.9297,
+   "ntElo": 1684.37,
+   "gfDecay": 1.2142,
+   "gaDecay": 1.0067,
    "gfAvg5": 1.6,
-   "gaAvg5": 0.0,
-   "matches": 82
+   "gaAvg5": 0.8,
+   "matches": 84
   },
   "bermuda": {
    "name": "Bermuda",
-   "ntElo": 1331.71,
-   "gfDecay": 1.4519,
-   "gaDecay": 2.7136,
-   "gfAvg5": 1.6,
-   "gaAvg5": 2.6,
-   "matches": 37
+   "ntElo": 1311.75,
+   "gfDecay": 1.3899,
+   "gaDecay": 2.7533,
+   "gfAvg5": 1.2,
+   "gaAvg5": 3.4,
+   "matches": 39
   },
   "palestine": {
    "name": "Palestine",
-   "ntElo": 1582.02,
-   "gfDecay": 1.3711,
-   "gaDecay": 1.0985,
+   "ntElo": 1570.58,
+   "gfDecay": 1.1928,
+   "gaDecay": 1.0853,
    "gfAvg5": 2.2,
-   "gaAvg5": 0.8,
-   "matches": 42
+   "gaAvg5": 1.2,
+   "matches": 44
   },
   "yemen": {
    "name": "Yemen",
-   "ntElo": 1353.91,
-   "gfDecay": 2.1771,
-   "gaDecay": 1.6068,
-   "gfAvg5": 3.2,
+   "ntElo": 1341.63,
+   "gfDecay": 1.9515,
+   "gaDecay": 1.7778,
+   "gfAvg5": 1.4,
    "gaAvg5": 2.4,
-   "matches": 28
+   "matches": 30
   },
   "bahrain": {
    "name": "Bahrain",
-   "ntElo": 1488.01,
-   "gfDecay": 0.9971,
-   "gaDecay": 1.7828,
-   "gfAvg5": 1.0,
+   "ntElo": 1497.32,
+   "gfDecay": 1.1681,
+   "gaDecay": 1.7507,
+   "gfAvg5": 1.4,
    "gaAvg5": 2.6,
-   "matches": 64
+   "matches": 66
   },
   "oman": {
    "name": "Oman",
-   "ntElo": 1568.12,
-   "gfDecay": 0.9475,
-   "gaDecay": 1.1408,
-   "gfAvg5": 0.8,
-   "gaAvg5": 1.8,
-   "matches": 65
+   "ntElo": 1555.74,
+   "gfDecay": 1.2133,
+   "gaDecay": 1.0742,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.2,
+   "matches": 67
   },
   "eswatini": {
    "name": "Eswatini",
-   "ntElo": 1315.92,
-   "gfDecay": 0.7028,
-   "gaDecay": 1.8377,
-   "gfAvg5": 0.6,
-   "gaAvg5": 2.2,
-   "matches": 39
+   "ntElo": 1315.4,
+   "gfDecay": 0.6611,
+   "gaDecay": 1.9739,
+   "gfAvg5": 0.4,
+   "gaAvg5": 2.4,
+   "matches": 41
   },
   "botswana": {
    "name": "Botswana",
-   "ntElo": 1431.51,
-   "gfDecay": 0.9107,
-   "gaDecay": 1.6572,
-   "gfAvg5": 1.0,
-   "gaAvg5": 2.0,
-   "matches": 42
+   "ntElo": 1439.48,
+   "gfDecay": 0.9245,
+   "gaDecay": 1.5555,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.2,
+   "matches": 44
   },
   "qatar": {
    "name": "Qatar",
-   "ntElo": 1581.59,
-   "gfDecay": 1.1216,
-   "gaDecay": 1.472,
-   "gfAvg5": 1.0,
-   "gaAvg5": 0.8,
-   "matches": 69
+   "ntElo": 1567.24,
+   "gfDecay": 1.0202,
+   "gaDecay": 1.5194,
+   "gfAvg5": 0.4,
+   "gaAvg5": 1.0,
+   "matches": 71
   },
   "lesotho": {
    "name": "Lesotho",
-   "ntElo": 1399.8,
-   "gfDecay": 0.6751,
-   "gaDecay": 1.4197,
+   "ntElo": 1413.83,
+   "gfDecay": 0.7235,
+   "gaDecay": 1.4313,
    "gfAvg5": 0.8,
-   "gaAvg5": 1.2,
-   "matches": 46
+   "gaAvg5": 1.6,
+   "matches": 48
   },
   "bahamas": {
    "name": "Bahamas",
-   "ntElo": 1139.24,
+   "ntElo": 1139.2,
    "gfDecay": 0.702,
    "gaDecay": 4.3094,
    "gfAvg5": 0.4,
@@ -1641,43 +1641,43 @@
   },
   "brunei": {
    "name": "Brunei",
-   "ntElo": 1019.91,
-   "gfDecay": 0.6023,
-   "gaDecay": 2.7543,
+   "ntElo": 1019.21,
+   "gfDecay": 0.4703,
+   "gaDecay": 3.5755,
    "gfAvg5": 0.2,
-   "gaAvg5": 3.8,
-   "matches": 30
+   "gaAvg5": 4.2,
+   "matches": 32
   },
   "cook islands": {
    "name": "Cook Islands",
-   "ntElo": 1294.91,
-   "gfDecay": 1.4066,
-   "gaDecay": 2.7657,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.8,
-   "matches": 12
+   "ntElo": 1299.54,
+   "gfDecay": 1.4446,
+   "gaDecay": 3.0512,
+   "gfAvg5": 1.6,
+   "gaAvg5": 3.0,
+   "matches": 14
   },
   "united arab emirates": {
    "name": "United Arab Emirates",
-   "ntElo": 1627.72,
-   "gfDecay": 1.5215,
-   "gaDecay": 0.9858,
+   "ntElo": 1640.03,
+   "gfDecay": 1.7279,
+   "gaDecay": 1.0396,
    "gfAvg5": 1.8,
-   "gaAvg5": 0.6,
-   "matches": 59
+   "gaAvg5": 1.2,
+   "matches": 61
   },
   "faroe islands": {
    "name": "Faroe Islands",
-   "ntElo": 1417.1,
-   "gfDecay": 1.0628,
-   "gaDecay": 1.1499,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.0,
-   "matches": 47
+   "ntElo": 1436.67,
+   "gfDecay": 1.1166,
+   "gaDecay": 1.131,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.2,
+   "matches": 49
   },
   "nepal": {
    "name": "Nepal",
-   "ntElo": 1197.08,
+   "ntElo": 1197.48,
    "gfDecay": 0.6425,
    "gaDecay": 1.606,
    "gfAvg5": 0.6,
@@ -1686,7 +1686,7 @@
   },
   "antigua and barbuda": {
    "name": "Antigua and Barbuda",
-   "ntElo": 1238.51,
+   "ntElo": 1238.46,
    "gfDecay": 1.5136,
    "gaDecay": 1.5982,
    "gfAvg5": 2.4,
@@ -1695,16 +1695,16 @@
   },
   "bangladesh": {
    "name": "Bangladesh",
-   "ntElo": 1187.55,
-   "gfDecay": 0.9163,
-   "gaDecay": 2.1587,
-   "gfAvg5": 0.8,
-   "gaAvg5": 3.4,
-   "matches": 43
+   "ntElo": 1181.35,
+   "gfDecay": 1.0702,
+   "gaDecay": 1.7847,
+   "gfAvg5": 1.4,
+   "gaAvg5": 2.2,
+   "matches": 46
   },
   "seychelles": {
    "name": "Seychelles",
-   "ntElo": 1086.53,
+   "ntElo": 1086.81,
    "gfDecay": 0.222,
    "gaDecay": 3.285,
    "gfAvg5": 0.2,
@@ -1713,25 +1713,25 @@
   },
   "equatorial guinea": {
    "name": "Equatorial Guinea",
-   "ntElo": 1469.92,
-   "gfDecay": 0.8225,
-   "gaDecay": 1.2508,
-   "gfAvg5": 0.6,
-   "gaAvg5": 0.8,
-   "matches": 50
+   "ntElo": 1459.39,
+   "gfDecay": 0.7164,
+   "gaDecay": 1.2837,
+   "gfAvg5": 0.2,
+   "gaAvg5": 1.2,
+   "matches": 52
   },
   "mozambique": {
    "name": "Mozambique",
-   "ntElo": 1505.16,
-   "gfDecay": 1.2671,
-   "gaDecay": 1.4975,
+   "ntElo": 1499.61,
+   "gfDecay": 1.1668,
+   "gaDecay": 1.3665,
    "gfAvg5": 1.2,
-   "gaAvg5": 1.8,
-   "matches": 50
+   "gaAvg5": 0.8,
+   "matches": 52
   },
   "guam": {
    "name": "Guam",
-   "ntElo": 1113.88,
+   "ntElo": 1116.56,
    "gfDecay": 1.6231,
    "gaDecay": 3.4142,
    "gfAvg5": 1.6,
@@ -1740,16 +1740,16 @@
   },
   "angola": {
    "name": "Angola",
-   "ntElo": 1571.89,
-   "gfDecay": 1.2421,
-   "gaDecay": 0.8379,
-   "gfAvg5": 1.4,
-   "gaAvg5": 0.4,
-   "matches": 53
+   "ntElo": 1582.07,
+   "gfDecay": 1.2752,
+   "gaDecay": 0.7299,
+   "gfAvg5": 1.8,
+   "gaAvg5": 0.2,
+   "matches": 55
   },
   "sao tome and principe": {
    "name": "São Tomé and Príncipe",
-   "ntElo": 1243.39,
+   "ntElo": 1243.28,
    "gfDecay": 0.3895,
    "gaDecay": 2.1187,
    "gfAvg5": 0.2,
@@ -1758,70 +1758,70 @@
   },
   "rwanda": {
    "name": "Rwanda",
-   "ntElo": 1471.49,
-   "gfDecay": 1.1185,
-   "gaDecay": 0.9098,
-   "gfAvg5": 2.2,
-   "gaAvg5": 0.4,
-   "matches": 35
+   "ntElo": 1457.02,
+   "gfDecay": 1.0988,
+   "gaDecay": 1.1656,
+   "gfAvg5": 1.4,
+   "gaAvg5": 1.4,
+   "matches": 37
   },
   "armenia": {
    "name": "Armenia",
-   "ntElo": 1416.91,
-   "gfDecay": 0.961,
-   "gaDecay": 2.0576,
-   "gfAvg5": 1.0,
+   "ntElo": 1411.35,
+   "gfDecay": 0.9039,
+   "gaDecay": 1.865,
+   "gfAvg5": 0.6,
    "gaAvg5": 1.2,
-   "matches": 47
+   "matches": 49
   },
   "georgia": {
    "name": "Georgia",
-   "ntElo": 1606.79,
-   "gfDecay": 1.2429,
-   "gaDecay": 1.1718,
-   "gfAvg5": 0.4,
-   "gaAvg5": 0.4,
-   "matches": 50
+   "ntElo": 1583.53,
+   "gfDecay": 1.0994,
+   "gaDecay": 1.2096,
+   "gfAvg5": 0.0,
+   "gaAvg5": 0.8,
+   "matches": 52
   },
   "azerbaijan": {
    "name": "Azerbaijan",
-   "ntElo": 1401.26,
-   "gfDecay": 0.9759,
-   "gaDecay": 1.5231,
-   "gfAvg5": 1.0,
+   "ntElo": 1413.61,
+   "gfDecay": 1.0985,
+   "gaDecay": 1.4011,
+   "gfAvg5": 1.2,
    "gaAvg5": 0.4,
-   "matches": 47
+   "matches": 49
   },
   "kazakhstan": {
    "name": "Kazakhstan",
-   "ntElo": 1435.06,
-   "gfDecay": 1.077,
-   "gaDecay": 1.6532,
-   "gfAvg5": 1.2,
+   "ntElo": 1425.89,
+   "gfDecay": 1.1266,
+   "gaDecay": 1.6938,
+   "gfAvg5": 1.4,
    "gaAvg5": 2.0,
-   "matches": 49
+   "matches": 51
   },
   "comoros": {
    "name": "Comoros",
-   "ntElo": 1478.5,
-   "gfDecay": 1.0079,
-   "gaDecay": 1.2738,
+   "ntElo": 1485.61,
+   "gfDecay": 0.9538,
+   "gaDecay": 1.1376,
    "gfAvg5": 0.6,
-   "gaAvg5": 1.0,
-   "matches": 58
+   "gaAvg5": 0.8,
+   "matches": 60
   },
   "maldives": {
    "name": "Maldives",
-   "ntElo": 1107.66,
-   "gfDecay": 0.4583,
-   "gaDecay": 2.6529,
+   "ntElo": 1089.35,
+   "gfDecay": 0.3813,
+   "gaDecay": 2.5427,
    "gfAvg5": 0.0,
    "gaAvg5": 3.6,
-   "matches": 30
+   "matches": 32
   },
   "tonga": {
    "name": "Tonga",
-   "ntElo": 1210.05,
+   "ntElo": 1210.12,
    "gfDecay": 1.4989,
    "gaDecay": 2.7439,
    "gfAvg5": 2.2,
@@ -1830,7 +1830,7 @@
   },
   "samoa": {
    "name": "Samoa",
-   "ntElo": 1324.36,
+   "ntElo": 1324.42,
    "gfDecay": 1.5735,
    "gaDecay": 2.7165,
    "gfAvg5": 1.0,
@@ -1839,43 +1839,43 @@
   },
   "liechtenstein": {
    "name": "Liechtenstein",
-   "ntElo": 1073.43,
-   "gfDecay": 0.2168,
-   "gaDecay": 2.4089,
-   "gfAvg5": 0.0,
-   "gaAvg5": 1.6,
-   "matches": 47
+   "ntElo": 1063.59,
+   "gfDecay": 0.2508,
+   "gaDecay": 2.3004,
+   "gfAvg5": 0.2,
+   "gaAvg5": 1.4,
+   "matches": 49
   },
   "bhutan": {
    "name": "Bhutan",
-   "ntElo": 999.18,
-   "gfDecay": 0.3751,
-   "gaDecay": 2.8996,
-   "gfAvg5": 0.4,
-   "gaAvg5": 3.8,
-   "matches": 19
+   "ntElo": 996.66,
+   "gfDecay": 0.6134,
+   "gaDecay": 2.4317,
+   "gfAvg5": 0.8,
+   "gaAvg5": 3.2,
+   "matches": 22
   },
   "belize": {
    "name": "Belize",
-   "ntElo": 1293.1,
-   "gfDecay": 1.0678,
-   "gaDecay": 1.672,
-   "gfAvg5": 0.4,
+   "ntElo": 1273.58,
+   "gfDecay": 0.9789,
+   "gaDecay": 1.6452,
+   "gfAvg5": 0.2,
    "gaAvg5": 1.4,
-   "matches": 37
+   "matches": 39
   },
   "cayman islands": {
    "name": "Cayman Islands",
-   "ntElo": 1181.13,
-   "gfDecay": 0.6561,
-   "gaDecay": 1.7949,
-   "gfAvg5": 0.2,
-   "gaAvg5": 2.0,
-   "matches": 27
+   "ntElo": 1165.66,
+   "gfDecay": 0.547,
+   "gaDecay": 2.4106,
+   "gfAvg5": 0.0,
+   "gaAvg5": 3.4,
+   "matches": 29
   },
   "anguilla": {
    "name": "Anguilla",
-   "ntElo": 1048.26,
+   "ntElo": 1048.23,
    "gfDecay": 0.6025,
    "gaDecay": 2.8536,
    "gfAvg5": 0.4,
@@ -1884,7 +1884,7 @@
   },
   "british virgin islands": {
    "name": "British Virgin Islands",
-   "ntElo": 1120.0,
+   "ntElo": 1119.96,
    "gfDecay": 0.9605,
    "gaDecay": 2.0005,
    "gfAvg5": 0.4,
@@ -1893,25 +1893,25 @@
   },
   "sint maarten": {
    "name": "Sint Maarten",
-   "ntElo": 1326.02,
-   "gfDecay": 1.0422,
-   "gaDecay": 2.1933,
-   "gfAvg5": 0.4,
-   "gaAvg5": 2.0,
-   "matches": 28
+   "ntElo": 1330.03,
+   "gfDecay": 1.1285,
+   "gaDecay": 2.3439,
+   "gfAvg5": 1.0,
+   "gaAvg5": 3.0,
+   "matches": 30
   },
   "namibia": {
    "name": "Namibia",
-   "ntElo": 1452.59,
-   "gfDecay": 0.5644,
-   "gaDecay": 1.5982,
+   "ntElo": 1442.71,
+   "gfDecay": 0.4812,
+   "gaDecay": 1.7314,
    "gfAvg5": 0.2,
-   "gaAvg5": 1.8,
-   "matches": 39
+   "gaAvg5": 2.4,
+   "matches": 41
   },
   "saint martin": {
    "name": "Saint Martin",
-   "ntElo": 1349.65,
+   "ntElo": 1349.62,
    "gfDecay": 3.0109,
    "gaDecay": 1.163,
    "gfAvg5": 4.4,
@@ -1920,16 +1920,16 @@
   },
   "san marino": {
    "name": "San Marino",
-   "ntElo": 980.39,
-   "gfDecay": 0.4334,
-   "gaDecay": 3.1822,
-   "gfAvg5": 0.4,
+   "ntElo": 977.79,
+   "gfDecay": 0.5011,
+   "gaDecay": 3.3397,
+   "gfAvg5": 0.6,
    "gaAvg5": 3.6,
-   "matches": 48
+   "matches": 50
   },
   "montserrat": {
    "name": "Montserrat",
-   "ntElo": 1362.14,
+   "ntElo": 1362.09,
    "gfDecay": 1.7905,
    "gaDecay": 1.113,
    "gfAvg5": 2.2,
@@ -1938,16 +1938,16 @@
   },
   "slovenia": {
    "name": "Slovenia",
-   "ntElo": 1714.32,
-   "gfDecay": 1.1242,
-   "gaDecay": 1.0335,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.0,
-   "matches": 53
+   "ntElo": 1730.05,
+   "gfDecay": 1.1671,
+   "gaDecay": 0.9169,
+   "gfAvg5": 1.6,
+   "gaAvg5": 0.6,
+   "matches": 55
   },
   "turkmenistan": {
    "name": "Turkmenistan",
-   "ntElo": 1403.04,
+   "ntElo": 1403.21,
    "gfDecay": 1.439,
    "gaDecay": 1.3968,
    "gfAvg5": 2.0,
@@ -1956,34 +1956,34 @@
   },
   "tajikistan": {
    "name": "Tajikistan",
-   "ntElo": 1451.27,
-   "gfDecay": 1.5415,
-   "gaDecay": 1.1567,
-   "gfAvg5": 1.4,
-   "gaAvg5": 1.4,
-   "matches": 45
+   "ntElo": 1458.86,
+   "gfDecay": 1.3874,
+   "gaDecay": 1.208,
+   "gfAvg5": 0.8,
+   "gaAvg5": 1.6,
+   "matches": 47
   },
   "uzbekistan": {
    "name": "Uzbekistan",
-   "ntElo": 1713.56,
-   "gfDecay": 1.4525,
-   "gaDecay": 1.3073,
-   "gfAvg5": 1.6,
-   "gaAvg5": 2.4,
-   "matches": 58
+   "ntElo": 1711.95,
+   "gfDecay": 1.5098,
+   "gaDecay": 1.3794,
+   "gfAvg5": 2.2,
+   "gaAvg5": 1.6,
+   "matches": 60
   },
   "gibraltar": {
    "name": "Gibraltar",
-   "ntElo": 1213.43,
-   "gfDecay": 0.8731,
-   "gaDecay": 1.7698,
-   "gfAvg5": 1.4,
-   "gaAvg5": 0.4,
-   "matches": 46
+   "ntElo": 1202.13,
+   "gfDecay": 0.8251,
+   "gaDecay": 1.7347,
+   "gfAvg5": 0.8,
+   "gaAvg5": 0.8,
+   "matches": 48
   },
   "isle of man": {
    "name": "Isle of Man",
-   "ntElo": 1655.5,
+   "ntElo": 1655.52,
    "gfDecay": 4.1319,
    "gaDecay": 1.3725,
    "gfAvg5": 4.6,
@@ -1992,43 +1992,43 @@
   },
   "north macedonia": {
    "name": "North Macedonia",
-   "ntElo": 1564.4,
-   "gfDecay": 0.7614,
-   "gaDecay": 1.7015,
-   "gfAvg5": 0.0,
-   "gaAvg5": 2.8,
-   "matches": 49
+   "ntElo": 1545.7,
+   "gfDecay": 0.7304,
+   "gaDecay": 1.7959,
+   "gfAvg5": 0.2,
+   "gaAvg5": 2.4,
+   "matches": 51
   },
   "czech republic": {
    "name": "Czech Republic",
-   "ntElo": 1671.86,
-   "gfDecay": 1.5672,
-   "gaDecay": 1.5323,
+   "ntElo": 1663.28,
+   "gfDecay": 1.4596,
+   "gaDecay": 1.5795,
    "gfAvg5": 0.4,
-   "gaAvg5": 2.6,
-   "matches": 54
+   "gaAvg5": 2.4,
+   "matches": 56
   },
   "bosnia and herzegovina": {
    "name": "Bosnia and Herzegovina",
-   "ntElo": 1660.36,
-   "gfDecay": 1.3571,
-   "gaDecay": 1.3459,
-   "gfAvg5": 1.2,
-   "gaAvg5": 1.0,
-   "matches": 49
+   "ntElo": 1661.9,
+   "gfDecay": 1.4228,
+   "gaDecay": 1.4125,
+   "gfAvg5": 2.0,
+   "gaAvg5": 1.4,
+   "matches": 51
   },
   "andorra": {
    "name": "Andorra",
-   "ntElo": 1156.66,
-   "gfDecay": 0.3459,
-   "gaDecay": 1.5959,
-   "gfAvg5": 0.2,
-   "gaAvg5": 1.8,
-   "matches": 49
+   "ntElo": 1163.3,
+   "gfDecay": 0.4773,
+   "gaDecay": 1.5855,
+   "gfAvg5": 0.6,
+   "gaAvg5": 1.4,
+   "matches": 51
   },
   "united states virgin islands": {
    "name": "United States Virgin Islands",
-   "ntElo": 1150.04,
+   "ntElo": 1150.03,
    "gfDecay": 1.6712,
    "gaDecay": 2.0119,
    "gfAvg5": 2.0,
@@ -2037,7 +2037,7 @@
   },
   "turks and caicos islands": {
    "name": "Turks and Caicos Islands",
-   "ntElo": 1200.48,
+   "ntElo": 1200.45,
    "gfDecay": 1.4703,
    "gaDecay": 1.7866,
    "gfAvg5": 2.0,
@@ -2046,7 +2046,7 @@
   },
   "timor leste": {
    "name": "Timor-Leste",
-   "ntElo": 1030.28,
+   "ntElo": 1030.95,
    "gfDecay": 0.5283,
    "gaDecay": 3.0301,
    "gfAvg5": 0.4,
@@ -2055,21 +2055,21 @@
   },
   "kosovo": {
    "name": "Kosovo",
-   "ntElo": 1663.13,
-   "gfDecay": 1.4462,
-   "gaDecay": 1.1131,
-   "gfAvg5": 1.2,
-   "gaAvg5": 0.8,
-   "matches": 47
+   "ntElo": 1646.98,
+   "gfDecay": 1.2725,
+   "gaDecay": 1.16,
+   "gfAvg5": 0.4,
+   "gaAvg5": 1.4,
+   "matches": 49
   },
   "bonaire": {
    "name": "Bonaire",
-   "ntElo": 1258.91,
-   "gfDecay": 1.3111,
-   "gaDecay": 2.0608,
-   "gfAvg5": 1.4,
-   "gaAvg5": 2.0,
-   "matches": 27
+   "ntElo": 1242.67,
+   "gfDecay": 1.3445,
+   "gaDecay": 2.5725,
+   "gfAvg5": 1.8,
+   "gaAvg5": 3.2,
+   "matches": 29
   },
   "raetia": {
    "name": "Raetia",
@@ -2082,12 +2082,12 @@
   },
   "south sudan": {
    "name": "South Sudan",
-   "ntElo": 1284.11,
-   "gfDecay": 0.7237,
-   "gaDecay": 1.997,
-   "gfAvg5": 1.0,
-   "gaAvg5": 2.0,
-   "matches": 34
+   "ntElo": 1273.82,
+   "gfDecay": 0.597,
+   "gaDecay": 1.9098,
+   "gfAvg5": 0.2,
+   "gaAvg5": 2.2,
+   "matches": 36
   }
  },
  "teamAliases": {
