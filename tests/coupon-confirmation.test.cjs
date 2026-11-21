@@ -140,6 +140,22 @@ test('missing model metrics stay null in the snapshot instead of becoming zero',
   assert.equal(snapshot.legs[0].ev, null);
 });
 
+test('result identity metadata is frozen in the snapshot without changing coupon identity', () => {
+  const current = coupon({
+    legs: [{
+      ...coupon().legs[0],
+      eventId: 'euro365-event-1',
+      modelKey: 'goals',
+      model: 'Угловые',
+    }],
+  });
+  const snapshot = confirmation.snapshotCoupon(current);
+  assert.equal(snapshot.legs[0].eventId, 'euro365-event-1');
+  assert.equal(snapshot.legs[0].modelKey, 'goals');
+  assert.equal(snapshot.legs[0].model, 'Угловые');
+  assert.equal(confirmation.couponIdentity(current), confirmation.couponIdentity(coupon()));
+});
+
 test('a logical coupon cannot be confirmed twice; editing changes only amount and bet type', () => {
   const storage = new MemoryStorage();
   let now = FIXED_NOW;
