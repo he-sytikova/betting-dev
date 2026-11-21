@@ -29,6 +29,12 @@ on:
       - "euro-internal-model.js"
       - "nt-internal-model.js"
       - "day-odds.js"
+      - "financial-report.js"
+      - "financial-report.css"
+      - "scripts/models/fetch-euro365-results.py"
+      - "tests/financial-report.test.cjs"
+      - "tests/test_euro365_results.py"
+      - "tests/test_results_automation.py"
       - "tomorrow-model.js"
       - "tests/tomorrow-model.test.cjs"
       - "tests/test_tomorrow_fixtures.py"
@@ -76,6 +82,8 @@ jobs:
           node --test tests/nt-internal-model.test.cjs
           node --check day-odds.js
           node --test tests/day-odds.test.cjs
+          node --check financial-report.js
+          node --test tests/financial-report.test.cjs
           node --check tomorrow-model.js
           node --test tests/tomorrow-model.test.cjs
           node --check model-v1.js
@@ -96,6 +104,8 @@ jobs:
           python3 -m unittest tests.test_backtest_closing_odds
           python3 -m unittest tests.test_euro_cups
           python3 -m unittest tests.test_euro365_odds
+          python3 -m unittest tests.test_euro365_results
+          python3 -m unittest tests.test_results_automation
           python3 -m unittest tests.test_fdo_odds
           python3 -m unittest tests.test_theodds_odds
           python3 -m unittest tests.test_recency_weights

@@ -57,6 +57,11 @@ jobs:
           EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
         run: python3 scripts/models/fetch-euro365-odds.py --data data.json --output data/odds.json
 
+      - name: Publish normalized final results for the Moscow game day
+        env:
+          EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
+        run: python3 scripts/models/fetch-euro365-results.py --data data.json --output-dir data/results
+
       - name: Fetch tomorrow fixture list from Euro365 prematch (schedule only, no odds)
         env:
           EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
@@ -77,6 +82,7 @@ jobs:
           if [ -f data/fixtures-tomorrow.json ]; then git add data/fixtures-tomorrow.json; fi
           if [ -f data/odds-fdo.json ]; then git add data/odds-fdo.json; fi
           if [ -d data/results-ledger ]; then git add -A data/results-ledger; fi
+          if [ -d data/results ]; then git add data/results/*.json; fi
           if git diff --cached --quiet; then
             echo "Fixture snapshot and completed-results archive are already current"
           else

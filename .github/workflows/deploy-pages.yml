@@ -7,9 +7,10 @@ on:
     paths:
       - "*.html"
       - "*.js"
-      - "styles.css"
+      - "*.css"
       - "data.json"
       - "data/*.json"
+      - "data/results/*.json"
       - "analysis/*.json"
       - ".github/workflows/deploy-pages.yml"
   # Коммиты ботов (Refresh/Retrain) не триггерят push-ивенты, поэтому
