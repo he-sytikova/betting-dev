@@ -257,6 +257,10 @@ function legTeams(leg) {
 }
 
 function couponFromLegs(legs, index, type) {
+  const session = board.gameSessionForTime(legs[0]?.time);
+  if (!session || legs.some(leg => board.gameSessionForTime(leg.time)?.id !== session.id)) {
+    throw new Error('Every coupon must belong to exactly one game session');
+  }
   const odds = legs.reduce((product, leg) => product * leg.odds, 1);
   const probability = legs.reduce((product, leg) => product * leg.p_model, 1);
   const ev = legs.reduce((product, leg) => product * leg.ev, 1);
@@ -264,6 +268,7 @@ function couponFromLegs(legs, index, type) {
   return {
     coupon_id: `${type}-${index + 1}`,
     type,
+    session_id: session.id,
     bookmaker: legs[0].bookmaker,
     legs,
     odds,
@@ -283,6 +288,7 @@ function selectDoubles(legs, options = {}) {
       const a = legs[i];
       const b = legs[j];
       if (a.bookmaker !== b.bookmaker || a.model_key === b.model_key) continue;
+      if (board.gameSessionForTime(a.time)?.id !== board.gameSessionForTime(b.time)?.id) continue;
       const teams = [...legTeams(a), ...legTeams(b)];
       if (new Set(teams).size !== teams.length || teams.some(team => used.has(team))) continue;
       const coupon = couponFromLegs([a, b], 0, 'double');
@@ -301,6 +307,34 @@ function selectDoubles(legs, options = {}) {
     pair.teams.forEach(team => used.add(team));
   }
   return { candidates: pairs.length, coupons: selected };
+}
+
+function selectSessionCoupons(eligible, options = {}) {
+  const usedTeams = options.usedTeams || [];
+  const singleLimit = options.singleLimit ?? SINGLE_LIMIT;
+  const doubleLimit = options.doubleLimit ?? DOUBLE_LIMIT;
+  const coupons = [];
+  const sessions = {};
+  let doubleCandidates = 0;
+  for (const session of board.GAME_SESSIONS) {
+    const legs = eligible.filter(leg => board.gameSessionForTime(leg.time)?.id === session.id).sort(rankLegs);
+    const singles = legs.slice(0, singleLimit).map((leg, index) => {
+      const coupon = couponFromLegs([leg], index, 'single');
+      coupon.coupon_id = `${session.id}-single-${index + 1}`;
+      return coupon;
+    });
+    const doubles = selectDoubles(legs, { usedTeams, limit: doubleLimit });
+    doubles.coupons.forEach((coupon, index) => { coupon.coupon_id = `${session.id}-double-${index + 1}`; });
+    coupons.push(...singles, ...doubles.coupons);
+    doubleCandidates += doubles.candidates;
+    sessions[session.id] = {
+      eligible_legs: legs.length,
+      singles: singles.length,
+      doubles: doubles.coupons.length,
+      double_candidates: doubles.candidates,
+    };
+  }
+  return { coupons, sessions, doubleCandidates };
 }
 
 function rejectionCounts(rejected) {
@@ -356,10 +390,7 @@ function buildArtifact(input) {
   const deduped = dedupeEligible(priced);
   rejected.push(...deduped.rejected);
   const eligible = deduped.selected.sort(rankLegs);
-  const singles = eligible.slice(0, singleLimit)
-    .map((leg, index) => couponFromLegs([leg], index, 'single'));
-  const doubles = selectDoubles(eligible, { usedTeams, limit: doubleLimit });
-  doubles.coupons.forEach((coupon, index) => { coupon.coupon_id = `double-${index + 1}`; });
+  const selected = selectSessionCoupons(eligible, { usedTeams, singleLimit, doubleLimit });
 
   const available = BOOKMAKERS.some(name => ['ok', 'partial'].includes(snapshots?.[name]?.status));
   const hasMatch = (matching || []).some(record => record.status === 'matched');
@@ -370,14 +401,15 @@ function buildArtifact(input) {
     date,
     generated_at_utc: generated,
     data_status: dataStatus,
-    prepared_coupons: [...singles, ...doubles.coupons],
+    prepared_coupons: selected.coupons,
     summary: {
       model_candidates: candidates.length,
       eligible_prices_before_dedup: priced.length,
       eligible_legs: eligible.length,
-      double_candidates: doubles.candidates,
+      double_candidates: selected.doubleCandidates,
       rejected: rejected.length,
       rejection_reasons: counts,
+      sessions: selected.sessions,
     },
     sources: Object.fromEntries(BOOKMAKERS.map(name => [name, {
       status: snapshots?.[name]?.status || 'source_unavailable',
@@ -465,5 +497,5 @@ module.exports = {
   BOOKMAKERS, SINGLE_LIMIT, DOUBLE_LIMIT, DELTA_LIMIT_PP,
   fairFrom1x2, fairTwoWay, marketForCandidate, evaluatePrice,
   fixtureModelKeys, buildMatchIndex, indexLines, dedupeEligible,
-  teamKey, selectDoubles, buildArtifact, loadModels,
+  teamKey, selectDoubles, selectSessionCoupons, buildArtifact, loadModels,
 };

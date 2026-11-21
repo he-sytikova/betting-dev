@@ -48,10 +48,13 @@ Calculations and admission rules:
 - Admission requires `p_model >= 0.75`, `EV >= 1.03`, `abs(delta_pp) < 15`, and the minimum-price check. Over selections additionally require `p_model >= fair`.
 - Only confirmed model/bookmaker markets are priced. Yellow cards, fouls, shots, shots on target and European cups are not admitted by this pipeline.
 - Duplicate market prices are reduced to the highest eligible bookmaker price; losing prices remain in diagnostics.
-- The homepage artifact contains at most two singles and one double, ranked by model probability, then EV and price. A double uses different matches and one bookmaker. Combined odds, probability and EV are products of the leg values; its minimum price is the product of leg minimums.
+- The Moscow game day is divided into four exact sessions: morning 06:00–12:00, day 12:00–18:00, evening 18:00–00:00 and night 00:00–06:00. Every kickoff belongs to exactly one session.
+- Each session independently contains at most two singles and one double, ranked by model probability, then EV and price: no more than twelve prepared money coupons per day. A double uses different matches from the same session and one bookmaker. Combined odds, probability and EV are products of the leg values; its minimum price is the product of leg minimums.
 - For a later session, `--used-teams session-teams.json` accepts an array (or `{ "teams": [] }`) of teams already used in doubles. Such teams are excluded from new doubles.
 
-The separate daily-express page admits goal-model legs with `p_model >= 0.75` and publishes at most seven two-leg expresses. Its existing price and EV rules are independent of the two-single/one-double limit of the prepared-money-coupon artifact.
+Possible winnings can be used only after actual bookmaker settlement, on later events in the following session. Settlement time and funds availability remain bookmaker-controlled; the site does not transfer money or perform financial accounting automatically.
+
+The separate daily-express page admits goal-model legs with `p_model >= 0.75` and publishes at most seven two-leg expresses. Its existing price and EV rules are independent of the per-session prepared-money-coupon limits.
 
 The full rejection journal is written to `probe-out/lines_YYYY-MM-DD/coupon-diagnostics.json` by default. The public JSON contains aggregate diagnostics only. Raw responses, snapshots and the detailed journal are not committed. A processed day with no qualifying coupons is published as `data_status: "ok"` with an empty `prepared_coupons` array; no demonstration probabilities or coupons are synthesized.
 
