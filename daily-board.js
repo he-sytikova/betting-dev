@@ -11,6 +11,23 @@
   const MOSCOW_OFFSET_MS = 180 * 60000;
   const MIN_PROBABILITY = 0.75;
   const EV_MIN = 1.03;
+  const GAME_SESSIONS = Object.freeze([
+    Object.freeze({ id: 'morning', label: 'Утренняя', timeLabel: '06:00–12:00', startMinute: 360 }),
+    Object.freeze({ id: 'day', label: 'Дневная', timeLabel: '12:00–18:00', startMinute: 720 }),
+    Object.freeze({ id: 'evening', label: 'Вечерняя', timeLabel: '18:00–00:00', startMinute: 1080 }),
+    Object.freeze({ id: 'night', label: 'Ночная', timeLabel: '00:00–06:00', startMinute: 0 }),
+  ]);
+
+  function gameSessionForTime(value) {
+    const time = value instanceof Date ? value.getTime() : (typeof value === 'number' ? value : Date.parse(value));
+    if (!Number.isFinite(time)) return null;
+    const moscow = new Date(time + MOSCOW_OFFSET_MS);
+    const minute = moscow.getUTCHours() * 60 + moscow.getUTCMinutes();
+    if (minute < 360) return GAME_SESSIONS[3];
+    if (minute < 720) return GAME_SESSIONS[0];
+    if (minute < 1080) return GAME_SESSIONS[1];
+    return GAME_SESSIONS[2];
+  }
 
   function dayKeyMsk(value) {
     const time = value instanceof Date ? value.getTime() : Number(value);
@@ -169,6 +186,15 @@
     return [...groups.values()];
   }
 
+  function groupCandidatesBySession(rows) {
+    const groups = new Map(GAME_SESSIONS.map(session => [session.id, { ...session, rows: [] }]));
+    for (const row of Array.isArray(rows) ? rows : []) {
+      const session = gameSessionForTime(row.time);
+      if (session) groups.get(session.id).rows.push(row);
+    }
+    return [...groups.values()].filter(group => group.rows.length > 0);
+  }
+
   function finiteNumber(...values) {
     for (const value of values) {
       if (value === null || value === undefined || value === '') continue;
@@ -187,12 +213,17 @@
     const label = raw.label || raw.market_label || raw.selection || raw.market_name ||
       (typeof raw.market === 'string' ? raw.market : '');
     if (!home || !away || !label) return null;
+    const time = raw.time || raw.start_time || fixture.time || match.time || null;
+    const session = gameSessionForTime(time);
+    const declaredSession = raw.session_id || raw.sessionId || null;
+    if (!session || (declaredSession && declaredSession !== session.id)) return null;
     return {
-      time: raw.time || raw.start_time || fixture.time || match.time || null,
+      time,
       league: raw.league || fixture.league || match.league || '—',
       home,
       away,
       label,
+      sessionId: session.id,
       probability: finiteNumber(raw.p_model, raw.probability, raw.p),
       odds: finiteNumber(raw.odds, raw.decimal_odds, raw.price),
       fair: finiteNumber(raw.fair, raw.fair_market),
@@ -208,6 +239,9 @@
     if (!Array.isArray(sourceLegs)) sourceLegs = raw.leg ? [raw.leg] : [raw];
     const legs = sourceLegs.map(normalizeLeg);
     if (legs.some((leg) => !leg) || ![1, 2].includes(legs.length)) return null;
+    const sessionIds = [...new Set(legs.map(leg => leg.sessionId).filter(Boolean))];
+    const declaredSession = raw.session_id || raw.sessionId || null;
+    if (sessionIds.length !== 1 || (declaredSession && declaredSession !== sessionIds[0])) return null;
     const bookmakers = [...new Set(legs.map((leg) => leg.bookmaker || raw.bookmaker || raw.bk).filter(Boolean))];
     if (bookmakers.length !== 1) return null;
     const legOdds = legs.map((leg) => leg.odds);
@@ -226,6 +260,7 @@
     return {
       id: raw.coupon_id || raw.id || `coupon-${index + 1}`,
       type: legs.length === 2 ? 'double' : 'single',
+      sessionId: sessionIds[0],
       bookmaker: bookmakers[0],
       legs,
       odds,
@@ -261,13 +296,16 @@
     MOSCOW_OFFSET_MS,
     MIN_PROBABILITY,
     EV_MIN,
+    GAME_SESSIONS,
     dayKeyMsk,
+    gameSessionForTime,
     minimumOdds,
     candidate,
     modelFixtures,
     nationsFixtures,
     buildCandidates,
     groupCandidatesByMatch,
+    groupCandidatesBySession,
     normalizeLeg,
     normalizeCoupon,
     normalizeCoupons,
@@ -322,35 +360,53 @@
     return `${value} рынков`;
   }
 
+  function sessionHeader(session, countText) {
+    const header = node('div', 'daily-session__header');
+    const heading = node('div', 'daily-session__heading');
+    heading.append(
+      node('h4', '', `${session.label} сессия`),
+      node('span', 'daily-session__time', `${session.timeLabel} МСК`),
+    );
+    header.append(heading, node('span', 'daily-session__count', countText));
+    return header;
+  }
+
+  function candidateMatch(group) {
+    const item = node('details', 'daily-match');
+    const summary = node('summary', 'daily-match__summary');
+    const toggle = node('span', 'daily-match__toggle');
+    toggle.setAttribute('aria-hidden', 'true');
+    const heading = node('span', 'daily-match__heading');
+    const meta = node('span', 'daily-match__meta');
+    meta.append(node('time', '', timeMsk(group.time)), node('span', '', group.league));
+    heading.append(meta, node('strong', 'daily-match__teams', `${group.home} — ${group.away}`));
+    summary.append(toggle, heading, node('span', 'daily-match__count', marketCountLabel(group.rows.length)));
+    item.append(summary);
+
+    const markets = node('div', 'daily-match__markets');
+    for (const row of group.rows) {
+      const marketRow = node('article', 'daily-row');
+      const marketMeta = node('div', 'daily-row__meta');
+      marketMeta.append(node('span', '', row.modelLabel));
+      marketRow.append(marketMeta);
+      const market = node('div', 'daily-row__market');
+      market.append(node('strong', '', row.label), metric('Модель', pct(row.probability)), metric('Мин. кэф', decimal(row.oMinStep)));
+      marketRow.append(market);
+      marketRow.append(node('p', 'daily-row__status', 'Линия не проверена · fair и EV не рассчитаны'));
+      markets.append(marketRow);
+    }
+    item.append(markets);
+    return item;
+  }
+
   function renderCandidates(rows) {
     const list = $('daily-candidates-list');
     const fragment = document.createDocumentFragment();
-    for (const group of groupCandidatesByMatch(rows)) {
-      const item = node('details', 'daily-match');
-      const summary = node('summary', 'daily-match__summary');
-      const toggle = node('span', 'daily-match__toggle');
-      toggle.setAttribute('aria-hidden', 'true');
-      const heading = node('span', 'daily-match__heading');
-      const meta = node('span', 'daily-match__meta');
-      meta.append(node('time', '', timeMsk(group.time)), node('span', '', group.league));
-      heading.append(meta, node('strong', 'daily-match__teams', `${group.home} — ${group.away}`));
-      summary.append(toggle, heading, node('span', 'daily-match__count', marketCountLabel(group.rows.length)));
-      item.append(summary);
-
-      const markets = node('div', 'daily-match__markets');
-      for (const row of group.rows) {
-        const marketRow = node('article', 'daily-row');
-        const marketMeta = node('div', 'daily-row__meta');
-        marketMeta.append(node('span', '', row.modelLabel));
-        marketRow.append(marketMeta);
-        const market = node('div', 'daily-row__market');
-        market.append(node('strong', '', row.label), metric('Модель', pct(row.probability)), metric('Мин. кэф', decimal(row.oMinStep)));
-        marketRow.append(market);
-        marketRow.append(node('p', 'daily-row__status', 'Линия не проверена · fair и EV не рассчитаны'));
-        markets.append(marketRow);
-      }
-      item.append(markets);
-      fragment.append(item);
+    for (const session of groupCandidatesBySession(rows)) {
+      const section = node('section', 'daily-session');
+      section.append(sessionHeader(session, marketCountLabel(session.rows.length)));
+      for (const group of groupCandidatesByMatch(session.rows)) section.append(candidateMatch(group));
+      fragment.append(section);
     }
     list.replaceChildren(fragment);
     $('daily-candidates-count').textContent = String(rows.length);
@@ -370,35 +426,52 @@
     return item;
   }
 
+  function couponCard(coupon, day, confirmationApi) {
+    const item = node('article', `coupon coupon--${coupon.type}`);
+    const header = node('div', 'coupon__header');
+    const status = node('span', 'coupon__status', 'Подготовлен · не проставлен');
+    header.append(
+      node('h4', '', coupon.type === 'double' ? 'Двойник' : 'Одинар'),
+      status,
+    );
+    item.append(header);
+    const metrics = node('div', 'coupon__metrics');
+    metrics.append(
+      metric('БК', coupon.bookmaker),
+      metric('Итоговый кэф', decimal(coupon.odds)),
+      metric('Модель', pct(coupon.probability)),
+      metric('EV', decimal(coupon.ev)),
+    );
+    item.append(metrics);
+    const legs = node(coupon.type === 'double' ? 'ol' : 'ul', 'coupon-legs');
+    for (const leg of coupon.legs) legs.append(renderCouponLeg(leg));
+    item.append(legs);
+    if (confirmationApi) {
+      item.append(confirmationApi.mountCoupon({ coupon, day, statusElement: status }));
+    }
+    return item;
+  }
+
+  function sessionCouponCount(rows) {
+    const singles = rows.filter(coupon => coupon.type === 'single').length;
+    const doubles = rows.filter(coupon => coupon.type === 'double').length;
+    const singleLabel = singles === 1 ? 'одинар' : 'одинара';
+    const doubleLabel = doubles === 1 ? 'двойник' : 'двойника';
+    return `${singles} ${singleLabel} · ${doubles} ${doubleLabel}`;
+  }
+
   function renderCoupons(payload, day) {
     const { coupons, rejected } = normalizeCoupons(payload);
     const list = $('daily-coupons-list');
     const fragment = document.createDocumentFragment();
     const confirmationApi = host.dataset.confirmations === 'true' ? root.CouponConfirmation : null;
-    for (const coupon of coupons) {
-      const item = node('article', `coupon coupon--${coupon.type}`);
-      const header = node('div', 'coupon__header');
-      const status = node('span', 'coupon__status', 'Подготовлен · не проставлен');
-      header.append(
-        node('h4', '', coupon.type === 'double' ? 'Двойник' : 'Одинар'),
-        status,
-      );
-      item.append(header);
-      const metrics = node('div', 'coupon__metrics');
-      metrics.append(
-        metric('БК', coupon.bookmaker),
-        metric('Итоговый кэф', decimal(coupon.odds)),
-        metric('Модель', pct(coupon.probability)),
-        metric('EV', decimal(coupon.ev)),
-      );
-      item.append(metrics);
-      const legs = node(coupon.type === 'double' ? 'ol' : 'ul', 'coupon-legs');
-      for (const leg of coupon.legs) legs.append(renderCouponLeg(leg));
-      item.append(legs);
-      if (confirmationApi) {
-        item.append(confirmationApi.mountCoupon({ coupon, day, statusElement: status }));
-      }
-      fragment.append(item);
+    for (const session of GAME_SESSIONS) {
+      const sessionCoupons = coupons.filter(coupon => coupon.sessionId === session.id);
+      if (!sessionCoupons.length) continue;
+      const section = node('section', 'daily-session');
+      section.append(sessionHeader(session, sessionCouponCount(sessionCoupons)));
+      for (const coupon of sessionCoupons) section.append(couponCard(coupon, day, confirmationApi));
+      fragment.append(section);
     }
     list.replaceChildren(fragment);
     $('daily-coupons-count').textContent = String(coupons.length);
@@ -408,8 +481,23 @@
     list.hidden = coupons.length === 0;
     $('daily-coupons-warning').hidden = rejected.length === 0;
     if (rejected.length) {
-      $('daily-coupons-warning').textContent = `Не показано записей с неполной схемой или разными БК у двойника: ${rejected.length}.`;
+      $('daily-coupons-warning').textContent = `Не показано записей с неполной схемой, разными сессиями или разными БК у двойника: ${rejected.length}.`;
     }
+  }
+
+  function renderSessionSchedule() {
+    const schedule = $('daily-session-schedule');
+    if (!schedule) return;
+    const fragment = document.createDocumentFragment();
+    for (const session of GAME_SESSIONS) {
+      const item = node('div', 'session-schedule__item');
+      item.append(
+        node('strong', '', session.label),
+        node('span', '', `${session.timeLabel} МСК`),
+      );
+      fragment.append(item);
+    }
+    schedule.replaceChildren(fragment);
   }
 
   async function fetchJson(path) {
@@ -482,5 +570,6 @@
     });
   }
 
+  renderSessionSchedule();
   load();
 }(typeof self !== 'undefined' ? self : this));
