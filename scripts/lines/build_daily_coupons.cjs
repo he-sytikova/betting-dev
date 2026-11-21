@@ -165,6 +165,7 @@ function evaluatePrice(candidate, line) {
     leg: {
       time: isoTime(candidate.time),
       model_key: candidate.modelKey,
+      event_id: candidate.eventId || null,
       league: candidate.league,
       home: candidate.home,
       away: candidate.away,
@@ -406,6 +407,7 @@ function buildArtifact(input) {
       candidatePrices.push({
         time: isoTime(candidate.time),
         model_key: candidate.modelKey,
+        event_id: candidate.eventId || null,
         league: candidate.league,
         home: candidate.home,
         away: candidate.away,
