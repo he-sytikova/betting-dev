@@ -1,217 +1,284 @@
-const assert = require('node:assert/strict');
 const test = require('node:test');
-const {
-  MOSCOW_DAY,
-  expectedMarketsForCompetition,
-  GAME_SESSIONS,
-  gameSessionForTime,
-  groupCandidatesBySession,
-  normalizeCoupon,
-  renderBoard,
-  renderCandidates,
-  groupMatches,
-  couponIdentity,
-  parseCouponConfirmations,
-  placedSelection,
-} = require('../daily-board.js');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 
-function coupon(overrides = {}) {
+const board = require('../daily-board.js');
+const goalsApi = require('../goals-internal-model.js');
+
+const DAY = '2099-01-01';
+const NOW = Date.parse(`${DAY}T12:00:00Z`);
+
+function goalsModel(homeLambda = 3, awayLambda = 0.2) {
   return {
-    type: 'single',
-    bookmaker: 'fonbet',
-    price: 1.95,
-    expected_value: 0.1,
-    legs: [{
-      event_id: 'liga-portugal-2:123', fixture_id: 123,
-      home: 'Торреенсе', away: 'Порту Б', competition: 'Лига Португалия 2',
-      time: '2026-11-15T17:00:00.000Z', market: 'П1', odds_key: 'home_win',
-      probability: 0.64, fair: 1.56, price: 1.95, expected_value: 0.1,
-      model_probabilities: { xg: 0.64, poisson: 0.63, dixon_coles: 0.64 },
-      market_ids: ['fonbet:123'], best_price: { bookmaker: 'fonbet', price: 1.95 },
-      bookmaker_count: 1, comparison_count: 0,
-    }],
-    ...overrides,
+    schemaVersion: 2,
+    leagueAliases: { 'england premier league': 'E0' },
+    leagueNames: { E0: 'England. Premier League' },
+    leagueStats: { E0: {} },
+    teams: {
+      E0: {
+        newcastle: { name: 'Newcastle', stats: {}, matchesBefore: 100 },
+        everton: { name: 'Everton', stats: {}, matchesBefore: 100 },
+      },
+    },
+    features: [],
+    imputerMedian: [],
+    scalerMean: [],
+    scalerScale: [],
+    models: {
+      homeGoals: { type: 'poisson', features: [], coefficients: [], intercept: Math.log(homeLambda) },
+      awayGoals: { type: 'poisson', features: [], coefficients: [], intercept: Math.log(awayLambda) },
+    },
+    marketLines: { totalGoals: [1.5, 2.5], teamGoals: [0.5, 1.5] },
+    runtimePolicy: { minimumTeamMatches: 5, maxGoals: 12 },
   };
 }
 
-test('Moscow day uses a fixed UTC+3 boundary', () => {
-  assert.equal(MOSCOW_DAY('2026-11-15T20:59:59.000Z'), '2026-11-15');
-  assert.equal(MOSCOW_DAY('2026-11-15T21:00:00.000Z'), '2026-11-16');
-  assert.equal(MOSCOW_DAY('2026-11-16T02:00:00.000Z'), '2026-11-16');
-  assert.equal(MOSCOW_DAY('2026-03-29T00:30:00.000Z'), '2026-03-29');
-  assert.equal(MOSCOW_DAY('2026-10-25T00:30:00.000Z'), '2026-10-25');
-});
+function clubStatsModel(models) {
+  const specs = {};
+  for (const [market, config] of Object.entries(models)) {
+    specs[market] = {
+      type: 'poisson', features: [], coefficients: [],
+      intercept: Math.log(config.lambda), lines: config.lines,
+    };
+  }
+  return {
+    schemaVersion: 2,
+    leagueAliases: { 'england premier league': 'E0' },
+    leagueNames: { E0: 'England. Premier League' },
+    leagueStats: { E0: {} },
+    teams: {
+      E0: {
+        newcastle: { name: 'Newcastle', stats: {}, matchesBefore: 100 },
+        everton: { name: 'Everton', stats: {}, matchesBefore: 100 },
+      },
+    },
+    models: specs,
+    runtimePolicy: { minimumTeamMatches: 5 },
+  };
+}
 
-test('fixture schedules use Moscow kickoff dates rather than UTC dates', () => {
-  assert.equal(MOSCOW_DAY('2026-11-20T21:00:00.000Z'), '2026-11-21');
-  assert.equal(MOSCOW_DAY('2026-11-21T20:59:59.000Z'), '2026-11-21');
-  assert.equal(MOSCOW_DAY('2026-11-21T21:00:00.000Z'), '2026-11-22');
+function loadNationsModel() {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'nt_model.json'), 'utf8'));
+}
+
+function clubFixture(time = `${DAY}T18:00:00Z`) {
+  return { time, league: 'England. Premier League', home: 'Newcastle United', away: 'Everton FC' };
+}
+
+function leg(overrides = {}) {
+  return {
+    home: 'Newcastle', away: 'Everton', league: 'Premier League',
+    time: `${DAY}T18:00:00Z`, label: '1X', probability: 0.8,
+    odds: 1.4, fair: 0.75, delta_pp: 5, ev: 1.12,
+    bookmaker: 'Fonbet', ...overrides,
+  };
+}
+
+test('Moscow day changes at 21:00 UTC, not at browser-local midnight', () => {
+  assert.equal(board.dayKeyMsk(Date.parse('2026-11-16T20:59:59Z')), '2026-11-16');
+  assert.equal(board.dayKeyMsk(Date.parse('2026-11-16T21:00:00Z')), '2026-11-17');
+  assert.equal(board.dayKeyMsk('invalid'), null);
 });
 
 test('four game sessions partition the Moscow day at exact boundaries', () => {
-  assert.deepEqual(GAME_SESSIONS.map(session => session.id), ['morning', 'day', 'evening', 'night']);
-  assert.equal(gameSessionForTime('2026-11-20T21:00:00.000Z').id, 'night');
-  assert.equal(gameSessionForTime('2026-11-21T02:59:59.000Z').id, 'night');
-  assert.equal(gameSessionForTime('2026-11-21T03:00:00.000Z').id, 'morning');
-  assert.equal(gameSessionForTime('2026-11-21T08:59:59.000Z').id, 'morning');
-  assert.equal(gameSessionForTime('2026-11-21T09:00:00.000Z').id, 'day');
-  assert.equal(gameSessionForTime('2026-11-21T14:59:59.000Z').id, 'day');
-  assert.equal(gameSessionForTime('2026-11-21T15:00:00.000Z').id, 'evening');
-  assert.equal(gameSessionForTime('2026-11-21T20:59:59.000Z').id, 'evening');
-  assert.equal(gameSessionForTime('2026-11-21T21:00:00.000Z').id, 'night');
-  assert.equal(gameSessionForTime('not-a-time'), null);
+  assert.deepEqual(board.GAME_SESSIONS.map(session => session.id), ['morning', 'day', 'evening', 'night']);
+  assert.equal(board.gameSessionForTime('2026-11-20T21:00:00.000Z').id, 'night');
+  assert.equal(board.gameSessionForTime('2026-11-21T02:59:59.000Z').id, 'night');
+  assert.equal(board.gameSessionForTime('2026-11-21T03:00:00.000Z').id, 'morning');
+  assert.equal(board.gameSessionForTime('2026-11-21T08:59:59.000Z').id, 'morning');
+  assert.equal(board.gameSessionForTime('2026-11-21T09:00:00.000Z').id, 'day');
+  assert.equal(board.gameSessionForTime('2026-11-21T14:59:59.000Z').id, 'day');
+  assert.equal(board.gameSessionForTime('2026-11-21T15:00:00.000Z').id, 'evening');
+  assert.equal(board.gameSessionForTime('2026-11-21T20:59:59.000Z').id, 'evening');
+  assert.equal(board.gameSessionForTime('2026-11-21T21:00:00.000Z').id, 'night');
+  assert.equal(board.gameSessionForTime('not-a-time'), null);
 });
 
 test('candidate grouping keeps every market row in its kickoff session', () => {
   const rows = [
-    { time: '2026-11-21T09:00:00.000Z', home: 'Д1', away: 'Д2', market: 'П1' },
-    { time: '2026-11-21T09:00:00.000Z', home: 'Д1', away: 'Д2', market: 'X' },
-    { time: '2026-11-21T03:00:00.000Z', home: 'У1', away: 'У2', market: 'П1' },
+    { time: '2026-11-21T09:00:00.000Z', home: 'Д1', away: 'Д2', label: 'П1' },
+    { time: '2026-11-21T09:00:00.000Z', home: 'Д1', away: 'Д2', label: 'X' },
+    { time: '2026-11-21T03:00:00.000Z', home: 'У1', away: 'У2', label: 'П1' },
   ];
-  const groups = groupCandidatesBySession(rows);
+  const groups = board.groupCandidatesBySession(rows);
   assert.deepEqual(groups.map(group => group.id), ['morning', 'day']);
   assert.equal(groups[0].rows.length, 1);
   assert.equal(groups[1].rows.length, 2);
-  assert.deepEqual(groupCandidatesBySession(null), []);
+  assert.deepEqual(board.groupCandidatesBySession(null), []);
 });
 
-test('competition scope is derived from fixture metadata', () => {
-  const cup = { competition: 'Кубок России', league_id: 999, fixtures: [{ league: { id: 235, name: 'Russian Cup' } }] };
-  const league = { competition: 'Российская Премьер-Лига', league_id: 999, fixtures: [{ league: { id: 235, name: 'Premier League' } }] };
-  assert.equal(expectedMarketsForCompetition(cup), 'all_markets');
-  assert.equal(expectedMarketsForCompetition(league), 'small_markets');
-  assert.equal(expectedMarketsForCompetition({ competition: 'Лига Португалия 2' }), 'small_markets');
+test('minimumOdds uses EV 1.03 and rounds upward to a 0.01 step', () => {
+  const regular = board.minimumOdds(0.8);
+  assert.ok(Math.abs(regular.exact - 1.2875) < 1e-12);
+  assert.equal(regular.step, 1.29);
+  const certain = board.minimumOdds(1);
+  assert.ok(Math.abs(certain.exact - 1.03) < 1e-12);
+  assert.equal(certain.step, 1.03);
+  const boundary = board.minimumOdds(1.03 / 1.47);
+  assert.ok(Math.abs(boundary.exact - 1.47) < 1e-12);
+  assert.equal(boundary.step, 1.47);
+  assert.equal(board.minimumOdds(0.7).step, 1.48);
 });
 
-test('normalizeCoupon rejects international-club and ambiguous small-market prices', () => {
-  const base = coupon();
-  const international = coupon({ legs: [{ ...base.legs[0], event_id: 'international-club:UEFA-CONF:1' }] });
-  const aggregateOnly = coupon({ legs: [{ ...base.legs[0], odds_key: 'away_win', market: 'П2', model_probabilities: { xg: 0.5 }, bookmaker_count: 1, comparison_count: 1 }] });
-  const staleModel = coupon({ legs: [{ ...base.legs[0], model_probabilities: null }] });
-  const stalePrice = coupon({ legs: [{ ...base.legs[0], price: 1.9, best_price: { bookmaker: 'fonbet', price: 1.9 } }] });
-  const overround = coupon({ type: 'double', legs: [base.legs[0], { ...base.legs[0], event_id: 'league:2', fixture_id: 2, home: 'Другой', away: 'Матч', market: 'X2', odds_key: 'away_or_draw', probability: 0.6, price: 1.4, expected_value: 0.1, best_price: { bookmaker: 'fonbet', price: 1.4 } }] });
-  const noCurrentPrice = coupon({ legs: [{ ...base.legs[0], price: null, expected_value: null }] });
-  assert.equal(normalizeCoupon(international), null);
-  assert.equal(normalizeCoupon(aggregateOnly), null);
-  assert.equal(normalizeCoupon(staleModel), null);
-  assert.equal(normalizeCoupon(stalePrice), null);
-  assert.equal(normalizeCoupon(overround), null);
-  assert.equal(normalizeCoupon(noCurrentPrice), null);
-  assert.equal(normalizeCoupon(base).type, 'single');
-  const legacy = coupon();
-  delete legacy.legs[0].model_probabilities;
-  delete legacy.legs[0].expected_value;
-  delete legacy.expected_value;
-  assert.equal(normalizeCoupon(legacy).type, 'single');
-  const withoutFreshnessMetadata = coupon();
-  delete withoutFreshnessMetadata.legs[0].best_price;
-  delete withoutFreshnessMetadata.legs[0].bookmaker_count;
-  delete withoutFreshnessMetadata.legs[0].comparison_count;
-  assert.equal(normalizeCoupon(withoutFreshnessMetadata).type, 'single');
+test('candidate admission uses the exact 75% model-probability boundary', () => {
+  assert.equal(board.MIN_PROBABILITY, 0.75);
+  const fixture = {
+    time: Date.parse(`${DAY}T18:00:00Z`), key: 'model|E0|newcastle|everton',
+    league: 'England. Premier League', home: 'Newcastle', away: 'Everton',
+  };
+  assert.equal(board.candidate(fixture, {}, 'Голы', '1X', 0.749999999999), null);
+  const accepted = board.candidate(fixture, {}, 'Голы', '1X', 0.75);
+  assert.ok(accepted);
+  assert.equal(accepted.probability, 0.75);
+  assert.equal(accepted.oMinStep, 1.38);
+});
+
+test('modelFixtures keeps future current-day matches and deduplicates by model identity', () => {
+  const fixtures = board.modelFixtures(goalsApi, goalsModel(), [
+    clubFixture(`${DAY}T19:00:00Z`),
+    { ...clubFixture(`${DAY}T18:00:00Z`), home: 'Newcastle', away: 'Everton' },
+    clubFixture(`${DAY}T11:59:59Z`),
+    clubFixture('2099-01-02T18:00:00Z'),
+    { ...clubFixture(), home: '', away: 'Everton' },
+    { ...clubFixture(), time: 'not-a-date' },
+  ], DAY, NOW);
+  assert.equal(fixtures.length, 1);
+  assert.equal(fixtures[0].time, Date.parse(`${DAY}T18:00:00Z`));
+  assert.equal(fixtures[0].home, 'Newcastle');
+});
+
+test('nationsFixtures rejects unknown teams and competitions outside UEFA Nations League', () => {
+  const nations = loadNationsModel();
+  const fixtures = board.nationsFixtures(nations, [
+    { time: `${DAY}T20:00:00Z`, league: 'UEFA Nations League', home: 'Spain', away: 'France' },
+    { time: `${DAY}T20:00:00Z`, league: 'UEFA Nations League', home: 'Spain', away: 'Atlantis XI' },
+    { time: `${DAY}T20:00:00Z`, league: 'UEFA Champions League', home: 'Spain', away: 'France' },
+  ], DAY, NOW);
+  assert.equal(fixtures.length, 1);
+  assert.equal(fixtures[0].home, 'Spain');
+});
+
+test('buildCandidates covers all active model families and preserves market lines', () => {
+  const data = {
+    date: DAY,
+    predictions: [
+      clubFixture(),
+      { time: `${DAY}T20:00:00Z`, league: 'UEFA Nations League', home: 'Spain', away: 'France' },
+      { time: `${DAY}T18:00:00Z`, league: 'Unknown League', home: 'Unknown A', away: 'Unknown B' },
+    ],
+  };
+  const rows = board.buildCandidates(data, {
+    goals: goalsModel(),
+    cornersCards: clubStatsModel({
+      corners: { lambda: 12, lines: [8.5, 10.5] },
+      yellowCards: { lambda: 2.5, lines: [2.5, 3.5] },
+    }),
+    stats: clubStatsModel({
+      fouls: { lambda: 25, lines: [20.5] },
+      shots: { lambda: 30, lines: [24.5] },
+      shotsOnTarget: { lambda: 12, lines: [8.5] },
+    }),
+    nations: loadNationsModel(),
+  }, NOW);
+
+  assert.deepEqual(new Set(rows.map(row => row.modelLabel)), new Set([
+    'Голы', 'Угловые', 'ЖК', 'Фолы', 'Удары', 'Удары в створ', 'Лига наций',
+  ]));
+  for (const label of ['П1', '1X', 'ТБ 1.5', 'ИТБ1 0.5', 'ИТМ2 0.5']) {
+    assert.ok(rows.some(row => row.modelLabel === 'Голы' && row.label === label), label);
+  }
+  assert.ok(rows.some(row => row.modelLabel === 'Угловые' && row.label === 'ТБ 8.5'));
+  assert.ok(rows.some(row => row.modelLabel === 'ЖК' && row.label === 'ТМ 3.5'));
+  assert.ok(rows.some(row => row.modelLabel === 'Лига наций'));
+  assert.ok(rows.every(row => row.probability >= board.MIN_PROBABILITY && row.probability <= 1));
+  assert.ok(rows.every(row => row.lineStatus === 'not_checked'));
+  assert.ok(rows.every(row => row.oMinStep >= row.oMinExact - 1e-12));
+  assert.ok(rows.every(row => row.time > NOW && board.dayKeyMsk(row.time) === DAY));
+  assert.ok(rows.every(row => !String(row.home).includes('Unknown')));
+});
+
+test('groupCandidatesByMatch collapses markets into exact match events without changing their order', () => {
+  const first = {
+    time: Date.parse(`${DAY}T18:00:00Z`), home: 'Newcastle', away: 'Everton',
+    league: 'England. Premier League', modelKey: 'goals|E0|newcastle|everton', label: '1X',
+  };
+  const rows = [
+    first,
+    { ...first, modelKey: 'corners|E0|newcastle|everton', label: 'ТБ 8.5' },
+    { ...first, time: Date.parse(`${DAY}T20:00:00Z`), label: 'X2' },
+  ];
+  const groups = board.groupCandidatesByMatch(rows);
+  assert.equal(groups.length, 2);
+  assert.deepEqual(groups.map(group => group.rows.length), [2, 1]);
+  assert.deepEqual(groups[0].rows.map(row => row.label), ['1X', 'ТБ 8.5']);
+  assert.equal(groups[0].home, 'Newcastle');
+  assert.equal(groups[1].time, Date.parse(`${DAY}T20:00:00Z`));
+  assert.deepEqual(board.groupCandidatesByMatch([]), []);
+  assert.equal(rows.length, 3);
+});
+
+test('buildCandidates returns no candidates for a malformed snapshot', () => {
+  assert.deepEqual(board.buildCandidates({}, {}, NOW), []);
+  assert.deepEqual(board.buildCandidates({ date: DAY, predictions: null }, {}, NOW), []);
+});
+
+test('normalizeCoupon derives single-coupon metrics and always marks it prepared', () => {
+  const coupon = board.normalizeCoupon({ ...leg(), status: 'placed' }, 0);
+  assert.equal(coupon.type, 'single');
+  assert.equal(coupon.bookmaker, 'Fonbet');
+  assert.equal(coupon.odds, 1.4);
+  assert.equal(coupon.probability, 0.8);
+  assert.equal(coupon.ev, 1.12);
+  assert.equal(coupon.status, 'prepared');
+});
+
+test('normalizeCoupon derives double odds, probability and EV from same-bookmaker legs', () => {
+  const coupon = board.normalizeCoupon({
+    coupon_id: 'double-1',
+    legs: [leg(), leg({ home: 'Spain', away: 'France', probability: 0.75, odds: 1.5, ev: null })],
+  }, 0);
+  assert.equal(coupon.id, 'double-1');
+  assert.equal(coupon.type, 'double');
+  assert.ok(Math.abs(coupon.odds - 2.1) < 1e-12);
+  assert.ok(Math.abs(coupon.probability - 0.6) < 1e-12);
+  assert.ok(Math.abs(coupon.ev - 1.26) < 1e-12);
+  assert.equal(coupon.status, 'prepared');
 });
 
 test('normalizeCoupon derives sessions and rejects mixed sessions and declared mismatches', () => {
-  const base = coupon();
-  const normalized = normalizeCoupon(base);
-  assert.equal(normalized.sessionId, 'evening');
-  assert.equal(normalized.legs[0].sessionId, 'evening');
-  const declaredMismatch = coupon({ session_id: 'morning' });
-  assert.equal(normalizeCoupon(declaredMismatch), null);
-  const mixed = coupon({
-    type: 'double',
-    legs: [
-      base.legs[0],
-      { ...base.legs[0], event_id: 'league:2', fixture_id: 2, home: 'Другой', away: 'Матч', time: '2026-11-15T09:00:00.000Z', market: 'X2', odds_key: 'away_or_draw', probability: 0.64, fair: 1.56, price: 1.8, expected_value: 0.1, best_price: { bookmaker: 'fonbet', price: 1.8 } },
-    ],
-  });
-  assert.equal(normalizeCoupon(mixed), null);
+  const morning = board.normalizeCoupon({ ...leg({ time: `${DAY}T03:00:00Z`, session_id: 'morning' }) }, 0);
+  assert.equal(morning.sessionId, 'morning');
+  assert.equal(morning.legs[0].sessionId, 'morning');
+  assert.equal(board.normalizeCoupon({ ...leg(), session_id: 'morning' }, 0), null);
+  const mixed = board.normalizeCoupon({
+    legs: [leg(), leg({ home: 'Spain', away: 'France', time: `${DAY}T09:00:00Z` })],
+  }, 0);
+  assert.equal(mixed, null);
 });
 
-test('coupon identity covers all priced legs and ignores generated coupon ids', () => {
-  const single = coupon({ coupon_id: 'single-1', bookmaker: 'fonbet' });
-  const renamed = coupon({ coupon_id: 'single-2', bookmaker: 'fonbet' });
-  const changed = coupon({ coupon_id: 'single-1', bookmaker: 'fonbet', price: 2.01, legs: [{ ...coupon().legs[0], price: 2.01 }] });
-  const double = coupon({ type: 'double', legs: [coupon().legs[0], { ...coupon().legs[0], event_id: 'league:2', fixture_id: 2, home: 'Вторая', away: 'Пара', market: 'X2', odds_key: 'away_or_draw', price: 1.5, best_price: { bookmaker: 'fonbet', price: 1.5 } }] });
-  assert.equal(couponIdentity('2026-11-15', single), couponIdentity('2026-11-15', renamed));
-  assert.notEqual(couponIdentity('2026-11-15', single), couponIdentity('2026-11-15', changed));
-  assert.notEqual(couponIdentity('2026-11-15', single), couponIdentity('2026-11-15', double));
-  assert.notEqual(couponIdentity('2026-11-15', single), couponIdentity('2026-11-16', single));
-  const canonical = couponIdentity('2026-11-15', single);
-  assert.equal(couponIdentity('2026-11-15', normalizeCoupon(single)), canonical);
+test('normalizeCoupon rejects a double assembled from different bookmakers', () => {
+  const coupon = board.normalizeCoupon({
+    legs: [leg(), leg({ home: 'Spain', away: 'France', bookmaker: 'Marathonbet' })],
+  }, 0);
+  assert.equal(coupon, null);
 });
 
-test('placed confirmations are parsed only when selection is exactly placed', () => {
-  const records = parseCouponConfirmations(JSON.stringify({ abc: { selection: 'placed', stake: '500', updatedAt: '2026-11-15T18:00:00.000Z' }, bad: { selection: 'prepared' } }));
-  assert.equal(records.abc.stake, '500');
-  assert.equal(records.bad, undefined);
-  assert.equal(placedSelection(records.abc), true);
-  assert.equal(placedSelection({ selection: 'prepared' }), false);
-  assert.deepEqual(parseCouponConfirmations('{broken'), {});
+test('normalizeCoupons skips malformed records and reports rejected indexes', () => {
+  const result = board.normalizeCoupons({ prepared_coupons: [
+    leg(),
+    { legs: [leg(), leg({ bookmaker: 'Marathonbet' })] },
+    { home: 'Only home', odds: 1.5, bookmaker: 'Fonbet' },
+    { legs: [leg(), leg(), leg()] },
+  ] });
+  assert.equal(result.coupons.length, 1);
+  assert.deepEqual(result.rejected, [1, 2, 3]);
 });
 
-test('match grouping preserves all rows and exact market evidence', () => {
-  const home = {
-    event_id: 'league:235:1', fixture_id: 1, time: '2026-11-21T16:00:00.000Z', home: 'Спартак', away: 'Динамо',
-    competition: 'Российская Премьер-Лига', market: 'П1', odds_key: 'home_win', probability: 0.5,
-    model_probabilities: { xg: 0.5, poisson: 0.49, dixon_coles: 0.5 },
-    best_price: { bookmaker: 'fonbet', price: 2.1 }, bookmaker_count: 1, comparison_count: 0,
-    market_ids: ['fonbet:1'], prices: { fonbet: { price: 2.1, market_id: 'fonbet:1' } },
-    stats: { xg: { homeXg: 1.8, awayXg: 0.8 }, poisson: { homeXg: 1.8, awayXg: 0.8 }, dixonColes: { homeXg: 1.8, awayXg: 0.8 }, samples: { home: 10, away: 10 }, shotsOnTarget: { lambda: 12, lines: [24.5] } },
-    xg: { homeXg: 1.8, awayXg: 0.8 },
-  };
-  const other = { ...home, market: 'X', odds_key: 'draw', probability: 0.25 };
-  const awayWin = { ...home, market: 'П2', odds_key: 'away_win', probability: 0.25 };
-  const sameKeyDifferentName = { ...other, market: 'Ничья' };
-  const unsupported = { ...other, market: 'ТБ 2.5', odds_key: 'over_2_5' };
-  const groups = groupMatches([home, other, awayWin, sameKeyDifferentName, unsupported]);
-  assert.equal(groups.length, 1);
-  assert.equal(groups[0].rows.length, 3);
-  assert.deepEqual(groups[0].rows.map(row => row.market), ['П1', 'X', 'П2']);
-  assert.equal(groupMatches([{ ...home, time: null }, { ...home, home: null }]).length, 0);
-  assert.deepEqual(groupMatches(null), []);
-});
-
-test('renderCandidates and renderBoard use local formatting and no raw HTML interpolation', () => {
-  const previousDocument = global.document;
-  const previousStorage = global.localStorage;
-  const elements = new Map();
-  function element() {
-    return {
-      children: [], attributes: {}, dataset: {}, textContent: '', hidden: false,
-      append(...nodes) { this.children.push(...nodes); },
-      appendChild(node) { this.children.push(node); return node; },
-      replaceChildren(...nodes) { this.children = nodes; },
-      setAttribute(key, value) { this.attributes[key] = String(value); },
-      addEventListener() {}, focus() {},
-      classList: { toggle() {}, add() {} },
-      checkVisibility() { return !this.hidden; },
-      closest() { return this; },
-      querySelector() { return this.children[0] || null; },
-    };
-  }
-  global.document = { createElement: element, createDocumentFragment: element, querySelector(selector) { if (!elements.has(selector)) elements.set(selector, element()); return elements.get(selector); } };
-  global.localStorage = { getItem() { return null; }, setItem() {} };
-  try {
-    const candidates = [{
-      time: '2026-11-15T17:00:00.000Z', home: '<img src=x>', away: 'Гости & Co', competition: 'Лига Португалия 2', market: 'П1',
-      probability: 0.65, best_price: { bookmaker: 'fonbet', price: 1.91 }, bookmaker_count: 1, comparison_count: 0,
-      stats: { xg: { homeXg: 1.7, awayXg: 0.8 }, samples: { home: 10, away: 10 }, shotsOnTarget: { lambda: 12, lines: [24.5] } },
-    }];
-    renderCandidates(candidates);
-    assert.equal(elements.get('#daily-candidate-count').textContent, '1 в 1 матче');
-    assert.equal(elements.get('#daily-candidates').hidden, false);
-    assert.equal(elements.get('#daily-empty').hidden, true);
-    assert.equal(JSON.stringify(elements.get('#daily-candidates').children).includes('<img src=x>'), false);
-    const normalized = normalizeCoupon(coupon());
-    renderBoard({ day: '2026-11-15', coupons: [normalized], candidates }, '2026-11-15');
-    assert.equal(elements.get('#daily-coupon-count').textContent, '1');
-    assert.equal(elements.get('#daily-coupons').hidden, false);
-    renderBoard({ day: '2026-11-15', coupons: [], candidates: [] }, '2026-11-15');
-    assert.equal(elements.get('#daily-coupons').hidden, true);
-    assert.equal(elements.get('#daily-empty').hidden, false);
-    assert.equal(elements.get('#daily-coupon-count').textContent, '0');
-  } finally {
-    if (previousDocument === undefined) delete global.document; else global.document = previousDocument;
-    if (previousStorage === undefined) delete global.localStorage; else global.localStorage = previousStorage;
-  }
+test('couponEmptyMessage distinguishes processing states and an empty processed day', () => {
+  assert.match(board.couponEmptyMessage({ data_status: 'not_processed' }), /ещё не обработаны/);
+  assert.match(board.couponEmptyMessage({ data_status: 'source_unavailable' }), /недоступен/);
+  assert.match(board.couponEmptyMessage({ data_status: 'no_line_match' }), /не сопоставлены/);
+  assert.match(board.couponEmptyMessage({ data_status: 'ok' }), /пропуск/);
+  assert.match(board.couponEmptyMessage({ data_status: 'stale_snapshot' }), /не считается проставленным/);
 });

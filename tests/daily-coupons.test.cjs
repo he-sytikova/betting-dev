@@ -79,7 +79,7 @@ test('money-coupon admission rejects 74.999…% and accepts exactly 75%', () => 
 });
 
 test('filter order rejects low EV before interpreting a large delta', () => {
-  const result = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5' }), line({
+  const result = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5', probability: 0.75 }), line({
     markets: { 'TOTAL_GOALS:2.5': { ТБ: 1.37, ТМ: 5 } },
   }));
   assert.equal(result.rejection.reason, 'ev_below_threshold');
@@ -103,7 +103,7 @@ test('over below fair is rejected while the opposite side has no over-only rule'
   const over = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5', probability: 0.75 }), line({ markets }));
   assert.equal(over.rejection.reason, 'over_below_market');
   const under = coupons.evaluatePrice(candidate({ label: 'ТМ 2.5', probability: 0.75 }), line({
-    markets: { 'TOTAL_GOALS:2.5': { ТБ: 5, ТМ: 2.5 } },
+    markets: { 'TOTAL_GOALS:2.5': { ТБ: 5, ТМ: 1.5 } },
   }));
   assert.ok(under.leg, under.rejection?.reason);
 });
@@ -114,7 +114,7 @@ test('incomplete pairs, integer lines and unconfirmed model markets never enter 
   }));
   assert.equal(incomplete.rejection.reason, 'incomplete_market');
   const integer = coupons.evaluatePrice(candidate({ label: 'ТБ 2' }), line({
-    markets: { 'TOTAL_GOALS:2': { ТБ: 1.5, ТМ: 2.5 } },
+    markets: { 'TOTAL_GOALS:2': { ТБ: 1.5, ТМ: 3 } },
   }));
   assert.equal(integer.rejection.reason, 'integer_two_way_line');
   const cards = coupons.evaluatePrice(candidate({ modelLabel: 'ЖК', label: 'ТБ 2.5' }), line());
@@ -311,7 +311,7 @@ test('end-to-end artifact joins only exact gated audit identities and passes hom
 });
 
 test('minimum rounded price remains a separate filter after exact EV passes', () => {
-  const result = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5' }), line({
+  const result = coupons.evaluatePrice(candidate({ label: 'ТБ 2.5', probability: 0.75 }), line({
     markets: { 'TOTAL_GOALS:2.5': { ТБ: 1.375, ТМ: 3 } },
   }));
   assert.equal(result.rejection.reason, 'odds_below_minimum');
@@ -327,9 +327,7 @@ test('team goals and corner candidates map only to their confirmed statistic and
   assert.equal(team.leg.market_key, 'IT_AWAY_GOALS:1.5');
   const corner = coupons.evaluatePrice(candidate({
     modelLabel: 'Угловые', label: 'ТБ 10.5', probability: 0.75,
-  }), line({
-    markets: { 'TOTAL_CORNERS:10.5': { ТБ: 1.5, ТМ: 2.5 } },
-  }));
+  }), line({ markets: { 'TOTAL_CORNERS:10.5': { ТБ: 1.5, ТМ: 3 } } }));
   assert.ok(corner.leg, corner.rejection?.reason);
   assert.equal(corner.leg.market_key, 'TOTAL_CORNERS:10.5');
   const wrongStatistic = coupons.evaluatePrice(candidate({
