@@ -65,6 +65,9 @@
       probability: finiteOrNull(coupon.probability),
       ev: finiteOrNull(coupon.ev),
       legs: coupon.legs.map(leg => ({
+        eventId: String(leg.eventId || leg.event_id || '').trim() || null,
+        modelKey: String(leg.modelKey || leg.model_key || '').trim() || null,
+        model: String(leg.model || leg.modelLabel || '').trim() || null,
         home: String(leg.home).trim(),
         away: String(leg.away).trim(),
         time: canonicalTime(leg.time),

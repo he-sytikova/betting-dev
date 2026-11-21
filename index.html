@@ -9,6 +9,7 @@
   <title>Betting Dev — экспериментальные модели</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e293b'/%3E%3Cpath d='M32 10 50 23 43 45H21L14 23Z' fill='none' stroke='%2338bdf8' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%234ade80'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="financial-report.css" />
   <style>
     .dev-home{max-width:980px;margin:32px auto;padding:0 16px}
     .dev-intro{color:var(--text-muted);line-height:1.6}
@@ -40,6 +41,27 @@
     <p class="note"><span id="day-odds-status">Загрузка кэфов…</span> <span id="day-odds-count"></span><br>E365 — текущая интрадей-цена одного букмекера Euro365 (1X2 · Х · П2, двойные шансы, тоталы ТБ/ТМ); TOA — лучшая цена (Max) The Odds API по европейским букмекерам (только тоталы, только клубные лиги дня; консенсус Avg — в подсказке по наведению); FDO — консенсус открытия рынка football-data.co.uk (Avg), справочно: снимок после открытия, цены могли уйти. Показаны только основные линии тоталов (1.5 / 2.5 / 3.5). Цены справочные: в расчёт вероятностей модели они не входят. Матч без единой цены не показывается.</p>
     <div class="wrap"><table class="tbl"><thead><tr><th>Время МСК</th><th>Турнир</th><th>Матч</th><th>1X2</th><th>Двойные шансы (E365)</th><th>Тоталы ТБ/ТМ</th></tr></thead><tbody id="day-odds-rows"></tbody></table></div><p id="day-odds-empty" class="note" hidden>Сегодня нет анализируемых матчей с доступными кэфами.</p>
     </details>
+    <section id="financial-report" class="financial-report" aria-labelledby="finance-title">
+      <div class="finance-head">
+        <div>
+          <span class="dev-label">Финансовый контур</span>
+          <h2 id="finance-title">Результаты и отчётность</h2>
+          <p class="finance-intro">Только купоны, которые вы отметили кнопкой «Проставлено». Автоматический расчёт использует финальные результаты Euro365 и зафиксированные условия ставки. Фактическую выплату можно отдельно сверить с БК.</p>
+        </div>
+      </div>
+      <div class="finance-controls">
+        <div class="finance-periods" role="group" aria-label="Период финансового отчёта">
+          <button type="button" data-finance-period="day" aria-pressed="true">День</button>
+          <button type="button" data-finance-period="week" aria-pressed="false">Неделя</button>
+          <button type="button" data-finance-period="month" aria-pressed="false">Месяц</button>
+        </div>
+        <label class="finance-date" for="finance-period-date">День периода, МСК<input id="finance-period-date" type="date" /></label>
+      </div>
+      <p id="finance-range" class="finance-range"></p>
+      <p id="finance-status" class="finance-status" role="status">Загрузка отчёта…</p>
+      <div id="finance-summary"></div>
+      <div id="finance-rows"></div>
+    </section>
     <div class="dev-grid">
       <a class="dev-card" href="./coupons.html">
         <span class="dev-label">Рабочий контур</span>
@@ -85,5 +107,10 @@
     <p class="markets-note">Экспериментальная среда. Результаты моделей требуют дальнейшей проверки и не являются рекомендацией для ставок.</p>
   </main>
   <script src="day-odds.js"></script>
+  <script src="coupon-confirmation.js"></script>
+  <script src="financial-report.js"></script>
+  <script>
+    FinancialReport.mount(document.getElementById('financial-report'));
+  </script>
 </body>
 </html>
