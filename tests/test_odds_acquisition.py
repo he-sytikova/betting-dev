@@ -17,11 +17,11 @@ from scripts.lines.common import (
     request_json,
 )
 from scripts.lines.parsers import (
-    MARATHON_CLUB_TOURNAMENTS,
     MARATHON_DETAIL_MODELS,
     decode_marathon_odds,
     extract_fonbet_hosts,
     marathon_coefficient_table,
+    marathon_tournament_catalog,
     marathon_tournament_url,
     parse_fonbet_detail,
     parse_fonbet_snapshot,
@@ -100,6 +100,7 @@ class CommonTests(unittest.TestCase):
         self.assertEqual(normalize_team("Republic of Ireland"), "ireland")
         self.assertEqual(normalize_team("Türkiye"), "turkey")
         self.assertEqual(normalize_team("Bodø/Glimt"), "bodo glimt")
+        self.assertEqual(normalize_team("Rodina"), "rodina moscow")
 
     def test_gzip_response(self):
         body = gzip.compress(b'{"events": []}')
@@ -229,25 +230,23 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(row["odds"]["home"], 2.0)
         self.assertEqual(row["markets"]["TOTAL_GOALS:3.5"], {"ТБ": 1.8, "ТМ": 2.0})
 
-    def test_marathon_club_tournament_mapping_is_complete(self):
-        expected = {
-            "B1": "belgium-1st-division-a", "BRA": "brazil-serie-a",
-            "D1": "germany-bundesliga", "D2": "germany-bundesliga-2",
-            "E0": "england-premier-league", "E1": "england-championship",
-            "E2": "england-league-1", "E3": "england-league-2",
-            "F1": "france-ligue-1", "F2": "france-ligue-2",
-            "G1": "greece-super-league", "I1": "italy-serie-a", "I2": "italy-serie-b",
-            "N1": "netherlands-eredivisie", "NOR": "norway-eliteserien",
-            "P1": "portugal-primeira-liga", "RUS": "russia-premier-league",
-            "SC0": "scotland-premiership", "SC1": "scotland-championship",
-            "SP1": "spain-primera-division", "SP2": "spain-segunda-division",
-            "SWE": "sweden-allsvenskan", "T1": "turkey-super-lig", "USA": "usa-mls",
-        }
-        self.assertEqual(MARATHON_CLUB_TOURNAMENTS, expected)
-        self.assertEqual(len(set(expected.values())), 24)
-        self.assertEqual(marathon_tournament_url("belgium-1st-division-a"),
+    def test_marathon_catalog_discovers_nested_and_new_tournaments(self):
+        payload = {"itemMap": {
+            "direct": {"tournament": {
+                "treeId": 21520, "name": "АПЛ",
+                "seo": {"sportSlug": "football", "champSlug": "england-premier-league", "slugEntityType": "CHAMP"},
+            }},
+            "country": {"itemMap": {"nested": {
+                "treeId": 99999, "name": "Новый турнир",
+                "seo": {"sportSlug": "football", "champSlug": "new-world-league", "slugEntityType": "CHAMP"},
+            }}},
+        }}
+        catalog = marathon_tournament_catalog(payload)
+        self.assertEqual(set(catalog), {"england-premier-league", "new-world-league"})
+        self.assertEqual(catalog["new-world-league"]["tree_id"], "99999")
+        self.assertEqual(marathon_tournament_url("new-world-league"),
                          "https://new.marathonbet.ru/eag/event-line/api/v1/tournaments/by-slug"
-                         "?sportSlug=football&champSlug=belgium-1st-division-a")
+                         "?sportSlug=football&champSlug=new-world-league")
 
     def test_marathon_tournament_snapshots_deduplicate_by_event_id(self):
         club_event = dict(marathon_event(), eventId=201, treeId=301,
@@ -401,19 +400,121 @@ class MatchingAndIntegrationTests(unittest.TestCase):
             self.assertEqual(summary["detail"], {"limit_exceeded": 1})
             enriched = json.loads((root / "out/enriched/marathonbet.json").read_text(encoding="utf-8"))
             self.assertEqual(enriched["matches"][0]["detail_status"], "limit_exceeded")
+    def test_winline_identity_link_requires_exact_bilingual_event(self):
+        marathon_line = {
+            "match_id": "29431302", "team1": "Динамо Москва", "team2": "Краснодар",
+            "slug_team1": "dynamo moscow", "slug_team2": "krasnodar",
+            "start_time": self.fixture["time"],
+        }
+        winline_line = {
+            "match_id": "17077204", "source_team1": "Динамо М", "source_team2": "Краснодар",
+            "team1": "dynamo moscow", "team2": "краснодар", "start_time": self.fixture["time"],
+        }
+        marathon = {"matches": [marathon_line]}
+        winline = {"matches": [winline_line]}
+        diagnostics = acquisition.link_winline_identities(marathon, winline)
+        self.assertEqual(diagnostics, {"linked_events": 1, "ambiguous_events": 0, "unlinked_events": 0})
+        self.assertEqual((winline_line["team1"], winline_line["team2"]), ("dynamo moscow", "krasnodar"))
+        self.assertEqual(winline_line["identity_link"]["match_id"], "29431302")
+
+        ambiguous_line = dict(winline_line, identity_link=None)
+        ambiguous = {"matches": [ambiguous_line]}
+        diagnostics = acquisition.link_winline_identities(
+            {"matches": [marathon_line, dict(marathon_line, match_id="other")]}, ambiguous,
+        )
+        self.assertEqual(diagnostics["ambiguous_events"], 1)
+        self.assertIsNone(ambiguous_line["identity_link"])
+
+        unknown_line = dict(winline_line, source_team1="Динамо", team1="динамо", identity_link=None)
+        unknown = {"matches": [unknown_line]}
+        diagnostics = acquisition.link_winline_identities(marathon, unknown)
+        self.assertEqual(diagnostics["unlinked_events"], 1)
+        self.assertIsNone(unknown_line["identity_link"])
+
+    def test_default_unlimited_mode_enriches_more_than_former_limit(self):
+        fixtures = []
+        lines = []
+        for index in range(41):
+            home, away = f"Home {index}", f"Away {index}"
+            fixtures.append({
+                "home": home, "away": away, "time": self.fixture["time"],
+                "league": "Dynamic League", "key": f"home {index}|away {index}|{self.fixture['time']}",
+            })
+            lines.append({
+                "bookmaker": "Marathonbet", "match_id": str(1000 + index), "tree_id": str(2000 + index),
+                "team1": home, "team2": away, "slug_team1": home.lower(), "slug_team2": away.lower(),
+                "start_time": self.fixture["time"], "league": "Dynamic League", "odds": {}, "markets": {},
+            })
+        snapshot = {"bookmaker": "Marathonbet", "target_date": "2026-11-17", "status": "ok",
+                    "captured_at_utc": "now", "matches": lines}
+        detail = {"markets": {"1": {"model": "MTCH_TTLG", "name": "Тотал голов", "selections": {
+            "1": selection(1, "Больше 2.5", 1, 1), "2": selection(2, "Меньше 2.5", 3, 4)}}}}
+        response = acquisition.FetchResult(detail, json.dumps(detail).encode(), "https://detail.test", "start", "received", 200, 1)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixture_path = root / "data.json"
+            fixture_path.write_text(json.dumps({"date": "2026-11-17", "predictions": fixtures}), encoding="utf-8")
+            with mock.patch.object(acquisition, "_fetch_fonbet", return_value=({"bookmaker": "Fonbet", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}, None)), \
+                 mock.patch.object(acquisition, "_fetch_marathon", return_value=snapshot), \
+                 mock.patch.object(acquisition, "_fetch_winline", return_value={"bookmaker": "Winline", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
+                 mock.patch.object(acquisition, "request_json", return_value=response) as request:
+                summary = acquisition.acquire_lines(
+                    "2026-11-17", fixture_path, root / "out", sleeper=lambda _: None,
+                )
+        self.assertEqual(request.call_count, 41)
+        self.assertEqual(summary["detail_requests"], 41)
+        self.assertEqual(summary["detail_unique_events"], 41)
+        self.assertIsNone(summary["detail_limit"])
+        self.assertEqual(summary["detail_limit_mode"], "unlimited")
+        self.assertEqual(summary["detail"], {"ok": 41})
+
+    def test_duplicate_matched_event_reuses_detail_result(self):
+        variant = dict(self.fixture, key="model-variant|" + self.fixture["key"])
+        snapshot = {"bookmaker": "Marathonbet", "target_date": "2026-11-17", "status": "ok",
+                    "captured_at_utc": "now", "matches": [self.line]}
+        detail = {"markets": {"1": {"model": "MTCH_TTLG", "name": "Тотал голов", "selections": {
+            "1": selection(1, "Больше 2.5", 1, 1), "2": selection(2, "Меньше 2.5", 3, 4)}}}}
+        response = acquisition.FetchResult(detail, json.dumps(detail).encode(), "https://detail.test", "start", "received", 200, 1)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with mock.patch.object(acquisition, "load_fixtures", return_value=[self.fixture, variant]), \
+                 mock.patch.object(acquisition, "_fetch_fonbet", return_value=({"bookmaker": "Fonbet", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}, None)), \
+                 mock.patch.object(acquisition, "_fetch_marathon", return_value=snapshot), \
+                 mock.patch.object(acquisition, "_fetch_winline", return_value={"bookmaker": "Winline", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
+                 mock.patch.object(acquisition, "request_json", return_value=response) as request:
+                summary = acquisition.acquire_lines(
+                    "2026-11-17", root / "unused.json", root / "out", sleeper=lambda _: None,
+                )
+        self.assertEqual(request.call_count, 1)
+        self.assertEqual(summary["detail_requests"], 1)
+        self.assertEqual(summary["detail_unique_events"], 1)
+        self.assertEqual(summary["detail_deduplicated"], 1)
+        self.assertEqual(summary["detail"], {"ok": 2})
+        self.assertEqual(sum(bool(row.get("deduplicated")) for row in summary["detail_by_match"]), 1)
+        coverage = next(row for row in summary["tournament_coverage"] if row["bookmaker"] == "Marathonbet")
+        self.assertEqual(coverage["league"], "UEFA Nations League")
+        self.assertEqual(coverage["fixtures"], 2)
+        self.assertEqual(coverage["detail"], {"ok": 2})
 
 
 class MarathonAcquisitionTests(unittest.TestCase):
-    def test_club_tournament_failure_is_partial_and_raw_files_are_audited(self):
+    def test_discovered_tournament_failure_is_partial_and_raw_files_are_audited(self):
         calls = []
+        slugs = ["belgium-1st-division-a", "england-premier-league", "new-world-league"]
+        catalog = {"itemMap": {
+            slug: {"treeId": str(1000 + index), "name": slug, "seo": {
+                "sportSlug": "football", "champSlug": slug, "slugEntityType": "CHAMP",
+            }} for index, slug in enumerate(slugs)
+        }}
 
         def fake_request(url, **kwargs):
             calls.append(url)
             if "champSlug=belgium-1st-division-a" in url:
                 raise AcquisitionError("source_unavailable", "B1 unavailable", url=url, http_status=503)
             if "tournaments/by-slug" in url:
-                has_event = "champSlug=uefa-nations-league" in url or "champSlug=england-premier-league" in url
-                payload = {"prematchEvents": [marathon_event()] if has_event else []}
+                payload = {"prematchEvents": [marathon_event()] if "champSlug=england-premier-league" in url else []}
+            elif url == acquisition.MARATHON_CATALOG_URL:
+                payload = catalog
             elif url == acquisition.MARATHON_TABLE_URL:
                 payload = {"payload": {}}
             else:
@@ -428,18 +529,47 @@ class MarathonAcquisitionTests(unittest.TestCase):
                     "2026-11-17", raw_dir, opener=mock.Mock(), sleeper=lambda _: None,
                 )
             self.assertEqual(snapshot["status"], "partial")
-            self.assertEqual(len(calls), 27)
-            self.assertEqual(snapshot["tournaments"]["B1"]["status"], "unavailable")
-            self.assertEqual(snapshot["tournaments"]["E0"]["status"], "ok")
-            self.assertEqual(snapshot["tournaments"]["NATIONS"]["status"], "ok")
-            self.assertEqual(snapshot["matches"][0]["sources"], ["nations", "tournament:E0"])
-            self.assertEqual(snapshot["errors"][0]["league_code"], "B1")
-            self.assertNotIn("tournament_b1", snapshot["raw_paths"])
-            self.assertTrue((raw_dir / "marathonbet_tournament_e0.json").is_file())
-            self.assertFalse((raw_dir / "marathonbet_tournament_b1.json").exists())
+            self.assertEqual(len(calls), 6)
+            self.assertEqual(snapshot["catalog"]["discovered_tournaments"], 3)
+            self.assertEqual(snapshot["tournaments"]["belgium-1st-division-a"]["status"], "unavailable")
+            self.assertEqual(snapshot["tournaments"]["england-premier-league"]["status"], "ok")
+            self.assertEqual(snapshot["tournaments"]["new-world-league"]["status"], "ok")
+            self.assertEqual(snapshot["matches"][0]["sources"], ["tournament:england-premier-league"])
+            self.assertEqual(snapshot["errors"][0]["champ_slug"], "belgium-1st-division-a")
+            self.assertNotIn("tournament_belgium-1st-division-a", snapshot["raw_paths"])
+            self.assertTrue((raw_dir / "marathonbet_tournament_england-premier-league.json").is_file())
+            self.assertTrue((raw_dir / "marathonbet_tournament_new-world-league.json").is_file())
+            self.assertFalse((raw_dir / "marathonbet_tournament_belgium-1st-division-a.json").exists())
             self.assertTrue((raw_dir / "marathonbet_main.json").is_file())
-            self.assertTrue((raw_dir / "marathonbet_nations.json").is_file())
+            self.assertTrue((raw_dir / "marathonbet_catalog.json").is_file())
             self.assertTrue((raw_dir / "marathonbet_table.json").is_file())
+
+    def test_catalog_without_any_event_payload_is_source_unavailable(self):
+        slug = "new-world-league"
+        catalog = {"itemMap": {slug: {
+            "treeId": "1000", "name": slug,
+            "seo": {"sportSlug": "football", "champSlug": slug, "slugEntityType": "CHAMP"},
+        }}}
+
+        def fake_request(url, **kwargs):
+            if url == acquisition.MARATHON_CATALOG_URL:
+                payload = catalog
+            elif url == acquisition.MARATHON_TABLE_URL:
+                payload = {"payload": {}}
+            else:
+                raise AcquisitionError("source_unavailable", "event source unavailable", url=url)
+            body = json.dumps(payload).encode()
+            return acquisition.FetchResult(payload, body, url, "requested", "received", 200, 1)
+
+        with tempfile.TemporaryDirectory() as directory:
+            with mock.patch.object(acquisition, "request_json", side_effect=fake_request):
+                snapshot = acquisition._fetch_marathon(
+                    "2026-11-17", Path(directory) / "raw", opener=mock.Mock(), sleeper=lambda _: None,
+                )
+        self.assertEqual(snapshot["status"], "source_unavailable")
+        self.assertEqual(snapshot["matches"], [])
+        self.assertEqual(snapshot["catalog"]["discovered_tournaments"], 1)
+        self.assertEqual({error["stage"] for error in snapshot["errors"]}, {"main", f"tournament_{slug}"})
 
 
 class ModelGateCliTests(unittest.TestCase):

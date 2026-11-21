@@ -6,6 +6,8 @@ const path = require('node:path');
 const { parseArgs } = require('node:util');
 const board = require('../../daily-board.js');
 const goalsApi = require('../../goals-internal-model.js');
+const cornersApi = require('../../internal-model.js');
+const statsApi = require('../../stats-internal-model.js');
 const ntApi = require('../../nt-internal-model.js');
 
 const BOOKMAKERS = ['Fonbet', 'Marathonbet', 'Winline'];
@@ -179,10 +181,16 @@ function evaluatePrice(candidate, line) {
 
 function fixtureModelKeys(fixture, models) {
   const keys = new Set();
-  const code = models.goals ? goalsApi.resolveLeague(models.goals, fixture.league) : null;
-  if (code && goalsApi.resolveTeam(models.goals, code, fixture.home)
-      && goalsApi.resolveTeam(models.goals, code, fixture.away)) {
-    keys.add(goalsApi.canonicalFixtureKey(models.goals, fixture.league, fixture.home, fixture.away));
+  for (const [api, model] of [
+    [goalsApi, models.goals],
+    [cornersApi, models.cornersCards],
+    [statsApi, models.stats],
+  ]) {
+    const code = model ? api.resolveLeague(model, fixture.league) : null;
+    if (code && api.resolveTeam(model, code, fixture.home)
+        && api.resolveTeam(model, code, fixture.away)) {
+      keys.add(api.canonicalFixtureKey(model, fixture.league, fixture.home, fixture.away));
+    }
   }
   const competition = models.nations ? ntApi.resolveCompetition(models.nations, fixture.league) : null;
   const home = models.nations ? ntApi.resolveTeam(models.nations, fixture.home) : null;

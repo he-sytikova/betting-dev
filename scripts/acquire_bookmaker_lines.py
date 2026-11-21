@@ -17,7 +17,7 @@ from scripts.lines.common import MOSCOW_TZ, write_json
 
 
 def apply_model_gate(fixtures_path: Path, output_dir: Path) -> tuple[Path, dict]:
-    """Keep only future fixtures that an active monetary model can score."""
+    """Keep future fixtures covered by any homepage candidate model."""
     output_dir.mkdir(parents=True, exist_ok=True)
     gated_path = output_dir / "model-fixtures.json"
     script = PROJECT_ROOT / "scripts/lines/filter_model_fixtures.cjs"
@@ -33,8 +33,8 @@ def main(argv=None):
                         help="data.json, fixtures-<date>.json or candidate fixture JSON")
     parser.add_argument("--output", type=Path, default=None,
                         help="artifact directory (default: probe-out/lines_<date>)")
-    parser.add_argument("--detail-limit", type=int, default=40,
-                        help="maximum matched BK-event detail requests, 0..40")
+    parser.add_argument("--detail-limit", type=int, default=None,
+                        help="manual cap on unique matched BK-event detail requests; omitted = unlimited, 0 = none")
     args = parser.parse_args(argv)
     target_date = datetime.strptime(args.date, "%Y-%m-%d").date().isoformat()
     output = args.output or Path("probe-out") / f"lines_{target_date}"

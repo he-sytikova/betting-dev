@@ -29,34 +29,11 @@ FONBET_CORNER_FACTORS = {
     1727: "ТБ", 1728: "ТМ", 1730: "ТБ", 1731: "ТМ",
 }
 MARATHON_MAIN_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/main/sports/events"
+MARATHON_CATALOG_URL = (
+    "https://new.marathonbet.ru/eag/event-line/api/v1/sports/by-slug/"
+    "all-tournaments/prematch?sportSlug=football"
+)
 MARATHON_TOURNAMENT_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/tournaments/by-slug"
-MARATHON_NATIONS_SLUG = "uefa-nations-league"
-MARATHON_CLUB_TOURNAMENTS = {
-    "B1": "belgium-1st-division-a",
-    "BRA": "brazil-serie-a",
-    "D1": "germany-bundesliga",
-    "D2": "germany-bundesliga-2",
-    "E0": "england-premier-league",
-    "E1": "england-championship",
-    "E2": "england-league-1",
-    "E3": "england-league-2",
-    "F1": "france-ligue-1",
-    "F2": "france-ligue-2",
-    "G1": "greece-super-league",
-    "I1": "italy-serie-a",
-    "I2": "italy-serie-b",
-    "N1": "netherlands-eredivisie",
-    "NOR": "norway-eliteserien",
-    "P1": "portugal-primeira-liga",
-    "RUS": "russia-premier-league",
-    "SC0": "scotland-premiership",
-    "SC1": "scotland-championship",
-    "SP1": "spain-primera-division",
-    "SP2": "spain-segunda-division",
-    "SWE": "sweden-allsvenskan",
-    "T1": "turkey-super-lig",
-    "USA": "usa-mls",
-}
 
 
 def marathon_tournament_url(champ_slug: str) -> str:
@@ -65,7 +42,46 @@ def marathon_tournament_url(champ_slug: str) -> str:
     })
 
 
-MARATHON_NATIONS_URL = marathon_tournament_url(MARATHON_NATIONS_SLUG)
+def marathon_tournament_catalog(payload: Any) -> dict[str, dict[str, Any]]:
+    """Return every published football tournament, keyed by its exact slug."""
+    if not isinstance(payload, dict) or not isinstance(payload.get("itemMap"), dict):
+        raise ValueError("Marathonbet tournament catalog has no itemMap")
+    tournaments: dict[str, dict[str, Any]] = {}
+    seen_nodes: set[int] = set()
+
+    def visit(node: Any) -> None:
+        if not isinstance(node, dict) or id(node) in seen_nodes:
+            return
+        seen_nodes.add(id(node))
+        seo = node.get("seo")
+        if isinstance(seo, dict) and seo.get("slugEntityType") == "CHAMP":
+            if seo.get("sportSlug") != "football":
+                raise ValueError("Marathonbet catalog contains a non-football championship")
+            slug = str(seo.get("champSlug") or "").strip()
+            tree_id = str(node.get("treeId") or "").strip()
+            name = str(node.get("name") or "").strip()
+            if not re.fullmatch(r"[a-z0-9-]+", slug) or not tree_id or not name:
+                raise ValueError("Marathonbet championship identity is incomplete")
+            record = {"tree_id": tree_id, "name": name, "champ_slug": slug}
+            previous = tournaments.get(slug)
+            if previous is not None and previous != record:
+                raise ValueError(f"conflicting Marathonbet tournament slug: {slug}")
+            tournaments[slug] = record
+        children = node.get("itemMap")
+        if isinstance(children, dict):
+            for child in children.values():
+                visit(child)
+        for wrapper in ("tournament", "container"):
+            child = node.get(wrapper)
+            if isinstance(child, dict):
+                visit(child)
+
+    visit(payload)
+    if not tournaments:
+        raise ValueError("Marathonbet tournament catalog is empty")
+    return dict(sorted(tournaments.items()))
+
+
 MARATHON_TABLE_URL = "https://new.marathonbet.ru/client-gate/dictionary/coefficient-table?oddsType=Decimal"
 MARATHON_DETAIL_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/events/{}"
 MARATHON_HEADERS = {
