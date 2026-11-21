@@ -1,6 +1,6 @@
 {
  "date": "2026-11-22",
- "generatedAt": "2026-11-21T12:43:02.016469+00:00",
+ "generatedAt": "2026-11-21T12:55:49.302018+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.772423544",
@@ -738,6 +738,13 @@
    "away": "Kamatamare Sanuki"
   },
   {
+   "eventId": "s9-99.772863325",
+   "time": "2026-11-22T07:00:00+00:00",
+   "league": "Ethiopia. Higher League. Women",
+   "home": "Addis Ababa Ketema (Women)",
+   "away": "Nifas Silk Lafto (Women)"
+  },
+  {
    "eventId": "s9-99.771922626",
    "time": "2026-11-22T07:00:00+00:00",
    "league": "Hong Kong. Division 1",
@@ -1207,6 +1214,20 @@
    "away": "Kaizer Chiefs II"
   },
   {
+   "eventId": "s9-99.772863319",
+   "time": "2026-11-22T10:00:00+00:00",
+   "league": "Spain. Primera Division RFEF. Women",
+   "home": "Atletico de Madrid II (Women)",
+   "away": "CD Tenerife II (Women)"
+  },
+  {
+   "eventId": "s9-99.772863322",
+   "time": "2026-11-22T10:00:00+00:00",
+   "league": "Spain. Primera Division RFEF. Women",
+   "home": "Barcelona II (Women)",
+   "away": "Cacereno (Women)"
+  },
+  {
    "eventId": "s9-99.772315234",
    "time": "2026-11-22T10:00:00+00:00",
    "league": "Spain. Tercera Division RFEF. Group 7",
@@ -1627,7 +1648,7 @@
    "away": "Korona Kielce U19"
   },
   {
-   "eventId": "s9-99.772848321",
+   "eventId": "s9-99.772863286",
    "time": "2026-11-22T11:00:00+00:00",
    "league": "Portugal. Taca de Portugal",
    "home": "A.D. Sanjoanense",
@@ -2432,7 +2453,7 @@
    "away": "Budva"
   },
   {
-   "eventId": "s9-99.772846831",
+   "eventId": "s9-99.772863879",
    "time": "2026-11-22T12:00:00+00:00",
    "league": "Norway. Toppserien. Women",
    "home": "Roa (Women)",
@@ -2878,6 +2899,13 @@
    "league": "England. Premier League Cup U21",
    "home": "Peterborough United U21",
    "away": "Luton U21"
+  },
+  {
+   "eventId": "s9-99.772863328",
+   "time": "2026-11-22T13:00:00+00:00",
+   "league": "Ethiopia. Higher League. Women",
+   "home": "Akaki Kality (Women)",
+   "away": "Arba Minch (Women)"
   },
   {
    "eventId": "s9-99.772771580",
@@ -3958,6 +3986,34 @@
    "away": "Hradec Kralove"
   },
   {
+   "eventId": "s9-99.772863331",
+   "time": "2026-11-22T14:00:00+00:00",
+   "league": "England. League Cup. Women",
+   "home": "Ipswich Town (Women)",
+   "away": "Southampton (Women)"
+  },
+  {
+   "eventId": "s9-99.772863334",
+   "time": "2026-11-22T14:00:00+00:00",
+   "league": "England. League Cup. Women",
+   "home": "Newcastle United (Women)",
+   "away": "Nottingham Forest (Women)"
+  },
+  {
+   "eventId": "s9-99.772863337",
+   "time": "2026-11-22T14:00:00+00:00",
+   "league": "England. League Cup. Women",
+   "home": "Sheffield United (Women)",
+   "away": "Durham (Women)"
+  },
+  {
+   "eventId": "s9-99.772863340",
+   "time": "2026-11-22T14:00:00+00:00",
+   "league": "England. League Cup. Women",
+   "home": "Sunderland (Women)",
+   "away": "Burnley (Women)"
+  },
+  {
    "eventId": "s9-99.772846840",
    "time": "2026-11-22T14:00:00+00:00",
    "league": "England. National League. Division 1. Women",
@@ -4175,14 +4231,14 @@
    "away": "Lusitania Lourosa"
   },
   {
-   "eventId": "s9-99.772854754",
+   "eventId": "s9-99.772863289",
    "time": "2026-11-22T14:00:00+00:00",
    "league": "Portugal. Taca de Portugal",
    "home": "Gil Vicente",
    "away": "Olhanense"
   },
   {
-   "eventId": "s9-99.772854750",
+   "eventId": "s9-99.772863292",
    "time": "2026-11-22T14:00:00+00:00",
    "league": "Portugal. Taca de Portugal",
    "home": "Vianense",
@@ -4413,11 +4469,25 @@
    "away": "Odense"
   },
   {
+   "eventId": "s9-99.772863343",
+   "time": "2026-11-22T15:00:00+00:00",
+   "league": "England. League Cup. Women",
+   "home": "Leicester City (Women)",
+   "away": "Wolverhampton (Women)"
+  },
+  {
    "eventId": "s9-99.772857482",
    "time": "2026-11-22T15:00:00+00:00",
    "league": "England. National League. Division 1. Women",
    "home": "Actonians (Women)",
    "away": "Cambridge United (Women)"
+  },
+  {
+   "eventId": "s9-99.772863316",
+   "time": "2026-11-22T15:00:00+00:00",
+   "league": "England. National League. Premier Division. Women",
+   "home": "Hashtag United (Women)",
+   "away": "Real Bedford (Women)"
   },
   {
    "eventId": "s9-99.772106006",
@@ -4614,6 +4684,20 @@
    "league": "Oman Professional League",
    "home": "Al-Musannah",
    "away": "Dhofar"
+  },
+  {
+   "eventId": "s9-99.772863304",
+   "time": "2026-11-22T15:00:00+00:00",
+   "league": "Portugal Championship U19",
+   "home": "Feirense U19",
+   "away": "Braga U19"
+  },
+  {
+   "eventId": "s9-99.772863307",
+   "time": "2026-11-22T15:00:00+00:00",
+   "league": "Portugal Championship U19",
+   "home": "UD Leiria U19",
+   "away": "Casa Pia U19"
   },
   {
    "eventId": "s9-99.772857981",
@@ -5757,7 +5841,7 @@
    "away": "Antequera San Pablo Etla"
   },
   {
-   "eventId": "s9-99.772841843",
+   "eventId": "s9-99.772863298",
    "time": "2026-11-22T18:00:00+00:00",
    "league": "Portugal. Taca de Portugal",
    "home": "Estrela da Amadora",
@@ -5897,7 +5981,7 @@
    "away": "Juventus (Women)"
   },
   {
-   "eventId": "s9-99.772841842",
+   "eventId": "s9-99.772863301",
    "time": "2026-11-22T19:30:00+00:00",
    "league": "Portugal. Taca de Portugal",
    "home": "UD Leiria",
