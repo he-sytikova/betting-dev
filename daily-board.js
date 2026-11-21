@@ -426,28 +426,36 @@
     return item;
   }
 
-  function couponCard(coupon, day, confirmationApi) {
-    const item = node('article', `coupon coupon--${coupon.type}`);
+  let currentCouponPayload = { data_status: 'not_processed', prepared_coupons: [] };
+  let currentCouponDay = dayKeyMsk(Date.now());
+
+  function couponCard(coupon, day, confirmationApi, options = {}) {
+    const placed = confirmationApi?.getPlaced ? confirmationApi.getPlaced(day, coupon) : null;
+    const shown = placed?.coupon || coupon;
+    const item = node('article', `coupon coupon--${shown.type}`);
     const header = node('div', 'coupon__header');
     const status = node('span', 'coupon__status', 'Подготовлен · не проставлен');
+    const title = shown.type === 'double' ? 'Двойник' : 'Одинар';
     header.append(
-      node('h4', '', coupon.type === 'double' ? 'Двойник' : 'Одинар'),
+      node('h4', '', options.dayLabel ? `${title} · ${options.dayLabel}` : title),
       status,
     );
     item.append(header);
     const metrics = node('div', 'coupon__metrics');
     metrics.append(
-      metric('БК', coupon.bookmaker),
-      metric('Итоговый кэф', decimal(coupon.odds)),
-      metric('Модель', pct(coupon.probability)),
-      metric('EV', decimal(coupon.ev)),
+      metric('БК', shown.bookmaker),
+      metric('Итоговый кэф', decimal(shown.odds)),
+      metric('Модель', pct(shown.probability)),
+      metric('EV', decimal(shown.ev)),
     );
     item.append(metrics);
-    const legs = node(coupon.type === 'double' ? 'ol' : 'ul', 'coupon-legs');
-    for (const leg of coupon.legs) legs.append(renderCouponLeg(leg));
+    const legs = node(shown.type === 'double' ? 'ol' : 'ul', 'coupon-legs');
+    for (const leg of shown.legs) legs.append(renderCouponLeg(leg));
     item.append(legs);
     if (confirmationApi) {
-      item.append(confirmationApi.mountCoupon({ coupon, day, statusElement: status }));
+      item.append(confirmationApi.mountCoupon({
+        coupon, day, statusElement: status, onChange: options.onChange,
+      }));
     }
     return item;
   }
@@ -461,6 +469,8 @@
   }
 
   function renderCoupons(payload, day) {
+    currentCouponPayload = payload;
+    currentCouponDay = day;
     const { coupons, rejected } = normalizeCoupons(payload);
     const list = $('daily-coupons-list');
     const fragment = document.createDocumentFragment();
@@ -470,7 +480,9 @@
       if (!sessionCoupons.length) continue;
       const section = node('section', 'daily-session');
       section.append(sessionHeader(session, sessionCouponCount(sessionCoupons)));
-      for (const coupon of sessionCoupons) section.append(couponCard(coupon, day, confirmationApi));
+      for (const coupon of sessionCoupons) {
+        section.append(couponCard(coupon, day, confirmationApi, { onChange: refreshPlacementViews }));
+      }
       fragment.append(section);
     }
     list.replaceChildren(fragment);
@@ -483,6 +495,28 @@
     if (rejected.length) {
       $('daily-coupons-warning').textContent = `Не показано записей с неполной схемой, разными сессиями или разными БК у двойника: ${rejected.length}.`;
     }
+  }
+
+  function renderPlacementHistory() {
+    const list = $('placed-bets-list');
+    if (!list) return;
+    const confirmationApi = host.dataset.confirmations === 'true' ? root.CouponConfirmation : null;
+    const records = confirmationApi?.listPlaced ? confirmationApi.listPlaced() : [];
+    const fragment = document.createDocumentFragment();
+    for (const record of records) {
+      fragment.append(couponCard(record.coupon, record.day, confirmationApi, {
+        dayLabel: dateRu(record.day), onChange: refreshPlacementViews,
+      }));
+    }
+    list.replaceChildren(fragment);
+    list.hidden = records.length === 0;
+    $('placed-bets-count').textContent = String(records.length);
+    $('placed-bets-empty').hidden = records.length > 0;
+  }
+
+  function refreshPlacementViews() {
+    renderCoupons(currentCouponPayload, currentCouponDay);
+    renderPlacementHistory();
   }
 
   function renderSessionSchedule() {
@@ -571,5 +605,6 @@
   }
 
   renderSessionSchedule();
+  renderPlacementHistory();
   load();
 }(typeof self !== 'undefined' ? self : this));
