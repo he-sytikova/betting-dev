@@ -150,7 +150,7 @@ test('buildCandidates covers all active model families and preserves market line
     stats: clubStatsModel({
       fouls: { lambda: 25, lines: [20.5] },
       shots: { lambda: 30, lines: [24.5] },
-      shotsOnTarget: { lambda: 12, lines: [8.5] },
+      shotsOnTarget: { lambda: 12, lines: [2.5, 3.5] },
     }),
     nations: loadNationsModel(),
   }, NOW);
@@ -191,6 +191,38 @@ test('groupCandidatesByMatch collapses markets into exact match events without c
   assert.equal(rows.length, 3);
 });
 
+test('game sessions cover the full Moscow day with exact six-hour boundaries', () => {
+  const cases = [
+    ['2098-12-31T20:59:59Z', 'evening'],
+    ['2098-12-31T21:00:00Z', 'night'],
+    [`${DAY}T02:59:59Z`, 'night'],
+    [`${DAY}T03:00:00Z`, 'morning'],
+    [`${DAY}T08:59:59Z`, 'morning'],
+    [`${DAY}T09:00:00Z`, 'day'],
+    [`${DAY}T14:59:59Z`, 'day'],
+    [`${DAY}T15:00:00Z`, 'evening'],
+    [`${DAY}T20:59:59Z`, 'evening'],
+    [`${DAY}T21:00:00Z`, 'night'],
+  ];
+  for (const [time, expected] of cases) assert.equal(board.gameSessionForTime(time)?.id, expected, time);
+  assert.equal(board.gameSessionForTime('invalid'), null);
+  assert.deepEqual(board.GAME_SESSIONS.map(session => session.id), ['morning', 'day', 'evening', 'night']);
+});
+
+test('candidate sessions retain display order and every market row', () => {
+  const base = { home: 'Newcastle', away: 'Everton', league: 'England. Premier League' };
+  const rows = [
+    { ...base, time: Date.parse(`${DAY}T16:00:00Z`), label: 'Вечер' },
+    { ...base, time: Date.parse(`${DAY}T04:00:00Z`), label: 'Утро' },
+    { ...base, time: Date.parse(`${DAY}T10:00:00Z`), label: 'День' },
+    { ...base, time: Date.parse(`${DAY}T22:00:00Z`), label: 'Ночь' },
+  ];
+  const groups = board.groupCandidatesBySession(rows);
+  assert.deepEqual(groups.map(group => group.id), ['morning', 'day', 'evening', 'night']);
+  assert.deepEqual(groups.flatMap(group => group.rows.map(row => row.label)), ['Утро', 'День', 'Вечер', 'Ночь']);
+  assert.equal(groups.reduce((sum, group) => sum + group.rows.length, 0), rows.length);
+});
+
 test('buildCandidates returns no candidates for a malformed snapshot', () => {
   assert.deepEqual(board.buildCandidates({}, {}, NOW), []);
   assert.deepEqual(board.buildCandidates({ date: DAY, predictions: null }, {}, NOW), []);
@@ -199,6 +231,7 @@ test('buildCandidates returns no candidates for a malformed snapshot', () => {
 test('normalizeCoupon derives single-coupon metrics and always marks it prepared', () => {
   const coupon = board.normalizeCoupon({ ...leg(), status: 'placed' }, 0);
   assert.equal(coupon.type, 'single');
+  assert.equal(coupon.sessionId, 'evening');
   assert.equal(coupon.bookmaker, 'Fonbet');
   assert.equal(coupon.odds, 1.4);
   assert.equal(coupon.probability, 0.8);
@@ -224,6 +257,14 @@ test('normalizeCoupon rejects a double assembled from different bookmakers', () 
     legs: [leg(), leg({ home: 'Spain', away: 'France', bookmaker: 'Marathonbet' })],
   }, 0);
   assert.equal(coupon, null);
+});
+
+test('normalizeCoupon rejects mixed sessions and a declared session mismatch', () => {
+  const other = leg({ home: 'Spain', away: 'France', time: `${DAY}T22:00:00Z` });
+  assert.equal(board.normalizeCoupon({ legs: [leg(), other] }, 0), null);
+  assert.equal(board.normalizeCoupon({ ...leg(), session_id: 'morning' }, 0), null);
+  const derived = board.normalizeCoupon({ ...leg(), session_id: 'evening' }, 0);
+  assert.equal(derived.sessionId, 'evening');
 });
 
 test('normalizeCoupons skips malformed records and reports rejected indexes', () => {
