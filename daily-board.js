@@ -204,6 +204,34 @@
     return null;
   }
 
+  function candidatePriceKey(value) {
+    const rawTime = value?.time;
+    const time = rawTime instanceof Date ? rawTime.getTime()
+      : (typeof rawTime === 'number' ? rawTime : Date.parse(rawTime));
+    const modelKey = String(value?.modelKey || value?.model_key || '').trim();
+    const model = String(value?.modelLabel || value?.model || '').trim();
+    const label = String(value?.label || '').trim();
+    if (!Number.isFinite(time) || !modelKey || !model || !label) return null;
+    return JSON.stringify([modelKey, new Date(time).toISOString(), model, label]);
+  }
+
+  function mergeCandidatePrices(rows, payload) {
+    const bestByKey = new Map();
+    const allowedBookmakers = new Set(['Fonbet', 'Marathonbet', 'Winline']);
+    for (const raw of Array.isArray(payload?.candidate_prices) ? payload.candidate_prices : []) {
+      const key = candidatePriceKey(raw);
+      const odds = finiteNumber(raw?.odds);
+      const bookmaker = String(raw?.bookmaker || '').trim();
+      if (!key || !Number.isFinite(odds) || odds <= 1 || !allowedBookmakers.has(bookmaker)) continue;
+      const current = bestByKey.get(key);
+      if (!current || odds > current.odds) bestByKey.set(key, { odds, bookmaker });
+    }
+    return (Array.isArray(rows) ? rows : []).map(row => {
+      const best = bestByKey.get(candidatePriceKey(row));
+      return { ...row, bestOdds: best?.odds ?? null, bestBookmaker: best?.bookmaker ?? null };
+    });
+  }
+
   function normalizeLeg(raw) {
     if (!raw || typeof raw !== 'object') return null;
     const fixture = raw.fixture && typeof raw.fixture === 'object' ? raw.fixture : {};
@@ -242,10 +270,10 @@
     const sessionIds = [...new Set(legs.map(leg => leg.sessionId).filter(Boolean))];
     const declaredSession = raw.session_id || raw.sessionId || null;
     if (sessionIds.length !== 1 || (declaredSession && declaredSession !== sessionIds[0])) return null;
-    const bookmakers = [...new Set(legs.map((leg) => leg.bookmaker || raw.bookmaker || raw.bk).filter(Boolean))];
+    const bookmakers = [...new Set(legs.map(leg => leg.bookmaker || raw.bookmaker || raw.bk).filter(Boolean))];
     if (bookmakers.length !== 1) return null;
-    const legOdds = legs.map((leg) => leg.odds);
-    const legProbabilities = legs.map((leg) => leg.probability);
+    const legOdds = legs.map(leg => leg.odds);
+    const legProbabilities = legs.map(leg => leg.probability);
     const derivedOdds = legOdds.every((value) => Number.isFinite(value) && value > 1)
       ? legOdds.reduce((product, value) => product * value, 1)
       : null;
@@ -306,6 +334,8 @@
     buildCandidates,
     groupCandidatesByMatch,
     groupCandidatesBySession,
+    candidatePriceKey,
+    mergeCandidatePrices,
     normalizeLeg,
     normalizeCoupon,
     normalizeCoupons,
@@ -390,9 +420,18 @@
       marketMeta.append(node('span', '', row.modelLabel));
       marketRow.append(marketMeta);
       const market = node('div', 'daily-row__market');
-      market.append(node('strong', '', row.label), metric('Модель', pct(row.probability)), metric('Мин. кэф', decimal(row.oMinStep)));
+      market.append(
+        node('strong', '', row.label),
+        metric('Модель', pct(row.probability)),
+        metric('Мин. кэф', decimal(row.oMinStep)),
+        metric('Лучший кэф', Number.isFinite(row.bestOdds)
+          ? `${decimal(row.bestOdds)} · ${row.bestBookmaker}`
+          : '—'),
+      );
       marketRow.append(market);
-      marketRow.append(node('p', 'daily-row__status', 'Линия не проверена · fair и EV не рассчитаны'));
+      marketRow.append(node('p', 'daily-row__status', Number.isFinite(row.bestOdds)
+        ? 'Лучшая доступная цена трёх БК · справочно, не допуск в купон'
+        : 'Цена отсутствует или рынок не подтверждён · fair и EV не рассчитаны'));
       markets.append(marketRow);
     }
     item.append(markets);
@@ -570,6 +609,7 @@
         try {
           const couponPayload = await fetchJson(`./analysis/doubles_${data.date}.json`);
           if (couponPayload.date && couponPayload.date !== data.date) throw new Error('Дата файла купонов не совпадает со снимком');
+          renderCandidates(mergeCandidatePrices(candidates, couponPayload));
           renderCoupons(couponPayload, data.date);
         } catch (error) {
           renderCoupons({ data_status: 'not_processed', prepared_coupons: [] });

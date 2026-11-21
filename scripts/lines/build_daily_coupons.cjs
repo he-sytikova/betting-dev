@@ -76,6 +76,17 @@ function marketForCandidate(candidate) {
   };
 }
 
+function candidateOdds(candidate, line) {
+  const market = marketForCandidate(candidate);
+  if (!market || (market.kind === 'total' && Number.isInteger(market.line))) return null;
+  let odds = null;
+  if (market.kind === 'outcome') odds = line?.odds?.[market.outcome];
+  else if (market.kind === 'double_chance') odds = line?.markets?.DC?.[market.side];
+  else odds = line?.markets?.[market.key]?.[market.side];
+  if (!finiteOdds(odds)) return null;
+  return { odds, market_key: market.key || '1X2' };
+}
+
 function rejection(candidate, reason, details = {}) {
   return {
     time: isoTime(candidate.time),
@@ -354,6 +365,7 @@ function buildArtifact(input) {
   const lines = indexLines(snapshots);
   const rejected = [];
   const priced = [];
+  const candidatePrices = [];
 
   for (const candidate of candidates) {
     const key = `${candidate.modelKey}|${isoTime(candidate.time)}`;
@@ -362,6 +374,7 @@ function buildArtifact(input) {
       rejected.push(rejection(candidate, 'fixture_not_gated'));
       continue;
     }
+    let bestPrice = null;
     for (const bookmaker of BOOKMAKERS) {
       const record = records.find(row => row.bookmaker === bookmaker);
       if (!record) {
@@ -381,9 +394,26 @@ function buildArtifact(input) {
         }));
         continue;
       }
+      const quote = candidateOdds(candidate, line);
+      if (quote && (!bestPrice || quote.odds > bestPrice.odds)) {
+        bestPrice = { ...quote, bookmaker, match_id: String(record.match_id) };
+      }
       const result = evaluatePrice(candidate, line);
       if (result.leg) priced.push(result.leg);
       else rejected.push(result.rejection);
+    }
+    if (bestPrice) {
+      candidatePrices.push({
+        time: isoTime(candidate.time),
+        model_key: candidate.modelKey,
+        league: candidate.league,
+        home: candidate.home,
+        away: candidate.away,
+        model: candidate.modelLabel,
+        label: candidate.label,
+        p_model: candidate.probability,
+        ...bestPrice,
+      });
     }
   }
 
@@ -401,9 +431,11 @@ function buildArtifact(input) {
     date,
     generated_at_utc: generated,
     data_status: dataStatus,
+    candidate_prices: candidatePrices,
     prepared_coupons: selected.coupons,
     summary: {
       model_candidates: candidates.length,
+      candidate_prices: candidatePrices.length,
       eligible_prices_before_dedup: priced.length,
       eligible_legs: eligible.length,
       double_candidates: selected.doubleCandidates,
@@ -495,7 +527,7 @@ if (require.main === module) main(process.argv.slice(2));
 
 module.exports = {
   BOOKMAKERS, SINGLE_LIMIT, DOUBLE_LIMIT, DELTA_LIMIT_PP,
-  fairFrom1x2, fairTwoWay, marketForCandidate, evaluatePrice,
+  fairFrom1x2, fairTwoWay, marketForCandidate, candidateOdds, evaluatePrice,
   fixtureModelKeys, buildMatchIndex, indexLines, dedupeEligible,
   teamKey, selectDoubles, selectSessionCoupons, buildArtifact, loadModels,
 };

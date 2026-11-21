@@ -123,6 +123,29 @@ test('incomplete pairs, integer lines and unconfirmed model markets never enter 
   assert.equal(euro.rejection.reason, 'market_not_confirmed');
 });
 
+test('reference candidate odds use only the exact supported market and reject invalid lines', () => {
+  assert.deepEqual(coupons.candidateOdds(candidate({ label: 'П1' }), line()), {
+    odds: 2, market_key: '1X2',
+  });
+  assert.deepEqual(coupons.candidateOdds(candidate(), line()), { odds: 1.4, market_key: 'DC' });
+  assert.deepEqual(coupons.candidateOdds(candidate({ label: 'ТБ 2.5' }), line()), {
+    odds: 1.5, market_key: 'TOTAL_GOALS:2.5',
+  });
+  assert.equal(coupons.candidateOdds(candidate({ label: 'ТБ 3.5' }), line()), null);
+  assert.equal(coupons.candidateOdds(candidate({ modelLabel: 'ЖК', label: 'ТБ 2.5' }), line()), null);
+  assert.equal(coupons.candidateOdds(candidate({ label: 'ТБ 2' }), line({
+    markets: { 'TOTAL_GOALS:2': { ТБ: 1.5, ТМ: 3 } },
+  })), null);
+  assert.equal(coupons.candidateOdds(candidate(), line({ markets: { DC: { '1X': 1 } } })), null);
+  assert.equal(coupons.candidateOdds(candidate(), line({ markets: { DC: { '1X': Infinity } } })), null);
+});
+
+test('reference candidate odds remain available when coupon admission rejects EV', () => {
+  const lowPrice = line({ markets: { DC: { '1X': 1.1 } } });
+  assert.equal(coupons.evaluatePrice(candidate(), lowPrice).rejection.reason, 'ev_below_threshold');
+  assert.deepEqual(coupons.candidateOdds(candidate(), lowPrice), { odds: 1.1, market_key: 'DC' });
+});
+
 test('deduplication keeps the best price across three bookmakers and audits losers', () => {
   const best = eligibleLeg({ bookmaker: 'Winline', odds: 1.55, ev: 1.24 });
   const marathon = eligibleLeg({ bookmaker: 'Marathonbet', odds: 1.5, ev: 1.2 });
@@ -278,10 +301,10 @@ test('end-to-end artifact joins only exact gated audit identities and passes hom
   const expectedCandidates = board.buildCandidates(data, models, Date.parse(NOW));
   assert.ok(expectedCandidates.length > 0);
   assert.ok(expectedCandidates.every(row => row.modelKey === 'model|E0|newcastle|everton'));
-  const matching = [{
-    bookmaker: 'Fonbet', fixture_key: 'newcastle united|everton fc|2026-01-01',
-    home: fixture.home, away: fixture.away, time: fixture.time, status: 'matched', match_id: '100',
-  }];
+  const matching = ['Fonbet', 'Marathonbet', 'Winline'].map((bookmaker, index) => ({
+    bookmaker, fixture_key: 'newcastle united|everton fc|2026-01-01',
+    home: fixture.home, away: fixture.away, time: fixture.time, status: 'matched', match_id: String(100 + index),
+  }));
   const enrichedLine = line({
     markets: {
       ...line().markets,
@@ -290,7 +313,14 @@ test('end-to-end artifact joins only exact gated audit identities and passes hom
   });
   const snapshots = {
     Fonbet: { status: 'ok', captured_at_utc: NOW, matches: [enrichedLine] },
-    Marathonbet: { status: 'source_unavailable', matches: [] },
+    Marathonbet: { status: 'ok', captured_at_utc: NOW, matches: [line({
+      bookmaker: 'Marathonbet', match_id: '101',
+      markets: { ...line().markets, DC: { ...line().markets.DC, '1X': 1.5 } },
+    })] },
+    Winline: { status: 'ok', captured_at_utc: NOW, matches: [line({
+      bookmaker: 'Winline', match_id: '102',
+      markets: { ...line().markets, DC: { ...line().markets.DC, '1X': 1.55 } },
+    })] },
   };
   const result = coupons.buildArtifact({
     date: DAY, data, models, gated: { generatedAt: NOW, fixtures: [fixture] },
@@ -308,6 +338,17 @@ test('end-to-end artifact joins only exact gated audit identities and passes hom
     for (const leg of coupon.legs) assert.ok(probabilities.has(leg.p_model));
   }
   assert.equal(result.artifact.summary.sessions.evening.eligible_legs > 0, true);
+  const best = result.artifact.candidate_prices.find(row => row.label === '1X');
+  assert.equal(best.bookmaker, 'Winline');
+  assert.equal(best.match_id, '102');
+  assert.equal(best.market_key, 'DC');
+  assert.equal(best.odds, 1.55);
+  assert.equal(best.model_key, 'model|E0|newcastle|everton');
+  assert.equal(best.time, fixture.time);
+  assert.equal(result.artifact.summary.candidate_prices, result.artifact.candidate_prices.length);
+  const merged = board.mergeCandidatePrices(expectedCandidates, result.artifact);
+  assert.equal(merged.find(row => row.label === '1X').bestOdds, 1.55);
+  assert.equal(merged.find(row => row.label === '1X').bestBookmaker, 'Winline');
 });
 
 test('minimum rounded price remains a separate filter after exact EV passes', () => {

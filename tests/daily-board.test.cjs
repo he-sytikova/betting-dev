@@ -218,6 +218,54 @@ test('groupCandidatesByMatch collapses markets into exact match events without c
   assert.equal(rows.length, 3);
 });
 
+test('candidate price keys canonicalize time and field aliases without mixing identities', () => {
+  const row = {
+    time: Date.parse(`${DAY}T18:00:00Z`), modelKey: 'model|E0|newcastle|everton',
+    modelLabel: 'Голы', label: '1X',
+  };
+  const key = board.candidatePriceKey(row);
+  assert.equal(key, board.candidatePriceKey({
+    time: `${DAY}T18:00:00.000Z`, model_key: row.modelKey, model: 'Голы', label: '1X',
+  }));
+  assert.equal(key, board.candidatePriceKey({ ...row, time: new Date(row.time) }));
+  assert.notEqual(key, board.candidatePriceKey({ ...row, label: '12' }));
+  assert.notEqual(key, board.candidatePriceKey({ ...row, modelLabel: 'Лига наций' }));
+  assert.notEqual(key, board.candidatePriceKey({ ...row, modelKey: 'other' }));
+  assert.notEqual(key, board.candidatePriceKey({ ...row, time: Date.parse(`${DAY}T19:00:00Z`) }));
+  assert.equal(board.candidatePriceKey({ ...row, time: 'invalid' }), null);
+  assert.equal(board.candidatePriceKey({ ...row, label: '' }), null);
+});
+
+test('candidate price merge selects the best valid quote and never mutates candidate rows', () => {
+  const row = {
+    time: Date.parse(`${DAY}T18:00:00Z`), modelKey: 'model|E0|newcastle|everton',
+    modelLabel: 'Голы', label: '1X', probability: 0.8,
+  };
+  const rows = [row, { ...row, label: '12' }];
+  const snapshot = JSON.parse(JSON.stringify(rows));
+  const quote = {
+    time: `${DAY}T18:00:00.000Z`, model_key: row.modelKey, model: 'Голы', label: '1X',
+  };
+  const merged = board.mergeCandidatePrices(rows, { candidate_prices: [
+    { ...quote, bookmaker: 'Fonbet', odds: 1.4 },
+    { ...quote, bookmaker: 'Winline', odds: 1.55 },
+    { ...quote, bookmaker: 'Marathonbet', odds: 1.5 },
+    { ...quote, bookmaker: 'Unknown', odds: 9 },
+    { ...quote, bookmaker: 'Winline', odds: 1 },
+    { ...quote, bookmaker: 'Winline', odds: Infinity },
+  ] });
+  assert.equal(merged[0].bestOdds, 1.55);
+  assert.equal(merged[0].bestBookmaker, 'Winline');
+  assert.equal(merged[1].bestOdds, null);
+  assert.equal(merged[1].bestBookmaker, null);
+  assert.deepEqual(rows, snapshot);
+  assert.notEqual(merged[0], row);
+  assert.deepEqual(board.mergeCandidatePrices(rows, {}), rows.map(item => ({
+    ...item, bestOdds: null, bestBookmaker: null,
+  })));
+  assert.deepEqual(board.mergeCandidatePrices(null, { candidate_prices: [] }), []);
+});
+
 test('buildCandidates returns no candidates for a malformed snapshot', () => {
   assert.deepEqual(board.buildCandidates({}, {}, NOW), []);
   assert.deepEqual(board.buildCandidates({ date: DAY, predictions: null }, {}, NOW), []);
