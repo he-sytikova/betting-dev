@@ -25,6 +25,21 @@ Prepared singles and doubles are read from `analysis/doubles_YYYY-MM-DD.json`:
 
 Each coupon has either one or two `legs`. Legs contain fixture identity, market `label`, `p_model`, decimal `odds`, and `bookmaker`; optional `fair`, `delta_pp`, and `ev` are display metrics. Coupon-level values may be supplied as `odds`, `probability`, and `ev`, or derived from the legs. A double with legs from different bookmakers is rejected. Every rendered coupon is labelled **prepared, not placed**, regardless of input status. This module never places bets or records financial results.
 
+## Results and owner-confirmed financial reports
+
+`scripts/models/fetch-euro365-results.py` normalizes final Euro365 `/v1/scores` results for the current Moscow game day and publishes public sports data only:
+
+- `data/results/YYYY-MM-DD.json` contains fixture identity, status and the score fields needed for supported market settlement;
+- `data/results/index.json` lists the available days, so the browser does not request missing artifacts;
+- a structured scores response is primary, while the already published `actualResult` snapshot is a bounded fallback only after a finished/full-time state;
+- live or incomplete matches stay unsettled; postponed matches remain pending, while cancelled and abandoned matches produce a void result.
+
+The homepage **Результаты и отчётность** block uses only coupons explicitly marked **Проставлено** by the owner. Confirmed amount, money/freebet type, bookmaker, odds and coupon composition remain in browser `localStorage`; neither these financial records nor manual reconciliation payouts are written to `data.json`, results artifacts or the repository. GitHub Actions therefore cannot read or overwrite them.
+
+Automatic settlement supports the proven 1X2, double-chance, goal-total and individual-total markets. Corners are settled only when both the corners model and total-corners result are present. Results are matched by Euro365 event ID, with an exact canonical home/away/kickoff fallback for older records. Unsupported or ambiguous matches remain pending rather than being guessed. A double with a winning and a void leg uses the remaining frozen leg odds; any losing leg makes the double a loss.
+
+Reports cover a selected Moscow game day, its Monday–Sunday week or its calendar month, and attribute each bet to its original `record.day`. Money stakes, payouts, net result and ROI are separate from freebet nominal and net winnings. The owner can additionally enter the actual bookmaker payout as a manual reconciliation; calculated and confirmed totals remain separate. This local history is not synchronized between browsers or devices. Dated results accumulate after deployment, so older bets without a results artifact stay pending automatically but can still be reconciled manually. The Odds API reserve and historical results backfill are not enabled by this implementation.
+
 ## Daily lines-to-coupons pipeline
 
 Run acquisition first, then pass its gated fixtures, matching audit and enriched snapshots to the coupon generator:
@@ -55,7 +70,7 @@ Calculations and admission rules:
 - Each session independently contains at most two singles and one double, ranked by model probability, then EV and price: no more than twelve prepared money coupons per day. A double uses different matches from the same session and one bookmaker. Combined odds, probability and EV are products of the leg values; its minimum price is the product of leg minimums.
 - For a later session, `--used-teams session-teams.json` accepts an array (or `{ "teams": [] }`) of teams already used in doubles. Such teams are excluded from new doubles.
 
-Possible winnings can be used only after actual bookmaker settlement, on later events in the following session. Settlement time and funds availability remain bookmaker-controlled; the site does not transfer money or perform financial accounting automatically.
+Possible winnings can be used only after actual bookmaker settlement, on later events in the following session. Settlement time and funds availability remain bookmaker-controlled; the site does not transfer money or place bets. Financial reporting covers only owner-confirmed placements and remains local to the browser as described above.
 
 The separate daily-express page admits goal-model legs with `p_model >= 0.75` and publishes at most seven two-leg expresses. Its existing price and EV rules are independent of the per-session prepared-money-coupon limits.
 
