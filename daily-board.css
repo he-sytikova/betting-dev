@@ -607,11 +607,23 @@
 }
 
 .stake-form__message,
-.stake-confirmation__saved {
+.stake-confirmation__saved,
+.stake-confirmation__terms,
+.stake-confirmation__changed {
     margin-top: 9px;
     color: var(--text-muted);
     font-size: 0.7rem;
     line-height: 1.5;
+}
+
+.stake-confirmation__terms {
+    color: var(--text);
+    font-size: 0.76rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.stake-confirmation__changed {
+    color: var(--warning);
 }
 
 .stake-confirmation__summary {
@@ -652,6 +664,42 @@
     color: var(--danger) !important;
     font-size: 0.75rem;
     line-height: 1.5;
+}
+
+.placed-bets {
+    margin: 18px 0 24px;
+    padding: 22px 24px 24px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.placed-bets [hidden] {
+    display: none !important;
+}
+
+.placed-bets .daily-panel__header {
+    min-height: 0;
+}
+
+.placed-bets .daily-panel__header h2 {
+    font-size: 1.15rem;
+}
+
+.placed-bets__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 16px;
+}
+
+.placed-bets__list .coupon,
+.placed-bets__list .coupon:first-child {
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--bg);
 }
 
 .coupon-page {
@@ -699,6 +747,14 @@
 }
 
 @media (max-width: 760px) {
+    .placed-bets {
+        padding: 18px;
+    }
+
+    .placed-bets__list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     .coupon-page__intro {
         margin: 16px 18px 0;
     }
