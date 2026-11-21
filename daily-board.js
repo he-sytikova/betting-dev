@@ -150,6 +150,25 @@
     return rows.sort((a, b) => (a.time - b.time) || (b.probability - a.probability) || a.label.localeCompare(b.label, 'ru'));
   }
 
+  function groupCandidatesByMatch(rows) {
+    const groups = new Map();
+    for (const row of Array.isArray(rows) ? rows : []) {
+      const key = [row.time, String(row.home || '').trim().toLowerCase(), String(row.away || '').trim().toLowerCase()].join('|');
+      if (!groups.has(key)) {
+        groups.set(key, {
+          key,
+          time: row.time,
+          league: row.league,
+          home: row.home,
+          away: row.away,
+          rows: [],
+        });
+      }
+      groups.get(key).rows.push(row);
+    }
+    return [...groups.values()];
+  }
+
   function finiteNumber(...values) {
     for (const value of values) {
       if (value === null || value === undefined || value === '') continue;
@@ -248,6 +267,7 @@
     modelFixtures,
     nationsFixtures,
     buildCandidates,
+    groupCandidatesByMatch,
     normalizeLeg,
     normalizeCoupon,
     normalizeCoupons,
@@ -293,20 +313,43 @@
     return item;
   }
 
+  function marketCountLabel(value) {
+    const mod100 = value % 100;
+    const mod10 = value % 10;
+    if (mod100 >= 11 && mod100 <= 14) return `${value} рынков`;
+    if (mod10 === 1) return `${value} рынок`;
+    if (mod10 >= 2 && mod10 <= 4) return `${value} рынка`;
+    return `${value} рынков`;
+  }
+
   function renderCandidates(rows) {
     const list = $('daily-candidates-list');
     const fragment = document.createDocumentFragment();
-    for (const row of rows) {
-      const item = node('article', 'daily-row');
-      const top = node('div', 'daily-row__meta');
-      top.append(node('time', '', timeMsk(row.time)), node('span', '', row.modelLabel));
-      item.append(top);
-      item.append(node('h4', 'daily-row__match', `${row.home} — ${row.away}`));
-      item.append(node('p', 'daily-row__league', row.league));
-      const market = node('div', 'daily-row__market');
-      market.append(node('strong', '', row.label), metric('Модель', pct(row.probability)), metric('Мин. кэф', decimal(row.oMinStep)));
-      item.append(market);
-      item.append(node('p', 'daily-row__status', 'Линия не проверена · fair и EV не рассчитаны'));
+    for (const group of groupCandidatesByMatch(rows)) {
+      const item = node('details', 'daily-match');
+      const summary = node('summary', 'daily-match__summary');
+      const toggle = node('span', 'daily-match__toggle');
+      toggle.setAttribute('aria-hidden', 'true');
+      const heading = node('span', 'daily-match__heading');
+      const meta = node('span', 'daily-match__meta');
+      meta.append(node('time', '', timeMsk(group.time)), node('span', '', group.league));
+      heading.append(meta, node('strong', 'daily-match__teams', `${group.home} — ${group.away}`));
+      summary.append(toggle, heading, node('span', 'daily-match__count', marketCountLabel(group.rows.length)));
+      item.append(summary);
+
+      const markets = node('div', 'daily-match__markets');
+      for (const row of group.rows) {
+        const marketRow = node('article', 'daily-row');
+        const marketMeta = node('div', 'daily-row__meta');
+        marketMeta.append(node('span', '', row.modelLabel));
+        marketRow.append(marketMeta);
+        const market = node('div', 'daily-row__market');
+        market.append(node('strong', '', row.label), metric('Модель', pct(row.probability)), metric('Мин. кэф', decimal(row.oMinStep)));
+        marketRow.append(market);
+        marketRow.append(node('p', 'daily-row__status', 'Линия не проверена · fair и EV не рассчитаны'));
+        markets.append(marketRow);
+      }
+      item.append(markets);
       fragment.append(item);
     }
     list.replaceChildren(fragment);

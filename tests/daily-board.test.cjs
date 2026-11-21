@@ -171,6 +171,26 @@ test('buildCandidates covers all active model families and preserves market line
   assert.ok(rows.every(row => !String(row.home).includes('Unknown')));
 });
 
+test('groupCandidatesByMatch collapses markets into exact match events without changing their order', () => {
+  const first = {
+    time: Date.parse(`${DAY}T18:00:00Z`), home: 'Newcastle', away: 'Everton',
+    league: 'England. Premier League', modelKey: 'goals|E0|newcastle|everton', label: '1X',
+  };
+  const rows = [
+    first,
+    { ...first, modelKey: 'corners|E0|newcastle|everton', label: 'ТБ 8.5' },
+    { ...first, time: Date.parse(`${DAY}T20:00:00Z`), label: 'X2' },
+  ];
+  const groups = board.groupCandidatesByMatch(rows);
+  assert.equal(groups.length, 2);
+  assert.deepEqual(groups.map(group => group.rows.length), [2, 1]);
+  assert.deepEqual(groups[0].rows.map(row => row.label), ['1X', 'ТБ 8.5']);
+  assert.equal(groups[0].home, 'Newcastle');
+  assert.equal(groups[1].time, Date.parse(`${DAY}T20:00:00Z`));
+  assert.deepEqual(board.groupCandidatesByMatch([]), []);
+  assert.equal(rows.length, 3);
+});
+
 test('buildCandidates returns no candidates for a malformed snapshot', () => {
   assert.deepEqual(board.buildCandidates({}, {}, NOW), []);
   assert.deepEqual(board.buildCandidates({ date: DAY, predictions: null }, {}, NOW), []);

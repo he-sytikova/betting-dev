@@ -117,6 +117,94 @@
     outline-offset: 4px;
 }
 
+.daily-match {
+    border-top: 1px solid var(--border);
+}
+
+.daily-match:first-child {
+    border-top: 0;
+}
+
+.daily-match__summary {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    min-height: 64px;
+    padding: 11px 2px;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.daily-match__summary::-webkit-details-marker {
+    display: none;
+}
+
+.daily-match__summary:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.daily-match__summary:hover .daily-match__teams {
+    color: var(--accent);
+}
+
+.daily-match__toggle {
+    color: var(--accent);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+}
+
+.daily-match__toggle::before {
+    content: '+';
+}
+
+.daily-match[open] > .daily-match__summary .daily-match__toggle::before {
+    content: '−';
+}
+
+.daily-match__heading {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+}
+
+.daily-match__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 8px;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.35;
+}
+
+.daily-match__teams {
+    color: var(--text);
+    font-size: 0.92rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.daily-match__count {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.daily-match__markets {
+    padding: 0 0 9px 30px;
+}
+
+.daily-match__markets .daily-row:first-child {
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+}
+
 .daily-row {
     padding: 15px 2px;
     border-top: 1px solid var(--border);
