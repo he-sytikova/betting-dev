@@ -138,6 +138,7 @@ def normalize_team(value: Any) -> str:
         "andorra andorra la vella": "andorra",
         "fc andorra": "andorra",
         "troyes ac": "troyes",
+        "rodina": "rodina moscow",
     }
     return aliases.get(text, text)
 

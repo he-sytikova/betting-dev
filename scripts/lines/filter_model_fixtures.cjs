@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 'use strict';
 
-// Reuse the active runtimes as an eligibility gate. No probabilities are
-// recalculated or exported: acquisition only receives fixtures that the goals
-// or UEFA Nations League model can actually score.
+// Reuse every active candidate runtime as an eligibility gate. No probabilities
+// are recalculated or exported: acquisition receives only fixtures that at
+// least one homepage candidate model can actually score.
 const fs = require('node:fs');
 const path = require('node:path');
 const goals = require('../../goals-internal-model.js');
+const corners = require('../../internal-model.js');
+const stats = require('../../stats-internal-model.js');
 const nt = require('../../nt-internal-model.js');
 
 function fixtureRows(payload) {
@@ -21,8 +23,14 @@ function fixtureRows(payload) {
 
 function coverage(fixture, models) {
   const args = [fixture.league, fixture.home, fixture.away];
-  if (goals.predict(models.goals, ...args)) return 'goals';
-  if (nt.predict(models.nt, ...args)) return 'nt';
+  for (const [label, api, model] of [
+    ['goals', goals, models.goals],
+    ['cornersCards', corners, models.cornersCards],
+    ['stats', stats, models.stats],
+    ['nt', nt, models.nt],
+  ]) {
+    if (model && api.predict(model, ...args)) return label;
+  }
   return null;
 }
 
@@ -67,6 +75,8 @@ function filterModelFixtures(payload, models, now = Date.now()) {
 function loadModels(projectRoot) {
   return {
     goals: JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/goals_markets_models.json'), 'utf8')),
+    cornersCards: JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/corners_cards_models.json'), 'utf8')),
+    stats: JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/stats_markets_models.json'), 'utf8')),
     nt: JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/nt_model.json'), 'utf8')),
   };
 }

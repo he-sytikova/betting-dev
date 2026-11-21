@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 const coupons = require('../scripts/lines/build_daily_coupons.cjs');
+const modelGate = require('../scripts/lines/filter_model_fixtures.cjs');
 const board = require('../daily-board.js');
 
 const DAY = '2099-01-01';
@@ -287,6 +288,81 @@ function goalsModel() {
     runtimePolicy: { minimumTeamMatches: 5, maxGoals: 12 },
   };
 }
+
+function clubOnlyModel(market) {
+  const model = goalsModel();
+  model.models = {
+    [market]: {
+      type: 'poisson', features: [], coefficients: [], intercept: Math.log(20), lines: [10.5],
+    },
+  };
+  return model;
+}
+
+function emptyNations() {
+  return { competitions: [], teamAliases: {}, teams: {} };
+}
+
+test('acquisition gate and match index include corners-only and stats-only fixtures', () => {
+  const fixture = {
+    time: `${DAY}T18:00:00.000Z`, league: 'England. Premier League',
+    home: 'Newcastle United', away: 'Everton FC',
+  };
+  for (const [family, market] of [['cornersCards', 'corners'], ['stats', 'fouls']]) {
+    const models = { goals: null, cornersCards: null, stats: null, nations: emptyNations(), [family]: clubOnlyModel(market) };
+    assert.equal(modelGate.coverage(fixture, models), family);
+    assert.deepEqual(coupons.fixtureModelKeys(fixture, models), ['model|E0|newcastle|everton']);
+    const index = coupons.buildMatchIndex(
+      { fixtures: [fixture] },
+      [{ ...fixture, fixture_key: 'raw', bookmaker: 'Fonbet', status: 'matched', match_id: '100' }],
+      models,
+    );
+    assert.equal(index.get(`model|E0|newcastle|everton|${fixture.time}`).length, 1);
+  }
+});
+
+test('corners-only fixture reaches candidate prices without a goals model', () => {
+  const fixture = {
+    time: `${DAY}T18:00:00.000Z`, league: 'England. Premier League',
+    home: 'Newcastle United', away: 'Everton FC', modelCoverage: 'cornersCards',
+  };
+  const models = { goals: null, cornersCards: clubOnlyModel('corners'), stats: null, nations: emptyNations() };
+  const result = coupons.buildArtifact({
+    date: DAY, data: { date: DAY, predictions: [fixture] }, models,
+    gated: { generatedAt: NOW, fixtures: [fixture] },
+    matching: [{ ...fixture, fixture_key: 'raw', bookmaker: 'Fonbet', status: 'matched', match_id: '100' }],
+    snapshots: { Fonbet: { status: 'ok', captured_at_utc: NOW, matches: [line({
+      markets: { 'TOTAL_CORNERS:10.5': { ТБ: 1.5, ТМ: 3 } },
+    })] } },
+    generatedAt: NOW,
+  });
+  assert.ok(result.artifact.summary.model_candidates > 0);
+  assert.ok(!result.diagnostics.rejected.some(row => row.reason === 'fixture_not_gated'));
+  const price = result.artifact.candidate_prices.find(row => row.model === 'Угловые' && row.label === 'ТБ 10.5');
+  assert.ok(price);
+  assert.equal(price.market_key, 'TOTAL_CORNERS:10.5');
+  assert.equal(price.odds, 1.5);
+});
+
+test('stats-only fixture is indexed but never receives automatic coupon admission', () => {
+  const fixture = {
+    time: `${DAY}T18:00:00.000Z`, league: 'England. Premier League',
+    home: 'Newcastle United', away: 'Everton FC', modelCoverage: 'stats',
+  };
+  const models = { goals: null, cornersCards: null, stats: clubOnlyModel('fouls'), nations: emptyNations() };
+  const result = coupons.buildArtifact({
+    date: DAY, data: { date: DAY, predictions: [fixture] }, models,
+    gated: { generatedAt: NOW, fixtures: [fixture] },
+    matching: [{ ...fixture, fixture_key: 'raw', bookmaker: 'Fonbet', status: 'matched', match_id: '100' }],
+    snapshots: { Fonbet: { status: 'ok', captured_at_utc: NOW, matches: [line()] } },
+    generatedAt: NOW,
+  });
+  assert.ok(result.artifact.summary.model_candidates > 0);
+  assert.ok(result.diagnostics.rejected.some(row => row.model === 'Фолы' && row.reason === 'market_not_confirmed'));
+  assert.ok(!result.diagnostics.rejected.some(row => row.reason === 'fixture_not_gated'));
+  assert.deepEqual(result.artifact.candidate_prices, []);
+  assert.deepEqual(result.artifact.prepared_coupons, []);
+});
 
 test('end-to-end artifact joins only exact gated audit identities and passes homepage normalization', () => {
   const fixture = {

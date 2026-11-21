@@ -10,9 +10,9 @@ on:
         required: false
         type: string
       detail_limit:
-        description: "Maximum matched BK-event detail requests (0..40)"
+        description: "Optional cap on unique matched BK-event detail requests (blank = unlimited, 0 = none)"
         required: false
-        default: "40"
+        default: ""
         type: string
   schedule:
     - cron: "35 6 * * *" # 09:35 Moscow, after the 09:17 fixture refresh.
@@ -59,9 +59,11 @@ jobs:
 
       - name: Validate detail limit
         env:
-          LIMIT: ${{ inputs.detail_limit || '40' }}
+          LIMIT: ${{ inputs.detail_limit }}
         run: |
-          echo "$LIMIT" | grep -Eq '^([0-9]|[1-3][0-9]|40)$' || { echo "Invalid detail limit: $LIMIT"; exit 1; }
+          if [[ -n "$LIMIT" ]] && ! echo "$LIMIT" | grep -Eq '^[0-9]+$'; then
+            echo "Invalid detail limit: $LIMIT"; exit 1;
+          fi
           echo "limit=$LIMIT" >> "$GITHUB_ENV"
 
       - name: Validate current model snapshot
@@ -82,7 +84,10 @@ jobs:
           NODE
 
       - name: Acquire fresh lines and matched detail markets
-        run: python3 scripts/acquire_bookmaker_lines.py --date "${{ steps.date.outputs.date }}" --fixtures data.json --detail-limit "$limit" --output "probe-out/lines_${{ steps.date.outputs.date }}"
+        run: |
+          ARGS=(--date "${{ steps.date.outputs.date }}" --fixtures data.json --output "probe-out/lines_${{ steps.date.outputs.date }}")
+          if [[ -n "$limit" ]]; then ARGS+=(--detail-limit "$limit"); fi
+          python3 scripts/acquire_bookmaker_lines.py "${ARGS[@]}"
 
       - name: Build dated homepage artifact
         run: node scripts/lines/build_daily_coupons.cjs --data data.json --acquisition "probe-out/lines_${{ steps.date.outputs.date }}" --output "analysis/doubles_${{ steps.date.outputs.date }}.json"

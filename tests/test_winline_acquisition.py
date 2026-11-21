@@ -21,8 +21,8 @@ NOW = datetime(2026, 11, 17, 12, 0, tzinfo=timezone.utc)
 START = "2026-11-17T19:45:00+00:00"
 
 
-def tournament_row(match_id="17132350", home="Польша", away="Швеция", start="Сегодня 22:45"):
-    return {"match_id": match_id, "source_teams": [home, away], "start_text": start}
+def tournament_row(match_id="17132350", home="Польша", away="Швеция", start="Сегодня 22:45", league="Лига наций УЕФА"):
+    return {"match_id": match_id, "source_teams": [home, away], "start_text": start, "source_league": league}
 
 
 def selection(label, odds, disabled=False):
@@ -101,6 +101,15 @@ class WinlineParserTests(unittest.TestCase):
         unknown = next(line for line in lines if line["match_id"] == "17132399")
         self.assertEqual(unknown["team1"], "неизвестная команда")
 
+    def test_exact_club_abbreviations_are_not_fuzzy_matches(self):
+        lines = parse_winline_snapshot([
+            tournament_row("17077204", "Динамо М", "Спартак М", league="Россия | РПЛ"),
+            tournament_row("17077205", "Локомотив М", "Динамо", league="Россия | РПЛ"),
+        ], "2026-11-17", now=NOW)
+        self.assertEqual((lines[0]["team1"], lines[0]["team2"]), ("dynamo moscow", "spartak moscow"))
+        self.assertEqual(lines[1]["team1"], "lokomotiv moscow")
+        self.assertEqual(lines[1]["team2"], "динамо")
+
     def test_conflicting_duplicate_event_is_rejected(self):
         with self.assertRaisesRegex(ValueError, "conflicting duplicate"):
             parse_winline_snapshot([
@@ -138,28 +147,93 @@ class WinlineParserTests(unittest.TestCase):
 
 
 class FakeBrowser:
-    def __init__(self, detail=None, tournament_error=None):
+    def __init__(self, detail=None, catalog_error=None, countries=None, errors=None):
         self.detail_payload = detail
-        self.tournament_error = tournament_error
+        self.catalog_error = catalog_error
+        self.countries = countries
+        self.errors = errors or []
         self.detail_urls = []
+        self.detail_source_urls = []
 
-    def tournament(self):
-        if self.tournament_error:
-            raise self.tournament_error
-        return WinlineResult([tournament_row()], "https://winline.test/tournament", "start", "received")
+    def catalog(self):
+        if self.catalog_error:
+            raise self.catalog_error
+        countries = self.countries if self.countries is not None else [{
+            "name": "Международные", "url": "https://winline.test/international", "events": [tournament_row()],
+        }]
+        return WinlineResult(
+            {"countries": countries, "errors": self.errors},
+            "https://winline.test/stavki", "start", "received",
+        )
 
-    def detail(self, url):
+    def detail(self, url, *, source_url=None):
         self.detail_urls.append(url)
+        self.detail_source_urls.append(source_url)
         return WinlineResult(self.detail_payload, url, "start", "detail-received")
 
 
 class WinlineAcquisitionTests(unittest.TestCase):
     def test_browser_failure_is_isolated_to_winline_snapshot(self):
-        browser = FakeBrowser(tournament_error=AcquisitionError("source_unavailable", "timeout"))
+        browser = FakeBrowser(catalog_error=AcquisitionError("source_unavailable", "timeout"))
         with tempfile.TemporaryDirectory() as directory:
             snapshot = fetch_winline_snapshot("2026-11-17", Path(directory), browser)
         self.assertEqual(snapshot["status"], "source_unavailable")
         self.assertEqual(snapshot["matches"], [])
+
+    def test_catalog_discovers_countries_and_deduplicates_cross_country_events(self):
+        row = tournament_row(start="17.11.2026 22:45")
+        browser = FakeBrowser(countries=[
+            {"name": "Международные", "url": "https://winline.test/international", "events": [row]},
+            {"name": "Европа", "url": "https://winline.test/europe", "events": [row]},
+        ])
+        with tempfile.TemporaryDirectory() as directory:
+            snapshot = fetch_winline_snapshot("2026-11-17", Path(directory), browser)
+            raw = json.loads((Path(directory) / "winline_catalog.json").read_text(encoding="utf-8"))
+        self.assertEqual(snapshot["status"], "ok")
+        self.assertEqual(snapshot["catalog"], {"discovered_countries": 2, "failed_countries": 0})
+        self.assertEqual(len(snapshot["matches"]), 1)
+        self.assertEqual(snapshot["matches"][0]["league"], "Лига наций УЕФА")
+        self.assertEqual(snapshot["matches"][0]["sources"], [
+            "https://winline.test/europe", "https://winline.test/international",
+        ])
+        self.assertEqual(set(snapshot["tournaments"]), {"Международные", "Европа"})
+        self.assertEqual(len(raw["countries"]), 2)
+
+    def test_country_failure_is_partial_and_other_countries_survive(self):
+        row = tournament_row(start="17.11.2026 22:45", league="РПЛ")
+        browser = FakeBrowser(
+            countries=[{"name": "Россия", "url": "https://winline.test/russia", "events": [row]}],
+            errors=[{"country": "Испания", "status": "source_unavailable", "message": "timeout"}],
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            snapshot = fetch_winline_snapshot("2026-11-17", Path(directory), browser)
+        self.assertEqual(snapshot["status"], "partial")
+        self.assertEqual(len(snapshot["matches"]), 1)
+        self.assertEqual(snapshot["matches"][0]["league"], "РПЛ")
+        self.assertNotEqual(snapshot["matches"][0]["league"], "UEFA Nations League")
+        self.assertEqual(snapshot["tournaments"]["Россия"]["status"], "ok")
+        self.assertEqual(snapshot["tournaments"]["Испания"]["status"], "source_unavailable")
+
+    def test_conflicting_cross_country_duplicate_is_schema_changed(self):
+        first = tournament_row(start="17.11.2026 22:45")
+        conflict = tournament_row(start="17.11.2026 22:45", away="Норвегия")
+        browser = FakeBrowser(countries=[
+            {"name": "One", "url": "https://winline.test/one", "events": [first]},
+            {"name": "Two", "url": "https://winline.test/two", "events": [conflict]},
+        ])
+        with tempfile.TemporaryDirectory() as directory:
+            snapshot = fetch_winline_snapshot("2026-11-17", Path(directory), browser)
+        self.assertEqual(snapshot["status"], "schema_changed")
+        self.assertEqual(snapshot["matches"], [])
+        self.assertIn("conflicting duplicate", snapshot["errors"][0]["message"])
+
+    def test_malformed_catalog_payload_is_schema_changed(self):
+        browser = FakeBrowser()
+        browser.catalog = lambda: WinlineResult([], "https://winline.test/stavki", "start", "received")
+        with tempfile.TemporaryDirectory() as directory:
+            snapshot = fetch_winline_snapshot("2026-11-17", Path(directory), browser)
+        self.assertEqual(snapshot["status"], "schema_changed")
+        self.assertIn("must be an object", snapshot["errors"][0]["message"])
 
     def test_winline_matching_and_detail_enrichment(self):
         fixture = {"home": "Poland", "away": "Sweden", "time": START, "league": "UEFA Nations League"}
@@ -187,6 +261,7 @@ class WinlineAcquisitionTests(unittest.TestCase):
         self.assertEqual(summary["detail"], {"ok": 1})
         self.assertEqual(summary["bookmakers"]["Winline"]["status"], "ok")
         self.assertEqual(browser.detail_urls, [winline_line["detail_url"]])
+        self.assertEqual(browser.detail_source_urls, winline_line["sources"])
         self.assertEqual(enriched["matches"][0]["odds"]["home"], 2.19)
         self.assertIn("TOTAL_CORNERS:9.5", enriched["matches"][0]["markets"])
 

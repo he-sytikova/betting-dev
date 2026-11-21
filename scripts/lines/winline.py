@@ -1,7 +1,8 @@
-"""Read-only Winline DOM acquisition and conservative pure parsers.
+"""Read-only Winline catalog DOM acquisition and conservative pure parsers.
 
-Only the public UEFA Nations League tournament is discovered. The browser never
-clicks a price, logs in, solves a challenge or interacts with a bet slip.
+The public football country catalog is discovered without a tournament allowlist.
+The browser never clicks a price, logs in, solves a challenge or interacts with
+a bet slip.
 """
 
 from __future__ import annotations
@@ -23,8 +24,11 @@ from .common import (
     write_json,
 )
 
+WINLINE_LINE_URL = "https://winline.ru/stavki"
+WINLINE_EVENT_URL = "https://winline.ru/stavki/event/"
+WINLINE_DEFAULT_LEAGUE = "UEFA Nations League"
+# Kept as a parser default for old raw Nations League fixtures only.
 WINLINE_TOURNAMENT_URL = "https://winline.ru/stavki/sport/futbol/mezhdunarodnye/liga_naczij_uefa"
-WINLINE_LEAGUE = "UEFA Nations League"
 
 # Explicit, auditable identities only. Unknown Russian names deliberately stay
 # unmatched instead of being transliterated or fuzzily assigned to a fixture.
@@ -45,6 +49,10 @@ WINLINE_TEAM_ALIASES = {
     "украина": "ukraine",
     "уэльс": "wales",
     "швеция": "sweden",
+    # Exact club abbreviations observed in the public Winline catalog.
+    "динамо м": "dynamo moscow",
+    "спартак м": "spartak moscow",
+    "локомотив м": "lokomotiv moscow",
 }
 
 _TOURNAMENT_EXTRACTOR = r"""
@@ -54,7 +62,9 @@ _TOURNAMENT_EXTRACTOR = r"""
     .map(node => node.textContent.trim()).filter(Boolean);
   const card = link.closest('.card__competitors');
   const startText = card?.querySelector('.header-left__time')?.textContent.trim() || '';
-  return {match_id: matchId || '', source_teams: names, start_text: startText};
+  const tournament = link.closest('.block-tournament');
+  const sourceLeague = tournament?.querySelector('.block-tournament-header__title')?.textContent.trim() || '';
+  return {match_id: matchId || '', source_teams: names, start_text: startText, source_league: sourceLeague};
 }).filter(row => row.match_id)
 """
 
@@ -128,6 +138,7 @@ def parse_winline_snapshot(
     target_date: str,
     *,
     tournament_url: str = WINLINE_TOURNAMENT_URL,
+    league: str | None = None,
     now: datetime | None = None,
 ) -> list[dict[str, Any]]:
     if not isinstance(payload, list):
@@ -158,9 +169,10 @@ def parse_winline_snapshot(
             "team2": canonical_winline_team(source_away),
             "source_team1": source_home,
             "source_team2": source_away,
-            "league": WINLINE_LEAGUE,
+            "league": str(row.get("source_league") or league or WINLINE_DEFAULT_LEAGUE),
             "start_time": start.isoformat(),
-            "detail_url": tournament_url.rstrip("/") + "/" + match_id,
+            "detail_url": WINLINE_EVENT_URL + match_id,
+            "sources": [tournament_url],
             "odds": {},
             "markets": {},
         }
@@ -283,7 +295,7 @@ def parse_winline_detail(payload: Any, home: str, away: str) -> dict[str, Any]:
 
 
 class WinlineBrowser:
-    """One bounded Chromium session shared by tournament and detail pages."""
+    """One bounded Chromium session shared by catalog and detail pages."""
 
     def __init__(self, *, timeout_ms: int = 45_000):
         self.timeout_ms = timeout_ms
@@ -324,16 +336,84 @@ class WinlineBrowser:
                 "source_unavailable", f"Winline: страница или DOM недоступны ({type(exc).__name__})", url=url
             ) from exc
 
-    def tournament(self) -> WinlineResult:
-        page, requested, final_url = self._load(WINLINE_TOURNAMENT_URL, 'a[href^="/stavki/event/"]')
+    def catalog(self) -> WinlineResult:
+        """Read every country page exposed by the public football navigation."""
+        page, requested, final_url = self._load(WINLINE_LINE_URL, "a.sport-menu__list-item__link")
+        countries: list[dict[str, Any]] = []
+        errors: list[dict[str, Any]] = []
         try:
-            payload = page.evaluate(_TOURNAMENT_EXTRACTOR)
+            football = page.locator("a.sport-menu__list-item__link").filter(
+                has=page.locator(
+                    ".sport-menu__list-item__name > span",
+                    has_text=re.compile(r"^Футбол$"),
+                )
+            ).first
+            football.click()
+            page.wait_for_selector("a.countries-list__item-link", state="attached", timeout=self.timeout_ms)
+            count = page.locator("a.countries-list__item-link").count()
+            if not count:
+                raise AcquisitionError("schema_changed", "Winline: футбольный каталог стран пуст")
+            for position in range(count):
+                country = page.locator("a.countries-list__item-link").nth(position)
+                name = country.locator(".country-name").inner_text().strip()
+                country_requested = utc_now_iso()
+                try:
+                    country.click()
+                    page.wait_for_function(
+                        """name => document.querySelector('.--selected-country .country-name')
+                        ?.textContent.trim() === name""",
+                        arg=name,
+                        timeout=self.timeout_ms,
+                    )
+                    page.wait_for_selector(
+                        "a[href^='/stavki/event/']", state="attached", timeout=self.timeout_ms
+                    )
+                    payload = page.evaluate(_TOURNAMENT_EXTRACTOR)
+                    countries.append({
+                        "name": name,
+                        "url": page.url,
+                        "requested_at_utc": country_requested,
+                        "received_at_utc": utc_now_iso(),
+                        "events": payload,
+                    })
+                except Exception as exc:
+                    errors.append({
+                        "country": name,
+                        "status": exc.status if isinstance(exc, AcquisitionError) else "source_unavailable",
+                        "message": str(exc),
+                    })
+        except AcquisitionError:
+            raise
         except Exception as exc:
-            raise AcquisitionError("schema_changed", f"Winline: не удалось прочитать карточки ({type(exc).__name__})") from exc
-        return WinlineResult(payload, final_url, requested, utc_now_iso())
+            raise AcquisitionError(
+                "schema_changed", f"Winline: не удалось прочитать общий каталог ({type(exc).__name__})"
+            ) from exc
+        if not countries:
+            raise AcquisitionError("source_unavailable", "Winline: ни одна страна каталога недоступна")
+        return WinlineResult(
+            {"countries": countries, "errors": errors}, final_url, requested, utc_now_iso()
+        )
 
-    def detail(self, url: str) -> WinlineResult:
-        page, requested, final_url = self._load(url, "button.market-header")
+    def detail(self, url: str, *, source_url: str | None = None) -> WinlineResult:
+        event_path = re.search(r"/stavki/event/\d+", url)
+        if source_url and event_path:
+            selector = f"a[href='{event_path.group(0)}']"
+            page, requested, _ = self._load(source_url, selector)
+            try:
+                page.locator(selector).first.click()
+                page.wait_for_selector("button.market-header", state="attached", timeout=self.timeout_ms)
+                body = page.locator("body").inner_text()
+                if re.search(r"captcha|капч|доступ ограничен|access denied", body, re.I):
+                    raise AcquisitionError("access_blocked", "Winline: страница содержит ограничение доступа", url=url)
+                final_url = page.url
+            except AcquisitionError:
+                raise
+            except Exception as exc:
+                raise AcquisitionError(
+                    "source_unavailable", f"Winline: переход из каталога к событию недоступен ({type(exc).__name__})", url=url
+                ) from exc
+        else:
+            page, requested, final_url = self._load(url, "button.market-header")
         try:
             payload = {"markets": page.evaluate(_DETAIL_EXTRACTOR)}
         except Exception as exc:
@@ -357,20 +437,57 @@ class WinlineBrowser:
 
 def fetch_winline_snapshot(target_date: str, raw_dir: Path, browser: WinlineBrowser) -> dict[str, Any]:
     try:
-        response = browser.tournament()
-        raw_path = raw_dir / "winline_tournament.json"
+        response = browser.catalog()
+        raw_path = raw_dir / "winline_catalog.json"
+        if not isinstance(response.payload, dict):
+            raise ValueError("Winline catalog payload must be an object")
         write_json(raw_path, response.payload)
-        matches = parse_winline_snapshot(
-            response.payload, target_date, tournament_url=WINLINE_TOURNAMENT_URL
+        countries = response.payload.get("countries")
+        errors = list(response.payload.get("errors") or [])
+        if not isinstance(countries, list) or not countries:
+            raise ValueError("Winline catalog contains no countries")
+        matches_by_id: dict[str, dict[str, Any]] = {}
+        tournaments: dict[str, dict[str, Any]] = {}
+        for country in countries:
+            if not isinstance(country, dict):
+                raise ValueError("Winline catalog country must be an object")
+            name = str(country.get("name") or "").strip()
+            url = str(country.get("url") or "").strip()
+            events = country.get("events")
+            if not name or not url or not isinstance(events, list):
+                raise ValueError("Winline catalog country identity is incomplete")
+            parsed = parse_winline_snapshot(events, target_date, tournament_url=url, league=name)
+            tournaments[name] = {"status": "ok", "url": url, "matched_day_events": len(parsed)}
+            for line in parsed:
+                match_id = str(line["match_id"])
+                previous = matches_by_id.get(match_id)
+                if previous is None:
+                    matches_by_id[match_id] = line
+                    continue
+                identity = {key: value for key, value in line.items() if key != "sources"}
+                previous_identity = {key: value for key, value in previous.items() if key != "sources"}
+                if previous_identity != identity:
+                    raise ValueError(f"conflicting duplicate Winline event {match_id}")
+                previous["sources"] = sorted(set(previous.get("sources", []) + line.get("sources", [])))
+        for error in errors:
+            if isinstance(error, dict) and error.get("country"):
+                tournaments[str(error["country"])] = {
+                    "status": error.get("status") or "source_unavailable",
+                    "message": error.get("message") or "",
+                }
+        matches = sorted(
+            matches_by_id.values(), key=lambda item: (item["start_time"], item["team1"], item["match_id"])
         )
         return {
             "bookmaker": "Winline",
             "target_date": target_date,
-            "status": "ok",
+            "status": "partial" if errors else "ok",
             "captured_at_utc": response.received_at_utc,
             "source": response.metadata(),
             "raw_path": raw_path.as_posix(),
-            "tournaments": {"NATIONS": {"status": "ok", "url": WINLINE_TOURNAMENT_URL}},
+            "catalog": {"discovered_countries": len(countries), "failed_countries": len(errors)},
+            "tournaments": tournaments,
+            "errors": errors,
             "matches": matches,
         }
     except AcquisitionError as exc:

@@ -25,22 +25,26 @@ from .common import (
 from .parsers import (
     FONBET_CONFIG_URL,
     FONBET_SEED_HOSTS,
-    MARATHON_CLUB_TOURNAMENTS,
+    MARATHON_CATALOG_URL,
     MARATHON_DETAIL_URL,
     MARATHON_HEADERS,
     MARATHON_MAIN_URL,
-    MARATHON_NATIONS_SLUG,
-    MARATHON_NATIONS_URL,
     MARATHON_TABLE_URL,
     marathon_tournament_url,
     extract_fonbet_hosts,
     marathon_coefficient_table,
+    marathon_tournament_catalog,
     parse_fonbet_detail,
     parse_fonbet_snapshot,
     parse_marathon_detail,
     parse_marathon_snapshots,
 )
-from .winline import WinlineBrowser, parse_winline_detail, fetch_winline_snapshot
+from .winline import (
+    WinlineBrowser,
+    canonical_winline_team,
+    parse_winline_detail,
+    fetch_winline_snapshot,
+)
 
 BROWSER_HEADERS = {"User-Agent": "Mozilla/5.0", "Accept-Encoding": "identity"}
 
@@ -110,10 +114,14 @@ def match_lines(
             record = {
                 "bookmaker": bookmaker, "fixture_key": fixture["key"],
                 "home": fixture["home"], "away": fixture["away"], "time": fixture["time"],
+                "league": fixture.get("league") or "",
             }
             if len(candidates) == 1:
                 line = candidates[0]
-                record.update(status="matched", match_id=str(line["match_id"]))
+                record.update(
+                    status="matched", match_id=str(line["match_id"]),
+                    source_league=str(line.get("league") or ""),
+                )
                 selected.append((fixture, line))
             elif candidates:
                 record.update(status="ambiguous_match", candidate_ids=[str(item["match_id"]) for item in candidates])
@@ -121,6 +129,70 @@ def match_lines(
                 record["status"] = "no_line_match"
             audit.append(record)
     return audit, selected
+
+
+def link_winline_identities(
+    marathon_snapshot: dict[str, Any], winline_snapshot: dict[str, Any]
+) -> dict[str, int]:
+    """Link only exact bilingual event identities; never infer or transliterate names.
+
+    Marathonbet publishes Russian display names together with English SEO slugs.
+    A Winline event inherits those slugs only when both team identities and the
+    kickoff are exact and identify one Marathonbet event. This is an identity
+    audit bridge, not an odds source or a consensus calculation.
+    """
+    marathon_lines = marathon_snapshot.get("matches", [])
+    diagnostics = {"linked_events": 0, "ambiguous_events": 0, "unlinked_events": 0}
+    for winline_line in winline_snapshot.get("matches", []):
+        try:
+            start = parse_moment(winline_line["start_time"])
+        except (KeyError, TypeError, ValueError):
+            diagnostics["unlinked_events"] += 1
+            continue
+        source_teams = [str(winline_line.get("source_team1") or ""), str(winline_line.get("source_team2") or "")]
+        canonical_teams = [canonical_winline_team(value) for value in source_teams]
+        normalized_sources = [normalize_team(value) for value in source_teams]
+        candidates: list[dict[str, Any]] = []
+        for marathon_line in marathon_lines:
+            try:
+                if parse_moment(marathon_line["start_time"]) != start:
+                    continue
+            except (KeyError, TypeError, ValueError):
+                continue
+            sides_match = True
+            for position in range(2):
+                source = normalized_sources[position]
+                canonical = canonical_teams[position]
+                marathon_slug = normalize_team(marathon_line.get(f"slug_team{position + 1}"))
+                marathon_source = normalize_team(marathon_line.get(f"team{position + 1}"))
+                if canonical != source:
+                    if not marathon_slug or marathon_slug != canonical:
+                        sides_match = False
+                        break
+                elif not source or marathon_source != source:
+                    sides_match = False
+                    break
+            if sides_match:
+                candidates.append(marathon_line)
+        if len(candidates) == 1:
+            linked = candidates[0]
+            slug_home = normalize_team(linked.get("slug_team1"))
+            slug_away = normalize_team(linked.get("slug_team2"))
+            if slug_home and slug_away:
+                winline_line["team1"] = slug_home
+                winline_line["team2"] = slug_away
+                winline_line["identity_link"] = {
+                    "method": "exact_russian_teams_and_kickoff",
+                    "bookmaker": "Marathonbet",
+                    "match_id": str(linked.get("match_id") or ""),
+                }
+                diagnostics["linked_events"] += 1
+                continue
+        if candidates:
+            diagnostics["ambiguous_events"] += 1
+        else:
+            diagnostics["unlinked_events"] += 1
+    return diagnostics
 
 
 def _error_snapshot(bookmaker: str, target_date: str, error: AcquisitionError) -> dict[str, Any]:
@@ -182,18 +254,12 @@ def _fetch_marathon(
     opener: Callable[..., Any],
     sleeper: Callable[[float], None],
 ) -> dict[str, Any]:
-    responses: dict[str, FetchResult | None] = {"main": None, "nations": None, "table": None}
-    responses.update({f"tournament_{code.lower()}": None for code in MARATHON_CLUB_TOURNAMENTS})
+    responses: dict[str, FetchResult | None] = {"main": None, "catalog": None, "table": None}
     resources: list[tuple[str, str, dict[str, Any]]] = [
         ("main", MARATHON_MAIN_URL, {}),
-        ("nations", MARATHON_NATIONS_URL, {"champ_slug": MARATHON_NATIONS_SLUG}),
+        ("catalog", MARATHON_CATALOG_URL, {}),
         ("table", MARATHON_TABLE_URL, {}),
     ]
-    resources.extend(
-        (f"tournament_{code.lower()}", marathon_tournament_url(slug),
-         {"league_code": code, "champ_slug": slug})
-        for code, slug in MARATHON_CLUB_TOURNAMENTS.items()
-    )
     errors: list[dict[str, Any]] = []
     for name, url, context in resources:
         try:
@@ -202,40 +268,60 @@ def _fetch_marathon(
             write_raw(raw_dir / f"marathonbet_{name}.json", response.raw_body)
         except AcquisitionError as exc:
             errors.append({"stage": name, **context, **exc.as_dict()})
+
+    catalog: dict[str, dict[str, Any]] = {}
+    if responses["catalog"]:
+        try:
+            catalog = marathon_tournament_catalog(responses["catalog"].payload)
+        except (ValueError, TypeError, KeyError) as exc:
+            errors.append({"stage": "catalog", "status": "schema_changed", "message": str(exc)})
+    for slug, tournament in catalog.items():
+        name = f"tournament_{slug}"
+        responses[name] = None
+        url = marathon_tournament_url(slug)
+        try:
+            response = request_json(url, headers=MARATHON_HEADERS, opener=opener, sleeper=sleeper)
+            responses[name] = response
+            write_raw(raw_dir / f"marathonbet_{name}.json", response.raw_body)
+        except AcquisitionError as exc:
+            errors.append({"stage": name, **tournament, **exc.as_dict()})
+
     main = responses["main"].payload if responses["main"] else None
-    nations = responses["nations"].payload if responses["nations"] else None
     table = responses["table"].payload if responses["table"] else {}
     tournament_payloads = {
-        code: responses[f"tournament_{code.lower()}"].payload if responses[f"tournament_{code.lower()}"] else None
-        for code in MARATHON_CLUB_TOURNAMENTS
+        slug: responses[f"tournament_{slug}"].payload if responses[f"tournament_{slug}"] else None
+        for slug in catalog
     }
-    if not any(responses[name] for name in responses if name != "table"):
+    event_sources = ["main", *(f"tournament_{slug}" for slug in catalog)]
+    required_sources = ["catalog", *event_sources]
+    tournaments = {
+        slug: {**tournament, "status": "ok" if responses[f"tournament_{slug}"] else "unavailable"}
+        for slug, tournament in catalog.items()
+    }
+    catalog_audit = {
+        "status": "ok" if responses["catalog"] and catalog else "unavailable",
+        "discovered_tournaments": len(catalog),
+    }
+    if not any(responses[name] for name in event_sources):
         status = errors[-1]["status"] if errors else "source_unavailable"
         snapshot = _error_snapshot("Marathonbet", target_date, AcquisitionError(status, "Marathonbet: линия недоступна"))
-        snapshot["errors"] = errors
+        snapshot.update(catalog=catalog_audit, tournaments=tournaments, errors=errors)
         return snapshot
     try:
-        matches = parse_marathon_snapshots(main, nations, table, target_date, tournament_payloads)
+        matches = parse_marathon_snapshots(main, None, table, target_date, tournament_payloads)
     except (ValueError, TypeError, KeyError) as exc:
         snapshot = _error_snapshot("Marathonbet", target_date, AcquisitionError("schema_changed", str(exc)))
         snapshot["errors"] = errors
         return snapshot
     received = [response.received_at_utc for response in responses.values() if response]
-    event_sources = ("main", "nations", *(f"tournament_{code.lower()}" for code in MARATHON_CLUB_TOURNAMENTS))
-    tournaments = {
-        "NATIONS": {"champ_slug": MARATHON_NATIONS_SLUG,
-                    "status": "ok" if responses["nations"] else "unavailable"},
-        **{code: {"champ_slug": slug,
-                  "status": "ok" if responses[f"tournament_{code.lower()}"] else "unavailable"}
-           for code, slug in MARATHON_CLUB_TOURNAMENTS.items()},
-    }
     return {
         "bookmaker": "Marathonbet", "target_date": target_date,
-        "status": "partial" if any(responses[name] is None for name in event_sources) else "ok",
+        "status": "partial" if any(responses[name] is None for name in required_sources) else "ok",
         "captured_at_utc": max(received) if received else utc_now_iso(),
         "sources": {name: response.metadata() for name, response in responses.items() if response},
         "raw_paths": {name: (raw_dir / f"marathonbet_{name}.json").as_posix()
                       for name, response in responses.items() if response},
+        "catalog": catalog_audit,
         "tournaments": tournaments,
         "errors": errors,
         "coefficient_table": "server" if responses["table"] else "formula_fallback",
@@ -279,18 +365,60 @@ def incomplete_markets(line: dict[str, Any]) -> list[str]:
     return sorted(incomplete)
 
 
+def _tournament_coverage(
+    matching: list[dict[str, Any]], detail_audit: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Audit every model tournament and bookmaker without hiding unmatched events."""
+    groups: dict[tuple[str, str], dict[str, Any]] = {}
+    fixture_leagues: dict[tuple[str, str], str] = {}
+    for record in matching:
+        bookmaker = str(record["bookmaker"])
+        league = str(record.get("league") or "(unspecified)")
+        fixture_leagues[(bookmaker, str(record["fixture_key"]))] = league
+        group = groups.setdefault((bookmaker, league), {
+            "bookmaker": bookmaker,
+            "league": league,
+            "fixtures": 0,
+            "matching": Counter(),
+            "detail": Counter(),
+            "source_leagues": set(),
+        })
+        group["fixtures"] += 1
+        group["matching"][str(record["status"])] += 1
+        if record.get("source_league"):
+            group["source_leagues"].add(str(record["source_league"]))
+    for record in detail_audit:
+        key = (str(record["bookmaker"]), str(record["fixture_key"]))
+        league = fixture_leagues.get(key, "(unspecified)")
+        group = groups.get((key[0], league))
+        if group is not None:
+            group["detail"][str(record["status"])] += 1
+    result = []
+    for key in sorted(groups):
+        group = groups[key]
+        result.append({
+            "bookmaker": group["bookmaker"],
+            "league": group["league"],
+            "fixtures": group["fixtures"],
+            "matching": dict(sorted(group["matching"].items())),
+            "detail": dict(sorted(group["detail"].items())),
+            "source_leagues": sorted(group["source_leagues"]),
+        })
+    return result
+
+
 def _acquire_lines(
     target_date: str,
     fixtures_path: Path,
     output_dir: Path,
     *,
-    limit: int,
+    limit: int | None,
     opener: Callable[..., Any],
     sleeper: Callable[[float], None],
     winline_browser: WinlineBrowser,
 ) -> dict[str, Any]:
-    if not 0 <= limit <= 40:
-        raise ValueError("Detail request limit must be between 0 and 40")
+    if limit is not None and limit < 0:
+        raise ValueError("Detail request limit must be a non-negative integer or None")
     fixtures = load_fixtures(fixtures_path, target_date)
     raw_dir, detail_dir = output_dir / "raw", output_dir / "detail"
     snapshot_dir, enriched_dir = output_dir / "snapshots", output_dir / "enriched"
@@ -300,6 +428,7 @@ def _acquire_lines(
     marathon = _fetch_marathon(target_date, raw_dir, opener=opener, sleeper=sleeper)
     winline = _fetch_winline(target_date, raw_dir, browser=winline_browser)
     snapshots = {"Fonbet": fonbet, "Marathonbet": marathon, "Winline": winline}
+    winline["identity_links"] = link_winline_identities(marathon, winline)
     for bookmaker, snapshot in snapshots.items():
         write_json(snapshot_dir / f"{bookmaker.lower()}.json", snapshot)
         print(f"{bookmaker}: {snapshot['status']}, matches={len(snapshot.get('matches', []))}", flush=True)
@@ -310,22 +439,42 @@ def _acquire_lines(
     if marathon_table_path.is_file():
         marathon_table = marathon_coefficient_table(json.loads(marathon_table_path.read_text(encoding="utf-8")))
     detail_audit: list[dict[str, Any]] = []
+    detail_cache: dict[tuple[str, str], tuple[dict[str, Any], dict[str, Any]]] = {}
     request_count = 0
     requests_by_bookmaker: Counter[str] = Counter()
-    for position, (fixture, line) in enumerate(selected):
+    for fixture, line in selected:
         bookmaker = str(line["bookmaker"])
+        match_id = str(line["match_id"])
+        cache_key = (bookmaker, match_id)
         record: dict[str, Any] = {
-            "bookmaker": bookmaker, "match_id": str(line["match_id"]),
+            "bookmaker": bookmaker, "match_id": match_id,
             "fixture_key": fixture["key"], "status": "pending",
         }
         detail_audit.append(record)
-        if position >= limit:
+        cached = detail_cache.get(cache_key)
+        if cached is not None:
+            cached_line, cached_record = cached
+            for field in ("odds", "markets", "detail_status", "detail_captured_at_utc"):
+                if field in cached_line:
+                    line[field] = cached_line[field]
+                else:
+                    line.pop(field, None)
+            record.update({
+                key: value for key, value in cached_record.items()
+                if key not in {"bookmaker", "match_id", "fixture_key", "deduplicated"}
+            })
+            record["deduplicated"] = True
+            print(f"detail {bookmaker} {match_id}: {record['status']} (deduplicated)", flush=True)
+            continue
+        unique_position = len(detail_cache)
+        if limit is not None and unique_position >= limit:
             record.update(status="limit_exceeded", message="лимит детальных запросов")
             line["detail_status"] = "limit_exceeded"
+            detail_cache[cache_key] = (line, record)
             continue
         attempted = False
         try:
-            detail_id = str(line["match_id"])
+            detail_id = match_id
             record["detail_id"] = detail_id
             if requests_by_bookmaker[bookmaker]:
                 sleeper(1.0)
@@ -335,7 +484,11 @@ def _acquire_lines(
                 url = str(line.get("detail_url") or "")
                 if not url:
                     raise AcquisitionError("source_unavailable", "Winline: URL события отсутствует")
-                response = winline_browser.detail(url)
+                source_url = next(
+                    (str(value) for value in line.get("sources", []) if str(value).startswith("https://winline.ru/")),
+                    None,
+                )
+                response = winline_browser.detail(url, source_url=source_url)
                 write_json(raw_path, response.payload)
                 parsed = parse_winline_detail(
                     response.payload,
@@ -371,7 +524,8 @@ def _acquire_lines(
             if attempted:
                 request_count += 1
                 requests_by_bookmaker[bookmaker] += 1
-            print(f"detail {bookmaker} {line['match_id']}: {record['status']}", flush=True)
+            detail_cache[cache_key] = (line, record)
+            print(f"detail {bookmaker} {match_id}: {record['status']}", flush=True)
 
     incomplete_count = 0
     for bookmaker, snapshot in snapshots.items():
@@ -386,16 +540,25 @@ def _acquire_lines(
         "date": target_date,
         "generated_at_utc": utc_now_iso(),
         "fixtures": len(fixtures),
-        "bookmakers": {name: {"status": snapshot["status"], "matches": len(snapshot.get("matches", [])),
-                              "captured_at_utc": snapshot.get("captured_at_utc")}
-                       for name, snapshot in snapshots.items()},
+        "bookmakers": {name: {
+            "status": snapshot["status"],
+            "matches": len(snapshot.get("matches", [])),
+            "captured_at_utc": snapshot.get("captured_at_utc"),
+            "catalog": snapshot.get("catalog"),
+            "tournaments": snapshot.get("tournaments"),
+            "identity_links": snapshot.get("identity_links"),
+        } for name, snapshot in snapshots.items()},
         "matching": dict(sorted(matching_counts.items())),
         "matched_lines": len(selected),
         "detail_limit": limit,
+        "detail_limit_mode": "unlimited" if limit is None else "manual",
+        "detail_unique_events": len(detail_cache),
+        "detail_deduplicated": sum(bool(record.get("deduplicated")) for record in detail_audit),
         "detail_requests": request_count,
         "incomplete_markets": incomplete_count,
         "detail": dict(sorted(detail_counts.items())),
         "detail_by_match": detail_audit,
+        "tournament_coverage": _tournament_coverage(matching, detail_audit),
     }
     write_json(output_dir / "summary.json", summary)
     write_json(output_dir / "matching.json", matching)
@@ -407,7 +570,7 @@ def acquire_lines(
     fixtures_path: Path,
     output_dir: Path,
     *,
-    limit: int = 40,
+    limit: int | None = None,
     opener: Callable[..., Any] = urllib.request.urlopen,
     sleeper: Callable[[float], None] = time.sleep,
     winline_browser: WinlineBrowser | None = None,
