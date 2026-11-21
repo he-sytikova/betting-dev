@@ -8,6 +8,7 @@ REFRESH = (ROOT / ".github/workflows/refresh-dev-fixtures.yml").read_text(encodi
 DEPLOY = (ROOT / ".github/workflows/deploy-pages.yml").read_text(encoding="utf-8")
 VALIDATE = (ROOT / ".github/workflows/validate-corners-cards-models.yml").read_text(encoding="utf-8")
 HOMEPAGE = (ROOT / "index.html").read_text(encoding="utf-8")
+REPORT_PAGE = (ROOT / "financial-report.html").read_text(encoding="utf-8")
 
 
 class ResultsAutomationTest(unittest.TestCase):
@@ -24,12 +25,21 @@ class ResultsAutomationTest(unittest.TestCase):
         self.assertIn("tests/financial-report.test.cjs", VALIDATE)
         self.assertIn("tests.test_euro365_results", VALIDATE)
 
-    def test_homepage_loads_confirmation_before_reporting(self):
-        self.assertIn('id="financial-report"', HOMEPAGE)
-        confirmation = HOMEPAGE.index('src="coupon-confirmation.js"')
-        reporting = HOMEPAGE.index('src="financial-report.js"')
+    def test_reporting_page_loads_confirmation_before_reporting(self):
+        self.assertIn('id="financial-report"', REPORT_PAGE)
+        confirmation = REPORT_PAGE.index('src="coupon-confirmation.js"')
+        reporting = REPORT_PAGE.index('src="financial-report.js"')
         self.assertLess(confirmation, reporting)
-        self.assertIn("FinancialReport.mount", HOMEPAGE)
+        self.assertIn("FinancialReport.mount", REPORT_PAGE)
+        self.assertIn('href="./"', REPORT_PAGE)
+
+    def test_homepage_links_to_reporting_without_embedding_operational_blocks(self):
+        self.assertIn('href="./financial-report.html"', HOMEPAGE)
+        self.assertNotIn('id="financial-report"', HOMEPAGE)
+        self.assertNotIn('src="financial-report.js"', HOMEPAGE)
+        self.assertNotIn('id="day-odds-block"', HOMEPAGE)
+        self.assertNotIn('src="day-odds.js"', HOMEPAGE)
+        self.assertNotIn("Кэфы дня", HOMEPAGE)
 
 
 if __name__ == "__main__":

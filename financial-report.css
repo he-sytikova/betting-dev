@@ -1,3 +1,45 @@
+.financial-page {
+  max-width: 980px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.financial-page .financial-report {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.financial-report-page .dev-label {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.financial-report-page .back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 8px 12px 0 0;
+  color: var(--accent);
+}
+
+.financial-report-page .back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.finance-storage-note {
+  margin: 20px 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
 .financial-report {
   margin: 28px 0 32px;
   padding: 24px 0 8px;
