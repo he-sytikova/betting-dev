@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-11-21",
-  "generated_at_utc": "2026-11-21T12:55:30.318240Z",
+  "generated_at_utc": "2026-11-21T18:37:15.243412Z",
   "results": [
     {
       "event_id": "s9-99.772807226",
@@ -870,6 +870,45 @@
       "source": "Euro365",
       "status": "finished",
       "home_goals": 1,
+      "away_goals": 1,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.772833011",
+      "time": "2026-11-21T11:00:00.000Z",
+      "league": "Belarus. Premier League",
+      "home": "Dnepr Mogilev",
+      "away": "Vitebsk",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.772833019",
+      "time": "2026-11-21T11:00:00.000Z",
+      "league": "Belarus. Premier League",
+      "home": "Gomel",
+      "away": "BATE Borisov",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 3,
+      "away_goals": 1,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.772833027",
+      "time": "2026-11-21T11:00:00.000Z",
+      "league": "Belarus. Premier League",
+      "home": "Baranovichi",
+      "away": "Belshina Bobruisk",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 0,
       "away_goals": 1,
       "total_corners": null,
       "evidence": "scores_endpoint"
