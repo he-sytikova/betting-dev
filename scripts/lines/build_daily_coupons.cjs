@@ -395,7 +395,8 @@ function buildArtifact(input) {
       p_model: candidate.probability,
     };
     for (const bookmaker of BOOKMAKERS) {
-      const record = records.find(row => row.bookmaker === bookmaker);
+      const record = records.find(row => row.bookmaker === bookmaker && row.status === 'matched')
+        || records.find(row => row.bookmaker === bookmaker);
       if (!record) {
         rejected.push(rejection(candidate, 'no_line_match', { bookmaker }));
         continue;

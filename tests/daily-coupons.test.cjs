@@ -164,8 +164,8 @@ test('deduplication keeps the best price across three bookmakers and audits lose
 test('doubles use one bookmaker, different matches and exact combined formulas', () => {
   const a = eligibleLeg();
   const b = eligibleLeg({
-    model_key: 'model|E0|arsenal|chelsea', home: 'Arsenal', away: 'Chelsea',
-    match_id: '101', p_model: 0.75, odds: 1.5, ev: 1.125, o_min_step: 1.38,
+    model_key: 'model|E0|arsenal|chelsea', home: 'Arsenal', away: 'Chelsea', match_id: '101',
+    p_model: 0.75, odds: 1.5, ev: 1.125, o_min_exact: 1.2875, o_min_step: 1.38,
   });
   const crossBookmaker = coupons.selectDoubles([a, { ...b, bookmaker: 'Marathonbet' }]);
   assert.equal(crossBookmaker.candidates, 0);
@@ -430,6 +430,42 @@ test('end-to-end artifact joins only exact gated audit identities and passes hom
   assert.equal(merged.find(row => row.label === '1X').bookmakerPrices.Fonbet.odds, 1.4);
   assert.equal(merged.find(row => row.label === '1X').bookmakerPrices.Marathonbet.odds, 1.5);
   assert.equal(merged.find(row => row.label === '1X').bookmakerPrices.Winline.odds, 1.55);
+});
+
+test('duplicate fixture identities prefer the matched bookmaker line over an earlier no-match', () => {
+  const unmatchedFixture = {
+    time: `${DAY}T18:00:00.000Z`, league: 'England. Premier League',
+    home: 'FC Newcastle United', away: 'Everton FC', modelCoverage: 'goals',
+  };
+  const matchedFixture = { ...unmatchedFixture, home: 'Newcastle United' };
+  const models = { goals: goalsModel(), cornersCards: null, stats: null, nations: emptyNations() };
+  assert.deepEqual(coupons.fixtureModelKeys(unmatchedFixture, models), ['model|E0|newcastle|everton']);
+  assert.deepEqual(coupons.fixtureModelKeys(matchedFixture, models), ['model|E0|newcastle|everton']);
+  const bookmakers = ['Fonbet', 'Marathonbet', 'Winline'];
+  const unmatched = bookmakers.map(bookmaker => ({
+    ...unmatchedFixture, bookmaker, fixture_key: 'unmatched', status: 'no_line_match',
+  }));
+  const matched = bookmakers.map((bookmaker, index) => ({
+    ...matchedFixture, bookmaker, fixture_key: 'matched', status: 'matched', match_id: String(200 + index),
+  }));
+  const snapshots = Object.fromEntries(bookmakers.map((bookmaker, index) => [bookmaker, {
+    status: 'ok', captured_at_utc: NOW,
+    matches: [line({ bookmaker, match_id: String(200 + index) })],
+  }]));
+  const result = coupons.buildArtifact({
+    date: DAY, data: { date: DAY, predictions: [matchedFixture] }, models,
+    gated: { generatedAt: NOW, fixtures: [unmatchedFixture, matchedFixture] },
+    matching: [...unmatched, ...matched], snapshots, generatedAt: NOW,
+  });
+  const prices = result.artifact.candidate_prices.filter(row => row.label === '1X');
+  assert.deepEqual(prices.map(row => [row.bookmaker, row.match_id, row.odds]), [
+    ['Fonbet', '200', 1.4], ['Marathonbet', '201', 1.4], ['Winline', '202', 1.4],
+  ]);
+  assert.ok(!result.diagnostics.rejected.some(row => row.reason === 'no_line_match'));
+  const merged = board.mergeCandidatePrices(board.buildCandidates(
+    { date: DAY, predictions: [matchedFixture] }, models, Date.parse(NOW),
+  ), result.artifact);
+  assert.deepEqual(Object.keys(merged.find(row => row.label === '1X').bookmakerPrices).sort(), bookmakers.sort());
 });
 
 test('minimum rounded price remains a separate filter after exact EV passes', () => {
