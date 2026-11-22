@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-22",
+  "generated_at_utc": "2026-11-22T02:18:10.739428Z",
+  "results": [
+    {
+      "event_id": "s9-99.773050084",
+      "time": "2026-11-21T23:30:00.000Z",
+      "league": "Costa Rica. Primera Division",
+      "home": "Puntarenas",
+      "away": "Herediano",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 1,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.773050085",
+      "time": "2026-11-21T23:30:00.000Z",
+      "league": "Chile. Primera Division",
+      "home": "Universidad de Concepcion",
+      "away": "Nublense",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 3,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.773050086",
+      "time": "2026-11-21T23:30:00.000Z",
+      "league": "Bolivia. Primera Division",
+      "home": "Oriente Petrolero",
+      "away": "Independiente Petrolero",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 2,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.773053496",
+      "time": "2026-11-22T00:00:00.000Z",
+      "league": "Brazil. Campeonato Brasileiro. Serie A",
+      "home": "Chapecoense",
+      "away": "Cruzeiro Esporte Clube",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 1,
+      "away_goals": 2,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.773055605",
+      "time": "2026-11-22T00:00:00.000Z",
+      "league": "Mexico. Liga Premier. Primera",
+      "home": "Jaguares de Chiapas",
+      "away": "Los Cabos United",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 1,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    }
+  ]
+}
