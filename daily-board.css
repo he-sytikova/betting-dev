@@ -103,6 +103,43 @@
     font-variant-numeric: tabular-nums;
 }
 
+.daily-market-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 14px;
+}
+
+.daily-market-filter {
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text-muted);
+    background: var(--bg);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.daily-market-filter:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.daily-market-filter:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.daily-market-filter.is-active,
+.daily-market-filter.is-active:hover {
+    border-color: var(--accent);
+    color: var(--bg);
+    background: var(--accent);
+}
+
 .daily-list {
     display: grid;
     gap: 0;

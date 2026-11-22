@@ -201,6 +201,34 @@ test('buildCandidates covers all active model families and preserves market line
   assert.ok(rows.every(row => !String(row.home).includes('Unknown')));
 });
 
+test('candidate market names cover every active family in stable order and allow future markets', () => {
+  const rows = [
+    ...board.CANDIDATE_MARKETS.slice().reverse().map(modelLabel => ({ modelLabel })),
+    { modelLabel: 'Голы' },
+    { modelLabel: 'Новый рынок' },
+    { modelLabel: '' },
+    null,
+  ];
+  assert.deepEqual(board.candidateMarketNames(rows), [...board.CANDIDATE_MARKETS, 'Новый рынок']);
+  assert.deepEqual(board.candidateMarketNames(null), []);
+});
+
+test('market filtering selects the exact family without changing the source rows', () => {
+  const rows = [
+    { modelLabel: 'Голы', label: 'П1' },
+    { modelLabel: 'Угловые', label: 'ТБ 8.5' },
+    { modelLabel: 'Голы', label: 'ТБ 2.5' },
+  ];
+  const snapshot = JSON.parse(JSON.stringify(rows));
+  const all = board.filterCandidatesByMarket(rows);
+  assert.notEqual(all, rows);
+  assert.deepEqual(all, rows);
+  assert.deepEqual(board.filterCandidatesByMarket(rows, 'Голы').map(row => row.label), ['П1', 'ТБ 2.5']);
+  assert.deepEqual(board.filterCandidatesByMarket(rows, 'ЖК'), []);
+  assert.deepEqual(board.filterCandidatesByMarket(null, 'Голы'), []);
+  assert.deepEqual(rows, snapshot);
+});
+
 test('groupCandidatesByMatch collapses markets into exact match events without changing their order', () => {
   const first = {
     time: Date.parse(`${DAY}T18:00:00Z`), home: 'Newcastle', away: 'Everton',
