@@ -414,8 +414,10 @@ test('end-to-end artifact joins only exact gated audit identities and passes hom
     for (const leg of coupon.legs) assert.ok(probabilities.has(leg.p_model));
   }
   assert.equal(result.artifact.summary.sessions.session4.eligible_legs > 0, true);
-  const best = result.artifact.candidate_prices.find(row => row.label === '1X');
-  assert.equal(best.bookmaker, 'Winline');
+  const prices = result.artifact.candidate_prices.filter(row => row.label === '1X');
+  assert.deepEqual(prices.map(row => row.bookmaker), ['Fonbet', 'Marathonbet', 'Winline']);
+  const best = prices.find(row => row.bookmaker === 'Winline');
+  assert.ok(best);
   assert.equal(best.match_id, '102');
   assert.equal(best.market_key, 'DC');
   assert.equal(best.odds, 1.55);
@@ -425,6 +427,9 @@ test('end-to-end artifact joins only exact gated audit identities and passes hom
   const merged = board.mergeCandidatePrices(expectedCandidates, result.artifact);
   assert.equal(merged.find(row => row.label === '1X').bestOdds, 1.55);
   assert.equal(merged.find(row => row.label === '1X').bestBookmaker, 'Winline');
+  assert.equal(merged.find(row => row.label === '1X').bookmakerPrices.Fonbet.odds, 1.4);
+  assert.equal(merged.find(row => row.label === '1X').bookmakerPrices.Marathonbet.odds, 1.5);
+  assert.equal(merged.find(row => row.label === '1X').bookmakerPrices.Winline.odds, 1.55);
 });
 
 test('minimum rounded price remains a separate filter after exact EV passes', () => {
