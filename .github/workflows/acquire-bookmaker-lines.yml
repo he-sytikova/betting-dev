@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       date:
-        description: "Moscow date YYYY-MM-DD (blank = today; must match data.json)"
+        description: "Moscow game-day start date YYYY-MM-DD (blank = current game day; must match data.json)"
         required: false
         type: string
       detail_limit:
@@ -48,12 +48,16 @@ jobs:
           python3 -m unittest tests.test_odds_acquisition tests.test_winline_acquisition -v
           node --test tests/daily-coupons.test.cjs tests/daily-board.test.cjs
 
-      - name: Resolve Moscow date
+      - name: Resolve Moscow game-day start date
         id: date
         env:
           INPUT_DATE: ${{ inputs.date }}
         run: |
-          DATE="${INPUT_DATE:-$(TZ=Europe/Moscow date +%F)}"
+          if [[ -n "$INPUT_DATE" ]]; then
+            DATE="$INPUT_DATE"
+          else
+            DATE="$(node -e "process.stdout.write(require('./daily-board.js').gameDayKeyMsk(Date.now()))")"
+          fi
           echo "$DATE" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' || { echo "Invalid date: $DATE"; exit 1; }
           echo "date=$DATE" >> "$GITHUB_OUTPUT"
 

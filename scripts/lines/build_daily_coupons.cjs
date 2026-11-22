@@ -309,6 +309,7 @@ function selectDoubles(legs, options = {}) {
       const b = legs[j];
       if (a.bookmaker !== b.bookmaker || a.model_key === b.model_key) continue;
       if (board.gameSessionForTime(a.time)?.id !== board.gameSessionForTime(b.time)?.id) continue;
+      if (board.gameDayKeyMsk(a.time) !== board.gameDayKeyMsk(b.time)) continue;
       const teams = [...legTeams(a), ...legTeams(b)];
       if (new Set(teams).size !== teams.length || teams.some(team => used.has(team))) continue;
       const coupon = couponFromLegs([a, b], 0, 'double');

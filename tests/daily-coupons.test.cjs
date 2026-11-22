@@ -226,6 +226,25 @@ test('session selection applies five singles and two doubles independently to al
   assert.equal(crossSession.candidates, 0);
 });
 
+test('session 5 doubles cannot mix two different overnight occurrences', () => {
+  const late = eligibleLeg({ time: `${DAY}T20:55:00.000Z` });
+  const afterMidnight = eligibleLeg({
+    time: '2099-01-02T03:00:00.000Z', model_key: 'model|E0|arsenal|chelsea',
+    home: 'Arsenal', away: 'Chelsea', match_id: '101',
+  });
+  const nextNight = eligibleLeg({
+    time: '2099-01-02T20:55:00.000Z', model_key: 'model|E0|villa|spurs',
+    home: 'Villa', away: 'Spurs', match_id: '102',
+  });
+  const result = coupons.selectDoubles([late, afterMidnight, nextNight]);
+  assert.equal(result.candidates, 1);
+  assert.equal(result.coupons.length, 1);
+  assert.deepEqual(result.coupons[0].legs.map(row => row.time), [late.time, afterMidnight.time]);
+  assert.equal(board.gameDayKeyMsk(late.time), DAY);
+  assert.equal(board.gameDayKeyMsk(afterMidnight.time), DAY);
+  assert.equal(board.gameDayKeyMsk(nextNight.time), '2099-01-02');
+});
+
 test('double selection excludes teams used in earlier sessions and repeated teams', () => {
   const a = eligibleLeg();
   const b = eligibleLeg({

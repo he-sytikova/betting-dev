@@ -3,6 +3,7 @@ import json
 import tempfile
 import unittest
 import urllib.error
+from datetime import datetime, timezone
 from email.message import Message
 from pathlib import Path
 from unittest import mock
@@ -13,6 +14,7 @@ from scripts.lines.common import (
     AcquisitionError,
     MarketAbsentError,
     moscow_day,
+    moscow_game_day,
     normalize_team,
     request_json,
 )
@@ -96,6 +98,10 @@ def marathon_event():
 class CommonTests(unittest.TestCase):
     def test_moscow_date_and_team_aliases(self):
         self.assertEqual(moscow_day("2026-11-16T21:30:00Z"), "2026-11-17")
+        self.assertEqual(moscow_game_day("2026-11-16T20:55:00Z"), "2026-11-16")
+        self.assertEqual(moscow_game_day("2026-11-16T21:30:00Z"), "2026-11-16")
+        self.assertEqual(moscow_game_day("2026-11-17T03:59:59Z"), "2026-11-16")
+        self.assertEqual(moscow_game_day("2026-11-17T04:00:00Z"), "2026-11-17")
         self.assertEqual(normalize_team("Bosnia & Herzegovina"), "bosnia and herzegovina")
         self.assertEqual(normalize_team("Republic of Ireland"), "ireland")
         self.assertEqual(normalize_team("Türkiye"), "turkey")
@@ -142,6 +148,30 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(row["markets"]["DC"]["12"], 1.3)
         self.assertIn("TOTAL_GOALS:3.5", row["markets"])
         self.assertNotIn("TOTAL_GOALS:4.5", row["markets"])
+
+    def test_fonbet_and_marathon_snapshots_include_next_day_night_and_exclude_0700(self):
+        overnight = datetime(2026, 11, 17, 22, 30, tzinfo=timezone.utc).timestamp()
+        payload = fonbet_payload()
+        for event in payload["events"]:
+            event["startTime"] = overnight
+        rows = parse_fonbet_snapshot(payload, "2026-11-17")
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["start_time"], "2026-11-17T22:30:00+00:00")
+
+        event = marathon_event()
+        event["displayTime"] = overnight * 1000
+        rows = parse_marathon_snapshots(None, {"prematchEvents": [event]}, {"payload": {}}, "2026-11-17")
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["start_time"], "2026-11-17T22:30:00+00:00")
+
+        boundary = datetime(2026, 11, 18, 4, 0, tzinfo=timezone.utc).timestamp()
+        for item in payload["events"]:
+            item["startTime"] = boundary
+        self.assertEqual(parse_fonbet_snapshot(payload, "2026-11-17"), [])
+        event["displayTime"] = boundary * 1000
+        self.assertEqual(parse_marathon_snapshots(
+            None, {"prematchEvents": [event]}, {"payload": {}}, "2026-11-17",
+        ), [])
 
     def test_fonbet_detail_retains_incomplete_market(self):
         payload = {"customFactors": [{"e": 100, "factors": [{"f": 930, "v": 1.8, "pt": "2.5"}]}]}
@@ -310,13 +340,19 @@ class MatchingAndIntegrationTests(unittest.TestCase):
         payload = {"date": "2026-11-17", "predictions": [
             {"home": "Republic of Ireland", "away": "Kosovo", "time": "2026-11-17T19:45:00Z"},
             {"home": "Ireland", "away": "Kosovo", "time": "2026-11-17T19:45:00.000Z"},
+            {"home": "Ireland", "away": "Kosovo", "time": "2026-11-17T03:00:00Z"},
+            {"home": "Ireland", "away": "Kosovo", "time": "2026-11-17T22:30:00Z"},
+            {"home": "Ireland", "away": "Kosovo", "time": "2026-11-18T04:00:00Z"},
             {"home": "Ireland", "away": "Kosovo", "time": "2026-11-18T19:45:00Z"},
         ]}
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "fixtures.json"
             path.write_text(json.dumps(payload), encoding="utf-8")
             fixtures = acquisition.load_fixtures(path, "2026-11-17")
-        self.assertEqual(len(fixtures), 1)
+        self.assertEqual(len(fixtures), 2)
+        self.assertEqual([row["time"] for row in fixtures], [
+            "2026-11-17T19:45:00+00:00", "2026-11-17T22:30:00+00:00",
+        ])
 
     def test_end_to_end_enrichment_and_raw_audit(self):
         fonbet_line = {"bookmaker": "Fonbet", "match_id": "100", "tree_id": None,

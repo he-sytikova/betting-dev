@@ -1,4 +1,4 @@
-/* Current Moscow-day candidates and prepared coupons for the dev home page. */
+/* Current Moscow-game-day candidates and prepared coupons for the dev home page. */
 (function (root) {
   'use strict';
 
@@ -42,6 +42,16 @@
     return new Date(time + MOSCOW_OFFSET_MS).toISOString().slice(0, 10);
   }
 
+  function gameDayKeyMsk(value) {
+    const time = value instanceof Date ? value.getTime() : (typeof value === 'number' ? value : Date.parse(value));
+    if (!Number.isFinite(time)) return null;
+    const moscow = new Date(time + MOSCOW_OFFSET_MS);
+    if (moscow.getUTCHours() * 60 + moscow.getUTCMinutes() < 420) {
+      moscow.setUTCDate(moscow.getUTCDate() - 1);
+    }
+    return moscow.toISOString().slice(0, 10);
+  }
+
   function minimumOdds(probability) {
     const exact = EV_MIN / probability;
     return { exact, step: Math.ceil((exact - 1e-12) * 100) / 100 };
@@ -51,7 +61,7 @@
     const fixtures = new Map();
     for (const row of Array.isArray(predictions) ? predictions : []) {
       const time = Date.parse(row.time);
-      if (!Number.isFinite(time) || time <= now || dayKeyMsk(time) !== day) continue;
+      if (!Number.isFinite(time) || time <= now || gameDayKeyMsk(time) !== day) continue;
       if (!row.home || !row.away) continue;
       const key = api.canonicalFixtureKey(model, row.league, row.home, row.away);
       if (!fixtures.has(key) || time < fixtures.get(key).time) {
@@ -65,7 +75,7 @@
     const fixtures = new Map();
     for (const row of Array.isArray(predictions) ? predictions : []) {
       const time = Date.parse(row.time);
-      if (!Number.isFinite(time) || time <= now || dayKeyMsk(time) !== day) continue;
+      if (!Number.isFinite(time) || time <= now || gameDayKeyMsk(time) !== day) continue;
       const competition = ntApi.resolveCompetition(model, row.league);
       const home = ntApi.resolveTeam(model, row.home);
       const away = ntApi.resolveTeam(model, row.away);
@@ -393,6 +403,7 @@
     CANDIDATE_MARKETS,
     CANDIDATE_BOOKMAKERS,
     dayKeyMsk,
+    gameDayKeyMsk,
     gameSessionForTime,
     minimumOdds,
     candidate,
@@ -749,8 +760,8 @@
         fetchJson('./data/nt_model.json'),
       ]);
       const now = Date.now();
-      const currentDay = dayKeyMsk(now);
-      const isCurrent = data.date === currentDay;
+      const currentGameDay = gameDayKeyMsk(now);
+      const isCurrent = data.date === currentGameDay;
       const candidates = isCurrent
         ? buildCandidates(data, { goals, cornersCards, stats, nations }, now)
         : [];
