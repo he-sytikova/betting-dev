@@ -383,7 +383,17 @@ function buildArtifact(input) {
       rejected.push(rejection(candidate, 'fixture_not_gated'));
       continue;
     }
-    let bestPrice = null;
+    const priceBase = {
+      time: isoTime(candidate.time),
+      model_key: candidate.modelKey,
+      event_id: candidate.eventId || null,
+      league: candidate.league,
+      home: candidate.home,
+      away: candidate.away,
+      model: candidate.modelLabel,
+      label: candidate.label,
+      p_model: candidate.probability,
+    };
     for (const bookmaker of BOOKMAKERS) {
       const record = records.find(row => row.bookmaker === bookmaker);
       if (!record) {
@@ -404,26 +414,17 @@ function buildArtifact(input) {
         continue;
       }
       const quote = candidateOdds(candidate, line);
-      if (quote && (!bestPrice || quote.odds > bestPrice.odds)) {
-        bestPrice = { ...quote, bookmaker, match_id: String(record.match_id) };
+      if (quote) {
+        candidatePrices.push({
+          ...priceBase,
+          ...quote,
+          bookmaker,
+          match_id: String(record.match_id),
+        });
       }
       const result = evaluatePrice(candidate, line);
       if (result.leg) priced.push(result.leg);
       else rejected.push(result.rejection);
-    }
-    if (bestPrice) {
-      candidatePrices.push({
-        time: isoTime(candidate.time),
-        model_key: candidate.modelKey,
-        event_id: candidate.eventId || null,
-        league: candidate.league,
-        home: candidate.home,
-        away: candidate.away,
-        model: candidate.modelLabel,
-        label: candidate.label,
-        p_model: candidate.probability,
-        ...bestPrice,
-      });
     }
   }
 

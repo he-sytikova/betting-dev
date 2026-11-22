@@ -229,6 +229,34 @@ test('market filtering selects the exact family without changing the source rows
   assert.deepEqual(rows, snapshot);
 });
 
+test('bookmaker names and combined filters select every matching quote without changing source rows', () => {
+  const rows = [
+    {
+      modelLabel: 'Угловые', label: 'ТБ 8.5',
+      bookmakerPrices: { Marathonbet: { bookmaker: 'Marathonbet', odds: 1.5 } },
+    },
+    {
+      modelLabel: 'Голы', label: 'ТБ 2.5',
+      bookmakerPrices: { Marathonbet: { bookmaker: 'Marathonbet', odds: 1.8 } },
+    },
+    {
+      modelLabel: 'Угловые', label: 'ТМ 10.5',
+      bookmakerPrices: { Winline: { bookmaker: 'Winline', odds: 1.7 } },
+    },
+    { modelLabel: 'Угловые', label: 'ТБ 9.5', bestBookmaker: 'Marathonbet', bestOdds: 1.6 },
+    { modelLabel: 'Угловые', label: 'ТБ 11.5', bestBookmaker: 'Future BK', bestOdds: 1.9 },
+    null,
+  ];
+  const snapshot = JSON.parse(JSON.stringify(rows));
+  assert.deepEqual(board.candidateBookmakerNames(rows), ['Marathonbet', 'Winline', 'Future BK']);
+  const corners = board.filterCandidatesByMarket(rows, 'Угловые');
+  assert.deepEqual(board.filterCandidatesByBookmaker(corners, 'Marathonbet').map(row => row.label), ['ТБ 8.5', 'ТБ 9.5']);
+  assert.deepEqual(board.filterCandidatesByBookmaker(corners, 'Fonbet'), []);
+  assert.deepEqual(board.filterCandidatesByBookmaker(null, 'Marathonbet'), []);
+  assert.deepEqual(board.candidateBookmakerPrice(rows[4], 'Future BK'), { bookmaker: 'Future BK', odds: 1.9 });
+  assert.deepEqual(rows, snapshot);
+});
+
 test('groupCandidatesByMatch collapses markets into exact match events without changing their order', () => {
   const first = {
     time: Date.parse(`${DAY}T18:00:00Z`), home: 'Newcastle', away: 'Everton',
@@ -281,18 +309,25 @@ test('candidate price merge selects the best valid quote and never mutates candi
     { ...quote, bookmaker: 'Fonbet', odds: 1.4 },
     { ...quote, bookmaker: 'Winline', odds: 1.55 },
     { ...quote, bookmaker: 'Marathonbet', odds: 1.5 },
+    { ...quote, bookmaker: 'Marathonbet', odds: 1.45 },
     { ...quote, bookmaker: 'Unknown', odds: 9 },
     { ...quote, bookmaker: 'Winline', odds: 1 },
     { ...quote, bookmaker: 'Winline', odds: Infinity },
   ] });
   assert.equal(merged[0].bestOdds, 1.55);
   assert.equal(merged[0].bestBookmaker, 'Winline');
+  assert.deepEqual(merged[0].bookmakerPrices, {
+    Fonbet: { bookmaker: 'Fonbet', odds: 1.4 },
+    Winline: { bookmaker: 'Winline', odds: 1.55 },
+    Marathonbet: { bookmaker: 'Marathonbet', odds: 1.5 },
+  });
   assert.equal(merged[1].bestOdds, null);
   assert.equal(merged[1].bestBookmaker, null);
+  assert.deepEqual(merged[1].bookmakerPrices, {});
   assert.deepEqual(rows, snapshot);
   assert.notEqual(merged[0], row);
   assert.deepEqual(board.mergeCandidatePrices(rows, {}), rows.map(item => ({
-    ...item, bestOdds: null, bestBookmaker: null,
+    ...item, bestOdds: null, bestBookmaker: null, bookmakerPrices: {},
   })));
   assert.deepEqual(board.mergeCandidatePrices(null, { candidate_prices: [] }), []);
 });

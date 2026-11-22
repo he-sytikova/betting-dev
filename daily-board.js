@@ -20,6 +20,7 @@
   const CANDIDATE_MARKETS = Object.freeze([
     'Голы', 'Угловые', 'ЖК', 'Фолы', 'Удары', 'Удары в створ', 'Лига наций',
   ]);
+  const CANDIDATE_BOOKMAKERS = Object.freeze(['Fonbet', 'Marathonbet', 'Winline']);
 
   function gameSessionForTime(value) {
     const time = value instanceof Date ? value.getTime() : (typeof value === 'number' ? value : Date.parse(value));
@@ -185,7 +186,38 @@
   function filterCandidatesByMarket(rows, market = 'all') {
     const candidates = Array.isArray(rows) ? rows : [];
     if (market === 'all') return [...candidates];
-    return candidates.filter(row => row.modelLabel === market);
+    return candidates.filter(row => row?.modelLabel === market);
+  }
+
+  function candidateBookmakerPrice(row, bookmaker) {
+    const direct = row?.bookmakerPrices?.[bookmaker];
+    if (Number.isFinite(direct?.odds) && direct.odds > 1) return direct;
+    if (row?.bestBookmaker === bookmaker && Number.isFinite(row?.bestOdds) && row.bestOdds > 1) {
+      return { bookmaker, odds: row.bestOdds };
+    }
+    return null;
+  }
+
+  function candidateBookmakerNames(rows) {
+    const present = new Set();
+    for (const row of Array.isArray(rows) ? rows : []) {
+      for (const [bookmaker, price] of Object.entries(row?.bookmakerPrices || {})) {
+        if (Number.isFinite(price?.odds) && price.odds > 1) present.add(bookmaker);
+      }
+      if (row?.bestBookmaker && Number.isFinite(row?.bestOdds) && row.bestOdds > 1) {
+        present.add(row.bestBookmaker);
+      }
+    }
+    const known = CANDIDATE_BOOKMAKERS.filter(bookmaker => present.has(bookmaker));
+    const additional = [...present].filter(bookmaker => !CANDIDATE_BOOKMAKERS.includes(bookmaker))
+      .sort((a, b) => a.localeCompare(b, 'ru'));
+    return [...known, ...additional];
+  }
+
+  function filterCandidatesByBookmaker(rows, bookmaker = 'all') {
+    const candidates = Array.isArray(rows) ? rows : [];
+    if (bookmaker === 'all') return [...candidates];
+    return candidates.filter(row => candidateBookmakerPrice(row, bookmaker));
   }
 
   function groupCandidatesByMatch(rows) {
@@ -237,19 +269,26 @@
   }
 
   function mergeCandidatePrices(rows, payload) {
-    const bestByKey = new Map();
-    const allowedBookmakers = new Set(['Fonbet', 'Marathonbet', 'Winline']);
+    const pricesByKey = new Map();
     for (const raw of Array.isArray(payload?.candidate_prices) ? payload.candidate_prices : []) {
       const key = candidatePriceKey(raw);
       const odds = finiteNumber(raw?.odds);
       const bookmaker = String(raw?.bookmaker || '').trim();
-      if (!key || !Number.isFinite(odds) || odds <= 1 || !allowedBookmakers.has(bookmaker)) continue;
-      const current = bestByKey.get(key);
-      if (!current || odds > current.odds) bestByKey.set(key, { odds, bookmaker });
+      if (!key || !Number.isFinite(odds) || odds <= 1 || !CANDIDATE_BOOKMAKERS.includes(bookmaker)) continue;
+      if (!pricesByKey.has(key)) pricesByKey.set(key, { best: null, byBookmaker: {} });
+      const entry = pricesByKey.get(key);
+      const current = entry.byBookmaker[bookmaker];
+      if (!current || odds > current.odds) entry.byBookmaker[bookmaker] = { odds, bookmaker };
+      if (!entry.best || odds > entry.best.odds) entry.best = { odds, bookmaker };
     }
     return (Array.isArray(rows) ? rows : []).map(row => {
-      const best = bestByKey.get(candidatePriceKey(row));
-      return { ...row, bestOdds: best?.odds ?? null, bestBookmaker: best?.bookmaker ?? null };
+      const entry = pricesByKey.get(candidatePriceKey(row));
+      return {
+        ...row,
+        bestOdds: entry?.best?.odds ?? null,
+        bestBookmaker: entry?.best?.bookmaker ?? null,
+        bookmakerPrices: entry?.byBookmaker || {},
+      };
     });
   }
 
@@ -350,6 +389,7 @@
     EV_MIN,
     GAME_SESSIONS,
     CANDIDATE_MARKETS,
+    CANDIDATE_BOOKMAKERS,
     dayKeyMsk,
     gameSessionForTime,
     minimumOdds,
@@ -359,6 +399,9 @@
     buildCandidates,
     candidateMarketNames,
     filterCandidatesByMarket,
+    candidateBookmakerPrice,
+    candidateBookmakerNames,
+    filterCandidatesByBookmaker,
     groupCandidatesByMatch,
     groupCandidatesBySession,
     candidatePriceKey,
@@ -428,7 +471,7 @@
     return header;
   }
 
-  function candidateMatch(group) {
+  function candidateMatch(group, bookmaker = 'all') {
     const item = node('details', 'daily-match');
     const summary = node('summary', 'daily-match__summary');
     const toggle = node('span', 'daily-match__toggle');
@@ -446,18 +489,21 @@
       const marketMeta = node('div', 'daily-row__meta');
       marketMeta.append(node('span', '', row.modelLabel));
       marketRow.append(marketMeta);
+      const selectedPrice = bookmaker === 'all' ? null : candidateBookmakerPrice(row, bookmaker);
+      const displayedOdds = selectedPrice?.odds ?? row.bestOdds;
+      const displayedBookmaker = selectedPrice?.bookmaker ?? row.bestBookmaker;
       const market = node('div', 'daily-row__market');
       market.append(
         node('strong', '', row.label),
         metric('Модель', pct(row.probability)),
         metric('Мин. кэф', decimal(row.oMinStep)),
-        metric('Лучший кэф', Number.isFinite(row.bestOdds)
-          ? `${decimal(row.bestOdds)} · ${row.bestBookmaker}`
+        metric(bookmaker === 'all' ? 'Лучший кэф' : `Кэф ${bookmaker}`, Number.isFinite(displayedOdds)
+          ? `${decimal(displayedOdds)} · ${displayedBookmaker}`
           : '—'),
       );
       marketRow.append(market);
-      marketRow.append(node('p', 'daily-row__status', Number.isFinite(row.bestOdds)
-        ? 'Лучшая доступная цена трёх БК · справочно, не допуск в купон'
+      marketRow.append(node('p', 'daily-row__status', Number.isFinite(displayedOdds)
+        ? `${bookmaker === 'all' ? 'Лучшая доступная цена трёх БК' : `Цена ${bookmaker}`} · справочно, не допуск в купон`
         : 'Цена отсутствует или рынок не подтверждён · fair и EV не рассчитаны'));
       markets.append(marketRow);
     }
@@ -468,6 +514,29 @@
   let currentCandidateRows = [];
   let currentCandidateEmptyMessage = 'Загрузка претендентов…';
   let selectedCandidateMarket = 'all';
+  let selectedCandidateBookmaker = 'all';
+
+  function appendCandidateFilterGroup(fragment, options) {
+    const group = node('div', 'daily-market-filter-row');
+    group.setAttribute('role', 'group');
+    group.setAttribute('aria-label', options.label);
+    group.append(node('span', 'daily-market-filter-label', options.label));
+    for (const value of ['all', ...options.values]) {
+      const active = options.selected === value;
+      const button = node('button', `daily-market-filter${active ? ' is-active' : ''}`,
+        value === 'all' ? options.allLabel : value);
+      button.type = 'button';
+      button.dataset[options.dataKey] = value;
+      button.setAttribute('aria-pressed', String(active));
+      button.addEventListener('click', () => {
+        options.onSelect(value);
+        renderCandidateFilters();
+        renderCandidateList();
+      });
+      group.append(button);
+    }
+    fragment.append(group);
+  }
 
   function renderCandidateFilters() {
     const bar = $('daily-candidate-filters');
@@ -476,41 +545,57 @@
     if (selectedCandidateMarket !== 'all' && !markets.includes(selectedCandidateMarket)) {
       markets.push(selectedCandidateMarket);
     }
+    const bookmakers = candidateBookmakerNames(currentCandidateRows);
+    if (selectedCandidateBookmaker !== 'all' && !bookmakers.includes(selectedCandidateBookmaker)) {
+      bookmakers.push(selectedCandidateBookmaker);
+    }
     const fragment = document.createDocumentFragment();
-    for (const market of ['all', ...markets]) {
-      const active = selectedCandidateMarket === market;
-      const button = node('button', `daily-market-filter${active ? ' is-active' : ''}`,
-        market === 'all' ? 'Все рынки' : market);
-      button.type = 'button';
-      button.dataset.market = market;
-      button.setAttribute('aria-pressed', String(active));
-      button.addEventListener('click', () => {
-        selectedCandidateMarket = market;
-        renderCandidateFilters();
-        renderCandidateList();
+    if (markets.length) {
+      appendCandidateFilterGroup(fragment, {
+        label: 'Рынок', allLabel: 'Все рынки', values: markets,
+        selected: selectedCandidateMarket, dataKey: 'market',
+        onSelect: value => { selectedCandidateMarket = value; },
       });
-      fragment.append(button);
+    }
+    if (bookmakers.length) {
+      appendCandidateFilterGroup(fragment, {
+        label: 'Букмекер', allLabel: 'Все БК', values: bookmakers,
+        selected: selectedCandidateBookmaker, dataKey: 'bookmaker',
+        onSelect: value => { selectedCandidateBookmaker = value; },
+      });
     }
     bar.replaceChildren(fragment);
-    bar.hidden = markets.length === 0;
+    bar.hidden = markets.length === 0 && bookmakers.length === 0;
+  }
+
+  function candidateFilterEmptyMessage() {
+    if (selectedCandidateMarket !== 'all' && selectedCandidateBookmaker !== 'all') {
+      return `По рынку «${selectedCandidateMarket}» и БК «${selectedCandidateBookmaker}» претендентов нет.`;
+    }
+    if (selectedCandidateBookmaker !== 'all') return `По БК «${selectedCandidateBookmaker}» претендентов нет.`;
+    if (selectedCandidateMarket !== 'all') return `По рынку «${selectedCandidateMarket}» претендентов нет.`;
+    return currentCandidateEmptyMessage;
   }
 
   function renderCandidateList() {
     const list = $('daily-candidates-list');
     const fragment = document.createDocumentFragment();
-    const rows = filterCandidatesByMarket(currentCandidateRows, selectedCandidateMarket);
+    const marketRows = filterCandidatesByMarket(currentCandidateRows, selectedCandidateMarket);
+    const rows = filterCandidatesByBookmaker(marketRows, selectedCandidateBookmaker);
     const groups = groupCandidatesBySession(rows);
     for (const session of groups) {
       const section = node('section', 'daily-session');
       section.append(sessionHeader(session, marketCountLabel(session.rows.length)));
-      for (const group of groupCandidatesByMatch(session.rows)) section.append(candidateMatch(group));
+      for (const group of groupCandidatesByMatch(session.rows)) {
+        section.append(candidateMatch(group, selectedCandidateBookmaker));
+      }
       fragment.append(section);
     }
     list.replaceChildren(fragment);
     const visibleCount = groups.reduce((total, session) => total + session.rows.length, 0);
     const empty = $('daily-candidates-empty');
-    empty.textContent = currentCandidateRows.length > 0 && visibleCount === 0 && selectedCandidateMarket !== 'all'
-      ? `По рынку «${selectedCandidateMarket}» претендентов нет.`
+    empty.textContent = currentCandidateRows.length > 0 && visibleCount === 0
+      ? candidateFilterEmptyMessage()
       : currentCandidateEmptyMessage;
     $('daily-candidates-count').textContent = String(visibleCount);
     empty.hidden = visibleCount > 0;
