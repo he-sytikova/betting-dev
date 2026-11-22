@@ -72,8 +72,8 @@ Calculations and admission rules:
 - Admission requires `p_model >= 0.75`, `EV >= 1.03`, `abs(delta_pp) < 15`, and the minimum-price check. Over selections additionally require `p_model >= fair`.
 - Only confirmed model/bookmaker markets are priced. Yellow cards, fouls, shots, shots on target and European cups are not admitted by this pipeline.
 - Duplicate market prices are reduced to the highest eligible bookmaker price; losing prices remain in diagnostics.
-- The Moscow game day is divided into four exact sessions: morning 06:00–12:00, day 12:00–18:00, evening 18:00–00:00 and night 00:00–06:00. Every kickoff belongs to exactly one session.
-- Each session independently contains at most two singles and one double, ranked by model probability, then EV and price: no more than twelve prepared money coupons per day. A double uses different matches from the same session and one bookmaker. Combined odds, probability and EV are products of the leg values; its minimum price is the product of leg minimums.
+- The Moscow game day uses four coupon sessions: session 1 runs 12:00–15:00, session 2 runs 15:00–18:00, session 3 runs 18:00–21:00 and session 4 runs 21:00–23:55 inclusive. Kickoffs outside these windows do not enter prepared coupons.
+- Each session independently contains at most five singles and two doubles, ranked by model probability, then EV and price: no more than 28 prepared money coupons per day. A double uses different matches from the same session and one bookmaker. Combined odds, probability and EV are products of the leg values; its minimum price is the product of leg minimums.
 - For a later session, `--used-teams session-teams.json` accepts an array (or `{ "teams": [] }`) of teams already used in doubles. Such teams are excluded from new doubles.
 
 Possible winnings can be used only after actual bookmaker settlement, on later events in the following session. Settlement time and funds availability remain bookmaker-controlled; the site does not transfer money or place bets. Financial reporting covers only owner-confirmed placements and remains local to the browser as described above.

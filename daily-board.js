@@ -12,10 +12,10 @@
   const MIN_PROBABILITY = 0.75;
   const EV_MIN = 1.03;
   const GAME_SESSIONS = Object.freeze([
-    Object.freeze({ id: 'morning', label: 'Утренняя', timeLabel: '06:00–12:00', startMinute: 360 }),
-    Object.freeze({ id: 'day', label: 'Дневная', timeLabel: '12:00–18:00', startMinute: 720 }),
-    Object.freeze({ id: 'evening', label: 'Вечерняя', timeLabel: '18:00–00:00', startMinute: 1080 }),
-    Object.freeze({ id: 'night', label: 'Ночная', timeLabel: '00:00–06:00', startMinute: 0 }),
+    Object.freeze({ id: 'session1', label: 'Сессия 1', timeLabel: '12:00–15:00', startMinute: 720 }),
+    Object.freeze({ id: 'session2', label: 'Сессия 2', timeLabel: '15:00–18:00', startMinute: 900 }),
+    Object.freeze({ id: 'session3', label: 'Сессия 3', timeLabel: '18:00–21:00', startMinute: 1080 }),
+    Object.freeze({ id: 'session4', label: 'Сессия 4', timeLabel: '21:00–23:55', startMinute: 1260 }),
   ]);
 
   function gameSessionForTime(value) {
@@ -23,10 +23,11 @@
     if (!Number.isFinite(time)) return null;
     const moscow = new Date(time + MOSCOW_OFFSET_MS);
     const minute = moscow.getUTCHours() * 60 + moscow.getUTCMinutes();
-    if (minute < 360) return GAME_SESSIONS[3];
-    if (minute < 720) return GAME_SESSIONS[0];
+    if (minute < 720 || minute > 1435) return null;
+    if (minute < 900) return GAME_SESSIONS[0];
     if (minute < 1080) return GAME_SESSIONS[1];
-    return GAME_SESSIONS[2];
+    if (minute < 1260) return GAME_SESSIONS[2];
+    return GAME_SESSIONS[3];
   }
 
   function dayKeyMsk(value) {
@@ -445,16 +446,18 @@
   function renderCandidates(rows) {
     const list = $('daily-candidates-list');
     const fragment = document.createDocumentFragment();
-    for (const session of groupCandidatesBySession(rows)) {
+    const groups = groupCandidatesBySession(rows);
+    for (const session of groups) {
       const section = node('section', 'daily-session');
       section.append(sessionHeader(session, marketCountLabel(session.rows.length)));
       for (const group of groupCandidatesByMatch(session.rows)) section.append(candidateMatch(group));
       fragment.append(section);
     }
     list.replaceChildren(fragment);
-    $('daily-candidates-count').textContent = String(rows.length);
-    $('daily-candidates-empty').hidden = rows.length > 0;
-    list.hidden = rows.length === 0;
+    const visibleCount = groups.reduce((total, session) => total + session.rows.length, 0);
+    $('daily-candidates-count').textContent = String(visibleCount);
+    $('daily-candidates-empty').hidden = visibleCount > 0;
+    list.hidden = visibleCount === 0;
   }
 
   function renderCouponLeg(leg) {

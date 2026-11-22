@@ -11,8 +11,8 @@ const statsApi = require('../../stats-internal-model.js');
 const ntApi = require('../../nt-internal-model.js');
 
 const BOOKMAKERS = ['Fonbet', 'Marathonbet', 'Winline'];
-const SINGLE_LIMIT = 2;
-const DOUBLE_LIMIT = 1;
+const SINGLE_LIMIT = 5;
+const DOUBLE_LIMIT = 2;
 const DELTA_LIMIT_PP = 15;
 const EPS = 1e-12;
 const TOTAL_LABEL = /^(ТБ|ТМ|ИТБ1|ИТМ1|ИТБ2|ИТМ2) (\d+(?:\.\d+)?)$/;
