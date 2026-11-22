@@ -190,16 +190,16 @@ test('doubles use one bookmaker, different matches and exact combined formulas',
   assert.equal(coupon.status, 'prepared');
 });
 
-test('session selection applies two singles and one double independently to all four sessions', () => {
+test('session selection applies five singles and two doubles independently to all four sessions', () => {
   const times = {
-    morning: `${DAY}T04:00:00.000Z`,
-    day: `${DAY}T10:00:00.000Z`,
-    evening: `${DAY}T16:00:00.000Z`,
-    night: `${DAY}T22:00:00.000Z`,
+    session1: `${DAY}T10:00:00.000Z`,
+    session2: `${DAY}T13:00:00.000Z`,
+    session3: `${DAY}T16:00:00.000Z`,
+    session4: `${DAY}T19:00:00.000Z`,
   };
   const legs = [];
   for (const [session, time] of Object.entries(times)) {
-    for (let index = 0; index < 3; index += 1) {
+    for (let index = 0; index < 6; index += 1) {
       legs.push(eligibleLeg({
         time,
         model_key: `model|E0|${session}|${index}`,
@@ -211,17 +211,17 @@ test('session selection applies two singles and one double independently to all 
     }
   }
   const result = coupons.selectSessionCoupons(legs);
-  assert.equal(result.coupons.length, 12);
+  assert.equal(result.coupons.length, 28);
   for (const session of Object.keys(times)) {
     const rows = result.coupons.filter(coupon => coupon.session_id === session);
-    assert.equal(rows.filter(coupon => coupon.type === 'single').length, 2, session);
-    assert.equal(rows.filter(coupon => coupon.type === 'double').length, 1, session);
-    assert.equal(result.sessions[session].eligible_legs, 3);
+    assert.equal(rows.filter(coupon => coupon.type === 'single').length, 5, session);
+    assert.equal(rows.filter(coupon => coupon.type === 'double').length, 2, session);
+    assert.equal(result.sessions[session].eligible_legs, 6);
     for (const coupon of rows) {
       assert.ok(coupon.legs.every(leg => board.gameSessionForTime(leg.time)?.id === session));
     }
   }
-  const crossSession = coupons.selectDoubles([legs[0], legs[3]]);
+  const crossSession = coupons.selectDoubles([legs[0], legs[6]]);
   assert.equal(crossSession.candidates, 0);
 });
 
@@ -410,10 +410,10 @@ test('end-to-end artifact joins only exact gated audit identities and passes hom
   const probabilities = new Set(expectedCandidates.map(row => row.probability));
   for (const coupon of result.artifact.prepared_coupons) {
     assert.equal(coupon.status, 'prepared');
-    assert.equal(coupon.session_id, 'evening');
+    assert.equal(coupon.session_id, 'session4');
     for (const leg of coupon.legs) assert.ok(probabilities.has(leg.p_model));
   }
-  assert.equal(result.artifact.summary.sessions.evening.eligible_legs > 0, true);
+  assert.equal(result.artifact.summary.sessions.session4.eligible_legs > 0, true);
   const best = result.artifact.candidate_prices.find(row => row.label === '1X');
   assert.equal(best.bookmaker, 'Winline');
   assert.equal(best.match_id, '102');

@@ -46,7 +46,7 @@ function coupon(overrides = {}) {
 function doubleCoupon(overrides = {}) {
   return coupon({
     coupon_id: 'double-1',
-    session_id: 'evening',
+    session_id: 'session4',
     legs: [
       {
         home: 'Newcastle', away: 'Everton', league: 'Premier League',

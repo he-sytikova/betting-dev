@@ -81,30 +81,33 @@ test('Moscow day changes at 21:00 UTC, not at browser-local midnight', () => {
   assert.equal(board.dayKeyMsk('invalid'), null);
 });
 
-test('four game sessions partition the Moscow day at exact boundaries', () => {
-  assert.deepEqual(board.GAME_SESSIONS.map(session => session.id), ['morning', 'day', 'evening', 'night']);
-  assert.equal(board.gameSessionForTime('2026-11-20T21:00:00.000Z').id, 'night');
-  assert.equal(board.gameSessionForTime('2026-11-21T02:59:59.000Z').id, 'night');
-  assert.equal(board.gameSessionForTime('2026-11-21T03:00:00.000Z').id, 'morning');
-  assert.equal(board.gameSessionForTime('2026-11-21T08:59:59.000Z').id, 'morning');
-  assert.equal(board.gameSessionForTime('2026-11-21T09:00:00.000Z').id, 'day');
-  assert.equal(board.gameSessionForTime('2026-11-21T14:59:59.000Z').id, 'day');
-  assert.equal(board.gameSessionForTime('2026-11-21T15:00:00.000Z').id, 'evening');
-  assert.equal(board.gameSessionForTime('2026-11-21T20:59:59.000Z').id, 'evening');
-  assert.equal(board.gameSessionForTime('2026-11-21T21:00:00.000Z').id, 'night');
+test('four coupon sessions use exact Moscow boundaries and exclude outside kickoffs', () => {
+  assert.deepEqual(board.GAME_SESSIONS.map(session => session.id), ['session1', 'session2', 'session3', 'session4']);
+  assert.equal(board.gameSessionForTime('2026-11-21T08:59:59.000Z'), null);
+  assert.equal(board.gameSessionForTime('2026-11-21T09:00:00.000Z').id, 'session1');
+  assert.equal(board.gameSessionForTime('2026-11-21T11:59:59.000Z').id, 'session1');
+  assert.equal(board.gameSessionForTime('2026-11-21T12:00:00.000Z').id, 'session2');
+  assert.equal(board.gameSessionForTime('2026-11-21T14:59:59.000Z').id, 'session2');
+  assert.equal(board.gameSessionForTime('2026-11-21T15:00:00.000Z').id, 'session3');
+  assert.equal(board.gameSessionForTime('2026-11-21T17:59:59.000Z').id, 'session3');
+  assert.equal(board.gameSessionForTime('2026-11-21T18:00:00.000Z').id, 'session4');
+  assert.equal(board.gameSessionForTime('2026-11-21T20:55:00.000Z').id, 'session4');
+  assert.equal(board.gameSessionForTime('2026-11-21T20:56:00.000Z'), null);
+  assert.equal(board.gameSessionForTime('2026-11-21T03:00:00.000Z'), null);
   assert.equal(board.gameSessionForTime('not-a-time'), null);
 });
 
-test('candidate grouping keeps every market row in its kickoff session', () => {
+test('candidate grouping keeps every market row in its kickoff session and drops outside kickoffs', () => {
   const rows = [
     { time: '2026-11-21T09:00:00.000Z', home: 'Д1', away: 'Д2', label: 'П1' },
     { time: '2026-11-21T09:00:00.000Z', home: 'Д1', away: 'Д2', label: 'X' },
-    { time: '2026-11-21T03:00:00.000Z', home: 'У1', away: 'У2', label: 'П1' },
+    { time: '2026-11-21T13:00:00.000Z', home: 'В1', away: 'В2', label: 'П1' },
+    { time: '2026-11-21T03:00:00.000Z', home: 'Р1', away: 'Р2', label: 'П1' },
   ];
   const groups = board.groupCandidatesBySession(rows);
-  assert.deepEqual(groups.map(group => group.id), ['morning', 'day']);
-  assert.equal(groups[0].rows.length, 1);
-  assert.equal(groups[1].rows.length, 2);
+  assert.deepEqual(groups.map(group => group.id), ['session1', 'session2']);
+  assert.equal(groups[0].rows.length, 2);
+  assert.equal(groups[1].rows.length, 1);
   assert.deepEqual(board.groupCandidatesBySession(null), []);
 });
 
@@ -294,11 +297,12 @@ test('normalizeCoupon derives double odds, probability and EV from same-bookmake
   assert.equal(coupon.status, 'prepared');
 });
 
-test('normalizeCoupon derives sessions and rejects mixed sessions and declared mismatches', () => {
-  const morning = board.normalizeCoupon({ ...leg({ time: `${DAY}T03:00:00Z`, session_id: 'morning' }) }, 0);
-  assert.equal(morning.sessionId, 'morning');
-  assert.equal(morning.legs[0].sessionId, 'morning');
-  assert.equal(board.normalizeCoupon({ ...leg(), session_id: 'morning' }, 0), null);
+test('normalizeCoupon derives sessions and rejects mixed, mismatched and outside sessions', () => {
+  const first = board.normalizeCoupon({ ...leg({ time: `${DAY}T09:00:00Z`, session_id: 'session1' }) }, 0);
+  assert.equal(first.sessionId, 'session1');
+  assert.equal(first.legs[0].sessionId, 'session1');
+  assert.equal(board.normalizeCoupon({ ...leg(), session_id: 'session1' }, 0), null);
+  assert.equal(board.normalizeCoupon({ ...leg({ time: `${DAY}T03:00:00Z` }) }, 0), null);
   const mixed = board.normalizeCoupon({
     legs: [leg(), leg({ home: 'Spain', away: 'France', time: `${DAY}T09:00:00Z` })],
   }, 0);

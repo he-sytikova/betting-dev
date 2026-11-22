@@ -42,6 +42,7 @@ class DailyAutomationWorkflowTest(unittest.TestCase):
         self.assertIn("board.gameSessionForTime(coupon.legs?.[0]?.time)", PIPELINE)
         self.assertIn("coupon.session_id !== session.id", PIPELINE)
         self.assertIn("sessionCounts[session.id][coupon.type]", PIPELINE)
+        self.assertIn("coupon.type === 'single' ? 5 : 2", PIPELINE)
         self.assertNotIn("coupons.filter(item => item.type === 'single').length > 2", PIPELINE)
 
     def test_only_the_dated_homepage_json_can_be_committed(self):

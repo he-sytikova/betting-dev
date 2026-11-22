@@ -142,7 +142,7 @@ jobs:
               throw new Error('Coupon legs cross game sessions');
             }
             sessionCounts[session.id][coupon.type] += 1;
-            const limit = coupon.type === 'single' ? 2 : 1;
+            const limit = coupon.type === 'single' ? 5 : 2;
             if (sessionCounts[session.id][coupon.type] > limit) {
               throw new Error(`${session.id} ${coupon.type} limit exceeded`);
             }
