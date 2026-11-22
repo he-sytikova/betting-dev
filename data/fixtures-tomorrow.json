@@ -1,9 +1,9 @@
 {
  "date": "2026-11-23",
- "generatedAt": "2026-11-22T17:54:09.775150+00:00",
+ "generatedAt": "2026-11-22T18:53:04.429840+00:00",
  "fixtures": [
   {
-   "eventId": "s9-99.772838528",
+   "eventId": "s9-99.773314617",
    "time": "2026-11-22T21:00:00+00:00",
    "league": "Argentina. Torneo Regional Federal",
    "home": "AH Zapla",
@@ -507,14 +507,14 @@
    "away": "Fratria II"
   },
   {
-   "eventId": "s9-99.773075162",
+   "eventId": "s9-99.773298715",
    "time": "2026-11-23T12:00:00+00:00",
    "league": "Cameroon Championship. Women",
    "home": "Dja Sports (Women)",
    "away": "Cyclone (Women)"
   },
   {
-   "eventId": "s9-99.773075165",
+   "eventId": "s9-99.773302305",
    "time": "2026-11-23T12:00:00+00:00",
    "league": "Cameroon Championship. Women",
    "home": "Vision Foot (Women)",
@@ -724,14 +724,14 @@
    "away": "Ebolowa (Women)"
   },
   {
-   "eventId": "s9-99.773075774",
+   "eventId": "s9-99.773298721",
    "time": "2026-11-23T14:00:00+00:00",
    "league": "Cameroon Championship. Women",
    "home": "Eclair de Saa (Women)",
    "away": "Lekie Filles (Women)"
   },
   {
-   "eventId": "s9-99.773075168",
+   "eventId": "s9-99.773298718",
    "time": "2026-11-23T14:00:00+00:00",
    "league": "Cameroon Championship. Women",
    "home": "Louves Minproff (Women)",
