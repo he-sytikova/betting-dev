@@ -17,6 +17,9 @@
     Object.freeze({ id: 'session3', label: 'Сессия 3', timeLabel: '18:00–21:00', startMinute: 1080 }),
     Object.freeze({ id: 'session4', label: 'Сессия 4', timeLabel: '21:00–23:55', startMinute: 1260 }),
   ]);
+  const CANDIDATE_MARKETS = Object.freeze([
+    'Голы', 'Угловые', 'ЖК', 'Фолы', 'Удары', 'Удары в створ', 'Лига наций',
+  ]);
 
   function gameSessionForTime(value) {
     const time = value instanceof Date ? value.getTime() : (typeof value === 'number' ? value : Date.parse(value));
@@ -167,6 +170,22 @@
       ...nationsCandidates(models.nations, predictions, day, now),
     ];
     return rows.sort((a, b) => (a.time - b.time) || (b.probability - a.probability) || a.label.localeCompare(b.label, 'ru'));
+  }
+
+  function candidateMarketNames(rows) {
+    const present = new Set((Array.isArray(rows) ? rows : [])
+      .map(row => String(row?.modelLabel || '').trim())
+      .filter(Boolean));
+    const known = CANDIDATE_MARKETS.filter(market => present.has(market));
+    const additional = [...present].filter(market => !CANDIDATE_MARKETS.includes(market))
+      .sort((a, b) => a.localeCompare(b, 'ru'));
+    return [...known, ...additional];
+  }
+
+  function filterCandidatesByMarket(rows, market = 'all') {
+    const candidates = Array.isArray(rows) ? rows : [];
+    if (market === 'all') return [...candidates];
+    return candidates.filter(row => row.modelLabel === market);
   }
 
   function groupCandidatesByMatch(rows) {
@@ -330,6 +349,7 @@
     MIN_PROBABILITY,
     EV_MIN,
     GAME_SESSIONS,
+    CANDIDATE_MARKETS,
     dayKeyMsk,
     gameSessionForTime,
     minimumOdds,
@@ -337,6 +357,8 @@
     modelFixtures,
     nationsFixtures,
     buildCandidates,
+    candidateMarketNames,
+    filterCandidatesByMarket,
     groupCandidatesByMatch,
     groupCandidatesBySession,
     candidatePriceKey,
@@ -443,9 +465,40 @@
     return item;
   }
 
-  function renderCandidates(rows) {
+  let currentCandidateRows = [];
+  let currentCandidateEmptyMessage = 'Загрузка претендентов…';
+  let selectedCandidateMarket = 'all';
+
+  function renderCandidateFilters() {
+    const bar = $('daily-candidate-filters');
+    if (!bar) return;
+    const markets = candidateMarketNames(currentCandidateRows);
+    if (selectedCandidateMarket !== 'all' && !markets.includes(selectedCandidateMarket)) {
+      markets.push(selectedCandidateMarket);
+    }
+    const fragment = document.createDocumentFragment();
+    for (const market of ['all', ...markets]) {
+      const active = selectedCandidateMarket === market;
+      const button = node('button', `daily-market-filter${active ? ' is-active' : ''}`,
+        market === 'all' ? 'Все рынки' : market);
+      button.type = 'button';
+      button.dataset.market = market;
+      button.setAttribute('aria-pressed', String(active));
+      button.addEventListener('click', () => {
+        selectedCandidateMarket = market;
+        renderCandidateFilters();
+        renderCandidateList();
+      });
+      fragment.append(button);
+    }
+    bar.replaceChildren(fragment);
+    bar.hidden = markets.length === 0;
+  }
+
+  function renderCandidateList() {
     const list = $('daily-candidates-list');
     const fragment = document.createDocumentFragment();
+    const rows = filterCandidatesByMarket(currentCandidateRows, selectedCandidateMarket);
     const groups = groupCandidatesBySession(rows);
     for (const session of groups) {
       const section = node('section', 'daily-session');
@@ -455,9 +508,20 @@
     }
     list.replaceChildren(fragment);
     const visibleCount = groups.reduce((total, session) => total + session.rows.length, 0);
+    const empty = $('daily-candidates-empty');
+    empty.textContent = currentCandidateRows.length > 0 && visibleCount === 0 && selectedCandidateMarket !== 'all'
+      ? `По рынку «${selectedCandidateMarket}» претендентов нет.`
+      : currentCandidateEmptyMessage;
     $('daily-candidates-count').textContent = String(visibleCount);
-    $('daily-candidates-empty').hidden = visibleCount > 0;
+    empty.hidden = visibleCount > 0;
     list.hidden = visibleCount === 0;
+  }
+
+  function renderCandidates(rows, emptyMessage) {
+    currentCandidateRows = Array.isArray(rows) ? rows : [];
+    if (typeof emptyMessage === 'string') currentCandidateEmptyMessage = emptyMessage;
+    renderCandidateFilters();
+    renderCandidateList();
   }
 
   function renderCouponLeg(leg) {
@@ -603,11 +667,10 @@
       const candidates = isCurrent
         ? buildCandidates(data, { goals, cornersCards, stats, nations }, now)
         : [];
-      renderCandidates(candidates);
-      $('daily-board-date').textContent = `${dateRu(data.date)} · время МСК`;
-      $('daily-candidates-empty').textContent = isCurrent
+      renderCandidates(candidates, isCurrent
         ? 'На оставшуюся часть игрового дня нет модельных рынков с вероятностью от 75%.'
-        : `Снимок относится к ${dateRu(data.date)}, а не к текущему московскому дню. Данные нужно обновить.`;
+        : `Снимок относится к ${dateRu(data.date)}, а не к текущему московскому дню. Данные нужно обновить.`);
+      $('daily-board-date').textContent = `${dateRu(data.date)} · время МСК`;
 
       if (!isCurrent) {
         renderCoupons({ data_status: 'stale_snapshot', prepared_coupons: [] });
@@ -628,9 +691,8 @@
       $('daily-board-status').textContent = isCurrent ? 'Модельный снимок загружен' : 'Снимок устарел';
       $('daily-board-status').className = `daily-board__status ${isCurrent ? 'is-ready' : 'is-warning'}`;
     } catch (error) {
-      renderCandidates([]);
+      renderCandidates([], 'Не удалось загрузить активные модели или календарь.');
       renderCoupons({ data_status: 'source_unavailable', prepared_coupons: [] });
-      $('daily-candidates-empty').textContent = 'Не удалось загрузить активные модели или календарь.';
       $('daily-board-status').textContent = 'Ошибка загрузки';
       $('daily-board-status').className = 'daily-board__status is-warning';
       $('daily-board-date').textContent = error.message;

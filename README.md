@@ -10,6 +10,8 @@ GitHub Pages: enable **Settings → Pages → Deploy from a branch → main / ro
 
 `daily-board.js` calculates current Moscow-day candidates from the active model artifacts and `data.json`. It shows only future, model-resolved fixtures with `p_model >= 0.75`; no odds, fair probability or EV are invented before bookmaker lines are processed. A stale `data.json` date hides both daily sections.
 
+The candidate panel has display-only filters for every market family present: goals, corners, yellow cards, fouls, shots, shots on target and Nations League when available. The selected filter survives data refreshes, updates all visible counts and never changes candidate admission or coupon selection.
+
 Prepared singles and doubles are read from `analysis/doubles_YYYY-MM-DD.json`:
 
 ```json
