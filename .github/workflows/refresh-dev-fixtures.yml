@@ -32,10 +32,10 @@ jobs:
           curl --fail --silent --show-error --location \
             --retry 4 --retry-delay 5 \
             https://raw.githubusercontent.com/he-sytikova/betting/main/data.json \
-            --output data.json
+            --output "$RUNNER_TEMP/production-data.json"
           node -e "
             const fs = require('fs');
-            const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+            const data = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/production-data.json', 'utf8'));
             if (!data.date || !Array.isArray(data.predictions)) {
               throw new Error('Production data.json must contain date and predictions[]');
             }
@@ -51,6 +51,24 @@ jobs:
             console.log('Prediction records:', data.predictions.length);
             console.log('Upcoming fixture records:', future.length);
           "
+
+      - name: Keep the active game-day snapshot throughout session 5
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const board = require('./daily-board.js');
+          const now = Date.now();
+          const currentGameDay = board.gameDayKeyMsk(now);
+          const isAfterMidnight = currentGameDay !== board.dayKeyMsk(now);
+          const downloaded = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/production-data.json', 'utf8'));
+          const existing = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+          if (isAfterMidnight && existing.date === currentGameDay && downloaded.date !== currentGameDay) {
+            console.log(`Keeping active game-day snapshot ${existing.date} until 07:00 Moscow; downloaded=${downloaded.date}`);
+          } else {
+            fs.copyFileSync(process.env.RUNNER_TEMP + '/production-data.json', 'data.json');
+            console.log(`Accepted production snapshot ${downloaded.date}; active game day=${currentGameDay}`);
+          }
+          NODE
 
       - name: Fetch Euro365 bookmaker odds for the snapshot day
         env:

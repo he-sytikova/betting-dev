@@ -7,6 +7,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PIPELINE = (ROOT / ".github/workflows/acquire-bookmaker-lines.yml").read_text(encoding="utf-8")
 DEPLOY = (ROOT / ".github/workflows/deploy-pages.yml").read_text(encoding="utf-8")
+REFRESH = (ROOT / ".github/workflows/refresh-dev-fixtures.yml").read_text(encoding="utf-8")
 
 
 class DailyAutomationWorkflowTest(unittest.TestCase):
@@ -24,6 +25,8 @@ class DailyAutomationWorkflowTest(unittest.TestCase):
         self.assertIn("data.date !== targetDate", PIPELINE)
         self.assertIn("no coupon artifact will be published", PIPELINE)
         self.assertIn("Array.isArray(data.predictions)", PIPELINE)
+        self.assertIn("gameDayKeyMsk(Date.now())", PIPELINE)
+        self.assertNotIn("TZ=Europe/Moscow date +%F", PIPELINE)
 
     def test_acquisition_and_coupon_contracts_run_before_publication(self):
         tests = PIPELINE.index("- name: Test acquisition, pricing and homepage contracts")
@@ -54,6 +57,16 @@ class DailyAutomationWorkflowTest(unittest.TestCase):
         self.assertNotIn("git add *.csv", PIPELINE)
         self.assertIn("if-no-files-found: warn", PIPELINE)
         self.assertIn("probe-out/lines_${{ steps.date.outputs.date }}/", PIPELINE)
+
+    def test_refresh_keeps_the_active_snapshot_only_during_after_midnight_session_5(self):
+        selection = REFRESH.index("- name: Keep the active game-day snapshot throughout session 5")
+        odds = REFRESH.index("- name: Fetch Euro365 bookmaker odds for the snapshot day")
+        self.assertLess(selection, odds)
+        self.assertIn("currentGameDay = board.gameDayKeyMsk(now)", REFRESH)
+        self.assertIn("currentGameDay !== board.dayKeyMsk(now)", REFRESH)
+        self.assertIn("existing.date === currentGameDay", REFRESH)
+        self.assertIn("downloaded.date !== currentGameDay", REFRESH)
+        self.assertIn('--output "$RUNNER_TEMP/production-data.json"', REFRESH)
 
     def test_pages_deploys_daily_artifacts_after_bot_commits(self):
         self.assertIn('"analysis/*.json"', DEPLOY)

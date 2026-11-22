@@ -95,6 +95,14 @@ def moscow_day(value: Any) -> str:
     return parse_moment(value).astimezone(MOSCOW_TZ).date().isoformat()
 
 
+def moscow_game_day(value: Any) -> str:
+    """Return the date on which the 12:00–next-07:00 Moscow game day starts."""
+    local = parse_moment(value).astimezone(MOSCOW_TZ)
+    if local.hour * 60 + local.minute < 420:
+        local -= timedelta(days=1)
+    return local.date().isoformat()
+
+
 def valid_odds(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) and value > 1
 

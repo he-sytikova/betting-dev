@@ -14,7 +14,7 @@ from .common import (
     AcquisitionError,
     FetchResult,
     MarketAbsentError,
-    moscow_day,
+    moscow_game_day,
     normalize_team,
     parse_moment,
     request_json,
@@ -69,7 +69,7 @@ def load_fixtures(path: Path, target_date: str) -> list[dict[str, Any]]:
         if not home or not away:
             continue
         start = parse_moment(value.get("time") or value.get("start_time"))
-        if moscow_day(start) != target_date:
+        if moscow_game_day(start) != target_date:
             continue
         key = (normalize_team(home), normalize_team(away), start.isoformat())
         if not all(key[:2]) or key in seen:

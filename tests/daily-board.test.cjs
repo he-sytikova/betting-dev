@@ -81,6 +81,17 @@ test('Moscow day changes at 21:00 UTC, not at browser-local midnight', () => {
   assert.equal(board.dayKeyMsk('invalid'), null);
 });
 
+test('Moscow game day assigns 00:00–06:59:59 to the previous nights session', () => {
+  assert.equal(board.gameDayKeyMsk(Date.parse('2026-11-21T20:54:59Z')), '2026-11-21');
+  assert.equal(board.gameDayKeyMsk(Date.parse('2026-11-21T20:55:00Z')), '2026-11-21');
+  assert.equal(board.gameDayKeyMsk(Date.parse('2026-11-21T21:00:00Z')), '2026-11-21');
+  assert.equal(board.gameDayKeyMsk(Date.parse('2026-11-22T03:59:59Z')), '2026-11-21');
+  assert.equal(board.gameDayKeyMsk(Date.parse('2026-11-22T04:00:00Z')), '2026-11-22');
+  assert.equal(board.gameDayKeyMsk(Date.parse('2026-11-22T20:55:00Z')), '2026-11-22');
+  assert.equal(board.gameDayKeyMsk('2026-11-22T03:59:59Z'), '2026-11-21');
+  assert.equal(board.gameDayKeyMsk('invalid'), null);
+});
+
 test('five coupon sessions use exact Moscow boundaries and exclude outside kickoffs', () => {
   assert.deepEqual(board.GAME_SESSIONS.map(session => session.id), ['session1', 'session2', 'session3', 'session4', 'session5']);
   assert.equal(board.gameSessionForTime('2026-11-21T08:59:59.000Z'), null);
@@ -157,6 +168,24 @@ test('modelFixtures keeps future current-day matches and deduplicates by model i
   assert.equal(fixtures.length, 1);
   assert.equal(fixtures[0].time, Date.parse(`${DAY}T18:00:00Z`));
   assert.equal(fixtures[0].home, 'Newcastle');
+});
+
+test('buildCandidates includes only the snapshots own overnight occurrence', () => {
+  const overnightTime = Date.parse('2099-01-01T21:30:00Z'); // 00:30 MSK on 2 January.
+  const nextNightTime = Date.parse('2099-01-02T20:55:00Z'); // 23:55 MSK on 2 January.
+  const predictions = [clubFixture('2099-01-01T21:30:00Z'), clubFixture('2099-01-02T20:55:00Z')];
+  const rows = board.buildCandidates({ date: DAY, predictions }, { goals: goalsModel(), nations: loadNationsModel() }, NOW);
+  assert.ok(rows.length > 0);
+  assert.ok(rows.every(row => row.time === overnightTime));
+  assert.ok(rows.every(row => board.gameDayKeyMsk(row.time) === DAY));
+  assert.ok(rows.every(row => board.gameSessionForTime(row.time)?.id === 'session5'));
+
+  const nextNight = board.buildCandidates(
+    { date: '2099-01-02', predictions }, { goals: goalsModel(), nations: loadNationsModel() }, Date.parse('2099-01-02T12:00:00Z'),
+  );
+  assert.ok(nextNight.length > 0);
+  assert.ok(nextNight.every(row => row.time === nextNightTime));
+  assert.ok(nextNight.every(row => board.gameDayKeyMsk(row.time) === '2099-01-02'));
 });
 
 test('nationsFixtures rejects unknown teams and competitions outside UEFA Nations League', () => {

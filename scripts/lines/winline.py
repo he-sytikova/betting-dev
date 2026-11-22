@@ -17,7 +17,7 @@ from .common import (
     MOSCOW_TZ,
     AcquisitionError,
     MarketAbsentError,
-    moscow_day,
+    moscow_game_day,
     normalize_team,
     utc_now_iso,
     valid_odds,
@@ -159,7 +159,7 @@ def parse_winline_snapshot(
             start = parse_winline_start(row.get("start_text"), current)
         except (ValueError, TypeError, OverflowError):
             continue
-        if moscow_day(start) != target_date:
+        if moscow_game_day(start) != target_date:
             continue
         line = {
             "bookmaker": "Winline",

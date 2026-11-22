@@ -7,7 +7,7 @@ import re
 import urllib.parse
 from typing import Any, Iterable
 
-from .common import MarketAbsentError, moscow_day, parse_moment, valid_odds
+from .common import MarketAbsentError, moscow_game_day, parse_moment, valid_odds
 
 FONBET_SEED_HOSTS = (
     "https://line-lb51.bk6bba-resources.com",
@@ -157,7 +157,7 @@ def parse_fonbet_snapshot(payload: dict[str, Any], target_date: str) -> list[dic
             start = parse_moment(event.get("startTime"))
         except (ValueError, TypeError, OverflowError):
             continue
-        if moscow_day(start) != target_date:
+        if moscow_game_day(start) != target_date:
             continue
         blocks = factors_by_event.get(event_id, [])
         values: dict[int, float] = {}
@@ -297,7 +297,7 @@ def parse_marathon_event(
         start = parse_moment(event.get("displayTime"))
     except (ValueError, TypeError, OverflowError):
         return None
-    if moscow_day(start) != target_date:
+    if moscow_game_day(start) != target_date:
         return None
     event_id = str(event.get("eventId") or "")
     team1, team2 = _team_name(event, "home"), _team_name(event, "away")

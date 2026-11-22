@@ -101,6 +101,15 @@ class WinlineParserTests(unittest.TestCase):
         unknown = next(line for line in lines if line["match_id"] == "17132399")
         self.assertEqual(unknown["team1"], "неизвестная команда")
 
+    def test_snapshot_assigns_after_midnight_to_previous_game_day(self):
+        lines = parse_winline_snapshot([
+            tournament_row("17132410", start="Завтра 01:15"),
+            tournament_row("17132411", start="Завтра 07:00"),
+            tournament_row("17132412", start="Сегодня 06:00"),
+        ], "2026-11-17", now=NOW)
+        self.assertEqual([line["match_id"] for line in lines], ["17132410"])
+        self.assertEqual(lines[0]["start_time"], "2026-11-17T22:15:00+00:00")
+
     def test_exact_club_abbreviations_are_not_fuzzy_matches(self):
         lines = parse_winline_snapshot([
             tournament_row("17077204", "Динамо М", "Спартак М", league="Россия | РПЛ"),
