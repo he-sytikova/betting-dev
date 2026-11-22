@@ -10,7 +10,7 @@ GitHub Pages: enable **Settings → Pages → Deploy from a branch → main / ro
 
 `daily-board.js` calculates current Moscow-day candidates from the active model artifacts and `data.json`. It shows only future, model-resolved fixtures with `p_model >= 0.75`; no odds, fair probability or EV are invented before bookmaker lines are processed. A stale `data.json` date hides both daily sections.
 
-The candidate panel has display-only filters for every market family present: goals, corners, yellow cards, fouls, shots, shots on target and Nations League when available. The selected filter survives data refreshes, updates all visible counts and never changes candidate admission or coupon selection.
+The candidate panel has display-only filters for every market family and bookmaker present: goals, corners, yellow cards, fouls, shots, shots on target, Nations League, Fonbet, Marathonbet and Winline when available. Market and bookmaker filters combine, so the panel can show only corners priced by Marathonbet, for example. Both selections survive data refreshes and update all visible counts. When a bookmaker is selected, its exact quote replaces the best-price column. These filters never change candidate admission or coupon selection.
 
 Prepared singles and doubles are read from `analysis/doubles_YYYY-MM-DD.json`:
 
@@ -23,7 +23,7 @@ Prepared singles and doubles are read from `analysis/doubles_YYYY-MM-DD.json`:
 }
 ```
 
-`candidate_prices` contains at most one reference price per candidate: the highest available exact-market quote from Fonbet, Marathonbet and Winline, with its `bookmaker`, `match_id`, `market_key` and `odds`. The UI joins it by the canonical model key, kickoff, model and market label. These quotes are informational, may fail coupon admission, and do not replace fair/EV checks. Missing, unsupported or unconfirmed markets have no price and are shown as `—`.
+`candidate_prices` contains one reference price per candidate and bookmaker, up to three rows for Fonbet, Marathonbet and Winline. Each row includes `bookmaker`, `match_id`, `market_key` and `odds`; if duplicate quotes exist for the same bookmaker, the highest valid price is retained. The UI joins prices by the canonical model key, kickoff, model and market label, uses them for bookmaker filtering and still calculates the best available price independently. These quotes are informational, may fail coupon admission, and do not replace fair/EV checks. Missing, unsupported or unconfirmed markets have no price and are shown as `—`.
 
 Acquisition gates future fixtures covered by any homepage candidate model: goals, corners/cards, stats or Nations League. All four model families participate in event matching and price indexing, but this does not expand automatic coupon admission: unsupported stats markets, yellow cards, fouls, shots and shots on target remain unpriced for money coupons.
 
