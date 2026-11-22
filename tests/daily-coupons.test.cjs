@@ -190,12 +190,13 @@ test('doubles use one bookmaker, different matches and exact combined formulas',
   assert.equal(coupon.status, 'prepared');
 });
 
-test('session selection applies five singles and two doubles independently to all four sessions', () => {
+test('session selection applies five singles and two doubles independently to all five sessions', () => {
   const times = {
     session1: `${DAY}T10:00:00.000Z`,
     session2: `${DAY}T13:00:00.000Z`,
     session3: `${DAY}T16:00:00.000Z`,
     session4: `${DAY}T19:00:00.000Z`,
+    session5: `${DAY}T23:00:00.000Z`,
   };
   const legs = [];
   for (const [session, time] of Object.entries(times)) {
@@ -211,7 +212,7 @@ test('session selection applies five singles and two doubles independently to al
     }
   }
   const result = coupons.selectSessionCoupons(legs);
-  assert.equal(result.coupons.length, 28);
+  assert.equal(result.coupons.length, 35);
   for (const session of Object.keys(times)) {
     const rows = result.coupons.filter(coupon => coupon.session_id === session);
     assert.equal(rows.filter(coupon => coupon.type === 'single').length, 5, session);
