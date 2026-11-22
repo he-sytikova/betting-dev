@@ -1,6 +1,6 @@
 {
   "date": "2026-11-22",
-  "generated_at_utc": "2026-11-22T05:19:38.694Z",
+  "generated_at_utc": "2026-11-22T05:56:31.820Z",
   "data_status": "ok",
   "candidate_prices": [
     {
@@ -148,10 +148,10 @@
       "model": "Голы",
       "label": "12",
       "p_model": 0.812885222439319,
-      "odds": 1.175,
+      "odds": 1.18,
       "market_key": "DC",
-      "bookmaker": "Marathonbet",
-      "match_id": "29428293"
+      "bookmaker": "Fonbet",
+      "match_id": "69622939"
     },
     {
       "time": "2026-11-22T11:30:00.000Z",
@@ -180,8 +180,8 @@
       "p_model": 0.8007007756838174,
       "odds": 1.21,
       "market_key": "IT_AWAY_GOALS:1.5",
-      "bookmaker": "Marathonbet",
-      "match_id": "29428293"
+      "bookmaker": "Winline",
+      "match_id": "17067667"
     },
     {
       "time": "2026-11-22T11:30:00.000Z",
@@ -538,7 +538,7 @@
       "model": "Голы",
       "label": "ИТБ2 0.5",
       "p_model": 0.8509473217419661,
-      "odds": 1.06,
+      "odds": 1.07,
       "market_key": "IT_AWAY_GOALS:0.5",
       "bookmaker": "Fonbet",
       "match_id": "69771925"
@@ -553,10 +553,10 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.8432423065257498,
-      "odds": 1.11,
+      "odds": 1.13,
       "market_key": "IT_HOME_GOALS:2.5",
-      "bookmaker": "Fonbet",
-      "match_id": "69771925"
+      "bookmaker": "Marathonbet",
+      "match_id": "30046101"
     },
     {
       "time": "2026-11-22T13:30:00.000Z",
@@ -628,10 +628,10 @@
       "model": "Голы",
       "label": "12",
       "p_model": 0.7669590302388105,
-      "odds": 1.2,
+      "odds": 1.222,
       "market_key": "DC",
-      "bookmaker": "Fonbet",
-      "match_id": "69771925"
+      "bookmaker": "Marathonbet",
+      "match_id": "30046101"
     },
     {
       "time": "2026-11-22T13:30:00.000Z",
@@ -913,10 +913,10 @@
       "model": "Голы",
       "label": "1X",
       "p_model": 0.7822763389125409,
-      "odds": 1.2,
+      "odds": 1.22,
       "market_key": "DC",
-      "bookmaker": "Winline",
-      "match_id": "17067672"
+      "bookmaker": "Marathonbet",
+      "match_id": "29428292"
     },
     {
       "time": "2026-11-22T14:00:00.000Z",
@@ -990,8 +990,8 @@
       "p_model": 0.7508997010508662,
       "odds": 1.28,
       "market_key": "DC",
-      "bookmaker": "Winline",
-      "match_id": "17067672"
+      "bookmaker": "Marathonbet",
+      "match_id": "29428292"
     },
     {
       "time": "2026-11-22T14:00:00.000Z",
@@ -1138,7 +1138,7 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8135923913292509,
-      "odds": 1.08,
+      "odds": 1.09,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "69748795"
@@ -1243,7 +1243,7 @@
       "model": "Голы",
       "label": "ИТМ2 1.5",
       "p_model": 0.8171499256543229,
-      "odds": 1.11,
+      "odds": 1.1,
       "market_key": "IT_AWAY_GOALS:1.5",
       "bookmaker": "Winline",
       "match_id": "17125062"
@@ -1273,7 +1273,7 @@
       "model": "Голы",
       "label": "ИТБ1 1.5",
       "p_model": 0.76083494507919,
-      "odds": 1.2,
+      "odds": 1.21,
       "market_key": "IT_HOME_GOALS:1.5",
       "bookmaker": "Winline",
       "match_id": "17125062"
@@ -1513,7 +1513,7 @@
       "model": "Угловые",
       "label": "ТМ 12.5",
       "p_model": 0.8267685899655786,
-      "odds": 1.127,
+      "odds": 1.153,
       "market_key": "TOTAL_CORNERS:12.5",
       "bookmaker": "Marathonbet",
       "match_id": "29428290"
@@ -1543,7 +1543,7 @@
       "model": "Угловые",
       "label": "ТМ 12.5",
       "p_model": 0.8600866203601798,
-      "odds": 1.118,
+      "odds": 1.087,
       "market_key": "TOTAL_CORNERS:12.5",
       "bookmaker": "Marathonbet",
       "match_id": "30014467"
@@ -1573,7 +1573,7 @@
       "model": "Голы",
       "label": "ИТБ2 0.5",
       "p_model": 0.8314169556497679,
-      "odds": 1.11,
+      "odds": 1.13,
       "market_key": "IT_AWAY_GOALS:0.5",
       "bookmaker": "Fonbet",
       "match_id": "69623141"
@@ -1603,7 +1603,7 @@
       "model": "Угловые",
       "label": "ТМ 11.5",
       "p_model": 0.7898445349710956,
-      "odds": 1.24,
+      "odds": 1.191,
       "market_key": "TOTAL_CORNERS:11.5",
       "bookmaker": "Marathonbet",
       "match_id": "30014467"
@@ -1641,9 +1641,9 @@
   ],
   "prepared_coupons": [
     {
-      "coupon_id": "day-single-1",
+      "coupon_id": "session1-single-1",
       "type": "single",
-      "session_id": "day",
+      "session_id": "session1",
       "bookmaker": "Fonbet",
       "legs": [
         {
@@ -1673,9 +1673,9 @@
       "status": "prepared"
     },
     {
-      "coupon_id": "day-single-2",
+      "coupon_id": "session2-single-1",
       "type": "single",
-      "session_id": "day",
+      "session_id": "session2",
       "bookmaker": "Winline",
       "legs": [
         {
@@ -1705,9 +1705,105 @@
       "status": "prepared"
     },
     {
-      "coupon_id": "evening-single-1",
+      "coupon_id": "session2-single-2",
       "type": "single",
-      "session_id": "evening",
+      "session_id": "session2",
+      "bookmaker": "Marathonbet",
+      "legs": [
+        {
+          "time": "2026-11-22T13:00:00.000Z",
+          "model_key": "model|SP2|cordoba|oviedo",
+          "event_id": 214926,
+          "league": "Spain - Segunda",
+          "home": "Cordoba",
+          "away": "Oviedo",
+          "model": "Голы",
+          "label": "ИТМ1 2.5",
+          "p_model": 0.7781884844151394,
+          "bookmaker": "Marathonbet",
+          "match_id": "30221780",
+          "market_key": "IT_HOME_GOALS:2.5",
+          "odds": 1.34,
+          "fair": 0.6824644549763033,
+          "delta_pp": 9.572402943883617,
+          "ev": 1.042772569116287,
+          "o_min_exact": 1.3235867924389986,
+          "o_min_step": 1.33
+        }
+      ],
+      "odds": 1.34,
+      "probability": 0.7781884844151394,
+      "ev": 1.042772569116287,
+      "status": "prepared"
+    },
+    {
+      "coupon_id": "session2-single-3",
+      "type": "single",
+      "session_id": "session2",
+      "bookmaker": "Winline",
+      "legs": [
+        {
+          "time": "2026-11-22T13:30:00.000Z",
+          "model_key": "model|RUS|dynamo makhachkala|spartak moscow",
+          "event_id": "s9-99.767327341",
+          "league": "Russia - Premier League",
+          "home": "Dynamo Makhachkala",
+          "away": "Spartak Moscow",
+          "model": "Голы",
+          "label": "ТМ 3.5",
+          "p_model": 0.7507437540542714,
+          "bookmaker": "Winline",
+          "match_id": "17077205",
+          "market_key": "TOTAL_GOALS:3.5",
+          "odds": 1.41,
+          "fair": 0.665083135391924,
+          "delta_pp": 8.566061866234742,
+          "ev": 1.0585486932165227,
+          "o_min_exact": 1.3719727862371816,
+          "o_min_step": 1.38
+        }
+      ],
+      "odds": 1.41,
+      "probability": 0.7507437540542714,
+      "ev": 1.0585486932165227,
+      "status": "prepared"
+    },
+    {
+      "coupon_id": "session3-single-1",
+      "type": "single",
+      "session_id": "session3",
+      "bookmaker": "Fonbet",
+      "legs": [
+        {
+          "time": "2026-11-22T15:45:00.000Z",
+          "model_key": "model|N1|go ahead eagles|for sittard",
+          "event_id": 210912,
+          "league": "Netherlands - Eredivisie",
+          "home": "Go Ahead Eagles",
+          "away": "For Sittard",
+          "model": "Голы",
+          "label": "ИТБ2 0.5",
+          "p_model": 0.7725976038965282,
+          "bookmaker": "Fonbet",
+          "match_id": "69748795",
+          "market_key": "IT_AWAY_GOALS:0.5",
+          "odds": 1.4,
+          "fair": 0.6626506024096386,
+          "delta_pp": 10.994700148688963,
+          "ev": 1.0816366454551394,
+          "o_min_exact": 1.3331648905009352,
+          "o_min_step": 1.34
+        }
+      ],
+      "odds": 1.4,
+      "probability": 0.7725976038965282,
+      "ev": 1.0816366454551394,
+      "status": "prepared"
+    },
+    {
+      "coupon_id": "session4-single-1",
+      "type": "single",
+      "session_id": "session4",
       "bookmaker": "Winline",
       "legs": [
         {
@@ -1737,9 +1833,9 @@
       "status": "prepared"
     },
     {
-      "coupon_id": "evening-single-2",
+      "coupon_id": "session4-single-2",
       "type": "single",
-      "session_id": "evening",
+      "session_id": "session4",
       "bookmaker": "Winline",
       "legs": [
         {
@@ -1769,9 +1865,9 @@
       "status": "prepared"
     },
     {
-      "coupon_id": "evening-double-1",
-      "type": "double",
-      "session_id": "evening",
+      "coupon_id": "session4-single-3",
+      "type": "single",
+      "session_id": "session4",
       "bookmaker": "Fonbet",
       "legs": [
         {
@@ -1793,32 +1889,11 @@
           "ev": 1.144893482149199,
           "o_min_exact": 1.3044881670532313,
           "o_min_step": 1.31
-        },
-        {
-          "time": "2026-11-22T15:45:00.000Z",
-          "model_key": "model|N1|go ahead eagles|for sittard",
-          "event_id": 210912,
-          "league": "Netherlands - Eredivisie",
-          "home": "Go Ahead Eagles",
-          "away": "For Sittard",
-          "model": "Голы",
-          "label": "ИТБ2 0.5",
-          "p_model": 0.7725976038965282,
-          "bookmaker": "Fonbet",
-          "match_id": "69748795",
-          "market_key": "IT_AWAY_GOALS:0.5",
-          "odds": 1.4,
-          "fair": 0.6585365853658537,
-          "delta_pp": 11.406101853067451,
-          "ev": 1.0816366454551394,
-          "o_min_exact": 1.3331648905009352,
-          "o_min_step": 1.34
         }
       ],
-      "odds": 2.03,
-      "probability": 0.6100289386380854,
-      "ev": 1.238358745435313,
-      "o_min_AB": 1.7554,
+      "odds": 1.45,
+      "probability": 0.7895817118270338,
+      "ev": 1.144893482149199,
       "status": "prepared"
     }
   ],
@@ -1827,7 +1902,7 @@
     "candidate_prices": 109,
     "eligible_prices_before_dedup": 15,
     "eligible_legs": 8,
-    "double_candidates": 1,
+    "double_candidates": 0,
     "rejected": 1960,
     "rejection_reasons": {
       "deduplicated_lower_price": 7,
@@ -1839,27 +1914,27 @@
       "no_line_match": 1451
     },
     "sessions": {
-      "morning": {
-        "eligible_legs": 0,
-        "singles": 0,
+      "session1": {
+        "eligible_legs": 1,
+        "singles": 1,
         "doubles": 0,
         "double_candidates": 0
       },
-      "day": {
-        "eligible_legs": 4,
-        "singles": 2,
+      "session2": {
+        "eligible_legs": 3,
+        "singles": 3,
         "doubles": 0,
         "double_candidates": 0
       },
-      "evening": {
-        "eligible_legs": 4,
-        "singles": 2,
-        "doubles": 1,
-        "double_candidates": 1
+      "session3": {
+        "eligible_legs": 1,
+        "singles": 1,
+        "doubles": 0,
+        "double_candidates": 0
       },
-      "night": {
-        "eligible_legs": 0,
-        "singles": 0,
+      "session4": {
+        "eligible_legs": 3,
+        "singles": 3,
         "doubles": 0,
         "double_candidates": 0
       }
@@ -1868,15 +1943,15 @@
   "sources": {
     "Fonbet": {
       "status": "ok",
-      "captured_at_utc": "2026-11-22T05:07:57.797241+00:00"
+      "captured_at_utc": "2026-11-22T05:46:17.077310+00:00"
     },
     "Marathonbet": {
       "status": "ok",
-      "captured_at_utc": "2026-11-22T05:14:47.090555+00:00"
+      "captured_at_utc": "2026-11-22T05:51:26.228984+00:00"
     },
     "Winline": {
       "status": "ok",
-      "captured_at_utc": "2026-11-22T05:15:33.482361+00:00"
+      "captured_at_utc": "2026-11-22T05:52:10.101039+00:00"
     }
   }
 }
