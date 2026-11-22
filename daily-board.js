@@ -16,6 +16,7 @@
     Object.freeze({ id: 'session2', label: 'Сессия 2', timeLabel: '15:00–18:00', startMinute: 900 }),
     Object.freeze({ id: 'session3', label: 'Сессия 3', timeLabel: '18:00–21:00', startMinute: 1080 }),
     Object.freeze({ id: 'session4', label: 'Сессия 4', timeLabel: '21:00–23:55', startMinute: 1260 }),
+    Object.freeze({ id: 'session5', label: 'Сессия 5', timeLabel: '23:55–07:00', startMinute: 1435 }),
   ]);
   const CANDIDATE_MARKETS = Object.freeze([
     'Голы', 'Угловые', 'ЖК', 'Фолы', 'Удары', 'Удары в створ', 'Лига наций',
@@ -27,7 +28,8 @@
     if (!Number.isFinite(time)) return null;
     const moscow = new Date(time + MOSCOW_OFFSET_MS);
     const minute = moscow.getUTCHours() * 60 + moscow.getUTCMinutes();
-    if (minute < 720 || minute > 1435) return null;
+    if (minute >= 1435 || minute < 420) return GAME_SESSIONS[4];
+    if (minute < 720) return null;
     if (minute < 900) return GAME_SESSIONS[0];
     if (minute < 1080) return GAME_SESSIONS[1];
     if (minute < 1260) return GAME_SESSIONS[2];
