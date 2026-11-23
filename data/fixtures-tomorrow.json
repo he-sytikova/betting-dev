@@ -1,6 +1,6 @@
 {
  "date": "2026-11-24",
- "generatedAt": "2026-11-23T06:01:29.218488+00:00",
+ "generatedAt": "2026-11-23T07:39:25.601347+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.773341921",
@@ -199,14 +199,14 @@
    "away": "Jiangsu Changjin"
   },
   {
-   "eventId": "s9-99.772510435",
+   "eventId": "s9-99.773429758",
    "time": "2026-11-24T11:00:00+00:00",
    "league": "Iran. Azadegan League",
    "home": "Niroye Zamini",
    "away": "Havadar"
   },
   {
-   "eventId": "s9-99.772511346",
+   "eventId": "s9-99.773429761",
    "time": "2026-11-24T11:30:00+00:00",
    "league": "Iran. Azadegan League",
    "home": "Fard Alborz",
@@ -255,7 +255,7 @@
    "away": "Jezero Plav"
   },
   {
-   "eventId": "s9-99.772511622",
+   "eventId": "s9-99.773429755",
    "time": "2026-11-24T13:15:00+00:00",
    "league": "Iran. Azadegan League",
    "home": "Shahin Bandar Ameri",
@@ -288,13 +288,6 @@
    "league": "Egypt. Premier League",
    "home": "ZED",
    "away": "Abu Qair Semad"
-  },
-  {
-   "eventId": "s9-99.773188995",
-   "time": "2026-11-24T15:00:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "Hapoel Azor",
-   "away": "MS Dimona"
   },
   {
    "eventId": "s9-99.770833367",
