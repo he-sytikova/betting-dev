@@ -92,6 +92,22 @@ test('Moscow game day assigns 00:00–06:59:59 to the previous nights session', 
   assert.equal(board.gameDayKeyMsk('invalid'), null);
 });
 
+test('overnight refresh retains the active snapshot after its final fixture starts', () => {
+  const now = Date.parse('2026-11-22T23:36:22Z'); // 02:36:22 MSK on 23 November.
+  const existing = { date: '2026-11-22', predictions: [{ time: '2026-11-22T23:30:00Z' }] };
+  const exhausted = { date: '2026-11-22', generatedAt: '2026-11-22T19:30:32.956Z', predictions: [{ time: '2026-11-22T23:30:00Z' }] };
+  assert.equal(board.hasFutureFixtures(exhausted, now), false);
+  assert.equal(board.shouldRetainGameDaySnapshot(existing, exhausted, now), true);
+
+  const nextDay = { date: '2026-11-23', predictions: [{ time: '2026-11-23T09:00:00Z' }] };
+  assert.equal(board.shouldRetainGameDaySnapshot(existing, nextDay, now), true);
+
+  const updated = { date: '2026-11-22', predictions: [{ time: '2026-11-23T00:00:00Z' }] };
+  assert.equal(board.shouldRetainGameDaySnapshot(existing, updated, now), false);
+  assert.equal(board.shouldRetainGameDaySnapshot({ date: '2026-11-21' }, exhausted, now), false);
+  assert.equal(board.shouldRetainGameDaySnapshot(existing, exhausted, Date.parse('2026-11-23T04:00:00Z')), false);
+});
+
 test('five coupon sessions use exact Moscow boundaries and exclude outside kickoffs', () => {
   assert.deepEqual(board.GAME_SESSIONS.map(session => session.id), ['session1', 'session2', 'session3', 'session4', 'session5']);
   assert.equal(board.gameSessionForTime('2026-11-21T08:59:59.000Z'), null);
