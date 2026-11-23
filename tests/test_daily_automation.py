@@ -63,10 +63,12 @@ class DailyAutomationWorkflowTest(unittest.TestCase):
         odds = REFRESH.index("- name: Fetch Euro365 bookmaker odds for the snapshot day")
         self.assertLess(selection, odds)
         self.assertIn("currentGameDay = board.gameDayKeyMsk(now)", REFRESH)
-        self.assertIn("currentGameDay !== board.dayKeyMsk(now)", REFRESH)
-        self.assertIn("existing.date === currentGameDay", REFRESH)
-        self.assertIn("downloaded.date !== currentGameDay", REFRESH)
+        self.assertIn("board.shouldRetainGameDaySnapshot(existing, downloaded, now)", REFRESH)
+        self.assertIn("board.hasFutureFixtures(downloaded, now)", REFRESH)
+        self.assertIn("outside the protected overnight case", REFRESH)
         self.assertIn('--output "$RUNNER_TEMP/production-data.json"', REFRESH)
+        validation = REFRESH.index("- name: Download latest production prediction snapshot")
+        self.assertNotIn("throw new Error('Production snapshot has no upcoming fixtures;", REFRESH[validation:selection])
 
     def test_pages_deploys_daily_artifacts_after_bot_commits(self):
         self.assertIn('"analysis/*.json"', DEPLOY)

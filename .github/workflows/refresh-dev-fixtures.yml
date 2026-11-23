@@ -43,9 +43,6 @@ jobs:
               const time = Date.parse(item.time);
               return Number.isFinite(time) && time > Date.now();
             });
-            if (future.length === 0) {
-              throw new Error('Production snapshot has no upcoming fixtures; refusing to replace dev data');
-            }
             console.log('Snapshot date:', data.date);
             console.log('Generated at:', data.generatedAt || 'unknown');
             console.log('Prediction records:', data.predictions.length);
@@ -59,12 +56,14 @@ jobs:
           const board = require('./daily-board.js');
           const now = Date.now();
           const currentGameDay = board.gameDayKeyMsk(now);
-          const isAfterMidnight = currentGameDay !== board.dayKeyMsk(now);
           const downloaded = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/production-data.json', 'utf8'));
           const existing = JSON.parse(fs.readFileSync('data.json', 'utf8'));
-          if (isAfterMidnight && existing.date === currentGameDay && downloaded.date !== currentGameDay) {
+          if (board.shouldRetainGameDaySnapshot(existing, downloaded, now)) {
             console.log(`Keeping active game-day snapshot ${existing.date} until 07:00 Moscow; downloaded=${downloaded.date}`);
           } else {
+            if (!board.hasFutureFixtures(downloaded, now)) {
+              throw new Error('Production snapshot has no upcoming fixtures outside the protected overnight case; refusing to replace dev data');
+            }
             fs.copyFileSync(process.env.RUNNER_TEMP + '/production-data.json', 'data.json');
             console.log(`Accepted production snapshot ${downloaded.date}; active game day=${currentGameDay}`);
           }

@@ -52,6 +52,24 @@
     return moscow.toISOString().slice(0, 10);
   }
 
+  function hasFutureFixtures(data, value) {
+    const now = value instanceof Date ? value.getTime() : (typeof value === 'number' ? value : Date.parse(value));
+    if (!Number.isFinite(now) || !Array.isArray(data?.predictions)) return false;
+    return data.predictions.some(item => {
+      const time = Date.parse(item.time);
+      return Number.isFinite(time) && time > now;
+    });
+  }
+
+  function shouldRetainGameDaySnapshot(existing, downloaded, value) {
+    const now = value instanceof Date ? value.getTime() : (typeof value === 'number' ? value : Date.parse(value));
+    if (!Number.isFinite(now)) return false;
+    const currentGameDay = gameDayKeyMsk(now);
+    const isAfterMidnight = currentGameDay !== dayKeyMsk(now);
+    return isAfterMidnight && existing?.date === currentGameDay
+      && (downloaded?.date !== currentGameDay || !hasFutureFixtures(downloaded, now));
+  }
+
   function minimumOdds(probability) {
     const exact = EV_MIN / probability;
     return { exact, step: Math.ceil((exact - 1e-12) * 100) / 100 };
@@ -404,6 +422,8 @@
     CANDIDATE_BOOKMAKERS,
     dayKeyMsk,
     gameDayKeyMsk,
+    hasFutureFixtures,
+    shouldRetainGameDaySnapshot,
     gameSessionForTime,
     minimumOdds,
     candidate,
