@@ -229,8 +229,10 @@
   }
 
   function candidateBookmakerNames(rows) {
+    const candidates = Array.isArray(rows) ? rows : [];
+    if (!candidates.length) return [];
     const present = new Set();
-    for (const row of Array.isArray(rows) ? rows : []) {
+    for (const row of candidates) {
       for (const [bookmaker, price] of Object.entries(row?.bookmakerPrices || {})) {
         if (Number.isFinite(price?.odds) && price.odds > 1) present.add(bookmaker);
       }
@@ -238,10 +240,9 @@
         present.add(row.bestBookmaker);
       }
     }
-    const known = CANDIDATE_BOOKMAKERS.filter(bookmaker => present.has(bookmaker));
     const additional = [...present].filter(bookmaker => !CANDIDATE_BOOKMAKERS.includes(bookmaker))
       .sort((a, b) => a.localeCompare(b, 'ru'));
-    return [...known, ...additional];
+    return [...CANDIDATE_BOOKMAKERS, ...additional];
   }
 
   function filterCandidatesByBookmaker(rows, bookmaker = 'all') {

@@ -282,7 +282,7 @@ test('market filtering selects the exact family without changing the source rows
   assert.deepEqual(rows, snapshot);
 });
 
-test('bookmaker names and combined filters select every matching quote without changing source rows', () => {
+test('bookmaker filters stay available without prices and combined filters select every matching quote', () => {
   const rows = [
     {
       modelLabel: 'Угловые', label: 'ТБ 8.5',
@@ -301,7 +301,11 @@ test('bookmaker names and combined filters select every matching quote without c
     null,
   ];
   const snapshot = JSON.parse(JSON.stringify(rows));
-  assert.deepEqual(board.candidateBookmakerNames(rows), ['Marathonbet', 'Winline', 'Future BK']);
+  assert.deepEqual(board.candidateBookmakerNames(rows), ['Fonbet', 'Marathonbet', 'Winline', 'Future BK']);
+  assert.deepEqual(board.candidateBookmakerNames([{ modelLabel: 'Голы', label: 'П1' }]),
+    ['Fonbet', 'Marathonbet', 'Winline']);
+  assert.deepEqual(board.candidateBookmakerNames([]), []);
+  assert.deepEqual(board.candidateBookmakerNames(null), []);
   const corners = board.filterCandidatesByMarket(rows, 'Угловые');
   assert.deepEqual(board.filterCandidatesByBookmaker(corners, 'Marathonbet').map(row => row.label), ['ТБ 8.5', 'ТБ 9.5']);
   assert.deepEqual(board.filterCandidatesByBookmaker(corners, 'Fonbet'), []);
