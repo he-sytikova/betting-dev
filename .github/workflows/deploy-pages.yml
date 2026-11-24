@@ -31,11 +31,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  # Upload и Deploy разнесены по разным job намеренно: deploy-pages@v4
+  # запрашивает метаданные артефакта сразу после upload-pages-artifact,
+  # и в одном job бэкенд артефактов периодически не успевает его
+  # проиндексировать — run падает с "Found 0 artifact(s)" при фактически
+  # загруженном артефакте. Граница между job гарантирует, что артефакт
+  # github-pages уже доступен к моменту деплоя. Второй одноимённый
+  # артефакт при этом не создаётся.
+  build:
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,6 +50,13 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
