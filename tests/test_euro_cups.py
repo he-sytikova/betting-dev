@@ -29,15 +29,16 @@ downloader = _load("download_bsd_euro", "scripts/models/download-bsd-euro.py")
 
 def make_bsd_json(path, comp, season_year, matches):
     """Пишет файл формата download-bsd-euro.py: matches — список кортежей
-    (date, home, away, home_goals, away_goals)."""
+    (date, home, away, home_goals, away_goals[, stats])."""
     payload = {
         "competition": comp,
         "seasonYear": season_year,
         "matches": [
-            {"date": d, "season": str(season_year), "comp": comp,
-             "stage": "League Phase", "home": h, "away": a,
-             "home_goals": hg, "away_goals": ag, "event_id": None}
-            for (d, h, a, hg, ag) in matches
+            {"date": m[0], "season": str(season_year), "comp": comp,
+             "stage": "League Phase", "home": m[1], "away": m[2],
+             "home_goals": m[3], "away_goals": m[4], "event_id": None,
+             **({"stats": m[5]} if len(m) > 5 else {})}
+            for m in matches
         ],
     }
     Path(path).write_text(json.dumps(payload), encoding="utf-8")
@@ -140,6 +141,14 @@ class EuroCupsBuilderTest(unittest.TestCase):
             "home_goal_team_for_avg10": 1.0, "home_goal_team_against_avg10": 1.0,
             "away_goal_team_for_avg5": 1.0, "away_goal_team_against_avg5": 1.0,
             "away_goal_team_for_avg10": 1.0, "away_goal_team_against_avg10": 1.0,
+            "home_team_for_avg5": 5.0, "home_team_against_avg5": 4.0,
+            "home_team_for_avg10": 5.0, "home_team_against_avg10": 4.0,
+            "away_team_for_avg5": 5.0, "away_team_against_avg5": 4.0,
+            "away_team_for_avg10": 5.0, "away_team_against_avg10": 4.0,
+            "home_card_team_for_avg5": 2.0, "home_card_team_against_avg5": 2.0,
+            "home_card_team_for_avg10": 2.0, "home_card_team_against_avg10": 2.0,
+            "away_card_team_for_avg5": 2.0, "away_card_team_against_avg5": 2.0,
+            "away_card_team_for_avg10": 2.0, "away_card_team_against_avg10": 2.0,
         }]).to_csv(dom, index=False)
         out = Path(tmp) / "out.csv"
         aliases_backup = dict(builder.BSD_TEAM_ALIASES)
@@ -229,6 +238,58 @@ class EuroCupsBuilderTest(unittest.TestCase):
             {"bsd_cl_2025.json": ("CL", 2025, [("2025-09-16", "Brand New FC", "Team B", 1, 0)])},
             expect_error=True)
         self.assertIn("Brand New FC", str(err))
+
+    CORNERS_7_3 = {"corners_home": 7, "corners_away": 3,
+                   "yellow_home": 2, "yellow_away": 1, "red_home": 0, "red_away": 0}
+    CORNERS_4_6 = {"corners_home": 4, "corners_away": 6,
+                   "yellow_home": 0, "yellow_away": 3, "red_home": 0, "red_away": 1}
+
+    def test_stat_targets_and_leakage_safe_rolling_history(self):
+        df = self._run_builder({
+            "bsd_cl_2025.json": ("CL", 2025, [
+                ("2025-09-16", "Team A", "Team B", 2, 1, self.CORNERS_7_3),
+                ("2025-09-30", "Team A", "Team C", 1, 1, self.CORNERS_4_6),
+            ])})
+        first, second = df.iloc[0], df.iloc[1]
+        self.assertEqual(first["target_corners_total"], 10)
+        self.assertEqual(first["target_cards_total"], 3)
+        # Первый матч: евро-истории ещё нет — None, а не выдуманные значения.
+        self.assertTrue(pd.isna(first["home_euro_corners_for_avg5"]))
+        self.assertEqual(first["home_euro_corners_games"], 0)
+        # Второй матч Team A: история только из первого матча (7 поданных,
+        # 3 пропущенных угловых), без заглядывания в текущий матч.
+        self.assertEqual(second["home_euro_corners_games"], 1)
+        self.assertEqual(second["home_euro_corners_for_avg5"], 7)
+        self.assertEqual(second["home_euro_corners_against_avg5"], 3)
+        self.assertEqual(second["target_corners_total"], 10)
+        self.assertEqual(second["target_cards_total"], 3)
+        self.assertEqual(second["comp_corners_avg"], 10)
+
+    def test_missing_stats_yield_none_targets_and_no_history(self):
+        df = self._run_builder({
+            "bsd_cl_2023.json": ("CL", 2023, [
+                ("2023-09-19", "Team A", "Team B", 2, 1),
+                ("2023-10-03", "Team A", "Team C", 1, 0, self.CORNERS_7_3),
+            ])})
+        first, second = df.iloc[0], df.iloc[1]
+        self.assertTrue(pd.isna(first["target_corners_total"]))
+        self.assertTrue(pd.isna(first["target_cards_total"]))
+        # Матч без статистики не создаёт историю: у второго матча games=0.
+        self.assertEqual(second["home_euro_corners_games"], 0)
+        self.assertTrue(pd.isna(second["home_euro_corners_for_avg5"]))
+        self.assertEqual(second["target_corners_total"], 10)
+
+    def test_stat_history_resets_between_seasons(self):
+        df = self._run_builder({
+            "bsd_cl_2024.json": ("CL", 2024, [
+                ("2024-09-17", "Team A", "Team B", 2, 1, self.CORNERS_7_3)]),
+            "bsd_cl_2025.json": ("CL", 2025, [
+                ("2025-09-16", "Team A", "Team C", 1, 1, self.CORNERS_4_6)]),
+        })
+        second = df.iloc[1]
+        # Как и euro-форма, истории статистики обнуляются на межсезонье.
+        self.assertEqual(second["home_euro_corners_games"], 0)
+        self.assertTrue(pd.isna(second["home_euro_corners_for_avg5"]))
 
 
 class TrainFeaturesTest(unittest.TestCase):
@@ -322,6 +383,62 @@ class ExtractMatchStatsTest(unittest.TestCase):
                                  "yellow_home": 1, "yellow_away": 2,
                                  "red_home": 0, "red_away": 1})
 
+
+class EuroStatsTrainTest(unittest.TestCase):
+    """train-euro-stats.py: наборы признаков и хронологический сплит."""
+
+    def _trainer(self):
+        return _load("train_euro_stats", "scripts/models/train-euro-stats.py")
+
+    def test_feature_columns_have_no_targets_and_cover_all_sources(self):
+        trainer = self._trainer()
+        for market, group in (("corners", "corners"), ("cards", "cards")):
+            cols = trainer.feature_columns(market)
+            self.assertIn(f"comp_{group}_avg", cols)
+            self.assertIn(f"home_euro_{group}_for_avg5", cols)
+            self.assertIn(f"away_euro_{group}_against_avg10", cols)
+            self.assertIn(f"home_euro_{group}_games", cols)
+            self.assertIn(f"home_dom_{group}_for_avg5", cols)
+            self.assertIn(f"away_dom_{group}_against_avg10", cols)
+            self.assertIn("comp_is_el", cols)
+            self.assertIn("comp_is_ecl", cols)
+            self.assertIn("home_dom_missing", cols)
+            self.assertNotIn("target_corners_total", cols)
+            self.assertNotIn("target_cards_total", cols)
+            self.assertEqual(len(cols), len(set(cols)), "дубли в признаках")
+
+    def test_corners_split_divides_shared_season_without_duplicates(self):
+        trainer = self._trainer()
+        dates = (["2026-09-16"] * 60 + ["2026-10-01"] * 40
+                 + ["2026-11-05"] * 50 + ["2026-11-25"] * 50)
+        sub = pd.DataFrame({
+            "date": pd.to_datetime(dates),
+            "season": "2026",
+            "target_corners_total": 10,
+        })
+        train, valid, test = trainer.split_frame(sub, "corners")
+        self.assertEqual(len(train), 0)  # сезон 2025 в синтетике отсутствует
+        self.assertEqual(len(valid) + len(test), len(sub))
+        self.assertLess(valid["date"].max(), test["date"].min() + pd.Timedelta(days=31))
+        self.assertLessEqual(valid["date"].max(), test["date"].min())
+        # строгая хронология: никакого пересечения дат validation и test
+        self.assertLessEqual(valid["date"].max(), test["date"].min())
+
+    def test_cards_split_uses_full_history_seasons(self):
+        trainer = self._trainer()
+        sub = pd.DataFrame({
+            "date": pd.to_datetime(["2022-03-10", "2023-04-12", "2025-09-18", "2026-10-02"]),
+            "season": ["2021", "2022", "2025", "2026"],
+            "target_cards_total": 4,
+        })
+        train, valid, test = trainer.split_frame(sub, "cards")
+        self.assertEqual(len(train), 2)
+        self.assertEqual(len(valid), 1)
+        self.assertEqual(len(test), 1)
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 if __name__ == "__main__":
     unittest.main()

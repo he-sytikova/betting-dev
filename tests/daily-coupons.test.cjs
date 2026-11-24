@@ -598,3 +598,87 @@ test('team goals and corner candidates map only to their confirmed statistic and
   }), line());
   assert.equal(wrongStatistic.rejection.reason, 'incomplete_market');
 });
+
+function euroStatsOnlyModel() {
+  return {
+    schemaVersion: 1,
+    competitions: [
+      { code: 'CL', name: 'UEFA Champions League', names: ['UEFA Champions League', 'Champions League'] },
+    ],
+    compAverages: { CL: { corners: 10.0, cards: 4.0 } },
+    teamAliases: { 'real madrid': 'real-madrid', psv: 'psv' },
+    teams: {
+      'real-madrid': { name: 'Real Madrid', euro: { euroElo: 1900 } },
+      psv: { name: 'PSV', euro: { euroElo: 1700 } },
+    },
+    models: {
+      corners: {
+        type: 'poisson', features: [], imputerMedian: [], scalerMean: [], scalerScale: [],
+        coefficients: [], intercept: Math.log(11), lines: [8.5, 9.5, 10.5],
+      },
+      yellowCards: {
+        type: 'poisson', features: [], imputerMedian: [], scalerMean: [], scalerScale: [],
+        coefficients: [], intercept: Math.log(4.5), lines: [2.5, 3.5, 4.5],
+      },
+    },
+  };
+}
+
+test('euro stats fixture reaches corner prices and money coupons; cards stay display-only', () => {
+  const fixture = {
+    time: `${DAY}T18:00:00.000Z`, league: 'UEFA Champions League',
+    home: 'Real Madrid', away: 'PSV', modelCoverage: 'euroStats',
+  };
+  const models = {
+    goals: null, cornersCards: null, stats: null, nations: emptyNations(),
+    euro: null, euroStats: euroStatsOnlyModel(),
+  };
+  assert.equal(modelGate.coverage(fixture, models), 'euroStats');
+  assert.deepEqual(coupons.fixtureModelKeys(fixture, models), ['eurostats|CL|real-madrid|psv']);
+  const index = coupons.buildMatchIndex(
+    { fixtures: [fixture] },
+    [{ ...fixture, fixture_key: 'raw', bookmaker: 'Fonbet', status: 'matched', match_id: '100' }],
+    models,
+  );
+  assert.equal(index.get(`eurostats|CL|real-madrid|psv|${fixture.time}`).length, 1);
+
+  const data = { date: DAY, predictions: [fixture] };
+  const candidates = board.buildCandidates(data, models, Date.parse(NOW));
+  const cornerCandidates = candidates.filter(row => row.modelLabel === 'Угловые');
+  const cardCandidates = candidates.filter(row => row.modelLabel === 'ЖК');
+  assert.ok(cornerCandidates.length > 0);
+  assert.ok(cardCandidates.length > 0);
+  assert.ok(cornerCandidates.every(row => row.modelKey === 'eurostats|CL|real-madrid|psv'));
+
+  // Линия, согласованная с моделью (lambda угловых = 11, p(ТБ 8.5) ≈ 0.768).
+  const cornerLine = line({
+    markets: { 'TOTAL_CORNERS:8.5': { ТБ: 1.4, ТМ: 2.9 } },
+  });
+  const snapshots = Object.fromEntries(['Fonbet', 'Marathonbet', 'Winline'].map((bookmaker, i) => [bookmaker, {
+    status: 'ok', captured_at_utc: NOW,
+    matches: [{ ...cornerLine, bookmaker, match_id: String(100 + i) }],
+  }]));
+  const result = coupons.buildArtifact({
+    date: DAY, data, models,
+    gated: { generatedAt: NOW, fixtures: [fixture] },
+    matching: ['Fonbet', 'Marathonbet', 'Winline'].map((bookmaker, i) => ({
+      bookmaker, fixture_key: 'raw', home: fixture.home, away: fixture.away,
+      time: fixture.time, status: 'matched', match_id: String(100 + i),
+    })),
+    snapshots,
+    generatedAt: NOW,
+  });
+  assert.equal(result.artifact.data_status, 'ok');
+  const cornerPrices = result.artifact.candidate_prices.filter(row => row.model === 'Угловые');
+  assert.ok(cornerPrices.length > 0);
+  assert.ok(cornerPrices.every(row => row.model_key === 'eurostats|CL|real-madrid|psv'));
+  const cornerLegs = result.artifact.prepared_coupons.flatMap(coupon => coupon.legs)
+    .filter(leg => leg.model === 'Угловые');
+  assert.ok(cornerLegs.length > 0);
+  assert.ok(cornerLegs.every(leg => leg.market_key === 'TOTAL_CORNERS:8.5'));
+  // ЖК остаются display-only и в денежные купоны не допускаются.
+  assert.ok(result.diagnostics.rejected.some(
+    row => row.model === 'ЖК' && row.reason === 'market_not_confirmed'));
+  assert.equal(result.artifact.prepared_coupons.flatMap(coupon => coupon.legs)
+    .filter(leg => leg.model === 'ЖК').length, 0);
+});

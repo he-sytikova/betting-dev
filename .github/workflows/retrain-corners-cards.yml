@@ -18,6 +18,8 @@ on:
       - "scripts/models/build-euro-dataset.py"
       - "scripts/models/train-euro-cups.py"
       - "scripts/models/export-euro-runtime.py"
+      - "scripts/models/train-euro-stats.py"
+      - "scripts/models/export-euro-stats-runtime.py"
       - "scripts/models/build-nt-dataset.py"
       - "scripts/models/train-nt.py"
       - "scripts/models/export-nt-runtime.py"
@@ -37,7 +39,7 @@ concurrency:
 jobs:
   retrain:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
         with:
@@ -77,7 +79,7 @@ jobs:
       - name: Download euro-cup history — CL/EL/ECL (BSD sports.bzzoiro.com)
         env:
           BSD_TOKEN: ${{ secrets.BSD_TOKEN }}
-        run: python scripts/models/download-bsd-euro.py --output-dir data/raw-bsd
+        run: python scripts/models/download-bsd-euro.py --output-dir data/raw-bsd --with-stats
 
       - name: Build euro-cup dataset (CL + EL + ECL)
         run: python scripts/models/build-euro-dataset.py --bsd-dir data/raw-bsd --domestic data/corners_cards_training.csv --output data/euro_cups_training.csv
@@ -87,6 +89,12 @@ jobs:
 
       - name: Export euro-cup browser runtime model JSON
         run: python scripts/models/export-euro-runtime.py --bsd-dir data/raw-bsd
+
+      - name: Train and validate euro-cup corners/cards models (split by season)
+        run: python scripts/models/train-euro-stats.py
+
+      - name: Export euro-cup corners/cards browser runtime model JSON
+        run: python scripts/models/export-euro-stats-runtime.py --bsd-dir data/raw-bsd
 
       - name: Download national-teams history (martj42/international_results, CC0-1.0)
         run: |
@@ -114,7 +122,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/stats_markets_models.json data/stats_markets_model_validation.json data/historical_dataset_report.json data/prediction-ledger/evaluation-internal.json data/euro_cups_model.json data/euro_cups_model_validation.json data/nt_model.json data/nt_model_validation.json
+          git add data/corners_cards_models.json data/corners_cards_model_validation.json data/goals_markets_models.json data/goals_markets_model_validation.json data/stats_markets_models.json data/stats_markets_model_validation.json data/historical_dataset_report.json data/prediction-ledger/evaluation-internal.json data/euro_cups_model.json data/euro_cups_model_validation.json data/euro_stats_models.json data/euro_stats_model_validation.json data/nt_model.json data/nt_model_validation.json
           if git diff --cached --quiet; then
             echo "Model artifacts are already current"
           else
