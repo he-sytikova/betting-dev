@@ -244,19 +244,43 @@ def attach_stats(token: str, matches: list, sample: int = 0, verbose_payloads: i
     """Догружает /events/{id}/statistics/ и прикрепляет извлечённые счётчики
     к записям матчей (in place). sample > 0 — только последние sample матчей
     списка (режим разведки формата); verbose_payloads — сколько сырых ответов
-    напечатать в лог (обрезанных) для проверки разбора."""
+    напечатать в лог (обрезанных) для проверки разбора. В sample-режиме при
+    ошибке основного пути пробуются альтернативные варианты пути и печатается
+    код ошибки каждого."""
     targets = [m for m in matches if m.get("event_id")]
     if sample:
         targets = targets[-sample:]
     coverage = {"requested": len(targets), "ok": 0, "corners": 0, "cards": 0, "errors": 0}
     printed = 0
+    working_path = attach_stats._working_path  # обнаруженный путь кэшируется
     for m in targets:
-        time.sleep(STATS_PAUSE)
-        try:
-            payload = fetch(f"/events/{m['event_id']}/statistics/", token)
-        except (urllib.error.HTTPError, urllib.error.URLError) as e:
+        payload = None
+        if sample and working_path is None:
+            # Разведка: печатаем статус каждого варианта пути (только до
+            # первого успеха, дальше используется найденный путь).
+            for path in (f"/events/{m['event_id']}/statistics/",
+                         f"/events/{m['event_id']}/statistics",
+                         f"/events/{m['event_id']}/stats/",
+                         f"/statistics/?event_id={m['event_id']}"):
+                time.sleep(STATS_PAUSE)
+                try:
+                    payload = fetch(path, token)
+                    print(f"path probe event {m['event_id']}: {path} -> OK")
+                    working_path = "events"
+                    break
+                except urllib.error.HTTPError as e:
+                    print(f"path probe event {m['event_id']}: {path} -> HTTP {e.code}")
+                except urllib.error.URLError as e:
+                    print(f"path probe event {m['event_id']}: {path} -> {e}")
+            attach_stats._working_path = working_path
+        else:
+            time.sleep(STATS_PAUSE)
+            try:
+                payload = fetch(f"/events/{m['event_id']}/statistics/", token)
+            except (urllib.error.HTTPError, urllib.error.URLError) as e:
+                m["stats_error"] = getattr(e, "code", None) or str(e)
+        if payload is None:
             coverage["errors"] += 1
-            m["stats_error"] = getattr(e, "code", None) or str(e)
             continue
         if printed < verbose_payloads:
             print(f"sample statistics payload, event {m['event_id']} "
@@ -271,6 +295,9 @@ def attach_stats(token: str, matches: list, sample: int = 0, verbose_payloads: i
         if stats.get("yellow_home") is not None and stats.get("yellow_away") is not None:
             coverage["cards"] += 1
     return coverage
+
+
+attach_stats._working_path = None
 
 
 def main():
