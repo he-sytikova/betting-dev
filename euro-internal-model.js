@@ -126,6 +126,15 @@
     return 1;
   }
 
+  // Маргинальный хвост Пуассона: P(команда забьёт больше line) по её lambda.
+  // Тот же подход, что у клубной модели голов: без Dixon–Coles и калибровки,
+  // прямо по lambda соответствующей стороны.
+  function poissonTailOver(lambda, line) {
+    let cumulative = 0;
+    for (let k = 0; k <= Math.floor(line); k++) cumulative += poissonPmf(k, lambda);
+    return Math.min(1, Math.max(0, 1 - cumulative));
+  }
+
   function deriveMarkets(homeLambda, awayLambda, model) {
     const maxGoals = model.maxGoals || 10;
     const rho = model.dcRho || 0;
@@ -150,7 +159,13 @@
       totals[line].over /= sum;
       totals[line].under /= sum;
     });
-    return { p1, x: px, p2, dc1x: p1 + px, dc12: p1 + p2, dcx2: px + p2, totals };
+    const teamLines = model.teamLines || [0.5, 1.5, 2.5];
+    const teamSide = (lambda) => teamLines.map((line) => {
+      const over = poissonTailOver(lambda, line);
+      return { line, over, under: 1 - over };
+    });
+    return { p1, x: px, p2, dc1x: p1 + px, dc12: p1 + p2, dcx2: px + p2, totals,
+             teamGoals: { home: teamSide(homeLambda), away: teamSide(awayLambda) } };
   }
 
   function predict(model, leagueName, homeName, awayName) {
@@ -179,5 +194,5 @@
   }
 
   return { norm, competitionCatalog, resolveCompetition, resolveTeam,
-           baseFeatureVector, transform, predictLambda, dcTau, deriveMarkets, predict };
+           baseFeatureVector, transform, predictLambda, dcTau, poissonTailOver, deriveMarkets, predict };
 }));

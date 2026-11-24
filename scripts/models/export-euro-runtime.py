@@ -54,6 +54,8 @@ recency = _load_module("recency", Path(__file__).with_name("recency.py"))
 
 MAX_GOALS = 10
 TOTAL_LINES = [1.5, 2.5, 3.5, 4.5]
+# Индивидуальные тоталы команд — те же линии, что у клубной модели голов.
+TEAM_LINES = [0.5, 1.5, 2.5]
 
 # Варианты написания ТУРНИРОВ из провайдеров фида -> код турнира. «AFC
 # Champions League» и «UEFA Youth League» сюда не входят и отсекаются гейтом.
@@ -323,6 +325,7 @@ def main():
         "dcRho": dc_rho,
         "maxGoals": MAX_GOALS,
         "totalLines": TOTAL_LINES,
+        "teamLines": TEAM_LINES,
         "leagueAvgGoals": round(avg_goals, 6),
         "teams": teams,
         "teamAliases": aliases,
