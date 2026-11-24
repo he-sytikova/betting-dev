@@ -517,3 +517,22 @@ test('couponEmptyMessage distinguishes processing states and an empty processed 
   assert.match(board.couponEmptyMessage({ data_status: 'ok' }), /пропуск/);
   assert.match(board.couponEmptyMessage({ data_status: 'stale_snapshot' }), /не считается проставленным/);
 });
+
+test('stMarkerFor: подтверждение при совпадении направления', () => {
+  const marks = { matches: [{ home: 'FK Bodø/Glimt', away: 'LASK Linz', marks: [{ market: 'Угловые', direction: 'under', note: 'n' }] }] };
+  const ok = board.stMarkerFor(marks, 'Bodø/Glimt', 'LASK', 'Угловые', 'ТМ 12.5');
+  assert.equal(ok.status, 'confirmed');
+});
+
+test('stMarkerFor: противоречие при обратном направлении, null без данных', () => {
+  const marks = { matches: [{ home: 'Feyenoord', away: 'FC Porto', marks: [{ market: 'Угловые', direction: 'under', note: '' }] }] };
+  assert.equal(board.stMarkerFor(marks, 'Feyenoord', 'Porto', 'Угловые', 'ТБ 7.5').status, 'contradiction');
+  assert.equal(board.stMarkerFor(marks, 'Feyenoord', 'Porto', 'ЖК', 'ТМ 6.5'), null);
+  assert.equal(board.stMarkerFor(null, 'Feyenoord', 'Porto', 'Угловые', 'ТМ 12.5'), null);
+});
+
+test('stMarkerFor: сопоставление имён с префиксами и укороченными формами', () => {
+  const marks = { matches: [{ home: 'ŠK Slovan Bratislava', away: 'Real Betis Balompié', marks: [{ market: 'ЖК', direction: 'over', note: '' }] }] };
+  assert.equal(board.stMarkerFor(marks, 'Slovan Bratislava', 'Real Betis', 'ЖК', 'ТБ 1.5').status, 'confirmed');
+  assert.equal(board.stMarkerFor(marks, 'Slovan Bratislava', 'Real Betis', 'ЖК', 'ТМ 6.5').status, 'contradiction');
+});

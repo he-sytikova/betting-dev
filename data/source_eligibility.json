@@ -91,6 +91,16 @@
    "notes": "The Odds API (the-odds-api.com), free plan 500 credits/month. Added 2026-11-04 as the third odds source of the dev express page: scripts/models/fetch-theodds-odds.py -> data/odds-theodds.json queries only the leagues playing on the snapshot day (totals market, eu region) twice a day and stores per-line avg/max aggregates across European bookmakers. Prices are current, so unlike the FDO opening snapshot this source participates in leg selection (best current price across Euro365 and The Odds API Max). Used only for display and express leg selection; no model training, no historical storage of raw odds; raw API responses are never committed. Do not raise the polling cadence or widen the market set without re-checking the monthly credit budget."
   },
   {
+   "id": "SMART_TABLES",
+   "purpose": [
+    "personal_cross_check",
+    "referee_stats_lookup"
+   ],
+   "trainingUse": "not_applicable",
+   "termsUrl": "https://smart-tables.ru/terms",
+   "notes": "smart-tables.ru — платная личная подписка владельца («Футбол. Базовый»): угловые, ЖК/КК по всем турнирам, статистика по рефери. Пользовательское соглашение (редакция 25.05.2019, ООО «Смарт Тейблс») прочитано 2026-11-24: явного запрета автоматического доступа нет, целевое назначение ресурса (анализ статистики для прогнозирования) совпадает с нашим применением. Решение владельца от 2026-11-24: использовать для ежедневной ручной/полуавтоматической сверки претендентов и справки по судьям. Жёсткие ограничения из соглашения: запрещено создавать производные ресурса (поэтому НЕ обучать модели на данных ST, не строить историческую базу, не публиковать их данные), запрещена эксплуатация, затрудняющая работу других пользователей (не чаще 1–2 лёгких обходов в день, только матчи-кандидаты, с паузами), запрещена передача подписки и коммерческое предоставление (только личное использование владельцем, сессия только в его браузере, никаких cookie в CI/секретах). Практическое следствие: доступ только через браузерную сессию владельца, хранится только сверка текущего дня (data/st_marks_YYYY-MM-DD.json — факт подтверждения и направление, без текстов ST), их прогнозы служат фильтром подтверждения, а не источником кандидатов. При возражениях правообладателя или бане аккаунта — прекратить и пересмотреть."
+  },
+  {
    "id": "INTERNATIONAL_RESULTS",
    "purpose": [
     "historical_match_results",

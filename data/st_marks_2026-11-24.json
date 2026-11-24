@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-24",
+  "generatedAt": "2026-11-24T15:30:00Z",
+  "source": "smart-tables.ru (личная подписка владельца, ручная сверка)",
+  "matches": [
+    {
+      "stMatchId": 576333,
+      "home": "Galatasaray SK",
+      "away": "Aston Villa FC",
+      "marks": [
+        { "market": "Угловые", "direction": "under", "note": "ST: Галатасарай ИТМ 5.5 в 11/13, проигрывает по угловым с Ф -1.5 в 10/13" }
+      ]
+    },
+    {
+      "stMatchId": 576334,
+      "home": "FK Bodø/Glimt",
+      "away": "LASK Linz",
+      "marks": [
+        { "market": "Угловые", "direction": "under", "note": "ST: ТМ 11.5 — 8/10 у Будё-Глимт, 11/12 у ЛАСК (@1.44)" },
+        { "market": "ЖК", "direction": "under", "note": "ST: соперники Будё-Глимт ИТМ 2.5 ЖК в 13/15, ЛАСК ИТМ 2.5 (@1.43)" }
+      ]
+    },
+    {
+      "stMatchId": 576335,
+      "home": "RB Leipzig",
+      "away": "Racing Club de Lens",
+      "marks": [
+        { "market": "Угловые", "direction": "under", "note": "ST: Лейпциг ИТМ 6.5 в 8/10, проигрывает по угловым с Ф -2.5 в 8/10" }
+      ]
+    },
+    {
+      "stMatchId": 576336,
+      "home": "Real Madrid CF",
+      "away": "PSV Eindhoven",
+      "marks": []
+    },
+    {
+      "stMatchId": 576337,
+      "home": "Manchester City FC",
+      "away": "SSC Napoli",
+      "marks": [
+        { "market": "ЖК", "direction": "under", "note": "ST: Наполи ИТМ 2.5 ЖК в 9/11, Сити выигрывает по ЖК с Ф +1.5 в 9/11" }
+      ]
+    },
+    {
+      "stMatchId": 576338,
+      "home": "ŠK Slovan Bratislava",
+      "away": "Real Betis Balompié",
+      "marks": [
+        { "market": "Угловые", "direction": "under", "note": "ST: ТМ 9.5 — 8/10 у Слована, 11/14 у Бетиса; ТМ 10.5 (@1.54)" },
+        { "market": "ЖК", "direction": "over", "note": "ST: соперники Слована ИТБ 1.5 ЖК в 10/13, Бетис ИТБ 1.5 (@1.76)" }
+      ]
+    },
+    {
+      "stMatchId": 576339,
+      "home": "Como 1907",
+      "away": "PAE AEK",
+      "marks": [],
+      "note": "ST: прогнозов по матчу нет"
+    },
+    {
+      "stMatchId": 576340,
+      "home": "Arsenal FC",
+      "away": "Borussia Dortmund",
+      "marks": [],
+      "note": "ST: групп corners/yellowcards в прогнозах нет"
+    },
+    {
+      "stMatchId": 576341,
+      "home": "Feyenoord",
+      "away": "FC Porto",
+      "marks": [
+        { "market": "Угловые", "direction": "under", "note": "ST: ТМ 9.5 — 10/10 у Фейеноорда; ТМ 10.5 (@1.41); оба ИТМ 5.5" }
+      ]
+    }
+  ]
+}

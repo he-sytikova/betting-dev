@@ -464,6 +464,46 @@
     }
   }
 
+  // --- Сверка со Smart Tables (data/st_marks_<date>.json, опционально) ---
+  // Файл создаётся локальной сверкой в браузерной сессии владельца; в CI его нет.
+  // Храним только факт подтверждения и направление — без данных Smart Tables.
+  function stNormalizeName(name) {
+    return String(name || '').toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/ø/g, 'o').replace(/æ/g, 'ae').replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9а-яё]+/gi, ' ')
+      .replace(/\b(fc|fk|sk|cf|sc|ac|bk|if|ik|rc|ud|as|us|sv|afc|ssc|pae|club|racing|real|sporting|cp|sd|cd|ca|se|sl)\b/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function stMatchFor(marks, home, away) {
+    if (!marks || !Array.isArray(marks.matches)) return null;
+    const h = stNormalizeName(home);
+    const a = stNormalizeName(away);
+    if (!h || !a) return null;
+    const same = (x, y) => x === y || (x.length >= 4 && y.includes(x)) || (y.length >= 4 && x.includes(y));
+    return marks.matches.find(m => same(stNormalizeName(m.home), h) && same(stNormalizeName(m.away), a)) || null;
+  }
+
+  // direction кандидата: ТБ/ИТБ -> over, ТМ/ИТМ -> under
+  function stDirectionOf(label) {
+    if (/И?ТБ/.test(label)) return 'over';
+    if (/И?ТМ/.test(label)) return 'under';
+    return null;
+  }
+
+  // Возвращает null (нет данных по матчу/рынку) или { status: 'confirmed'|'contradiction', note }.
+  function stMarkerFor(marks, home, away, marketLabel, label) {
+    const match = stMatchFor(marks, home, away);
+    if (!match) return null;
+    const direction = stDirectionOf(label);
+    if (!direction) return null;
+    const mark = (match.marks || []).find(m => m.market === marketLabel && (m.direction === 'over' || m.direction === 'under'));
+    if (!mark) return null;
+    return { status: mark.direction === direction ? 'confirmed' : 'contradiction', note: mark.note || '' };
+  }
+
   const api = {
     MOSCOW_OFFSET_MS,
     MIN_PROBABILITY,
@@ -496,6 +536,10 @@
     normalizeCoupon,
     normalizeCoupons,
     couponEmptyMessage,
+    stNormalizeName,
+    stMatchFor,
+    stDirectionOf,
+    stMarkerFor,
   };
   if (isNode) {
     module.exports = api;
@@ -535,6 +579,20 @@
     const item = node('span', 'daily-metric');
     item.append(node('span', 'daily-metric__label', label), node('strong', '', value));
     return item;
+  }
+
+  // Маркер сверки со Smart Tables: ✓ — их тренд в ту же сторону, ✗ — противоположный.
+  let currentStMarks = null;
+
+  function stBadge(home, away, marketLabel, label) {
+    const result = stMarkerFor(currentStMarks, home, away, marketLabel, label);
+    if (!result) return null;
+    const confirmed = result.status === 'confirmed';
+    const badge = node('span', `st-mark ${confirmed ? 'st-mark--confirmed' : 'st-mark--contradiction'}`,
+      confirmed ? 'ST ✓' : 'ST ✗');
+    badge.title = result.note
+      || (confirmed ? 'Направление подтверждено статистикой Smart Tables' : 'Smart Tables: тренд противоположного направления — осторожно');
+    return badge;
   }
 
   function marketCountLabel(value) {
@@ -579,8 +637,10 @@
       const displayedOdds = selectedPrice?.odds ?? row.bestOdds;
       const displayedBookmaker = selectedPrice?.bookmaker ?? row.bestBookmaker;
       const market = node('div', 'daily-row__market');
+      market.append(node('strong', '', row.label));
+      const badge = stBadge(row.home, row.away, row.modelLabel, row.label);
+      if (badge) market.append(badge);
       market.append(
-        node('strong', '', row.label),
         metric('Модель', pct(row.probability)),
         metric('Мин. кэф', decimal(row.oMinStep)),
         metric(bookmaker === 'all' ? 'Лучший кэф' : `Кэф ${bookmaker}`, Number.isFinite(displayedOdds)
@@ -699,6 +759,8 @@
     const item = node('li', 'coupon-leg');
     const heading = node('div', 'coupon-leg__heading');
     heading.append(node('strong', '', `${leg.home} — ${leg.away}`), node('span', '', leg.label));
+    const badge = stBadge(leg.home, leg.away, leg.model, leg.label);
+    if (badge) heading.append(badge);
     item.append(heading);
     item.append(node('p', 'coupon-leg__meta', `${timeMsk(leg.time)} · ${leg.league}`));
     const metrics = node('div', 'daily-row__market');
@@ -839,6 +901,8 @@
       const now = Date.now();
       const currentGameDay = gameDayKeyMsk(now);
       const isCurrent = data.date === currentGameDay;
+      // Маркеры сверки со Smart Tables — опциональный файл дня; без него доска работает как раньше.
+      currentStMarks = await fetchJson(`./data/st_marks_${data.date}.json`).catch(() => null);
       const candidates = isCurrent
         ? buildCandidates(data, { goals, cornersCards, stats, nations, euro, euroStats }, now)
         : [];
