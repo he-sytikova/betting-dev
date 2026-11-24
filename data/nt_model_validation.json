@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T10:09:02.538638+00:00",
+  "generatedAt": "2026-11-24T10:38:15.393970+00:00",
   "dataset": "/home/runner/work/betting-dev/betting-dev/data/nt_training.csv",
   "splitPolicy": {
     "train": "years 2022-2024",
@@ -56,7 +56,7 @@
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.2215752432765408
+          "validationPoissonDeviance": 1.2215752432765719
         },
         {
           "alpha": 0.15,
@@ -71,22 +71,22 @@
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.2257062589043037
+          "validationPoissonDeviance": 1.2257062589043028
         },
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.2535363331681837
+          "validationPoissonDeviance": 1.2535363331682727
         },
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.251483966241031
+          "validationPoissonDeviance": 1.251483966224337
         },
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.2521679973759656
+          "validationPoissonDeviance": 1.2521679973760165
         },
         {
           "alpha": 1.5,
@@ -118,27 +118,27 @@
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.2347523611448012
+          "validationPoissonDeviance": 1.2347523610679245
         },
         {
           "alpha": 0.03,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.235507171018621
+          "validationPoissonDeviance": 1.2355071710205268
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": null,
-          "validationPoissonDeviance": 1.2552982850742738
+          "validationPoissonDeviance": 1.2552982850823307
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.2523683191219468
+          "validationPoissonDeviance": 1.25236831912193
         },
         {
           "alpha": 0.15,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.2537580330128941
+          "validationPoissonDeviance": 1.2537580330128937
         },
         {
           "alpha": 0.5,
@@ -148,12 +148,12 @@
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 550,
-          "validationPoissonDeviance": 1.2994543358544337
+          "validationPoissonDeviance": 1.2994543358530117
         },
         {
           "alpha": 0.5,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.301290895549372
+          "validationPoissonDeviance": 1.3012908955493723
         },
         {
           "alpha": 1.5,
@@ -168,103 +168,103 @@
         {
           "alpha": 1.5,
           "recencyHalfLifeDays": 1100,
-          "validationPoissonDeviance": 1.3773158809894277
+          "validationPoissonDeviance": 1.377315880989428
         }
       ],
-      "validationPoissonDeviance": 1.2347523611448012
+      "validationPoissonDeviance": 1.2347523610679245
     }
   },
   "dixonColes": {
     "selectedRho": -0.025,
     "deployedRho": 0.0,
-    "validation1x2LogLossRaw": 0.8253503358984865,
-    "validation1x2LogLossDc": 0.8249599459338147
+    "validation1x2LogLossRaw": 0.8253503358555088,
+    "validation1x2LogLossDc": 0.8249599458899772
   },
   "metrics": {
     "validation": {
       "rows": 1001,
-      "model1x2LogLoss": 0.8253503358984865,
+      "model1x2LogLoss": 0.8253503358555088,
       "baseline1x2LogLoss": 1.0507450400666232,
-      "modelBrier": 0.4836706566795512,
+      "modelBrier": 0.4836706566702651,
       "baselineBrier": 0.6333108590491523,
       "byTournamentGroup": {
         "finals": {
           "rows": 67,
-          "model1x2LogLoss": 0.8221085239304872,
+          "model1x2LogLoss": 0.8221085237965966,
           "baseline1x2LogLoss": 1.0555738591691783,
-          "modelBrier": 0.48125140388579724,
+          "modelBrier": 0.4812514038185943,
           "baselineBrier": 0.6361714090562233
         },
         "friendly": {
           "rows": 247,
-          "model1x2LogLoss": 0.906560288995043,
+          "model1x2LogLoss": 0.9065602890096501,
           "baseline1x2LogLoss": 1.0436144712792392,
-          "modelBrier": 0.5364405957679511,
+          "modelBrier": 0.5364405957900615,
           "baselineBrier": 0.6278785382215046
         },
         "nationsLeague": {
           "rows": 32,
-          "model1x2LogLoss": 1.062407117407597,
+          "model1x2LogLoss": 1.0624071174440088,
           "baseline1x2LogLoss": 1.0954741340389278,
-          "modelBrier": 0.6436839144903153,
+          "modelBrier": 0.6436839145167731,
           "baselineBrier": 0.6660832986628228
         },
         "otherCompetitive": {
           "rows": 83,
-          "model1x2LogLoss": 0.9657033032062935,
+          "model1x2LogLoss": 0.965703303260799,
           "baseline1x2LogLoss": 1.0728351043657363,
-          "modelBrier": 0.5759866143939629,
+          "modelBrier": 0.5759866144432954,
           "baselineBrier": 0.6492384405749955
         },
         "qualifiers": {
           "rows": 572,
-          "model1x2LogLoss": 0.7570343038917844,
+          "model1x2LogLoss": 0.7570343038160027,
           "baseline1x2LogLoss": 1.0475508324908867,
-          "modelBrier": 0.4388197235363796,
+          "modelBrier": 0.43881972350981424,
           "baselineBrier": 0.631176976286344
         }
       }
     },
     "test": {
       "rows": 980,
-      "model1x2LogLoss": 0.8635209563111951,
+      "model1x2LogLoss": 0.8635209562847831,
       "baseline1x2LogLoss": 1.0450643477818544,
-      "modelBrier": 0.5059975338921248,
+      "modelBrier": 0.5059975338807539,
       "baselineBrier": 0.6291693613641174,
       "byTournamentGroup": {
         "finals": {
           "rows": 120,
-          "model1x2LogLoss": 0.8516418593451,
+          "model1x2LogLoss": 0.851641859295628,
           "baseline1x2LogLoss": 1.0442047122049325,
-          "modelBrier": 0.49844603778877367,
+          "modelBrier": 0.4984460377659293,
           "baselineBrier": 0.628480739301179
         },
         "friendly": {
           "rows": 356,
-          "model1x2LogLoss": 0.8648182609056717,
+          "model1x2LogLoss": 0.8648182609267241,
           "baseline1x2LogLoss": 1.0328202367262762,
-          "modelBrier": 0.5079649655522711,
+          "modelBrier": 0.5079649655827534,
           "baselineBrier": 0.6200511658463588
         },
         "nationsLeague": {
           "rows": 253,
-          "model1x2LogLoss": 0.8534493949453191,
+          "model1x2LogLoss": 0.8534493948574638,
           "baseline1x2LogLoss": 1.050740853542969,
-          "modelBrier": 0.496137409018081,
+          "modelBrier": 0.4961374089562088,
           "baselineBrier": 0.6336081295492481
         },
         "otherCompetitive": {
           "rows": 127,
-          "model1x2LogLoss": 0.8747046709373609,
+          "model1x2LogLoss": 0.874704670853032,
           "baseline1x2LogLoss": 1.0740262272515293,
-          "modelBrier": 0.5120050788050046,
+          "modelBrier": 0.5120050787482473,
           "baselineBrier": 0.6504903647615101
         },
         "qualifiers": {
           "rows": 124,
-          "model1x2LogLoss": 0.880387282668785,
+          "model1x2LogLoss": 0.880387282713106,
           "baseline1x2LogLoss": 1.0398042280625956,
-          "modelBrier": 0.5216219472033149,
+          "modelBrier": 0.5216219472324138,
           "baselineBrier": 0.6251204619251614
         }
       }
