@@ -1,2 +1,1 @@
-expr1: ${{ github.event_name }}
-expr2: ${{ steps.deployment.outputs.page_url }}
+# Комментарий на кириллице: Публикация сайта разработки на GitHub Pages
