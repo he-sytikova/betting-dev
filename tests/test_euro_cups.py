@@ -241,5 +241,52 @@ class TrainFeaturesTest(unittest.TestCase):
                          set(builder.COMP_FEATURES) & set(trainer.FEATURES))
 
 
+class ExtractMatchStatsTest(unittest.TestCase):
+    """Разбор /events/{id}/statistics/: вложенная структура с периодами,
+    строковые значения, варианты ключей, предпочтение периода ALL."""
+
+    def test_sofascore_style_nested_payload(self):
+        payload = {"statistics": [
+            {"period": "1ST", "groups": [{"groupName": "Match", "statisticsItems": [
+                {"name": "Corner kicks", "key": "corner_kicks", "home": "3", "away": "1"},
+                {"name": "Yellow cards", "key": "yellow_cards", "home": "1", "away": "0"},
+            ]}]},
+            {"period": "ALL", "groups": [{"groupName": "Match", "statisticsItems": [
+                {"name": "Corner kicks", "key": "corner_kicks", "home": "7", "away": "4"},
+                {"name": "Yellow cards", "key": "yellow_cards", "home": "2", "away": "3"},
+                {"name": "Red cards", "key": "red_cards", "home": "0", "away": "1"},
+            ]}]},
+        ]}
+        stats = downloader.extract_match_stats(payload)
+        self.assertEqual(stats, {"corners_home": 7, "corners_away": 4,
+                                 "yellow_home": 2, "yellow_away": 3,
+                                 "red_home": 0, "red_away": 1})
+
+    def test_camel_case_keys_and_home_value_fields(self):
+        payload = {"data": [{"items": [
+            {"key": "cornerKicks", "homeValue": 5, "awayValue": 6},
+            {"key": "yellowCards", "homeValue": 1, "awayValue": 2},
+        ]}]}
+        stats = downloader.extract_match_stats(payload)
+        self.assertEqual(stats["corners_home"], 5)
+        self.assertEqual(stats["corners_away"], 6)
+        self.assertEqual(stats["yellow_home"], 1)
+        self.assertEqual(stats["yellow_away"], 2)
+        self.assertIsNone(stats["red_home"])
+        self.assertIsNone(stats["red_away"])
+
+    def test_first_entry_wins_without_all_period(self):
+        payload = {"statistics": [
+            {"period": "1ST", "items": [{"name": "Corner kicks", "home": "2", "away": "2"}]},
+            {"period": "2ND", "items": [{"name": "Corner kicks", "home": "5", "away": "3"}]},
+        ]}
+        stats = downloader.extract_match_stats(payload)
+        self.assertEqual((stats["corners_home"], stats["corners_away"]), (2, 2))
+
+    def test_missing_stats_yield_none_not_zero(self):
+        stats = downloader.extract_match_stats({"statistics": []})
+        self.assertTrue(all(v is None for v in stats.values()))
+
+
 if __name__ == "__main__":
     unittest.main()
