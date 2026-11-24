@@ -33,9 +33,10 @@ TARGETS = {
     "ECL": "Conference League",
 }
 # Сколько последних сезонов глубоко проверять на матчи.
-SEASONS_TO_CHECK = 4
+SEASONS_TO_CHECK = 6
 # Сколько матчей на сезон сэмплировать для availability.
-SAMPLE_MATCHES = 3
+SAMPLE_MATCHES = 12
+PAGE_SIZE = 200  # максимум limit у /events/
 
 
 def fetch(path: str, token: str) -> dict:
@@ -100,20 +101,48 @@ def probe_league(code: str, league_id: int, token: str):
     checked = []
     for s in dated[:SEASONS_TO_CHECK]:
         time.sleep(PAUSE)
-        try:
-            ev = fetch(f"/events/?season_id={s['id']}&status=finished&limit=200", token)
-        except urllib.error.HTTPError as e:
-            checked.append({"season": s, "error": f"HTTP {e.code}"})
+        # Все страницы завершённых матчей сезона: первая страница покрывает
+        # только хвост сезона (плей-офф), а для аудита покрытия статистики
+        # нужны и ранние раунды.
+        matches = []
+        total = None
+        offset = 0
+        failed = False
+        while True:
+            if offset:
+                time.sleep(PAUSE)
+            try:
+                ev = fetch(f"/events/?season_id={s['id']}&status=finished&limit={PAGE_SIZE}&offset={offset}", token)
+            except urllib.error.HTTPError as e:
+                if not matches:
+                    checked.append({"season": s, "error": f"HTTP {e.code}"})
+                    failed = True
+                break
+            page = as_list(ev, ("results", "events", "data"))
+            matches.extend(page)
+            if total is None:
+                total = ev.get("count", len(matches)) if isinstance(ev, dict) else len(matches)
+            if len(page) < PAGE_SIZE:
+                break
+            offset += PAGE_SIZE
+        if failed:
             continue
-        matches = as_list(ev, ("results", "events", "data"))
-        total = ev.get("count", len(matches)) if isinstance(ev, dict) else len(matches)
-        # Проверяем поля счёта на образце.
+        total = total if total is not None else len(matches)
+        # Проверяем поля счёта на всём списке.
         score_ok = sum(
             1 for m in matches
             if m.get("home_score") is not None and m.get("away_score") is not None
         )
+        # Равномерный сэмпл по всей хронологии сезона (а не только финалы):
+        # покрытие статистики может отличаться между групповым этапом и
+        # решающими матчами.
+        if len(matches) <= SAMPLE_MATCHES:
+            sampled_matches = matches
+        else:
+            step = (len(matches) - 1) / (SAMPLE_MATCHES - 1)
+            sampled_matches = [matches[round(i * step)] for i in range(SAMPLE_MATCHES)]
         sample_availability = []
-        for m in matches[:SAMPLE_MATCHES]:
+        for m in sampled_matches:
             time.sleep(PAUSE)
             try:
                 av = fetch(f"/events/{m['id']}/availability/", token)
