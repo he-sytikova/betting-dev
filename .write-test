@@ -1,1 +1,2 @@
-test
+expr1: ${{ github.event_name }}
+expr2: ${{ steps.deployment.outputs.page_url }}
