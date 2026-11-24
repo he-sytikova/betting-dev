@@ -10,6 +10,7 @@ const goals = require('../../goals-internal-model.js');
 const corners = require('../../internal-model.js');
 const stats = require('../../stats-internal-model.js');
 const nt = require('../../nt-internal-model.js');
+const euro = require('../../euro-internal-model.js');
 
 function fixtureRows(payload) {
   if (Array.isArray(payload)) return payload;
@@ -28,6 +29,7 @@ function coverage(fixture, models) {
     ['cornersCards', corners, models.cornersCards],
     ['stats', stats, models.stats],
     ['nt', nt, models.nt],
+    ['euro', euro, models.euro],
   ]) {
     if (model && api.predict(model, ...args)) return label;
   }
@@ -78,6 +80,7 @@ function loadModels(projectRoot) {
     cornersCards: JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/corners_cards_models.json'), 'utf8')),
     stats: JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/stats_markets_models.json'), 'utf8')),
     nt: JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/nt_model.json'), 'utf8')),
+    euro: JSON.parse(fs.readFileSync(path.join(projectRoot, 'data/euro_cups_model.json'), 'utf8')),
   };
 }
 

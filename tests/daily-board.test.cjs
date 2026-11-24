@@ -34,6 +34,34 @@ function goalsModel(homeLambda = 3, awayLambda = 0.2) {
   };
 }
 
+function euroModel(homeLambda = 2.4, awayLambda = 0.5) {
+  return {
+    schemaVersion: 2,
+    competitions: [
+      { code: 'CL', name: 'UEFA Champions League', names: ['UEFA Champions League', 'Champions League'] },
+    ],
+    teamAliases: {
+      'real madrid': 'real-madrid', 'real madrid cf': 'real-madrid',
+      psv: 'psv', 'psv eindhoven': 'psv',
+    },
+    teams: {
+      'real-madrid': { name: 'Real Madrid', euro: { euroElo: 1900 } },
+      psv: { name: 'PSV', euro: { euroElo: 1700 } },
+    },
+    features: [],
+    imputerMedian: [],
+    scalerMean: [],
+    scalerScale: [],
+    models: {
+      home: { intercept: Math.log(homeLambda), coefficients: [] },
+      away: { intercept: Math.log(awayLambda), coefficients: [] },
+    },
+    totalLines: [1.5, 2.5],
+    maxGoals: 10,
+    dcRho: 0,
+  };
+}
+
 function clubStatsModel(models) {
   const specs = {};
   for (const [market, config] of Object.entries(models)) {
@@ -213,6 +241,38 @@ test('nationsFixtures rejects unknown teams and competitions outside UEFA Nation
   ], DAY, NOW);
   assert.equal(fixtures.length, 1);
   assert.equal(fixtures[0].home, 'Spain');
+});
+
+test('euroFixtures accepts UEFA club cups, dedupes spellings and rejects lookalikes', () => {
+  const fixtures = board.euroFixtures(euroModel(), [
+    { time: `${DAY}T18:00:00Z`, league: 'UEFA Champions League', home: 'Real Madrid', away: 'PSV' },
+    { time: `${DAY}T18:00:00Z`, league: 'Champions League', home: 'Real Madrid CF', away: 'PSV Eindhoven' },
+    { time: `${DAY}T18:00:00Z`, league: 'AFC Champions League Elite', home: 'Real Madrid', away: 'PSV' },
+    { time: `${DAY}T18:00:00Z`, league: 'UEFA Champions League. Team vs Player', home: 'Real Madrid', away: 'PSV' },
+    { time: `${DAY}T18:00:00Z`, league: 'UEFA Champions League', home: 'Real Madrid', away: 'Unknown FC' },
+    { time: `${DAY}T20:00:00Z`, league: 'UEFA Champions League', home: 'PSV', away: 'Real Madrid' },
+  ], DAY, NOW);
+  assert.equal(fixtures.length, 2);
+  assert.deepEqual(fixtures[0].key, 'CL|real-madrid|psv');
+  assert.deepEqual(fixtures[1].key, 'CL|psv|real-madrid');
+  assert.equal(board.euroFixtures(null, [{ time: `${DAY}T18:00:00Z`, league: 'UEFA Champions League', home: 'Real Madrid', away: 'PSV' }], DAY, NOW).length, 0);
+});
+
+test('buildCandidates adds euro cup candidates only when the euro model is present', () => {
+  const data = { date: DAY, predictions: [
+    { time: `${DAY}T18:00:00Z`, league: 'UEFA Champions League', home: 'Real Madrid', away: 'PSV' },
+  ] };
+  const emptyNations = { competitions: [], teamAliases: {}, teams: {} };
+  const withoutEuro = board.buildCandidates(data, { goals: null, nations: emptyNations }, NOW);
+  assert.equal(withoutEuro.length, 0);
+  const rows = board.buildCandidates(data, { goals: null, nations: emptyNations, euro: euroModel() }, NOW);
+  assert.ok(rows.length > 0);
+  assert.ok(rows.every(row => row.modelLabel === 'Еврокубки'));
+  assert.ok(rows.every(row => row.probability >= board.MIN_PROBABILITY && row.probability <= 1));
+  assert.ok(rows.every(row => row.modelKey === 'CL|real-madrid|psv'));
+  assert.ok(rows.some(row => row.label === 'П1'));
+  assert.ok(rows.some(row => /^Т[БМ] \d/.test(row.label)));
+  assert.ok(rows.every(row => row.lineStatus === 'not_checked'));
 });
 
 test('buildCandidates covers all active model families and preserves market lines', () => {

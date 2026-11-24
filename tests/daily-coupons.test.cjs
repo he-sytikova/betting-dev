@@ -120,8 +120,10 @@ test('incomplete pairs, integer lines and unconfirmed model markets never enter 
   assert.equal(integer.rejection.reason, 'integer_two_way_line');
   const cards = coupons.evaluatePrice(candidate({ modelLabel: 'ЖК', label: 'ТБ 2.5' }), line());
   assert.equal(cards.rejection.reason, 'market_not_confirmed');
+  // Еврокубки допускаются по тем же правилам, что и клубные чемпионаты
+  // (решение владельца от 24.11.2026): исходы, двойные шансы и тоталы голов.
   const euro = coupons.evaluatePrice(candidate({ modelLabel: 'Еврокубки' }), line());
-  assert.equal(euro.rejection.reason, 'market_not_confirmed');
+  assert.ok(euro.leg, euro.rejection?.reason);
 });
 
 test('reference candidate odds use only the exact supported market and reject invalid lines', () => {
@@ -322,6 +324,76 @@ function clubOnlyModel(market) {
 function emptyNations() {
   return { competitions: [], teamAliases: {}, teams: {} };
 }
+
+function euroOnlyModel(homeLambda = 2.0, awayLambda = 1.0) {
+  return {
+    schemaVersion: 2,
+    competitions: [
+      { code: 'CL', name: 'UEFA Champions League', names: ['UEFA Champions League', 'Champions League'] },
+    ],
+    teamAliases: { 'real madrid': 'real-madrid', psv: 'psv' },
+    teams: {
+      'real-madrid': { name: 'Real Madrid', euro: { euroElo: 1900 } },
+      psv: { name: 'PSV', euro: { euroElo: 1700 } },
+    },
+    features: [],
+    imputerMedian: [],
+    scalerMean: [],
+    scalerScale: [],
+    models: {
+      home: { intercept: Math.log(homeLambda), coefficients: [] },
+      away: { intercept: Math.log(awayLambda), coefficients: [] },
+    },
+    totalLines: [1.5, 2.5],
+    maxGoals: 10,
+    dcRho: 0,
+  };
+}
+
+test('euro cup fixture reaches prices and money coupons like a club league fixture', () => {
+  const fixture = {
+    time: `${DAY}T18:00:00.000Z`, league: 'UEFA Champions League',
+    home: 'Real Madrid', away: 'PSV', modelCoverage: 'euro',
+  };
+  const models = { goals: null, cornersCards: null, stats: null, nations: emptyNations(), euro: euroOnlyModel() };
+  assert.equal(modelGate.coverage(fixture, models), 'euro');
+  assert.deepEqual(coupons.fixtureModelKeys(fixture, models), ['CL|real-madrid|psv']);
+  const index = coupons.buildMatchIndex(
+    { fixtures: [fixture] },
+    [{ ...fixture, fixture_key: 'raw', bookmaker: 'Fonbet', status: 'matched', match_id: '100' }],
+    models,
+  );
+  assert.equal(index.get(`CL|real-madrid|psv|${fixture.time}`).length, 1);
+
+  const data = { date: DAY, predictions: [fixture] };
+  const euroCandidates = board.buildCandidates(data, models, Date.parse(NOW));
+  assert.ok(euroCandidates.length > 0);
+  assert.ok(euroCandidates.every(row => row.modelLabel === 'Еврокубки'));
+  const snapshots = Object.fromEntries(['Fonbet', 'Marathonbet', 'Winline'].map((bookmaker, i) => [bookmaker, {
+    status: 'ok', captured_at_utc: NOW,
+    matches: [line({ bookmaker, match_id: String(100 + i) })],
+  }]));
+  const result = coupons.buildArtifact({
+    date: DAY, data, models,
+    gated: { generatedAt: NOW, fixtures: [fixture] },
+    matching: ['Fonbet', 'Marathonbet', 'Winline'].map((bookmaker, i) => ({
+      bookmaker, fixture_key: 'raw', home: fixture.home, away: fixture.away,
+      time: fixture.time, status: 'matched', match_id: String(100 + i),
+    })),
+    snapshots,
+    generatedAt: NOW,
+  });
+  assert.equal(result.artifact.data_status, 'ok');
+  assert.ok(!result.diagnostics.rejected.some(row => row.model === 'Еврокубки' && row.reason === 'fixture_not_gated'));
+  assert.ok(!result.diagnostics.rejected.some(row => row.model === 'Еврокубки' && row.reason === 'market_not_confirmed'));
+  const prices = result.artifact.candidate_prices.filter(row => row.model === 'Еврокубки');
+  assert.ok(prices.length > 0);
+  assert.ok(prices.every(row => row.model_key === 'CL|real-madrid|psv'));
+  assert.ok(result.artifact.summary.eligible_legs > 0);
+  const euroLegs = result.artifact.prepared_coupons.flatMap(coupon => coupon.legs)
+    .filter(leg => leg.model === 'Еврокубки');
+  assert.ok(euroLegs.length > 0);
+});
 
 test('acquisition gate and match index include corners-only and stats-only fixtures', () => {
   const fixture = {
