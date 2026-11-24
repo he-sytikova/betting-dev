@@ -220,6 +220,11 @@
       for (const [line, total] of Object.entries(markets.totals || {})) {
         addTotal(rows, fixture, resolved, 'Еврокубки', 'ТБ', line, total.over, total.under);
       }
+      for (const [side, prefix] of [['home', 'ИТБ1'], ['away', 'ИТБ2']]) {
+        for (const total of markets.teamGoals?.[side] || []) {
+          addTotal(rows, fixture, resolved, 'Еврокубки', prefix, total.line, total.over, total.under);
+        }
+      }
     }
     return rows;
   }

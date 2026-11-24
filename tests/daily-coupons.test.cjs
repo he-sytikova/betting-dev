@@ -350,8 +350,21 @@ function euroOnlyModel(homeLambda = 2.0, awayLambda = 1.0) {
   };
 }
 
-test('euro cup fixture reaches prices and money coupons like a club league fixture', () => {
-  const fixture = {
+test('euro cup individual totals map to bookmaker team-goals markets', () => {
+  const home = coupons.marketForCandidate(candidate({ modelLabel: 'Еврокубки', label: 'ИТБ1 1.5' }));
+  assert.equal(home.kind, 'total');
+  assert.equal(home.key, 'IT_HOME_GOALS:1.5');
+  assert.equal(home.opposite, 'ИТМ1');
+  const away = coupons.marketForCandidate(candidate({ modelLabel: 'Еврокубки', label: 'ИТМ2 0.5' }));
+  assert.equal(away.key, 'IT_AWAY_GOALS:0.5');
+  assert.equal(away.opposite, 'ИТБ2');
+  const quote = coupons.candidateOdds(candidate({ modelLabel: 'Еврокубки', label: 'ИТБ1 1.5' }), line({
+    markets: { 'IT_HOME_GOALS:1.5': { ИТБ1: 1.7, ИТМ1: 2.1 } },
+  }));
+  assert.deepEqual(quote, { odds: 1.7, market_key: 'IT_HOME_GOALS:1.5' });
+});
+
+test('euro cup fixture reaches prices and money coupons like a club league fixture', () => {  const fixture = {
     time: `${DAY}T18:00:00.000Z`, league: 'UEFA Champions League',
     home: 'Real Madrid', away: 'PSV', modelCoverage: 'euro',
   };

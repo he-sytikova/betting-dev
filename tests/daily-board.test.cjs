@@ -272,6 +272,8 @@ test('buildCandidates adds euro cup candidates only when the euro model is prese
   assert.ok(rows.every(row => row.modelKey === 'CL|real-madrid|psv'));
   assert.ok(rows.some(row => row.label === 'П1'));
   assert.ok(rows.some(row => /^Т[БМ] \d/.test(row.label)));
+  assert.ok(rows.some(row => /^ИТБ1 \d/.test(row.label)), 'home team totals present');
+  assert.ok(rows.some(row => /^ИТМ2 \d/.test(row.label)), 'away team totals present');
   assert.ok(rows.every(row => row.lineStatus === 'not_checked'));
 });
 

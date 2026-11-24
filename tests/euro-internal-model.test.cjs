@@ -117,6 +117,31 @@ test('dcTau with positive rho lifts extreme low-score cells consistently', { ski
   assert.ok(Number.isFinite(t) && t > 0);
 });
 
+test('poissonTailOver matches exact marginal Poisson tails', () => {
+  // lambda=2.0: P(>0.5) = 1 - e^-2; P(>1.5) = 1 - e^-2 * (1 + 2).
+  assert.ok(Math.abs(euro.poissonTailOver(2.0, 0.5) - (1 - Math.exp(-2))) < 1e-12);
+  assert.ok(Math.abs(euro.poissonTailOver(2.0, 1.5) - (1 - Math.exp(-2) * 3)) < 1e-12);
+  const tiny = euro.poissonTailOver(0.01, 2.5);
+  assert.ok(tiny >= 0 && tiny < 1e-3, `tail ${tiny} must be near zero, never negative`);
+  assert.ok(euro.poissonTailOver(8, 0.5) > 0.999);
+});
+
+test('deriveMarkets adds team totals from marginal lambdas with default and custom lines', () => {
+  const markets = euro.deriveMarkets(2.0, 1.0, { dcRho: 0, maxGoals: 10, totalLines: [2.5] });
+  assert.ok(markets.teamGoals);
+  assert.deepEqual(markets.teamGoals.home.map(t => t.line), [0.5, 1.5, 2.5]);
+  for (const side of ['home', 'away']) {
+    for (const t of markets.teamGoals[side]) {
+      assert.ok(Math.abs(t.over + t.under - 1) < 1e-12);
+    }
+  }
+  assert.ok(Math.abs(markets.teamGoals.home[1].over - euro.poissonTailOver(2.0, 1.5)) < 1e-12);
+  assert.ok(Math.abs(markets.teamGoals.away[1].over - euro.poissonTailOver(1.0, 1.5)) < 1e-12);
+  assert.ok(markets.teamGoals.home[1].over > markets.teamGoals.away[1].over);
+  const custom = euro.deriveMarkets(2.0, 1.0, { teamLines: [1.5] });
+  assert.deepEqual(custom.teamGoals.home.map(t => t.line), [1.5]);
+});
+
 test('exported transform dimensions line up', { skip: !modelExists }, () => {
   assert.equal(model.features.length, model.imputerMedian.length);
   assert.equal(model.features.length, model.scalerMean.length);
