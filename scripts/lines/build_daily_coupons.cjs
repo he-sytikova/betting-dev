@@ -10,6 +10,7 @@ const cornersApi = require('../../internal-model.js');
 const statsApi = require('../../stats-internal-model.js');
 const ntApi = require('../../nt-internal-model.js');
 const euroApi = require('../../euro-internal-model.js');
+const euroStatsApi = require('../../euro-stats-internal-model.js');
 
 const BOOKMAKERS = ['Fonbet', 'Marathonbet', 'Winline'];
 const SINGLE_LIMIT = 5;
@@ -202,6 +203,12 @@ function fixtureModelKeys(fixture, models) {
   const euroAway = models.euro ? euroApi.resolveTeam(models.euro, fixture.away) : null;
   if (euroCompetition && euroHome && euroAway) {
     keys.add(`${euroCompetition.code}|${euroHome.key}|${euroAway.key}`);
+  }
+  const esCompetition = models.euroStats ? euroStatsApi.resolveCompetition(models.euroStats, fixture.league) : null;
+  const esHome = models.euroStats ? euroStatsApi.resolveTeam(models.euroStats, fixture.home) : null;
+  const esAway = models.euroStats ? euroStatsApi.resolveTeam(models.euroStats, fixture.away) : null;
+  if (esCompetition && esHome && esAway) {
+    keys.add(`eurostats|${esCompetition.code}|${esHome.key}|${esAway.key}`);
   }
   return [...keys];
 }
@@ -485,6 +492,10 @@ function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 
+function readJsonOptional(file) {
+  return fs.existsSync(file) ? readJson(file) : null;
+}
+
 function loadModels(projectRoot) {
   return {
     goals: readJson(path.join(projectRoot, 'data/goals_markets_models.json')),
@@ -492,6 +503,8 @@ function loadModels(projectRoot) {
     stats: readJson(path.join(projectRoot, 'data/stats_markets_models.json')),
     nations: readJson(path.join(projectRoot, 'data/nt_model.json')),
     euro: readJson(path.join(projectRoot, 'data/euro_cups_model.json')),
+    // Появляется после первого переобучения с евро-статистикой.
+    euroStats: readJsonOptional(path.join(projectRoot, 'data/euro_stats_models.json')),
   };
 }
 

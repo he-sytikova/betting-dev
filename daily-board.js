@@ -8,6 +8,7 @@
   const statsApi = isNode ? require('./stats-internal-model.js') : root.StatsInternalModel;
   const ntApi = isNode ? require('./nt-internal-model.js') : root.NtInternalModel;
   const euroApi = isNode ? require('./euro-internal-model.js') : root.EuroInternalModel;
+  const euroStatsApi = isNode ? require('./euro-stats-internal-model.js') : root.EuroStatsInternalModel;
 
   const MOSCOW_OFFSET_MS = 180 * 60000;
   const MIN_PROBABILITY = 0.75;
@@ -243,6 +244,11 @@
       }),
       ...nationsCandidates(models.nations, predictions, day, now),
       ...euroCandidates(models.euro, predictions, day, now),
+      // Еврокубковые угловые/ЖК: та же форма prediction[market].lines, что у
+      // клубной модели, поэтому используется общий перебор clubMarketCandidates.
+      ...clubMarketCandidates(euroStatsApi, models.euroStats, predictions, day, now, {
+        corners: 'Угловые', yellowCards: 'ЖК',
+      }),
     ];
     return rows.sort((a, b) => (a.time - b.time) || (b.probability - a.probability) || a.label.localeCompare(b.label, 'ru'));
   }
@@ -819,19 +825,22 @@
     $('daily-board-status').textContent = 'Загрузка модельного снимка…';
     $('daily-board-status').className = 'daily-board__status is-loading';
     try {
-      const [data, goals, cornersCards, stats, nations, euro] = await Promise.all([
+      const [data, goals, cornersCards, stats, nations, euro, euroStats] = await Promise.all([
         fetchJson('./data.json'),
         fetchJson('./data/goals_markets_models.json'),
         fetchJson('./data/corners_cards_models.json'),
         fetchJson('./data/stats_markets_models.json'),
         fetchJson('./data/nt_model.json'),
         fetchJson('./data/euro_cups_model.json'),
+        // Файл появляется после первого переобучения с евро-статистикой;
+        // до этого доска работает без него.
+        fetchJson('./data/euro_stats_models.json').catch(() => null),
       ]);
       const now = Date.now();
       const currentGameDay = gameDayKeyMsk(now);
       const isCurrent = data.date === currentGameDay;
       const candidates = isCurrent
-        ? buildCandidates(data, { goals, cornersCards, stats, nations, euro }, now)
+        ? buildCandidates(data, { goals, cornersCards, stats, nations, euro, euroStats }, now)
         : [];
       renderCandidates(candidates, isCurrent
         ? 'На оставшуюся часть игрового дня нет модельных рынков с вероятностью от 75%.'

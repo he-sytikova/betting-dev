@@ -199,7 +199,7 @@ def main():
 
     matches = builder.load_euro_matches(args.bsd_dir)
     series = builder.domestic_state_series(args.domestic)
-    rows, states, coverage, avg_goals = builder.process_matches(matches, series)
+    rows, states, coverage, avg_goals, stat_context = builder.process_matches(matches, series)
     df = pd.DataFrame(rows)
     features = euro_trainer.FEATURES
 

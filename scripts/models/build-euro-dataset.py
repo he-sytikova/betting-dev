@@ -38,7 +38,7 @@ import json
 import math
 import unicodedata
 import re
-from collections import defaultdict
+from collections import defaultdict, deque
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -262,9 +262,29 @@ CANONICAL_SYNONYMS = {
 
 DOMESTIC_FEATURES = ["elo", "att_decay", "def_decay",
                      "goal_for_avg5", "goal_against_avg5",
-                     "goal_for_avg10", "goal_against_avg10"]
+                     "goal_for_avg10", "goal_against_avg10",
+                     "corners_for_avg5", "corners_against_avg5",
+                     "corners_for_avg10", "corners_against_avg10",
+                     "cards_for_avg5", "cards_against_avg5",
+                     "cards_for_avg10", "cards_against_avg10"]
 
 COMP_FEATURES = ["comp_is_el", "comp_is_ecl"]
+
+# Статистика матчей BSD -> наши группы историй и цели. Карточки — только
+# жёлтые (как cards_total = HY+AY в клубном датасете; красные отдельно и не
+# моделируются). null у провайдера = показателя нет, это не 0.
+STAT_GROUPS = {
+    "corners": ("corners_home", "corners_away"),
+    "cards": ("yellow_home", "yellow_away"),
+}
+
+# Признаки евро-истории статистики на сторону (avg5/avg10 по последним
+# еврокубковым матчам С ИЗВЕСТНОЙ статистикой + число таких матчей сезона).
+EURO_STAT_FEATURES = [
+    f"{side}_euro_{group}_{kind}_avg{window}"
+    for side in ("home", "away") for group in STAT_GROUPS
+    for kind in ("for", "against") for window in (5, 10)
+] + [f"{side}_euro_{group}_games" for side in ("home", "away") for group in STAT_GROUPS]
 
 
 def norm_name(value: str) -> str:
@@ -306,6 +326,7 @@ def load_euro_matches(bsd_dir: Path) -> list:
                     "away": canonical_or_self(m["away"]),
                     "home_goals": int(m["home_goals"]),
                     "away_goals": int(m["away_goals"]),
+                    "stats": m.get("stats") or {},
                 })
     matches.sort(key=lambda r: r["date"])
     return matches
@@ -315,23 +336,38 @@ def domestic_state_series(domestic_csv: Path) -> dict:
     """Для каждой команды — хронологический список (date, state) её признаков
     ПОСЛЕ каждого сыгранного матча чемпионата. Состояние на дату еврокубкового
     матча — последняя запись строго до этой даты (послематчевое состояние
-    предыдущего дня = доматчевое для следующего)."""
+    предыдущего дня = доматчевое для следующего). Помимо голых рейтингов
+    переносим историю угловых и ЖК из чемпионата (колонки team_*/card_team_*
+    домашнего датасета) — клубная форма по этим рынкам переносится в
+    еврокубки."""
     df = pd.read_csv(domestic_csv, low_memory=False)
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     df = df[df["date"].notna()].sort_values("date")
+
+    def state(row, side):
+        return {
+            "elo": getattr(row, f"{side}_elo"),
+            "att_decay": getattr(row, f"{side}_att_decay"),
+            "def_decay": getattr(row, f"{side}_def_decay"),
+            "goal_for_avg5": getattr(row, f"{side}_goal_team_for_avg5"),
+            "goal_against_avg5": getattr(row, f"{side}_goal_team_against_avg5"),
+            "goal_for_avg10": getattr(row, f"{side}_goal_team_for_avg10"),
+            "goal_against_avg10": getattr(row, f"{side}_goal_team_against_avg10"),
+            "corners_for_avg5": getattr(row, f"{side}_team_for_avg5"),
+            "corners_against_avg5": getattr(row, f"{side}_team_against_avg5"),
+            "corners_for_avg10": getattr(row, f"{side}_team_for_avg10"),
+            "corners_against_avg10": getattr(row, f"{side}_team_against_avg10"),
+            "cards_for_avg5": getattr(row, f"{side}_card_team_for_avg5"),
+            "cards_against_avg5": getattr(row, f"{side}_card_team_against_avg5"),
+            "cards_for_avg10": getattr(row, f"{side}_card_team_for_avg10"),
+            "cards_against_avg10": getattr(row, f"{side}_card_team_against_avg10"),
+        }
+
     series = defaultdict(list)
     for row in df.itertuples(index=False):
         d = row.date
-        series[norm_name(row.home_team)].append((d, {
-            "elo": row.home_elo, "att_decay": row.home_att_decay, "def_decay": row.home_def_decay,
-            "goal_for_avg5": row.home_goal_team_for_avg5, "goal_against_avg5": row.home_goal_team_against_avg5,
-            "goal_for_avg10": row.home_goal_team_for_avg10, "goal_against_avg10": row.home_goal_team_against_avg10,
-        }))
-        series[norm_name(row.away_team)].append((d, {
-            "elo": row.away_elo, "att_decay": row.away_att_decay, "def_decay": row.away_def_decay,
-            "goal_for_avg5": row.away_goal_team_for_avg5, "goal_against_avg5": row.away_goal_team_against_avg5,
-            "goal_for_avg10": row.away_goal_team_for_avg10, "goal_against_avg10": row.away_goal_team_against_avg10,
-        }))
+        series[norm_name(row.home_team)].append((d, state(row, "home")))
+        series[norm_name(row.away_team)].append((d, state(row, "away")))
     return series
 
 
@@ -366,13 +402,15 @@ def main():
     covered = sum(1 for v in BSD_TEAM_ALIASES.values() if v)
     print(f"BSD teams: {len(BSD_TEAM_ALIASES)}, with domestic coverage: {covered}")
 
-    rows, states, coverage, avg_goals = process_matches(matches, series)
+    rows, states, coverage, avg_goals, stat_context = process_matches(matches, series)
     out = pd.DataFrame(rows)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(args.output, index=False)
     print(f"written {len(out)} rows -> {args.output}")
     print("domestic coverage:", coverage)
     print("euro-cup avg goals/match:", round(avg_goals, 3))
+    print("stat rows:", stat_context["statRows"])
+    print("comp stat averages:", json.dumps(stat_context["compAverages"], ensure_ascii=False))
 
 
 def process_matches(matches, series):
@@ -389,6 +427,16 @@ def process_matches(matches, series):
     euro_last = {}
     total_goals, total_matches = 0.0, 0
     seen_seasons = set()
+    # Евро-истории статистики (угловые/ЖК): только матчи, где показатель
+    # известен (как в домашнем сборщике); окно 10 последних таких матчей.
+    # Между сезонами очищаются вместе с euro-формой. Средние турнира —
+    # скользящие по последним 100 матчам с известным показателем.
+    stat_hist = defaultdict(lambda: {g: deque(maxlen=10) for g in STAT_GROUPS})
+    comp_stat_hist = defaultdict(lambda: {g: deque(maxlen=100) for g in STAT_GROUPS})
+    stat_rows = {g: 0 for g in STAT_GROUPS}
+
+    def avg(values):
+        return sum(values) / len(values) if values else None
 
     rows, coverage = [], {"both": 0, "home_only": 0, "away_only": 0, "none": 0}
     for m in matches:
@@ -398,6 +446,7 @@ def process_matches(matches, series):
             for t in list(euro_elo):
                 euro_elo[t] = ELO_START + (euro_elo[t] - ELO_START) * (1 - SEASON_REGRESS)
             euro_gf.clear(); euro_ga.clear(); euro_w.clear(); euro_last.clear()
+            stat_hist.clear(); comp_stat_hist.clear()
 
         h, a = m["home"], m["away"]
         days = lambda t: (m["date"] - euro_last[t]).days if t in euro_last else None
@@ -421,6 +470,22 @@ def process_matches(matches, series):
             "away_euro_gf": euro_rating(euro_gf, a), "away_euro_ga": euro_rating(euro_ga, a),
             "target_home_goals": m["home_goals"], "target_away_goals": m["away_goals"],
         }
+        # Евро-признаки статистики и цели угловых/ЖК (без утечки: история
+        # обновляется после фиксации признаков).
+        stats = m["stats"]
+        for group, (home_key, away_key) in STAT_GROUPS.items():
+            for side, team in (("home", h), ("away", a)):
+                hist = list(stat_hist[team][group])
+                for n in (5, 10):
+                    window = hist[-n:]
+                    feat[f"{side}_euro_{group}_for_avg{n}"] = avg([x[0] for x in window])
+                    feat[f"{side}_euro_{group}_against_avg{n}"] = avg([x[1] for x in window])
+                feat[f"{side}_euro_{group}_games"] = len(hist)
+            feat[f"comp_{group}_avg"] = avg(list(comp_stat_hist[m["comp"]][group]))
+            hv, av = stats.get(home_key), stats.get(away_key)
+            feat[f"target_{group}_total"] = (hv + av) if hv is not None and av is not None else None
+            if feat[f"target_{group}_total"] is not None:
+                stat_rows[group] += 1
         # домашние признаки (состояние строго до даты матча)
         for side, team in (("home", h), ("away", a)):
             # каноническое имя euro-only команды отсутствует в домашнем
@@ -453,22 +518,41 @@ def process_matches(matches, series):
             euro_ga[team] = euro_ga[team] * decay + ga
             euro_w[team] = euro_w[team] * decay + 1.0
             euro_last[team] = m["date"]
+        # истории статистики — только матчи с известным показателем
+        for group, (home_key, away_key) in STAT_GROUPS.items():
+            hv, av = stats.get(home_key), stats.get(away_key)
+            if hv is not None and av is not None:
+                stat_hist[h][group].append((hv, av))
+                stat_hist[a][group].append((av, hv))
+                comp_stat_hist[m["comp"]][group].append(hv + av)
         total_goals += m["home_goals"] + m["away_goals"]
         total_matches += 1
         rows.append(feat)
 
-    final_states = {
-        team: {
+    final_states = {}
+    for team in {m["home"] for m in matches} | {m["away"] for m in matches}:
+        entry = {
             "euroElo": euro_elo[team],
             "euroGf": (euro_gf[team] / euro_w[team]) if euro_w[team] > 1e-9 else None,
             "euroGa": (euro_ga[team] / euro_w[team]) if euro_w[team] > 1e-9 else None,
             "euroGames": sum(1 for m in matches if m["home"] == team or m["away"] == team),
             "euroLastDate": euro_last[team].date().isoformat() if team in euro_last else None,
         }
-        for team in {m["home"] for m in matches} | {m["away"] for m in matches}
+        for group in STAT_GROUPS:
+            hist = list(stat_hist[team][group])
+            for n in (5, 10):
+                window = hist[-n:]
+                entry[f"euro_{group}_for_avg{n}"] = avg([x[0] for x in window])
+                entry[f"euro_{group}_against_avg{n}"] = avg([x[1] for x in window])
+            entry[f"euro_{group}_games"] = len(hist)
+        final_states[team] = entry
+    comp_averages = {
+        comp: {group: avg(list(comp_stat_hist[comp][group])) for group in STAT_GROUPS}
+        for comp in {m["comp"] for m in matches}
     }
+    stat_context = {"statRows": stat_rows, "compAverages": comp_averages}
     avg_goals = total_goals / total_matches if total_matches else 0.0
-    return rows, final_states, coverage, avg_goals
+    return rows, final_states, coverage, avg_goals, stat_context
 
 
 if __name__ == "__main__":
