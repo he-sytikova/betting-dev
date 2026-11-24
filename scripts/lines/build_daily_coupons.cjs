@@ -9,6 +9,7 @@ const goalsApi = require('../../goals-internal-model.js');
 const cornersApi = require('../../internal-model.js');
 const statsApi = require('../../stats-internal-model.js');
 const ntApi = require('../../nt-internal-model.js');
+const euroApi = require('../../euro-internal-model.js');
 
 const BOOKMAKERS = ['Fonbet', 'Marathonbet', 'Winline'];
 const SINGLE_LIMIT = 5;
@@ -48,7 +49,7 @@ function fairTwoWay(selectedOdds, oppositeOdds) {
 }
 
 function marketForCandidate(candidate) {
-  if (!candidate || !['Голы', 'Лига наций', 'Угловые'].includes(candidate.modelLabel)) return null;
+  if (!candidate || !['Голы', 'Лига наций', 'Угловые', 'Еврокубки'].includes(candidate.modelLabel)) return null;
   const outcome = { П1: 'home', Х: 'draw', П2: 'away' }[candidate.label];
   if (outcome) return { kind: 'outcome', side: candidate.label, outcome };
   if (['1X', '12', 'X2'].includes(candidate.label)) {
@@ -196,6 +197,12 @@ function fixtureModelKeys(fixture, models) {
   const home = models.nations ? ntApi.resolveTeam(models.nations, fixture.home) : null;
   const away = models.nations ? ntApi.resolveTeam(models.nations, fixture.away) : null;
   if (competition && home && away) keys.add(`${competition.code}|${home.key}|${away.key}`);
+  const euroCompetition = models.euro ? euroApi.resolveCompetition(models.euro, fixture.league) : null;
+  const euroHome = models.euro ? euroApi.resolveTeam(models.euro, fixture.home) : null;
+  const euroAway = models.euro ? euroApi.resolveTeam(models.euro, fixture.away) : null;
+  if (euroCompetition && euroHome && euroAway) {
+    keys.add(`${euroCompetition.code}|${euroHome.key}|${euroAway.key}`);
+  }
   return [...keys];
 }
 
@@ -484,6 +491,7 @@ function loadModels(projectRoot) {
     cornersCards: readJson(path.join(projectRoot, 'data/corners_cards_models.json')),
     stats: readJson(path.join(projectRoot, 'data/stats_markets_models.json')),
     nations: readJson(path.join(projectRoot, 'data/nt_model.json')),
+    euro: readJson(path.join(projectRoot, 'data/euro_cups_model.json')),
   };
 }
 

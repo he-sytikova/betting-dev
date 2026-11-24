@@ -43,6 +43,19 @@ test('model fixture gate uses the actual club model including team history eligi
   assert.equal(result.fixtures[0].eventId, 'preserve-me');
 });
 
+test('model fixture gate accepts UEFA club cups and rejects lookalike competitions', () => {
+  const result = filterModelFixtures({ predictions: [
+    { home: 'Real Madrid CF', away: 'PSV Eindhoven', league: 'UEFA Champions League', time: '2026-11-17T19:45:00Z' },
+    { home: 'Real Madrid CF', away: 'PSV Eindhoven', league: 'Champions League', time: '2026-11-17T19:45:00Z' },
+    { home: 'Newcastle Jets', away: 'Kashiwa Reysol', league: 'AFC Champions League Elite', time: '2026-11-17T07:45:00Z' },
+    { home: 'Real Madrid CF', away: 'PSV Eindhoven', league: 'UEFA Champions League. Team vs Player', time: '2026-11-17T19:45:00Z' },
+    { home: 'Real Madrid Youth', away: 'PSV Youth', league: 'UEFA Youth League', time: '2026-11-17T15:00:00Z' },
+  ] }, models, now);
+  assert.equal(result.acceptedFixtures, 2);
+  assert.ok(result.fixtures.every(fixture => fixture.modelCoverage === 'euro'));
+  assert.equal(result.rejected.unsupported_by_models, 3);
+});
+
 test('model fixture gate rejects past and malformed fixtures before detail requests', () => {
   const result = filterModelFixtures({ fixtures: [
     { home: 'Poland', away: 'Sweden', league: 'UEFA Nations League', time: '2026-11-16T19:45:00Z' },

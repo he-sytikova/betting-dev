@@ -7,6 +7,7 @@
   const cornersApi = isNode ? require('./internal-model.js') : root.InternalModel;
   const statsApi = isNode ? require('./stats-internal-model.js') : root.StatsInternalModel;
   const ntApi = isNode ? require('./nt-internal-model.js') : root.NtInternalModel;
+  const euroApi = isNode ? require('./euro-internal-model.js') : root.EuroInternalModel;
 
   const MOSCOW_OFFSET_MS = 180 * 60000;
   const MIN_PROBABILITY = 0.75;
@@ -19,7 +20,7 @@
     Object.freeze({ id: 'session5', label: 'Сессия 5', timeLabel: '23:55–07:00', startMinute: 1435 }),
   ]);
   const CANDIDATE_MARKETS = Object.freeze([
-    'Голы', 'Угловые', 'ЖК', 'Фолы', 'Удары', 'Удары в створ', 'Лига наций',
+    'Голы', 'Угловые', 'ЖК', 'Фолы', 'Удары', 'Удары в створ', 'Лига наций', 'Еврокубки',
   ]);
   const CANDIDATE_BOOKMAKERS = Object.freeze(['Fonbet', 'Marathonbet', 'Winline']);
 
@@ -186,6 +187,43 @@
     return rows;
   }
 
+  function euroFixtures(model, predictions, day, now) {
+    const fixtures = new Map();
+    if (!model) return [];
+    for (const row of Array.isArray(predictions) ? predictions : []) {
+      const time = Date.parse(row.time);
+      if (!Number.isFinite(time) || time <= now || gameDayKeyMsk(time) !== day) continue;
+      const competition = euroApi.resolveCompetition(model, row.league);
+      if (!competition) continue;
+      const home = euroApi.resolveTeam(model, row.home);
+      const away = euroApi.resolveTeam(model, row.away);
+      if (!competition || !home || !away) continue;
+      const key = `${competition.code}|${home.key}|${away.key}`;
+      if (!fixtures.has(key) || time < fixtures.get(key).time) {
+        fixtures.set(key, { key, time, league: row.league, home: row.home, away: row.away, eventId: row.eventId || row.event_id || null });
+      }
+    }
+    return [...fixtures.values()].sort((a, b) => a.time - b.time);
+  }
+
+  function euroCandidates(model, predictions, day, now) {
+    const rows = [];
+    for (const fixture of euroFixtures(model, predictions, day, now)) {
+      const prediction = euroApi.predict(model, fixture.league, fixture.home, fixture.away);
+      if (!prediction) continue;
+      const resolved = { ...prediction, leagueLabel: prediction.competition?.name || fixture.league };
+      const markets = prediction.markets || {};
+      for (const [label, key] of [['П1', 'p1'], ['Х', 'x'], ['П2', 'p2'], ['1X', 'dc1x'], ['12', 'dc12'], ['X2', 'dcx2']]) {
+        const row = candidate(fixture, resolved, 'Еврокубки', label, markets[key]);
+        if (row) rows.push(row);
+      }
+      for (const [line, total] of Object.entries(markets.totals || {})) {
+        addTotal(rows, fixture, resolved, 'Еврокубки', 'ТБ', line, total.over, total.under);
+      }
+    }
+    return rows;
+  }
+
   function buildCandidates(data, models, now = Date.now()) {
     const day = typeof data?.date === 'string' ? data.date : null;
     if (!day || !Array.isArray(data.predictions)) return [];
@@ -199,6 +237,7 @@
         fouls: 'Фолы', shots: 'Удары', shotsOnTarget: 'Удары в створ',
       }),
       ...nationsCandidates(models.nations, predictions, day, now),
+      ...euroCandidates(models.euro, predictions, day, now),
     ];
     return rows.sort((a, b) => (a.time - b.time) || (b.probability - a.probability) || a.label.localeCompare(b.label, 'ru'));
   }
@@ -430,6 +469,8 @@
     candidate,
     modelFixtures,
     nationsFixtures,
+    euroFixtures,
+    euroCandidates,
     buildCandidates,
     candidateMarketNames,
     filterCandidatesByMarket,
@@ -773,18 +814,19 @@
     $('daily-board-status').textContent = 'Загрузка модельного снимка…';
     $('daily-board-status').className = 'daily-board__status is-loading';
     try {
-      const [data, goals, cornersCards, stats, nations] = await Promise.all([
+      const [data, goals, cornersCards, stats, nations, euro] = await Promise.all([
         fetchJson('./data.json'),
         fetchJson('./data/goals_markets_models.json'),
         fetchJson('./data/corners_cards_models.json'),
         fetchJson('./data/stats_markets_models.json'),
         fetchJson('./data/nt_model.json'),
+        fetchJson('./data/euro_cups_model.json'),
       ]);
       const now = Date.now();
       const currentGameDay = gameDayKeyMsk(now);
       const isCurrent = data.date === currentGameDay;
       const candidates = isCurrent
-        ? buildCandidates(data, { goals, cornersCards, stats, nations }, now)
+        ? buildCandidates(data, { goals, cornersCards, stats, nations, euro }, now)
         : [];
       renderCandidates(candidates, isCurrent
         ? 'На оставшуюся часть игрового дня нет модельных рынков с вероятностью от 75%.'
