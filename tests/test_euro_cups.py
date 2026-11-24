@@ -287,6 +287,41 @@ class ExtractMatchStatsTest(unittest.TestCase):
         stats = downloader.extract_match_stats({"statistics": []})
         self.assertTrue(all(v is None for v in stats.values()))
 
+    def test_real_bsd_flat_shape(self):
+        # Реальный ответ /events/{id}/stats/ (подтверждён пробником 2026-11-24):
+        # плоские stats.home/stats.away; null — показателя нет, это не 0;
+        # shotmap и вложенный xg игнорируются.
+        payload = {
+            "event_id": 319167,
+            "stats": {
+                "home": {"yellow_cards": 4, "red_cards": 0,
+                         "xg": {"actual": 2.14, "estimated": False},
+                         "corner_kicks": None, "fouls": None},
+                "away": {"yellow_cards": 3, "red_cards": 0,
+                         "xg": {"actual": 1.24, "estimated": False},
+                         "corner_kicks": None, "fouls": None},
+            },
+            "xg_estimated": False,
+            "shotmap": [{"xg": 0.59, "home": False, "type": "miss"}],
+        }
+        stats = downloader.extract_match_stats(payload)
+        self.assertEqual(stats["yellow_home"], 4)
+        self.assertEqual(stats["yellow_away"], 3)
+        self.assertEqual(stats["red_home"], 0)
+        self.assertEqual(stats["red_away"], 0)
+        self.assertIsNone(stats["corners_home"])
+        self.assertIsNone(stats["corners_away"])
+
+    def test_real_bsd_flat_shape_with_corners(self):
+        payload = {"event_id": 1, "stats": {
+            "home": {"corner_kicks": 7, "yellow_cards": 1, "red_cards": 0},
+            "away": {"corner_kicks": 3, "yellow_cards": 2, "red_cards": 1},
+        }}
+        stats = downloader.extract_match_stats(payload)
+        self.assertEqual(stats, {"corners_home": 7, "corners_away": 3,
+                                 "yellow_home": 1, "yellow_away": 2,
+                                 "red_home": 0, "red_away": 1})
+
 
 if __name__ == "__main__":
     unittest.main()
