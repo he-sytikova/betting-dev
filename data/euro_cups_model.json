@@ -1,6 +1,6 @@
 {
  "schemaVersion": 2,
- "generatedAt": "2026-11-23T14:12:18.438424+00:00",
+ "generatedAt": "2026-11-24T09:22:38.483946+00:00",
  "status": "experimental-internal",
  "disclaimer": "Экспериментальная внутренняя модель еврокубков (Лига чемпионов, Лига Европы, Лига Конференций). Обучена на матчах BSD (sports.bzzoiro.com) 2021–2026; единый кросс-страновой Elo и форма ведутся по всем турнирам в общей хронологии. Валидация out-of-sample лучше базового среднего, но проверки против рынка не было (нет исторических коэффициентов), выборка по ЛЕ/ЛК тоньше ЛЧ. Исследовательская оценка, не рекомендация к ставке.",
  "trainingMatches": 4968,
@@ -190,72 +190,72 @@
   "home": {
    "coefficients": [
     0.06017513279843014,
-    -0.045823274638829896,
-    0.030022028167947842,
-    0.0014577591606751213,
-    -0.01708356222006881,
+    -0.04582327463882988,
+    0.030022028167947846,
+    0.0014577591606751191,
+    -0.017083562220068817,
     0.01715093049959588,
     0.025633624129809324,
-    -0.0023982853542135712,
-    0.007702024686521211,
-    0.006973437002688249,
+    -0.0023982853542135704,
+    0.007702024686521209,
+    0.006973437002688255,
     0.012006560565671892,
-    -0.0005358673906990965,
-    0.0064928303018866535,
-    0.0012076955118432986,
+    -0.0005358673906991001,
+    0.006492830301886654,
+    0.0012076955118432945,
     -0.02545004493991472,
-    0.02086316190951926,
+    0.020863161909519264,
     -0.019359324766058394,
-    -0.00860595513922448,
+    -0.008605955139224483,
     0.01266325040249872,
     0.01266325040249872,
-    -0.02546376663208827,
-    -0.02546376663208827,
+    -0.025463766632088266,
+    -0.025463766632088266,
     -0.02545004493991472,
     -0.02545004493991472,
-    0.02086316190951926,
-    0.02086316190951926,
-    -0.018786828046314947,
-    -0.018786828046314947,
-    0.01880062193640906,
-    0.01880062193640906
+    0.020863161909519264,
+    0.020863161909519264,
+    -0.01878682804631494,
+    -0.01878682804631494,
+    0.01880062193640905,
+    0.01880062193640905
    ],
-   "intercept": 0.49811923131913005
+   "intercept": 0.4981192313191301
   },
   "away": {
    "coefficients": [
-    -0.04705654074888283,
+    -0.04705654074888284,
     0.06980738590596047,
-    -0.04328011360156792,
-    0.026833106168724908,
+    -0.04328011360156793,
+    0.0268331061687249,
     0.056144341531958866,
-    0.009499404926526187,
-    0.002838594188067302,
-    0.006582658835200609,
+    0.00949940492652619,
+    0.0028385941880673085,
+    0.006582658835200595,
     0.039446887475894726,
-    0.01158015423398519,
-    -0.006451572203907305,
+    0.011580154233985196,
+    -0.0064515722039073155,
     -0.02000854403283649,
-    0.017900226836722644,
-    0.013689920511150606,
+    0.017900226836722658,
+    0.013689920511150604,
     0.01827517780748058,
-    -0.026384011128934848,
+    -0.02638401112893485,
     -0.017143837299008747,
-    -0.012612159186898475,
+    -0.012612159186898467,
     -0.03179961575640247,
     -0.03179961575640247,
-    0.01826546615114407,
-    0.01826546615114407,
+    0.018265466151144074,
+    0.018265466151144074,
     0.01827517780748058,
     0.01827517780748058,
-    -0.026384011128934848,
-    -0.026384011128934848,
-    0.024630800754387987,
-    0.024630800754387987,
-    -0.026043844270519676,
-    -0.026043844270519676
+    -0.02638401112893485,
+    -0.02638401112893485,
+    0.024630800754387998,
+    0.024630800754387998,
+    -0.02604384427051968,
+    -0.02604384427051968
    ],
-   "intercept": 0.18030209414739015
+   "intercept": 0.18030209414739018
   }
  },
  "modelsMeta": {
@@ -276,6 +276,11 @@
   3.5,
   4.5
  ],
+ "teamLines": [
+  0.5,
+  1.5,
+  2.5
+ ],
  "leagueAvgGoals": 2.865942,
  "teams": {
   "heidenheim": {
@@ -291,13 +296,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1560.454,
-    "att_decay": 1.48417,
-    "def_decay": 1.77771,
+    "elo": 1557.681,
+    "att_decay": 1.53426,
+    "def_decay": 1.79929,
     "goal_for_avg5": 1.0,
     "goal_against_avg5": 1.6,
-    "goal_for_avg10": 1.7,
-    "goal_against_avg10": 1.8
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 1.7
    }
   },
   "fc koln": {
@@ -312,13 +317,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1612.461,
-    "att_decay": 1.15065,
-    "def_decay": 1.5718,
+    "elo": 1607.189,
+    "att_decay": 1.13462,
+    "def_decay": 1.61734,
     "goal_for_avg5": 0.8,
     "goal_against_avg5": 1.0,
     "goal_for_avg10": 1.1,
-    "goal_against_avg10": 2.0
+    "goal_against_avg10": 1.9
    }
   },
   "union berlin": {
@@ -334,13 +339,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1647.086,
-    "att_decay": 1.02587,
-    "def_decay": 1.9514,
+    "elo": 1639.714,
+    "att_decay": 0.91675,
+    "def_decay": 1.95657,
     "goal_for_avg5": 0.6,
-    "goal_against_avg5": 1.8,
-    "goal_for_avg10": 1.4,
-    "goal_against_avg10": 2.0
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.1,
+    "goal_against_avg10": 2.1
    }
   },
   "mainz": {
@@ -356,13 +361,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1710.9,
-    "att_decay": 1.87166,
-    "def_decay": 2.0314,
-    "goal_for_avg5": 2.2,
-    "goal_against_avg5": 2.8,
+    "elo": 1708.089,
+    "att_decay": 1.77972,
+    "def_decay": 2.02808,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 2.6,
     "goal_for_avg10": 2.0,
-    "goal_against_avg10": 2.0
+    "goal_against_avg10": 1.9
    }
   },
   "milan": {
@@ -378,10 +383,10 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1875.578,
-    "att_decay": 1.86932,
-    "def_decay": 1.24202,
-    "goal_for_avg5": 2.2,
+    "elo": 1882.289,
+    "att_decay": 1.88096,
+    "def_decay": 1.22047,
+    "goal_for_avg5": 2.4,
     "goal_against_avg5": 1.6,
     "goal_for_avg10": 2.1,
     "goal_against_avg10": 1.2
@@ -400,12 +405,12 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1871.06,
-    "att_decay": 2.29572,
-    "def_decay": 0.65913,
-    "goal_for_avg5": 2.2,
+    "elo": 1873.397,
+    "att_decay": 2.26257,
+    "def_decay": 0.69734,
+    "goal_for_avg5": 2.4,
     "goal_against_avg5": 0.8,
-    "goal_for_avg10": 2.3,
+    "goal_for_avg10": 2.4,
     "goal_against_avg10": 0.7
    }
   },
@@ -422,9 +427,9 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1761.252,
-    "att_decay": 2.41802,
-    "def_decay": 1.1454,
+    "elo": 1762.619,
+    "att_decay": 2.37911,
+    "def_decay": 1.22496,
     "goal_for_avg5": 2.2,
     "goal_against_avg5": 1.2,
     "goal_for_avg10": 2.8,
@@ -444,13 +449,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1814.903,
-    "att_decay": 1.43911,
-    "def_decay": 1.38556,
-    "goal_for_avg5": 1.2,
+    "elo": 1809.563,
+    "att_decay": 1.39449,
+    "def_decay": 1.34638,
+    "goal_for_avg5": 1.0,
     "goal_against_avg5": 1.6,
-    "goal_for_avg10": 1.6,
-    "goal_against_avg10": 1.5
+    "goal_for_avg10": 1.3,
+    "goal_against_avg10": 1.1
    }
   },
   "roma": {
@@ -466,12 +471,12 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 1950.267,
-    "att_decay": 2.54102,
-    "def_decay": 1.06492,
-    "goal_for_avg5": 2.8,
+    "elo": 1954.216,
+    "att_decay": 2.58166,
+    "def_decay": 0.97064,
+    "goal_for_avg5": 3.4,
     "goal_against_avg5": 1.4,
-    "goal_for_avg10": 2.8,
+    "goal_for_avg10": 2.7,
     "goal_against_avg10": 1.0
    }
   },
@@ -488,13 +493,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1661.592,
-    "att_decay": 1.5607,
-    "def_decay": 1.31737,
-    "goal_for_avg5": 0.6,
-    "goal_against_avg5": 1.4,
+    "elo": 1667.428,
+    "att_decay": 1.78991,
+    "def_decay": 1.47548,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 2.0,
     "goal_for_avg10": 1.8,
-    "goal_against_avg10": 1.3
+    "goal_against_avg10": 1.5
    }
   },
   "aberdeen": {
@@ -509,13 +514,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1624.078,
-    "att_decay": 1.14304,
-    "def_decay": 1.37057,
-    "goal_for_avg5": 1.2,
-    "goal_against_avg5": 1.4,
+    "elo": 1605.364,
+    "att_decay": 1.0398,
+    "def_decay": 1.60807,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 2.0,
     "goal_for_avg10": 1.0,
-    "goal_against_avg10": 1.3
+    "goal_against_avg10": 1.5
    }
   },
   "ad demirspor": {
@@ -551,10 +556,10 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1664.003,
-    "att_decay": 1.44392,
-    "def_decay": 1.58548,
-    "goal_for_avg5": 1.6,
+    "elo": 1671.404,
+    "att_decay": 1.60221,
+    "def_decay": 1.4242,
+    "goal_for_avg5": 2.2,
     "goal_against_avg5": 1.4,
     "goal_for_avg10": 1.6,
     "goal_against_avg10": 1.7
@@ -573,13 +578,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 2152.25,
-    "att_decay": 1.59094,
-    "def_decay": 0.58492,
-    "goal_for_avg5": 1.2,
-    "goal_against_avg5": 0.8,
-    "goal_for_avg10": 1.6,
-    "goal_against_avg10": 0.6
+    "elo": 2153.142,
+    "att_decay": 1.53314,
+    "def_decay": 0.52771,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 0.2,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 0.5
    }
   },
   "aston villa": {
@@ -595,13 +600,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 1948.986,
-    "att_decay": 1.34768,
-    "def_decay": 1.37985,
-    "goal_for_avg5": 1.8,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.2,
-    "goal_against_avg10": 1.4
+    "elo": 1950.25,
+    "att_decay": 1.6089,
+    "def_decay": 1.6379,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.7
    }
   },
   "atalanta": {
@@ -617,13 +622,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1789.397,
-    "att_decay": 1.57576,
-    "def_decay": 1.81127,
-    "goal_for_avg5": 2.2,
-    "goal_against_avg5": 2.6,
-    "goal_for_avg10": 1.6,
-    "goal_against_avg10": 2.0
+    "elo": 1795.985,
+    "att_decay": 1.52453,
+    "def_decay": 1.65012,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 2.4,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 1.9
    }
   },
   "ath bilbao": {
@@ -639,13 +644,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1721.66,
-    "att_decay": 1.39559,
-    "def_decay": 1.19275,
-    "goal_for_avg5": 1.4,
-    "goal_against_avg5": 0.8,
+    "elo": 1720.915,
+    "att_decay": 1.35974,
+    "def_decay": 1.17528,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 1.0,
     "goal_for_avg10": 1.4,
-    "goal_against_avg10": 1.0
+    "goal_against_avg10": 0.8
    }
   },
   "ath madrid": {
@@ -661,12 +666,12 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 1884.714,
-    "att_decay": 1.81852,
-    "def_decay": 0.866,
-    "goal_for_avg5": 1.6,
-    "goal_against_avg5": 0.4,
-    "goal_for_avg10": 2.0,
+    "elo": 1877.59,
+    "att_decay": 1.74691,
+    "def_decay": 0.96521,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 0.6,
+    "goal_for_avg10": 1.9,
     "goal_against_avg10": 0.8
    }
   },
@@ -683,13 +688,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1855.913,
-    "att_decay": 2.09486,
-    "def_decay": 1.90732,
+    "elo": 1861.185,
+    "att_decay": 2.08483,
+    "def_decay": 1.81139,
     "goal_for_avg5": 2.0,
-    "goal_against_avg5": 2.2,
-    "goal_for_avg10": 2.0,
-    "goal_against_avg10": 2.0
+    "goal_against_avg5": 2.4,
+    "goal_for_avg10": 2.1,
+    "goal_against_avg10": 1.8
    }
   },
   "buyuksehyr": {
@@ -705,13 +710,13 @@
     "euroLastDate": "2026-07-30"
    },
    "domestic": {
-    "elo": 1678.4,
-    "att_decay": 1.7982,
-    "def_decay": 1.42559,
-    "goal_for_avg5": 2.2,
-    "goal_against_avg5": 1.0,
+    "elo": 1689.35,
+    "att_decay": 1.81757,
+    "def_decay": 1.38475,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.2,
     "goal_for_avg10": 1.7,
-    "goal_against_avg10": 1.6
+    "goal_against_avg10": 1.7
    }
   },
   "benfica": {
@@ -749,12 +754,12 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1721.556,
-    "att_decay": 1.8624,
-    "def_decay": 1.21325,
-    "goal_for_avg5": 1.6,
-    "goal_against_avg5": 1.6,
-    "goal_for_avg10": 2.0,
+    "elo": 1727.464,
+    "att_decay": 1.97226,
+    "def_decay": 1.09608,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 2.2,
     "goal_against_avg10": 1.2
    }
   },
@@ -771,12 +776,12 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1784.477,
-    "att_decay": 1.49274,
-    "def_decay": 1.30781,
+    "elo": 1792.603,
+    "att_decay": 1.53753,
+    "def_decay": 1.28063,
     "goal_for_avg5": 2.2,
     "goal_against_avg5": 1.4,
-    "goal_for_avg10": 1.4,
+    "goal_for_avg10": 1.6,
     "goal_against_avg10": 1.3
    }
   },
@@ -793,13 +798,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1947.961,
-    "att_decay": 1.79138,
-    "def_decay": 0.87199,
-    "goal_for_avg5": 1.2,
-    "goal_against_avg5": 0.8,
-    "goal_for_avg10": 1.9,
-    "goal_against_avg10": 0.8
+    "elo": 1950.019,
+    "att_decay": 1.81341,
+    "def_decay": 0.8855,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 1.8,
+    "goal_against_avg10": 0.7
    }
   },
   "bournemouth": {
@@ -814,12 +819,12 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1962.997,
-    "att_decay": 1.59869,
-    "def_decay": 1.27501,
-    "goal_for_avg5": 1.6,
+    "elo": 1969.435,
+    "att_decay": 1.6382,
+    "def_decay": 1.24794,
+    "goal_for_avg5": 2.0,
     "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.5,
+    "goal_for_avg10": 1.6,
     "goal_against_avg10": 1.4
    }
   },
@@ -835,13 +840,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1997.754,
-    "att_decay": 2.13385,
-    "def_decay": 0.86986,
-    "goal_for_avg5": 2.2,
+    "elo": 2007.458,
+    "att_decay": 2.12067,
+    "def_decay": 0.78426,
+    "goal_for_avg5": 2.0,
     "goal_against_avg5": 0.4,
-    "goal_for_avg10": 2.4,
-    "goal_against_avg10": 1.0
+    "goal_for_avg10": 2.6,
+    "goal_against_avg10": 0.7
    }
   },
   "celta": {
@@ -856,13 +861,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1704.117,
-    "att_decay": 1.06096,
-    "def_decay": 1.06296,
-    "goal_for_avg5": 1.4,
+    "elo": 1701.147,
+    "att_decay": 0.96825,
+    "def_decay": 0.97008,
+    "goal_for_avg5": 0.4,
     "goal_against_avg5": 0.8,
-    "goal_for_avg10": 1.0,
-    "goal_against_avg10": 1.0
+    "goal_for_avg10": 0.9,
+    "goal_against_avg10": 0.8
    }
   },
   "celtic": {
@@ -878,13 +883,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1972.28,
-    "att_decay": 2.20549,
-    "def_decay": 1.00399,
-    "goal_for_avg5": 2.6,
+    "elo": 1973.868,
+    "att_decay": 2.10429,
+    "def_decay": 0.91971,
+    "goal_for_avg5": 2.4,
     "goal_against_avg5": 1.2,
-    "goal_for_avg10": 2.1,
-    "goal_against_avg10": 0.9
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 0.8
    }
   },
   "cercle brugge": {
@@ -899,13 +904,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1514.191,
-    "att_decay": 1.45099,
-    "def_decay": 2.1305,
+    "elo": 1524.738,
+    "att_decay": 1.40516,
+    "def_decay": 1.914,
     "goal_for_avg5": 1.6,
-    "goal_against_avg5": 2.4,
-    "goal_for_avg10": 1.3,
-    "goal_against_avg10": 2.2
+    "goal_against_avg5": 2.2,
+    "goal_for_avg10": 1.2,
+    "goal_against_avg10": 2.0
    }
   },
   "chelsea": {
@@ -921,13 +926,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1934.04,
-    "att_decay": 1.79978,
-    "def_decay": 1.52638,
+    "elo": 1921.475,
+    "att_decay": 1.62246,
+    "def_decay": 1.47451,
     "goal_for_avg5": 1.8,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 2.0,
-    "goal_against_avg10": 1.7
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 1.6
    }
   },
   "club brugge": {
@@ -943,13 +948,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1907.978,
-    "att_decay": 2.76152,
-    "def_decay": 0.991,
-    "goal_for_avg5": 3.4,
+    "elo": 1900.703,
+    "att_decay": 2.59474,
+    "def_decay": 0.99185,
+    "goal_for_avg5": 3.0,
     "goal_against_avg5": 1.2,
-    "goal_for_avg10": 2.6,
-    "goal_against_avg10": 0.8
+    "goal_for_avg10": 2.4,
+    "goal_against_avg10": 0.9
    }
   },
   "como": {
@@ -965,13 +970,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1894.995,
-    "att_decay": 1.80398,
-    "def_decay": 0.74191,
+    "elo": 1887.777,
+    "att_decay": 1.64316,
+    "def_decay": 0.85407,
     "goal_for_avg5": 1.8,
-    "goal_against_avg5": 0.4,
-    "goal_for_avg10": 1.8,
-    "goal_against_avg10": 0.8
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 0.9
    }
   },
   "crystal palace": {
@@ -986,13 +991,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1824.819,
-    "att_decay": 0.96339,
-    "def_decay": 2.09429,
-    "goal_for_avg5": 0.6,
-    "goal_against_avg5": 2.0,
+    "elo": 1814.868,
+    "att_decay": 0.96696,
+    "def_decay": 2.18266,
+    "goal_for_avg5": 0.8,
+    "goal_against_avg5": 2.6,
     "goal_for_avg10": 1.0,
-    "goal_against_avg10": 2.3
+    "goal_against_avg10": 2.4
    }
   },
   "dundee united": {
@@ -1007,13 +1012,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1687.266,
-    "att_decay": 1.46928,
-    "def_decay": 1.43874,
-    "goal_for_avg5": 2.0,
-    "goal_against_avg5": 1.0,
-    "goal_for_avg10": 1.5,
-    "goal_against_avg10": 1.5
+    "elo": 1685.977,
+    "att_decay": 1.42637,
+    "def_decay": 1.39861,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 1.2
    }
   },
   "ein frankfurt": {
@@ -1029,13 +1034,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1736.098,
-    "att_decay": 1.56455,
-    "def_decay": 2.01914,
+    "elo": 1734.356,
+    "att_decay": 1.61046,
+    "def_decay": 2.01712,
     "goal_for_avg5": 1.2,
     "goal_against_avg5": 2.0,
     "goal_for_avg10": 1.7,
-    "goal_against_avg10": 2.3
+    "goal_against_avg10": 2.2
    }
   },
   "arouca": {
@@ -1072,13 +1077,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 2052.523,
-    "att_decay": 3.56529,
-    "def_decay": 1.07832,
-    "goal_for_avg5": 3.6,
+    "elo": 2059.648,
+    "att_decay": 3.42903,
+    "def_decay": 1.0715,
+    "goal_for_avg5": 3.4,
     "goal_against_avg5": 1.2,
     "goal_for_avg10": 4.1,
-    "goal_against_avg10": 1.2
+    "goal_against_avg10": 1.3
    }
   },
   "bayern munich": {
@@ -1094,13 +1099,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 2090.424,
-    "att_decay": 3.39254,
-    "def_decay": 1.1392,
-    "goal_for_avg5": 4.0,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 3.3,
-    "goal_against_avg10": 0.9
+    "elo": 2093.235,
+    "att_decay": 3.24569,
+    "def_decay": 1.12452,
+    "goal_for_avg5": 3.0,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 3.4,
+    "goal_against_avg10": 1.0
    }
   },
   "porto": {
@@ -1138,13 +1143,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1843.904,
-    "att_decay": 2.34371,
-    "def_decay": 1.07609,
-    "goal_for_avg5": 3.2,
+    "elo": 1853.827,
+    "att_decay": 2.60126,
+    "def_decay": 0.97176,
+    "goal_for_avg5": 2.6,
     "goal_against_avg5": 0.8,
-    "goal_for_avg10": 2.4,
-    "goal_against_avg10": 1.0
+    "goal_for_avg10": 2.8,
+    "goal_against_avg10": 0.8
    }
   },
   "fiorentina": {
@@ -1160,13 +1165,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1722.612,
-    "att_decay": 1.46117,
-    "def_decay": 1.89385,
-    "goal_for_avg5": 1.8,
+    "elo": 1724.592,
+    "att_decay": 1.50917,
+    "def_decay": 1.9033,
+    "goal_for_avg5": 2.0,
     "goal_against_avg5": 2.2,
-    "goal_for_avg10": 1.5,
-    "goal_against_avg10": 2.3
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 2.1
    }
   },
   "galatasaray": {
@@ -1182,13 +1187,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 1910.759,
-    "att_decay": 2.25661,
-    "def_decay": 1.09282,
-    "goal_for_avg5": 2.0,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 2.3,
-    "goal_against_avg10": 1.2
+    "elo": 1912.673,
+    "att_decay": 2.42482,
+    "def_decay": 1.27683,
+    "goal_for_avg5": 2.8,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 2.5,
+    "goal_against_avg10": 1.3
    }
   },
   "getafe": {
@@ -1203,13 +1208,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1666.013,
-    "att_decay": 0.82074,
-    "def_decay": 1.33598,
-    "goal_for_avg5": 1.0,
-    "goal_against_avg5": 1.8,
-    "goal_for_avg10": 0.8,
-    "goal_against_avg10": 1.3
+    "elo": 1658.526,
+    "att_decay": 0.74935,
+    "def_decay": 1.39374,
+    "goal_for_avg5": 0.8,
+    "goal_against_avg5": 2.2,
+    "goal_for_avg10": 0.7,
+    "goal_against_avg10": 1.5
    }
   },
   "gil vicente": {
@@ -1246,13 +1251,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1643.014,
-    "att_decay": 1.46276,
-    "def_decay": 0.96979,
-    "goal_for_avg5": 1.6,
+    "elo": 1652.705,
+    "att_decay": 1.50554,
+    "def_decay": 0.9722,
+    "goal_for_avg5": 1.8,
     "goal_against_avg5": 0.8,
     "goal_for_avg10": 1.5,
-    "goal_against_avg10": 0.7
+    "goal_against_avg10": 0.8
    }
   },
   "hearts": {
@@ -1267,13 +1272,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1864.849,
-    "att_decay": 2.0253,
-    "def_decay": 1.4783,
-    "goal_for_avg5": 2.2,
-    "goal_against_avg5": 2.0,
-    "goal_for_avg10": 2.3,
-    "goal_against_avg10": 1.5
+    "elo": 1836.984,
+    "att_decay": 2.02299,
+    "def_decay": 1.80012,
+    "goal_for_avg5": 2.4,
+    "goal_against_avg5": 2.8,
+    "goal_for_avg10": 2.1,
+    "goal_against_avg10": 2.0
    }
   },
   "hibernian": {
@@ -1288,13 +1293,13 @@
     "euroLastDate": "2026-08-27"
    },
    "domestic": {
-    "elo": 1711.452,
-    "att_decay": 1.08445,
-    "def_decay": 1.42563,
-    "goal_for_avg5": 0.8,
-    "goal_against_avg5": 1.4,
-    "goal_for_avg10": 1.0,
-    "goal_against_avg10": 1.5
+    "elo": 1730.166,
+    "att_decay": 1.34882,
+    "def_decay": 1.29636,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.2,
+    "goal_against_avg10": 1.4
    }
   },
   "inter": {
@@ -1310,13 +1315,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 2029.642,
-    "att_decay": 2.45143,
-    "def_decay": 1.20415,
-    "goal_for_avg5": 2.2,
+    "elo": 2036.861,
+    "att_decay": 2.41112,
+    "def_decay": 1.09664,
+    "goal_for_avg5": 2.0,
     "goal_against_avg5": 1.0,
-    "goal_for_avg10": 2.6,
-    "goal_against_avg10": 1.3
+    "goal_for_avg10": 2.4,
+    "goal_against_avg10": 1.2
    }
   },
   "juventus": {
@@ -1332,13 +1337,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1857.301,
-    "att_decay": 1.34031,
-    "def_decay": 0.99611,
-    "goal_for_avg5": 1.0,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.3,
-    "goal_against_avg10": 1.0
+    "elo": 1855.322,
+    "att_decay": 1.39912,
+    "def_decay": 1.0856,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.2
    }
   },
   "gent": {
@@ -1354,12 +1359,12 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1674.993,
-    "att_decay": 1.58684,
-    "def_decay": 0.92152,
+    "elo": 1677.669,
+    "att_decay": 1.53169,
+    "def_decay": 0.83491,
     "goal_for_avg5": 1.8,
-    "goal_against_avg5": 0.8,
-    "goal_for_avg10": 1.9,
+    "goal_against_avg5": 0.6,
+    "goal_for_avg10": 1.8,
     "goal_against_avg10": 0.6
    }
   },
@@ -1376,13 +1381,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1671.321,
-    "att_decay": 1.57804,
-    "def_decay": 1.21514,
-    "goal_for_avg5": 1.2,
+    "elo": 1668.097,
+    "att_decay": 1.42862,
+    "def_decay": 1.19477,
+    "goal_for_avg5": 1.0,
     "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.8,
-    "goal_against_avg10": 1.4
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 1.3
    }
   },
   "kilmarnock": {
@@ -1397,13 +1402,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1611.521,
-    "att_decay": 1.25942,
-    "def_decay": 2.09172,
-    "goal_for_avg5": 1.4,
-    "goal_against_avg5": 2.6,
+    "elo": 1609.933,
+    "att_decay": 1.15301,
+    "def_decay": 1.99948,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 2.2,
     "goal_for_avg10": 0.9,
-    "goal_against_avg10": 1.9
+    "goal_against_avg10": 1.6
    }
   },
   "konyaspor": {
@@ -1418,11 +1423,11 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1544.19,
-    "att_decay": 0.78516,
-    "def_decay": 1.3283,
+    "elo": 1535.988,
+    "att_decay": 0.7094,
+    "def_decay": 1.29662,
     "goal_for_avg5": 0.4,
-    "goal_against_avg5": 1.0,
+    "goal_against_avg5": 1.2,
     "goal_for_avg10": 0.6,
     "goal_against_avg10": 1.3
    }
@@ -1440,13 +1445,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 1854.047,
-    "att_decay": 1.27591,
-    "def_decay": 0.71761,
-    "goal_for_avg5": 1.0,
-    "goal_against_avg5": 0.8,
-    "goal_for_avg10": 1.2,
-    "goal_against_avg10": 0.8
+    "elo": 1864.393,
+    "att_decay": 1.34958,
+    "def_decay": 0.74634,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 0.6,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 0.7
    }
   },
   "lazio": {
@@ -1462,13 +1467,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1868.435,
-    "att_decay": 2.14208,
-    "def_decay": 0.97212,
-    "goal_for_avg5": 3.2,
+    "elo": 1870.5,
+    "att_decay": 2.0402,
+    "def_decay": 0.97461,
+    "goal_for_avg5": 2.8,
     "goal_against_avg5": 1.0,
     "goal_for_avg10": 2.4,
-    "goal_against_avg10": 0.8
+    "goal_against_avg10": 0.9
    }
   },
   "leicester": {
@@ -1483,13 +1488,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1547.969,
-    "att_decay": 1.61253,
-    "def_decay": 1.39793,
-    "goal_for_avg5": 2.2,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.8,
-    "goal_against_avg10": 1.4
+    "elo": 1544.716,
+    "att_decay": 1.64229,
+    "def_decay": 1.44417,
+    "goal_for_avg5": 2.4,
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 2.0,
+    "goal_against_avg10": 1.6
    }
   },
   "liverpool": {
@@ -1505,12 +1510,12 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 2011.503,
-    "att_decay": 1.33381,
-    "def_decay": 1.13843,
-    "goal_for_avg5": 1.0,
-    "goal_against_avg5": 1.0,
-    "goal_for_avg10": 1.2,
+    "elo": 2021.454,
+    "att_decay": 1.4977,
+    "def_decay": 1.12481,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.4,
     "goal_against_avg10": 1.0
    }
   },
@@ -1527,13 +1532,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 2124.565,
-    "att_decay": 2.06229,
-    "def_decay": 1.08952,
-    "goal_for_avg5": 2.4,
+    "elo": 2101.835,
+    "att_decay": 1.95935,
+    "def_decay": 1.27465,
+    "goal_for_avg5": 1.6,
     "goal_against_avg5": 1.6,
     "goal_for_avg10": 2.1,
-    "goal_against_avg10": 1.2
+    "goal_against_avg10": 1.3
    }
   },
   "man united": {
@@ -1549,13 +1554,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 1928.119,
-    "att_decay": 1.25837,
-    "def_decay": 1.52032,
-    "goal_for_avg5": 0.6,
-    "goal_against_avg5": 1.6,
-    "goal_for_avg10": 1.3,
-    "goal_against_avg10": 1.5
+    "elo": 1926.856,
+    "att_decay": 1.52758,
+    "def_decay": 1.76381,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 2.2,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.9
    }
   },
   "molde": {
@@ -1571,9 +1576,9 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1637.984,
-    "att_decay": 2.77915,
-    "def_decay": 1.67238,
+    "elo": 1636.709,
+    "att_decay": 2.97388,
+    "def_decay": 1.96415,
     "goal_for_avg5": null,
     "goal_against_avg5": null,
     "goal_for_avg10": null,
@@ -1592,13 +1597,13 @@
     "euroLastDate": "2026-08-27"
    },
    "domestic": {
-    "elo": 1707.234,
-    "att_decay": 1.22961,
-    "def_decay": 1.57114,
-    "goal_for_avg5": 1.0,
-    "goal_against_avg5": 1.8,
-    "goal_for_avg10": 1.2,
-    "goal_against_avg10": 1.9
+    "elo": 1708.523,
+    "att_decay": 1.21046,
+    "def_decay": 1.52351,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.0,
+    "goal_against_avg10": 1.7
    }
   },
   "nantes": {
@@ -1613,13 +1618,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1523.273,
-    "att_decay": 0.97982,
-    "def_decay": 1.47893,
+    "elo": 1538.508,
+    "att_decay": 1.07392,
+    "def_decay": 1.34252,
     "goal_for_avg5": 1.0,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.2,
-    "goal_against_avg10": 1.7
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 1.3,
+    "goal_against_avg10": 1.5
    }
   },
   "newcastle": {
@@ -1635,13 +1640,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1883.333,
-    "att_decay": 1.27814,
-    "def_decay": 1.57296,
-    "goal_for_avg5": 1.0,
+    "elo": 1884.802,
+    "att_decay": 1.25109,
+    "def_decay": 1.51723,
+    "goal_for_avg5": 0.8,
     "goal_against_avg5": 1.4,
-    "goal_for_avg10": 1.2,
-    "goal_against_avg10": 1.7
+    "goal_for_avg10": 1.3,
+    "goal_against_avg10": 1.6
    }
   },
   "nice": {
@@ -1657,12 +1662,12 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1714.046,
-    "att_decay": 1.47778,
-    "def_decay": 1.4442,
+    "elo": 1726.895,
+    "att_decay": 1.53088,
+    "def_decay": 1.29737,
     "goal_for_avg5": 2.4,
-    "goal_against_avg5": 1.4,
-    "goal_for_avg10": 1.3,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.5,
     "goal_against_avg10": 1.2
    }
   },
@@ -1678,12 +1683,12 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1861.533,
-    "att_decay": 0.94218,
-    "def_decay": 1.33438,
-    "goal_for_avg5": 0.4,
+    "elo": 1884.264,
+    "att_decay": 1.1432,
+    "def_decay": 1.30172,
+    "goal_for_avg5": 1.0,
     "goal_against_avg5": 1.6,
-    "goal_for_avg10": 0.7,
+    "goal_for_avg10": 0.9,
     "goal_against_avg10": 1.3
    }
   },
@@ -1699,13 +1704,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1591.073,
-    "att_decay": 1.52101,
-    "def_decay": 1.49198,
-    "goal_for_avg5": 1.6,
-    "goal_against_avg5": 2.0,
-    "goal_for_avg10": 1.7,
-    "goal_against_avg10": 1.3
+    "elo": 1588.378,
+    "att_decay": 1.36639,
+    "def_decay": 1.3403,
+    "goal_for_avg5": 1.2,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.2
    }
   },
   "olympiakos": {
@@ -1721,11 +1726,11 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1906.48,
-    "att_decay": 1.72824,
-    "def_decay": 0.5244,
+    "elo": 1902.368,
+    "att_decay": 1.65357,
+    "def_decay": 0.57317,
     "goal_for_avg5": 2.4,
-    "goal_against_avg5": 0.4,
+    "goal_against_avg5": 0.6,
     "goal_for_avg10": 1.6,
     "goal_against_avg10": 0.5
    }
@@ -1743,13 +1748,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1839.817,
-    "att_decay": 1.60441,
-    "def_decay": 1.00994,
-    "goal_for_avg5": 1.8,
-    "goal_against_avg5": 1.0,
+    "elo": 1821.96,
+    "att_decay": 1.44158,
+    "def_decay": 1.11042,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 1.4,
     "goal_for_avg10": 1.5,
-    "goal_against_avg10": 1.1
+    "goal_against_avg10": 0.9
    }
   },
   "marseille": {
@@ -1765,12 +1770,12 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1818.419,
-    "att_decay": 2.13967,
-    "def_decay": 1.43156,
-    "goal_for_avg5": 2.8,
-    "goal_against_avg5": 1.4,
-    "goal_for_avg10": 2.3,
+    "elo": 1830.934,
+    "att_decay": 2.1255,
+    "def_decay": 1.38778,
+    "goal_for_avg5": 3.0,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 2.2,
     "goal_against_avg10": 1.4
    }
   },
@@ -1786,12 +1791,12 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1630.747,
-    "att_decay": 1.06321,
-    "def_decay": 1.87271,
+    "elo": 1631.491,
+    "att_decay": 1.05778,
+    "def_decay": 1.79771,
     "goal_for_avg5": 1.2,
     "goal_against_avg5": 2.0,
-    "goal_for_avg10": 1.1,
+    "goal_for_avg10": 1.0,
     "goal_against_avg10": 2.2
    }
   },
@@ -1808,13 +1813,13 @@
     "euroLastDate": "2026-08-27"
    },
    "domestic": {
-    "elo": 1819.649,
-    "att_decay": 1.83288,
-    "def_decay": 1.26214,
-    "goal_for_avg5": 1.8,
+    "elo": 1823.761,
+    "att_decay": 1.74796,
+    "def_decay": 1.23541,
+    "goal_for_avg5": 1.4,
     "goal_against_avg5": 1.6,
-    "goal_for_avg10": 2.0,
-    "goal_against_avg10": 1.4
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 1.3
    }
   },
   "panathinaikos": {
@@ -1830,13 +1835,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1835.625,
-    "att_decay": 1.93023,
-    "def_decay": 0.60955,
-    "goal_for_avg5": 1.8,
-    "goal_against_avg5": 0.4,
+    "elo": 1840.038,
+    "att_decay": 1.93724,
+    "def_decay": 0.64879,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 0.6,
     "goal_for_avg10": 2.2,
-    "goal_against_avg10": 0.6
+    "goal_against_avg10": 0.5
    }
   },
   "paris sg": {
@@ -1852,13 +1857,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 2010.309,
-    "att_decay": 2.40105,
-    "def_decay": 0.96836,
-    "goal_for_avg5": 3.0,
-    "goal_against_avg5": 0.8,
+    "elo": 2011.379,
+    "att_decay": 2.26108,
+    "def_decay": 0.87162,
+    "goal_for_avg5": 2.8,
+    "goal_against_avg5": 0.6,
     "goal_for_avg10": 2.2,
-    "goal_against_avg10": 1.2
+    "goal_against_avg10": 1.0
    }
   },
   "pacos ferreira": {
@@ -1895,13 +1900,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1848.604,
-    "att_decay": 2.50377,
-    "def_decay": 1.42238,
-    "goal_for_avg5": 2.6,
+    "elo": 1856.413,
+    "att_decay": 2.76655,
+    "def_decay": 1.48319,
+    "goal_for_avg5": 3.6,
     "goal_against_avg5": 1.6,
-    "goal_for_avg10": 2.5,
-    "goal_against_avg10": 1.6
+    "goal_for_avg10": 2.8,
+    "goal_against_avg10": 1.7
    }
   },
   "lens": {
@@ -1917,13 +1922,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1842.696,
-    "att_decay": 1.79363,
-    "def_decay": 1.30869,
+    "elo": 1830.181,
+    "att_decay": 1.713,
+    "def_decay": 1.37892,
     "goal_for_avg5": 1.6,
     "goal_against_avg5": 1.2,
-    "goal_for_avg10": 2.0,
-    "goal_against_avg10": 1.3
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 1.5
    }
   },
   "charleroi": {
@@ -1938,12 +1943,12 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1656.461,
-    "att_decay": 1.8259,
-    "def_decay": 1.25308,
-    "goal_for_avg5": 2.0,
-    "goal_against_avg5": 1.4,
-    "goal_for_avg10": 2.1,
+    "elo": 1676.692,
+    "att_decay": 2.12396,
+    "def_decay": 1.22931,
+    "goal_for_avg5": 2.8,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 2.3,
     "goal_against_avg10": 1.2
    }
   },
@@ -1959,13 +1964,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1770.128,
-    "att_decay": 1.89149,
-    "def_decay": 1.93353,
+    "elo": 1755.753,
+    "att_decay": 1.80294,
+    "def_decay": 2.03946,
     "goal_for_avg5": 1.6,
-    "goal_against_avg5": 2.2,
-    "goal_for_avg10": 2.2,
-    "goal_against_avg10": 2.3
+    "goal_against_avg5": 2.4,
+    "goal_for_avg10": 1.8,
+    "goal_against_avg10": 2.2
    }
   },
   "anderlecht": {
@@ -1981,12 +1986,12 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1652.223,
-    "att_decay": 1.47663,
-    "def_decay": 1.45773,
+    "elo": 1659.498,
+    "att_decay": 1.43181,
+    "def_decay": 1.41469,
     "goal_for_avg5": 2.0,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.3,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.2,
     "goal_against_avg10": 1.1
    }
   },
@@ -2003,13 +2008,13 @@
     "euroLastDate": "2026-08-27"
    },
    "domestic": {
-    "elo": 1925.497,
-    "att_decay": 2.04141,
-    "def_decay": 1.04776,
-    "goal_for_avg5": 2.4,
+    "elo": 1930.874,
+    "att_decay": 2.03765,
+    "def_decay": 0.95262,
+    "goal_for_avg5": 2.6,
     "goal_against_avg5": 1.0,
-    "goal_for_avg10": 1.8,
-    "goal_against_avg10": 0.8
+    "goal_for_avg10": 1.9,
+    "goal_against_avg10": 0.6
    }
   },
   "vallecano": {
@@ -2024,13 +2029,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1707.896,
-    "att_decay": 1.41742,
-    "def_decay": 1.61389,
-    "goal_for_avg5": 1.4,
+    "elo": 1700.025,
+    "att_decay": 1.28491,
+    "def_decay": 1.5565,
+    "goal_for_avg5": 1.0,
     "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.5,
-    "goal_against_avg10": 2.0
+    "goal_for_avg10": 1.4,
+    "goal_against_avg10": 1.9
    }
   },
   "betis": {
@@ -2046,12 +2051,12 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1810.94,
-    "att_decay": 1.65745,
-    "def_decay": 1.39085,
-    "goal_for_avg5": 2.0,
-    "goal_against_avg5": 1.8,
-    "goal_for_avg10": 1.7,
+    "elo": 1822.319,
+    "att_decay": 1.68727,
+    "def_decay": 1.26977,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.8,
     "goal_against_avg10": 1.5
    }
   },
@@ -2068,13 +2073,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1988.89,
-    "att_decay": 2.35216,
-    "def_decay": 0.89593,
-    "goal_for_avg5": 2.2,
-    "goal_against_avg5": 0.8,
-    "goal_for_avg10": 2.6,
-    "goal_against_avg10": 0.9
+    "elo": 1995.939,
+    "att_decay": 2.40816,
+    "def_decay": 0.81849,
+    "goal_for_avg5": 2.6,
+    "goal_against_avg5": 0.4,
+    "goal_for_avg10": 2.5,
+    "goal_against_avg10": 0.8
    }
   },
   "sociedad": {
@@ -2090,13 +2095,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1717.994,
-    "att_decay": 1.86889,
-    "def_decay": 1.78765,
-    "goal_for_avg5": 2.8,
-    "goal_against_avg5": 1.8,
+    "elo": 1725.866,
+    "att_decay": 1.79297,
+    "def_decay": 1.63146,
+    "goal_for_avg5": 2.4,
+    "goal_against_avg5": 1.4,
     "goal_for_avg10": 2.0,
-    "goal_against_avg10": 1.9
+    "goal_against_avg10": 1.5
    }
   },
   "rosenborg": {
@@ -2112,9 +2117,9 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1673.796,
-    "att_decay": 2.45579,
-    "def_decay": 1.03579,
+    "elo": 1677.897,
+    "att_decay": 2.59055,
+    "def_decay": 1.03267,
     "goal_for_avg5": null,
     "goal_against_avg5": null,
     "goal_for_avg10": null,
@@ -2134,13 +2139,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1561.933,
-    "att_decay": 1.36806,
-    "def_decay": 1.90042,
-    "goal_for_avg5": 1.2,
-    "goal_against_avg5": 2.4,
+    "elo": 1559.862,
+    "att_decay": 1.42738,
+    "def_decay": 1.90977,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 2.2,
     "goal_for_avg10": 1.6,
-    "goal_against_avg10": 2.2
+    "goal_against_avg10": 2.3
    }
   },
   "st gilloise": {
@@ -2156,13 +2161,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1892.785,
-    "att_decay": 2.45503,
-    "def_decay": 0.80749,
-    "goal_for_avg5": 3.0,
+    "elo": 1896.01,
+    "att_decay": 2.31803,
+    "def_decay": 0.73146,
+    "goal_for_avg5": 2.2,
     "goal_against_avg5": 0.8,
-    "goal_for_avg10": 2.9,
-    "goal_against_avg10": 0.7
+    "goal_for_avg10": 2.5,
+    "goal_against_avg10": 0.6
    }
   },
   "freiburg": {
@@ -2178,13 +2183,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1776.926,
-    "att_decay": 1.91999,
-    "def_decay": 1.47352,
+    "elo": 1784.297,
+    "att_decay": 1.92846,
+    "def_decay": 1.31746,
     "goal_for_avg5": 1.6,
-    "goal_against_avg5": 1.8,
+    "goal_against_avg5": 1.4,
     "goal_for_avg10": 2.4,
-    "goal_against_avg10": 1.4
+    "goal_against_avg10": 1.1
    }
   },
   "brann": {
@@ -2200,9 +2205,9 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1604.909,
-    "att_decay": 1.64971,
-    "def_decay": 1.79489,
+    "elo": 1604.508,
+    "att_decay": 1.68114,
+    "def_decay": 1.81329,
     "goal_for_avg5": null,
     "goal_against_avg5": null,
     "goal_for_avg10": null,
@@ -2222,13 +2227,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1876.223,
-    "att_decay": 1.68191,
-    "def_decay": 1.21337,
-    "goal_for_avg5": 2.0,
-    "goal_against_avg5": 1.4,
-    "goal_for_avg10": 1.7,
-    "goal_against_avg10": 1.3
+    "elo": 1874.158,
+    "att_decay": 1.62103,
+    "def_decay": 1.19432,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 1.4
    }
   },
   "samsunspor": {
@@ -2243,13 +2248,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1542.348,
-    "att_decay": 1.14797,
-    "def_decay": 2.41527,
-    "goal_for_avg5": 0.8,
-    "goal_against_avg5": 3.0,
-    "goal_for_avg10": 1.0,
-    "goal_against_avg10": 2.6
+    "elo": 1550.55,
+    "att_decay": 1.13378,
+    "def_decay": 2.18358,
+    "goal_for_avg5": 1.0,
+    "goal_against_avg5": 2.8,
+    "goal_for_avg10": 0.8,
+    "goal_against_avg10": 2.3
    }
   },
   "santa clara": {
@@ -2286,13 +2291,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1669.826,
-    "att_decay": 1.39808,
-    "def_decay": 1.73939,
-    "goal_for_avg5": 1.6,
-    "goal_against_avg5": 2.6,
-    "goal_for_avg10": 1.5,
-    "goal_against_avg10": 1.8
+    "elo": 1667.669,
+    "att_decay": 1.27828,
+    "def_decay": 1.59034,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 2.0,
+    "goal_for_avg10": 1.2,
+    "goal_against_avg10": 1.7
    }
   },
   "st truiden": {
@@ -2307,12 +2312,12 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1604.057,
-    "att_decay": 1.67556,
-    "def_decay": 1.86281,
-    "goal_for_avg5": 1.2,
-    "goal_against_avg5": 2.6,
-    "goal_for_avg10": 1.8,
+    "elo": 1614.764,
+    "att_decay": 1.8949,
+    "def_decay": 1.78139,
+    "goal_for_avg5": 2.0,
+    "goal_against_avg5": 2.4,
+    "goal_for_avg10": 2.1,
     "goal_against_avg10": 2.1
    }
   },
@@ -2394,13 +2399,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1642.365,
-    "att_decay": 1.34801,
-    "def_decay": 1.38566,
-    "goal_for_avg5": 1.2,
-    "goal_against_avg5": 1.8,
-    "goal_for_avg10": 1.1,
-    "goal_against_avg10": 1.5
+    "elo": 1651.182,
+    "att_decay": 1.40462,
+    "def_decay": 1.35218,
+    "goal_for_avg5": 1.4,
+    "goal_against_avg5": 2.0,
+    "goal_for_avg10": 1.2,
+    "goal_against_avg10": 1.4
    }
   },
   "st mirren": {
@@ -2415,13 +2420,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1596.185,
-    "att_decay": 0.89411,
-    "def_decay": 1.6881,
+    "elo": 1590.808,
+    "att_decay": 0.81947,
+    "def_decay": 1.71414,
     "goal_for_avg5": 0.8,
-    "goal_against_avg5": 2.2,
-    "goal_for_avg10": 0.9,
-    "goal_against_avg10": 2.0
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 0.6,
+    "goal_against_avg10": 1.9
    }
   },
   "brest": {
@@ -2437,13 +2442,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1707.816,
-    "att_decay": 1.6163,
-    "def_decay": 1.39342,
-    "goal_for_avg5": 2.0,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.7,
-    "goal_against_avg10": 1.3
+    "elo": 1725.674,
+    "att_decay": 1.65509,
+    "def_decay": 1.25257,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 0.8,
+    "goal_for_avg10": 1.8,
+    "goal_against_avg10": 1.2
    }
   },
   "rennes": {
@@ -2459,13 +2464,13 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1801.087,
-    "att_decay": 2.17172,
-    "def_decay": 2.01986,
-    "goal_for_avg5": 2.4,
-    "goal_against_avg5": 2.8,
+    "elo": 1790.74,
+    "att_decay": 2.05276,
+    "def_decay": 2.01784,
+    "goal_for_avg5": 2.6,
+    "goal_against_avg5": 2.4,
     "goal_for_avg10": 2.1,
-    "goal_against_avg10": 2.2
+    "goal_against_avg10": 2.1
    }
   },
   "sunderland": {
@@ -2480,13 +2485,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1777.871,
-    "att_decay": 0.8645,
-    "def_decay": 1.74498,
-    "goal_for_avg5": 0.8,
-    "goal_against_avg5": 2.4,
-    "goal_for_avg10": 0.9,
-    "goal_against_avg10": 1.8
+    "elo": 1790.437,
+    "att_decay": 0.87783,
+    "def_decay": 1.57341,
+    "goal_for_avg5": 0.4,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 0.8,
+    "goal_against_avg10": 1.7
    }
   },
   "hoffenheim": {
@@ -2502,13 +2507,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1743.022,
-    "att_decay": 1.72737,
-    "def_decay": 1.826,
-    "goal_for_avg5": 1.6,
-    "goal_against_avg5": 1.8,
-    "goal_for_avg10": 1.5,
-    "goal_against_avg10": 2.0
+    "elo": 1747.258,
+    "att_decay": 1.75628,
+    "def_decay": 1.73841,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.4,
+    "goal_for_avg10": 1.6,
+    "goal_against_avg10": 2.1
    }
   },
   "tottenham": {
@@ -2524,13 +2529,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1846.201,
-    "att_decay": 1.25445,
-    "def_decay": 1.15191,
-    "goal_for_avg5": 2.0,
-    "goal_against_avg5": 1.0,
-    "goal_for_avg10": 1.1,
-    "goal_against_avg10": 1.0
+    "elo": 1839.475,
+    "att_decay": 1.13207,
+    "def_decay": 1.13709,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 0.6,
+    "goal_for_avg10": 1.0,
+    "goal_against_avg10": 1.1
    }
   },
   "toulouse": {
@@ -2546,13 +2551,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1719.612,
-    "att_decay": 1.31269,
-    "def_decay": 1.38706,
+    "elo": 1733.987,
+    "att_decay": 1.48165,
+    "def_decay": 1.3483,
     "goal_for_avg5": 1.6,
-    "goal_against_avg5": 1.2,
-    "goal_for_avg10": 1.2,
-    "goal_against_avg10": 1.3
+    "goal_against_avg5": 1.0,
+    "goal_for_avg10": 1.5,
+    "goal_against_avg10": 1.4
    }
   },
   "trabzonspor": {
@@ -2568,13 +2573,13 @@
     "euroLastDate": "2026-11-05"
    },
    "domestic": {
-    "elo": 1774.641,
-    "att_decay": 2.2477,
-    "def_decay": 0.92267,
-    "goal_for_avg5": 3.0,
+    "elo": 1782.974,
+    "att_decay": 2.22372,
+    "def_decay": 0.83334,
+    "goal_for_avg5": 2.6,
     "goal_against_avg5": 0.6,
-    "goal_for_avg10": 2.4,
-    "goal_against_avg10": 0.8
+    "goal_for_avg10": 2.5,
+    "goal_against_avg10": 0.7
    }
   },
   "stuttgart": {
@@ -2590,13 +2595,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 1837.059,
-    "att_decay": 1.96091,
-    "def_decay": 1.71819,
-    "goal_for_avg5": 1.6,
-    "goal_against_avg5": 1.4,
-    "goal_for_avg10": 1.9,
-    "goal_against_avg10": 1.8
+    "elo": 1841.839,
+    "att_decay": 1.85945,
+    "def_decay": 1.53676,
+    "goal_for_avg5": 1.8,
+    "goal_against_avg5": 1.2,
+    "goal_for_avg10": 1.7,
+    "goal_against_avg10": 1.7
    }
   },
   "wolfsburg": {
@@ -2612,13 +2617,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1657.156,
-    "att_decay": 2.16791,
-    "def_decay": 1.55148,
-    "goal_for_avg5": 3.0,
-    "goal_against_avg5": 1.4,
-    "goal_for_avg10": 2.5,
-    "goal_against_avg10": 1.4
+    "elo": 1647.38,
+    "att_decay": 2.05521,
+    "def_decay": 1.59476,
+    "goal_for_avg5": 2.2,
+    "goal_against_avg5": 1.6,
+    "goal_for_avg10": 2.6,
+    "goal_against_avg10": 1.6
    }
   },
   "viking": {
@@ -2634,9 +2639,9 @@
     "euroLastDate": "2026-11-04"
    },
    "domestic": {
-    "elo": 1818.444,
-    "att_decay": 2.58384,
-    "def_decay": 1.12839,
+    "elo": 1822.627,
+    "att_decay": 2.79473,
+    "def_decay": 1.11719,
     "goal_for_avg5": null,
     "goal_against_avg5": null,
     "goal_for_avg10": null,
@@ -2656,13 +2661,13 @@
     "euroLastDate": "2026-11-03"
    },
    "domestic": {
-    "elo": 1792.255,
-    "att_decay": 1.47085,
-    "def_decay": 1.28052,
-    "goal_for_avg5": 1.0,
-    "goal_against_avg5": 0.8,
+    "elo": 1799.742,
+    "att_decay": 1.51693,
+    "def_decay": 1.169,
+    "goal_for_avg5": 0.8,
+    "goal_against_avg5": 0.6,
     "goal_for_avg10": 1.3,
-    "goal_against_avg10": 1.3
+    "goal_against_avg10": 1.1
    }
   },
   "guimaraes": {
@@ -2699,13 +2704,13 @@
     "euroLastDate": null
    },
    "domestic": {
-    "elo": 1812.132,
-    "att_decay": 2.23891,
-    "def_decay": 1.55398,
-    "goal_for_avg5": 2.6,
-    "goal_against_avg5": 1.8,
-    "goal_for_avg10": 2.8,
-    "goal_against_avg10": 1.4
+    "elo": 1797.959,
+    "att_decay": 2.14754,
+    "def_decay": 1.58687,
+    "goal_for_avg5": 1.6,
+    "goal_against_avg5": 2.2,
+    "goal_for_avg10": 2.6,
+    "goal_against_avg10": 1.6
    }
   },
   "1 fc slovacko": {
@@ -6698,21 +6703,21 @@
  },
  "teamAliases": {
   "heidenheim": "heidenheim",
-  "1 fc heidenheim": "heidenheim",
   "1 fc heidenheim 1846": "heidenheim",
   "fc heidenheim": "heidenheim",
+  "1 fc heidenheim": "heidenheim",
   "fc koln": "fc koln",
   "1 fc koln": "fc koln",
   "union berlin": "union berlin",
   "1 fc union berlin": "union berlin",
   "mainz": "mainz",
-  "1 fsv mainz 05": "mainz",
   "mainz 05": "mainz",
+  "1 fsv mainz 05": "mainz",
   "milan": "milan",
   "ac milan": "milan",
   "aek": "aek",
-  "pae aek": "aek",
   "aek athens": "aek",
+  "pae aek": "aek",
   "ajax": "ajax",
   "afc ajax": "ajax",
   "monaco": "monaco",
@@ -6743,10 +6748,10 @@
   "bayer leverkusen": "leverkusen",
   "bayer 04 leverkusen": "leverkusen",
   "buyuksehyr": "buyuksehyr",
-  "istanbul basaksehir": "buyuksehyr",
-  "basaksehir fk": "buyuksehyr",
-  "istanbul basaksehir fk": "buyuksehyr",
   "basaksehir": "buyuksehyr",
+  "istanbul basaksehir fk": "buyuksehyr",
+  "basaksehir fk": "buyuksehyr",
+  "istanbul basaksehir": "buyuksehyr",
   "benfica": "benfica",
   "sport lisboa e benfica": "benfica",
   "besiktas": "besiktas",
@@ -6778,8 +6783,8 @@
   "barcelona": "barcelona",
   "fc barcelona": "barcelona",
   "bayern munich": "bayern munich",
-  "fc bayern munchen": "bayern munich",
   "bayern munchen": "bayern munich",
+  "fc bayern munchen": "bayern munich",
   "porto": "porto",
   "fc porto": "porto",
   "fenerbahce": "fenerbahce",
@@ -6796,9 +6801,9 @@
   "heart of midlothian": "hearts",
   "hibernian": "hibernian",
   "inter": "inter",
-  "internazionale milano": "inter",
   "fc internazionale milano": "inter",
   "inter milan": "inter",
+  "internazionale milano": "inter",
   "juventus": "juventus",
   "juventus fc": "juventus",
   "gent": "gent",
@@ -6809,8 +6814,8 @@
   "kilmarnock": "kilmarnock",
   "konyaspor": "konyaspor",
   "lille": "lille",
-  "losc lille": "lille",
   "lille osc": "lille",
+  "losc lille": "lille",
   "lazio": "lazio",
   "ss lazio": "lazio",
   "leicester": "leicester",
@@ -6818,11 +6823,11 @@
   "liverpool": "liverpool",
   "liverpool fc": "liverpool",
   "man city": "man city",
-  "manchester city fc": "man city",
   "manchester city": "man city",
+  "manchester city fc": "man city",
   "man united": "man united",
-  "manchester united": "man united",
   "manchester united fc": "man united",
+  "manchester united": "man united",
   "molde": "molde",
   "molde fk": "molde",
   "motherwell": "motherwell",
@@ -6836,25 +6841,25 @@
   "nottingham forest": "nott m forest",
   "ofi crete": "ofi crete",
   "olympiakos": "olympiakos",
+  "pae olympiakos sfp": "olympiakos",
   "olympiacos fc": "olympiakos",
   "olympiacos": "olympiakos",
-  "pae olympiakos sfp": "olympiakos",
   "lyon": "lyon",
-  "olympique lyonnais": "lyon",
   "olympique lyon": "lyon",
+  "olympique lyonnais": "lyon",
   "marseille": "marseille",
   "olympique marseille": "marseille",
   "olympique de marseille": "marseille",
   "osasuna": "osasuna",
   "paok": "paok",
-  "paok fc": "paok",
   "paok salonika": "paok",
+  "paok fc": "paok",
   "panathinaikos": "panathinaikos",
   "panathinaikos fc": "panathinaikos",
   "paris sg": "paris sg",
   "psg": "paris sg",
-  "paris saint germain fc": "paris sg",
   "paris saint germain": "paris sg",
+  "paris saint germain fc": "paris sg",
   "pacos ferreira": "pacos ferreira",
   "pacos de ferreira": "pacos ferreira",
   "rb leipzig": "rb leipzig",
@@ -6886,9 +6891,9 @@
   "royal antwerp fc": "antwerp",
   "royal antwerp": "antwerp",
   "st gilloise": "st gilloise",
+  "union sg": "st gilloise",
   "union saint gilloise": "st gilloise",
   "royale union saint gilloise": "st gilloise",
-  "union sg": "st gilloise",
   "union st gilloise": "st gilloise",
   "freiburg": "freiburg",
   "sc freiburg": "freiburg",
@@ -6904,14 +6909,14 @@
   "sint truidense vv": "st truiden",
   "sivasspor": "sivasspor",
   "sp braga": "sp braga",
-  "sporting braga": "sp braga",
   "braga": "sp braga",
   "sporting clube de braga": "sp braga",
+  "sporting braga": "sp braga",
   "sc braga": "sp braga",
   "sp lisbon": "sp lisbon",
   "sporting lisbon": "sp lisbon",
-  "sporting clube de portugal": "sp lisbon",
   "sporting cp": "sp lisbon",
+  "sporting clube de portugal": "sp lisbon",
   "st johnstone": "st johnstone",
   "st mirren": "st mirren",
   "brest": "brest",
@@ -6922,9 +6927,9 @@
   "stade rennais": "rennes",
   "sunderland": "sunderland",
   "hoffenheim": "hoffenheim",
-  "tsg 1899 hoffenheim": "hoffenheim",
-  "tsg hoffenheim": "hoffenheim",
   "1899 hoffenheim": "hoffenheim",
+  "tsg hoffenheim": "hoffenheim",
+  "tsg 1899 hoffenheim": "hoffenheim",
   "tottenham": "tottenham",
   "tottenham hotspur fc": "tottenham",
   "tottenham hotspur": "tottenham",
@@ -6946,8 +6951,8 @@
   "west ham united": "west ham",
   "1 fc slovacko": "1 fc slovacko",
   "ac sparta praha": "ac sparta praha",
-  "sparta praha": "ac sparta praha",
   "sparta prague": "ac sparta praha",
+  "sparta praha": "ac sparta praha",
   "aek larnaca": "aek larnaca",
   "ael limassol": "ael limassol",
   "af elbasani": "af elbasani",
@@ -7026,17 +7031,17 @@
   "fc iberia 1999": "fc iberia 1999",
   "fc isloch minsk region": "fc isloch minsk region",
   "kairat almaty": "kairat almaty",
-  "fc kairat almaty": "kairat almaty",
-  "kairat": "kairat almaty",
   "fk kairat": "kairat almaty",
+  "kairat": "kairat almaty",
+  "fc kairat almaty": "kairat almaty",
   "fc koper": "fc koper",
   "fc kosice": "fc kosice",
   "fc kryvbas kryvyi rih": "fc kryvbas kryvyi rih",
   "fc kyzylzhar": "fc kyzylzhar",
   "fc kbenhavn": "fc kbenhavn",
-  "fc copenhagen": "fc kbenhavn",
-  "copenhagen": "fc kbenhavn",
   "kbenhavn": "fc kbenhavn",
+  "copenhagen": "fc kbenhavn",
+  "fc copenhagen": "fc kbenhavn",
   "fc lausanne sport": "fc lausanne sport",
   "fc lugano": "fc lugano",
   "fc luzern": "fc luzern",
@@ -7081,8 +7086,8 @@
   "fk buducnost podgorica": "fk buducnost podgorica",
   "fk podgorica": "fk buducnost podgorica",
   "fk crvena zvezda": "fk crvena zvezda",
-  "crvena zvezda": "fk crvena zvezda",
   "red star belgrade": "fk crvena zvezda",
+  "crvena zvezda": "fk crvena zvezda",
   "fk decic tuzi": "fk decic tuzi",
   "fk iskra danilovgrad": "fk iskra danilovgrad",
   "fk jablonec": "fk jablonec",
@@ -7213,8 +7218,8 @@
   "psv eindhoven": "psv eindhoven",
   "psv": "psv eindhoven",
   "pafos fc": "pafos fc",
-  "paphos": "pafos fc",
   "paphos fc": "pafos fc",
+  "paphos": "pafos fc",
   "paide linnameeskond": "paide linnameeskond",
   "paksi fc": "paksi fc",
   "penybont": "penybont",
@@ -7224,8 +7229,8 @@
   "puskas akademia": "puskas akademia",
   "pyunik yerevan": "pyunik yerevan",
   "qarabag fk": "qarabag fk",
-  "qarabag": "qarabag fk",
   "qarabag agdam fk": "qarabag fk",
+  "qarabag": "qarabag fk",
   "qbl fk": "qbl fk",
   "rfs": "rfs",
   "racing fc union luxembourg": "racing fc union luxembourg",
@@ -7242,8 +7247,8 @@
   "sk rapid wien": "sk rapid wien",
   "sk sigma olomouc": "sk sigma olomouc",
   "sk slavia praha": "sk slavia praha",
-  "slavia praha": "sk slavia praha",
   "slavia prague": "sk slavia praha",
+  "slavia praha": "sk slavia praha",
   "sk sturm graz": "sk sturm graz",
   "sturm graz": "sk sturm graz",
   "sp tre fiori": "sp tre fiori",
@@ -7329,7 +7334,7 @@
    },
    "EL": {
     "rows": 152,
-    "model1x2LogLoss": 0.9856662824653359,
+    "model1x2LogLoss": 0.9856662824653362,
     "baseline1x2LogLoss": 1.0594285437866762,
     "modelBrier": 0.5879938464664413,
     "baselineBrier": 0.6410474523498515
