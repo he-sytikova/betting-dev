@@ -163,7 +163,15 @@ def download_season(token: str, season_id: int) -> list:
         time.sleep(PAUSE)
 
 
-# --- Статистика матчей (/events/{id}/statistics/) ---
+# --- Статистика матчей (/events/{id}/stats/) ---
+
+# Канонический путь статистики (подтверждён пробником 2026-11-24):
+# /events/{id}/statistics/ -> 404, рабочий вариант — /events/{id}/stats/.
+# Ответ плоский: {"event_id": ..., "stats": {"home": {"corner_kicks": N|null,
+# "yellow_cards": N, "red_cards": N, "xg": {...}, ...}, "away": {...}},
+# "shotmap": [...]}. null означает «показателя нет у провайдера» (например,
+# угловые в сезонах до 2025/26) — это НЕ ноль.
+STATS_PATH = "/events/{id}/stats/"
 
 # Нормализованные ключи показателей -> наши поля (home, away). Ключ элемента
 # нормализуется в snake_case, поэтому покрываются варианты "corner_kicks",
@@ -200,12 +208,28 @@ def _stat_side(item: dict, keys) -> object:
 
 
 def extract_match_stats(payload) -> dict:
-    """Толерантный разбор ответа /events/{id}/statistics/: рекурсивно ищет
-    элементы с ключами угловых и карточек на любом уровне вложенности.
-    Если показатель встречается в нескольких периодах, предпочитается период
-    ALL (весь матч); при его отсутствии — первая встреченная запись.
+    """Разбор ответа /events/{id}/stats/. Основной путь — плоский формат BSD
+    (stats.home / stats.away с ключами показателей); запасной — рекурсивный
+    поиск элементов с key/name в стиле Sofascore (предпочтение периода ALL).
     Возвращает плоский dict со всеми полями STATS_TARGETS (None, если
-    показателя нет в ответе)."""
+    показателя нет в ответе — null у провайдера не превращается в 0)."""
+    stats = {}
+    for field, (home_key, away_key) in STATS_TARGETS.items():
+        stats[home_key] = None
+        stats[away_key] = None
+
+    flat = payload.get("stats") if isinstance(payload, dict) else None
+    if isinstance(flat, dict) and isinstance(flat.get("home"), dict) and isinstance(flat.get("away"), dict):
+        for side in ("home", "away"):
+            for raw_key, value in flat[side].items():
+                field = _STAT_KEY_LOOKUP.get(_norm_stat_key(raw_key))
+                if not field:
+                    continue
+                num = _stat_number(value)
+                if num is not None:
+                    stats[STATS_TARGETS[field][0 if side == "home" else 1]] = num
+        return stats
+
     candidates = {field: [] for field in STATS_TARGETS}
 
     def walk(node, period):
@@ -225,7 +249,6 @@ def extract_match_stats(payload) -> dict:
                 walk(v, period)
 
     walk(payload, None)
-    stats = {}
     for field, (home_key, away_key) in STATS_TARGETS.items():
         entries = candidates[field]
         chosen = None
@@ -235,48 +258,46 @@ def extract_match_stats(payload) -> dict:
                 break
         if chosen is None and entries:
             chosen = (entries[0][1], entries[0][2])
-        stats[home_key] = chosen[0] if chosen else None
-        stats[away_key] = chosen[1] if chosen else None
+        if chosen:
+            stats[home_key] = chosen[0]
+            stats[away_key] = chosen[1]
     return stats
 
 
 def attach_stats(token: str, matches: list, sample: int = 0, verbose_payloads: int = 0) -> dict:
-    """Догружает /events/{id}/statistics/ и прикрепляет извлечённые счётчики
+    """Догружает /events/{id}/stats/ и прикрепляет извлечённые счётчики
     к записям матчей (in place). sample > 0 — только последние sample матчей
     списка (режим разведки формата); verbose_payloads — сколько сырых ответов
     напечатать в лог (обрезанных) для проверки разбора. В sample-режиме при
-    ошибке основного пути пробуются альтернативные варианты пути и печатается
+    ошибке канонического пути пробуются альтернативные варианты и печатается
     код ошибки каждого."""
     targets = [m for m in matches if m.get("event_id")]
     if sample:
         targets = targets[-sample:]
     coverage = {"requested": len(targets), "ok": 0, "corners": 0, "cards": 0, "errors": 0}
     printed = 0
-    working_path = attach_stats._working_path  # обнаруженный путь кэшируется
     for m in targets:
         payload = None
-        if sample and working_path is None:
+        path_template = attach_stats._stats_path or STATS_PATH
+        if sample and attach_stats._stats_path is None:
             # Разведка: печатаем статус каждого варианта пути (только до
             # первого успеха, дальше используется найденный путь).
-            for path in (f"/events/{m['event_id']}/statistics/",
-                         f"/events/{m['event_id']}/statistics",
-                         f"/events/{m['event_id']}/stats/",
-                         f"/statistics/?event_id={m['event_id']}"):
+            for template in (STATS_PATH, "/events/{id}/statistics/",
+                             "/statistics/?event_id={id}"):
                 time.sleep(STATS_PAUSE)
                 try:
-                    payload = fetch(path, token)
-                    print(f"path probe event {m['event_id']}: {path} -> OK")
-                    working_path = "events"
+                    payload = fetch(template.format(id=m["event_id"]), token)
+                    print(f"path probe event {m['event_id']}: {template} -> OK")
+                    attach_stats._stats_path = template
                     break
                 except urllib.error.HTTPError as e:
-                    print(f"path probe event {m['event_id']}: {path} -> HTTP {e.code}")
+                    print(f"path probe event {m['event_id']}: {template} -> HTTP {e.code}")
                 except urllib.error.URLError as e:
-                    print(f"path probe event {m['event_id']}: {path} -> {e}")
-            attach_stats._working_path = working_path
+                    print(f"path probe event {m['event_id']}: {template} -> {e}")
         else:
             time.sleep(STATS_PAUSE)
             try:
-                payload = fetch(f"/events/{m['event_id']}/statistics/", token)
+                payload = fetch(path_template.format(id=m["event_id"]), token)
             except (urllib.error.HTTPError, urllib.error.URLError) as e:
                 m["stats_error"] = getattr(e, "code", None) or str(e)
         if payload is None:
@@ -297,7 +318,7 @@ def attach_stats(token: str, matches: list, sample: int = 0, verbose_payloads: i
     return coverage
 
 
-attach_stats._working_path = None
+attach_stats._stats_path = None
 
 
 def main():
