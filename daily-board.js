@@ -301,6 +301,19 @@
     return candidates.filter(row => candidateBookmakerPrice(row, bookmaker));
   }
 
+  // Фильтр по сверке со Smart Tables: confirmed — направление совпало,
+  // contradiction — противоположное, none — у ST нет направления по этому рынку,
+  // marked — любой из двух первых. Направление берётся только из общих тоталов.
+  function filterCandidatesBySt(rows, marks, selection = 'all') {
+    const candidates = Array.isArray(rows) ? rows : [];
+    if (!selection || selection === 'all') return [...candidates];
+    return candidates.filter(row => {
+      const status = stMarkerFor(marks, row?.home, row?.away, row?.modelLabel, row?.label)?.status || 'none';
+      if (selection === 'marked') return status !== 'none';
+      return status === selection;
+    });
+  }
+
   function groupCandidatesByMatch(rows) {
     const groups = new Map();
     for (const row of Array.isArray(rows) ? rows : []) {
@@ -528,6 +541,7 @@
     candidateBookmakerPrice,
     candidateBookmakerNames,
     filterCandidatesByBookmaker,
+    filterCandidatesBySt,
     groupCandidatesByMatch,
     groupCandidatesBySession,
     candidatePriceKey,
@@ -661,6 +675,7 @@
   let currentCandidateEmptyMessage = 'Загрузка претендентов…';
   let selectedCandidateMarket = 'all';
   let selectedCandidateBookmaker = 'all';
+  let selectedStFilter = 'all';
 
   function appendCandidateFilterGroup(fragment, options) {
     const group = node('div', 'daily-market-filter-row');
@@ -669,8 +684,8 @@
     group.append(node('span', 'daily-market-filter-label', options.label));
     for (const value of ['all', ...options.values]) {
       const active = options.selected === value;
-      const button = node('button', `daily-market-filter${active ? ' is-active' : ''}`,
-        value === 'all' ? options.allLabel : value);
+      const label = value === 'all' ? options.allLabel : (options.valueLabels?.[value] || value);
+      const button = node('button', `daily-market-filter${active ? ' is-active' : ''}`, label);
       button.type = 'button';
       button.dataset[options.dataKey] = value;
       button.setAttribute('aria-pressed', String(active));
@@ -710,8 +725,19 @@
         onSelect: value => { selectedCandidateBookmaker = value; },
       });
     }
+    const stAvailable = Array.isArray(currentStMarks?.matches) && currentStMarks.matches.length > 0;
+    if (stAvailable) {
+      appendCandidateFilterGroup(fragment, {
+        label: 'Сверка ST', allLabel: 'Все', values: ['marked', 'confirmed', 'contradiction', 'none'],
+        valueLabels: { marked: 'С отметкой ST', confirmed: 'ST ✓', contradiction: 'ST ✗', none: 'Без данных ST' },
+        selected: selectedStFilter, dataKey: 'st',
+        onSelect: value => { selectedStFilter = value; },
+      });
+    } else if (selectedStFilter !== 'all') {
+      selectedStFilter = 'all';
+    }
     bar.replaceChildren(fragment);
-    bar.hidden = markets.length === 0 && bookmakers.length === 0;
+    bar.hidden = markets.length === 0 && bookmakers.length === 0 && !stAvailable;
   }
 
   function candidateFilterEmptyMessage() {
@@ -720,6 +746,10 @@
     }
     if (selectedCandidateBookmaker !== 'all') return `По БК «${selectedCandidateBookmaker}» претендентов нет.`;
     if (selectedCandidateMarket !== 'all') return `По рынку «${selectedCandidateMarket}» претендентов нет.`;
+    if (selectedStFilter !== 'all') {
+      const labels = { marked: 'с отметкой ST', confirmed: 'ST ✓', contradiction: 'ST ✗', none: 'без данных ST' };
+      return `Претендентов ${labels[selectedStFilter] || ''} нет.`;
+    }
     return currentCandidateEmptyMessage;
   }
 
@@ -749,7 +779,8 @@
     const list = $('daily-candidates-list');
     const fragment = document.createDocumentFragment();
     const marketRows = filterCandidatesByMarket(currentCandidateRows, selectedCandidateMarket);
-    const rows = filterCandidatesByBookmaker(marketRows, selectedCandidateBookmaker);
+    const bookmakerRows = filterCandidatesByBookmaker(marketRows, selectedCandidateBookmaker);
+    const rows = filterCandidatesBySt(bookmakerRows, currentStMarks, selectedStFilter);
     const groups = groupCandidatesBySession(rows);
     for (const session of groups) {
       const section = node('section', 'daily-session');
