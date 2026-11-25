@@ -1,6 +1,6 @@
 {
  "date": "2026-11-26",
- "generatedAt": "2026-11-25T02:31:26.400405+00:00",
+ "generatedAt": "2026-11-25T05:15:26.240216+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.773888259",
@@ -178,11 +178,25 @@
    "away": "Club America"
   },
   {
-   "eventId": "s9-99.773912111",
+   "eventId": "s9-99.773916908",
    "time": "2026-11-26T06:00:00+00:00",
    "league": "Philippines. UAAP",
    "home": "Ateneo Blue Eagles",
    "away": "Adamson Falcons"
+  },
+  {
+   "eventId": "s9-99.773920045",
+   "time": "2026-11-26T06:30:00+00:00",
+   "league": "India. Delhi. Premier League",
+   "home": "Noida City",
+   "away": "National United"
+  },
+  {
+   "eventId": "s9-99.773922170",
+   "time": "2026-11-26T07:00:00+00:00",
+   "league": "Chinese Taipei. Premier League",
+   "home": "AC Taipei",
+   "away": "Hang Yuen"
   },
   {
    "eventId": "s9-99.773519318",
@@ -192,6 +206,34 @@
    "away": "Oakleigh Cannons"
   },
   {
+   "eventId": "s9-99.773928578",
+   "time": "2026-11-26T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Donggala United",
+   "away": "Persikutim United"
+  },
+  {
+   "eventId": "s9-99.773928581",
+   "time": "2026-11-26T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Gresik United",
+   "away": "Persibangga Purbalingga"
+  },
+  {
+   "eventId": "s9-99.773929459",
+   "time": "2026-11-26T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Persekabpas Pasuruan",
+   "away": "PSN Ngada"
+  },
+  {
+   "eventId": "s9-99.773930288",
+   "time": "2026-11-26T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Putra Sang Fajar",
+   "away": "Persibo Bojonegoro"
+  },
+  {
    "eventId": "s9-99.773156312",
    "time": "2026-11-26T08:30:00+00:00",
    "league": "Indonesia. Super League",
@@ -199,7 +241,7 @@
    "away": "Persita Tangerang"
   },
   {
-   "eventId": "s9-99.773912114",
+   "eventId": "s9-99.773921829",
    "time": "2026-11-26T08:30:00+00:00",
    "league": "Philippines. UAAP",
    "home": "De La Salle Green Archers",
@@ -248,6 +290,20 @@
    "away": "SFC Shturmi"
   },
   {
+   "eventId": "s9-99.773929196",
+   "time": "2026-11-26T10:00:00+00:00",
+   "league": "AFC Champions League 2",
+   "home": "Gangwon",
+   "away": "Kitchee"
+  },
+  {
+   "eventId": "s9-99.773929198",
+   "time": "2026-11-26T10:00:00+00:00",
+   "league": "AFC Champions League 2",
+   "home": "Kuching",
+   "away": "Phnom Penh Crown"
+  },
+  {
    "eventId": "s9-99.773745929",
    "time": "2026-11-26T10:00:00+00:00",
    "league": "AFC Champions League 2",
@@ -269,7 +325,7 @@
    "away": "Shirak II"
   },
   {
-   "eventId": "s9-99.773765137",
+   "eventId": "s9-99.773931140",
    "time": "2026-11-26T10:00:00+00:00",
    "league": "UEFA European U19 Championship. Qualification. Women",
    "home": "Serbia U19 (Women)",
@@ -290,7 +346,7 @@
    "away": "Gori"
   },
   {
-   "eventId": "s9-99.773912117",
+   "eventId": "s9-99.773915944",
    "time": "2026-11-26T11:00:00+00:00",
    "league": "Philippines. UAAP",
    "home": "UST Golden Booters",
@@ -309,6 +365,13 @@
    "league": "Georgia. National League 2",
    "home": "Kolkheti-1913 Poti",
    "away": "Sioni Bolnisi"
+  },
+  {
+   "eventId": "s9-99.773935605",
+   "time": "2026-11-26T12:00:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Persika Karanganyar",
+   "away": "Persipa Pati"
   },
   {
    "eventId": "s9-99.773736288",
@@ -351,6 +414,13 @@
    "league": "AFC Champions League 2",
    "home": "BG Pathum United",
    "away": "Lion City Sailors"
+  },
+  {
+   "eventId": "s9-99.773935337",
+   "time": "2026-11-26T12:15:00+00:00",
+   "league": "AFC Champions League 2",
+   "home": "Preah Khan Reach Svay Rieng",
+   "away": "Machida Zelvia"
   },
   {
    "eventId": "s9-99.773747524",
@@ -444,7 +514,7 @@
    "away": "Green Buffaloes"
   },
   {
-   "eventId": "s9-99.773912123",
+   "eventId": "s9-99.773917984",
    "time": "2026-11-26T14:00:00+00:00",
    "league": "Qatar Championship U20",
    "home": "Al Sadd U20",
@@ -465,11 +535,25 @@
    "away": "Spartak Moscow"
   },
   {
+   "eventId": "s9-99.773929899",
+   "time": "2026-11-26T14:15:00+00:00",
+   "league": "Qatar. Qatargas League",
+   "home": "Muaither",
+   "away": "Al Waab"
+  },
+  {
    "eventId": "s9-99.771472775",
    "time": "2026-11-26T14:25:00+00:00",
    "league": "Saudi Arabia. Saudi Professional League",
    "home": "Al-Fateh Al-Ahsa",
    "away": "Al-Riyadh SC"
+  },
+  {
+   "eventId": "s9-99.773920804",
+   "time": "2026-11-26T14:30:00+00:00",
+   "league": "Seychelles Championship",
+   "home": "Real Maldive",
+   "away": "Foresters"
   },
   {
    "eventId": "s9-99.773429766",
@@ -514,11 +598,18 @@
    "away": "Tekstilshchik Ivanovo"
   },
   {
-   "eventId": "s9-99.773912126",
+   "eventId": "s9-99.773917987",
    "time": "2026-11-26T16:10:00+00:00",
    "league": "Qatar Championship U20",
    "home": "Al-Ahli Doha U20",
    "away": "Al-Markhiya U20"
+  },
+  {
+   "eventId": "s9-99.773924715",
+   "time": "2026-11-26T16:30:00+00:00",
+   "league": "Qatar. Qatargas League",
+   "home": "Umm Salal",
+   "away": "Al Rayyan II"
   },
   {
    "eventId": "s9-99.766387321",
