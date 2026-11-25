@@ -106,6 +106,35 @@ function candidateOdds(candidate, line) {
   return { odds, market_key: market.key || '1X2' };
 }
 
+// Причина отсутствия цены у претендента — для счётчика на странице купонов:
+// 'line_absent'      — рынок сопоставлен, но такой линии нет ни у одного БК;
+// 'price_incomplete' — линия есть, но цена недоступна: односторонний рынок
+//                      или целочисленный тотал (скрыт политикой integer_two_way_line);
+// 'unmapped_market'  — рынок вне маппинга (индивидуальные тоталы статистики);
+// 'no_line_match'    — матч не сопоставлен ни с одной линией БК.
+function noPriceReason(candidate, matchedLines) {
+  const market = marketForCandidate(candidate);
+  if (!market) return 'unmapped_market';
+  const lines = (Array.isArray(matchedLines) ? matchedLines : []).filter(Boolean);
+  if (!lines.length) return 'no_line_match';
+  const hasMarket = lines.some(line => {
+    if (market.kind === 'total') {
+      const sides = line.markets?.[market.key];
+      return Boolean(sides) && Object.values(sides).some(finiteOdds);
+    }
+    if (market.kind === 'outcome') {
+      return ['home', 'draw', 'away'].some(key => finiteOdds(line.odds?.[key]));
+    }
+    const dc = line.markets?.DC;
+    return Boolean(dc) && Object.values(dc).some(finiteOdds);
+  });
+  return hasMarket ? 'price_incomplete' : 'line_absent';
+}
+
+function candidateIdentity(candidate) {
+  return `${candidate.modelKey}|${isoTime(candidate.time)}|${candidate.modelLabel}|${candidate.label}`;
+}
+
 function rejection(candidate, reason, details = {}) {
   return {
     time: isoTime(candidate.time),
@@ -408,6 +437,7 @@ function buildArtifact(input) {
   const rejected = [];
   const priced = [];
   const candidatePrices = [];
+  const candidateLines = new Map();
 
   for (const candidate of candidates) {
     const key = `${candidate.modelKey}|${isoTime(candidate.time)}`;
@@ -447,6 +477,9 @@ function buildArtifact(input) {
         }));
         continue;
       }
+      const identity = candidateIdentity(candidate);
+      if (!candidateLines.has(identity)) candidateLines.set(identity, []);
+      candidateLines.get(identity).push(line);
       const quote = candidateOdds(candidate, line);
       if (quote) {
         candidatePrices.push({
@@ -467,6 +500,19 @@ function buildArtifact(input) {
   const eligible = deduped.selected.sort(rankLegs);
   const selected = selectSessionCoupons(eligible, { usedTeams, singleLimit, doubleLimit });
 
+  // Счётчик претендентов без цены с причиной — для страницы купонов.
+  const pricedIdentities = new Set(candidatePrices.map(row => (
+    `${row.model_key}|${row.time}|${row.model}|${row.label}`
+  )));
+  const noPrice = { total: 0, line_absent: 0, price_incomplete: 0, unmapped_market: 0, no_line_match: 0 };
+  for (const candidate of candidates) {
+    const identity = candidateIdentity(candidate);
+    if (pricedIdentities.has(identity)) continue;
+    const reason = noPriceReason(candidate, candidateLines.get(identity));
+    noPrice.total += 1;
+    noPrice[reason] = (noPrice[reason] || 0) + 1;
+  }
+
   const available = BOOKMAKERS.some(name => ['ok', 'partial'].includes(snapshots?.[name]?.status));
   const hasMatch = (matching || []).some(record => record.status === 'matched');
   const dataStatus = !available ? 'source_unavailable' : (!hasMatch ? 'no_line_match' : 'ok');
@@ -486,6 +532,7 @@ function buildArtifact(input) {
       double_candidates: selected.doubleCandidates,
       rejected: rejected.length,
       rejection_reasons: counts,
+      no_price: noPrice,
       sessions: selected.sessions,
     },
     sources: Object.fromEntries(BOOKMAKERS.map(name => [name, {
@@ -579,7 +626,7 @@ if (require.main === module) main(process.argv.slice(2));
 
 module.exports = {
   BOOKMAKERS, SINGLE_LIMIT, DOUBLE_LIMIT, DELTA_LIMIT_PP,
-  fairFrom1x2, fairTwoWay, marketForCandidate, candidateOdds, evaluatePrice,
+  fairFrom1x2, fairTwoWay, marketForCandidate, candidateOdds, evaluatePrice, noPriceReason,
   fixtureModelKeys, buildMatchIndex, indexLines, dedupeEligible,
   teamKey, selectDoubles, selectSessionCoupons, buildArtifact, loadModels,
 };
