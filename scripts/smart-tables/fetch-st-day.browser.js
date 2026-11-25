@@ -14,6 +14,8 @@ async function stFetchDay(matchDate, pauseMs = 400) {
       competitionSlug: m.competition && m.competition.slug,
       home: m.home_team && m.home_team.title,
       away: m.away_team && m.away_team.title,
+      homeLatin: m.home_team && (m.home_team.common_title || m.home_team.slug),
+      awayLatin: m.away_team && (m.away_team.common_title || m.away_team.slug),
       beginAt: m.begin_at,
       status: m.status,
       predictions: null,

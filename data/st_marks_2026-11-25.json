@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-25",
+  "generatedAt": "2026-11-25T05:45:00Z",
+  "source": "smart-tables.ru (личная подписка владельца, ручная сверка)",
+  "matches": [
+    {
+      "stMatchId": 576342,
+      "home": "Sabah FK",
+      "away": "FC Barcelona",
+      "marks": [],
+      "note": "ST: только форы по угловым (Ф1), общих тоталов нет"
+    },
+    {
+      "stMatchId": 576343,
+      "home": "SK Slavia Praha",
+      "away": "Villarreal CF",
+      "marks": [],
+      "note": "ST: только ИТ (ИТ1М 5.5 угловых, ЖК ИТ2Б 1.5), общих тоталов нет"
+    },
+    {
+      "stMatchId": 553557,
+      "home": "Cremonese",
+      "away": "Avellino",
+      "marks": [],
+      "note": "ST: прогнозов по матчу нет"
+    },
+    {
+      "stMatchId": 553560,
+      "home": "Mantova",
+      "away": "Arezzo",
+      "marks": [],
+      "note": "ST: прогнозов по матчу нет"
+    },
+    {
+      "stMatchId": 553561,
+      "home": "Padova",
+      "away": "Sampdoria",
+      "marks": [],
+      "note": "ST: ИТ и тотал 1-го тайма, общих тоталов матча нет"
+    },
+    {
+      "stMatchId": 553563,
+      "home": "Pisa",
+      "away": "Modena",
+      "marks": [],
+      "note": "ST: прогнозов по матчу нет"
+    },
+    {
+      "stMatchId": 551604,
+      "home": "Burnley",
+      "away": "Birmingham",
+      "marks": [],
+      "note": "ST: только ИТ1М 5.5 угловых, общих тоталов нет"
+    },
+    {
+      "stMatchId": 551603,
+      "home": "Bolton",
+      "away": "West Brom",
+      "marks": [
+        { "market": "Угловые", "direction": "over", "note": "ST: ТБ 9.5 угловых (@1.47)" }
+      ]
+    },
+    {
+      "stMatchId": 551606,
+      "home": "Watford",
+      "away": "Blackburn",
+      "marks": [],
+      "note": "ST: прогнозов по нашим рынкам нет"
+    },
+    {
+      "stMatchId": 576347,
+      "home": "Paris Saint-Germain FC",
+      "away": "AS Roma",
+      "marks": [],
+      "note": "ST: только фора Ф2(4.5) по угловым, общих тоталов нет"
+    },
+    {
+      "stMatchId": 576344,
+      "home": "Lille OSC",
+      "away": "FC Bayern München",
+      "marks": [],
+      "note": "ST: только фора Ф1(3.5) по угловым, общих тоталов нет"
+    },
+    {
+      "stMatchId": 576349,
+      "home": "Club Atlético de Madrid",
+      "away": "Viking FK",
+      "marks": [],
+      "note": "ST: форы и ИТ (угловые Ф2, ЖК Ф1/ИТ1Б), общих тоталов нет"
+    },
+    {
+      "stMatchId": 576346,
+      "home": "FK Shakhtar Donetsk",
+      "away": "Fenerbahçe SK",
+      "marks": [],
+      "note": "ST: только ЖК 1-го тайма, общих тоталов матча нет"
+    },
+    {
+      "stMatchId": 576348,
+      "home": "Club Brugge KV",
+      "away": "Liverpool FC",
+      "marks": [],
+      "note": "ST: только маркеты 1-го тайма, общих тоталов нет"
+    },
+    {
+      "stMatchId": 576350,
+      "home": "Sporting Clube de Portugal",
+      "away": "Manchester United FC",
+      "marks": [],
+      "note": "ST: только ИТ и форы по угловым, общих тоталов нет"
+    },
+    {
+      "stMatchId": 551605,
+      "home": "Stoke",
+      "away": "Millwall",
+      "marks": [
+        { "market": "ЖК", "direction": "under", "note": "ST: ТМ 4.5 ЖК (@1.72)" }
+      ]
+    },
+    {
+      "stMatchId": 576345,
+      "home": "FC Internazionale Milano",
+      "away": "VfB Stuttgart",
+      "marks": [],
+      "note": "ST: ИТ/форы и тоталы 1-го тайма, общих тоталов матча нет"
+    },
+    {
+      "stMatchId": 507885,
+      "home": "Atletico-MG",
+      "away": "Corinthians",
+      "marks": [],
+      "note": "ST: только ИТ (угловые ИТ1М 6.5, ЖК ИТ1Б 1.5), общих тоталов нет"
+    }
+  ]
+}

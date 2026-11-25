@@ -9,6 +9,10 @@ on:
   schedule:
     # Keep the dev model's fixture calendar in sync with the public production snapshot.
     - cron: '17 */2 * * *'
+    # Game day starts 07:00 Moscow: dedicated pull right after the boundary,
+    # plus a backstop in case the first one is delayed by GitHub scheduler.
+    - cron: '7 4 * * *'
+    - cron: '37 4 * * *'
 
 permissions:
   contents: write
@@ -67,6 +71,27 @@ jobs:
             fs.copyFileSync(process.env.RUNNER_TEMP + '/production-data.json', 'data.json');
             console.log(`Accepted production snapshot ${downloaded.date}; active game day=${currentGameDay}`);
           }
+          NODE
+
+      - name: Watchdog — fail loudly if the snapshot lags the Moscow game day
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const board = require('./daily-board.js');
+          const now = Date.now();
+          const moscow = new Date(now + 3 * 60 * 60 * 1000);
+          const moscowMinute = moscow.getUTCHours() * 60 + moscow.getUTCMinutes();
+          if (moscowMinute < 430) {
+            console.log(`Overnight/session-5 window (Moscow minute ${moscowMinute}); watchdog idle.`);
+            process.exit(0);
+          }
+          const gameDay = board.gameDayKeyMsk(now);
+          const snapshot = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+          if (snapshot.date !== gameDay) {
+            console.error(`STALE SNAPSHOT: data.json is ${snapshot.date}, active Moscow game day is ${gameDay}. Production snapshot is late or a scheduled pull was skipped — check production repo and rerun this workflow.`);
+            process.exit(1);
+          }
+          console.log(`Snapshot ${snapshot.date} matches the active game day ${gameDay}.`);
           NODE
 
       - name: Fetch Euro365 bookmaker odds for the snapshot day

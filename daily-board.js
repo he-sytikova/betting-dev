@@ -723,6 +723,28 @@
     return currentCandidateEmptyMessage;
   }
 
+  function renderStSummary() {
+    const el = $('daily-st-summary');
+    if (!el) return;
+    if (!currentStMarks || !Array.isArray(currentStMarks.matches) || !currentStMarks.matches.length) {
+      el.hidden = true;
+      return;
+    }
+    let confirmed = 0;
+    let contradictions = 0;
+    for (const row of currentCandidateRows) {
+      const result = stMarkerFor(currentStMarks, row.home, row.away, row.modelLabel, row.label);
+      if (!result) continue;
+      if (result.status === 'confirmed') confirmed++;
+      else if (result.status === 'contradiction') contradictions++;
+    }
+    const checkedAt = currentStMarks.generatedAt ? timeMsk(currentStMarks.generatedAt) : null;
+    el.textContent = `Сверка Smart Tables${checkedAt ? ` от ${checkedAt} МСК` : ''}: `
+      + `матчей проверено ${currentStMarks.matches.length} · подтверждено направлений ${confirmed} · противоречий ${contradictions}. `
+      + 'ST ✓ — тренд Smart Tables совпадает с направлением, ST ✗ — противоположный. Учитываются только общие тоталы матча.';
+    el.hidden = false;
+  }
+
   function renderCandidateList() {
     const list = $('daily-candidates-list');
     const fragment = document.createDocumentFragment();
@@ -746,6 +768,7 @@
     $('daily-candidates-count').textContent = String(visibleCount);
     empty.hidden = visibleCount > 0;
     list.hidden = visibleCount === 0;
+    renderStSummary();
   }
 
   function renderCandidates(rows, emptyMessage) {
