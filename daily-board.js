@@ -386,6 +386,20 @@
     });
   }
 
+  // Текст счётчика претендентов без коэффициентов (summary.no_price файла купонов).
+  // Главное число — «линия отсутствует у всех БК»: рынок сопоставлен,
+  // но такой линии нет ни у одного букмекера (честное отсутствие, а не сбой сбора).
+  function noPriceSummaryText(summary) {
+    const noPrice = summary?.no_price;
+    if (!noPrice || !Number.isFinite(noPrice.total) || noPrice.total <= 0) return null;
+    const parts = [];
+    if (noPrice.line_absent > 0) parts.push(`линия отсутствует у всех БК — ${noPrice.line_absent}`);
+    if (noPrice.price_incomplete > 0) parts.push(`цена недоступна (односторонняя или целая линия) — ${noPrice.price_incomplete}`);
+    if (noPrice.unmapped_market > 0) parts.push(`рынок вне сопоставления (индивидуальные тоталы) — ${noPrice.unmapped_market}`);
+    if (noPrice.no_line_match > 0) parts.push(`матч не сопоставлен с линией — ${noPrice.no_line_match}`);
+    return `Без коэффициентов: ${noPrice.total}${parts.length ? ` · ${parts.join(' · ')}` : ''}.`;
+  }
+
   function normalizeLeg(raw) {
     if (!raw || typeof raw !== 'object') return null;
     const fixture = raw.fixture && typeof raw.fixture === 'object' ? raw.fixture : {};
@@ -546,6 +560,7 @@
     groupCandidatesBySession,
     candidatePriceKey,
     mergeCandidatePrices,
+    noPriceSummaryText,
     normalizeLeg,
     normalizeCoupon,
     normalizeCoupons,
@@ -597,6 +612,8 @@
 
   // Маркер сверки со Smart Tables: ✓ — их тренд в ту же сторону, ✗ — противоположный.
   let currentStMarks = null;
+  // Сводка файла купонов дня (summary.no_price) — для счётчика претендентов без цены.
+  let currentCouponSummary = null;
 
   function stBadge(home, away, marketLabel, label) {
     const result = stMarkerFor(currentStMarks, home, away, marketLabel, label);
@@ -775,6 +792,14 @@
     el.hidden = false;
   }
 
+  function renderNoPriceSummary() {
+    const el = $('daily-noprice-summary');
+    if (!el) return;
+    const text = noPriceSummaryText(currentCouponSummary);
+    el.textContent = text || '';
+    el.hidden = !text;
+  }
+
   function renderCandidateList() {
     const list = $('daily-candidates-list');
     const fragment = document.createDocumentFragment();
@@ -800,6 +825,7 @@
     empty.hidden = visibleCount > 0;
     list.hidden = visibleCount === 0;
     renderStSummary();
+    renderNoPriceSummary();
   }
 
   function renderCandidates(rows, emptyMessage) {
@@ -957,6 +983,7 @@
       const isCurrent = data.date === currentGameDay;
       // Маркеры сверки со Smart Tables — опциональный файл дня; без него доска работает как раньше.
       currentStMarks = await fetchJson(`./data/st_marks_${data.date}.json`).catch(() => null);
+      currentCouponSummary = null;
       const candidates = isCurrent
         ? buildCandidates(data, { goals, cornersCards, stats, nations, euro, euroStats }, now)
         : [];
@@ -972,6 +999,7 @@
         try {
           const couponPayload = await fetchJson(`./analysis/doubles_${data.date}.json`);
           if (couponPayload.date && couponPayload.date !== data.date) throw new Error('Дата файла купонов не совпадает со снимком');
+          currentCouponSummary = couponPayload?.summary || null;
           renderCandidates(mergeCandidatePrices(candidates, couponPayload));
           renderCoupons(couponPayload, data.date);
         } catch (error) {

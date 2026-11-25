@@ -560,3 +560,16 @@ test('filterCandidatesBySt: фильтрация по статусу сверк�
   assert.deepEqual(board.filterCandidatesBySt(rows, null, 'confirmed'), []);
   assert.deepEqual(rows, snapshot);
 });
+
+test('noPriceSummaryText: счётчик бесценовых претендентов с причинами', () => {
+  assert.equal(board.noPriceSummaryText(null), null);
+  assert.equal(board.noPriceSummaryText({}), null);
+  assert.equal(board.noPriceSummaryText({ no_price: { total: 0 } }), null);
+  assert.equal(board.noPriceSummaryText({ no_price: {
+    total: 5, line_absent: 3, price_incomplete: 1, unmapped_market: 1, no_line_match: 0,
+  } }), 'Без коэффициентов: 5 · линия отсутствует у всех БК — 3 · '
+    + 'цена недоступна (односторонняя или целая линия) — 1 · '
+    + 'рынок вне сопоставления (индивидуальные тоталы) — 1.');
+  assert.equal(board.noPriceSummaryText({ no_price: { total: 2, line_absent: 2 } }),
+    'Без коэффициентов: 2 · линия отсутствует у всех БК — 2.');
+});

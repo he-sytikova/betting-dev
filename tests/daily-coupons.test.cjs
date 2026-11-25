@@ -167,6 +167,23 @@ test('reference candidate odds remain available when coupon admission rejects EV
   assert.deepEqual(coupons.candidateOdds(candidate(), lowPrice), { odds: 1.1, market_key: 'DC' });
 });
 
+test('noPriceReason distinguishes absent lines, incomplete prices and unmapped markets', () => {
+  // Линии нет ни у одного БК
+  assert.equal(coupons.noPriceReason(candidate({ label: 'ТБ 3.5' }), [line()]), 'line_absent');
+  // Линия есть, но нужного плеча нет (односторонняя)
+  assert.equal(coupons.noPriceReason(candidate({ label: 'ТМ 2.5' }), [line({
+    markets: { 'TOTAL_GOALS:2.5': { ТБ: 1.5 } },
+  })]), 'price_incomplete');
+  // Целочисленный тотал скрыт политикой integer_two_way_line — цена недоступна
+  assert.equal(coupons.noPriceReason(candidate({ label: 'ТБ 2' }), [line({
+    markets: { 'TOTAL_GOALS:2': { ТБ: 1.5, ТМ: 3 } },
+  })]), 'price_incomplete');
+  // Рынок вне маппинга (индивидуальный тотал угловых)
+  assert.equal(coupons.noPriceReason(candidate({ modelLabel: 'Угловые', label: 'ИТБ1 4.5' }), [line()]), 'unmapped_market');
+  // Матч не сопоставлен ни с одной линией БК
+  assert.equal(coupons.noPriceReason(candidate(), []), 'no_line_match');
+});
+
 test('deduplication keeps the best price across three bookmakers and audits losers', () => {
   const best = eligibleLeg({ bookmaker: 'Winline', odds: 1.55, ev: 1.24 });
   const marathon = eligibleLeg({ bookmaker: 'Marathonbet', odds: 1.5, ev: 1.2 });
@@ -485,6 +502,41 @@ test('stats-only fixture is indexed but never receives automatic coupon admissio
   assert.ok(!result.diagnostics.rejected.some(row => row.reason === 'fixture_not_gated'));
   assert.deepEqual(result.artifact.candidate_prices, []);
   assert.deepEqual(result.artifact.prepared_coupons, []);
+});
+
+test('artifact summary counts price-less candidates by reason', () => {
+  const fixture = {
+    time: `${DAY}T18:00:00.000Z`, league: 'England. Premier League',
+    home: 'Newcastle United', away: 'Everton FC', modelCoverage: 'stats',
+  };
+  const models = { goals: null, cornersCards: null, stats: clubOnlyModel('fouls'), nations: emptyNations() };
+  const base = {
+    date: DAY, data: { date: DAY, predictions: [fixture] }, models,
+    gated: { generatedAt: NOW, fixtures: [fixture] },
+    matching: [{ ...fixture, fixture_key: 'raw', bookmaker: 'Fonbet', status: 'matched', match_id: '100' }],
+    generatedAt: NOW,
+  };
+  // Линии фолов нет — все бесценовые претенденты с причиной «линия отсутствует у всех БК»
+  const absent = coupons.buildArtifact({
+    ...base,
+    snapshots: { Fonbet: { status: 'ok', captured_at_utc: NOW, matches: [line()] } },
+  });
+  const noPrice = absent.artifact.summary.no_price;
+  assert.ok(noPrice.total > 0);
+  assert.equal(noPrice.line_absent, noPrice.total);
+  assert.equal(noPrice.unmapped_market, 0);
+  // Линия появилась — display-only котировка подставлена, счётчик бесценовых обнуляется,
+  // но в денежные купоны рынок по-прежнему не допускается
+  const priced = coupons.buildArtifact({
+    ...base,
+    snapshots: { Fonbet: { status: 'ok', captured_at_utc: NOW, matches: [line({
+      markets: { 'TOTAL_FOULS:10.5': { ТБ: 1.9, ТМ: 1.9 } },
+    })] } },
+  });
+  assert.equal(priced.artifact.summary.no_price.total, 0);
+  assert.ok(priced.artifact.candidate_prices.some(row => row.market_key === 'TOTAL_FOULS:10.5'));
+  assert.ok(priced.diagnostics.rejected.some(row => row.model === 'Фолы' && row.reason === 'market_not_confirmed'));
+  assert.deepEqual(priced.artifact.prepared_coupons, []);
 });
 
 test('end-to-end artifact joins only exact gated audit identities and passes homepage normalization', () => {
