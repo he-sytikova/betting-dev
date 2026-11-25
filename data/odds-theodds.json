@@ -1,38 +1,38 @@
 {
  "date": "2026-11-25",
- "fetchedAt": "2026-11-25T10:44:41.905081+00:00",
+ "fetchedAt": "2026-11-25T18:36:21.899880+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 291,
-  "remaining": 209
+  "used": 294,
+  "remaining": 206
  },
  "matches": [
   {
    "home": "Cremonese",
    "away": "Avellino",
-   "commenceTime": "2026-11-25T18:00:00Z",
-   "bookmakers": 15,
+   "commenceTime": "2026-11-25T18:02:00Z",
+   "bookmakers": 11,
    "markets": {
     "totals": {
-     "2.25": {
+     "1.5": {
       "avg": {
-       "over": 1.845,
-       "under": 1.99
+       "over": 1.58,
+       "under": 2.187
       },
       "max": {
-       "over": 1.85,
-       "under": 2.05
+       "over": 1.78,
+       "under": 2.35
       }
      },
-     "2.5": {
+     "1.75": {
       "avg": {
-       "over": 1.994,
-       "under": 1.728
+       "over": 1.78,
+       "under": 2.09
       },
       "max": {
-       "over": 2.18,
-       "under": 1.82
+       "over": 1.78,
+       "under": 2.09
       }
      }
     }
@@ -49,22 +49,12 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.758,
-       "under": 1.961
+       "over": 1.773,
+       "under": 1.957
       },
       "max": {
-       "over": 1.85,
-       "under": 2.12
-      }
-     },
-     "2.75": {
-      "avg": {
-       "over": 2.02,
-       "under": 1.815
-      },
-      "max": {
-       "over": 2.06,
-       "under": 1.84
+       "over": 1.9,
+       "under": 2.06
       }
      }
     }
@@ -81,12 +71,22 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.778,
-       "under": 1.953
+       "over": 1.715,
+       "under": 2.027
       },
       "max": {
-       "over": 1.89,
-       "under": 2.1
+       "over": 1.82,
+       "under": 2.18
+      }
+     },
+     "2.75": {
+      "avg": {
+       "over": 1.94,
+       "under": 1.9
+      },
+      "max": {
+       "over": 1.96,
+       "under": 1.93
       }
      }
     }
@@ -103,22 +103,22 @@
     "totals": {
      "2.25": {
       "avg": {
-       "over": 1.88,
-       "under": 1.95
+       "over": 1.875,
+       "under": 1.955
       },
       "max": {
        "over": 1.9,
-       "under": 1.99
+       "under": 1.98
       }
      },
      "2.5": {
       "avg": {
-       "over": 2.028,
-       "under": 1.705
+       "over": 2.025,
+       "under": 1.708
       },
       "max": {
-       "over": 2.24,
-       "under": 1.77
+       "over": 2.22,
+       "under": 1.78
       }
      }
     }
@@ -135,22 +135,22 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.723,
-       "under": 2.031
+       "over": 1.719,
+       "under": 2.041
       },
       "max": {
-       "over": 1.83,
-       "under": 2.12
+       "over": 1.79,
+       "under": 2.18
       }
      },
      "2.75": {
       "avg": {
-       "over": 2.03,
-       "under": 1.87
+       "over": 1.98,
+       "under": 1.91
       },
       "max": {
-       "over": 2.03,
-       "under": 1.87
+       "over": 1.98,
+       "under": 1.91
       }
      }
     }
@@ -167,11 +167,11 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.924,
-       "under": 1.823
+       "over": 1.959,
+       "under": 1.793
       },
       "max": {
-       "over": 2.1,
+       "over": 2.18,
        "under": 1.88
       }
      }
@@ -189,22 +189,22 @@
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.708,
-       "under": 2.039
+       "over": 1.744,
+       "under": 1.991
       },
       "max": {
-       "over": 1.75,
-       "under": 2.13
+       "over": 1.8,
+       "under": 2.06
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.98,
-       "under": 1.91
+       "over": 2.05,
+       "under": 1.85
       },
       "max": {
-       "over": 1.98,
-       "under": 1.91
+       "over": 2.05,
+       "under": 1.85
       }
      }
     }
@@ -221,21 +221,21 @@
     "totals": {
      "2.25": {
       "avg": {
-       "over": 1.82,
-       "under": 2.025
+       "over": 1.84,
+       "under": 2.06
       },
       "max": {
-       "over": 1.85,
-       "under": 2.05
+       "over": 1.84,
+       "under": 2.06
       }
      },
      "2.5": {
       "avg": {
-       "over": 1.971,
+       "over": 1.973,
        "under": 1.775
       },
       "max": {
-       "over": 2.16,
+       "over": 2.12,
        "under": 1.83
       }
      }
