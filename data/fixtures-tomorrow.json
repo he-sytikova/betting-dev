@@ -1,9 +1,9 @@
 {
  "date": "2026-11-26",
- "generatedAt": "2026-11-25T05:45:35.289739+00:00",
+ "generatedAt": "2026-11-25T14:24:30.254122+00:00",
  "fixtures": [
   {
-   "eventId": "s9-99.773888259",
+   "eventId": "s9-99.773881777",
    "time": "2026-11-25T21:00:00+00:00",
    "league": "Brazil. Copa Sao Paulo de Futebol Youth. Women",
    "home": "Santos U20 (Women)",
@@ -15,6 +15,13 @@
    "league": "El Salvador. Division 2",
    "home": "Sal Y Mar",
    "away": "Once Ahuachapan"
+  },
+  {
+   "eventId": "s9-99.773985184",
+   "time": "2026-11-25T21:00:00+00:00",
+   "league": "Mexico. Division 4",
+   "home": "Aguilas UAGro",
+   "away": "CDC Olimpo"
   },
   {
    "eventId": "s9-99.772326557",
@@ -31,7 +38,7 @@
    "away": "Estudiantes II"
   },
   {
-   "eventId": "s9-99.773859628",
+   "eventId": "s9-99.773951784",
    "time": "2026-11-25T22:00:00+00:00",
    "league": "Brazil. Fares Lopes Cup",
    "home": "Fortaleza II",
@@ -87,6 +94,13 @@
    "away": "Olimpico Litoral"
   },
   {
+   "eventId": "s9-99.774016662",
+   "time": "2026-11-25T23:00:00+00:00",
+   "league": "Mexico Championship U19",
+   "home": "Queretaro U19",
+   "away": "Tigres de la UANL U19"
+  },
+  {
    "eventId": "s9-99.773079476",
    "time": "2026-11-25T23:20:00+00:00",
    "league": "Colombia. Categoria Primera A",
@@ -115,11 +129,18 @@
    "away": "Independiente del Valle"
   },
   {
-   "eventId": "s9-99.773903564",
+   "eventId": "s9-99.773947361",
    "time": "2026-11-26T00:15:00+00:00",
    "league": "Panama. Division 2",
    "home": "Udelas",
    "away": "Chorrillo"
+  },
+  {
+   "eventId": "s9-99.774019946",
+   "time": "2026-11-26T01:00:00+00:00",
+   "league": "Asia-Pacific Catholic University Games. Women",
+   "home": "Fu Jen Catholic University (Women)",
+   "away": "Ateneo de Manila University (Women)"
   },
   {
    "eventId": "s9-99.773817100",
@@ -283,6 +304,27 @@
    "away": "Uganda Martyrs (Women)"
   },
   {
+   "eventId": "s9-99.773247999",
+   "time": "2026-11-26T09:30:00+00:00",
+   "league": "Georgia. League 4",
+   "home": "Aragvelebi",
+   "away": "Samgurali Tskhaltubo II"
+  },
+  {
+   "eventId": "s9-99.773247332",
+   "time": "2026-11-26T09:30:00+00:00",
+   "league": "Georgia. League 4",
+   "home": "Merani Martvili II",
+   "away": "WIT Georgia Tbilisi II"
+  },
+  {
+   "eventId": "s9-99.773247333",
+   "time": "2026-11-26T09:30:00+00:00",
+   "league": "Georgia. League 4",
+   "home": "Squri Tsalenjikha",
+   "away": "Mertskhali Ozurgeti"
+  },
+  {
    "eventId": "s9-99.773741023",
    "time": "2026-11-26T09:30:00+00:00",
    "league": "Georgia. National League 2",
@@ -311,7 +353,7 @@
    "away": "Kitchee"
   },
   {
-   "eventId": "s9-99.773942179",
+   "eventId": "s9-99.773944940",
    "time": "2026-11-26T10:00:00+00:00",
    "league": "AFC Champions League 2",
    "home": "Kuching",
@@ -346,6 +388,13 @@
    "away": "Azerbaijan U19 (Women)"
   },
   {
+   "eventId": "s9-99.773944971",
+   "time": "2026-11-26T10:00:00+00:00",
+   "league": "Uzbekistan. Pro League",
+   "home": "Shurtan Guzar",
+   "away": "Olimpik MobiUZ"
+  },
+  {
    "eventId": "s9-99.773729407",
    "time": "2026-11-26T10:30:00+00:00",
    "league": "Azerbaijan. Division 1",
@@ -360,11 +409,25 @@
    "away": "Gori"
   },
   {
+   "eventId": "s9-99.773952688",
+   "time": "2026-11-26T11:00:00+00:00",
+   "league": "Iraq. Premier Division League",
+   "home": "Al-Hudood",
+   "away": "Naft Al-Wasat"
+  },
+  {
    "eventId": "s9-99.773915944",
    "time": "2026-11-26T11:00:00+00:00",
    "league": "Philippines. UAAP",
    "home": "UST Golden Booters",
    "away": "UP Fighting Maroons"
+  },
+  {
+   "eventId": "s9-99.774025448",
+   "time": "2026-11-26T11:00:00+00:00",
+   "league": "Thailand Championship U21",
+   "home": "Kanchanaburi Power U21",
+   "away": "Buriram United U21"
   },
   {
    "eventId": "s9-99.773807819",
@@ -402,6 +465,20 @@
    "away": "Kenya Commercial Bank SC"
   },
   {
+   "eventId": "s9-99.773982792",
+   "time": "2026-11-26T12:00:00+00:00",
+   "league": "Kosovo. Division 1",
+   "home": "Ramiz Sadiku",
+   "away": "Kika"
+  },
+  {
+   "eventId": "s9-99.774025451",
+   "time": "2026-11-26T12:00:00+00:00",
+   "league": "Kosovo. Superleague U19",
+   "home": "Prishtina U19",
+   "away": "Rilindja 1995 U19"
+  },
+  {
    "eventId": "s9-99.773266959",
    "time": "2026-11-26T12:00:00+00:00",
    "league": "Montenegro. First League U19",
@@ -414,6 +491,13 @@
    "league": "Montenegro. First League U19",
    "home": "Kom Podgorica U19",
    "away": "Decic U19"
+  },
+  {
+   "eventId": "s9-99.773988312",
+   "time": "2026-11-26T12:00:00+00:00",
+   "league": "Scandinavian Championship U19",
+   "home": "Brommapojkarna U19",
+   "away": "Brann U19"
   },
   {
    "eventId": "s9-99.773810201",
@@ -442,6 +526,13 @@
    "league": "AFC Champions League 2",
    "home": "Tai Po",
    "away": "Adelaide United"
+  },
+  {
+   "eventId": "s9-99.774049058",
+   "time": "2026-11-26T12:30:00+00:00",
+   "league": "Brazil. Campeonato Paraense U20",
+   "home": "Tesla PA U20",
+   "away": "Venus Abaetetuba U20"
   },
   {
    "eventId": "s9-99.773739402",
@@ -486,11 +577,53 @@
    "away": "Al Badari"
   },
   {
+   "eventId": "s9-99.774024615",
+   "time": "2026-11-26T12:30:00+00:00",
+   "league": "Jordan Championship. Division 1",
+   "home": "Al-Sareeh",
+   "away": "Aqaba"
+  },
+  {
+   "eventId": "s9-99.774025215",
+   "time": "2026-11-26T12:30:00+00:00",
+   "league": "Jordan Championship. Division 1",
+   "home": "Al-Yarmouk",
+   "away": "Jerash SC"
+  },
+  {
+   "eventId": "s9-99.774024618",
+   "time": "2026-11-26T12:30:00+00:00",
+   "league": "Jordan Championship. Division 1",
+   "home": "Sahl Horan",
+   "away": "Al Hashemeya"
+  },
+  {
+   "eventId": "s9-99.774024621",
+   "time": "2026-11-26T12:30:00+00:00",
+   "league": "Jordan Championship. Division 1",
+   "home": "Sama Al Sarhan",
+   "away": "Al-Ahli Amman"
+  },
+  {
+   "eventId": "s9-99.774026123",
+   "time": "2026-11-26T12:30:00+00:00",
+   "league": "Kosovo. Superleague U19",
+   "home": "KF 2 Korriku U19",
+   "away": "Flamurtari Pristina U19"
+  },
+  {
    "eventId": "s9-99.773431170",
    "time": "2026-11-26T12:45:00+00:00",
    "league": "Iran. Pro League",
    "home": "Chador Malu",
    "away": "Mes Shahr-e Babak"
+  },
+  {
+   "eventId": "s9-99.773991622",
+   "time": "2026-11-26T13:00:00+00:00",
+   "league": "Cameroon Championship. Women",
+   "home": "Dja Sports (Women)",
+   "away": "Ita Mbong (Women)"
   },
   {
    "eventId": "s9-99.773115990",
@@ -514,6 +647,13 @@
    "away": "Republic of North Macedonia U19 (Women)"
   },
   {
+   "eventId": "s9-99.773943396",
+   "time": "2026-11-26T13:00:00+00:00",
+   "league": "Uganda. Premier League",
+   "home": "Kampala Capital City Authority",
+   "away": "Bul"
+  },
+  {
    "eventId": "s9-99.773937097",
    "time": "2026-11-26T13:00:00+00:00",
    "league": "Uganda. Premier League. Women",
@@ -528,11 +668,39 @@
    "away": "ZESCO United"
   },
   {
+   "eventId": "s9-99.773945482",
+   "time": "2026-11-26T13:00:00+00:00",
+   "league": "Zambia. Super League",
+   "home": "Makeni All Stars",
+   "away": "Power Dynamos"
+  },
+  {
+   "eventId": "s9-99.773945933",
+   "time": "2026-11-26T13:00:00+00:00",
+   "league": "Zambia. Super League",
+   "home": "Mutondo Stars",
+   "away": "Green Eagles"
+  },
+  {
    "eventId": "s9-99.773641699",
    "time": "2026-11-26T13:00:00+00:00",
    "league": "Zambia. Super League",
    "home": "Red Arrows",
    "away": "Green Buffaloes"
+  },
+  {
+   "eventId": "s9-99.773952844",
+   "time": "2026-11-26T14:00:00+00:00",
+   "league": "Libya. Premier League",
+   "home": "Assabah",
+   "away": "Al-Ahly Tripoli"
+  },
+  {
+   "eventId": "s9-99.773944968",
+   "time": "2026-11-26T14:00:00+00:00",
+   "league": "Qatar Championship U20",
+   "home": "Al Rayyan U20",
+   "away": "Qatar SC U20"
   },
   {
    "eventId": "s9-99.773917984",
@@ -563,6 +731,13 @@
    "away": "Al Waab"
   },
   {
+   "eventId": "s9-99.774042956",
+   "time": "2026-11-26T14:20:00+00:00",
+   "league": "Kuwait Emir Cup",
+   "home": "Al-Salmiya",
+   "away": "Al Tadamun"
+  },
+  {
    "eventId": "s9-99.771472775",
    "time": "2026-11-26T14:25:00+00:00",
    "league": "Saudi Arabia. Saudi Professional League",
@@ -591,6 +766,20 @@
    "away": "MOIK Baku"
   },
   {
+   "eventId": "s9-99.773954587",
+   "time": "2026-11-26T15:00:00+00:00",
+   "league": "Jordan. Premier League",
+   "home": "Al-Baqa'a",
+   "away": "Al-Jazeera Amman"
+  },
+  {
+   "eventId": "s9-99.773988313",
+   "time": "2026-11-26T15:00:00+00:00",
+   "league": "Scandinavian Championship U19",
+   "home": "Silkeborg U19",
+   "away": "Lillestrom U19"
+  },
+  {
    "eventId": "s9-99.770728455",
    "time": "2026-11-26T15:05:00+00:00",
    "league": "Saudi Arabia. Saudi Professional League",
@@ -603,6 +792,20 @@
    "league": "UEFA Conference League",
    "home": "Kairat",
    "away": "Mjallby"
+  },
+  {
+   "eventId": "s9-99.773943903",
+   "time": "2026-11-26T16:00:00+00:00",
+   "league": "Israel. Liga Alef. North",
+   "home": "Hapoel Nof HaGalil",
+   "away": "Maccabi Kiryat-Ata Bialik"
+  },
+  {
+   "eventId": "s9-99.773944383",
+   "time": "2026-11-26T16:00:00+00:00",
+   "league": "Israel. Liga Bet. South",
+   "home": "Sektzia Nes Tziona",
+   "away": "Hapoel Segev Shalom"
   },
   {
    "eventId": "s9-99.773738270",
@@ -619,6 +822,20 @@
    "away": "Tekstilshchik Ivanovo"
   },
   {
+   "eventId": "s9-99.773944355",
+   "time": "2026-11-26T16:00:00+00:00",
+   "league": "Uganda. Premier League",
+   "home": "Uganda Revenue Authority",
+   "away": "Kigezi Homeboys"
+  },
+  {
+   "eventId": "s9-99.773944965",
+   "time": "2026-11-26T16:10:00+00:00",
+   "league": "Qatar Championship U20",
+   "home": "Al Khor U20",
+   "away": "Umm Salal U20"
+  },
+  {
    "eventId": "s9-99.773917987",
    "time": "2026-11-26T16:10:00+00:00",
    "league": "Qatar Championship U20",
@@ -626,7 +843,7 @@
    "away": "Al-Markhiya U20"
   },
   {
-   "eventId": "s9-99.773924715",
+   "eventId": "s9-99.773957603",
    "time": "2026-11-26T16:30:00+00:00",
    "league": "Qatar. Qatargas League",
    "home": "Umm Salal",
@@ -647,11 +864,39 @@
    "away": "Orapa United"
   },
   {
+   "eventId": "s9-99.773944391",
+   "time": "2026-11-26T17:00:00+00:00",
+   "league": "Israel. Liga Bet. South",
+   "home": "SC Ramla",
+   "away": "Shikun Hamizrach"
+  },
+  {
+   "eventId": "s9-99.773988314",
+   "time": "2026-11-26T17:00:00+00:00",
+   "league": "Scandinavian Championship U19",
+   "home": "Djurgardens U19",
+   "away": "HB Koge U19"
+  },
+  {
+   "eventId": "s9-99.774003134",
+   "time": "2026-11-26T17:20:00+00:00",
+   "league": "Kuwait Emir Cup",
+   "home": "Al-Arabi Kuwait",
+   "away": "Khaitan"
+  },
+  {
    "eventId": "s9-99.771474319",
    "time": "2026-11-26T17:30:00+00:00",
    "league": "Saudi Arabia. Saudi Professional League",
    "home": "Al-Faisaly Harmah",
    "away": "Al Draih"
+  },
+  {
+   "eventId": "s9-99.773943906",
+   "time": "2026-11-26T17:45:00+00:00",
+   "league": "Israel. Liga Alef. South",
+   "home": "Hapoel Mahane Yehuda",
+   "away": "Hapoel Marmorek"
   },
   {
    "eventId": "s9-99.770324678",
@@ -794,11 +1039,46 @@
    "away": "FSV Pfaffenhofen"
   },
   {
+   "eventId": "s9-99.773996922",
+   "time": "2026-11-26T19:00:00+00:00",
+   "league": "England. Premier League Cup U21",
+   "home": "Burnley U21",
+   "away": "Wolverhampton Wanderers U21"
+  },
+  {
    "eventId": "s9-99.773912226",
    "time": "2026-11-26T19:00:00+00:00",
    "league": "Premier League International Cup U21",
    "home": "Stoke City U21",
    "away": "Milan U21"
+  },
+  {
+   "eventId": "s9-99.773979315",
+   "time": "2026-11-26T19:15:00+00:00",
+   "league": "Israel. Liga Bet. South",
+   "home": "Beitar Ironi Kiryat Gat",
+   "away": "Arad"
+  },
+  {
+   "eventId": "s9-99.773960814",
+   "time": "2026-11-26T19:30:00+00:00",
+   "league": "Israel. Liga Bet. South",
+   "home": "Maccabi Ashkelon",
+   "away": "Maccabi Ironi Netivot"
+  },
+  {
+   "eventId": "s9-99.774037027",
+   "time": "2026-11-26T19:30:00+00:00",
+   "league": "Spain. Copa Catalunya. Women",
+   "home": "Espanyol II (Women)",
+   "away": "Europa (Women)"
+  },
+  {
+   "eventId": "s9-99.773979642",
+   "time": "2026-11-26T19:30:00+00:00",
+   "league": "Spain. Tercera Division. Women",
+   "home": "La Nucia (Women)",
+   "away": "Elche II (Women)"
   },
   {
    "eventId": "s9-99.773037310",
