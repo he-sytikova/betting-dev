@@ -1,6 +1,6 @@
 {
   "date": "2026-11-25",
-  "generated_at_utc": "2026-11-25T07:26:40.773Z",
+  "generated_at_utc": "2026-11-25T08:21:13.099Z",
   "data_status": "ok",
   "candidate_prices": [
     {
@@ -137,6 +137,36 @@
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Winline",
       "match_id": "17091751"
+    },
+    {
+      "time": "2026-11-25T17:45:00.000Z",
+      "model_key": "eurostats|CL|sabah fk|barcelona",
+      "event_id": 601099,
+      "league": "UEFA Champions League",
+      "home": "Sabah FK",
+      "away": "FC Barcelona",
+      "model": "ЖК",
+      "label": "ТБ 2.5",
+      "p_model": 0.8010017800990126,
+      "odds": 1.53,
+      "market_key": "TOTAL_CARDS:2.5",
+      "bookmaker": "Fonbet",
+      "match_id": "69637997"
+    },
+    {
+      "time": "2026-11-25T17:45:00.000Z",
+      "model_key": "eurostats|CL|sabah fk|barcelona",
+      "event_id": 601099,
+      "league": "UEFA Champions League",
+      "home": "Sabah FK",
+      "away": "FC Barcelona",
+      "model": "ЖК",
+      "label": "ТБ 2.5",
+      "p_model": 0.8010017800990126,
+      "odds": 1.4,
+      "market_key": "TOTAL_CARDS:2.5",
+      "bookmaker": "Winline",
+      "match_id": "17091779"
     },
     {
       "time": "2026-11-25T17:45:00.000Z",
@@ -415,6 +445,21 @@
       "league": "Italy - Serie B",
       "home": "Cremonese",
       "away": "Avellino",
+      "model": "ЖК",
+      "label": "ТМ 6.5",
+      "p_model": 0.9337943125415914,
+      "odds": 1.18,
+      "market_key": "TOTAL_CARDS:6.5",
+      "bookmaker": "Winline",
+      "match_id": "17203165"
+    },
+    {
+      "time": "2026-11-25T18:00:00.000Z",
+      "model_key": "model|I2|cremonese|avellino",
+      "event_id": 605722,
+      "league": "Italy - Serie B",
+      "home": "Cremonese",
+      "away": "Avellino",
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8938403599884013,
@@ -465,6 +510,21 @@
       "p_model": 0.876058636031964,
       "odds": 1.07,
       "market_key": "TOTAL_GOALS:4.5",
+      "bookmaker": "Winline",
+      "match_id": "17203165"
+    },
+    {
+      "time": "2026-11-25T18:00:00.000Z",
+      "model_key": "model|I2|cremonese|avellino",
+      "event_id": 605722,
+      "league": "Italy - Serie B",
+      "home": "Cremonese",
+      "away": "Avellino",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.8560432018609545,
+      "odds": 1.39,
+      "market_key": "TOTAL_CARDS:5.5",
       "bookmaker": "Winline",
       "match_id": "17203165"
     },
@@ -605,6 +665,36 @@
     },
     {
       "time": "2026-11-25T19:00:00.000Z",
+      "model_key": "model|I2|padova|sampdoria",
+      "event_id": 605726,
+      "league": "Italy - Serie B",
+      "home": "Padova",
+      "away": "Sampdoria",
+      "model": "ЖК",
+      "label": "ТМ 6.5",
+      "p_model": 0.9204707826789638,
+      "odds": 1.17,
+      "market_key": "TOTAL_CARDS:6.5",
+      "bookmaker": "Winline",
+      "match_id": "17203641"
+    },
+    {
+      "time": "2026-11-25T19:00:00.000Z",
+      "model_key": "model|I2|pisa|modena",
+      "event_id": 605728,
+      "league": "Italy - Serie B",
+      "home": "Pisa",
+      "away": "Modena",
+      "model": "ЖК",
+      "label": "ТБ 1.5",
+      "p_model": 0.8946439902626563,
+      "odds": 1.06,
+      "market_key": "TOTAL_CARDS:1.5",
+      "bookmaker": "Winline",
+      "match_id": "17203591"
+    },
+    {
+      "time": "2026-11-25T19:00:00.000Z",
       "model_key": "model|I2|mantova|arezzo",
       "event_id": 605725,
       "league": "Italy - Serie B",
@@ -673,7 +763,7 @@
       "model": "Голы",
       "label": "ТМ 4.5",
       "p_model": 0.8720633827032493,
-      "odds": 1.121,
+      "odds": 1.113,
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Marathonbet",
       "match_id": "30221567"
@@ -740,6 +830,21 @@
     },
     {
       "time": "2026-11-25T19:00:00.000Z",
+      "model_key": "model|I2|mantova|arezzo",
+      "event_id": 605725,
+      "league": "Italy - Serie B",
+      "home": "Mantova",
+      "away": "Arezzo",
+      "model": "ЖК",
+      "label": "ТМ 6.5",
+      "p_model": 0.8654259210637942,
+      "odds": 1.18,
+      "market_key": "TOTAL_CARDS:6.5",
+      "bookmaker": "Winline",
+      "match_id": "17203678"
+    },
+    {
+      "time": "2026-11-25T19:00:00.000Z",
       "model_key": "model|I2|padova|sampdoria",
       "event_id": 605726,
       "league": "Italy - Serie B",
@@ -793,7 +898,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.8544803049735135,
-      "odds": 1.15,
+      "odds": 1.17,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "70147892"
@@ -808,7 +913,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.8544803049735135,
-      "odds": 1.2,
+      "odds": 1.176,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "30221567"
@@ -823,7 +928,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.8544803049735135,
-      "odds": 1.15,
+      "odds": 1.14,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17203591"
@@ -838,7 +943,7 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8510528708403212,
-      "odds": 1.12,
+      "odds": 1.14,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "70147892"
@@ -853,7 +958,7 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8510528708403212,
-      "odds": 1.119,
+      "odds": 1.123,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "30221567"
@@ -868,10 +973,25 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8510528708403212,
-      "odds": 1.1,
+      "odds": 1.11,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17203591"
+    },
+    {
+      "time": "2026-11-25T19:00:00.000Z",
+      "model_key": "model|I2|padova|sampdoria",
+      "event_id": 605726,
+      "league": "Italy - Serie B",
+      "home": "Padova",
+      "away": "Sampdoria",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.8337986228642303,
+      "odds": 1.39,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17203641"
     },
     {
       "time": "2026-11-25T19:00:00.000Z",
@@ -902,6 +1022,21 @@
       "market_key": "TOTAL_CORNERS:12.5",
       "bookmaker": "Marathonbet",
       "match_id": "30221567"
+    },
+    {
+      "time": "2026-11-25T19:00:00.000Z",
+      "model_key": "model|I2|pisa|modena",
+      "event_id": 605728,
+      "league": "Italy - Serie B",
+      "home": "Pisa",
+      "away": "Modena",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.8119952576921975,
+      "odds": 1.19,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17203591"
     },
     {
       "time": "2026-11-25T19:00:00.000Z",
@@ -1000,10 +1135,25 @@
       "league": "Italy - Serie B",
       "home": "Mantova",
       "away": "Arezzo",
+      "model": "ЖК",
+      "label": "ТБ 2.5",
+      "p_model": 0.7921000869716558,
+      "odds": 1.1,
+      "market_key": "TOTAL_CARDS:2.5",
+      "bookmaker": "Winline",
+      "match_id": "17203678"
+    },
+    {
+      "time": "2026-11-25T19:00:00.000Z",
+      "model_key": "model|I2|mantova|arezzo",
+      "event_id": 605725,
+      "league": "Italy - Serie B",
+      "home": "Mantova",
+      "away": "Arezzo",
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.7829762088254528,
-      "odds": 1.32,
+      "odds": 1.3,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "70165453"
@@ -1048,7 +1198,7 @@
       "model": "Голы",
       "label": "ИТМ2 1.5",
       "p_model": 0.774906233556552,
-      "odds": 1.3,
+      "odds": 1.28,
       "market_key": "IT_AWAY_GOALS:1.5",
       "bookmaker": "Fonbet",
       "match_id": "70165453"
@@ -1159,6 +1309,36 @@
       "match_id": "17203641"
     },
     {
+      "time": "2026-11-25T19:00:00.000Z",
+      "model_key": "model|I2|mantova|arezzo",
+      "event_id": 605725,
+      "league": "Italy - Serie B",
+      "home": "Mantova",
+      "away": "Arezzo",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.7502374995004373,
+      "odds": 1.39,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17203678"
+    },
+    {
+      "time": "2026-11-25T19:45:00.000Z",
+      "model_key": "model|E1|watford|blackburn",
+      "event_id": 214177,
+      "league": "England - Championship",
+      "home": "Watford",
+      "away": "Blackburn",
+      "model": "ЖК",
+      "label": "ТМ 6.5",
+      "p_model": 0.8991131395932992,
+      "odds": 1.19,
+      "market_key": "TOTAL_CARDS:6.5",
+      "bookmaker": "Winline",
+      "match_id": "17203831"
+    },
+    {
       "time": "2026-11-25T19:45:00.000Z",
       "model_key": "model|E1|bolton|west brom",
       "event_id": 214174,
@@ -1200,6 +1380,21 @@
       "p_model": 0.8778277221706461,
       "odds": 1.07,
       "market_key": "IT_HOME_GOALS:2.5",
+      "bookmaker": "Winline",
+      "match_id": "17203830"
+    },
+    {
+      "time": "2026-11-25T19:45:00.000Z",
+      "model_key": "model|E1|bolton|west brom",
+      "event_id": 214174,
+      "league": "England - Championship",
+      "home": "Bolton",
+      "away": "West Brom",
+      "model": "ЖК",
+      "label": "ТБ 1.5",
+      "p_model": 0.8740096200574453,
+      "odds": 1.08,
+      "market_key": "TOTAL_CARDS:1.5",
       "bookmaker": "Winline",
       "match_id": "17203830"
     },
@@ -1258,7 +1453,7 @@
       "model": "Голы",
       "label": "ТМ 4.5",
       "p_model": 0.8681842820995513,
-      "odds": 1.081,
+      "odds": 1.065,
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Marathonbet",
       "match_id": "30302288"
@@ -1273,10 +1468,25 @@
       "model": "Голы",
       "label": "ТМ 4.5",
       "p_model": 0.8681842820995513,
-      "odds": 1.09,
+      "odds": 1.08,
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Winline",
       "match_id": "17203831"
+    },
+    {
+      "time": "2026-11-25T19:45:00.000Z",
+      "model_key": "model|E1|burnley|birmingham",
+      "event_id": 214175,
+      "league": "England - Championship",
+      "home": "Burnley",
+      "away": "Birmingham",
+      "model": "ЖК",
+      "label": "ТБ 1.5",
+      "p_model": 0.8667281350096877,
+      "odds": 1.05,
+      "market_key": "TOTAL_CARDS:1.5",
+      "bookmaker": "Winline",
+      "match_id": "17203828"
     },
     {
       "time": "2026-11-25T19:45:00.000Z",
@@ -1295,6 +1505,21 @@
     },
     {
       "time": "2026-11-25T19:45:00.000Z",
+      "model_key": "model|E1|burnley|birmingham",
+      "event_id": 214175,
+      "league": "England - Championship",
+      "home": "Burnley",
+      "away": "Birmingham",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.8542948497013207,
+      "odds": 1.25,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17203828"
+    },
+    {
+      "time": "2026-11-25T19:45:00.000Z",
       "model_key": "model|E1|watford|blackburn",
       "event_id": 214177,
       "league": "England - Championship",
@@ -1303,7 +1528,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.853469546048985,
-      "odds": 1.13,
+      "odds": 1.12,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "70145957"
@@ -1318,7 +1543,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.853469546048985,
-      "odds": 1.138,
+      "odds": 1.122,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "30302288"
@@ -1333,7 +1558,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.853469546048985,
-      "odds": 1.12,
+      "odds": 1.11,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17203831"
@@ -1363,7 +1588,7 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8458055586341282,
-      "odds": 1.11,
+      "odds": 1.1,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "70145957"
@@ -1378,7 +1603,7 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8458055586341282,
-      "odds": 1.121,
+      "odds": 1.102,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "30302288"
@@ -1393,10 +1618,25 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8458055586341282,
-      "odds": 1.11,
+      "odds": 1.1,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17203831"
+    },
+    {
+      "time": "2026-11-25T19:45:00.000Z",
+      "model_key": "model|E1|bolton|west brom",
+      "event_id": 214174,
+      "league": "England - Championship",
+      "home": "Bolton",
+      "away": "West Brom",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.8445394804988888,
+      "odds": 1.16,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17203830"
     },
     {
       "time": "2026-11-25T19:45:00.000Z",
@@ -1562,6 +1802,21 @@
       "market_key": "TOTAL_CORNERS:7.5",
       "bookmaker": "Winline",
       "match_id": "17203828"
+    },
+    {
+      "time": "2026-11-25T19:45:00.000Z",
+      "model_key": "model|E1|watford|blackburn",
+      "event_id": 214177,
+      "league": "England - Championship",
+      "home": "Watford",
+      "away": "Blackburn",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.7999890991877071,
+      "odds": 1.41,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17203831"
     },
     {
       "time": "2026-11-25T19:45:00.000Z",
@@ -1813,7 +2068,7 @@
       "model": "Голы",
       "label": "ТБ 1.5",
       "p_model": 0.7509555983548136,
-      "odds": 1.24,
+      "odds": 1.27,
       "market_key": "TOTAL_GOALS:1.5",
       "bookmaker": "Marathonbet",
       "match_id": "30302288"
@@ -1828,10 +2083,40 @@
       "model": "Голы",
       "label": "ТБ 1.5",
       "p_model": 0.7509555983548136,
-      "odds": 1.27,
+      "odds": 1.3,
       "market_key": "TOTAL_GOALS:1.5",
       "bookmaker": "Winline",
       "match_id": "17203831"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "CL|paris sg|roma",
+      "event_id": 601059,
+      "league": "UEFA Champions League",
+      "home": "Paris Saint-Germain FC",
+      "away": "AS Roma",
+      "model": "Еврокубки",
+      "label": "ИТБ1 0.5",
+      "p_model": 0.9323399421955317,
+      "odds": 1.05,
+      "market_key": "IT_HOME_GOALS:0.5",
+      "bookmaker": "Fonbet",
+      "match_id": "69638017"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "CL|paris sg|roma",
+      "event_id": 601059,
+      "league": "UEFA Champions League",
+      "home": "Paris Saint-Germain FC",
+      "away": "AS Roma",
+      "model": "Еврокубки",
+      "label": "ИТБ1 0.5",
+      "p_model": 0.9323399421955317,
+      "odds": 1.05,
+      "market_key": "IT_HOME_GOALS:0.5",
+      "bookmaker": "Winline",
+      "match_id": "17091772"
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
@@ -1862,6 +2147,21 @@
       "market_key": "IT_AWAY_GOALS:0.5",
       "bookmaker": "Winline",
       "match_id": "17091770"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "model|E1|stoke|millwall",
+      "event_id": 214176,
+      "league": "England - Championship",
+      "home": "Stoke",
+      "away": "Millwall",
+      "model": "ЖК",
+      "label": "ТМ 6.5",
+      "p_model": 0.9013984455118536,
+      "odds": 1.15,
+      "market_key": "TOTAL_CARDS:6.5",
+      "bookmaker": "Winline",
+      "match_id": "17203923"
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
@@ -1903,7 +2203,7 @@
       "model": "Еврокубки",
       "label": "ТБ 1.5",
       "p_model": 0.8975529238419321,
-      "odds": 1.056,
+      "odds": 1.067,
       "market_key": "TOTAL_GOALS:1.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -1940,6 +2240,21 @@
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "eurostats|CL|ath madrid|viking",
+      "event_id": 601039,
+      "league": "UEFA Champions League",
+      "home": "Club Atlético de Madrid",
+      "away": "Viking FK",
+      "model": "ЖК",
+      "label": "ТБ 1.5",
+      "p_model": 0.8796750451934536,
+      "odds": 1.17,
+      "market_key": "TOTAL_CARDS:1.5",
+      "bookmaker": "Winline",
+      "match_id": "17091780"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
       "model_key": "CL|paris sg|roma",
       "event_id": 601059,
       "league": "UEFA Champions League",
@@ -1948,7 +2263,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.8751908833222228,
-      "odds": 1.09,
+      "odds": 1.1,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "69638017"
@@ -1963,7 +2278,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.8751908833222228,
-      "odds": 1.109,
+      "odds": 1.099,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -2030,6 +2345,21 @@
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "CL|inter|stuttgart",
+      "event_id": 601041,
+      "league": "UEFA Champions League",
+      "home": "FC Internazionale Milano",
+      "away": "VfB Stuttgart",
+      "model": "Еврокубки",
+      "label": "ИТБ1 0.5",
+      "p_model": 0.8690866638861108,
+      "odds": 1.03,
+      "market_key": "IT_HOME_GOALS:0.5",
+      "bookmaker": "Winline",
+      "match_id": "17091782"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
       "model_key": "model|E1|stoke|millwall",
       "event_id": 214176,
       "league": "England - Championship",
@@ -2038,7 +2368,7 @@
       "model": "Голы",
       "label": "ТМ 4.5",
       "p_model": 0.8656947236429,
-      "odds": 1.056,
+      "odds": 1.044,
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Marathonbet",
       "match_id": "30302316"
@@ -2053,7 +2383,7 @@
       "model": "Голы",
       "label": "ТМ 4.5",
       "p_model": 0.8656947236429,
-      "odds": 1.08,
+      "odds": 1.07,
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Winline",
       "match_id": "17203923"
@@ -2068,22 +2398,7 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8649647415385906,
-      "odds": 1.06,
-      "market_key": "IT_AWAY_GOALS:2.5",
-      "bookmaker": "Fonbet",
-      "match_id": "70141285"
-    },
-    {
-      "time": "2026-11-25T20:00:00.000Z",
-      "model_key": "model|E1|stoke|millwall",
-      "event_id": 214176,
-      "league": "England - Championship",
-      "home": "Stoke",
-      "away": "Millwall",
-      "model": "Голы",
-      "label": "ИТМ2 2.5",
-      "p_model": 0.8649647415385906,
-      "odds": 1.067,
+      "odds": 1.052,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "30302316"
@@ -2098,7 +2413,7 @@
       "model": "Голы",
       "label": "ИТМ2 2.5",
       "p_model": 0.8649647415385906,
-      "odds": 1.07,
+      "odds": 1.06,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17203923"
@@ -2113,7 +2428,7 @@
       "model": "Еврокубки",
       "label": "ИТБ2 0.5",
       "p_model": 0.8578709138547939,
-      "odds": 1.22,
+      "odds": 1.23,
       "market_key": "IT_AWAY_GOALS:0.5",
       "bookmaker": "Fonbet",
       "match_id": "69638029"
@@ -2128,7 +2443,22 @@
       "model": "Еврокубки",
       "label": "ИТБ2 0.5",
       "p_model": 0.8578709138547939,
-      "odds": 1.21,
+      "odds": 1.181,
+      "market_key": "IT_AWAY_GOALS:0.5",
+      "bookmaker": "Marathonbet",
+      "match_id": "28837616"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "CL|shakhtar donetsk|fenerbahce",
+      "event_id": 601132,
+      "league": "UEFA Champions League",
+      "home": "FK Shakhtar Donetsk",
+      "away": "Fenerbahçe SK",
+      "model": "Еврокубки",
+      "label": "ИТБ2 0.5",
+      "p_model": 0.8578709138547939,
+      "odds": 1.22,
       "market_key": "IT_AWAY_GOALS:0.5",
       "bookmaker": "Winline",
       "match_id": "17091987"
@@ -2203,7 +2533,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.8489326830376803,
-      "odds": 1.22,
+      "odds": 1.25,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "69637993"
@@ -2278,7 +2608,7 @@
       "model": "Угловые",
       "label": "ТМ 12.5",
       "p_model": 0.8461351926937838,
-      "odds": 1.099,
+      "odds": 1.114,
       "market_key": "TOTAL_CORNERS:12.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837616"
@@ -2293,7 +2623,7 @@
       "model": "Еврокубки",
       "label": "1X",
       "p_model": 0.8454494263817689,
-      "odds": 1.13,
+      "odds": 1.12,
       "market_key": "DC",
       "bookmaker": "Fonbet",
       "match_id": "69638017"
@@ -2308,7 +2638,7 @@
       "model": "Еврокубки",
       "label": "1X",
       "p_model": 0.8454494263817689,
-      "odds": 1.147,
+      "odds": 1.149,
       "market_key": "DC",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -2338,7 +2668,7 @@
       "model": "Еврокубки",
       "label": "ИТМ1 2.5",
       "p_model": 0.8451352786911653,
-      "odds": 1.12,
+      "odds": 1.14,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "69638029"
@@ -2353,7 +2683,7 @@
       "model": "Еврокубки",
       "label": "ИТМ1 2.5",
       "p_model": 0.8451352786911653,
-      "odds": 1.121,
+      "odds": 1.125,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837616"
@@ -2368,7 +2698,7 @@
       "model": "Еврокубки",
       "label": "ИТМ1 2.5",
       "p_model": 0.8451352786911653,
-      "odds": 1.11,
+      "odds": 1.12,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17091987"
@@ -2398,7 +2728,7 @@
       "model": "Еврокубки",
       "label": "12",
       "p_model": 0.8446945438054909,
-      "odds": 1.191,
+      "odds": 1.197,
       "market_key": "DC",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -2608,7 +2938,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.8308208141530723,
-      "odds": 1.65,
+      "odds": 1.7,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "69638013"
@@ -2638,7 +2968,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.8308208141530723,
-      "odds": 1.69,
+      "odds": 1.67,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17091775"
@@ -2683,7 +3013,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.8297122712045982,
-      "odds": 1.17,
+      "odds": 1.15,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "70141285"
@@ -2698,7 +3028,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.8297122712045982,
-      "odds": 1.152,
+      "odds": 1.151,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "30302316"
@@ -2713,7 +3043,7 @@
       "model": "Голы",
       "label": "ИТМ1 2.5",
       "p_model": 0.8297122712045982,
-      "odds": 1.13,
+      "odds": 1.12,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17203923"
@@ -2773,7 +3103,7 @@
       "model": "Угловые",
       "label": "ТМ 11.5",
       "p_model": 0.8128838555402589,
-      "odds": 1.32,
+      "odds": 1.34,
       "market_key": "TOTAL_CORNERS:11.5",
       "bookmaker": "Winline",
       "match_id": "17091986"
@@ -2825,6 +3155,36 @@
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "model|E1|stoke|millwall",
+      "event_id": 214176,
+      "league": "England - Championship",
+      "home": "Stoke",
+      "away": "Millwall",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.8035120470558816,
+      "odds": 1.33,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17203923"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "eurostats|CL|paris sg|roma",
+      "event_id": 601059,
+      "league": "UEFA Champions League",
+      "home": "Paris Saint-Germain FC",
+      "away": "AS Roma",
+      "model": "ЖК",
+      "label": "ТБ 1.5",
+      "p_model": 0.8012119731414462,
+      "odds": 1.15,
+      "market_key": "TOTAL_CARDS:1.5",
+      "bookmaker": "Winline",
+      "match_id": "17091772"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
       "model_key": "CL|inter|stuttgart",
       "event_id": 601041,
       "league": "UEFA Champions League",
@@ -2833,7 +3193,7 @@
       "model": "Еврокубки",
       "label": "12",
       "p_model": 0.7990672193257295,
-      "odds": 1.15,
+      "odds": 1.14,
       "market_key": "DC",
       "bookmaker": "Fonbet",
       "match_id": "69638033"
@@ -2938,7 +3298,7 @@
       "model": "Еврокубки",
       "label": "12",
       "p_model": 0.7926885334682781,
-      "odds": 1.31,
+      "odds": 1.32,
       "market_key": "DC",
       "bookmaker": "Winline",
       "match_id": "17091987"
@@ -2968,7 +3328,7 @@
       "model": "Угловые",
       "label": "ТБ 7.5",
       "p_model": 0.7923520557646504,
-      "odds": 1.18,
+      "odds": 1.23,
       "market_key": "TOTAL_CORNERS:7.5",
       "bookmaker": "Winline",
       "match_id": "17091775"
@@ -3118,10 +3478,25 @@
       "model": "Угловые",
       "label": "ТМ 12.5",
       "p_model": 0.7809924940649999,
-      "odds": 1.3,
+      "odds": 1.31,
       "market_key": "TOTAL_CORNERS:12.5",
       "bookmaker": "Winline",
       "match_id": "17091780"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "eurostats|CL|sp lisbon|man united",
+      "event_id": 601088,
+      "league": "UEFA Champions League",
+      "home": "Sporting Clube de Portugal",
+      "away": "Manchester United FC",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.7797033155719231,
+      "odds": 1.27,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17091986"
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
@@ -3163,7 +3538,7 @@
       "model": "Угловые",
       "label": "ТБ 7.5",
       "p_model": 0.7790372010885156,
-      "odds": 1.33,
+      "odds": 1.35,
       "market_key": "TOTAL_CORNERS:7.5",
       "bookmaker": "Winline",
       "match_id": "17091772"
@@ -3182,6 +3557,36 @@
       "market_key": "TOTAL_CORNERS:12.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837618"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "eurostats|CL|club brugge|liverpool",
+      "event_id": 601058,
+      "league": "UEFA Champions League",
+      "home": "Club Brugge KV",
+      "away": "Liverpool FC",
+      "model": "ЖК",
+      "label": "ТБ 2.5",
+      "p_model": 0.7726189474786301,
+      "odds": 1.36,
+      "market_key": "TOTAL_CARDS:2.5",
+      "bookmaker": "Fonbet",
+      "match_id": "69638013"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "eurostats|CL|club brugge|liverpool",
+      "event_id": 601058,
+      "league": "UEFA Champions League",
+      "home": "Club Brugge KV",
+      "away": "Liverpool FC",
+      "model": "ЖК",
+      "label": "ТБ 2.5",
+      "p_model": 0.7726189474786301,
+      "odds": 1.29,
+      "market_key": "TOTAL_CARDS:2.5",
+      "bookmaker": "Winline",
+      "match_id": "17091775"
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
@@ -3245,6 +3650,21 @@
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "eurostats|CL|sp lisbon|man united",
+      "event_id": 601088,
+      "league": "UEFA Champions League",
+      "home": "Sporting Clube de Portugal",
+      "away": "Manchester United FC",
+      "model": "ЖК",
+      "label": "ТБ 2.5",
+      "p_model": 0.7669192654769409,
+      "odds": 1.3,
+      "market_key": "TOTAL_CARDS:2.5",
+      "bookmaker": "Fonbet",
+      "match_id": "69637993"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
       "model_key": "CL|inter|stuttgart",
       "event_id": 601041,
       "league": "UEFA Champions League",
@@ -3298,7 +3718,7 @@
       "model": "Угловые",
       "label": "ТМ 11.5",
       "p_model": 0.7643247236380935,
-      "odds": 1.21,
+      "odds": 1.24,
       "market_key": "TOTAL_CORNERS:11.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837616"
@@ -3313,7 +3733,7 @@
       "model": "Угловые",
       "label": "ТМ 11.5",
       "p_model": 0.7643247236380935,
-      "odds": 1.3,
+      "odds": 1.32,
       "market_key": "TOTAL_CORNERS:11.5",
       "bookmaker": "Winline",
       "match_id": "17091987"
@@ -3328,7 +3748,7 @@
       "model": "Еврокубки",
       "label": "ТМ 4.5",
       "p_model": 0.7621689950460787,
-      "odds": 1.092,
+      "odds": 1.088,
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837616"
@@ -3433,7 +3853,7 @@
       "model": "Голы",
       "label": "ИТБ1 0.5",
       "p_model": 0.7572231101228407,
-      "odds": 1.23,
+      "odds": 1.25,
       "market_key": "IT_HOME_GOALS:0.5",
       "bookmaker": "Winline",
       "match_id": "17203923"
@@ -3478,7 +3898,7 @@
       "model": "Угловые",
       "label": "ТМ 11.5",
       "p_model": 0.7569194843774398,
-      "odds": 1.32,
+      "odds": 1.33,
       "market_key": "TOTAL_CORNERS:11.5",
       "bookmaker": "Winline",
       "match_id": "17091782"
@@ -3497,6 +3917,36 @@
       "market_key": "IT_AWAY_GOALS:0.5",
       "bookmaker": "Fonbet",
       "match_id": "69638013"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "CL|club brugge|liverpool",
+      "event_id": 601058,
+      "league": "UEFA Champions League",
+      "home": "Club Brugge KV",
+      "away": "Liverpool FC",
+      "model": "Еврокубки",
+      "label": "ИТБ2 0.5",
+      "p_model": 0.756113181630937,
+      "odds": 1.05,
+      "market_key": "IT_AWAY_GOALS:0.5",
+      "bookmaker": "Winline",
+      "match_id": "17091775"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "eurostats|CL|shakhtar donetsk|fenerbahce",
+      "event_id": 601132,
+      "league": "UEFA Champions League",
+      "home": "FK Shakhtar Donetsk",
+      "away": "Fenerbahçe SK",
+      "model": "ЖК",
+      "label": "ТМ 5.5",
+      "p_model": 0.7559313353809538,
+      "odds": 1.29,
+      "market_key": "TOTAL_CARDS:5.5",
+      "bookmaker": "Winline",
+      "match_id": "17091987"
     },
     {
       "time": "2026-11-25T20:00:00.000Z",
@@ -3553,7 +4003,7 @@
       "model": "Голы",
       "label": "ТБ 1.5",
       "p_model": 0.7540405380560032,
-      "odds": 1.26,
+      "odds": 1.285,
       "market_key": "TOTAL_GOALS:1.5",
       "bookmaker": "Marathonbet",
       "match_id": "30302316"
@@ -3568,7 +4018,7 @@
       "model": "Голы",
       "label": "ТБ 1.5",
       "p_model": 0.7540405380560032,
-      "odds": 1.3,
+      "odds": 1.33,
       "market_key": "TOTAL_GOALS:1.5",
       "bookmaker": "Winline",
       "match_id": "17203923"
@@ -3598,7 +4048,7 @@
       "model": "Еврокубки",
       "label": "ТМ 4.5",
       "p_model": 0.7538753139873774,
-      "odds": 1.44,
+      "odds": 1.43,
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Winline",
       "match_id": "17091775"
@@ -3613,7 +4063,22 @@
       "model": "Еврокубки",
       "label": "ИТБ1 1.5",
       "p_model": 0.7501138648940588,
-      "odds": 1.31,
+      "odds": 1.4,
+      "market_key": "IT_HOME_GOALS:1.5",
+      "bookmaker": "Fonbet",
+      "match_id": "69638017"
+    },
+    {
+      "time": "2026-11-25T20:00:00.000Z",
+      "model_key": "CL|paris sg|roma",
+      "event_id": 601059,
+      "league": "UEFA Champions League",
+      "home": "Paris Saint-Germain FC",
+      "away": "AS Roma",
+      "model": "Еврокубки",
+      "label": "ИТБ1 1.5",
+      "p_model": 0.7501138648940588,
+      "odds": 1.33,
       "market_key": "IT_HOME_GOALS:1.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -3960,17 +4425,17 @@
           "bookmaker": "Fonbet",
           "match_id": "69638029",
           "market_key": "IT_AWAY_GOALS:0.5",
-          "odds": 1.22,
-          "fair": 0.7593688362919132,
-          "delta_pp": 9.850207756288064,
-          "ev": 1.0466025149028484,
+          "odds": 1.23,
+          "fair": 0.7505070993914807,
+          "delta_pp": 10.736381446331311,
+          "ev": 1.0551812240413965,
           "o_min_exact": 1.2006468378462138,
           "o_min_step": 1.21
         }
       ],
-      "odds": 1.22,
+      "odds": 1.23,
       "probability": 0.8578709138547939,
-      "ev": 1.0466025149028484,
+      "ev": 1.0551812240413965,
       "status": "prepared"
     },
     {
@@ -4009,7 +4474,7 @@
       "coupon_id": "session4-single-5",
       "type": "single",
       "session_id": "session4",
-      "bookmaker": "Marathonbet",
+      "bookmaker": "Fonbet",
       "legs": [
         {
           "time": "2026-11-25T20:00:00.000Z",
@@ -4021,8 +4486,8 @@
           "model": "Еврокубки",
           "label": "ИТМ2 2.5",
           "p_model": 0.8489326830376803,
-          "bookmaker": "Marathonbet",
-          "match_id": "28837621",
+          "bookmaker": "Fonbet",
+          "match_id": "69637993",
           "market_key": "IT_AWAY_GOALS:2.5",
           "odds": 1.25,
           "fair": 0.7422680412371133,
@@ -4094,8 +4559,28 @@
       "coupon_id": "session4-double-2",
       "type": "double",
       "session_id": "session4",
-      "bookmaker": "Marathonbet",
+      "bookmaker": "Fonbet",
       "legs": [
+        {
+          "time": "2026-11-25T20:00:00.000Z",
+          "model_key": "CL|club brugge|liverpool",
+          "event_id": 601058,
+          "league": "UEFA Champions League",
+          "home": "Club Brugge KV",
+          "away": "Liverpool FC",
+          "model": "Еврокубки",
+          "label": "ИТБ1 0.5",
+          "p_model": 0.8558008355605132,
+          "bookmaker": "Fonbet",
+          "match_id": "69638013",
+          "market_key": "IT_HOME_GOALS:0.5",
+          "odds": 1.27,
+          "fair": 0.728051391862955,
+          "delta_pp": 12.774944369755826,
+          "ev": 1.0868670611618518,
+          "o_min_exact": 1.203551056742535,
+          "o_min_step": 1.21
+        },
         {
           "time": "2026-11-25T20:00:00.000Z",
           "model_key": "CL|sp lisbon|man united",
@@ -4106,8 +4591,8 @@
           "model": "Еврокубки",
           "label": "ИТМ2 2.5",
           "p_model": 0.8489326830376803,
-          "bookmaker": "Marathonbet",
-          "match_id": "28837621",
+          "bookmaker": "Fonbet",
+          "match_id": "69637993",
           "market_key": "IT_AWAY_GOALS:2.5",
           "odds": 1.25,
           "fair": 0.7422680412371133,
@@ -4115,32 +4600,12 @@
           "ev": 1.0611658537971005,
           "o_min_exact": 1.2132881918439262,
           "o_min_step": 1.22
-        },
-        {
-          "time": "2026-11-25T19:00:00.000Z",
-          "model_key": "model|I2|mantova|arezzo",
-          "event_id": 605725,
-          "league": "Italy - Serie B",
-          "home": "Mantova",
-          "away": "Arezzo",
-          "model": "Голы",
-          "label": "ИТМ1 2.5",
-          "p_model": 0.7829762088254528,
-          "bookmaker": "Marathonbet",
-          "match_id": "30221581",
-          "market_key": "IT_HOME_GOALS:2.5",
-          "odds": 1.33,
-          "fair": 0.687793427230047,
-          "delta_pp": 9.518278159540582,
-          "ev": 1.0413583577378522,
-          "o_min_exact": 1.31549335521332,
-          "o_min_step": 1.32
         }
       ],
-      "odds": 1.6625,
-      "probability": 0.6646940937128627,
-      "ev": 1.1050539307976344,
-      "o_min_AB": 1.6104,
+      "odds": 1.5875,
+      "probability": 0.7265172994782751,
+      "ev": 1.153346212921762,
+      "o_min_AB": 1.4762,
       "status": "prepared"
     },
     {
@@ -4178,17 +4643,17 @@
   ],
   "summary": {
     "model_candidates": 217,
-    "candidate_prices": 256,
+    "candidate_prices": 287,
     "eligible_prices_before_dedup": 29,
-    "eligible_legs": 17,
-    "double_candidates": 38,
-    "rejected": 634,
+    "eligible_legs": 18,
+    "double_candidates": 36,
+    "rejected": 633,
     "rejection_reasons": {
-      "deduplicated_lower_price": 11,
-      "deduplicated_tie": 1,
+      "deduplicated_lower_price": 8,
+      "deduplicated_tie": 3,
       "delta_anomaly": 9,
-      "ev_below_threshold": 218,
-      "incomplete_market": 108,
+      "ev_below_threshold": 223,
+      "incomplete_market": 103,
       "market_absent": 5,
       "market_not_confirmed": 282
     },
@@ -4212,10 +4677,10 @@
         "double_candidates": 0
       },
       "session4": {
-        "eligible_legs": 15,
+        "eligible_legs": 16,
         "singles": 5,
         "doubles": 2,
-        "double_candidates": 38
+        "double_candidates": 36
       },
       "session5": {
         "eligible_legs": 1,
@@ -4228,15 +4693,15 @@
   "sources": {
     "Fonbet": {
       "status": "ok",
-      "captured_at_utc": "2026-11-25T07:18:17.595817+00:00"
+      "captured_at_utc": "2026-11-25T08:12:32.047040+00:00"
     },
     "Marathonbet": {
       "status": "ok",
-      "captured_at_utc": "2026-11-25T07:23:11.064313+00:00"
+      "captured_at_utc": "2026-11-25T08:17:55.720784+00:00"
     },
     "Winline": {
       "status": "ok",
-      "captured_at_utc": "2026-11-25T07:23:53.436120+00:00"
+      "captured_at_utc": "2026-11-25T08:18:38.010579+00:00"
     }
   }
 }
