@@ -1,6 +1,6 @@
 {
  "date": "2026-11-26",
- "generatedAt": "2026-11-25T05:15:26.240216+00:00",
+ "generatedAt": "2026-11-25T05:45:35.289739+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.773888259",
@@ -227,6 +227,13 @@
    "away": "PSN Ngada"
   },
   {
+   "eventId": "s9-99.773938820",
+   "time": "2026-11-26T08:30:00+00:00",
+   "league": "Indonesia. Liga Nusantara",
+   "home": "Persiba Bantul",
+   "away": "Persinga Ngawi"
+  },
+  {
    "eventId": "s9-99.773930288",
    "time": "2026-11-26T08:30:00+00:00",
    "league": "Indonesia. Liga Nusantara",
@@ -248,6 +255,13 @@
    "away": "FEU Tamaraws"
   },
   {
+   "eventId": "s9-99.773941351",
+   "time": "2026-11-26T08:30:00+00:00",
+   "league": "Thailand Championship U21",
+   "home": "Port U21",
+   "away": "Pattaya United U21"
+  },
+  {
    "eventId": "s9-99.773914679",
    "time": "2026-11-26T09:00:00+00:00",
    "league": "Myanmar Championship U20",
@@ -255,18 +269,18 @@
    "away": "Yangon City U20"
   },
   {
-   "eventId": "s9-99.773909486",
-   "time": "2026-11-26T09:00:00+00:00",
-   "league": "Myanmar Championship U20",
-   "home": "Yadanarbon U20",
-   "away": "Ayeyawady United U20"
-  },
-  {
    "eventId": "s9-99.773907851",
    "time": "2026-11-26T09:00:00+00:00",
    "league": "Myanmar. League 2",
    "home": "Enjoy Brother",
    "away": "Yarmanya United"
+  },
+  {
+   "eventId": "s9-99.773937098",
+   "time": "2026-11-26T09:00:00+00:00",
+   "league": "Uganda. Premier League. Women",
+   "home": "Kampala Capital City Authority (Women)",
+   "away": "Uganda Martyrs (Women)"
   },
   {
    "eventId": "s9-99.773741023",
@@ -290,14 +304,14 @@
    "away": "SFC Shturmi"
   },
   {
-   "eventId": "s9-99.773929196",
+   "eventId": "s9-99.773939926",
    "time": "2026-11-26T10:00:00+00:00",
    "league": "AFC Champions League 2",
    "home": "Gangwon",
    "away": "Kitchee"
   },
   {
-   "eventId": "s9-99.773929198",
+   "eventId": "s9-99.773942179",
    "time": "2026-11-26T10:00:00+00:00",
    "league": "AFC Champions League 2",
    "home": "Kuching",
@@ -416,7 +430,7 @@
    "away": "Lion City Sailors"
   },
   {
-   "eventId": "s9-99.773935337",
+   "eventId": "s9-99.773938813",
    "time": "2026-11-26T12:15:00+00:00",
    "league": "AFC Champions League 2",
    "home": "Preah Khan Reach Svay Rieng",
@@ -498,6 +512,13 @@
    "league": "UEFA European U19 Championship. Qualification. Women",
    "home": "Montenegro U19 (Women)",
    "away": "Republic of North Macedonia U19 (Women)"
+  },
+  {
+   "eventId": "s9-99.773937097",
+   "time": "2026-11-26T13:00:00+00:00",
+   "league": "Uganda. Premier League. Women",
+   "home": "URA (Women)",
+   "away": "Jinja United (Women)"
   },
   {
    "eventId": "s9-99.773641950",
