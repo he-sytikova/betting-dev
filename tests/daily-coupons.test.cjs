@@ -118,8 +118,11 @@ test('incomplete pairs, integer lines and unconfirmed model markets never enter 
     markets: { 'TOTAL_GOALS:2': { ТБ: 1.5, ТМ: 3 } },
   }));
   assert.equal(integer.rejection.reason, 'integer_two_way_line');
-  const cards = coupons.evaluatePrice(candidate({ modelLabel: 'ЖК', label: 'ТБ 2.5' }), line());
+  const cards = coupons.evaluatePrice(candidate({ modelLabel: 'ЖК', label: 'ТБ 2.5' }), line({
+    markets: { 'TOTAL_CARDS:2.5': { ТБ: 1.9, ТМ: 1.9 } },
+  }));
   assert.equal(cards.rejection.reason, 'market_not_confirmed');
+  assert.equal(cards.rejection.market_key, 'TOTAL_CARDS:2.5');
   // Еврокубки допускаются по тем же правилам, что и клубные чемпионаты
   // (решение владельца от 24.11.2026): исходы, двойные шансы и тоталы голов.
   const euro = coupons.evaluatePrice(candidate({ modelLabel: 'Еврокубки' }), line());
@@ -135,7 +138,22 @@ test('reference candidate odds use only the exact supported market and reject in
     odds: 1.5, market_key: 'TOTAL_GOALS:2.5',
   });
   assert.equal(coupons.candidateOdds(candidate({ label: 'ТБ 3.5' }), line()), null);
+  // Display-only рынки (ЖК, фолы, удары): котировка показывается в претендентах,
+  // но evaluatePrice по-прежнему отклоняет их как market_not_confirmed.
+  const cardsLine = line({ markets: { 'TOTAL_CARDS:2.5': { ТБ: 1.9, ТМ: 1.9 } } });
+  assert.deepEqual(coupons.candidateOdds(candidate({ modelLabel: 'ЖК', label: 'ТБ 2.5' }), cardsLine), {
+    odds: 1.9, market_key: 'TOTAL_CARDS:2.5',
+  });
   assert.equal(coupons.candidateOdds(candidate({ modelLabel: 'ЖК', label: 'ТБ 2.5' }), line()), null);
+  assert.equal(coupons.candidateOdds(candidate({ modelLabel: 'ЖК', label: 'ИТБ1 2.5' }), cardsLine), null);
+  assert.deepEqual(
+    coupons.marketForCandidate(candidate({ modelLabel: 'ЖК', label: 'ТБ 2.5' })),
+    { kind: 'total', key: 'TOTAL_CARDS:2.5', side: 'ТБ', opposite: 'ТМ', line: 2.5, over: true, displayOnly: true },
+  );
+  assert.deepEqual(
+    coupons.marketForCandidate(candidate({ modelLabel: 'Фолы', label: 'ТМ 20.5' })),
+    { kind: 'total', key: 'TOTAL_FOULS:20.5', side: 'ТМ', opposite: 'ТБ', line: 20.5, over: false, displayOnly: true },
+  );
   assert.equal(coupons.candidateOdds(candidate({ label: 'ТБ 2' }), line({
     markets: { 'TOTAL_GOALS:2': { ТБ: 1.5, ТМ: 3 } },
   })), null);

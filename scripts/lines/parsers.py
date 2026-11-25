@@ -28,6 +28,16 @@ FONBET_CORNER_FACTORS = {
     930: "ТБ", 931: "ТМ", 1696: "ТБ", 1697: "ТМ",
     1727: "ТБ", 1728: "ТМ", 1730: "ТБ", 1731: "ТМ",
 }
+# Статистические сабсобытия Фонбет: коды тоталов в них повторяют коды угловых
+# (930/931, 1696/1697, 1727/1728, 1730/1731). Карточки, фолы и удары —
+# display-only рынки: цены показываются в претендентах, в купоны не допускаются.
+FONBET_STAT_EVENT_KINDS = {
+    400100: "TOTAL_CORNERS",
+    400200: "TOTAL_CARDS",
+    400300: "TOTAL_FOULS",
+    400400: "TOTAL_SHOTS_ON_TARGET",
+    400700: "TOTAL_SHOTS",
+}
 MARATHON_MAIN_URL = "https://new.marathonbet.ru/eag/event-line/api/v1/main/sports/events"
 MARATHON_CATALOG_URL = (
     "https://new.marathonbet.ru/eag/event-line/api/v1/sports/by-slug/"
@@ -98,6 +108,14 @@ MARATHON_DETAIL_MODELS = {
     "MTCH_CRNR_TTL": "TOTAL_CORNERS",
     "MTCH_CRNR_T1TTL": "IT_HOME_CORNERS",
     "MTCH_CRNR_T2TTL": "IT_AWAY_CORNERS",
+}
+# Модель STAT_TOTAL общая для нескольких видов статистики — семейство
+# определяется по точному названию рынка. Двухисходного тотала карточек
+# у Марафонбет нет (MTCH_CRDY_TTL — трёхисходный, MTCH_CRDY_TTLOE — чет/нечет,
+# MTCH_CRDY_TTL_ASN — азиатский четвертной), поэтому карточки здесь не берём.
+MARATHON_STAT_TOTAL_MODELS = {
+    "тотал совершённых фолов": "TOTAL_FOULS",
+    "тотал ударов в створ ворот": "TOTAL_SHOTS_ON_TARGET",
 }
 
 
@@ -449,17 +467,18 @@ def parse_fonbet_detail(payload: dict[str, Any], event_id: str) -> dict[str, dic
             if set(sides) == expected_team_sides[market]:
                 result[f"{market}:{line}"] = sides
 
-    corner_event_ids = {
-        str(event.get("id")) for event in events
-        if event.get("kind") == 400100 and str(event.get("parentId")) == str(event_id)
-    }
-    corner_blocks = [block for block in blocks if str(block.get("e")) in corner_event_ids]
-    corner_totals: dict[str, dict[str, float]] = {}
-    for code, value, line in _fonbet_total_factors(corner_blocks, set(FONBET_CORNER_FACTORS)):
-        corner_totals.setdefault(line, {})[FONBET_CORNER_FACTORS[code]] = value
-    for line, sides in corner_totals.items():
-        if set(sides) == {"ТБ", "ТМ"}:
-            result[f"TOTAL_CORNERS:{line}"] = sides
+    for stat_kind, stat_market in FONBET_STAT_EVENT_KINDS.items():
+        stat_event_ids = {
+            str(event.get("id")) for event in events
+            if event.get("kind") == stat_kind and str(event.get("parentId")) == str(event_id)
+        }
+        stat_blocks = [block for block in blocks if str(block.get("e")) in stat_event_ids]
+        stat_totals: dict[str, dict[str, float]] = {}
+        for code, value, line in _fonbet_total_factors(stat_blocks, set(FONBET_CORNER_FACTORS)):
+            stat_totals.setdefault(line, {})[FONBET_CORNER_FACTORS[code]] = value
+        for line, sides in stat_totals.items():
+            if set(sides) == {"ТБ", "ТМ"}:
+                result[f"{stat_market}:{line}"] = sides
 
     if not result:
         raise MarketAbsentError("рынок отсутствует в снимке")
@@ -480,7 +499,11 @@ def parse_marathon_detail(
             continue
         model = str(market.get("model") or "")
         name = str(market.get("name") or "").casefold()
-        if model not in MARATHON_DETAIL_MODELS or "(3 исхода)" in name or "(3 outcomes)" in name:
+        if model == "STAT_TOTAL":
+            family = MARATHON_STAT_TOTAL_MODELS.get(name)
+        else:
+            family = MARATHON_DETAIL_MODELS.get(model)
+        if family is None or "(3 исхода)" in name or "(3 outcomes)" in name:
             continue
         selections = market.get("selections")
         if not isinstance(selections, dict):
@@ -505,7 +528,7 @@ def parse_marathon_detail(
             else:
                 side = "ТБ" if over else "ТМ"
             line = match.group(2).replace(",", ".")
-            result.setdefault(f"{MARATHON_DETAIL_MODELS[model]}:{line}", {})[side] = value
+            result.setdefault(f"{family}:{line}", {})[side] = value
     if not result:
         raise MarketAbsentError("рынок отсутствует в снимке")
     return result

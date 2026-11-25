@@ -215,6 +215,9 @@ def _total_market(title: str, home: str, away: str) -> str | None:
         return "IT_HOME_CORNERS"
     if title == f"Тотал угловых (осн.время) {away}":
         return "IT_AWAY_CORNERS"
+    # Display-only рынок: цена показывается в претендентах, в купоны не допускается.
+    if title == "Тотал карточек (осн.время)":
+        return "TOTAL_CARDS"
     return None
 
 

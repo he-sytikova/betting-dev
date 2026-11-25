@@ -135,8 +135,8 @@ class WinlineParserTests(unittest.TestCase):
         self.assertEqual(result["TOTAL_CORNERS:9.5"], {"ТБ": 2.09, "ТМ": 1.71})
         self.assertEqual(result["IT_HOME_CORNERS:5.5"], {"ИТБ1": 1.96, "ИТМ1": 1.75})
         self.assertEqual(result["IT_AWAY_CORNERS:4.5"], {"ИТБ2": 2.17, "ИТМ2": 1.58})
+        self.assertEqual(result["TOTAL_CARDS:4.5"], {"ТБ": 2.47, "ТМ": 1.41})
         self.assertNotIn("TOTAL_GOALS:0.5", result)
-        self.assertFalse(any(key.startswith("CARDS") for key in result))
 
     def test_detail_keeps_one_sided_market_for_incomplete_audit(self):
         payload = {"markets": [section("Тотал (осн.время)", [

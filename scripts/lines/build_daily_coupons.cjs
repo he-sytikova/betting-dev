@@ -49,8 +49,19 @@ function fairTwoWay(selectedOdds, oppositeOdds) {
   return selected / (selected + 1 / oppositeOdds);
 }
 
+// Рынки с ценами только для отображения (решение владельца от 24.11.2026):
+// котировки показываем в претендентах, но в денежные купоны не допускаем —
+// evaluatePrice по-прежнему отклоняет их как market_not_confirmed.
+const DISPLAY_ONLY_TOTALS = {
+  'ЖК': 'TOTAL_CARDS',
+  'Фолы': 'TOTAL_FOULS',
+  'Удары в створ': 'TOTAL_SHOTS_ON_TARGET',
+  'Удары': 'TOTAL_SHOTS',
+};
+
 function marketForCandidate(candidate) {
-  if (!candidate || !['Голы', 'Лига наций', 'Угловые', 'Еврокубки'].includes(candidate.modelLabel)) return null;
+  const displayOnlyFamily = candidate ? DISPLAY_ONLY_TOTALS[candidate.modelLabel] : undefined;
+  if (!candidate || (!['Голы', 'Лига наций', 'Угловые', 'Еврокубки'].includes(candidate.modelLabel) && !displayOnlyFamily)) return null;
   const outcome = { П1: 'home', Х: 'draw', П2: 'away' }[candidate.label];
   if (outcome) return { kind: 'outcome', side: candidate.label, outcome };
   if (['1X', '12', 'X2'].includes(candidate.label)) {
@@ -61,7 +72,10 @@ function marketForCandidate(candidate) {
   const [, side, lineText] = match;
   const line = Number(lineText);
   let family = null;
-  if (candidate.modelLabel === 'Угловые') {
+  if (displayOnlyFamily) {
+    if (side.startsWith('ИТ')) return null;
+    family = displayOnlyFamily;
+  } else if (candidate.modelLabel === 'Угловые') {
     if (side.startsWith('ИТ')) return null;
     family = 'TOTAL_CORNERS';
   } else if (side.endsWith('1')) {
@@ -77,6 +91,7 @@ function marketForCandidate(candidate) {
   return {
     kind: 'total', key: `${family}:${lineText}`, side, opposite, line,
     over: side === 'ТБ' || side.startsWith('ИТБ'),
+    displayOnly: Boolean(displayOnlyFamily),
   };
 }
 
@@ -113,6 +128,9 @@ function evaluatePrice(candidate, line) {
   }
   const market = marketForCandidate(candidate);
   if (!market) return { rejection: rejection(candidate, 'market_not_confirmed') };
+  // Display-only рынки (ЖК, фолы, удары): цена показывается в претендентах,
+  // но в денежные купоны рынок не допускается — как и прежде, market_not_confirmed.
+  if (market.displayOnly) return { rejection: rejection(candidate, 'market_not_confirmed', { market_key: market.key }) };
   if (market.kind === 'total' && Number.isInteger(market.line)) {
     return { rejection: rejection(candidate, 'integer_two_way_line', { market_key: market.key }) };
   }

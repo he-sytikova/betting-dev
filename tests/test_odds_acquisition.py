@@ -243,6 +243,50 @@ class ParserTests(unittest.TestCase):
         with self.assertRaises(MarketAbsentError):
             parse_fonbet_detail(payload, "100")
 
+    def test_fonbet_detail_extracts_stat_subevents(self):
+        payload = {
+            "events": [
+                {"id": 100, "kind": 1},
+                {"id": 110, "kind": 400100, "parentId": 100},
+                {"id": 120, "kind": 400200, "parentId": 100},
+                {"id": 130, "kind": 400300, "parentId": 100},
+                {"id": 140, "kind": 400400, "parentId": 100},
+                {"id": 150, "kind": 400700, "parentId": 100},
+                {"id": 220, "kind": 400200, "parentId": 200},
+            ],
+            "customFactors": [
+                {"e": 100, "factors": [
+                    {"f": 930, "v": 1.8, "pt": "2.5"}, {"f": 931, "v": 2.0, "pt": "2.5"},
+                ]},
+                {"e": 110, "factors": [
+                    {"f": 930, "v": 1.8, "pt": "10.5"}, {"f": 931, "v": 1.9, "pt": "10.5"},
+                ]},
+                {"e": 120, "factors": [
+                    {"f": 930, "v": 2.1, "pt": "3.5"}, {"f": 931, "v": 1.7, "pt": "3.5"},
+                ]},
+                {"e": 130, "factors": [
+                    {"f": 1727, "v": 1.9, "pt": "20.5"}, {"f": 1728, "v": 1.85, "pt": "20.5"},
+                ]},
+                {"e": 140, "factors": [
+                    {"f": 1730, "v": 1.95, "pt": "8.5"}, {"f": 1731, "v": 1.8, "pt": "8.5"},
+                ]},
+                {"e": 150, "factors": [
+                    {"f": 930, "v": 1.75, "pt": "24.5"}, {"f": 931, "v": 2.0, "pt": "24.5"},
+                ]},
+                {"e": 220, "factors": [
+                    {"f": 930, "v": 1.5, "pt": "4.5"}, {"f": 931, "v": 2.4, "pt": "4.5"},
+                ]},
+            ],
+        }
+        self.assertEqual(parse_fonbet_detail(payload, "100"), {
+            "TOTAL_GOALS:2.5": {"ТБ": 1.8, "ТМ": 2.0},
+            "TOTAL_CORNERS:10.5": {"ТБ": 1.8, "ТМ": 1.9},
+            "TOTAL_CARDS:3.5": {"ТБ": 2.1, "ТМ": 1.7},
+            "TOTAL_FOULS:20.5": {"ТБ": 1.9, "ТМ": 1.85},
+            "TOTAL_SHOTS_ON_TARGET:8.5": {"ТБ": 1.95, "ТМ": 1.8},
+            "TOTAL_SHOTS:24.5": {"ТБ": 1.75, "ТМ": 2.0},
+        })
+
     def test_fonbet_host_extraction(self):
         self.assertEqual(extract_fonbet_hosts({"line": ["https://a.test/", {"url": "https://b.test"}]}),
                          ["https://a.test", "https://b.test"])
@@ -315,6 +359,24 @@ class ParserTests(unittest.TestCase):
             "1": selection(1, "Меньше 4.5", 2, 7)}}}}
         table = marathon_coefficient_table({"payload": {"2": {"7": "1.285"}}})
         self.assertEqual(parse_marathon_detail(payload, table)["TOTAL_GOALS:4.5"]["ТМ"], 1.285)
+
+    def test_marathon_detail_stat_total_named_markets(self):
+        payload = {"markets": {
+            "1": {"model": "STAT_TOTAL", "name": "Тотал совершённых фолов", "selections": {
+                "1": selection(1, "Больше 20.5", 9, 10), "2": selection(2, "Меньше 20.5", 9, 10)}},
+            "2": {"model": "STAT_TOTAL", "name": "Тотал ударов в створ ворот", "selections": {
+                "3": selection(3, "Больше 13.5", 1, 1), "4": selection(4, "Меньше 13.5", 1, 1)}},
+            "3": {"model": "STAT_TOTAL", "name": "Тотал офсайдов", "selections": {
+                "5": selection(5, "Больше 2.5", 1, 1), "6": selection(6, "Меньше 2.5", 1, 1)}},
+            "4": {"model": "MTCH_CRDY_TTLOE", "name": "Тотал желтых карточек: чет или нечет", "selections": {
+                "7": selection(7, "Чет", 1, 1), "8": selection(8, "Нечет", 1, 1)}},
+            "5": {"model": "MTCH_CRDY_TTL", "name": "Тотал желтых карточек (3 исхода)", "selections": {
+                "9": selection(9, "Строго больше 4", 1, 1)}},
+        }}
+        self.assertEqual(parse_marathon_detail(payload), {
+            "TOTAL_FOULS:20.5": {"ТБ": 1.9, "ТМ": 1.9},
+            "TOTAL_SHOTS_ON_TARGET:13.5": {"ТБ": 2.0, "ТМ": 2.0},
+        })
 
 
 class MatchingAndIntegrationTests(unittest.TestCase):
