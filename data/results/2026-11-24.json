@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-11-24",
-  "generated_at_utc": "2026-11-24T17:48:13.694451Z",
+  "generated_at_utc": "2026-11-25T02:31:24.347011Z",
   "results": [
     {
       "event_id": "s9-99.773733932",
@@ -563,6 +563,32 @@
       "evidence": "scores_endpoint"
     },
     {
+      "event_id": "s9-99.773758062",
+      "time": "2026-11-24T13:15:00.000Z",
+      "league": "Uzbekistan Cup",
+      "home": "OKMK",
+      "away": "Navbahor Namangan",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 0,
+      "away_goals": 1,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.773758063",
+      "time": "2026-11-24T13:15:00.000Z",
+      "league": "Uzbekistan Cup",
+      "home": "PFK Andijon",
+      "away": "Lokomotiv Tashkent",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 0,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
       "event_id": "s9-99.773762231",
       "time": "2026-11-24T13:25:01.000Z",
       "league": "Egypt. Regional League U19",
@@ -572,6 +598,19 @@
       "status": "finished",
       "home_goals": 3,
       "away_goals": 3,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.773761349",
+      "time": "2026-11-24T13:30:00.000Z",
+      "league": "Indonesia. League Cup",
+      "home": "Persiraja Aceh",
+      "away": "Dewa United",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 1,
+      "away_goals": 4,
       "total_corners": null,
       "evidence": "scores_endpoint"
     },
