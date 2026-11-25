@@ -536,3 +536,27 @@ test('stMarkerFor: сопоставление имён с префиксами �
   assert.equal(board.stMarkerFor(marks, 'Slovan Bratislava', 'Real Betis', 'ЖК', 'ТБ 1.5').status, 'confirmed');
   assert.equal(board.stMarkerFor(marks, 'Slovan Bratislava', 'Real Betis', 'ЖК', 'ТМ 6.5').status, 'contradiction');
 });
+
+test('filterCandidatesBySt: фильтрация по статусу сверки Smart Tables', () => {
+  const marks = { matches: [{
+    home: 'Feyenoord', away: 'FC Porto',
+    marks: [{ market: 'Угловые', direction: 'under', note: '' }],
+  }] };
+  const rows = [
+    { home: 'Feyenoord', away: 'Porto', modelLabel: 'Угловые', label: 'ТМ 12.5' },
+    { home: 'Feyenoord', away: 'Porto', modelLabel: 'Угловые', label: 'ТБ 7.5' },
+    { home: 'Feyenoord', away: 'Porto', modelLabel: 'ЖК', label: 'ТМ 6.5' },
+    { home: 'Ajax', away: 'PSV', modelLabel: 'Угловые', label: 'ТМ 10.5' },
+    null,
+  ];
+  const snapshot = JSON.parse(JSON.stringify(rows));
+  const all = board.filterCandidatesBySt(rows, marks);
+  assert.equal(all.length, rows.length);
+  assert.deepEqual(board.filterCandidatesBySt(rows, marks, 'confirmed').map(row => row.label), ['ТМ 12.5']);
+  assert.deepEqual(board.filterCandidatesBySt(rows, marks, 'contradiction').map(row => row.label), ['ТБ 7.5']);
+  assert.deepEqual(board.filterCandidatesBySt(rows, marks, 'none').map(row => row && row.label), ['ТМ 6.5', 'ТМ 10.5', null]);
+  assert.equal(board.filterCandidatesBySt(rows, marks, 'marked').length, 2);
+  assert.deepEqual(board.filterCandidatesBySt(null, marks, 'confirmed'), []);
+  assert.deepEqual(board.filterCandidatesBySt(rows, null, 'confirmed'), []);
+  assert.deepEqual(rows, snapshot);
+});
