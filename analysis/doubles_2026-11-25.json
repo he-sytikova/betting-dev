@@ -1,6 +1,6 @@
 {
   "date": "2026-11-25",
-  "generated_at_utc": "2026-11-25T05:59:09.352Z",
+  "generated_at_utc": "2026-11-25T06:27:46.674Z",
   "data_status": "ok",
   "candidate_prices": [
     {
@@ -43,7 +43,7 @@
       "model": "Еврокубки",
       "label": "ИТМ1 2.5",
       "p_model": 0.8461271373318215,
-      "odds": 1.15,
+      "odds": 1.14,
       "market_key": "IT_HOME_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17091751"
@@ -73,7 +73,7 @@
       "model": "Еврокубки",
       "label": "ТМ 4.5",
       "p_model": 0.8275928563962134,
-      "odds": 1.25,
+      "odds": 1.24,
       "market_key": "TOTAL_GOALS:4.5",
       "bookmaker": "Winline",
       "match_id": "17091751"
@@ -133,7 +133,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.7888826649042096,
-      "odds": 1.32,
+      "odds": 1.3,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Fonbet",
       "match_id": "69638025"
@@ -163,7 +163,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.7888826649042096,
-      "odds": 1.27,
+      "odds": 1.26,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17091751"
@@ -193,7 +193,7 @@
       "model": "Еврокубки",
       "label": "ТБ 1.5",
       "p_model": 0.7820607707373853,
-      "odds": 1.16,
+      "odds": 1.17,
       "market_key": "TOTAL_GOALS:1.5",
       "bookmaker": "Winline",
       "match_id": "17091751"
@@ -1303,7 +1303,7 @@
       "model": "Еврокубки",
       "label": "ТБ 1.5",
       "p_model": 0.8975529238419321,
-      "odds": 1.049,
+      "odds": 1.041,
       "market_key": "TOTAL_GOALS:1.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -1333,7 +1333,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.8751908833222228,
-      "odds": 1.112,
+      "odds": 1.125,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -1348,7 +1348,7 @@
       "model": "Еврокубки",
       "label": "ИТМ2 2.5",
       "p_model": 0.8751908833222228,
-      "odds": 1.07,
+      "odds": 1.09,
       "market_key": "IT_AWAY_GOALS:2.5",
       "bookmaker": "Winline",
       "match_id": "17091772"
@@ -1438,7 +1438,7 @@
       "model": "Еврокубки",
       "label": "ТБ 1.5",
       "p_model": 0.8477559490386967,
-      "odds": 1.018,
+      "odds": 1.009,
       "market_key": "TOTAL_GOALS:1.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837614"
@@ -1468,7 +1468,7 @@
       "model": "Еврокубки",
       "label": "1X",
       "p_model": 0.8454494263817689,
-      "odds": 1.142,
+      "odds": 1.149,
       "market_key": "DC",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -1483,7 +1483,7 @@
       "model": "Еврокубки",
       "label": "1X",
       "p_model": 0.8454494263817689,
-      "odds": 1.13,
+      "odds": 1.14,
       "market_key": "DC",
       "bookmaker": "Winline",
       "match_id": "17091772"
@@ -1633,7 +1633,7 @@
       "model": "Еврокубки",
       "label": "12",
       "p_model": 0.7938486969240922,
-      "odds": 1.059,
+      "odds": 1.056,
       "market_key": "DC",
       "bookmaker": "Marathonbet",
       "match_id": "28837614"
@@ -1783,7 +1783,7 @@
       "model": "Еврокубки",
       "label": "ИТБ2 0.5",
       "p_model": 0.7619817395798364,
-      "odds": 1.93,
+      "odds": 1.85,
       "market_key": "IT_AWAY_GOALS:0.5",
       "bookmaker": "Fonbet",
       "match_id": "69638072"
@@ -1798,7 +1798,7 @@
       "model": "Еврокубки",
       "label": "ИТБ2 0.5",
       "p_model": 0.7619817395798364,
-      "odds": 1.81,
+      "odds": 1.76,
       "market_key": "IT_AWAY_GOALS:0.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837614"
@@ -1888,7 +1888,7 @@
       "model": "Еврокубки",
       "label": "ИТБ1 1.5",
       "p_model": 0.7501138648940588,
-      "odds": 1.285,
+      "odds": 1.28,
       "market_key": "IT_HOME_GOALS:1.5",
       "bookmaker": "Marathonbet",
       "match_id": "28837619"
@@ -1912,38 +1912,6 @@
   "prepared_coupons": [
     {
       "coupon_id": "session3-single-1",
-      "type": "single",
-      "session_id": "session3",
-      "bookmaker": "Winline",
-      "legs": [
-        {
-          "time": "2026-11-25T17:45:00.000Z",
-          "model_key": "CL|sk slavia praha|villarreal",
-          "event_id": 601156,
-          "league": "UEFA Champions League",
-          "home": "SK Slavia Praha",
-          "away": "Villarreal CF",
-          "model": "Еврокубки",
-          "label": "ТМ 4.5",
-          "p_model": 0.8275928563962134,
-          "bookmaker": "Winline",
-          "match_id": "17091751",
-          "market_key": "TOTAL_GOALS:4.5",
-          "odds": 1.25,
-          "fair": 0.7549019607843138,
-          "delta_pp": 7.269089561189956,
-          "ev": 1.0344910704952668,
-          "o_min_exact": 1.2445733334204656,
-          "o_min_step": 1.25
-        }
-      ],
-      "odds": 1.25,
-      "probability": 0.8275928563962134,
-      "ev": 1.0344910704952668,
-      "status": "prepared"
-    },
-    {
-      "coupon_id": "session3-single-2",
       "type": "single",
       "session_id": "session3",
       "bookmaker": "Marathonbet",
@@ -2159,14 +2127,14 @@
   "summary": {
     "model_candidates": 217,
     "candidate_prices": 127,
-    "eligible_prices_before_dedup": 9,
-    "eligible_legs": 6,
+    "eligible_prices_before_dedup": 7,
+    "eligible_legs": 5,
     "double_candidates": 2,
-    "rejected": 645,
+    "rejected": 646,
     "rejection_reasons": {
-      "deduplicated_lower_price": 3,
+      "deduplicated_lower_price": 2,
       "delta_anomaly": 2,
-      "ev_below_threshold": 116,
+      "ev_below_threshold": 118,
       "incomplete_market": 49,
       "market_absent": 1,
       "market_not_confirmed": 171,
@@ -2186,8 +2154,8 @@
         "double_candidates": 0
       },
       "session3": {
-        "eligible_legs": 2,
-        "singles": 2,
+        "eligible_legs": 1,
+        "singles": 1,
         "doubles": 0,
         "double_candidates": 0
       },
@@ -2208,15 +2176,15 @@
   "sources": {
     "Fonbet": {
       "status": "ok",
-      "captured_at_utc": "2026-11-25T05:54:50.189609+00:00"
+      "captured_at_utc": "2026-11-25T06:20:40.474260+00:00"
     },
     "Marathonbet": {
       "status": "ok",
-      "captured_at_utc": "2026-11-25T05:57:29.755257+00:00"
+      "captured_at_utc": "2026-11-25T06:25:58.025219+00:00"
     },
     "Winline": {
       "status": "ok",
-      "captured_at_utc": "2026-11-25T05:58:01.528384+00:00"
+      "captured_at_utc": "2026-11-25T06:26:27.430299+00:00"
     }
   }
 }
