@@ -840,3 +840,7 @@
 .st-mark{display:inline-block;padding:1px 7px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.02em;vertical-align:middle}
 .st-mark--confirmed{background:rgba(34,197,94,.16);color:#15803d;border:1px solid rgba(34,197,94,.4)}
 .st-mark--contradiction{background:rgba(239,68,68,.14);color:#b91c1c;border:1px solid rgba(239,68,68,.4)}
+
+/* Сводка сверки со Smart Tables */
+.st-summary{margin:0 0 10px;font-size:.8rem;color:var(--muted,#64748b);line-height:1.5}
+.st-summary .st-mark{margin:0 2px}

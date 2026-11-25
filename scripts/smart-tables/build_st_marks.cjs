@@ -32,6 +32,7 @@ function parseStTitle(title) {
   else if (/^ЖК/.test(t)) market = 'ЖК';
   if (!market) return null;
   if (/ИТ[12]|Ф[12]\(/.test(t)) return { market, direction: null }; // индивидуальные и форы — не про общий тотал
+  if (/\s[12]Т\s*$/.test(t)) return { market, direction: null }; // тоталы таймов — не про матч
   const m = t.match(/([<>])\s*(\d+(?:\.\d+)?)/);
   if (!m) return { market, direction: null };
   return { market, direction: m[1] === '<' ? 'under' : 'over', line: Number(m[2]) };
