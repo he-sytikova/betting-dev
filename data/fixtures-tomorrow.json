@@ -1,2022 +1,5179 @@
 {
- "date": "2026-11-27",
- "generatedAt": "2026-11-26T10:56:33.535916+00:00",
+ "date": "2026-11-28",
+ "generatedAt": "2026-11-26T21:34:36.583932+00:00",
  "fixtures": [
   {
-   "eventId": "s9-99.774098407",
-   "time": "2026-11-26T21:00:00+00:00",
-   "league": "Chile. Segunda",
-   "home": "Deportes Colina",
-   "away": "General Velasquez"
+   "eventId": "s9-99.774380260",
+   "time": "2026-11-27T21:00:00+00:00",
+   "league": "Brazil. Copa Sao Paulo de Futebol Youth. Women",
+   "home": "Sociedade Esportiva Palmeiras U20 (Women)",
+   "away": "Vasco da Gama U20 (Women)"
   },
   {
-   "eventId": "s9-99.774010701",
-   "time": "2026-11-26T21:00:00+00:00",
-   "league": "El Salvador. Division 2",
-   "home": "Audaz",
-   "away": "AD Izalco"
-  },
-  {
-   "eventId": "s9-99.774112988",
-   "time": "2026-11-26T22:00:00+00:00",
-   "league": "Argentina. Reserve League",
-   "home": "CA Independiente Avellaneda II",
-   "away": "Club Atletico Gimnasia y Esgrima II"
-  },
-  {
-   "eventId": "s9-99.774184684",
-   "time": "2026-11-26T22:00:00+00:00",
-   "league": "Brazil. Fares Lopes Cup",
-   "home": "CEFAT",
-   "away": "Guarani de Juazeiro"
-  },
-  {
-   "eventId": "s9-99.773970352",
-   "time": "2026-11-26T22:00:00+00:00",
-   "league": "Chile. Primera B",
-   "home": "Santiago Wanderers",
-   "away": "Deportes Recoleta"
-  },
-  {
-   "eventId": "s9-99.774278657",
-   "time": "2026-11-26T22:00:00+00:00",
+   "eventId": "s9-99.774398671",
+   "time": "2026-11-27T21:00:00+00:00",
    "league": "Mexico. Division 4",
-   "home": "Ecatepec",
-   "away": "Atletico Mexicano"
+   "home": "Valle de Xico",
+   "away": "CDM"
   },
   {
-   "eventId": "s9-99.774070907",
-   "time": "2026-11-26T22:00:00+00:00",
-   "league": "Nicaragua Championship",
-   "home": "ART Municipal Jalapa",
-   "away": "San Marcos"
+   "eventId": "s9-99.774360064",
+   "time": "2026-11-27T21:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 12",
+   "home": "Real Union de Tenerife",
+   "away": "UD Anaza"
   },
   {
-   "eventId": "s9-99.774139162",
-   "time": "2026-11-26T22:30:00+00:00",
-   "league": "Paraguay Cup",
-   "home": "Cerro Porteno",
-   "away": "Club Libertad"
+   "eventId": "s9-99.773364764",
+   "time": "2026-11-27T21:30:00+00:00",
+   "league": "Ecuador. Serie A",
+   "home": "Deportivo Cuenca",
+   "away": "Manta"
   },
   {
-   "eventId": "s9-99.773622577",
-   "time": "2026-11-26T23:00:00+00:00",
+   "eventId": "s9-99.773860307",
+   "time": "2026-11-27T22:00:00+00:00",
+   "league": "Argentina. Primera B Nacional",
+   "home": "Club Atletico Atlanta",
+   "away": "Ciudad de Bolivar"
+  },
+  {
+   "eventId": "s9-99.774321031",
+   "time": "2026-11-27T22:00:00+00:00",
+   "league": "CONCACAF. Women Championship",
+   "home": "Jamaica (Women)",
+   "away": "Costa Rica (Women)"
+  },
+  {
+   "eventId": "s9-99.774332430",
+   "time": "2026-11-27T22:00:00+00:00",
+   "league": "Mexico. Division 4",
+   "home": "Artesanos Huixquilucan",
+   "away": "Dragones Toluca II"
+  },
+  {
+   "eventId": "s9-99.774329609",
+   "time": "2026-11-27T22:00:00+00:00",
+   "league": "Mexico. Division 4",
+   "home": "Artesanos Metepec II",
+   "away": "Cordobes II"
+  },
+  {
+   "eventId": "s9-99.774393358",
+   "time": "2026-11-27T22:00:00+00:00",
+   "league": "Mexico. Division 4",
+   "home": "Chivas Alamos",
+   "away": "Halcones Zuniga"
+  },
+  {
+   "eventId": "s9-99.774329603",
+   "time": "2026-11-27T22:00:00+00:00",
+   "league": "Mexico. Division 4",
+   "home": "Guerreros de Puebla",
+   "away": "Delta Tehuacan"
+  },
+  {
+   "eventId": "s9-99.774291474",
+   "time": "2026-11-27T23:00:00+00:00",
+   "league": "Bermuda. Premier League",
+   "home": "Dandy Town Hornets",
+   "away": "Somerset Trojans"
+  },
+  {
+   "eventId": "s9-99.774042960",
+   "time": "2026-11-27T23:00:00+00:00",
+   "league": "Bolivia. Primera Division",
+   "home": "Independiente Petrolero",
+   "away": "Real Oruro"
+  },
+  {
+   "eventId": "s9-99.773360395",
+   "time": "2026-11-27T23:00:00+00:00",
    "league": "Brazil. Campeonato Brasileiro. Serie A",
-   "home": "Sao Paulo",
-   "away": "Clube do Remo"
+   "home": "Fluminense",
+   "away": "Cruzeiro Esporte Clube"
   },
   {
-   "eventId": "s9-99.774132039",
-   "time": "2026-11-26T23:00:00+00:00",
-   "league": "Brazil. Copa do Brasil U20",
-   "home": "Sociedade Esportiva Palmeiras U20",
-   "away": "Operario Ferroviario U20"
+   "eventId": "s9-99.773420548",
+   "time": "2026-11-27T23:00:00+00:00",
+   "league": "Brazil. Campeonato Brasileiro. Serie B",
+   "home": "Vila Nova",
+   "away": "Atletico Clube Goianiense"
   },
   {
-   "eventId": "s9-99.774133309",
-   "time": "2026-11-26T23:00:00+00:00",
-   "league": "Brazil. Paraiba Cup",
-   "home": "Treze Futebol Clube",
-   "away": "Nacional de Patos"
+   "eventId": "s9-99.774380266",
+   "time": "2026-11-27T23:00:00+00:00",
+   "league": "Brazil. Copa Sao Paulo de Futebol Youth. Women",
+   "home": "Associacao Ferroviaria de Esportes U20 (Women)",
+   "away": "Gremio Porto Alegrense U20 (Women)"
   },
   {
-   "eventId": "s9-99.774081684",
-   "time": "2026-11-27T00:00:00+00:00",
-   "league": "Nicaragua Championship",
-   "home": "Diriangen",
-   "away": "Matagalpa"
+   "eventId": "s9-99.774076756",
+   "time": "2026-11-27T23:00:00+00:00",
+   "league": "Chile. Primera B",
+   "home": "Deportes Antofagasta",
+   "away": "Deportes Copiapo"
   },
   {
-   "eventId": "s9-99.773939961",
-   "time": "2026-11-27T00:30:00+00:00",
-   "league": "Uruguay Cup",
-   "home": "Montevideo City Torque",
-   "away": "Club Nacional Montevideo"
-  },
-  {
-   "eventId": "s9-99.774033600",
-   "time": "2026-11-27T01:00:00+00:00",
-   "league": "El Salvador. Division 2",
-   "home": "Marte Soyapango",
-   "away": "Independiente San Vicente"
-  },
-  {
-   "eventId": "s9-99.773727681",
-   "time": "2026-11-27T01:00:00+00:00",
-   "league": "Mexico. Liga MX",
-   "home": "Pachuca",
-   "away": "Guadalajara"
-  },
-  {
-   "eventId": "s9-99.773963486",
-   "time": "2026-11-27T01:45:00+00:00",
-   "league": "Japan. Regional Champions League",
-   "home": "Veroskronos Tsuno",
-   "away": "Gakunan F Mosuperio"
-  },
-  {
-   "eventId": "s9-99.773874666",
-   "time": "2026-11-27T03:10:00+00:00",
-   "league": "Mexico. Liga MX",
-   "home": "Leon",
-   "away": "Cruz Azul"
-  },
-  {
-   "eventId": "s9-99.774248818",
-   "time": "2026-11-27T07:00:00+00:00",
-   "league": "Ethiopia. Higher League. Women",
-   "home": "Arba Minch (Women)",
-   "away": "Ethiopian Sports Academy (Women)"
-  },
-  {
-   "eventId": "s9-99.773514793",
-   "time": "2026-11-27T08:30:00+00:00",
-   "league": "Australian Championship",
-   "home": "Broadmeadow Magic",
-   "away": "Queensland Lions"
-  },
-  {
-   "eventId": "s9-99.774198930",
-   "time": "2026-11-27T08:30:00+00:00",
-   "league": "Bangladesh. Premier League",
-   "home": "Bangladesh Police",
-   "away": "Abahani Limited Dhaka"
-  },
-  {
-   "eventId": "s9-99.774201478",
-   "time": "2026-11-27T08:30:00+00:00",
-   "league": "Bangladesh. Premier League",
-   "home": "Rahmatganj MFS",
-   "away": "Mohammedan Dhaka"
-  },
-  {
-   "eventId": "s9-99.769159607",
-   "time": "2026-11-27T08:40:00+00:00",
-   "league": "Australia. A League",
-   "home": "Macarthur Sydney",
-   "away": "Melbourne City"
-  },
-  {
-   "eventId": "s9-99.774263873",
-   "time": "2026-11-27T08:45:00+00:00",
-   "league": "Malaysia. Liga A1",
-   "home": "Armed Forces Malaysia",
-   "away": "Universiti Sains Malaysia"
-  },
-  {
-   "eventId": "s9-99.774276388",
-   "time": "2026-11-27T09:00:00+00:00",
+   "eventId": "s9-99.774313272",
+   "time": "2026-11-27T23:00:00+00:00",
    "league": "Friendlies. National Teams. Women",
-   "home": "Cyprus (Women)",
-   "away": "Luxembourg (Women)"
+   "home": "Bolivia (Women)",
+   "away": "Uruguay (Women)"
   },
   {
-   "eventId": "s9-99.774218248",
-   "time": "2026-11-27T09:00:00+00:00",
-   "league": "Israel. Liga Bet. South",
-   "home": "Beitar Tel Aviv Holon",
-   "away": "Bnei Jaljulia"
+   "eventId": "s9-99.773650649",
+   "time": "2026-11-27T23:00:00+00:00",
+   "league": "Paraguay. Primera Division",
+   "home": "Sportivo Luqueno",
+   "away": "Club Olimpia"
   },
   {
-   "eventId": "s9-99.774218255",
-   "time": "2026-11-27T09:00:00+00:00",
-   "league": "Israel. Liga Bet. South",
-   "home": "Maccabi Ironi Amishav PT",
-   "away": "Hapoel Hod HaSharon"
+   "eventId": "s9-99.774302967",
+   "time": "2026-11-27T23:00:00+00:00",
+   "league": "Paraguay. Reserve League",
+   "home": "Club Nacional II",
+   "away": "Club Rubio Nu II"
   },
   {
-   "eventId": "s9-99.774219135",
-   "time": "2026-11-27T09:00:00+00:00",
-   "league": "Myanmar Championship U20",
-   "home": "Sagaing United U20",
-   "away": "Hantharwady United U20"
+   "eventId": "s9-99.772828832",
+   "time": "2026-11-27T23:30:00+00:00",
+   "league": "Uruguay. Primera Division",
+   "home": "Racing Club de Montevideo",
+   "away": "Liverpool Montevideo"
   },
   {
-   "eventId": "s9-99.774229382",
-   "time": "2026-11-27T09:00:00+00:00",
-   "league": "Myanmar. League 2",
-   "home": "VUE Nay Pyi Taw",
-   "away": "Junior Lions"
+   "eventId": "s9-99.773913807",
+   "time": "2026-11-27T23:35:00+00:00",
+   "league": "Colombia. Categoria Primera A",
+   "home": "Deportivo Cali",
+   "away": "Atletico Bucaramanga"
   },
   {
-   "eventId": "s9-99.774003894",
-   "time": "2026-11-27T09:30:00+00:00",
-   "league": "Georgia. League 4",
-   "home": "Locomotive Tbilisi II",
-   "away": "Aragvi Dusheti II"
+   "eventId": "s9-99.773889892",
+   "time": "2026-11-28T00:00:00+00:00",
+   "league": "Argentina. Primera B Nacional",
+   "home": "Club Social y Deportivo Tristan Suarez",
+   "away": "Gimnasia y Tiro"
   },
   {
-   "eventId": "s9-99.773350716",
-   "time": "2026-11-27T10:00:00+00:00",
-   "league": "Armenia. First League",
-   "home": "Lernayin Artsakh",
-   "away": "Pyunik Academia"
+   "eventId": "s9-99.773897429",
+   "time": "2026-11-28T00:00:00+00:00",
+   "league": "Argentina. Primera B Nacional",
+   "home": "Deportivo Moron",
+   "away": "Club Atletico Colon"
   },
   {
-   "eventId": "s9-99.774003895",
-   "time": "2026-11-27T10:00:00+00:00",
-   "league": "Georgia. League 4",
-   "home": "Bakhmaro Chokhatauri",
-   "away": "Samtskhe Akhaltsikhe"
+   "eventId": "s9-99.774349597",
+   "time": "2026-11-28T00:00:00+00:00",
+   "league": "Brazil. Copa Sao Paulo de Futebol Youth. Women",
+   "home": "Taruma U20 (Women)",
+   "away": "Clube de Regatas do Flamengo U20 (Women)"
   },
   {
-   "eventId": "s9-99.774262523",
-   "time": "2026-11-27T10:00:00+00:00",
-   "league": "Israel. Liga Alef. North",
-   "home": "Hapoel Ironi Baqa Al-Gharbiyye",
-   "away": "Beitar Nahariya"
+   "eventId": "s9-99.774403769",
+   "time": "2026-11-28T00:30:00+00:00",
+   "league": "Aruba Championship",
+   "home": "Rasing Club Aruba",
+   "away": "SV Caiquetio"
   },
   {
-   "eventId": "s9-99.774218779",
-   "time": "2026-11-27T10:00:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "AS Nordia Jerusalem",
-   "away": "Hapoel Nir Ramat HaSharon"
+   "eventId": "s9-99.774379745",
+   "time": "2026-11-28T01:00:00+00:00",
+   "league": "Mexico. Division 4",
+   "home": "Real Santa Fe",
+   "away": "Deportivo Metepec"
   },
   {
-   "eventId": "s9-99.774218758",
-   "time": "2026-11-27T10:00:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "Hapoel Azor",
-   "away": "Ironi Sport Hadera"
+   "eventId": "s9-99.774363384",
+   "time": "2026-11-28T01:00:00+00:00",
+   "league": "Mexico. Liga Premier. Serie A",
+   "home": "ACF Zapotlanejo",
+   "away": "Vaqueros Reynosa"
   },
   {
-   "eventId": "s9-99.774218773",
-   "time": "2026-11-27T10:00:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "MS Dimona",
-   "away": "Irony Bet Shemesh"
+   "eventId": "s9-99.774391792",
+   "time": "2026-11-28T01:00:00+00:00",
+   "league": "Mexico. Liga Premier. Serie A",
+   "home": "Guerreros del Pacifico",
+   "away": "Artesanos Metepec"
   },
   {
-   "eventId": "s9-99.774279281",
-   "time": "2026-11-27T10:00:00+00:00",
-   "league": "Turkey. PAF League U19",
-   "home": "Alanyaspor U19",
-   "away": "Konyaspor U19"
+   "eventId": "s9-99.773187817",
+   "time": "2026-11-28T01:00:00+00:00",
+   "league": "USA. MLS",
+   "home": "Columbus Crew",
+   "away": "Inter Miami"
   },
   {
-   "eventId": "s9-99.774218761",
-   "time": "2026-11-27T10:15:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "Hapoel Herzliya",
-   "away": "Jerusalem"
+   "eventId": "s9-99.774338581",
+   "time": "2026-11-28T01:30:00+00:00",
+   "league": "CONCACAF. Women Championship",
+   "home": "USA (Women)",
+   "away": "El Salvador (Women)"
   },
   {
-   "eventId": "s9-99.774206583",
-   "time": "2026-11-27T10:30:00+00:00",
-   "league": "Azerbaijan. Division 1",
-   "home": "Zaqatala",
-   "away": "Khankendi"
+   "eventId": "s9-99.774380278",
+   "time": "2026-11-28T01:30:00+00:00",
+   "league": "Panama. Liga Panamena de Futbol",
+   "home": "San Francisco",
+   "away": "Club Deportivo Árabe Unido"
   },
   {
-   "eventId": "s9-99.774010683",
-   "time": "2026-11-27T10:30:00+00:00",
-   "league": "Azerbaijan. Premier League",
-   "home": "İmisli",
-   "away": "Shafa Baku"
+   "eventId": "s9-99.773913804",
+   "time": "2026-11-28T01:40:00+00:00",
+   "league": "Colombia. Categoria Primera A",
+   "home": "Millonarios",
+   "away": "America de Cali"
   },
   {
-   "eventId": "s9-99.774197589",
-   "time": "2026-11-27T10:30:00+00:00",
-   "league": "Israel Championship U19",
-   "home": "Hapoel Jerusalem U19",
-   "away": "Beitar Jerusalem U19"
+   "eventId": "s9-99.773361625",
+   "time": "2026-11-28T02:00:00+00:00",
+   "league": "Costa Rica. Primera Division",
+   "home": "Herediano",
+   "away": "Escorpiones"
   },
   {
-   "eventId": "s9-99.774261930",
-   "time": "2026-11-27T10:30:00+00:00",
-   "league": "Israel. Liga Alef. North",
-   "home": "Ironi Nesher",
-   "away": "Hapoel Bnei Musmus"
+   "eventId": "s9-99.774386690",
+   "time": "2026-11-28T02:00:00+00:00",
+   "league": "Mexico. Liga Premier. Primera",
+   "home": "Reboceros de La Piedad",
+   "away": "Lobos ULMX"
   },
   {
-   "eventId": "s9-99.774218764",
-   "time": "2026-11-27T10:30:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "Maccabi Yavne",
-   "away": "Maccabi Ashdod"
+   "eventId": "s9-99.773413930",
+   "time": "2026-11-28T03:00:00+00:00",
+   "league": "USA. MLS",
+   "home": "Real Salt Lake",
+   "away": "Vancouver Whitecaps"
   },
   {
-   "eventId": "s9-99.774212906",
-   "time": "2026-11-27T10:30:00+00:00",
-   "league": "Israel. Liga Bet. North",
-   "home": "Hapoel Givaat Olga",
-   "away": "Ironi Ariel"
+   "eventId": "s9-99.773512730",
+   "time": "2026-11-28T04:00:00+00:00",
+   "league": "Australian Championship",
+   "home": "Preston Lions",
+   "away": "Wests APIA"
   },
   {
-   "eventId": "s9-99.774218776",
-   "time": "2026-11-27T10:35:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "Sderot FC",
-   "away": "Holon Yermiyahu"
+   "eventId": "s9-99.774046556",
+   "time": "2026-11-28T04:00:00+00:00",
+   "league": "Japan. Japan Football League",
+   "home": "Honda",
+   "away": "Criacao Shinjuku"
   },
   {
-   "eventId": "s9-99.774262519",
-   "time": "2026-11-27T10:40:00+00:00",
-   "league": "Israel. Liga Alef. North",
-   "home": "Hapoel Beit Shean Mesilot",
-   "away": "Maccabi Nujeidat Ahmed"
+   "eventId": "s9-99.774046032",
+   "time": "2026-11-28T04:00:00+00:00",
+   "league": "Japan. Japan Football League",
+   "home": "Reinmeer Aomori",
+   "away": "Vonds Ichihara"
   },
   {
-   "eventId": "s9-99.774020012",
-   "time": "2026-11-27T10:45:00+00:00",
-   "league": "Seychelles Championship",
-   "home": "Lightstars",
-   "away": "Rovers Cascade"
+   "eventId": "s9-99.774049275",
+   "time": "2026-11-28T04:00:00+00:00",
+   "league": "Japan. Japan Football League",
+   "home": "Yokohama Sports and Culture Club",
+   "away": "Veertien Mie"
   },
   {
-   "eventId": "s9-99.773589177",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Armenia. Premier League",
-   "home": "Syunik",
-   "away": "Van"
+   "eventId": "s9-99.774010698",
+   "time": "2026-11-28T05:00:00+00:00",
+   "league": "Japan. J-League",
+   "home": "Kyoto Sanga",
+   "away": "Cerezo Osaka"
   },
   {
-   "eventId": "s9-99.774265304",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Israel. Liga Alef. North",
-   "home": "Hapoel Tirat HaCarmel",
-   "away": "Hapoel Ironi Arraba"
+   "eventId": "s9-99.774010695",
+   "time": "2026-11-28T05:00:00+00:00",
+   "league": "Japan. J-League",
+   "home": "Shimizu S-Pulse",
+   "away": "Urawa Red Diamonds"
   },
   {
-   "eventId": "s9-99.774265301",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Israel. Liga Alef. North",
-   "home": "Tzeirey Tamra",
-   "away": "MS Tira"
+   "eventId": "s9-99.774003159",
+   "time": "2026-11-28T05:00:00+00:00",
+   "league": "Japan. J-League Division 2",
+   "home": "RB Omiya Ardija",
+   "away": "Imabari"
   },
   {
-   "eventId": "s9-99.774218770",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "Maccabi Ironi Kiryat Malachi",
-   "away": "Shimshon Tel Aviv"
+   "eventId": "s9-99.774056360",
+   "time": "2026-11-28T05:00:00+00:00",
+   "league": "Japan. J3 League",
+   "home": "Kochi United",
+   "away": "Nara Club"
   },
   {
-   "eventId": "s9-99.774000659",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Moldova. Liga 1",
-   "home": "CSF Spartanii Selemet",
-   "away": "Univer Comrat"
+   "eventId": "s9-99.773116923",
+   "time": "2026-11-28T05:00:00+00:00",
+   "league": "South Korea. K League 1",
+   "home": "Anyang",
+   "away": "Jeju SK"
   },
   {
-   "eventId": "s9-99.773998893",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Moldova. Liga 1",
-   "home": "Falesti",
-   "away": "Stauceni"
+   "eventId": "s9-99.772809391",
+   "time": "2026-11-28T05:00:00+00:00",
+   "league": "South Korea. K League 1",
+   "home": "Seoul",
+   "away": "Daejeon Hana Citizen"
   },
   {
-   "eventId": "s9-99.773996662",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Moldova. Liga 1",
-   "home": "Ungheni",
-   "away": "Iskra Ribnita"
+   "eventId": "s9-99.773116913",
+   "time": "2026-11-28T05:00:00+00:00",
+   "league": "South Korea. K League 2",
+   "home": "Gimhae City",
+   "away": "Seongnam"
   },
   {
-   "eventId": "s9-99.774001609",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Moldova. Liga 1",
-   "home": "Victoria Ialoveni",
-   "away": "National Ialoveni"
+   "eventId": "s9-99.773144816",
+   "time": "2026-11-28T05:00:00+00:00",
+   "league": "South Korea. K League 2",
+   "home": "Yongin City",
+   "away": "Paju Frontier"
   },
   {
-   "eventId": "s9-99.774003531",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Moldova. Liga 1",
-   "home": "Vulturii Cutezatori",
-   "away": "Zimbru Chisinau II"
+   "eventId": "s9-99.774003193",
+   "time": "2026-11-28T06:00:00+00:00",
+   "league": "Japan. J-League",
+   "home": "Kashima Antlers",
+   "away": "Fagiano Okayama"
   },
   {
-   "eventId": "s9-99.774263255",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Poland Championship U19",
-   "home": "Korona Kielce U19",
-   "away": "Wisla Krakow U19"
+   "eventId": "s9-99.774003187",
+   "time": "2026-11-28T06:00:00+00:00",
+   "league": "Japan. J-League",
+   "home": "Vissel Kobe",
+   "away": "JEF United Ichihara Chiba"
   },
   {
-   "eventId": "s9-99.774219129",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Republic of North Macedonia. First League",
-   "home": "Shkendija Haracine",
-   "away": "Bregalnica Stip"
+   "eventId": "s9-99.774003204",
+   "time": "2026-11-28T07:00:00+00:00",
+   "league": "Japan. J-League",
+   "home": "Kashiwa Reysol",
+   "away": "Sanfrecce Hiroshima"
   },
   {
-   "eventId": "s9-99.774273006",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "UEFA European U19 Championship. Qualification. Women",
-   "home": "Ukraine U19 (Women)",
-   "away": "Lithuania U19 (Women)"
+   "eventId": "s9-99.773116920",
+   "time": "2026-11-28T07:30:00+00:00",
+   "league": "South Korea. K League 1",
+   "home": "Bucheon 1995",
+   "away": "Gimcheon Sangmu"
   },
   {
-   "eventId": "s9-99.773185886",
-   "time": "2026-11-27T11:00:00+00:00",
-   "league": "Ukraine. Premier League",
-   "home": "Levyy Bereg Kyiv",
-   "away": "Kolos Kovalivka"
+   "eventId": "s9-99.773116926",
+   "time": "2026-11-28T07:30:00+00:00",
+   "league": "South Korea. K League 1",
+   "home": "Pohang Steelers",
+   "away": "Gwangju"
   },
   {
-   "eventId": "s9-99.774194933",
-   "time": "2026-11-27T11:30:00+00:00",
+   "eventId": "s9-99.774193527",
+   "time": "2026-11-28T08:00:00+00:00",
+   "league": "Laos Premier League",
+   "home": "Ezra",
+   "away": "Namtha United"
+  },
+  {
+   "eventId": "s9-99.774194035",
+   "time": "2026-11-28T08:00:00+00:00",
+   "league": "Laos Premier League",
+   "home": "Luangprabang",
+   "away": "Mazda GB"
+  },
+  {
+   "eventId": "s9-99.774193528",
+   "time": "2026-11-28T08:00:00+00:00",
+   "league": "Laos Premier League",
+   "home": "Savannakhet",
+   "away": "Oudomxay Entremets"
+  },
+  {
+   "eventId": "s9-99.773512733",
+   "time": "2026-11-28T08:30:00+00:00",
+   "league": "Australian Championship",
+   "home": "Bayswater City",
+   "away": "Sydney United"
+  },
+  {
+   "eventId": "s9-99.774406801",
+   "time": "2026-11-28T08:30:00+00:00",
    "league": "Bangladesh. Premier League",
-   "home": "Bashundhara Kings",
-   "away": "Fortis Limited"
+   "home": "Chattogram City",
+   "away": "Brothers Union"
   },
   {
-   "eventId": "s9-99.768158910",
-   "time": "2026-11-27T11:30:00+00:00",
-   "league": "Club Friendlies",
-   "home": "Ilves",
-   "away": "Turun Palloseura"
+   "eventId": "s9-99.774409268",
+   "time": "2026-11-28T08:30:00+00:00",
+   "league": "Bangladesh. Premier League",
+   "home": "City Club Dhaka",
+   "away": "PWD SC"
   },
   {
-   "eventId": "s9-99.773431443",
-   "time": "2026-11-27T11:30:00+00:00",
-   "league": "Iran. Pro League",
-   "home": "Paykan",
-   "away": "Foolad Khuzestan"
+   "eventId": "s9-99.773209923",
+   "time": "2026-11-28T08:30:00+00:00",
+   "league": "Indonesia. Super League",
+   "home": "Bali United Pusam",
+   "away": "Bhayangkara"
   },
   {
-   "eventId": "s9-99.773432150",
-   "time": "2026-11-27T11:30:00+00:00",
-   "league": "Iran. Pro League",
-   "home": "Shams Azar Qazvin",
-   "away": "Kheybar Khorramabad"
+   "eventId": "s9-99.773156315",
+   "time": "2026-11-28T08:30:00+00:00",
+   "league": "Indonesia. Super League",
+   "home": "Isenmulang Kalteng",
+   "away": "PSS Sleman"
   },
   {
-   "eventId": "s9-99.774218767",
-   "time": "2026-11-27T11:30:00+00:00",
-   "league": "Israel. Liga Alef. South",
-   "home": "Tzeirey Tira",
-   "away": "Kfar Saba 1928"
+   "eventId": "s9-99.772866211",
+   "time": "2026-11-28T08:30:00+00:00",
+   "league": "Indonesia. Super League",
+   "home": "PSIM Yogyakarta",
+   "away": "Persijap Jepara"
   },
   {
-   "eventId": "s9-99.774218258",
-   "time": "2026-11-27T11:30:00+00:00",
-   "league": "Israel. Liga Bet. North",
-   "home": "Hapoel Bnei Arara Ara",
-   "away": "Tzeirey Haifa"
+   "eventId": "s9-99.772866208",
+   "time": "2026-11-28T08:30:00+00:00",
+   "league": "Indonesia. Super League",
+   "home": "PSM Makassar",
+   "away": "Dewa United"
   },
   {
-   "eventId": "s9-99.774218261",
-   "time": "2026-11-27T11:30:00+00:00",
-   "league": "Israel. Liga Bet. South",
-   "home": "Hapoel Lod",
-   "away": "Ironi Beit Dagan"
+   "eventId": "s9-99.769158015",
+   "time": "2026-11-28T08:40:00+00:00",
+   "league": "Australia. A League",
+   "home": "Central Coast Mariners",
+   "away": "Auckland"
   },
   {
-   "eventId": "s9-99.773987082",
-   "time": "2026-11-27T11:30:00+00:00",
-   "league": "Singapore. Premier League",
-   "home": "Geylang International",
-   "away": "Tanjong Pagar United"
-  },
-  {
-   "eventId": "s9-99.774249376",
-   "time": "2026-11-27T11:50:00+00:00",
-   "league": "Saudi Arabia. Division 2",
-   "home": "Al-Sahel Al-Qatif",
-   "away": "Hottain"
-  },
-  {
-   "eventId": "s9-99.774206586",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Azerbaijan. Division 1",
-   "home": "Sabail",
-   "away": "Simal"
-  },
-  {
-   "eventId": "s9-99.774265308",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Israel. Liga Alef. North",
-   "home": "Hapoel Umm al-Fahm",
-   "away": "Hapoel Bnei Jat"
-  },
-  {
-   "eventId": "s9-99.773159922",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Israel. Premier League",
-   "home": "Maccabi Petah Tikva",
-   "away": "Hapoel Tel Aviv"
-  },
-  {
-   "eventId": "s9-99.774202338",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Kosovo. Superleague",
-   "home": "Malisheva",
-   "away": "Llapi Podujeve"
-  },
-  {
-   "eventId": "s9-99.774219212",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Montenegro. Second League",
-   "home": "Lovcen",
-   "away": "FK Podgorica"
-  },
-  {
-   "eventId": "s9-99.774253673",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Poland Championship. Liga 3",
-   "home": "KS Goczalkowice-Zdroj",
-   "away": "Zaglebie Sosnowiec"
-  },
-  {
-   "eventId": "s9-99.774262483",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Poland Championship. Liga 3",
-   "home": "MKP Carina Gubin",
-   "away": "Warta Gorzow"
-  },
-  {
-   "eventId": "s9-99.774232439",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Republic of North Macedonia. First League",
-   "home": "Bashkimi Kumanovo",
-   "away": "Skopje"
-  },
-  {
-   "eventId": "s9-99.774159710",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Romania. Liga 3",
-   "home": "CS Drobeta Turnu Severin",
-   "away": "CSM Targu Jiu"
-  },
-  {
-   "eventId": "s9-99.774159707",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Romania. Liga 3",
-   "home": "CS Urban Titu",
-   "away": "Tunari"
-  },
-  {
-   "eventId": "s9-99.774159713",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Romania. Liga 3",
-   "home": "CSM Deva",
-   "away": "CSU Alba Iulia"
-  },
-  {
-   "eventId": "s9-99.774159719",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Romania. Liga 3",
-   "home": "Cluj Sanatatya",
-   "away": "Crisul Santandrei"
-  },
-  {
-   "eventId": "s9-99.774022118",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Romania. Liga 3",
-   "home": "FCSB II",
-   "away": "Oxigen Bucuresti"
-  },
-  {
-   "eventId": "s9-99.774159716",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Romania. Liga 3",
-   "home": "Lotus Baile Felix",
-   "away": "Sighetu Marmaţiei"
-  },
-  {
-   "eventId": "s9-99.774069871",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Syria. Premier League",
-   "home": "Al Nawair",
-   "away": "Al-Shorta Damascus"
-  },
-  {
-   "eventId": "s9-99.774069872",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Syria. Premier League",
-   "home": "Al-Hurriya",
-   "away": "Al-Foutoua Deir ez-Zor"
-  },
-  {
-   "eventId": "s9-99.774069432",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Syria. Premier League",
-   "home": "Al-Jaish Damascus",
-   "away": "Hutteen"
-  },
-  {
-   "eventId": "s9-99.774069433",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Syria. Premier League",
-   "home": "Al-Karamah",
-   "away": "Al-Ittihad Aleppo"
-  },
-  {
-   "eventId": "s9-99.774069873",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Syria. Premier League",
-   "home": "Qamislo sport",
-   "away": "Damascus Al-Ahli"
-  },
-  {
-   "eventId": "s9-99.773821787",
-   "time": "2026-11-27T12:00:00+00:00",
-   "league": "Thailand. Thai Premier League",
-   "home": "Uthai Thani",
-   "away": "Sisaket United"
-  },
-  {
-   "eventId": "s9-99.774212187",
-   "time": "2026-11-27T12:15:00+00:00",
-   "league": "Lebanon. Premier League",
-   "home": "Tadamon Sour",
-   "away": "Al Ahed"
-  },
-  {
-   "eventId": "s9-99.774216336",
-   "time": "2026-11-27T12:15:00+00:00",
+   "eventId": "s9-99.774208331",
+   "time": "2026-11-28T08:45:00+00:00",
    "league": "Malaysia. SuperLeague",
-   "home": "Brunei DPMM",
-   "away": "Kelantan Red Warrior"
+   "home": "Negeri Sembilan",
+   "away": "Terengganu Kuala Nerus"
   },
   {
-   "eventId": "s9-99.774247433",
-   "time": "2026-11-27T12:15:00+00:00",
-   "league": "Saudi Arabia. Division 2",
-   "home": "Al Qotah",
-   "away": "Al-Qwarah"
+   "eventId": "s9-99.774210826",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Malaysia. SuperLeague",
+   "home": "Sabah",
+   "away": "Selangor"
   },
   {
-   "eventId": "s9-99.770727423",
-   "time": "2026-11-27T12:15:00+00:00",
-   "league": "Saudi Arabia. Saudi Professional League",
-   "home": "Al Kholood",
-   "away": "Al-Khaleej"
+   "eventId": "s9-99.773950842",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Romania. Liga 2",
+   "home": "Afumati",
+   "away": "Resita"
   },
   {
-   "eventId": "s9-99.774246330",
-   "time": "2026-11-27T12:20:00+00:00",
-   "league": "Saudi Arabia. Division 2",
-   "home": "Al-Qalah",
-   "away": "Al Taraji"
+   "eventId": "s9-99.773950839",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Romania. Liga 2",
+   "home": "CS Dinamo Bucuresti",
+   "away": "Dumbravita"
   },
   {
-   "eventId": "s9-99.774249379",
-   "time": "2026-11-27T12:20:00+00:00",
-   "league": "Saudi Arabia. Division 2",
-   "home": "Al-Rayyan Ar Rawdah",
-   "away": "Al-Batin"
+   "eventId": "s9-99.773950848",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Romania. Liga 2",
+   "home": "CSC 1599 Selimbar",
+   "away": "CSA Steaua"
   },
   {
-   "eventId": "s9-99.774016628",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Albania. Division 1",
-   "home": "KS Pogradeci",
-   "away": "KF Iliria Fushe-Kruje"
+   "eventId": "s9-99.773950857",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Romania. Liga 2",
+   "home": "Concordia Chiajna",
+   "away": "CS Stefanesti"
   },
   {
-   "eventId": "s9-99.774009911",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Albania. Superliga",
-   "home": "KF Tirana",
-   "away": "KF Skenderbeu Korce"
+   "eventId": "s9-99.773950851",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Romania. Liga 2",
+   "home": "Metalul Buzau",
+   "away": "ACS Bacau"
   },
   {
-   "eventId": "s9-99.773830850",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Croatia. 1. NL",
-   "home": "Dinamo Zagreb II",
-   "away": "Hrvace"
+   "eventId": "s9-99.773950845",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Romania. Liga 2",
+   "home": "Targu Mures",
+   "away": "CSM Satu Mare"
   },
   {
-   "eventId": "s9-99.773830844",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Croatia. 1. NL",
-   "home": "NK Mladost Zdralovi",
-   "away": "BSK Bijelo Brdo"
+   "eventId": "s9-99.773950860",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Romania. Liga 2",
+   "home": "Unirea Slobozia",
+   "away": "Popesti-Leordeni"
   },
   {
-   "eventId": "s9-99.773830847",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Croatia. 1. NL",
-   "home": "Sesvete",
-   "away": "HNK Vukovar 1991"
+   "eventId": "s9-99.773699952",
+   "time": "2026-11-28T09:00:00+00:00",
+   "league": "Ukraine. Second League",
+   "home": "Rebel",
+   "away": "Trostianets"
   },
   {
-   "eventId": "s9-99.774232930",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Croatia. 2. NL",
-   "home": "Uljanik",
-   "away": "NK Koprivnica"
+   "eventId": "s9-99.773119131",
+   "time": "2026-11-28T09:15:00+00:00",
+   "league": "Club Friendlies",
+   "home": "TPS II",
+   "away": "Turun Nappulaliiga"
   },
   {
-   "eventId": "s9-99.773733548",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Egypt. Second Division",
-   "home": "Haras El Hodoud",
-   "away": "Pharco"
+   "eventId": "s9-99.774004361",
+   "time": "2026-11-28T09:30:00+00:00",
+   "league": "Georgia. League 4",
+   "home": "Algeti Marneuli",
+   "away": "Gagra II"
   },
   {
-   "eventId": "s9-99.773730831",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Egypt. Second Division",
-   "home": "Ismaily",
-   "away": "Baladiyet El Mahallah"
+   "eventId": "s9-99.774003896",
+   "time": "2026-11-28T09:30:00+00:00",
+   "league": "Georgia. League 4",
+   "home": "Borjomi",
+   "away": "West Georgia"
   },
   {
-   "eventId": "s9-99.773823701",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Egypt. Second Division",
-   "home": "Masar",
-   "away": "Maleyat Kafr El Zayat"
+   "eventId": "s9-99.774004360",
+   "time": "2026-11-28T09:30:00+00:00",
+   "league": "Georgia. League 4",
+   "home": "Torpedo Kutaisi II",
+   "away": "Kolkheti-1913 Poti II"
   },
   {
-   "eventId": "s9-99.773740424",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Egypt. Second Division",
-   "home": "Tanta",
-   "away": "El Mansoura SC"
+   "eventId": "s9-99.774246954",
+   "time": "2026-11-28T09:30:00+00:00",
+   "league": "Poland Championship U19",
+   "home": "Stal Rzeszow U19",
+   "away": "Eskola Warszawa U19"
   },
   {
-   "eventId": "s9-99.773742391",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Egypt. Second Division",
-   "home": "Telecom Egypt",
-   "away": "Team FC"
+   "eventId": "s9-99.773700299",
+   "time": "2026-11-28T09:30:00+00:00",
+   "league": "Ukraine. Second League",
+   "home": "Metalurh Zaporizhya",
+   "away": "Atlet Kyiv"
   },
   {
-   "eventId": "s9-99.774238692",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Ethiopia. Premier League",
-   "home": "Ethiopian Buna",
-   "away": "Halaba Ketema"
+   "eventId": "s9-99.774273055",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Belarus. Premier League",
+   "home": "BATE Borisov",
+   "away": "Isloch"
   },
   {
-   "eventId": "s9-99.774218252",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Israel. Liga Bet. North",
-   "home": "Hapoel Bne Bina",
-   "away": "Hapoel Kaukab"
+   "eventId": "s9-99.774273058",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Belarus. Premier League",
+   "home": "Belshina Bobruisk",
+   "away": "ML Vitebsk"
   },
   {
-   "eventId": "s9-99.774255763",
-   "time": "2026-11-27T12:30:00+00:00",
-   "league": "Saudi Arabia. Division 2",
-   "home": "Baish Club",
-   "away": "Weg Taif"
+   "eventId": "s9-99.774273061",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Belarus. Premier League",
+   "home": "Minsk",
+   "away": "Dnepr Mogilev"
   },
   {
-   "eventId": "s9-99.774016618",
-   "time": "2026-11-27T12:35:00+00:00",
-   "league": "UAE Championship U21",
-   "home": "Al Fujairah U21",
-   "away": "Al Sharjah U21"
+   "eventId": "s9-99.774273049",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Belarus. Premier League",
+   "home": "Naftan",
+   "away": "Dinamo Minsk"
   },
   {
-   "eventId": "s9-99.774016620",
-   "time": "2026-11-27T12:35:00+00:00",
-   "league": "UAE Championship U21",
-   "home": "Emirates Cultural U21",
-   "away": "Baniyas U21"
+   "eventId": "s9-99.774273052",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Belarus. Premier League",
+   "home": "Vitebsk",
+   "away": "Arsenal Dzerzhinsk"
   },
   {
-   "eventId": "s9-99.774219660",
-   "time": "2026-11-27T12:40:00+00:00",
-   "league": "Sultan Qaboos Cup",
-   "home": "Sohar",
-   "away": "Al Mudhaibi"
-  },
-  {
-   "eventId": "s9-99.774007760",
-   "time": "2026-11-27T12:40:00+00:00",
-   "league": "UAE Championship U21",
-   "home": "Al Dhaid U21",
-   "away": "Al-Shahama U21"
-  },
-  {
-   "eventId": "s9-99.773432795",
-   "time": "2026-11-27T12:45:00+00:00",
-   "league": "Iran. Pro League",
-   "home": "Aluminium Arak",
-   "away": "Persepolis"
-  },
-  {
-   "eventId": "s9-99.774007761",
-   "time": "2026-11-27T12:45:00+00:00",
-   "league": "UAE Championship U21",
-   "home": "Al Jazira U21",
-   "away": "Al Arabi Umm Al Quwain U21"
-  },
-  {
-   "eventId": "s9-99.774282573",
-   "time": "2026-11-27T12:45:00+00:00",
-   "league": "UAE. Division 1",
-   "home": "City FC Dubai",
-   "away": "Fujairah"
-  },
-  {
-   "eventId": "s9-99.773002649",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "CAF Confederation Cup",
-   "home": "Azam",
-   "away": "Al-Ahly Tripoli"
-  },
-  {
-   "eventId": "s9-99.774195508",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Championship Congo DR. League 1",
-   "home": "CS Don Bosco",
-   "away": "Manika"
-  },
-  {
-   "eventId": "s9-99.774198458",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Championship Congo DR. League 1",
-   "home": "Etoile du Kivu",
-   "away": "Celeste Mbandakos"
-  },
-  {
-   "eventId": "s9-99.773438202",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Iran. Pro League",
-   "home": "Esteghlal Khuzestan",
-   "away": "Malavan"
-  },
-  {
-   "eventId": "s9-99.774198463",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Israel. Liga Leumit",
-   "home": "Hapoel Ironi Acre",
-   "away": "Maccabi Herzliya"
-  },
-  {
-   "eventId": "s9-99.774197053",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Israel. Liga Leumit",
-   "home": "Hapoel Kfar Shalem",
-   "away": "Hapoel Kfar Saba"
-  },
-  {
-   "eventId": "s9-99.774198469",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Israel. Liga Leumit",
-   "home": "Maccabi Ahi Nazareth",
-   "away": "SC Kiryat Yam"
-  },
-  {
-   "eventId": "s9-99.774198466",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Israel. Liga Leumit",
-   "home": "Maccabi Bnei Reineh",
-   "away": "Maccabi Kiryat Gat"
-  },
-  {
-   "eventId": "s9-99.774198472",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Israel. Liga Leumit",
-   "home": "Maccabi Yafo Kabilyo",
-   "away": "Kafr Qasim"
-  },
-  {
-   "eventId": "s9-99.773996183",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Qatar Championship",
-   "home": "Al-Sailiya",
-   "away": "Al-Gharafa"
-  },
-  {
-   "eventId": "s9-99.773895717",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "Tanzania. Premier League",
-   "home": "Pamba Jiji",
-   "away": "Namungo"
-  },
-  {
-   "eventId": "s9-99.774273008",
-   "time": "2026-11-27T13:00:00+00:00",
-   "league": "UEFA European U19 Championship. Qualification. Women",
-   "home": "Cyprus U19 (Women)",
-   "away": "Albania U19 (Women)"
-  },
-  {
-   "eventId": "s9-99.774242742",
-   "time": "2026-11-27T13:30:00+00:00",
-   "league": "India Championship. Women",
-   "home": "Garhwal United (Women)",
-   "away": "East Bengal (Women)"
-  },
-  {
-   "eventId": "s9-99.774243240",
-   "time": "2026-11-27T13:30:00+00:00",
-   "league": "Iraq. Stars League",
-   "home": "Zakho",
-   "away": "Karbala"
-  },
-  {
-   "eventId": "s9-99.773953589",
-   "time": "2026-11-27T13:30:00+00:00",
-   "league": "Libya. Premier League",
-   "home": "Al-Hilal Benghazi",
-   "away": "Al-Batnan"
-  },
-  {
-   "eventId": "s9-99.774256848",
-   "time": "2026-11-27T13:30:00+00:00",
-   "league": "Singapore Championship. Division 1",
-   "home": "Police SA",
-   "away": "Project Vaults Oxley"
-  },
-  {
-   "eventId": "s9-99.774267243",
-   "time": "2026-11-27T13:30:00+00:00",
-   "league": "South Africa. 1st Division",
-   "home": "Real Native",
-   "away": "University of Pretoria"
-  },
-  {
-   "eventId": "s9-99.774233722",
-   "time": "2026-11-27T14:00:00+00:00",
-   "league": "India. Super League",
-   "home": "Inter Kashi",
-   "away": "Churchill Brothers"
-  },
-  {
-   "eventId": "s9-99.773960239",
-   "time": "2026-11-27T14:00:00+00:00",
-   "league": "Jordan. Premier League",
-   "home": "Shabab Al Ordon Al Quadisiya",
-   "away": "Al-Salt"
-  },
-  {
-   "eventId": "s9-99.773953913",
-   "time": "2026-11-27T14:00:00+00:00",
-   "league": "Libya. Premier League",
-   "home": "Al Bashaer Club",
-   "away": "Al-Watan"
-  },
-  {
-   "eventId": "s9-99.774007660",
-   "time": "2026-11-27T14:00:00+00:00",
-   "league": "Rwanda. National League",
-   "home": "Al-Hilal Omdurman",
-   "away": "Amagaju"
-  },
-  {
-   "eventId": "s9-99.770733524",
-   "time": "2026-11-27T14:20:00+00:00",
-   "league": "Saudi Arabia. Saudi Professional League",
-   "home": "Al-Qadisiyah",
-   "away": "Al Feiha"
-  },
-  {
-   "eventId": "s9-99.774009892",
-   "time": "2026-11-27T14:30:00+00:00",
-   "league": "Seychelles Championship",
-   "home": "Bazar Brothers",
-   "away": "Cote d'Or"
-  },
-  {
-   "eventId": "s9-99.774016640",
-   "time": "2026-11-27T15:00:00+00:00",
-   "league": "Albania. Division 1",
-   "home": "Flamurtari Vlore",
-   "away": "Besa Kavaje"
-  },
-  {
-   "eventId": "s9-99.773999683",
-   "time": "2026-11-27T15:00:00+00:00",
-   "league": "Azerbaijan. Premier League",
-   "home": "Neftchi Baku",
-   "away": "Zira"
-  },
-  {
-   "eventId": "s9-99.774194936",
-   "time": "2026-11-27T15:00:00+00:00",
-   "league": "Bahrain. Premier League",
-   "home": "East Riffa",
-   "away": "Al Ittifaq Maqaba"
-  },
-  {
-   "eventId": "s9-99.774193367",
-   "time": "2026-11-27T15:00:00+00:00",
-   "league": "Bahrain. Premier League",
-   "home": "Malkiya Club",
-   "away": "Manama Club"
-  },
-  {
-   "eventId": "s9-99.773717491",
-   "time": "2026-11-27T15:00:00+00:00",
-   "league": "Czech Republic. 2 Liga",
-   "home": "Vysocina Jihlava",
-   "away": "Trinec"
-  },
-  {
-   "eventId": "s9-99.774057646",
-   "time": "2026-11-27T15:00:00+00:00",
+   "eventId": "s9-99.774056632",
+   "time": "2026-11-28T10:00:00+00:00",
    "league": "Germany Bundesliga U19",
-   "home": "Viktoria Koln U19",
-   "away": "Alemannia Aachen U19"
+   "home": "Augsburg U19",
+   "away": "TSG 1899 Hoffenheim U19"
   },
   {
-   "eventId": "s9-99.774273010",
-   "time": "2026-11-27T15:00:00+00:00",
-   "league": "UEFA European U19 Championship. Qualification. Women",
-   "home": "Faroe Islands U19 (Women)",
-   "away": "Andorra U19 (Women)"
+   "eventId": "s9-99.774056633",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Freiburg U19",
+   "away": "1. Heidenheim 1846 U19"
   },
   {
-   "eventId": "s9-99.774211729",
-   "time": "2026-11-27T15:30:00+00:00",
-   "league": "Burkina Faso",
-   "home": "US des Forces Armees",
-   "away": "CFFEB"
+   "eventId": "s9-99.774055227",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Hertha U19",
+   "away": "Babelsberg 03 U19"
   },
   {
-   "eventId": "s9-99.774245291",
-   "time": "2026-11-27T15:30:00+00:00",
-   "league": "Iraq. Stars League",
-   "home": "Ghaz Al-Shamal",
-   "away": "Al-Karma"
+   "eventId": "s9-99.774253134",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Poland Championship U19",
+   "home": "Gornik Zabrze U19",
+   "away": "Arkonia Szczecin U19"
   },
   {
-   "eventId": "s9-99.773360830",
-   "time": "2026-11-27T15:30:00+00:00",
-   "league": "Qatar Championship",
-   "home": "Lusail",
-   "away": "Al-Arabi Doha"
+   "eventId": "s9-99.773950854",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Romania. Liga 2",
+   "home": "Stiinta Poli Timisoara",
+   "away": "Bihor Oradea"
   },
   {
-   "eventId": "s9-99.772597807",
-   "time": "2026-11-27T15:30:00+00:00",
-   "league": "Romania. Liga 1",
-   "home": "Universitatea Cluj",
-   "away": "ACS Sepsi OSK Sfantul Gheorghe"
+   "eventId": "s9-99.774347019",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Turkey. TFF 2. Lig",
+   "home": "Hatayspor",
+   "away": "Ankaraspor A.S."
   },
   {
-   "eventId": "s9-99.774220150",
-   "time": "2026-11-27T15:40:00+00:00",
-   "league": "Sultan Qaboos Cup",
-   "home": "Dhofar",
-   "away": "Fanja"
+   "eventId": "s9-99.774316965",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Turkey. TFF 2. Lig",
+   "home": "Isparta 32",
+   "away": "Inegol Kafkasspor"
   },
   {
-   "eventId": "s9-99.773188044",
-   "time": "2026-11-27T16:00:00+00:00",
-   "league": "Georgia Championship",
-   "home": "Dinamo Batumi",
-   "away": "Dila Gori"
+   "eventId": "s9-99.774344043",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Turkey. TFF 2. Lig",
+   "home": "Sanliurfaspor",
+   "away": "Somaspor"
   },
   {
-   "eventId": "s9-99.774242758",
-   "time": "2026-11-27T16:00:00+00:00",
-   "league": "Iraq. Stars League",
-   "home": "Al-Gharraf",
-   "away": "Al Mosul"
+   "eventId": "s9-99.773700602",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Ukraine. Second League",
+   "home": "Penuel Kriviy Rih",
+   "away": "Avangard Lozov"
   },
   {
-   "eventId": "s9-99.774215541",
-   "time": "2026-11-27T16:00:00+00:00",
-   "league": "Mali. Premiere Division",
-   "home": "AS Bakaridjan",
-   "away": "Diarra de la Commune 4"
+   "eventId": "s9-99.774334514",
+   "time": "2026-11-28T10:00:00+00:00",
+   "league": "Vietnam. V-League. Division 2",
+   "home": "Binh Minh Sai Gon",
+   "away": "Becamex Ho Chi Minh City"
   },
   {
-   "eventId": "s9-99.774159722",
-   "time": "2026-11-27T16:00:00+00:00",
-   "league": "Romania. Liga 3",
-   "home": "Inter Stars Sibiu",
-   "away": "Baicoi"
+   "eventId": "s9-99.773536827",
+   "time": "2026-11-28T10:30:00+00:00",
+   "league": "Estonia. Qualification",
+   "home": "Kuressaare",
+   "away": "Viimsi JK"
   },
   {
-   "eventId": "s9-99.773537885",
-   "time": "2026-11-27T16:00:00+00:00",
-   "league": "Serbia. SuperLiga",
-   "home": "IMT Novi Beograd",
-   "away": "Macva Sabac"
+   "eventId": "s9-99.774055682",
+   "time": "2026-11-28T10:30:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Hamburger U19",
+   "away": "1. Magdeburg U19"
   },
   {
-   "eventId": "s9-99.774000281",
-   "time": "2026-11-27T16:00:00+00:00",
-   "league": "Slovenian Cup",
-   "home": "Brezice",
-   "away": "NK Triglav Kranj"
+   "eventId": "s9-99.773187808",
+   "time": "2026-11-28T10:30:00+00:00",
+   "league": "Turkey. TFF 1. Lig",
+   "home": "Bandırmaspor",
+   "away": "Batman Petrolspor"
   },
   {
-   "eventId": "s9-99.773896272",
-   "time": "2026-11-27T16:00:00+00:00",
-   "league": "Tanzania. Premier League",
-   "home": "Kagera Sugar",
-   "away": "Dodoma"
+   "eventId": "s9-99.773556632",
+   "time": "2026-11-28T10:30:00+00:00",
+   "league": "Turkey. TFF 1. Lig",
+   "home": "Sivasspor",
+   "away": "Bodrum Belediyesi Bodrumspor"
   },
   {
-   "eventId": "s9-99.774022707",
-   "time": "2026-11-27T16:15:00+00:00",
-   "league": "Sierra Leone. Premier League",
-   "home": "Western United Freetown",
-   "away": "Old Edwardians"
+   "eventId": "s9-99.773701438",
+   "time": "2026-11-28T10:30:00+00:00",
+   "league": "Ukraine. Second League",
+   "home": "SC Poltava II",
+   "away": "Carbon Cherkassy"
   },
   {
-   "eventId": "s9-99.774204457",
-   "time": "2026-11-27T16:15:00+00:00",
-   "league": "Sierra Leone. Premier League",
-   "home": "Wusum Stars of Bombali",
-   "away": "Star Sport Academy"
-  },
-  {
-   "eventId": "s9-99.773238902",
-   "time": "2026-11-27T16:30:00+00:00",
+   "eventId": "s9-99.773040843",
+   "time": "2026-11-28T10:45:00+00:00",
    "league": "Bulgaria. First League",
-   "home": "Lokomotiv Sofia",
-   "away": "Slavia Sofia"
+   "home": "Lokomotiv Plovdiv",
+   "away": "Spartak Varna"
   },
   {
-   "eventId": "s9-99.773963914",
-   "time": "2026-11-27T16:30:00+00:00",
-   "league": "Jordan. Premier League",
-   "home": "Al-Wehdat",
-   "away": "Doqara"
+   "eventId": "s9-99.774380950",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Argentina. Primera Division U20",
+   "home": "Boca Juniors U20",
+   "away": "Lanus U20"
   },
   {
-   "eventId": "s9-99.773794972",
-   "time": "2026-11-27T16:30:00+00:00",
+   "eventId": "s9-99.774106418",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Denmark Championship U19",
+   "home": "Copenhagen U19",
+   "away": "AC Horsens U19"
+  },
+  {
+   "eventId": "s9-99.774100001",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Denmark Championship. Division U19",
+   "home": "Akademisk Boldklub U19",
+   "away": "Hobro U19"
+  },
+  {
+   "eventId": "s9-99.774099733",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Denmark Championship. Division U19",
+   "home": "B.93 Copenhagen U19",
+   "away": "Nykobing U19"
+  },
+  {
+   "eventId": "s9-99.774099734",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Denmark Championship. Division U19",
+   "home": "Oure FA U19",
+   "away": "Hellerup IK U19"
+  },
+  {
+   "eventId": "s9-99.773987950",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Netherlands Championship U19",
+   "home": "PEC Zwolle U19",
+   "away": "PSV Eindhoven U19"
+  },
+  {
+   "eventId": "s9-99.774263252",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship U19",
+   "home": "Talent Warszawa U19",
+   "away": "KSP Polonia Warszawa U19"
+  },
+  {
+   "eventId": "s9-99.773809032",
+   "time": "2026-11-28T11:00:00+00:00",
    "league": "Poland Championship. Liga 2",
-   "home": "Stal Stalowa Wola",
-   "away": "Legia Warsaw II"
+   "home": "Gornik Leczna",
+   "away": "Swit Skolwin"
   },
   {
-   "eventId": "s9-99.773253324",
-   "time": "2026-11-27T16:30:00+00:00",
-   "league": "Russian Championship. League 1",
-   "home": "Torpedo Moscow",
-   "away": "SKA-Khabarovsk"
-  },
-  {
-   "eventId": "s9-99.773306943",
-   "time": "2026-11-27T16:45:00+00:00",
-   "league": "Austria. WFV. Landesliga 2",
-   "home": "Stadlau",
-   "away": "Essling"
-  },
-  {
-   "eventId": "s9-99.774212930",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Austria. WFV. Landesliga",
-   "home": "1. Simmeringer",
-   "away": "LAC-Inter"
-  },
-  {
-   "eventId": "s9-99.774212927",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Austria. WFV. Landesliga",
-   "home": "Gerasdorf",
-   "away": "Red Star Penzing"
-  },
-  {
-   "eventId": "s9-99.773307467",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Austria. WFV. Landesliga 2",
-   "home": "Mannsworth",
-   "away": "Ostbahn"
-  },
-  {
-   "eventId": "s9-99.773840549",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Bosnia and Herzegovina. Premier League",
-   "home": "Celik Zenica",
-   "away": "BSK Banja Luka"
-  },
-  {
-   "eventId": "s9-99.773245684",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Croatia. HNL",
-   "home": "NK Istra 1961",
-   "away": "NK Varazdin"
-  },
-  {
-   "eventId": "s9-99.773540515",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Cyprus. First Division",
-   "home": "AEK Larnaca",
-   "away": "Apollon Limassol"
-  },
-  {
-   "eventId": "s9-99.773541184",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Cyprus. First Division",
-   "home": "AEL Limassol",
-   "away": "Olympiakos Nicosia"
-  },
-  {
-   "eventId": "s9-99.773717503",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Czech Republic. 2 Liga",
-   "home": "Dukla Prague",
-   "away": "Silon Taborsko"
-  },
-  {
-   "eventId": "s9-99.773717506",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Czech Republic. 2 Liga",
-   "home": "Viagem Usti nad Labem",
-   "away": "Hanacka Slavia Kromeriz"
-  },
-  {
-   "eventId": "s9-99.772625076",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Czech Republic. Chance Liga",
-   "home": "Artis Brno",
-   "away": "1. Slovacko"
-  },
-  {
-   "eventId": "s9-99.773955323",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Libya. Premier League",
-   "home": "Al Tahaddy",
-   "away": "Darnes SC"
-  },
-  {
-   "eventId": "s9-99.773954615",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Libya. Premier League",
-   "home": "Al-Madina",
-   "away": "Al Shomooa"
-  },
-  {
-   "eventId": "s9-99.774251390",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Nigeria. Premier League",
-   "home": "Shooting Stars",
-   "away": "Rivers United"
-  },
-  {
-   "eventId": "s9-99.773196652",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Poland Championship. Liga 1",
-   "home": "Warta Poznan",
-   "away": "Pogon Siedlce"
-  },
-  {
-   "eventId": "s9-99.773794965",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Poland Championship. Liga 2",
-   "home": "GKS Tychy",
-   "away": "Chojniczanka Chojnice"
-  },
-  {
-   "eventId": "s9-99.774233728",
-   "time": "2026-11-27T17:00:00+00:00",
+   "eventId": "s9-99.774365151",
+   "time": "2026-11-28T11:00:00+00:00",
    "league": "Poland Championship. Liga 3",
-   "home": "Wigry Suwalki",
-   "away": "Jagiellonia II"
+   "home": "Baltyk Koszalin",
+   "away": "Wiked Luzino"
   },
   {
-   "eventId": "s9-99.772624241",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Poland. Ekstraklasa",
-   "home": "Rakow Czestochowa",
-   "away": "Piast Gliwice"
+   "eventId": "s9-99.774345812",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Chemik Bydgoszcz",
+   "away": "Lech Poznan II"
   },
   {
-   "eventId": "s9-99.774149365",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Rwanda. National League",
-   "home": "Kiyovu",
-   "away": "Rayon Sports"
+   "eventId": "s9-99.774365157",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Gedania Gdansk",
+   "away": "Elana Torun"
   },
   {
-   "eventId": "s9-99.773245724",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Slovenia. League 1",
-   "home": "NK Radomlje",
-   "away": "NK Nafta Lendava"
+   "eventId": "s9-99.774366067",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "KS Lipno Steszew",
+   "away": "Wda Swiecie"
   },
   {
-   "eventId": "s9-99.774038936",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Slovenian Championship U19",
-   "home": "NK Brinje Grosuplje U19",
-   "away": "Mura U19"
+   "eventId": "s9-99.774365166",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "MKS Czarni Polaniec",
+   "away": "Siarka Tarnobrzeg"
   },
   {
-   "eventId": "s9-99.774029337",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Slovenian Championship U19",
-   "home": "NK Dekani U19",
-   "away": "Celje U19"
+   "eventId": "s9-99.774364427",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Mazovia Minsk Mazowiecki",
+   "away": "Troszyn"
   },
   {
-   "eventId": "s9-99.772625084",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Turkey. SuperLiga",
-   "home": "Alanyaspor",
-   "away": "Konyaspor"
+   "eventId": "s9-99.774348900",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Odra Bytom Odrzanski",
+   "away": "Rakow Czestochowa II"
   },
   {
-   "eventId": "s9-99.772623699",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Turkey. SuperLiga",
-   "home": "Caykur Rizespor",
-   "away": "Kasimpasa"
+   "eventId": "s9-99.774347022",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Unia Swarzedz",
+   "away": "KKS 1925 Kalisz"
   },
   {
-   "eventId": "s9-99.772884205",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Turkey. TFF 1. Lig",
-   "home": "Sarıyer",
-   "away": "İstanbulspor"
+   "eventId": "s9-99.774365154",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Victoria Wrzesnia",
+   "away": "Polonia Sroda Wielkopolska"
   },
   {
-   "eventId": "s9-99.773227249",
-   "time": "2026-11-27T17:00:00+00:00",
-   "league": "Turkey. TFF 1. Lig",
-   "home": "Umraniyespor",
-   "away": "Manisa"
+   "eventId": "s9-99.772856792",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Portugal. Segunda Liga",
+   "home": "Aves",
+   "away": "Leixoes"
   },
   {
-   "eventId": "s9-99.774009914",
-   "time": "2026-11-27T17:30:00+00:00",
+   "eventId": "s9-99.774225349",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Republic of North Macedonia. First League",
+   "home": "Arsimi",
+   "away": "Vardar"
+  },
+  {
+   "eventId": "s9-99.774229379",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Republic of North Macedonia. First League",
+   "home": "Sileks",
+   "away": "Struga Trim & Lum"
+  },
+  {
+   "eventId": "s9-99.769382498",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Russia. Premier League",
+   "home": "Rubin Kazan",
+   "away": "Akron Tolyatti"
+  },
+  {
+   "eventId": "s9-99.773948956",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "Basconia",
+   "away": "Sestao River Club"
+  },
+  {
+   "eventId": "s9-99.774385188",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 6",
+   "home": "Levante UD II",
+   "away": "Hercules II"
+  },
+  {
+   "eventId": "s9-99.774324416",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Thailand. 2nd Division",
+   "home": "Chai Nat",
+   "away": "Chanthaburi"
+  },
+  {
+   "eventId": "s9-99.773820905",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Thailand. Thai Premier League",
+   "home": "Pattani",
+   "away": "Chiangrai United"
+  },
+  {
+   "eventId": "s9-99.773430665",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Ukraine. Premier League",
+   "home": "Dynamo Kyiv",
+   "away": "Chornomorets Odesa"
+  },
+  {
+   "eventId": "s9-99.773430662",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Ukraine. Premier League",
+   "home": "Obolon Kyiv",
+   "away": "Zorya Luhansk"
+  },
+  {
+   "eventId": "s9-99.773703265",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Ukraine. Second League",
+   "home": "Podolye Khmelnitsky",
+   "away": "Sambir Nyva Ternopil II"
+  },
+  {
+   "eventId": "s9-99.774338389",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Vietnam. V-League",
+   "home": "Bac Ninh",
+   "away": "SHB Da Nang"
+  },
+  {
+   "eventId": "s9-99.774338383",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Vietnam. V-League",
+   "home": "Ho Chi Minh City Police",
+   "away": "Hoang Anh Gia Lai"
+  },
+  {
+   "eventId": "s9-99.774334517",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Vietnam. V-League. Division 2",
+   "home": "Quy Nhon United",
+   "away": "Khanh Hoa"
+  },
+  {
+   "eventId": "s9-99.774387283",
+   "time": "2026-11-28T11:00:00+00:00",
+   "league": "Vietnam. V-League. Division 2",
+   "home": "Thep Can Tho",
+   "away": "Ho Chi Minh City"
+  },
+  {
+   "eventId": "s9-99.774100867",
+   "time": "2026-11-28T11:30:00+00:00",
+   "league": "Denmark Championship. Division U19",
+   "home": "Roskilde U19",
+   "away": "Kolding U19"
+  },
+  {
+   "eventId": "s9-99.774055228",
+   "time": "2026-11-28T11:30:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Chemnitzer U19",
+   "away": "Energie Cottbus U19"
+  },
+  {
+   "eventId": "s9-99.773804581",
+   "time": "2026-11-28T11:30:00+00:00",
+   "league": "Poland Championship. Liga 2",
+   "home": "Olimpia Grudziadz",
+   "away": "GPTS Avia Swidnik"
+  },
+  {
+   "eventId": "s9-99.773798929",
+   "time": "2026-11-28T11:30:00+00:00",
+   "league": "Poland Championship. Liga 2",
+   "home": "Slask Wroclaw II",
+   "away": "NKP Podhale Nowy Targ"
+  },
+  {
+   "eventId": "s9-99.774279246",
+   "time": "2026-11-28T11:30:00+00:00",
+   "league": "Singapore. Premier League",
+   "home": "Balestier Khalsa",
+   "away": "Hougang United"
+  },
+  {
+   "eventId": "s9-99.774324413",
+   "time": "2026-11-28T11:30:00+00:00",
+   "league": "Thailand. 2nd Division",
+   "home": "Khon Kaen United",
+   "away": "Kasetsart"
+  },
+  {
+   "eventId": "s9-99.773860968",
+   "time": "2026-11-28T11:45:00+00:00",
+   "league": "Croatia. 1. NL",
+   "home": "Segesta",
+   "away": "Dubrava"
+  },
+  {
+   "eventId": "s9-99.773439792",
+   "time": "2026-11-28T11:45:00+00:00",
+   "league": "Iran. Pro League",
+   "home": "Tractor Tabriz",
+   "away": "Zob Ahan"
+  },
+  {
+   "eventId": "s9-99.773703782",
+   "time": "2026-11-28T11:45:00+00:00",
+   "league": "Ukraine. Second League",
+   "home": "Dnister Zalishyky",
+   "away": "Niva Vinnitsa"
+  },
+  {
+   "eventId": "s9-99.774106674",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Denmark Championship U19",
+   "home": "AGF Aarhus U19",
+   "away": "Randers U19"
+  },
+  {
+   "eventId": "s9-99.774101374",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Denmark Championship. Division U19",
+   "home": "Helsingor U19",
+   "away": "Lyseng U19"
+  },
+  {
+   "eventId": "s9-99.772884805",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Denmark. 1st Division",
+   "home": "Hillerod",
+   "away": "Vendsyssel"
+  },
+  {
+   "eventId": "s9-99.774057905",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Arminia Bielefeld U19",
+   "away": "VfL Wolfsburg U19"
+  },
+  {
+   "eventId": "s9-99.774055686",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Erzgebirge Aue U19",
+   "away": "1. Nurnberg U19"
+  },
+  {
+   "eventId": "s9-99.774057227",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Frankfurt U19",
+   "away": "1. FSV Mainz 05 U19"
+  },
+  {
+   "eventId": "s9-99.774057907",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Havelse U19",
+   "away": "Paderborn 07 U19"
+  },
+  {
+   "eventId": "s9-99.774057906",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Meppen U19",
+   "away": "Hannover 96 U19"
+  },
+  {
+   "eventId": "s9-99.774056634",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "SSV Ulm 1846 U19",
+   "away": "Stuttgarter Kickers U19"
+  },
+  {
+   "eventId": "s9-99.774055683",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Werder Bremen U19",
+   "away": "St. Pauli U19"
+  },
+  {
+   "eventId": "s9-99.773245697",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany. 2. Bundesliga",
+   "home": "Dynamo Dresden",
+   "away": "St. Pauli"
+  },
+  {
+   "eventId": "s9-99.773245687",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany. 2. Bundesliga",
+   "home": "Hertha BSC",
+   "away": "Karlsruher"
+  },
+  {
+   "eventId": "s9-99.773245700",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Germany. 2. Bundesliga",
+   "home": "Holstein",
+   "away": "1. Kaiserslautern"
+  },
+  {
+   "eventId": "s9-99.773756856",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Hungary. NB II",
+   "home": "Kazincbarcikai",
+   "away": "Tiszakecske"
+  },
+  {
+   "eventId": "s9-99.773758648",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Hungary. NB II",
+   "home": "Kozarmisleny SE",
+   "away": "Budapesti VSC"
+  },
+  {
+   "eventId": "s9-99.773768524",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Hungary. NB II",
+   "home": "Mezokovesd-Zsory SE",
+   "away": "Szentlorinc SE"
+  },
+  {
+   "eventId": "s9-99.772875385",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Indonesia. Super League",
+   "home": "Madura United",
+   "away": "Java United"
+  },
+  {
+   "eventId": "s9-99.772875388",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Indonesia. Super League",
+   "home": "Persija Jakarta",
+   "away": "Garuda Yaksa"
+  },
+  {
+   "eventId": "s9-99.774018584",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Norway. Qualification",
+   "home": "Bjarg",
+   "away": "Sogndal"
+  },
+  {
+   "eventId": "s9-99.774348903",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "KS Stilon Gorzow Wielkopolski",
+   "away": "Sparta Katowice"
+  },
+  {
+   "eventId": "s9-99.774350700",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "KTS Weszlo",
+   "away": "LKS Lomza"
+  },
+  {
+   "eventId": "s9-99.774365169",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Moravia Morawica",
+   "away": "Pogon-Sokol Lubaczow"
+  },
+  {
+   "eventId": "s9-99.774362674",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Pelikan Lowicz",
+   "away": "Mlava"
+  },
+  {
+   "eventId": "s9-99.774380269",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Sleza Wroclaw",
+   "away": "Stal Brzeg"
+  },
+  {
+   "eventId": "s9-99.774219132",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Republic of North Macedonia. First League",
+   "home": "Tikvesh",
+   "away": "Skendija"
+  },
+  {
+   "eventId": "s9-99.774363386",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Serbia. 1st League",
+   "home": "Borac Cacak",
+   "away": "Dubocica"
+  },
+  {
+   "eventId": "s9-99.774363387",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Serbia. 1st League",
+   "home": "Graficar Beograd",
+   "away": "Proleter 023"
+  },
+  {
+   "eventId": "s9-99.774363390",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Serbia. 1st League",
+   "home": "Javor Ivanjica",
+   "away": "Spartak Subotica"
+  },
+  {
+   "eventId": "s9-99.774363389",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Serbia. 1st League",
+   "home": "OFK Vrsac",
+   "away": "Jedinstvo Ub"
+  },
+  {
+   "eventId": "s9-99.774363388",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Serbia. 1st League",
+   "home": "Teleoptik",
+   "away": "Smederevo"
+  },
+  {
+   "eventId": "s9-99.773764009",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 1",
+   "home": "CD Coria",
+   "away": "SD Ponferradina"
+  },
+  {
+   "eventId": "s9-99.774024628",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Sweden. Qualification",
+   "home": "Orebro",
+   "away": "Enkopings"
+  },
+  {
+   "eventId": "s9-99.773728820",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Sweden. Superettan",
+   "home": "Varbergs BoIS",
+   "away": "Ostersunds"
+  },
+  {
+   "eventId": "s9-99.774319369",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Thailand. 2nd Division",
+   "home": "Police Tero",
+   "away": "Nakhon Pathom United"
+  },
+  {
+   "eventId": "s9-99.773820914",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Thailand. Thai Premier League",
+   "home": "Rasi Salai United",
+   "away": "Buriram United"
+  },
+  {
+   "eventId": "s9-99.774352810",
+   "time": "2026-11-28T12:00:00+00:00",
+   "league": "Turkey. TFF 2. Lig",
+   "home": "Corluspor 1947",
+   "away": "Sebat Genclikspor"
+  },
+  {
+   "eventId": "s9-99.771478100",
+   "time": "2026-11-28T12:15:00+00:00",
+   "league": "Saudi Arabia. Saudi Professional League",
+   "home": "Al Hazem Rass",
+   "away": "Al Nassr"
+  },
+  {
+   "eventId": "s9-99.774338392",
+   "time": "2026-11-28T12:15:00+00:00",
+   "league": "Vietnam. V-League",
+   "home": "Hanoi FC",
+   "away": "Hong Linh Ha Tinh"
+  },
+  {
+   "eventId": "s9-99.774016634",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Albania. Division 1",
+   "home": "Beselidhja Lezhe",
+   "away": "Kukesi"
+  },
+  {
+   "eventId": "s9-99.774016631",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Albania. Division 1",
+   "home": "KS Sopoti Librazhd",
+   "away": "KS Bylis Ballsh"
+  },
+  {
+   "eventId": "s9-99.774016637",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Albania. Division 1",
+   "home": "Oriku",
+   "away": "Korabi Peshkopi"
+  },
+  {
+   "eventId": "s9-99.774010689",
+   "time": "2026-11-28T12:30:00+00:00",
    "league": "Albania. Superliga",
-   "home": "Dinamo City",
-   "away": "Partizani Tirana"
+   "home": "KF Vora",
+   "away": "Teuta Durres"
   },
   {
-   "eventId": "s9-99.773094317",
-   "time": "2026-11-27T17:30:00+00:00",
+   "eventId": "s9-99.774002414",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Azerbaijan. Premier League",
+   "home": "Turan Tovuz",
+   "away": "Kapaz"
+  },
+  {
+   "eventId": "s9-99.773840552",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Bosnia and Herzegovina. Premier League",
+   "home": "Sloga Doboj",
+   "away": "Radnik Bijeljina"
+  },
+  {
+   "eventId": "s9-99.773550282",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Bulgaria. Second League",
+   "home": "Chernomorets Burgas",
+   "away": "Lokomotiv Gorna Oryahovitsa"
+  },
+  {
+   "eventId": "s9-99.773547372",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Bulgaria. Second League",
+   "home": "Montana",
+   "away": "Sportist Svoge"
+  },
+  {
+   "eventId": "s9-99.774035753",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Bulgaria. Second League",
+   "home": "Pirin Blagoevgrad",
+   "away": "Dobrudzha Dobrich"
+  },
+  {
+   "eventId": "s9-99.773848344",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Croatia. 1. NL",
+   "home": "Dugopolje",
+   "away": "Orijent"
+  },
+  {
+   "eventId": "s9-99.774007776",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Cyprus. Second Division",
+   "home": "ASIL Lysi",
+   "away": "Ermis Aradippou"
+  },
+  {
+   "eventId": "s9-99.774007775",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Cyprus. Second Division",
+   "home": "Apea Akrotiriou",
+   "away": "Akritas Chlorakas"
+  },
+  {
+   "eventId": "s9-99.774026120",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Cyprus. Second Division",
+   "home": "Ayia Napa",
+   "away": "PAEEK"
+  },
+  {
+   "eventId": "s9-99.774007777",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Cyprus. Second Division",
+   "home": "Chalkanoras Idaliou",
+   "away": "AEP Polemidion"
+  },
+  {
+   "eventId": "s9-99.774007774",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Cyprus. Second Division",
+   "home": "Iraklis Gerolakkou",
+   "away": "Ethnikos Achna"
+  },
+  {
+   "eventId": "s9-99.774106675",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Denmark Championship U19",
+   "home": "Nordsjalland U19",
+   "away": "Esbjerg fB U19"
+  },
+  {
+   "eventId": "s9-99.772884802",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Denmark. 1st Division",
+   "home": "HB Koge",
+   "away": "Aarhus Fremad"
+  },
+  {
+   "eventId": "s9-99.772974903",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. Championship",
+   "home": "Blackburn Rovers",
+   "away": "Charlton Athletic"
+  },
+  {
+   "eventId": "s9-99.772975579",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. Championship",
+   "home": "Lincoln City",
+   "away": "Wolverhampton Wanderers"
+  },
+  {
+   "eventId": "s9-99.772975582",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. Championship",
+   "home": "Preston North End",
+   "away": "Norwich City"
+  },
+  {
+   "eventId": "s9-99.773037313",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. League One",
+   "home": "Milton Keynes Dons",
+   "away": "Notts County"
+  },
+  {
+   "eventId": "s9-99.773037295",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. League One",
+   "home": "Peterborough United",
+   "away": "Cambridge United"
+  },
+  {
+   "eventId": "s9-99.773037316",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. League Two",
+   "home": "Bristol Rovers",
+   "away": "Tranmere Rovers"
+  },
+  {
+   "eventId": "s9-99.773049728",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. League Two",
+   "home": "Exeter City",
+   "away": "Crawley Town"
+  },
+  {
+   "eventId": "s9-99.773830280",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. National League",
+   "home": "Fylde",
+   "away": "Aldershot Town"
+  },
+  {
+   "eventId": "s9-99.773830829",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "England. National League",
+   "home": "Woking",
+   "away": "Barrow"
+  },
+  {
+   "eventId": "s9-99.773309544",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Hungary. NB I",
+   "home": "Vasas",
+   "away": "Honved"
+  },
+  {
+   "eventId": "s9-99.772686216",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Romania. Liga 1",
+   "home": "Voluntari",
+   "away": "CFR Cluj"
+  },
+  {
+   "eventId": "s9-99.774331376",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Thailand. 2nd Division",
+   "home": "Kanchanaburi Power",
+   "away": "Chiangmai United"
+  },
+  {
+   "eventId": "s9-99.773820911",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Thailand. Thai Premier League",
+   "home": "Lamphun Warrior",
+   "away": "Chonburi"
+  },
+  {
+   "eventId": "s9-99.774311856",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Turkey. TFF 2. Lig",
+   "home": "Aliaga AS",
+   "away": "Kastamonuspor"
+  },
+  {
+   "eventId": "s9-99.773586416",
+   "time": "2026-11-28T12:30:00+00:00",
+   "league": "Wales. Premier League",
+   "home": "Barry Town",
+   "away": "Caernarfon Town"
+  },
+  {
+   "eventId": "s9-99.774324386",
+   "time": "2026-11-28T12:40:00+00:00",
+   "league": "UAE. Division 1",
+   "home": "Al Jazira Al Hamra",
+   "away": "Emirates Cultural"
+  },
+  {
+   "eventId": "s9-99.774323766",
+   "time": "2026-11-28T12:40:00+00:00",
+   "league": "UAE. Division 1",
+   "home": "Al-Dhaid Sharjah",
+   "away": "Dibba Al-Hisn"
+  },
+  {
+   "eventId": "s9-99.773790890",
+   "time": "2026-11-28T12:45:00+00:00",
+   "league": "Greece. SuperLeague 2",
+   "home": "GS Marko",
+   "away": "P.A.O.K. II"
+  },
+  {
+   "eventId": "s9-99.773441790",
+   "time": "2026-11-28T12:45:00+00:00",
+   "league": "Iran. Pro League",
+   "home": "Esteghlal",
+   "away": "Sanat Naft Abadan"
+  },
+  {
+   "eventId": "s9-99.774333579",
+   "time": "2026-11-28T12:45:00+00:00",
+   "league": "UAE. Division 1",
+   "home": "Al Ittifaq Dubai",
+   "away": "Al Hamriah"
+  },
+  {
+   "eventId": "s9-99.773307469",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Austria. WFV. Landesliga 2",
+   "home": "Kapellerfeld",
+   "away": "Ankerbrot"
+  },
+  {
+   "eventId": "s9-99.774311862",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Belgium. First Division. Women",
+   "home": "Schoonbeek-Bilzen (Women)",
+   "away": "White Star Woluwe (Women)"
+  },
+  {
+   "eventId": "s9-99.774301180",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "CAF Champions League",
+   "home": "Young Africans",
+   "away": "MC Alger"
+  },
+  {
+   "eventId": "s9-99.773716908",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Czech Republic. 2 Liga",
+   "home": "Prostejov",
+   "away": "Viktoria Zizkov"
+  },
+  {
+   "eventId": "s9-99.774101375",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Denmark Championship. Division U19",
+   "home": "Horsholm-Usserod U19",
+   "away": "Næstved U19"
+  },
+  {
+   "eventId": "s9-99.774057228",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Fortuna Koln U19",
+   "away": "Wehen Wiesbaden U19"
+  },
+  {
+   "eventId": "s9-99.774056234",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Greuther Furth U19",
+   "away": "Rot-Weiß Erfurt U19"
+  },
+  {
+   "eventId": "s9-99.774055684",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany Bundesliga U19",
+   "home": "Holstein U19",
+   "away": "Berliner 07 U19"
+  },
+  {
+   "eventId": "s9-99.773274838",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. 3. Liga",
+   "home": "1. Saarbrucken",
+   "away": "Alemannia Aachen"
+  },
+  {
+   "eventId": "s9-99.772884201",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. 3. Liga",
+   "home": "Preussen Munster",
+   "away": "Verl"
+  },
+  {
+   "eventId": "s9-99.772884198",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. 3. Liga",
+   "home": "Rot-Weiss Essen",
+   "away": "TSG 1899 Hoffenheim II"
+  },
+  {
+   "eventId": "s9-99.773219564",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. 3. Liga",
+   "home": "Waldhof Mannheim",
+   "away": "VfB Stuttgart II"
+  },
+  {
+   "eventId": "s9-99.772884195",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. 3. Liga",
+   "home": "Wurzburger Kickers",
+   "away": "Fortuna Dusseldorf"
+  },
+  {
+   "eventId": "s9-99.773147015",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "1860 Rosenheim",
+   "away": "Landshut"
+  },
+  {
+   "eventId": "s9-99.773143781",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "ASV Neumarkt",
+   "away": "Bayern Hof"
+  },
+  {
+   "eventId": "s9-99.773143049",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "DJK Ammerthal",
+   "away": "Weiden"
+  },
+  {
+   "eventId": "s9-99.773143363",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Eintracht Bamberg",
+   "away": "DJK Gebenbach"
+  },
+  {
+   "eventId": "s9-99.773143364",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Großbardorf",
+   "away": "Kornburg"
+  },
+  {
+   "eventId": "s9-99.773147016",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Heimstetten",
+   "away": "Schwabmunchen"
+  },
+  {
+   "eventId": "s9-99.773143365",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Ingolstadt 04 II",
+   "away": "Viktoria Aschaffenburg"
+  },
+  {
+   "eventId": "s9-99.773146610",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Ismaning",
+   "away": "Deisenhofen"
+  },
+  {
+   "eventId": "s9-99.773146611",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Kirchanschoring",
+   "away": "1920 Gundelfingen"
+  },
+  {
+   "eventId": "s9-99.773146612",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Kottern-St. Mang",
+   "away": "Hankofen-Hailing"
+  },
+  {
+   "eventId": "s9-99.773146613",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Pipinsried",
+   "away": "Schalding-Heining"
+  },
+  {
+   "eventId": "s9-99.773143782",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "TSV 1861 Nordlingen",
+   "away": "Wurzburger FV"
+  },
+  {
+   "eventId": "s9-99.774281661",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Rheinland-Pfalz",
+   "home": "Ahrweiler",
+   "away": "Rot Weiss Wittlich"
+  },
+  {
+   "eventId": "s9-99.774281666",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Rheinland-Pfalz",
+   "home": "Cosmos Koblenz",
+   "away": "07 Diefflen"
+  },
+  {
+   "eventId": "s9-99.774281662",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Rheinland-Pfalz",
+   "home": "Pirmasens",
+   "away": "Wormatia Worms"
+  },
+  {
+   "eventId": "s9-99.774281663",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Oberliga Rheinland-Pfalz",
+   "home": "Rot-Weiss Koblenz",
+   "away": "TuS Mechtersheim"
+  },
+  {
+   "eventId": "s9-99.773219814",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Bayern",
+   "home": "Ansbach",
+   "away": "Memmingen"
+  },
+  {
+   "eventId": "s9-99.773222995",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Bayern",
+   "home": "DJK Vilzing",
+   "away": "Eltersdorf"
+  },
+  {
+   "eventId": "s9-99.773220277",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Bayern",
+   "home": "Landsberg",
+   "away": "Augsburg II"
+  },
+  {
+   "eventId": "s9-99.773220605",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Bayern",
+   "home": "TSV Schwaben Augsburg",
+   "away": "Illertissen"
+  },
+  {
+   "eventId": "s9-99.773222231",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Bayern",
+   "home": "Unterhaching",
+   "away": "1. Nurnberg II"
+  },
+  {
+   "eventId": "s9-99.773220276",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Bayern",
+   "home": "VfB Eichstatt",
+   "away": "Buchbach"
+  },
+  {
+   "eventId": "s9-99.774285879",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga North",
+   "home": "ETSV Weiche",
+   "away": "HSC Hannover"
+  },
+  {
+   "eventId": "s9-99.774283144",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga North",
+   "home": "Eimsbutteler TV",
+   "away": "Eintracht Norderstedt 03"
+  },
+  {
+   "eventId": "s9-99.774286425",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga North",
+   "home": "FSV Schoningen",
+   "away": "Werder Bremen II"
+  },
+  {
+   "eventId": "s9-99.774286426",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga North",
+   "home": "VfB Oldenburg",
+   "away": "Todesfelde"
+  },
+  {
+   "eventId": "s9-99.774259574",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Sudwest",
+   "home": "Astoria Walldorf",
+   "away": "Kickers Offenbach"
+  },
+  {
+   "eventId": "s9-99.774257965",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Sudwest",
+   "home": "Eintracht Frankfurt II",
+   "away": "KSV Hessen Kassel"
+  },
+  {
+   "eventId": "s9-99.774258519",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Sudwest",
+   "home": "Freiburg II",
+   "away": "VfR Aalen"
+  },
+  {
+   "eventId": "s9-99.774258518",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Sudwest",
+   "home": "Heilbronn Freiberg",
+   "away": "1. Kaiserslautern II"
+  },
+  {
+   "eventId": "s9-99.774258920",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga Sudwest",
+   "home": "TSV Steinbach",
+   "away": "Sandhausen"
+  },
+  {
+   "eventId": "s9-99.774328404",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga West",
+   "home": "Bocholt",
+   "away": "VfB 03 Hilden"
+  },
+  {
+   "eventId": "s9-99.774333469",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga West",
+   "home": "Borussia Dortmund U23",
+   "away": "VfL Bochum U23"
+  },
+  {
+   "eventId": "s9-99.774334374",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga West",
+   "home": "Gutersloh 2000",
+   "away": "Sportfreunde Lotte"
+  },
+  {
+   "eventId": "s9-99.774334375",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga West",
+   "home": "Rot-Weiß Oberhausen",
+   "away": "Bonner"
+  },
+  {
+   "eventId": "s9-99.774334831",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga West",
+   "home": "SV Rodinghausen",
+   "away": "Borussia Monchengladbach U23"
+  },
+  {
+   "eventId": "s9-99.774335167",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga West",
+   "home": "Sportfreunde Siegen",
+   "away": "Westfalia Rhynern"
+  },
+  {
+   "eventId": "s9-99.774335166",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga West",
+   "home": "Wattenscheid 09",
+   "away": "Bergisch Gladbach 09"
+  },
+  {
+   "eventId": "s9-99.774340951",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Germany. Regionalliga West",
+   "home": "Wiedenbruck 2000",
+   "away": "1. Köln II"
+  },
+  {
+   "eventId": "s9-99.773787971",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Greece. SuperLeague 2",
+   "home": "Asteras Tripolis II",
+   "away": "Niki Volos"
+  },
+  {
+   "eventId": "s9-99.773786005",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Greece. SuperLeague 2",
+   "home": "Panserraikos",
+   "away": "AFC Pyrgos"
+  },
+  {
+   "eventId": "s9-99.774364421",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Iraq. Stars League",
+   "home": "Al-Naft",
+   "away": "Al-Quwa Al-Jawiya"
+  },
+  {
+   "eventId": "s9-99.773245715",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Israel. Premier League",
+   "home": "Bnei Sakhnin",
+   "away": "Maccabi Haifa"
+  },
+  {
+   "eventId": "s9-99.774314546",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "Koninklijke HFC",
+   "away": "RKAV Volendam"
+  },
+  {
+   "eventId": "s9-99.773640588",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Qatar Championship",
+   "home": "Al-Wakrah",
+   "away": "Al Sadd"
+  },
+  {
+   "eventId": "s9-99.773534279",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Serbia. SuperLiga",
+   "home": "Radnik Surdulica",
+   "away": "Vojvodina Novi Sad"
+  },
+  {
+   "eventId": "s9-99.773564318",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Serbia. SuperLiga",
+   "home": "Zemun",
+   "away": "Radnicki 1923"
+  },
+  {
+   "eventId": "s9-99.769399617",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Spain. La Liga",
+   "home": "Real Betis",
+   "away": "Rayo Vallecano"
+  },
+  {
+   "eventId": "s9-99.773731964",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Juan Camilo Hernandez Suarez",
+   "away": "Rayo Vallecano"
+  },
+  {
+   "eventId": "s9-99.773731660",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Troy Parrott",
+   "away": "Rayo Vallecano"
+  },
+  {
+   "eventId": "s9-99.773186927",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Spain. Segunda Division",
+   "home": "Las Palmas",
+   "away": "Andorra Andorra la Vella"
+  },
+  {
+   "eventId": "s9-99.774185139",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Tanzania. Premier League",
+   "home": "Mashujaa",
+   "away": "TRA United"
+  },
+  {
+   "eventId": "s9-99.772884221",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Turkey. SuperLiga",
+   "home": "Samsunspor",
+   "away": "Genclerbirligi"
+  },
+  {
+   "eventId": "s9-99.773556635",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Turkey. TFF 1. Lig",
+   "home": "Vanspor",
+   "away": "Bursaspor"
+  },
+  {
+   "eventId": "s9-99.773810755",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Zambia. Super League",
+   "home": "Zanaco",
+   "away": "Nchanga Rangers"
+  },
+  {
+   "eventId": "s9-99.773544804",
+   "time": "2026-11-28T13:15:00+00:00",
+   "league": "Bulgaria. First League",
+   "home": "Botev Vratsa",
+   "away": "Ludogorets 1945"
+  },
+  {
+   "eventId": "s9-99.774300986",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Germany. Oberliga Rheinland-Pfalz",
+   "home": "Emmelshausen Karbach",
+   "away": "Schott Mainz"
+  },
+  {
+   "eventId": "s9-99.773802875",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Italy. Serie C. Group A",
+   "home": "Carpi 1909",
+   "away": "Calcio Lecco 1912"
+  },
+  {
+   "eventId": "s9-99.773798495",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Italy. Serie C. Group A",
+   "home": "Novara Calcio",
+   "away": "Alcione Milano"
+  },
+  {
+   "eventId": "s9-99.773853963",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Italy. Serie C. Group B",
+   "home": "A.S. Gubbio 1910",
+   "away": "Vado"
+  },
+  {
+   "eventId": "s9-99.773783898",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Italy. Serie C. Group B",
+   "home": "Delfino Pescara 1936",
+   "away": "Pianese A.S.D"
+  },
+  {
+   "eventId": "s9-99.773872132",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Italy. Serie C. Group B",
+   "home": "Guidonia Montecelio",
+   "away": "S.S.D. Citta di Campobasso"
+  },
+  {
+   "eventId": "s9-99.773873676",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Italy. Serie C. Group C",
+   "home": "Giugliano",
+   "away": "Altamura"
+  },
+  {
+   "eventId": "s9-99.774322115",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Italy. Serie D",
+   "home": "Arconatese",
+   "away": "Cittadella Vis Modena"
+  },
+  {
+   "eventId": "s9-99.773957070",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Libya. Premier League",
+   "home": "Al Khums",
+   "away": "Al-Ittihad Misurata"
+  },
+  {
+   "eventId": "s9-99.773961131",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Libya. Premier League",
+   "home": "Al-Sharara",
+   "away": "Al Ittihad Al Asskary"
+  },
+  {
+   "eventId": "s9-99.773960169",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Libya. Premier League",
+   "home": "Olympic Azzaweya",
+   "away": "Al-Ittihad Tripoli"
+  },
+  {
+   "eventId": "s9-99.774315053",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "GVVV Veenendaal",
+   "away": "BVV Barendrecht"
+  },
+  {
+   "eventId": "s9-99.774314543",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "Hardenberg Heemse Combinatie",
+   "away": "VV Katwijk"
+  },
+  {
+   "eventId": "s9-99.774314549",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "Rijnsburgse Boys",
+   "away": "Spakenburg"
+  },
+  {
+   "eventId": "s9-99.769382510",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "Russia. Premier League",
+   "home": "CSKA Moscow",
+   "away": "Zenit Saint Petersburg"
+  },
+  {
+   "eventId": "s9-99.774367935",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "South Africa. 1st Division",
+   "home": "Cape Town City",
+   "away": "Venda"
+  },
+  {
+   "eventId": "s9-99.774360054",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "South Africa. 1st Division",
+   "home": "Leicesterford City",
+   "away": "Hope Cape Town"
+  },
+  {
+   "eventId": "s9-99.774365163",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "South Africa. 1st Division",
+   "home": "Magesi",
+   "away": "Lerumo Lions"
+  },
+  {
+   "eventId": "s9-99.774338992",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "South Africa. Premier Soccer League",
+   "home": "AmaZulu",
+   "away": "Milford"
+  },
+  {
+   "eventId": "s9-99.774156303",
+   "time": "2026-11-28T13:30:00+00:00",
+   "league": "South Africa. Premier Soccer League",
+   "home": "Chippa United",
+   "away": "Kaizer Chiefs"
+  },
+  {
+   "eventId": "s9-99.774370071",
+   "time": "2026-11-28T13:45:00+00:00",
+   "league": "Iraq. Stars League",
+   "home": "Al-Talaba",
+   "away": "Al Minaa Basra"
+  },
+  {
+   "eventId": "s9-99.772916419",
+   "time": "2026-11-28T13:45:00+00:00",
+   "league": "Poland. Ekstraklasa",
+   "home": "Widzew Lodz",
+   "away": "Zaglebie Lubin"
+  },
+  {
+   "eventId": "s9-99.774310914",
+   "time": "2026-11-28T13:50:00+00:00",
+   "league": "Sultan Qaboos Cup",
+   "home": "Oman Club",
+   "away": "Sur Club"
+  },
+  {
+   "eventId": "s9-99.773589183",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Armenia. Premier League",
+   "home": "Urartu",
+   "away": "Shirak"
+  },
+  {
+   "eventId": "s9-99.773308382",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Austria. WFV. Landesliga 2",
+   "home": "DSV Fortuna 05",
+   "away": "Sportunion Schonbrunn"
+  },
+  {
+   "eventId": "s9-99.774319927",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Belgium. First Division. Women",
+   "home": "Zulte Waregem II (Women)",
+   "away": "K Olsa Brakel (Women)"
+  },
+  {
+   "eventId": "s9-99.774335180",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Botswana Championship",
+   "home": "TAFIC",
+   "away": "Township Rollers"
+  },
+  {
+   "eventId": "s9-99.773117416",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Club Friendlies",
+   "home": "HIFK",
+   "away": "PPJ"
+  },
+  {
+   "eventId": "s9-99.773557291",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Croatia. HNL",
+   "home": "NK Lokomotiva",
+   "away": "Slaven Belupo"
+  },
+  {
+   "eventId": "s9-99.772916416",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Czech Republic. Chance Liga",
+   "home": "Mlada Boleslav",
+   "away": "Sigma Olomouc"
+  },
+  {
+   "eventId": "s9-99.772923930",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Czech Republic. Chance Liga",
+   "home": "Teplice",
+   "away": "Slovan Liberec"
+  },
+  {
+   "eventId": "s9-99.774318911",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "England. Premier League 2",
+   "home": "Liverpool U21",
+   "away": "Birmingham City U21"
+  },
+  {
+   "eventId": "s9-99.773143783",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "ASV Cham",
+   "away": "Stadeln"
+  },
+  {
+   "eventId": "s9-99.773147017",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Germany. Oberliga Bayern",
+   "home": "Erlbach",
+   "away": "TSV 1880 Wasserburg"
+  },
+  {
+   "eventId": "s9-99.774286427",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Germany. Regionalliga North",
+   "home": "SV Atlas Delmenhorst",
+   "away": "SSV Jeddeloh"
+  },
+  {
+   "eventId": "s9-99.773760657",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Hungary. NB II",
+   "home": "Szeged-Csanad Grosics Akademia",
+   "away": "Ajka"
+  },
+  {
+   "eventId": "s9-99.773477932",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "India. Super League",
+   "home": "Chennaiyin",
+   "away": "Mumbai City"
+  },
+  {
+   "eventId": "s9-99.773442464",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Iran. Pro League",
+   "home": "Sepahan Isfahan",
+   "away": "Nassaji Mazandaran"
+  },
+  {
+   "eventId": "s9-99.769205567",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie A",
+   "home": "Frosinone Calcio",
+   "away": "Parma"
+  },
+  {
+   "eventId": "s9-99.773946634",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Alessio Zerbin",
+   "away": "Parma"
+  },
+  {
+   "eventId": "s9-99.773946635",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Fares Ghedjemis",
+   "away": "Parma"
+  },
+  {
+   "eventId": "s9-99.773946636",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Giorgi Kvernadze",
+   "away": "Parma"
+  },
+  {
+   "eventId": "s9-99.773946886",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Tomas Bobcek",
+   "away": "Parma"
+  },
+  {
+   "eventId": "s9-99.773184809",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie B",
+   "home": "Ascoli Calcio 1898",
+   "away": "Virtus Entella"
+  },
+  {
+   "eventId": "s9-99.773184806",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie B",
+   "home": "Carrarese Calcio",
+   "away": "Juve Stabia"
+  },
+  {
+   "eventId": "s9-99.773185679",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie B",
+   "home": "Empoli",
+   "away": "Hellas Verona"
+  },
+  {
+   "eventId": "s9-99.774293709",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Italy. Serie D",
+   "home": "Brian Lignano",
+   "away": "Lavarian Mortean Esperia"
+  },
+  {
+   "eventId": "s9-99.773963917",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Jordan. Premier League",
+   "home": "Al-Arabi Irbid",
+   "away": "Al-Faisaly Amman"
+  },
+  {
+   "eventId": "s9-99.774350691",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Malta. Premier League",
+   "home": "Floriana",
+   "away": "Hamrun Spartans"
+  },
+  {
+   "eventId": "s9-99.773988311",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Netherlands Championship U19",
+   "home": "AZ Alkmaar U19",
+   "away": "N.E.C. U19"
+  },
+  {
+   "eventId": "s9-99.774315059",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "IJsselmeervogels",
+   "away": "Sparta Rotterdam II"
+  },
+  {
+   "eventId": "s9-99.774330793",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "Kloetinge",
+   "away": "Almere City II"
+  },
+  {
+   "eventId": "s9-99.774330790",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "Kozakken Boys",
+   "away": "AFC Amsterdamsche"
+  },
+  {
+   "eventId": "s9-99.774314540",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "Quick Boys",
+   "away": "De Treffers"
+  },
+  {
+   "eventId": "s9-99.774315631",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Netherlands. Tweede Divisie",
+   "home": "ROHDA Raalte",
+   "away": "Hoekse Sportvereniging Hoek"
+  },
+  {
+   "eventId": "s9-99.773037323",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Northern Ireland. IFA Premiership",
+   "home": "Crusaders",
+   "away": "Linfield"
+  },
+  {
+   "eventId": "s9-99.774363910",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Juventude Evora",
+   "away": "Santa Clara II"
+  },
+  {
+   "eventId": "s9-99.772938643",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Portugal. Segunda Liga",
+   "home": "Chaves",
+   "away": "Tondela"
+  },
+  {
+   "eventId": "s9-99.774363391",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Serbia. 1st League",
+   "home": "TSC Backa Topola",
+   "away": "Napredak Krusevac"
+  },
+  {
+   "eventId": "s9-99.773549131",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Slovenia. League 1",
+   "home": "NK Bravo",
+   "away": "NK Aluminij"
+  },
+  {
+   "eventId": "s9-99.774025801",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Sweden. Qualification",
+   "home": "Norrby",
+   "away": "Lunds"
+  },
+  {
+   "eventId": "s9-99.774318902",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Wales. Championship. South",
+   "home": "Llantwit Major",
+   "away": "Treowen Stars"
+  },
+  {
+   "eventId": "s9-99.774326976",
+   "time": "2026-11-28T14:00:00+00:00",
+   "league": "Wales. Championship. South",
+   "home": "Trethomas Bluebirds",
+   "away": "Ynyshir Albions"
+  },
+  {
+   "eventId": "s9-99.773640585",
+   "time": "2026-11-28T14:15:00+00:00",
+   "league": "UAE. Pro League",
+   "home": "Al Wasl",
+   "away": "Al Dhafra"
+  },
+  {
+   "eventId": "s9-99.771477457",
+   "time": "2026-11-28T14:20:00+00:00",
+   "league": "Saudi Arabia. Saudi Professional League",
+   "home": "Al Ettifaq Dammam",
+   "away": "Al-Hilal Riyadh"
+  },
+  {
+   "eventId": "s9-99.773102230",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Austria. Second League",
+   "home": "ASK Voitsberg",
+   "away": "Austria Wien II"
+  },
+  {
+   "eventId": "s9-99.773093947",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Austria. Second League",
+   "home": "Admira Wacker",
+   "away": "Liefering Salzburg"
+  },
+  {
+   "eventId": "s9-99.773099340",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Austria. Second League",
+   "home": "Bregenz",
+   "away": "Austria Salzburg"
+  },
+  {
+   "eventId": "s9-99.773092110",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Austria. Second League",
+   "home": "Rapid Wien II",
+   "away": "Kapfenberger"
+  },
+  {
+   "eventId": "s9-99.774413494",
+   "time": "2026-11-28T14:30:00+00:00",
    "league": "Austria. Second League",
    "home": "SKU Amstetten",
    "away": "SKN St. Polten"
   },
   {
-   "eventId": "s9-99.771585111",
-   "time": "2026-11-27T17:30:00+00:00",
-   "league": "Club Friendlies",
-   "home": "Osters",
-   "away": "Karlskrona"
-  },
-  {
-   "eventId": "s9-99.774228618",
-   "time": "2026-11-27T17:30:00+00:00",
-   "league": "Estonia. Qualification",
-   "home": "Tallinna Kalev U21",
-   "away": "Viimsi U21"
-  },
-  {
-   "eventId": "s9-99.772938632",
-   "time": "2026-11-27T17:30:00+00:00",
-   "league": "Germany. 2. Bundesliga",
-   "home": "1. Heidenheim",
-   "away": "Nurnberg"
-  },
-  {
-   "eventId": "s9-99.773137689",
-   "time": "2026-11-27T17:30:00+00:00",
-   "league": "Germany. 2. Bundesliga",
-   "home": "VfL Bochum",
-   "away": "Darmstadt 98"
-  },
-  {
-   "eventId": "s9-99.771473294",
-   "time": "2026-11-27T17:30:00+00:00",
-   "league": "Saudi Arabia. Saudi Professional League",
-   "home": "Al-Ittihad Jeddah",
-   "away": "Neom SC"
-  },
-  {
-   "eventId": "s9-99.774059729",
-   "time": "2026-11-27T17:30:00+00:00",
-   "league": "South Africa. Premier Soccer League",
-   "home": "Stellenbosch",
-   "away": "TS Galaxy"
-  },
-  {
-   "eventId": "s9-99.774212933",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Austria. WFV. Landesliga",
-   "home": "Schwechat",
-   "away": "Austria XIII"
-  },
-  {
-   "eventId": "s9-99.774277784",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Coupe de France",
-   "home": "AS Cannes",
-   "away": "Le Puy"
-  },
-  {
-   "eventId": "s9-99.774227999",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Croatia. 3. NL",
-   "home": "NK Precko",
-   "away": "HASK"
-  },
-  {
-   "eventId": "s9-99.773541863",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Cyprus. First Division",
-   "home": "Omonia 29th May",
-   "away": "Omonia Aradippou"
-  },
-  {
-   "eventId": "s9-99.772913547",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Denmark. 1st Division",
-   "home": "Akademisk",
-   "away": "Vejle"
-  },
-  {
-   "eventId": "s9-99.772884808",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Denmark. 1st Division",
-   "home": "Hvidovre",
-   "away": "Kolding"
-  },
-  {
-   "eventId": "s9-99.773274844",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Denmark. Superliga",
-   "home": "SonderjyskE",
-   "away": "Brondby"
-  },
-  {
-   "eventId": "s9-99.774056631",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Germany Bundesliga U19",
-   "home": "Karlsruher U19",
-   "away": "Sandhausen U19"
-  },
-  {
-   "eventId": "s9-99.773324141",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Germany. 3. Liga",
-   "home": "Hansa Rostock",
-   "away": "Havelse"
-  },
-  {
-   "eventId": "s9-99.773142691",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Germany. Oberliga Bayern",
-   "home": "DJK Don Bosco",
-   "away": "Fortuna Regensburg"
-  },
-  {
-   "eventId": "s9-99.773143048",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Germany. Oberliga Bayern",
-   "home": "Neudrossenfeld",
-   "away": "Jahn Regensburg II"
-  },
-  {
-   "eventId": "s9-99.773253352",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Germany. Oberliga Hamburg",
-   "home": "Concordia Hamburg",
-   "away": "Teutonia 05 Ottensen"
-  },
-  {
-   "eventId": "s9-99.773219813",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Germany. Regionalliga Bayern",
-   "home": "1860 Munchen",
-   "away": "1. Schweinfurt 05"
-  },
-  {
-   "eventId": "s9-99.773219475",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Germany. Regionalliga Bayern",
-   "home": "Bayreuth",
-   "away": "Greuther Furth II"
-  },
-  {
-   "eventId": "s9-99.774208697",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Morocco. Botola",
-   "home": "Amal Tiznit",
-   "away": "Moghreb Tetouan"
-  },
-  {
-   "eventId": "s9-99.773245677",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Portugal. Segunda Liga",
-   "home": "Feirense",
-   "away": "Portimonense"
-  },
-  {
-   "eventId": "s9-99.773755898",
-   "time": "2026-11-27T18:00:00+00:00",
-   "league": "Spain. Primera Division RFEF. Group 1",
-   "home": "Athletic Bilbao II",
-   "away": "Cultural y Deportiva Leonesa"
-  },
-  {
-   "eventId": "s9-99.773991767",
-   "time": "2026-11-27T18:15:00+00:00",
-   "league": "Club Friendlies",
-   "home": "Vasalunds",
-   "away": "Arlanda"
-  },
-  {
-   "eventId": "s9-99.769183718",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Austria. Bundesliga",
-   "home": "Grazer AK",
-   "away": "Rheindorf Altach"
-  },
-  {
-   "eventId": "s9-99.774195163",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Belgium. Youth League",
-   "home": "S.K. Beveren U21",
-   "away": "Hasselt U21"
-  },
-  {
-   "eventId": "s9-99.773146189",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Germany. Oberliga Bayern",
-   "home": "Sportfreunde Schwaig 1913",
-   "away": "TuS Geretsried"
-  },
-  {
-   "eventId": "s9-99.773253995",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Germany. Oberliga Hamburg",
-   "home": "ETSV Hamburg",
-   "away": "TuS Dassendorf"
-  },
-  {
-   "eventId": "s9-99.773253994",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Germany. Oberliga Hamburg",
-   "home": "TuRa Harksheide",
-   "away": "TBS Pinneberg"
-  },
-  {
-   "eventId": "s9-99.773265168",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Hungary. NB I",
-   "home": "Gyori ETO",
-   "away": "Debreceni VSC"
-  },
-  {
-   "eventId": "s9-99.774216750",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Mali. Premiere Division",
-   "home": "Binga",
-   "away": "Korofina"
-  },
-  {
-   "eventId": "s9-99.773155869",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Romania. Liga 1",
-   "home": "Petrolul Ploiesti",
-   "away": "Arges Pitesti"
-  },
-  {
-   "eventId": "s9-99.772651609",
-   "time": "2026-11-27T18:30:00+00:00",
-   "league": "Switzerland. Challenge League",
-   "home": "Kriens",
-   "away": "Aarau"
-  },
-  {
-   "eventId": "s9-99.773307468",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Austria. WFV. Landesliga 2",
-   "home": "Cro-Vienna",
-   "away": "A11 Oberlaa"
-  },
-  {
-   "eventId": "s9-99.773319757",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Belgium. Challenger Pro League",
-   "home": "Francs Borains",
-   "away": "K.A.S. Eupen"
-  },
-  {
-   "eventId": "s9-99.773269515",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Belgium. Challenger Pro League",
-   "home": "Genk II",
-   "away": "Anderlecht II"
-  },
-  {
-   "eventId": "s9-99.774198941",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Belgium. Youth League",
-   "home": "RWD Molenbeek U21",
-   "away": "La Louviere U21"
-  },
-  {
-   "eventId": "s9-99.773575070",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Bolivia. Primera Division",
-   "home": "ABB",
-   "away": "Real Tomayapo"
-  },
-  {
-   "eventId": "s9-99.773584175",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "CAF Confederation Cup",
-   "home": "CR Belouizdad",
-   "away": "AS Douanes Nouakchott"
-  },
-  {
-   "eventId": "s9-99.774277783",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Coupe de France",
-   "home": "Saint-Omer",
-   "away": "Stade Malherbe Caen"
-  },
-  {
-   "eventId": "s9-99.773378866",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Ecuador. Serie A",
-   "home": "Delfin",
-   "away": "Orense Sporting Club"
-  },
-  {
-   "eventId": "s9-99.773253996",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Germany. Oberliga Hamburg",
-   "home": "Eintracht Norderstedt 03 II",
-   "away": "Victoria Hamburg"
-  },
-  {
-   "eventId": "s9-99.774226508",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Malta. Premier League",
-   "home": "Birkirkara",
-   "away": "Mosta"
-  },
-  {
-   "eventId": "s9-99.773499530",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Netherlands. Eerste Divisie",
-   "home": "AFC Ajax II",
-   "away": "Heracles Almelo"
-  },
-  {
-   "eventId": "s9-99.773476854",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Netherlands. Eerste Divisie",
-   "home": "AZ Alkmaar II",
-   "away": "Oss"
-  },
-  {
-   "eventId": "s9-99.773419335",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Netherlands. Eerste Divisie",
-   "home": "Dordrecht",
-   "away": "Vitesse"
-  },
-  {
-   "eventId": "s9-99.773476362",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Netherlands. Eerste Divisie",
-   "home": "MVV Maastricht",
-   "away": "PSV Eindhoven II"
-  },
-  {
-   "eventId": "s9-99.772668089",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Netherlands. Eerste Divisie",
-   "home": "NAC Breda",
-   "away": "Den Bosch"
-  },
-  {
-   "eventId": "s9-99.773452200",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Netherlands. Eerste Divisie",
-   "home": "Utrecht II",
-   "away": "Almere City"
-  },
-  {
-   "eventId": "s9-99.773040839",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Netherlands. Eerste Divisie",
-   "home": "VVV-Venlo",
-   "away": "Waalwijk"
-  },
-  {
-   "eventId": "s9-99.769296260",
-   "time": "2026-11-27T19:00:00+00:00",
-   "league": "Netherlands. Eredivisie",
-   "home": "Groningen",
-   "away": "Willem II"
-  },
-  {
-   "eventId": "s9-99.772665026",
-   "time": "2026-11-27T19:15:00+00:00",
-   "league": "Switzerland. Challenge League",
-   "home": "Etoile",
-   "away": "Stade Lausanne-Ouchy"
-  },
-  {
-   "eventId": "s9-99.772665029",
-   "time": "2026-11-27T19:15:00+00:00",
-   "league": "Switzerland. Challenge League",
-   "home": "Winterthur",
-   "away": "Rapperswil-Jona"
-  },
-  {
-   "eventId": "s9-99.773096017",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Austria. Second League",
-   "home": "Wacker Innsbruck",
-   "away": "First Vienna"
-  },
-  {
-   "eventId": "s9-99.774200949",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Belgium. Youth League",
-   "home": "K.V.C. Westerlo U21",
-   "away": "Lierse U21"
-  },
-  {
-   "eventId": "s9-99.774195169",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Belgium. Youth League",
-   "home": "Kortrijk U21",
-   "away": "RFC Seraing U21"
-  },
-  {
-   "eventId": "s9-99.769161014",
-   "time": "2026-11-27T19:30:00+00:00",
+   "eventId": "s9-99.769165958",
+   "time": "2026-11-28T14:30:00+00:00",
    "league": "Germany. Bundesliga",
-   "home": "Werder Bremen",
-   "away": "Borussia Monchengladbach"
+   "home": "1. FSV Mainz 05",
+   "away": "Union Berlin"
   },
   {
-   "eventId": "s9-99.773536538",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Ireland. Leinster League",
-   "home": "Kilbarrack United",
-   "away": "St. Mochta's"
+   "eventId": "s9-99.769167367",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Germany. Bundesliga",
+   "home": "1. Koln",
+   "away": "Elversberg"
   },
   {
-   "eventId": "s9-99.773536539",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Ireland. Leinster League",
-   "home": "MP Dublin",
-   "away": "Inchicore Athletic"
+   "eventId": "s9-99.769169984",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Germany. Bundesliga",
+   "home": "Hamburger",
+   "away": "Bayern Munich"
   },
   {
-   "eventId": "s9-99.774245704",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Ireland. Munster Senior League",
-   "home": "Midleton",
-   "away": "Ringmahon Rangers"
+   "eventId": "s9-99.769169975",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Germany. Bundesliga",
+   "home": "Paderborn 07",
+   "away": "Schalke 04"
   },
   {
-   "eventId": "s9-99.774247587",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Ireland. Munster Senior League",
-   "home": "Rockmount",
-   "away": "Douglas Hall"
+   "eventId": "s9-99.773253997",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Germany. Oberliga Hamburg",
+   "home": "Altonaer von 1893",
+   "away": "Suderelbe"
   },
   {
-   "eventId": "s9-99.773862579",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Italy. Serie C. Group C",
-   "home": "Foggia Calcio",
-   "away": "Casertana"
+   "eventId": "s9-99.774282047",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Germany. Oberliga Rheinland-Pfalz",
+   "home": "Engers",
+   "away": "Sportfreunde Eisbachtal 1919 e.V."
   },
   {
-   "eventId": "s9-99.773862147",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Italy. Serie C. Group C",
-   "home": "U.S.D. Cavese 1919",
-   "away": "Scafatese Calcio 1922"
-  },
-  {
-   "eventId": "s9-99.773196655",
-   "time": "2026-11-27T19:30:00+00:00",
+   "eventId": "s9-99.773526735",
+   "time": "2026-11-28T14:30:00+00:00",
    "league": "Poland Championship. Liga 1",
-   "home": "Chrobry Glogow",
-   "away": "Unia Skierniewice"
+   "home": "Bruk-Bet Termalica",
+   "away": "Stal Rzeszow"
   },
   {
-   "eventId": "s9-99.772716492",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Poland. Ekstraklasa",
-   "home": "Gornik Zabrze",
-   "away": "Wisla PLock"
+   "eventId": "s9-99.773238905",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Poland Championship. Liga 1",
+   "home": "Odra Opole",
+   "away": "KSP Polonia Warszawa"
   },
   {
-   "eventId": "s9-99.774277911",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Scotland. FA Cup",
-   "home": "Largs Thistle",
-   "away": "Ayr United"
+   "eventId": "s9-99.773525118",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Poland Championship. Liga 1",
+   "home": "Podbeskidzie Bielsko-Biala",
+   "away": "Pogon Grodzisk Mazowiecki"
   },
   {
-   "eventId": "s9-99.772883498",
-   "time": "2026-11-27T19:30:00+00:00",
-   "league": "Spain. Segunda Division",
-   "home": "Leganes",
-   "away": "Sabadell"
+   "eventId": "s9-99.774380274",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Wisla Krakow II",
+   "away": "Korona Kielce II"
   },
   {
-   "eventId": "s9-99.773309564",
-   "time": "2026-11-27T19:45:00+00:00",
+   "eventId": "s9-99.772938646",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Slovakia. Super League",
+   "home": "Dukla Banska Bystrica",
+   "away": "Ruzomberok"
+  },
+  {
+   "eventId": "s9-99.773302302",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Slovakia. Super League",
+   "home": "KFC Komarno",
+   "away": "MSK Zilina"
+  },
+  {
+   "eventId": "s9-99.773302299",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Slovakia. Super League",
+   "home": "Zeleziarne Podbrezova",
+   "away": "DAC 1904"
+  },
+  {
+   "eventId": "s9-99.774318896",
+   "time": "2026-11-28T14:30:00+00:00",
+   "league": "Wales. Championship. South",
+   "home": "Aberystwyth Town",
+   "away": "Pontypridd United"
+  },
+  {
+   "eventId": "s9-99.774329693",
+   "time": "2026-11-28T14:45:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 2",
+   "home": "Praviano",
+   "away": "Astur"
+  },
+  {
+   "eventId": "s9-99.774009917",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Albania. Superliga",
+   "home": "Vllaznia",
+   "away": "KF Laci"
+  },
+  {
+   "eventId": "s9-99.773308383",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Austria. WFV. Landesliga 2",
+   "home": "Nussdorfer AC",
+   "away": "ASV 13"
+  },
+  {
+   "eventId": "s9-99.774002411",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Azerbaijan. Premier League",
+   "home": "Sabah Baku",
+   "away": "Araz-Naxcıvan"
+  },
+  {
+   "eventId": "s9-99.774201488",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Bahrain. Premier League",
+   "home": "A'ali Club",
+   "away": "Riffa"
+  },
+  {
+   "eventId": "s9-99.774198009",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Bahrain. Premier League",
+   "home": "Sitra Club",
+   "away": "Al-Ahli Club Manama"
+  },
+  {
+   "eventId": "s9-99.773082718",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Belgium. Challenger Pro League",
+   "home": "NXT",
+   "away": "Lierse SK"
+  },
+  {
+   "eventId": "s9-99.773319760",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Belgium. Challenger Pro League",
+   "home": "Patro Eisden Maasmechelen",
+   "away": "Gent II"
+  },
+  {
+   "eventId": "s9-99.773049734",
+   "time": "2026-11-28T15:00:00+00:00",
    "league": "Belgium. Jupiler League",
-   "home": "Oud-Heverlee Leuven",
-   "away": "Kortrijk"
+   "home": "K.V.C. Westerlo",
+   "away": "RAAL La Louviere"
   },
   {
-   "eventId": "s9-99.773835908",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "England. National League",
-   "home": "Scunthorpe United",
-   "away": "Wealdstone"
+   "eventId": "s9-99.773843942",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Bosnia and Herzegovina. Premier League",
+   "home": "Velez Mostar",
+   "away": "Zeljeznicar"
   },
   {
-   "eventId": "s9-99.774034405",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "England. Northern Premier League",
-   "home": "Rylands",
-   "away": "Lancaster City"
+   "eventId": "s9-99.774101376",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Denmark Championship. Division U19",
+   "home": "Hvidovre U19",
+   "away": "Vendsyssel U19"
   },
   {
-   "eventId": "s9-99.769228689",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "France. Ligue 1",
-   "home": "Stade Brestois 29",
-   "away": "Paris"
-  },
-  {
-   "eventId": "s9-99.773536540",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Ireland. Leinster League",
-   "home": "Glebe North",
-   "away": "Wayside Celtic"
-  },
-  {
-   "eventId": "s9-99.769198567",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Italy. Serie A",
-   "home": "Unione Venezia",
-   "away": "Bologna 1909"
-  },
-  {
-   "eventId": "s9-99.773945526",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Italy. Serie A. Team vs Player",
-   "home": "Unione Venezia",
-   "away": "Riccardo Orsolini"
-  },
-  {
-   "eventId": "s9-99.773945909",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Italy. Serie A. Team vs Player",
-   "home": "Unione Venezia",
-   "away": "Jens Odgaard"
-  },
-  {
-   "eventId": "s9-99.773945908",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Italy. Serie A. Team vs Player",
-   "home": "Unione Venezia",
-   "away": "Artem Dovbyk"
-  },
-  {
-   "eventId": "s9-99.773945525",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Italy. Serie A. Team vs Player",
-   "home": "Unione Venezia",
-   "away": "Roberto Piccoli"
-  },
-  {
-   "eventId": "s9-99.774277895",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Northern Ireland. Championship",
-   "home": "Institute",
-   "away": "Ards"
-  },
-  {
-   "eventId": "s9-99.774277897",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Northern Ireland. Championship",
-   "home": "Moyola Park",
-   "away": "Annagh United"
-  },
-  {
-   "eventId": "s9-99.774091816",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Northern Ireland. Championship",
-   "home": "Newry City AFC",
-   "away": "Ballinamallard United"
-  },
-  {
-   "eventId": "s9-99.774277901",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Northern Ireland. Championship",
-   "home": "Warrenpoint Town",
-   "away": "Harland & Wolff Welders"
-  },
-  {
-   "eventId": "s9-99.773037332",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Northern Ireland. IFA Premiership",
-   "home": "Coleraine",
-   "away": "Dungannon Swifts"
-  },
-  {
-   "eventId": "s9-99.773053376",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Northern Ireland. IFA Premiership",
-   "home": "Glentoran",
-   "away": "Larne"
-  },
-  {
-   "eventId": "s9-99.773585706",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Wales. Premier League",
-   "home": "Briton Ferry",
-   "away": "Pen-y-Bont"
-  },
-  {
-   "eventId": "s9-99.774045273",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Wales. Premier League",
-   "home": "Cambrian United",
-   "away": "Trefelin"
-  },
-  {
-   "eventId": "s9-99.773585703",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Wales. Premier League",
-   "home": "Cardiff Metropolitan University",
-   "away": "Airbus UK Broughton"
-  },
-  {
-   "eventId": "s9-99.774028628",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Wales. Premier League",
-   "home": "Colwyn Bay",
-   "away": "Ammanford AFC"
-  },
-  {
-   "eventId": "s9-99.773586422",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Wales. Premier League",
-   "home": "Flint Town United",
-   "away": "The New Saints"
-  },
-  {
-   "eventId": "s9-99.773586419",
-   "time": "2026-11-27T19:45:00+00:00",
-   "league": "Wales. Premier League",
-   "home": "Haverfordwest County",
-   "away": "Connah's Quay Nomads"
-  },
-  {
-   "eventId": "s9-99.772974906",
-   "time": "2026-11-27T20:00:00+00:00",
+   "eventId": "s9-99.773027003",
+   "time": "2026-11-28T15:00:00+00:00",
    "league": "England. Championship",
-   "home": "Southampton",
-   "away": "Middlesbrough"
+   "home": "Birmingham City",
+   "away": "Bolton Wanderers"
   },
   {
-   "eventId": "s9-99.768908939",
-   "time": "2026-11-27T20:00:00+00:00",
+   "eventId": "s9-99.773027012",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Championship",
+   "home": "Derby County",
+   "away": "Watford"
+  },
+  {
+   "eventId": "s9-99.773027000",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Championship",
+   "home": "Millwall",
+   "away": "Burnley"
+  },
+  {
+   "eventId": "s9-99.773027006",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Championship",
+   "home": "Queens Park Rangers",
+   "away": "Sheffield United"
+  },
+  {
+   "eventId": "s9-99.773023840",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Championship",
+   "home": "West Bromwich Albion",
+   "away": "Bristol City"
+  },
+  {
+   "eventId": "s9-99.773027009",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Championship",
+   "home": "West Ham United",
+   "away": "Stoke City"
+  },
+  {
+   "eventId": "s9-99.773023843",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Championship",
+   "home": "Wrexham",
+   "away": "Portsmouth"
+  },
+  {
+   "eventId": "s9-99.774068283",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Brentwood Town",
+   "away": "Whitehawk"
+  },
+  {
+   "eventId": "s9-99.774091813",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Burgess Hill Town",
+   "away": "Eastbourne Borough"
+  },
+  {
+   "eventId": "s9-99.774065631",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Chatham Town",
+   "away": "Carshalton Athletic"
+  },
+  {
+   "eventId": "s9-99.774066367",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Cheshunt",
+   "away": "Ramsgate"
+  },
+  {
+   "eventId": "s9-99.774078091",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Dartford",
+   "away": "Cray Wanderers"
+  },
+  {
+   "eventId": "s9-99.774077381",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Dulwich Hamlet",
+   "away": "Stanway Rovers"
+  },
+  {
+   "eventId": "s9-99.774067110",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Leatherhead",
+   "away": "Lewes"
+  },
+  {
+   "eventId": "s9-99.774078535",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Maldon & Tiptree",
+   "away": "St Albans City"
+  },
+  {
+   "eventId": "s9-99.774090656",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Three Bridges",
+   "away": "Wingate & Finchley"
+  },
+  {
+   "eventId": "s9-99.774076005",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Welling United",
+   "away": "Enfield Town"
+  },
+  {
+   "eventId": "s9-99.774058362",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Isthmian League",
+   "home": "Whyteleafe",
+   "away": "Aveley"
+  },
+  {
+   "eventId": "s9-99.773048428",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Bromley",
+   "away": "Burton Albion"
+  },
+  {
+   "eventId": "s9-99.773044356",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Leicester City",
+   "away": "Mansfield Town"
+  },
+  {
+   "eventId": "s9-99.773037307",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Luton Town",
+   "away": "Oxford United"
+  },
+  {
+   "eventId": "s9-99.773044350",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Sheffield Wednesday",
+   "away": "Reading"
+  },
+  {
+   "eventId": "s9-99.773044353",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Stevenage",
+   "away": "Blackpool"
+  },
+  {
+   "eventId": "s9-99.773037304",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Stockport County",
+   "away": "Leyton Orient"
+  },
+  {
+   "eventId": "s9-99.773037301",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Wigan Athletic",
+   "away": "Plymouth Argyle"
+  },
+  {
+   "eventId": "s9-99.773083632",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Wimbledon",
+   "away": "Barnsley"
+  },
+  {
+   "eventId": "s9-99.773044359",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League One",
+   "home": "Wycombe Wanderers",
+   "away": "Bradford City"
+  },
+  {
+   "eventId": "s9-99.773040858",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Colchester United",
+   "away": "York City"
+  },
+  {
+   "eventId": "s9-99.773040846",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Crewe Alexandra",
+   "away": "Grimsby Town"
+  },
+  {
+   "eventId": "s9-99.773040855",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Fleetwood Town",
+   "away": "Accrington Stanley"
+  },
+  {
+   "eventId": "s9-99.773051273",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Port Vale",
+   "away": "Newport County"
+  },
+  {
+   "eventId": "s9-99.773051270",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Rochdale",
+   "away": "Barnet"
+  },
+  {
+   "eventId": "s9-99.773040861",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Rotherham United",
+   "away": "Oldham Athletic"
+  },
+  {
+   "eventId": "s9-99.773041388",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Salford City",
+   "away": "Gillingham"
+  },
+  {
+   "eventId": "s9-99.773040852",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Shrewsbury Town",
+   "away": "Cheltenham Town"
+  },
+  {
+   "eventId": "s9-99.773040849",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Swindon Town",
+   "away": "Chesterfield"
+  },
+  {
+   "eventId": "s9-99.773051276",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. League Two",
+   "home": "Walsall",
+   "away": "Northampton Town"
+  },
+  {
+   "eventId": "s9-99.773830841",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League",
+   "home": "Altrincham",
+   "away": "Worthing"
+  },
+  {
+   "eventId": "s9-99.773830817",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League",
+   "home": "Boreham Wood",
+   "away": "Gateshead"
+  },
+  {
+   "eventId": "s9-99.773830823",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League",
+   "home": "Boston United",
+   "away": "Kidderminster Harriers"
+  },
+  {
+   "eventId": "s9-99.773830826",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League",
+   "home": "Carlisle United",
+   "away": "Sutton United"
+  },
+  {
+   "eventId": "s9-99.773830835",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League",
+   "home": "Eastleigh",
+   "away": "Halifax Town"
+  },
+  {
+   "eventId": "s9-99.773830814",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League",
+   "home": "Forest Green Rovers",
+   "away": "Tamworth"
+  },
+  {
+   "eventId": "s9-99.773830838",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League",
+   "home": "Harrogate Town",
+   "away": "Yeovil Town"
+  },
+  {
+   "eventId": "s9-99.773830832",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League",
+   "home": "Hornchurch",
+   "away": "Solihull Moors"
+  },
+  {
+   "eventId": "s9-99.773982195",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Buxton",
+   "away": "Spennymoor Town"
+  },
+  {
+   "eventId": "s9-99.773982786",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Chorley",
+   "away": "Harborough Town"
+  },
+  {
+   "eventId": "s9-99.773982183",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Darlington",
+   "away": "Brackley Town"
+  },
+  {
+   "eventId": "s9-99.773982783",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Hebburn Town",
+   "away": "Bedford Town"
+  },
+  {
+   "eventId": "s9-99.773982180",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "King's Lynn Town",
+   "away": "Macclesfield Town"
+  },
+  {
+   "eventId": "s9-99.773982780",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Marine",
+   "away": "Hednesford Town"
+  },
+  {
+   "eventId": "s9-99.773982789",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Merthyr Town",
+   "away": "Worksop Town"
+  },
+  {
+   "eventId": "s9-99.773982774",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Morecambe",
+   "away": "Spalding United"
+  },
+  {
+   "eventId": "s9-99.773982186",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Oxford City",
+   "away": "Southport"
+  },
+  {
+   "eventId": "s9-99.773982777",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Radcliffe",
+   "away": "Chester"
+  },
+  {
+   "eventId": "s9-99.773982192",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Scarborough Athletic",
+   "away": "Hereford"
+  },
+  {
+   "eventId": "s9-99.773982189",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League North",
+   "home": "Telford United",
+   "away": "South Shields"
+  },
+  {
+   "eventId": "s9-99.773988264",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Billericay Town",
+   "away": "Horsham"
+  },
+  {
+   "eventId": "s9-99.773994091",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Braintree Town",
+   "away": "Totton"
+  },
+  {
+   "eventId": "s9-99.774004441",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Dorking Wanderers",
+   "away": "Farnborough"
+  },
+  {
+   "eventId": "s9-99.774009895",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Farnham",
+   "away": "Ebbsfleet United"
+  },
+  {
+   "eventId": "s9-99.774003791",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Folkestone Invicta",
+   "away": "Hampton & Richmond Borough"
+  },
+  {
+   "eventId": "s9-99.774015976",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Hemel Hempstead Town",
+   "away": "Walton & Hersham"
+  },
+  {
+   "eventId": "s9-99.774009904",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Maidstone United",
+   "away": "Chesham United"
+  },
+  {
+   "eventId": "s9-99.774009898",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Salisbury",
+   "away": "Dagenham & Redbridge"
+  },
+  {
+   "eventId": "s9-99.774002422",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Slough Town",
+   "away": "Tonbridge Angels"
+  },
+  {
+   "eventId": "s9-99.774011266",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Torquay United",
+   "away": "Chelmsford City"
+  },
+  {
+   "eventId": "s9-99.774009901",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Truro City",
+   "away": "Dover Athletic"
+  },
+  {
+   "eventId": "s9-99.774009907",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. National League South",
+   "home": "Weston-super-Mare",
+   "away": "Maidenhead United"
+  },
+  {
+   "eventId": "s9-99.774036154",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Ashton United",
+   "away": "Stockton Town"
+  },
+  {
+   "eventId": "s9-99.774042349",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Avro",
+   "away": "Bamber Bridge"
+  },
+  {
+   "eventId": "s9-99.774036157",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Cleethorpes Town",
+   "away": "Quorn"
+  },
+  {
+   "eventId": "s9-99.774035429",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Curzon Ashton",
+   "away": "Bury"
+  },
+  {
+   "eventId": "s9-99.774037525",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Gainsborough Trinity",
+   "away": "Alfreton Town"
+  },
+  {
+   "eventId": "s9-99.774036151",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Guiseley",
+   "away": "Whitby Town"
+  },
+  {
+   "eventId": "s9-99.774043452",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Hyde United",
+   "away": "Warrington Town"
+  },
+  {
+   "eventId": "s9-99.774034408",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Ilkeston",
+   "away": "Emley"
+  },
+  {
+   "eventId": "s9-99.774041891",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Leek Town",
+   "away": "United of Manchester"
+  },
+  {
+   "eventId": "s9-99.774043449",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Northern Premier League",
+   "home": "Redcar Athletic",
+   "away": "Workington"
+  },
+  {
+   "eventId": "s9-99.768915198",
+   "time": "2026-11-28T15:00:00+00:00",
    "league": "England. Premier League",
-   "home": "Nottingham Forest",
-   "away": "Chelsea"
+   "home": "Leeds United",
+   "away": "Coventry City"
   },
   {
-   "eventId": "s9-99.769399623",
-   "time": "2026-11-27T20:00:00+00:00",
+   "eventId": "s9-99.768907465",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Premier League",
+   "home": "Manchester United",
+   "away": "Brentford"
+  },
+  {
+   "eventId": "s9-99.774363772",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Premier League. Team vs Player",
+   "home": "Bruno Fernandes",
+   "away": "Brentford"
+  },
+  {
+   "eventId": "s9-99.774363771",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Premier League. Team vs Player",
+   "home": "Bryan Mbeumo",
+   "away": "Brentford"
+  },
+  {
+   "eventId": "s9-99.774363290",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Premier League. Team vs Player",
+   "home": "Dominic Calvert-Lewin",
+   "away": "Coventry City"
+  },
+  {
+   "eventId": "s9-99.774363773",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Premier League. Team vs Player",
+   "home": "Marcus Rashford",
+   "away": "Brentford"
+  },
+  {
+   "eventId": "s9-99.774364083",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Premier League. Team vs Player",
+   "home": "Matheus Cunha",
+   "away": "Brentford"
+  },
+  {
+   "eventId": "s9-99.774363291",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Premier League. Team vs Player",
+   "home": "Noah Okafor",
+   "away": "Coventry City"
+  },
+  {
+   "eventId": "s9-99.774003798",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Anstey Nomads",
+   "away": "Stratford Town"
+  },
+  {
+   "eventId": "s9-99.774003804",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Banbury United",
+   "away": "Halesowen Town"
+  },
+  {
+   "eventId": "s9-99.774003819",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Bishop's Stortford",
+   "away": "Peterborough Sports"
+  },
+  {
+   "eventId": "s9-99.774002428",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Bromsgrove",
+   "away": "Hitchin Town"
+  },
+  {
+   "eventId": "s9-99.774002431",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Leamington",
+   "away": "Alvechurch"
+  },
+  {
+   "eventId": "s9-99.774003811",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Racing Club Warwick",
+   "away": "Kettering Town"
+  },
+  {
+   "eventId": "s9-99.774003815",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Real Bedford",
+   "away": "Needham Market"
+  },
+  {
+   "eventId": "s9-99.774003807",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Redditch United",
+   "away": "Bury Town"
+  },
+  {
+   "eventId": "s9-99.774003795",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Stamford",
+   "away": "Leighton Town"
+  },
+  {
+   "eventId": "s9-99.774002434",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Stourbridge",
+   "away": "Rushall Olympic"
+  },
+  {
+   "eventId": "s9-99.774003801",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. Central",
+   "home": "Worcester City",
+   "away": "Leiston"
+  },
+  {
+   "eventId": "s9-99.774003178",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Basingstoke Town",
+   "away": "Gloucester City"
+  },
+  {
+   "eventId": "s9-99.774002419",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Berkhamsted",
+   "away": "Evesham United"
+  },
+  {
+   "eventId": "s9-99.774001179",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Bracknell Town",
+   "away": "Wimborne Town"
+  },
+  {
+   "eventId": "s9-99.774003184",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Chichester City",
+   "away": "Uxbridge"
+  },
+  {
+   "eventId": "s9-99.774003175",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Chippenham Town",
+   "away": "Bath City"
+  },
+  {
+   "eventId": "s9-99.774003169",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Hanwell Town",
+   "away": "Frome Town"
+  },
+  {
+   "eventId": "s9-99.774001715",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Malvern Town",
+   "away": "Chertsey Town"
+  },
+  {
+   "eventId": "s9-99.774012565",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Plymouth Parkway",
+   "away": "Sholing"
+  },
+  {
+   "eventId": "s9-99.774003172",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Poole Town",
+   "away": "Havant & Waterlooville"
+  },
+  {
+   "eventId": "s9-99.774003181",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Taunton Town",
+   "away": "Gosport Borough"
+  },
+  {
+   "eventId": "s9-99.774001182",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "England. Southern Premier League. South",
+   "home": "Yate Town",
+   "away": "Hanworth Villa"
+  },
+  {
+   "eventId": "s9-99.769445749",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Greece. SuperLeague",
+   "home": "Iraklis Thessaloniki",
+   "away": "Panetolikos"
+  },
+  {
+   "eventId": "s9-99.769445764",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Greece. SuperLeague",
+   "home": "Volos NFC",
+   "away": "Asteras Tripolis"
+  },
+  {
+   "eventId": "s9-99.773619535",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Ireland. National League",
+   "home": "Home Farm",
+   "away": "Lucan United"
+  },
+  {
+   "eventId": "s9-99.774286316",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Northern Ireland. Championship",
+   "home": "Loughgall",
+   "away": "Strabane Athletic"
+  },
+  {
+   "eventId": "s9-99.774286313",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Northern Ireland. Championship",
+   "home": "Newington",
+   "away": "Glenavon"
+  },
+  {
+   "eventId": "s9-99.773037336",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Northern Ireland. IFA Premiership",
+   "home": "Bangor",
+   "away": "Carrick Rangers"
+  },
+  {
+   "eventId": "s9-99.773037326",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Northern Ireland. IFA Premiership",
+   "home": "Limavady United",
+   "away": "Portadown"
+  },
+  {
+   "eventId": "s9-99.773283084",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Norway. Eliteserien",
+   "home": "Bodo-Glimt",
+   "away": "KFUM-Kameratene"
+  },
+  {
+   "eventId": "s9-99.774349792",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Warta Sieradz",
+   "away": "LKS Lodz II"
+  },
+  {
+   "eventId": "s9-99.774055697",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. Liga 3",
+   "home": "Varzim",
+   "away": "Trofense"
+  },
+  {
+   "eventId": "s9-99.774361896",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "AD Ovarense",
+   "away": "Guarda"
+  },
+  {
+   "eventId": "s9-99.774379755",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Amora",
+   "away": "S.C.M. Aljustrelense"
+  },
+  {
+   "eventId": "s9-99.774361893",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Atletico Clube da Malveira",
+   "away": "Alverca II"
+  },
+  {
+   "eventId": "s9-99.774330265",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Braga II",
+   "away": "Rebordosa"
+  },
+  {
+   "eventId": "s9-99.774367929",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "C.D. Fátima",
+   "away": "Sport Benfica e Castelo Branco"
+  },
+  {
+   "eventId": "s9-99.774378132",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Castro Daire",
+   "away": "A.D. Camacha"
+  },
+  {
+   "eventId": "s9-99.774376344",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Cinfaes",
+   "away": "A.D. Sanjoanense"
+  },
+  {
+   "eventId": "s9-99.774375901",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Estrela Calheta",
+   "away": "Alpendorada"
+  },
+  {
+   "eventId": "s9-99.774330806",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "GD Braganca",
+   "away": "Vila Mea"
+  },
+  {
+   "eventId": "s9-99.774331379",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Maia Lidador",
+   "away": "Limianos"
+  },
+  {
+   "eventId": "s9-99.774352044",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Marialvas",
+   "away": "Naval 1893"
+  },
+  {
+   "eventId": "s9-99.774327595",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Montalegre",
+   "away": "Chaves II"
+  },
+  {
+   "eventId": "s9-99.774362677",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Nazarenos",
+   "away": "UD Serra"
+  },
+  {
+   "eventId": "s9-99.774352041",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "O Elvas C.A.D.",
+   "away": "Associacao Desportiva Nogueirense"
+  },
+  {
+   "eventId": "s9-99.774376340",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Oliveira do Hospital",
+   "away": "Mortagua"
+  },
+  {
+   "eventId": "s9-99.774370315",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Real Sport Clube",
+   "away": "SU Sintrense"
+  },
+  {
+   "eventId": "s9-99.774379036",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "S.C. Beira-Mar",
+   "away": "Salgueiros"
+  },
+  {
+   "eventId": "s9-99.774352805",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "S.U. 1º de Dezembro",
+   "away": "Lagoa"
+  },
+  {
+   "eventId": "s9-99.774378119",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Sertanense",
+   "away": "Fazendense"
+  },
+  {
+   "eventId": "s9-99.774370333",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Uniao Lamas",
+   "away": "AD Machico"
+  },
+  {
+   "eventId": "s9-99.774358158",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Portugal. National Championship",
+   "home": "Vitoria Setubal",
+   "away": "Grupo Desportivo Alcochetense"
+  },
+  {
+   "eventId": "s9-99.772686219",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Romania. Liga 1",
+   "home": "Corvinul Hunedoara",
+   "away": "Farul Constanta"
+  },
+  {
+   "eventId": "s9-99.774370263",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Annan Athletic",
+   "away": "Greenock Morton"
+  },
+  {
+   "eventId": "s9-99.774370266",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Bo'ness United",
+   "away": "Brechin City"
+  },
+  {
+   "eventId": "s9-99.774315634",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Clydebank",
+   "away": "Livingston"
+  },
+  {
+   "eventId": "s9-99.774327588",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Cumnock Juniors",
+   "away": "Arbroath"
+  },
+  {
+   "eventId": "s9-99.774346394",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Dumbarton",
+   "away": "Johnstone Burgh"
+  },
+  {
+   "eventId": "s9-99.774306167",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "East Kilbride",
+   "away": "Clyde"
+  },
+  {
+   "eventId": "s9-99.774346396",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Elgin City",
+   "away": "Partick Thistle"
+  },
+  {
+   "eventId": "s9-99.774357032",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Inverness",
+   "away": "Cove Rangers"
+  },
+  {
+   "eventId": "s9-99.774306908",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Montrose",
+   "away": "Hamilton Academical"
+  },
+  {
+   "eventId": "s9-99.774306177",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Musselburgh Athletic",
+   "away": "Airdrieonians"
+  },
+  {
+   "eventId": "s9-99.774306180",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Peterhead",
+   "away": "Edinburgh FC"
+  },
+  {
+   "eventId": "s9-99.774306911",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Queen of the South",
+   "away": "Dunfermline Athletic"
+  },
+  {
+   "eventId": "s9-99.774306905",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Queen's Park",
+   "away": "Spartans"
+  },
+  {
+   "eventId": "s9-99.774310905",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Renfrew",
+   "away": "Cumbernauld Colts"
+  },
+  {
+   "eventId": "s9-99.774321867",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Ross County",
+   "away": "Brora Rangers"
+  },
+  {
+   "eventId": "s9-99.774346400",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Stenhousemuir",
+   "away": "East Fife"
+  },
+  {
+   "eventId": "s9-99.774306173",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Stranraer",
+   "away": "Clachnacuddin"
+  },
+  {
+   "eventId": "s9-99.774306914",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Threave Rovers",
+   "away": "Alloa Athletic"
+  },
+  {
+   "eventId": "s9-99.774306917",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. FA Cup",
+   "home": "Troon",
+   "away": "Raith Rovers"
+  },
+  {
+   "eventId": "s9-99.768970155",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. Premier League",
+   "home": "Aberdeen",
+   "away": "Dundee"
+  },
+  {
+   "eventId": "s9-99.768970158",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. Premier League",
+   "home": "Dundee United",
+   "away": "St. Johnstone"
+  },
+  {
+   "eventId": "s9-99.768970161",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. Premier League",
+   "home": "Rangers",
+   "away": "Falkirk"
+  },
+  {
+   "eventId": "s9-99.768970965",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Scotland. Premier League",
+   "home": "St. Mirren",
+   "away": "Kilmarnock"
+  },
+  {
+   "eventId": "s9-99.773544823",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Serbia. SuperLiga",
+   "home": "Cukaricki",
+   "away": "Mladost Lucani"
+  },
+  {
+   "eventId": "s9-99.774033082",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Slovenian Championship U19",
+   "home": "Radomlje U19",
+   "away": "NK Triglav Kranj U19"
+  },
+  {
+   "eventId": "s9-99.773952228",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "Eibar II",
+   "away": "Marino de Luanco"
+  },
+  {
+   "eventId": "s9-99.773952231",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "SD Amorebieta",
+   "away": "UD Llanera"
+  },
+  {
+   "eventId": "s9-99.773972025",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 2",
+   "home": "CF Calamocha",
+   "away": "UE Olot"
+  },
+  {
+   "eventId": "s9-99.773953998",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 2",
+   "home": "Ebro",
+   "away": "Espanyol II"
+  },
+  {
+   "eventId": "s9-99.774191644",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 3",
+   "home": "Real Murcia II",
+   "away": "Castellon II"
+  },
+  {
+   "eventId": "s9-99.774297297",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 5",
+   "home": "C.D. Atletico Tordesillas",
+   "away": "Getafe II"
+  },
+  {
+   "eventId": "s9-99.774329687",
+   "time": "2026-11-28T15:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 1",
+   "home": "Pontevedra II",
+   "away": "Celtiga"
+  },
+  {
+   "eventId": "s9-99.769399608",
+   "time": "2026-11-28T15:15:00+00:00",
    "league": "Spain. La Liga",
-   "home": "Levante UD",
-   "away": "Racing de Santander"
+   "home": "Malaga",
+   "away": "Athletic Bilbao"
   },
   {
-   "eventId": "s9-99.773729673",
-   "time": "2026-11-27T20:00:00+00:00",
+   "eventId": "s9-99.773733014",
+   "time": "2026-11-28T15:15:00+00:00",
    "league": "Spain. La Liga. Team vs Player",
-   "home": "Ivan Romero",
-   "away": "Racing de Santander"
+   "home": "Malaga",
+   "away": "Inaki Williams"
   },
   {
-   "eventId": "s9-99.773729053",
-   "time": "2026-11-27T20:00:00+00:00",
+   "eventId": "s9-99.773733781",
+   "time": "2026-11-28T15:15:00+00:00",
    "league": "Spain. La Liga. Team vs Player",
-   "home": "Roger Brugue",
-   "away": "Racing de Santander"
+   "home": "Malaga",
+   "away": "Gorka Guruzeta"
   },
   {
-   "eventId": "s9-99.769443393",
-   "time": "2026-11-27T20:15:00+00:00",
+   "eventId": "s9-99.773187802",
+   "time": "2026-11-28T15:15:00+00:00",
+   "league": "Spain. Segunda Division",
+   "home": "Albacete Balompie",
+   "away": "Tenerife"
+  },
+  {
+   "eventId": "s9-99.773187799",
+   "time": "2026-11-28T15:15:00+00:00",
+   "league": "Spain. Segunda Division",
+   "home": "Eldense",
+   "away": "Girona"
+  },
+  {
+   "eventId": "s9-99.773324144",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Germany. 3. Liga",
+   "home": "Sonnenhof",
+   "away": "MSV Duisburg"
+  },
+  {
+   "eventId": "s9-99.773245706",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Israel. Premier League",
+   "home": "Hapoel Ramat Gan Giv'atayim",
+   "away": "Hapoel Ironi Kiryat Shmona"
+  },
+  {
+   "eventId": "s9-99.773967565",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Libya. Premier League",
+   "home": "Asswehly",
+   "away": "Al Majd Tripoli"
+  },
+  {
+   "eventId": "s9-99.773042819",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Netherlands. Eerste Divisie",
+   "home": "Emmen",
+   "away": "Helmond Sport"
+  },
+  {
+   "eventId": "s9-99.769285049",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Netherlands. Eredivisie",
+   "home": "Excelsior",
+   "away": "Telstar"
+  },
+  {
+   "eventId": "s9-99.769425209",
+   "time": "2026-11-28T15:30:00+00:00",
    "league": "Portugal. Primeira Liga",
-   "home": "Marítimo",
-   "away": "Nacional da Madeira"
+   "home": "Arouca",
+   "away": "Rio Ave"
   },
   {
-   "eventId": "s9-99.773790893",
-   "time": "2026-11-27T20:15:00+00:00",
+   "eventId": "s9-99.769425599",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Portugal. Primeira Liga",
+   "home": "Moreirense",
+   "away": "Santa Clara"
+  },
+  {
+   "eventId": "s9-99.773042822",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Portugal. Segunda Liga",
+   "home": "Farense",
+   "away": "UD Leiria"
+  },
+  {
+   "eventId": "s9-99.774003786",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Qatar Championship",
+   "home": "Al Ahli Doha",
+   "away": "Al-Duhail"
+  },
+  {
+   "eventId": "s9-99.773756865",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 1",
+   "home": "UD Logrones",
+   "away": "Barakaldo"
+  },
+  {
+   "eventId": "s9-99.773758659",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 1",
+   "home": "Unionistas de Salamanca CF",
+   "away": "Deportivo de A Coruna II"
+  },
+  {
+   "eventId": "s9-99.773792097",
+   "time": "2026-11-28T15:30:00+00:00",
    "league": "Spain. Primera Division RFEF. Group 2",
-   "home": "Hercules",
-   "away": "Antequera"
+   "home": "Algeciras",
+   "away": "Huesca"
   },
   {
-   "eventId": "s9-99.773650667",
-   "time": "2026-11-27T20:30:00+00:00",
-   "league": "Paraguay. Primera Division",
-   "home": "Club Nacional Asuncion",
-   "away": "Club Rubio Nu"
+   "eventId": "s9-99.773785445",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 2",
+   "home": "UD Ibiza",
+   "away": "Atletico Madrid II"
+  },
+  {
+   "eventId": "s9-99.774328901",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 4",
+   "home": "Aurrera de Vitoria",
+   "away": "CD Derio"
+  },
+  {
+   "eventId": "s9-99.774328892",
+   "time": "2026-11-28T15:30:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 8",
+   "home": "CA Bembibre",
+   "away": "UD Santa Marta"
+  },
+  {
+   "eventId": "s9-99.773283806",
+   "time": "2026-11-28T15:45:00+00:00",
+   "league": "Bulgaria. First League",
+   "home": "Cherno More Varna",
+   "away": "Botev Plovdiv"
+  },
+  {
+   "eventId": "s9-99.773042825",
+   "time": "2026-11-28T15:45:00+00:00",
+   "league": "Hungary. NB I",
+   "home": "MTK Budapest",
+   "away": "Ujpest"
+  },
+  {
+   "eventId": "s9-99.769166634",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Austria. Bundesliga",
+   "home": "Austria Wien",
+   "away": "Wolfsberger AC"
+  },
+  {
+   "eventId": "s9-99.774315047",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "CAF Champions League",
+   "home": "Esperance de Tunis",
+   "away": "Wiliete de Benguela"
+  },
+  {
+   "eventId": "s9-99.774288188",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "CAF Champions League",
+   "home": "Pyramids",
+   "away": "MAS Fez"
+  },
+  {
+   "eventId": "s9-99.774317608",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "CAF Champions League",
+   "home": "Zamalek",
+   "away": "Club Africain"
+  },
+  {
+   "eventId": "s9-99.773542436",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Cyprus. First Division",
+   "home": "APOEL",
+   "away": "Krasava ENY"
+  },
+  {
+   "eventId": "s9-99.773544819",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Cyprus. First Division",
+   "home": "Anorthosis",
+   "away": "Karmiotissa Pano Polemidion"
+  },
+  {
+   "eventId": "s9-99.773758645",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Hungary. NB II",
+   "home": "Gyirmot",
+   "away": "Videoton Fehervar"
+  },
+  {
+   "eventId": "s9-99.773245709",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Israel. Premier League",
+   "home": "Hapoel Haifa",
+   "away": "Ironi Tiberias"
+  },
+  {
+   "eventId": "s9-99.774250392",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Mali. Premiere Division",
+   "home": "Bougouba",
+   "away": "Derby Academie"
+  },
+  {
+   "eventId": "s9-99.774273754",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Mali. Premiere Division",
+   "home": "CS Bamako",
+   "away": "Stade Malien"
+  },
+  {
+   "eventId": "s9-99.772938649",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Poland Championship. Liga 1",
+   "home": "Arka Gdynia",
+   "away": "Ruch Chorzow"
+  },
+  {
+   "eventId": "s9-99.774380947",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Poland Championship. Liga 3",
+   "home": "Polonia Lidzbark",
+   "away": "Olimpia Elblag"
+  },
+  {
+   "eventId": "s9-99.769382495",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Russia. Premier League",
+   "home": "Baltika Kaliningrad",
+   "away": "Akhmat"
+  },
+  {
+   "eventId": "s9-99.774336478",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "South Africa. Premier Soccer League",
+   "home": "Kruger United",
+   "away": "Mamelodi Sundowns"
+  },
+  {
+   "eventId": "s9-99.773972028",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "Arosa",
+   "away": "Real Oviedo II"
+  },
+  {
+   "eventId": "s9-99.773974416",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "Atletico Astorga",
+   "away": "Deportivo Alaves II"
+  },
+  {
+   "eventId": "s9-99.773973333",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "Compostela",
+   "away": "Bergantinos"
+  },
+  {
+   "eventId": "s9-99.773972031",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "Coruxo",
+   "away": "Gimnastica de Torrelavega"
+  },
+  {
+   "eventId": "s9-99.773973845",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "Ourense",
+   "away": "Gernika"
+  },
+  {
+   "eventId": "s9-99.773961247",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 2",
+   "home": "Arnedo",
+   "away": "Reus Reddis"
+  },
+  {
+   "eventId": "s9-99.774296524",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 5",
+   "home": "CS Puertollano",
+   "away": "Atletico Madrid III"
+  },
+  {
+   "eventId": "s9-99.774296518",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 5",
+   "home": "RSD Alcalá",
+   "away": "Real Avila"
+  },
+  {
+   "eventId": "s9-99.774296521",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 5",
+   "home": "UD San Sebastián de los Reyes",
+   "away": "Navalcarnero"
+  },
+  {
+   "eventId": "s9-99.774324425",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 3",
+   "home": "CDE Atletico Mineros",
+   "away": "Laredo"
+  },
+  {
+   "eventId": "s9-99.774328888",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 4",
+   "home": "SD Leioa",
+   "away": "Santurtzi"
+  },
+  {
+   "eventId": "s9-99.774385191",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 6",
+   "home": "CD Roda",
+   "away": "Acero"
+  },
+  {
+   "eventId": "s9-99.774385194",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 6",
+   "home": "Utiel",
+   "away": "Athletic Torrellano"
+  },
+  {
+   "eventId": "s9-99.774329696",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 7",
+   "home": "Mexico Paracuellos de Jarama",
+   "away": "Rayo Ciudad Alcobendas"
+  },
+  {
+   "eventId": "s9-99.774069874",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Syria. Premier League",
+   "home": "Al-Wahda Damascus",
+   "away": "Al-Talia"
+  },
+  {
+   "eventId": "s9-99.772884218",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Turkey. SuperLiga",
+   "home": "Gaziantep",
+   "away": "Amedspor"
+  },
+  {
+   "eventId": "s9-99.773187805",
+   "time": "2026-11-28T16:00:00+00:00",
+   "league": "Turkey. TFF 1. Lig",
+   "home": "Muglaspor",
+   "away": "Mardin 1969 Spor"
+  },
+  {
+   "eventId": "s9-99.769238841",
+   "time": "2026-11-28T16:15:00+00:00",
+   "league": "France. Ligue 1",
+   "home": "Angers SCO",
+   "away": "RC Lens"
+  },
+  {
+   "eventId": "s9-99.773185682",
+   "time": "2026-11-28T16:15:00+00:00",
+   "league": "Italy. Serie B",
+   "home": "Vicenza Calcio",
+   "away": "Cesena"
+  },
+  {
+   "eventId": "s9-99.774204764",
+   "time": "2026-11-28T16:15:00+00:00",
+   "league": "Sierra Leone. Premier League",
+   "home": "BAI Bureh Warriors",
+   "away": "Kamboi Eagles"
+  },
+  {
+   "eventId": "s9-99.774205073",
+   "time": "2026-11-28T16:15:00+00:00",
+   "league": "Sierra Leone. Premier League",
+   "home": "Bhantal",
+   "away": "Kallon"
+  },
+  {
+   "eventId": "s9-99.774205352",
+   "time": "2026-11-28T16:15:00+00:00",
+   "league": "Sierra Leone. Premier League",
+   "home": "Bullom Stars",
+   "away": "Diamond Stars"
+  },
+  {
+   "eventId": "s9-99.773102755",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Austria. Second League",
+   "home": "Blau-Weiss Linz",
+   "away": "Sturm Graz II"
+  },
+  {
+   "eventId": "s9-99.774182209",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Ecuador. Serie A",
+   "home": "Universidad Catolica Quito",
+   "away": "Independiente del Valle"
+  },
+  {
+   "eventId": "s9-99.774249912",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Iraq. Stars League",
+   "home": "Newroz Sulaymaniyah",
+   "away": "Al-Kahrabaa"
+  },
+  {
+   "eventId": "s9-99.773797946",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Italy. Serie C. Group A",
+   "home": "Lumezzane",
+   "away": "Calcio Desenzano"
+  },
+  {
+   "eventId": "s9-99.773796844",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Italy. Serie C. Group A",
+   "home": "Ospitaletto",
+   "away": "Union Brescia"
+  },
+  {
+   "eventId": "s9-99.773796231",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Italy. Serie C. Group A",
+   "home": "Pergolettese 1932",
+   "away": "Giana Erminio"
+  },
+  {
+   "eventId": "s9-99.773803896",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Italy. Serie C. Group C",
+   "home": "Salernitana 1919",
+   "away": "Monopoli"
+  },
+  {
+   "eventId": "s9-99.773809038",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Italy. Serie C. Group C",
+   "home": "Sorrento Calcio",
+   "away": "Cosenza Calcio"
+  },
+  {
+   "eventId": "s9-99.773970779",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Jordan. Premier League",
+   "home": "Al Ramtha",
+   "away": "Al-Hussein"
+  },
+  {
+   "eventId": "s9-99.773968418",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Libya. Premier League",
+   "home": "Al-Jadida",
+   "away": "Al Taawun Ajdabiya"
+  },
+  {
+   "eventId": "s9-99.774342756",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Malta. Premier League",
+   "home": "Zabbar Saint Patrick",
+   "away": "Balzan"
+  },
+  {
+   "eventId": "s9-99.773044362",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Poland. Ekstraklasa",
+   "home": "Slask Wroclaw",
+   "away": "Katowice"
+  },
+  {
+   "eventId": "s9-99.773245721",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Slovenia. League 1",
+   "home": "Mura",
+   "away": "Maribor"
+  },
+  {
+   "eventId": "s9-99.773963940",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 2",
+   "home": "Barcelona II",
+   "away": "Terrassa"
+  },
+  {
+   "eventId": "s9-99.774190057",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 3",
+   "home": "UD Poblense",
+   "away": "Mallorca II"
+  },
+  {
+   "eventId": "s9-99.774190054",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 3",
+   "home": "Yeclano Deportivo",
+   "away": "Cieza"
+  },
+  {
+   "eventId": "s9-99.774310917",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 5",
+   "home": "Real Madrid III",
+   "away": "Salamanca UDS"
+  },
+  {
+   "eventId": "s9-99.774329690",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 2",
+   "home": "L'Entregu CF",
+   "away": "UC Ceares"
+  },
+  {
+   "eventId": "s9-99.774329612",
+   "time": "2026-11-28T16:30:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 3",
+   "home": "Atletico Albericia",
+   "away": "CD Guarnizo"
+  },
+  {
+   "eventId": "s9-99.774352893",
+   "time": "2026-11-28T16:45:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 5",
+   "home": "Vilanova i la Geltru",
+   "away": "San Cristobal"
+  },
+  {
+   "eventId": "s9-99.773557294",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Croatia. HNL",
+   "home": "Osijek",
+   "away": "Rijeka"
+  },
+  {
+   "eventId": "s9-99.773049731",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Czech Republic. Chance Liga",
+   "home": "Hradec Kralove",
+   "away": "Bohemians 1905 Prague"
+  },
+  {
+   "eventId": "s9-99.773245703",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Israel. Premier League",
+   "home": "Maccabi Tel Aviv",
+   "away": "Hapoel Petah Tikva"
+  },
+  {
+   "eventId": "s9-99.769197773",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Italy. Serie A",
+   "home": "Torino",
+   "away": "Lazio"
+  },
+  {
+   "eventId": "s9-99.773947462",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Torino",
+   "away": "Albert Gudmundsson"
+  },
+  {
+   "eventId": "s9-99.773947237",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Torino",
+   "away": "Andrea Pinamonti"
+  },
+  {
+   "eventId": "s9-99.773947461",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Torino",
+   "away": "Matteo Cancellieri"
+  },
+  {
+   "eventId": "s9-99.773947238",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Torino",
+   "away": "Tijjani Noslin"
+  },
+  {
+   "eventId": "s9-99.773283081",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Norway. Eliteserien",
+   "home": "Rosenborg",
+   "away": "Molde"
+  },
+  {
+   "eventId": "s9-99.773256858",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Slovakia. Super League",
+   "home": "Slovan Bratislava",
+   "away": "Kosice"
+  },
+  {
+   "eventId": "s9-99.774190051",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 3",
+   "home": "Atletico Baleares",
+   "away": "Orihuela"
+  },
+  {
+   "eventId": "s9-99.774190063",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 3",
+   "home": "La Nucia",
+   "away": "UCAM Murcia"
+  },
+  {
+   "eventId": "s9-99.774316962",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 5",
+   "home": "Gimnastica Segoviana",
+   "away": "Talavera"
+  },
+  {
+   "eventId": "s9-99.774316114",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 5",
+   "home": "Numancia",
+   "away": "Albacete Balompie II"
+  },
+  {
+   "eventId": "s9-99.774328898",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 2",
+   "home": "UP Langreo",
+   "away": "Mosconia"
+  },
+  {
+   "eventId": "s9-99.774328885",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 3",
+   "home": "Tropezon",
+   "away": "Cayon"
+  },
+  {
+   "eventId": "s9-99.774321022",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 7",
+   "home": "Colonia Moscardo",
+   "away": "Trival Valderas"
+  },
+  {
+   "eventId": "s9-99.774328882",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 9",
+   "home": "Motril",
+   "away": "UD Melilla"
+  },
+  {
+   "eventId": "s9-99.773274853",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Switzerland Championship",
+   "home": "Grasshopper Club Zurich",
+   "away": "Basel"
+  },
+  {
+   "eventId": "s9-99.773274856",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Switzerland Championship",
+   "home": "Vaduz",
+   "away": "Zurich"
+  },
+  {
+   "eventId": "s9-99.773048432",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Switzerland. Challenge League",
+   "home": "Wil 1900",
+   "away": "Yverdon Sport"
+  },
+  {
+   "eventId": "s9-99.773048435",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Switzerland. Challenge League",
+   "home": "Xamax",
+   "away": "Stade Nyonnais"
+  },
+  {
+   "eventId": "s9-99.773057948",
+   "time": "2026-11-28T17:15:00+00:00",
+   "league": "Belgium. Jupiler League",
+   "home": "Cercle Brugge",
+   "away": "Mechelen"
+  },
+  {
+   "eventId": "s9-99.774052190",
+   "time": "2026-11-28T17:15:00+00:00",
+   "league": "Portugal. Liga 3",
+   "home": "Pacos de Ferreira",
+   "away": "Marco 09"
+  },
+  {
+   "eventId": "s9-99.774352896",
+   "time": "2026-11-28T17:15:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 5",
+   "home": "UE Cornella",
+   "away": "Montanesa"
+  },
+  {
+   "eventId": "s9-99.773587170",
+   "time": "2026-11-28T17:15:00+00:00",
+   "league": "Wales. Premier League",
+   "home": "Holywell Town",
+   "away": "Llandudno"
+  },
+  {
+   "eventId": "s9-99.773846050",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Bosnia and Herzegovina. Premier League",
+   "home": "Siroki Brijeg",
+   "away": "Zrinjski"
+  },
+  {
+   "eventId": "s9-99.773830820",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "England. National League",
+   "home": "Hartlepool United",
+   "away": "Southend United"
+  },
+  {
+   "eventId": "s9-99.768910071",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "England. Premier League",
+   "home": "Ipswich Town",
+   "away": "Aston Villa"
+  },
+  {
+   "eventId": "s9-99.774364437",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "England. Premier League. Team vs Player",
+   "home": "Ipswich Town",
+   "away": "Nicolas Jackson"
+  },
+  {
+   "eventId": "s9-99.769171735",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Germany. Bundesliga",
+   "home": "VfB Stuttgart",
+   "away": "Eintracht Frankfurt"
+  },
+  {
+   "eventId": "s9-99.771478103",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Saudi Arabia. Saudi Professional League",
+   "home": "Al-Ahli Jeddah",
+   "away": "Al-Taawon"
+  },
+  {
+   "eventId": "s9-99.773559616",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Serbia. SuperLiga",
+   "home": "Partizan Belgrade",
+   "away": "Radnicki Nis"
+  },
+  {
+   "eventId": "s9-99.769399614",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Spain. La Liga",
+   "home": "Elche",
+   "away": "Atletico Madrid"
+  },
+  {
+   "eventId": "s9-99.773736496",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Elche",
+   "away": "Alexander Sorloth"
+  },
+  {
+   "eventId": "s9-99.773734200",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Elche",
+   "away": "Jonathan David"
+  },
+  {
+   "eventId": "s9-99.773734524",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Elche",
+   "away": "Julian Alvarez"
+  },
+  {
+   "eventId": "s9-99.773343740",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Spain. Segunda Division",
+   "home": "Eibar",
+   "away": "Burgos"
+  },
+  {
+   "eventId": "s9-99.773972034",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 1",
+   "home": "Club Portugalete",
+   "away": "Rayo Cantabria"
+  },
+  {
+   "eventId": "s9-99.773964915",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 2",
+   "home": "Pena Sport",
+   "away": "Osasuna II"
+  },
+  {
+   "eventId": "s9-99.773413924",
+   "time": "2026-11-28T17:30:00+00:00",
+   "league": "USA. MLS",
+   "home": "Charlotte",
+   "away": "Chicago Fire"
+  },
+  {
+   "eventId": "s9-99.769277310",
+   "time": "2026-11-28T17:45:00+00:00",
+   "league": "Netherlands. Eredivisie",
+   "home": "PSV Eindhoven",
+   "away": "Go Ahead Eagles"
+  },
+  {
+   "eventId": "s9-99.768957910",
+   "time": "2026-11-28T17:45:00+00:00",
+   "league": "Scotland. Premier League",
+   "home": "Motherwell",
+   "away": "Hibernian"
+  },
+  {
+   "eventId": "s9-99.773764669",
+   "time": "2026-11-28T17:45:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 1",
+   "home": "Lugo",
+   "away": "UD Ourense"
+  },
+  {
+   "eventId": "s9-99.773764672",
+   "time": "2026-11-28T17:45:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 1",
+   "home": "Real Union",
+   "away": "Arenas Club de Getxo"
+  },
+  {
+   "eventId": "s9-99.773759380",
+   "time": "2026-11-28T17:45:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 1",
+   "home": "Zamora",
+   "away": "Pontevedra"
+  },
+  {
+   "eventId": "s9-99.773785448",
+   "time": "2026-11-28T17:45:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 2",
+   "home": "AD Alcorcon",
+   "away": "Real Zaragoza"
+  },
+  {
+   "eventId": "s9-99.773785442",
+   "time": "2026-11-28T17:45:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 2",
+   "home": "Juventud Torremolinos",
+   "away": "Cartagena"
+  },
+  {
+   "eventId": "s9-99.774343286",
+   "time": "2026-11-28T17:45:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 5",
+   "home": "UE San Juan Atletico de Montcada",
+   "away": "Badalona"
+  },
+  {
+   "eventId": "s9-99.769445761",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Greece. SuperLeague",
+   "home": "Kifisias",
+   "away": "Kalamata"
+  },
+  {
+   "eventId": "s9-99.774072272",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Luxembourg. National Division",
+   "home": "Wiltz 71",
+   "away": "Hostert"
+  },
+  {
+   "eventId": "s9-99.773053379",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Northern Ireland. IFA Premiership",
+   "home": "Ballymena United",
+   "away": "Cliftonville"
+  },
+  {
+   "eventId": "s9-99.769424607",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Portugal. Primeira Liga",
+   "home": "Academico de Viseu",
+   "away": "Alverca"
+  },
+  {
+   "eventId": "s9-99.773373035",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Portugal. Segunda Liga",
+   "home": "Lusitania Lourosa",
+   "away": "Vizela"
+  },
+  {
+   "eventId": "s9-99.773053373",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Portugal. Segunda Liga",
+   "home": "Sporting Clube de Portugal II",
+   "away": "Amarante"
+  },
+  {
+   "eventId": "s9-99.773155866",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Romania. Liga 1",
+   "home": "FCSB",
+   "away": "Csikszereda Miercurea Ciuc"
+  },
+  {
+   "eventId": "s9-99.773784477",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 2",
+   "home": "CE Europa",
+   "away": "Villarreal II"
+  },
+  {
+   "eventId": "s9-99.774313892",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 4",
+   "home": "Atletico Sanluqueno",
+   "away": "CA Antoniano"
+  },
+  {
+   "eventId": "s9-99.774310027",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 4",
+   "home": "Badajoz",
+   "away": "Mijas Las Lagunas"
+  },
+  {
+   "eventId": "s9-99.774333126",
+   "time": "2026-11-28T18:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 9",
+   "home": "Atletico Malagueno",
+   "away": "Ciudad de Torredonjimeno"
+  },
+  {
+   "eventId": "s9-99.773265171",
+   "time": "2026-11-28T18:15:00+00:00",
+   "league": "Hungary. NB I",
+   "home": "Kisvarda",
+   "away": "Nyiregyhaza Spartacus"
+  },
+  {
+   "eventId": "s9-99.773245712",
+   "time": "2026-11-28T18:15:00+00:00",
+   "league": "Israel. Premier League",
+   "home": "Beitar Jerusalem",
+   "away": "Hapoel Jerusalem"
+  },
+  {
+   "eventId": "s9-99.773714716",
+   "time": "2026-11-28T18:30:00+00:00",
+   "league": "Argentina. Primera C Metropolitana",
+   "home": "Asociacion Deportiva Berazategui",
+   "away": "Club Sportivo Barracas"
+  },
+  {
+   "eventId": "s9-99.773715223",
+   "time": "2026-11-28T18:30:00+00:00",
+   "league": "Argentina. Primera C Metropolitana",
+   "home": "Canuelas",
+   "away": "Estrella del Sur"
+  },
+  {
+   "eventId": "s9-99.769174846",
+   "time": "2026-11-28T18:30:00+00:00",
+   "league": "Austria. Bundesliga",
+   "home": "Austria Lustenau",
+   "away": "Rapid Wien"
+  },
+  {
+   "eventId": "s9-99.773186923",
+   "time": "2026-11-28T18:30:00+00:00",
+   "league": "Italy. Serie B",
+   "home": "Citta di Palermo",
+   "away": "Benevento Calcio"
+  },
+  {
+   "eventId": "s9-99.773271231",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Belgium. Challenger Pro League",
+   "home": "Lokeren Oost-Vlaanderen",
+   "away": "Beerschot"
+  },
+  {
+   "eventId": "s9-99.774016646",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Belgium. Division 1",
+   "home": "Flenu",
+   "away": "RSC Habay"
+  },
+  {
+   "eventId": "s9-99.774016643",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Belgium. Division 1",
+   "home": "K.S.K. Heist",
+   "away": "SK Roeselare"
+  },
+  {
+   "eventId": "s9-99.774016656",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Belgium. Division 1",
+   "home": "Koninklijke Lyra-Lierse",
+   "away": "KVK Tienen"
+  },
+  {
+   "eventId": "s9-99.774016649",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Belgium. Division 1",
+   "home": "RFC de Meux",
+   "away": "R.A.E.C. Mons"
+  },
+  {
+   "eventId": "s9-99.774016653",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Belgium. Division 1",
+   "home": "RWD Molenbeek",
+   "away": "RCS Onhaye"
+  },
+  {
+   "eventId": "s9-99.774016659",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Belgium. Division 1",
+   "home": "Thes Sport",
+   "away": "KFC Merelbeke"
+  },
+  {
+   "eventId": "s9-99.774017456",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Belgium. Division 1",
+   "home": "Union Rochefortoise",
+   "away": "Royale Union Saint-Gilloise II"
+  },
+  {
+   "eventId": "s9-99.774049271",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Bolivia. Primera Division",
+   "home": "Gualberto Villarroel",
+   "away": "Club Bamin Real Potosi"
+  },
+  {
+   "eventId": "s9-99.774325208",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "CAF Champions League",
+   "home": "Renaissance Sportive de Berkane",
+   "away": "Colombe du Dja et Lobo"
+  },
+  {
+   "eventId": "s9-99.774327585",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "CAF Confederation Cup",
+   "home": "FAR Rabat",
+   "away": "Durban City"
+  },
+  {
+   "eventId": "s9-99.774313896",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "CAF Confederation Cup",
+   "home": "Raja Casablanca",
+   "away": "ASKO Kara"
+  },
+  {
+   "eventId": "s9-99.773360407",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Ecuador. Serie A",
+   "home": "Club Social y Deportivo Macara",
+   "away": "Liga Deportiva Universitaria de Quito"
+  },
+  {
+   "eventId": "s9-99.774190060",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Spain. Segunda Division RFEF. Group 3",
+   "home": "Alcoyano",
+   "away": "Lorca Deportiva"
+  },
+  {
+   "eventId": "s9-99.774311883",
+   "time": "2026-11-28T19:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 1",
+   "home": "Lalin",
+   "away": "Boiro"
+  },
+  {
+   "eventId": "s9-99.773055217",
+   "time": "2026-11-28T19:15:00+00:00",
+   "league": "Poland. Ekstraklasa",
+   "home": "Wisla Krakow",
+   "away": "Motor Lublin"
+  },
+  {
+   "eventId": "s9-99.773245693",
+   "time": "2026-11-28T19:30:00+00:00",
+   "league": "Germany. 2. Bundesliga",
+   "home": "VfL Osnabruck",
+   "away": "Hannover 96"
+  },
+  {
+   "eventId": "s9-99.773274847",
+   "time": "2026-11-28T19:30:00+00:00",
+   "league": "Switzerland Championship",
+   "home": "Servette",
+   "away": "Lausanne-Sport"
+  },
+  {
+   "eventId": "s9-99.773973849",
+   "time": "2026-11-28T19:30:00+00:00",
+   "league": "USA. MLS",
+   "home": "Houston Dynamo",
+   "away": "San Jose Earthquakes"
+  },
+  {
+   "eventId": "s9-99.773320407",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "Belgium. Jupiler League",
+   "home": "Lommel SK",
+   "away": "Zulte Waregem"
+  },
+  {
+   "eventId": "s9-99.773219567",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "Belgium. Jupiler League",
+   "home": "R. Charleroi",
+   "away": "S.K. Beveren"
+  },
+  {
+   "eventId": "s9-99.769228684",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "France. Ligue 1",
+   "home": "Le Havre",
+   "away": "Strasbourg"
+  },
+  {
+   "eventId": "s9-99.769229250",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "France. Ligue 1",
+   "home": "Le Mans",
+   "away": "Lille OSC"
+  },
+  {
+   "eventId": "s9-99.769239379",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "France. Ligue 1",
+   "home": "Nice",
+   "away": "Troyes AC"
+  },
+  {
+   "eventId": "s9-99.769244418",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "France. Ligue 1",
+   "home": "Paris Saint-Germain",
+   "away": "Lorient"
+  },
+  {
+   "eventId": "s9-99.769203992",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "Italy. Serie A",
+   "home": "Internazionale Milano",
+   "away": "Genoa"
+  },
+  {
+   "eventId": "s9-99.773948225",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Francesco Pio Esposito",
+   "away": "Genoa"
+  },
+  {
+   "eventId": "s9-99.773948223",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Lautaro Martinez",
+   "away": "Genoa"
+  },
+  {
+   "eventId": "s9-99.773947873",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Marcus Thuram",
+   "away": "Genoa"
+  },
+  {
+   "eventId": "s9-99.773948224",
+   "time": "2026-11-28T19:45:00+00:00",
+   "league": "Italy. Serie A. Team vs Player",
+   "home": "Mattia Mosconi",
+   "away": "Genoa"
+  },
+  {
+   "eventId": "s9-99.774178568",
+   "time": "2026-11-28T19:50:00+00:00",
+   "league": "Mauritania. Championnat D1",
+   "home": "Armee",
+   "away": "ASC Police"
+  },
+  {
+   "eventId": "s9-99.764149330",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Copa Libertadores",
+   "home": "Sociedade Esportiva Palmeiras",
+   "away": "Estudiantes de La Plata"
+  },
+  {
+   "eventId": "s9-99.769281616",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Netherlands. Eredivisie",
+   "home": "Cambuur",
+   "away": "Sparta Rotterdam"
+  },
+  {
+   "eventId": "s9-99.769399611",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Spain. La Liga",
+   "home": "Real Madrid",
+   "away": "Deportivo Alaves"
+  },
+  {
+   "eventId": "s9-99.773738887",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Arda Guler",
+   "away": "Deportivo Alaves"
+  },
+  {
+   "eventId": "s9-99.773739387",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Jude Bellingham",
+   "away": "Deportivo Alaves"
+  },
+  {
+   "eventId": "s9-99.773737867",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Kylian Mbappe",
+   "away": "Deportivo Alaves"
+  },
+  {
+   "eventId": "s9-99.773738617",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Vinicius Junior",
+   "away": "Deportivo Alaves"
+  },
+  {
+   "eventId": "s9-99.773738618",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Spain. La Liga. Team vs Player",
+   "home": "Yan Diomande",
+   "away": "Deportivo Alaves"
+  },
+  {
+   "eventId": "s9-99.773758070",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Spain. Primera Division RFEF. Group 1",
+   "home": "Extremadura",
+   "away": "CP Cacereno"
+  },
+  {
+   "eventId": "s9-99.773309541",
+   "time": "2026-11-28T20:00:00+00:00",
+   "league": "Spain. Segunda Division",
+   "home": "Real Valladolid",
+   "away": "Real Sociedad II"
+  },
+  {
+   "eventId": "s9-99.769424604",
+   "time": "2026-11-28T20:30:00+00:00",
+   "league": "Portugal. Primeira Liga",
+   "home": "Vitoria Guimaraes",
+   "away": "Estrela da Amadora"
   }
  ]
 }
