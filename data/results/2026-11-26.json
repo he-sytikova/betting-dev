@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-26",
+  "generated_at_utc": "2026-11-26T05:50:03.833434Z",
+  "results": [
+    {
+      "event_id": "s9-99.774192239",
+      "time": "2026-11-26T02:00:00.000Z",
+      "league": "El Salvador. Primera Division",
+      "home": "Inter Santa Tecla",
+      "away": "Aguila",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774193086",
+      "time": "2026-11-26T02:00:00.000Z",
+      "league": "Guatemala. Liga Nacional",
+      "home": "C.S.D. Municipal",
+      "away": "Aurora Guatemala",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 3,
+      "away_goals": 2,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774201524",
+      "time": "2026-11-26T03:10:00.000Z",
+      "league": "Mexico. Liga MX",
+      "home": "Monterrey",
+      "away": "Club America",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 0,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    }
+  ]
+}
