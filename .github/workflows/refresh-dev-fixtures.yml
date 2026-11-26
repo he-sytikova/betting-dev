@@ -9,10 +9,11 @@ on:
   schedule:
     # Keep the dev model's fixture calendar in sync with the public production snapshot.
     - cron: '17 */2 * * *'
-    # Game day starts 07:00 Moscow: dedicated pull right after the boundary,
-    # plus a backstop in case the first one is delayed by GitHub scheduler.
-    - cron: '7 4 * * *'
-    - cron: '37 4 * * *'
+    # Game day starts 07:00 Moscow. GitHub's scheduler silently skips a large share
+    # of scheduled runs, so the boundary pull is spread across six tickets
+    # (07:07-08:47 Moscow, plus 09:17 from the every-2h rule); the precheck step
+    # below turns repeated runs into cheap no-ops once the snapshot is current.
+    - cron: '7,27,47 4-5 * * *'
 
 permissions:
   contents: write
@@ -30,7 +31,30 @@ jobs:
         with:
           ref: main
 
+      - name: Precheck — turn dense morning retries (07:00-09:00 Moscow) into no-ops once the snapshot is current
+        id: precheck
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const board = require('./daily-board.js');
+          const now = Date.now();
+          const moscow = new Date(now + 3 * 60 * 60 * 1000);
+          const moscowMinute = moscow.getUTCHours() * 60 + moscow.getUTCMinutes();
+          const snapshot = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+          const gameDay = board.gameDayKeyMsk(now);
+          if (process.env.GITHUB_EVENT_NAME === 'schedule'
+            && moscowMinute >= 420 && moscowMinute < 540
+            && snapshot.date === gameDay) {
+            console.log(`Snapshot ${snapshot.date} already matches the active game day; scheduled retry becomes a no-op.`);
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'fresh=true\n');
+          } else {
+            console.log(`Full run needed: event=${process.env.GITHUB_EVENT_NAME}, snapshot=${snapshot.date}, game day=${gameDay}, Moscow minute=${moscowMinute}.`);
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'fresh=false\n');
+          }
+          NODE
+
       - name: Download latest production prediction snapshot
+        if: steps.precheck.outputs.fresh != 'true'
         run: |
           set -euo pipefail
           curl --fail --silent --show-error --location \
@@ -54,6 +78,7 @@ jobs:
           "
 
       - name: Keep the active game-day snapshot throughout session 5
+        if: steps.precheck.outputs.fresh != 'true'
         run: |
           node <<'NODE'
           const fs = require('node:fs');
@@ -74,6 +99,7 @@ jobs:
           NODE
 
       - name: Watchdog — fail loudly if the snapshot lags the Moscow game day
+        if: steps.precheck.outputs.fresh != 'true'
         run: |
           node <<'NODE'
           const fs = require('node:fs');
@@ -95,27 +121,33 @@ jobs:
           NODE
 
       - name: Fetch Euro365 bookmaker odds for the snapshot day
+        if: steps.precheck.outputs.fresh != 'true'
         env:
           EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
         run: python3 scripts/models/fetch-euro365-odds.py --data data.json --output data/odds.json
 
       - name: Publish normalized final results for the Moscow game day
+        if: steps.precheck.outputs.fresh != 'true'
         env:
           EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
         run: python3 scripts/models/fetch-euro365-results.py --data data.json --output-dir data/results
 
       - name: Fetch tomorrow fixture list from Euro365 prematch (schedule only, no odds)
+        if: steps.precheck.outputs.fresh != 'true'
         env:
           EURO365_API_KEY: ${{ secrets.EURO365_API_KEY }}
         run: python3 scripts/models/fetch-tomorrow-fixtures.py --output data/fixtures-tomorrow.json
 
       - name: Fetch football-data.co.uk fixtures odds (keyless consensus)
+        if: steps.precheck.outputs.fresh != 'true'
         run: python3 scripts/models/fetch-fdo-odds.py --output data/odds-fdo.json
 
       - name: Archive completed results from non-CSV provider feed
+        if: steps.precheck.outputs.fresh != 'true'
         run: node scripts/models/archive-provider-results.mjs
 
       - name: Commit refreshed schedule and results archive
+        if: steps.precheck.outputs.fresh != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

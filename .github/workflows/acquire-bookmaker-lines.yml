@@ -16,6 +16,10 @@ on:
         type: string
   schedule:
     - cron: "35 6 * * *" # 09:35 Moscow, after the 09:17 fixture refresh.
+    # Backstop: GitHub's scheduler silently skips scheduled runs; a second ticket
+    # 90 minutes later plus the snapshot watchdog cover the gap. The precheck step
+    # below makes the backstop a no-op when the coupon artifact already exists.
+    - cron: "5 8 * * *" # 11:05 Moscow backstop.
 
 permissions:
   contents: write
@@ -33,22 +37,45 @@ jobs:
         with:
           ref: main
 
+      - name: Precheck — skip the scheduled backstop when the coupon artifact already exists
+        id: precheck
+        env:
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const board = require('./daily-board.js');
+          const date = process.env.INPUT_DATE || board.gameDayKeyMsk(Date.now());
+          const artifact = `analysis/doubles_${date}.json`;
+          if (process.env.GITHUB_EVENT_NAME === 'schedule' && fs.existsSync(artifact)) {
+            console.log(`${artifact} already exists; scheduled backstop becomes a no-op.`);
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'skip=true\n');
+          } else {
+            console.log(`Full run needed: event=${process.env.GITHUB_EVENT_NAME}, artifact=${artifact}.`);
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'skip=false\n');
+          }
+          NODE
+
       - name: Set up Python
+        if: steps.precheck.outputs.skip != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install the pinned read-only browser dependency
+        if: steps.precheck.outputs.skip != 'true'
         run: |
           python3 -m pip install --requirement scripts/lines/requirements-winline.txt
           python3 -m playwright install --with-deps chromium
 
       - name: Test acquisition, pricing and homepage contracts
+        if: steps.precheck.outputs.skip != 'true'
         run: |
           python3 -m unittest tests.test_odds_acquisition tests.test_winline_acquisition -v
           node --test tests/daily-coupons.test.cjs tests/daily-board.test.cjs
 
       - name: Resolve Moscow game-day start date
+        if: steps.precheck.outputs.skip != 'true'
         id: date
         env:
           INPUT_DATE: ${{ inputs.date }}
@@ -62,6 +89,7 @@ jobs:
           echo "date=$DATE" >> "$GITHUB_OUTPUT"
 
       - name: Validate detail limit
+        if: steps.precheck.outputs.skip != 'true'
         env:
           LIMIT: ${{ inputs.detail_limit }}
         run: |
@@ -71,6 +99,7 @@ jobs:
           echo "limit=$LIMIT" >> "$GITHUB_ENV"
 
       - name: Validate current model snapshot
+        if: steps.precheck.outputs.skip != 'true'
         env:
           TARGET_DATE: ${{ steps.date.outputs.date }}
         run: |
@@ -88,15 +117,18 @@ jobs:
           NODE
 
       - name: Acquire fresh lines and matched detail markets
+        if: steps.precheck.outputs.skip != 'true'
         run: |
           ARGS=(--date "${{ steps.date.outputs.date }}" --fixtures data.json --output "probe-out/lines_${{ steps.date.outputs.date }}")
           if [[ -n "$limit" ]]; then ARGS+=(--detail-limit "$limit"); fi
           python3 scripts/acquire_bookmaker_lines.py "${ARGS[@]}"
 
       - name: Build dated homepage artifact
+        if: steps.precheck.outputs.skip != 'true'
         run: node scripts/lines/build_daily_coupons.cjs --data data.json --acquisition "probe-out/lines_${{ steps.date.outputs.date }}" --output "analysis/doubles_${{ steps.date.outputs.date }}.json"
 
       - name: Validate homepage artifact and source status
+        if: steps.precheck.outputs.skip != 'true'
         env:
           TARGET_DATE: ${{ steps.date.outputs.date }}
         run: |
@@ -166,7 +198,7 @@ jobs:
           NODE
 
       - name: Upload raw responses, snapshots and audit
-        if: always() && steps.date.outputs.date != ''
+        if: always() && steps.precheck.outputs.skip != 'true' && steps.date.outputs.date != ''
         uses: actions/upload-artifact@v4
         with:
           name: bookmaker-lines-${{ steps.date.outputs.date }}
@@ -175,7 +207,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Commit only the dated homepage artifact
-        if: success()
+        if: success() && steps.precheck.outputs.skip != 'true'
         env:
           TARGET_DATE: ${{ steps.date.outputs.date }}
         run: |
