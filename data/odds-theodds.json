@@ -1,248 +1,64 @@
 {
- "date": "2026-11-25",
- "fetchedAt": "2026-11-25T18:36:21.899880+00:00",
+ "date": "2026-11-26",
+ "fetchedAt": "2026-11-26T10:16:52.917040+00:00",
  "bookmaker": "The Odds API (регион eu, консенсус европейских букмекеров)",
  "note": "Текущие котировки нескольких букмекеров, агрегаты avg/max по линии; рынка двойного шанса у провайдера нет. Участвует в отборе плеч (лучшая текущая цена из Euro365 и The Odds API Max); не для обучения моделей.",
  "credits": {
-  "used": 294,
-  "remaining": 206
+  "used": 295,
+  "remaining": 205
  },
  "matches": [
   {
-   "home": "Cremonese",
-   "away": "Avellino",
-   "commenceTime": "2026-11-25T18:02:00Z",
-   "bookmakers": 11,
-   "markets": {
-    "totals": {
-     "1.5": {
-      "avg": {
-       "over": 1.58,
-       "under": 2.187
-      },
-      "max": {
-       "over": 1.78,
-       "under": 2.35
-      }
-     },
-     "1.75": {
-      "avg": {
-       "over": 1.78,
-       "under": 2.09
-      },
-      "max": {
-       "over": 1.78,
-       "under": 2.09
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_italy_serie_b",
-   "leagueCode": "I2"
-  },
-  {
-   "home": "Mantova",
-   "away": "Arezzo",
-   "commenceTime": "2026-11-25T19:00:00Z",
-   "bookmakers": 15,
+   "home": "Doncaster Rovers",
+   "away": "Huddersfield Town",
+   "commenceTime": "2026-11-26T20:00:00Z",
+   "bookmakers": 14,
    "markets": {
     "totals": {
      "2.5": {
       "avg": {
-       "over": 1.773,
-       "under": 1.957
+       "over": 1.593,
+       "under": 2.228
       },
       "max": {
-       "over": 1.9,
-       "under": 2.06
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_italy_serie_b",
-   "leagueCode": "I2"
-  },
-  {
-   "home": "Pisa",
-   "away": "Modena",
-   "commenceTime": "2026-11-25T19:00:00Z",
-   "bookmakers": 15,
-   "markets": {
-    "totals": {
-     "2.5": {
-      "avg": {
-       "over": 1.715,
-       "under": 2.027
-      },
-      "max": {
-       "over": 1.82,
-       "under": 2.18
+       "over": 1.7,
+       "under": 2.4
       }
      },
      "2.75": {
       "avg": {
-       "over": 1.94,
-       "under": 1.9
-      },
-      "max": {
-       "over": 1.96,
-       "under": 1.93
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_italy_serie_b",
-   "leagueCode": "I2"
-  },
-  {
-   "home": "Padova",
-   "away": "Sampdoria",
-   "commenceTime": "2026-11-25T19:00:00Z",
-   "bookmakers": 15,
-   "markets": {
-    "totals": {
-     "2.25": {
-      "avg": {
-       "over": 1.875,
-       "under": 1.955
-      },
-      "max": {
-       "over": 1.9,
-       "under": 1.98
-      }
-     },
-     "2.5": {
-      "avg": {
-       "over": 2.025,
-       "under": 1.708
-      },
-      "max": {
-       "over": 2.22,
-       "under": 1.78
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_italy_serie_b",
-   "leagueCode": "I2"
-  },
-  {
-   "home": "Burnley",
-   "away": "Birmingham City",
-   "commenceTime": "2026-11-25T19:45:00Z",
-   "bookmakers": 16,
-   "markets": {
-    "totals": {
-     "2.5": {
-      "avg": {
-       "over": 1.719,
-       "under": 2.041
-      },
-      "max": {
-       "over": 1.79,
-       "under": 2.18
-      }
-     },
-     "2.75": {
-      "avg": {
-       "over": 1.98,
-       "under": 1.91
-      },
-      "max": {
-       "over": 1.98,
-       "under": 1.91
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_efl_champ",
-   "leagueCode": "E1"
-  },
-  {
-   "home": "Watford",
-   "away": "Blackburn Rovers",
-   "commenceTime": "2026-11-25T19:45:00Z",
-   "bookmakers": 16,
-   "markets": {
-    "totals": {
-     "2.5": {
-      "avg": {
-       "over": 1.959,
-       "under": 1.793
-      },
-      "max": {
-       "over": 2.18,
-       "under": 1.88
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_efl_champ",
-   "leagueCode": "E1"
-  },
-  {
-   "home": "Bolton Wanderers",
-   "away": "West Bromwich Albion",
-   "commenceTime": "2026-11-25T19:45:00Z",
-   "bookmakers": 15,
-   "markets": {
-    "totals": {
-     "2.5": {
-      "avg": {
-       "over": 1.744,
-       "under": 1.991
-      },
-      "max": {
-       "over": 1.8,
-       "under": 2.06
-      }
-     },
-     "2.75": {
-      "avg": {
-       "over": 2.05,
-       "under": 1.85
-      },
-      "max": {
-       "over": 2.05,
-       "under": 1.85
-      }
-     }
-    }
-   },
-   "sportKey": "soccer_efl_champ",
-   "leagueCode": "E1"
-  },
-  {
-   "home": "Stoke City",
-   "away": "Millwall",
-   "commenceTime": "2026-11-25T20:00:00Z",
-   "bookmakers": 16,
-   "markets": {
-    "totals": {
-     "2.25": {
-      "avg": {
-       "over": 1.84,
-       "under": 2.06
+       "over": 1.81,
+       "under": 2.01
       },
       "max": {
        "over": 1.84,
-       "under": 2.06
+       "under": 2.04
       }
      },
-     "2.5": {
+     "3.0": {
       "avg": {
-       "over": 1.973,
-       "under": 1.775
+       "over": 1.99,
+       "under": 1.76
       },
       "max": {
-       "over": 2.12,
-       "under": 1.83
+       "over": 1.99,
+       "under": 1.76
+      }
+     },
+     "3.5": {
+      "avg": {
+       "over": 2.59,
+       "under": 1.46
+      },
+      "max": {
+       "over": 2.59,
+       "under": 1.46
       }
      }
     }
    },
-   "sportKey": "soccer_efl_champ",
-   "leagueCode": "E1"
+   "sportKey": "soccer_england_league1",
+   "leagueCode": "E2"
   }
  ]
 }
