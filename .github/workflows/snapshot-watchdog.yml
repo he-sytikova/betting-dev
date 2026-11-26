@@ -1,0 +1,87 @@
+name: "Сторож свежести снимка"
+
+# Зачем существует: планировщик GitHub регулярно пропускает scheduled-запуски
+# (зафиксированный инцидент 26.11.2026: оба граничных прогона обновления
+# снимка 07:07/07:37 МСК не были поставлены в очередь, утром день был пуст).
+# Этот лёгкий сторож каждые 10 минут утреннего окна проверяет свежесть
+# data.json и файла купонов и перезапускает тяжёлые workflow через
+# workflow_dispatch — такие запуски ставятся в очередь сразу и не зависят
+# от пропусков планировщика. Сам сторож дублируется 42 раза за окно,
+# поэтому пропуск части его запусков не страшен.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/10 4-10 * * *'   # 07:00–13:50 МСК — окно старта игрового дня
+
+permissions:
+  contents: read
+  actions: write   # workflow_dispatch для refresh-dev-fixtures и acquire-bookmaker-lines
+
+concurrency:
+  group: snapshot-watchdog
+  cancel-in-progress: true   # сторожа идемпотентны, достаточно последнего
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch refresh/coupons when the day lags
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          # Игровые сутки начинаются в 07:00 МСК (как gameDayKeyMsk в daily-board.js).
+          GAME_DAY=$(node -e "
+            const msk = new Date(Date.now() + 3 * 3600e3);
+            if (msk.getUTCHours() < 7) msk.setUTCDate(msk.getUTCDate() - 1);
+            process.stdout.write(msk.toISOString().slice(0, 10));
+          ")
+          echo "Active Moscow game day: $GAME_DAY"
+
+          SNAP_DATE=$(gh api repos/he-sytikova/betting-dev/contents/data.json \
+            -H "Accept: application/vnd.github.raw" \
+            | python3 -c "import json,sys; print(json.load(sys.stdin).get('date',''))")
+          echo "Snapshot date: $SNAP_DATE"
+
+          running_or_queued() {
+            local wf="$1"
+            local inflight queued
+            inflight=$(gh api "repos/he-sytikova/betting-dev/actions/workflows/$wf/runs?status=in_progress" --jq '.total_count')
+            queued=$(gh api "repos/he-sytikova/betting-dev/actions/workflows/$wf/runs?status=queued" --jq '.total_count')
+            [ "$inflight" != "0" ] || [ "$queued" != "0" ]
+          }
+
+          if [ "$SNAP_DATE" != "$GAME_DAY" ]; then
+            echo "STALE snapshot: $SNAP_DATE != $GAME_DAY"
+            if running_or_queued refresh-dev-fixtures.yml; then
+              echo "Refresh already in flight — waiting for it."
+            else
+              gh api repos/he-sytikova/betting-dev/actions/workflows/refresh-dev-fixtures.yml/dispatches \
+                -X POST -f ref=main
+              echo "Dispatched refresh-dev-fixtures."
+            fi
+            exit 0
+          fi
+          echo "Snapshot is current."
+
+          # Купоны: файл дня должен существовать после 09:40 МСК
+          # (сбор по расписанию 09:35 МСК + запас на очередь).
+          MSK_MIN=$(node -e "const m = new Date(Date.now() + 3 * 3600e3); process.stdout.write(String(m.getUTCHours() * 60 + m.getUTCMinutes()))")
+          if [ "$MSK_MIN" -lt 580 ]; then
+            echo "Before 09:40 Moscow — coupon artifact not expected yet."
+            exit 0
+          fi
+          if gh api "repos/he-sytikova/betting-dev/contents/analysis/doubles_${GAME_DAY}.json" \
+              -H "Accept: application/vnd.github.raw" > /dev/null 2>&1; then
+            echo "Coupon artifact exists."
+            exit 0
+          fi
+          echo "Coupon artifact analysis/doubles_${GAME_DAY}.json is missing."
+          if running_or_queued acquire-bookmaker-lines.yml; then
+            echo "Acquisition already in flight — waiting for it."
+          else
+            gh api repos/he-sytikova/betting-dev/actions/workflows/acquire-bookmaker-lines.yml/dispatches \
+              -X POST -f ref=main -f "inputs[date]=$GAME_DAY"
+            echo "Dispatched acquire-bookmaker-lines for $GAME_DAY."
+          fi
