@@ -1,6 +1,6 @@
 {
  "date": "2026-11-28",
- "generatedAt": "2026-11-27T13:45:56.547471+00:00",
+ "generatedAt": "2026-11-27T13:59:13.529365+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.774380260",
@@ -276,7 +276,7 @@
    "away": "Lobos ULMX"
   },
   {
-   "eventId": "s9-99.774585651",
+   "eventId": "s9-99.774594523",
    "time": "2026-11-28T02:00:00+00:00",
    "league": "New Zealand Championship. Women",
    "home": "Auckland United (Women)",
@@ -696,7 +696,7 @@
    "away": "Terengganu Kuala Nerus"
   },
   {
-   "eventId": "s9-99.774585655",
+   "eventId": "s9-99.774595700",
    "time": "2026-11-28T09:00:00+00:00",
    "league": "Greece. SuperLeague 2 U19",
    "home": "Panserraikos U19",
@@ -934,7 +934,7 @@
    "away": "Babelsberg 03 U19"
   },
   {
-   "eventId": "s9-99.774585668",
+   "eventId": "s9-99.774593838",
    "time": "2026-11-28T10:00:00+00:00",
    "league": "Greece. Super League U19",
    "home": "Volos U19",
@@ -1151,7 +1151,7 @@
    "away": "Spartak Varna"
   },
   {
-   "eventId": "s9-99.774578086",
+   "eventId": "s9-99.774592438",
    "time": "2026-11-28T10:50:00+00:00",
    "league": "Maldives. Premier League",
    "home": "New Radiant",
@@ -2677,7 +2677,7 @@
    "away": "Santa Lucia"
   },
   {
-   "eventId": "s9-99.774585693",
+   "eventId": "s9-99.774593165",
    "time": "2026-11-28T13:00:00+00:00",
    "league": "Moldova. Super Liga",
    "home": "Dacia Buiucani",
@@ -2815,6 +2815,20 @@
    "league": "Tunisia. Ligue 1",
    "home": "CA Bizertin",
    "away": "ES Zarzis"
+  },
+  {
+   "eventId": "s9-99.774585645",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Tunisia. Ligue 1",
+   "home": "Etoile sportive de Metlaoui",
+   "away": "Ben Guerdane"
+  },
+  {
+   "eventId": "s9-99.774585696",
+   "time": "2026-11-28T13:00:00+00:00",
+   "league": "Tunisia. Ligue 2",
+   "home": "AS Slimane",
+   "away": "‪Sporting Club Ben Arous"
   },
   {
    "eventId": "s9-99.772884221",
@@ -3307,7 +3321,7 @@
    "away": "SSV Jeddeloh"
   },
   {
-   "eventId": "s9-99.774585671",
+   "eventId": "s9-99.774594495",
    "time": "2026-11-28T14:00:00+00:00",
    "league": "Greece. Super League U19",
    "home": "Kifisias U19",
@@ -4644,7 +4658,7 @@
    "away": "Mondercange"
   },
   {
-   "eventId": "s9-99.774585705",
+   "eventId": "s9-99.774590969",
    "time": "2026-11-28T15:00:00+00:00",
    "league": "Morocco. Botola 2",
    "home": "Widad Fez",
@@ -6000,6 +6014,13 @@
    "league": "Italy. Serie A. Team vs Player",
    "home": "Torino",
    "away": "Tijjani Noslin"
+  },
+  {
+   "eventId": "s9-99.774596000",
+   "time": "2026-11-28T17:00:00+00:00",
+   "league": "Mauritania. Championnat D1",
+   "home": "Nouakchott King's",
+   "away": "Chemal"
   },
   {
    "eventId": "s9-99.773283081",
