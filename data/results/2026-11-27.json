@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-27",
+  "generated_at_utc": "2026-11-27T04:14:43.635440Z",
+  "results": [
+    {
+      "event_id": "s9-99.774444807",
+      "time": "2026-11-27T00:00:00.000Z",
+      "league": "Nicaragua Championship",
+      "home": "Diriangen",
+      "away": "Matagalpa",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 4,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774449467",
+      "time": "2026-11-27T00:30:00.000Z",
+      "league": "Uruguay Cup",
+      "home": "Club Nacional Montevideo",
+      "away": "Montevideo City Torque",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 1,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774454116",
+      "time": "2026-11-27T00:50:00.000Z",
+      "league": "Brazil. Campeonato Municipal de Macae",
+      "home": "ASA Uniao",
+      "away": "Donanaticos",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 0,
+      "away_goals": 3,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774452204",
+      "time": "2026-11-27T01:00:00.000Z",
+      "league": "Mexico. Liga MX",
+      "home": "Pachuca",
+      "away": "Guadalajara",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 1,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774453688",
+      "time": "2026-11-27T01:00:00.000Z",
+      "league": "El Salvador. Division 2",
+      "home": "Marte Soyapango",
+      "away": "Independiente San Vicente",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 2,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774459819",
+      "time": "2026-11-27T01:45:00.000Z",
+      "league": "Japan. Regional League",
+      "home": "Veroskronos Tsuno",
+      "away": "Gakunan F Mosuperio",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 3,
+      "away_goals": 1,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    }
+  ]
+}
