@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-11-27",
-  "generated_at_utc": "2026-11-27T13:59:08.226347Z",
+  "generated_at_utc": "2026-11-27T22:44:21.753867Z",
   "results": [
     {
       "event_id": "s9-99.774546216",
@@ -459,6 +459,32 @@
       "evidence": "scores_endpoint"
     },
     {
+      "event_id": "s9-99.774566532",
+      "time": "2026-11-27T11:50:00.000Z",
+      "league": "Saudi Arabia. Division 2",
+      "home": "Al-Sahel Al-Qatif",
+      "away": "Hottain",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 0,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774568260",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "Syria. Premier League",
+      "home": "Al-Karamah",
+      "away": "Al-Ittihad Aleppo",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
       "event_id": "s9-99.774568484",
       "time": "2026-11-27T12:00:00.000Z",
       "league": "Uzbekistan. Professional League",
@@ -498,6 +524,32 @@
       "evidence": "scores_endpoint"
     },
     {
+      "event_id": "s9-99.774568582",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "UEFA European U19 Championship. Qualification. Women",
+      "home": "Poland U19 (Women)",
+      "away": "Kosovo U19 (Women)",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 5,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774568583",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "UEFA European U19 Championship. Qualification. Women",
+      "home": "Slovakia U19 (Women)",
+      "away": "Greece U19 (Women)",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 4,
+      "away_goals": 2,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
       "event_id": "s9-99.774568586",
       "time": "2026-11-27T12:00:00.000Z",
       "league": "UEFA European U19 Championship. Qualification. Women",
@@ -506,6 +558,19 @@
       "source": "Euro365",
       "status": "finished",
       "home_goals": 1,
+      "away_goals": 2,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774568587",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "Thailand. Thai Premier League",
+      "home": "Uthai Thani",
+      "away": "Sisaket United",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
       "away_goals": 2,
       "total_corners": null,
       "evidence": "scores_endpoint"
@@ -533,6 +598,19 @@
       "status": "finished",
       "home_goals": 2,
       "away_goals": 3,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774568590",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "Israel. Premier League",
+      "home": "Maccabi Petah Tikva",
+      "away": "Hapoel Tel Aviv",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 2,
+      "away_goals": 0,
       "total_corners": null,
       "evidence": "scores_endpoint"
     },
@@ -568,6 +646,19 @@
       "league": "Romania. Liga 3",
       "home": "ACS Kids Tampa Brasov",
       "away": "Sepsi II",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 4,
+      "away_goals": 2,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774568594",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "Romania. Liga 3",
+      "home": "CS Drobeta Turnu Severin",
+      "away": "CSM Targu Jiu",
       "source": "Euro365",
       "status": "finished",
       "home_goals": 4,
@@ -624,6 +715,45 @@
       "status": "finished",
       "home_goals": 1,
       "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774568599",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "Israel. Liga Alef. North",
+      "home": "Hapoel Umm al-Fahm",
+      "away": "Hapoel Bnei Jat",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 1,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774568624",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "Syria. Premier League",
+      "home": "Al-Hurriya",
+      "away": "Al-Foutoua Deir ez-Zor",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 0,
+      "away_goals": 0,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    },
+    {
+      "event_id": "s9-99.774569058",
+      "time": "2026-11-27T12:00:00.000Z",
+      "league": "Syria. Premier League",
+      "home": "Al-Jaish Damascus",
+      "away": "Hutteen",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 4,
+      "away_goals": 1,
       "total_corners": null,
       "evidence": "scores_endpoint"
     },
