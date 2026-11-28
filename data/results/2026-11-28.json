@@ -1,6 +1,20 @@
 {
   "schema_version": 1,
   "date": "2026-11-28",
-  "generated_at_utc": "2026-11-28T06:17:05.751222Z",
-  "results": []
+  "generated_at_utc": "2026-11-28T07:43:24.885065Z",
+  "results": [
+    {
+      "event_id": "s9-99.774813374",
+      "time": "2026-11-28T05:00:00.000Z",
+      "league": "Emperor's Cup. Women",
+      "home": "Viamaterras Miyazaki (Women)",
+      "away": "Okayama Yunogo Belle (Women)",
+      "source": "Euro365",
+      "status": "finished",
+      "home_goals": 1,
+      "away_goals": 1,
+      "total_corners": null,
+      "evidence": "scores_endpoint"
+    }
+  ]
 }
