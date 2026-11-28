@@ -616,7 +616,7 @@ test('duplicate fixture identities prefer the matched bookmaker line over an ear
   const models = { goals: goalsModel(), cornersCards: null, stats: null, nations: emptyNations() };
   assert.deepEqual(coupons.fixtureModelKeys(unmatchedFixture, models), ['model|E0|newcastle|everton']);
   assert.deepEqual(coupons.fixtureModelKeys(matchedFixture, models), ['model|E0|newcastle|everton']);
-  const bookmakers = ['Fonbet', 'Marathonbet', 'Winline'];
+  const bookmakers = ['Fonbet', 'Marathonbet', 'Winline', 'Tennisi'];
   const unmatched = bookmakers.map(bookmaker => ({
     ...unmatchedFixture, bookmaker, fixture_key: 'unmatched', status: 'no_line_match',
   }));
@@ -634,7 +634,7 @@ test('duplicate fixture identities prefer the matched bookmaker line over an ear
   });
   const prices = result.artifact.candidate_prices.filter(row => row.label === '1X');
   assert.deepEqual(prices.map(row => [row.bookmaker, row.match_id, row.odds]), [
-    ['Fonbet', '200', 1.4], ['Marathonbet', '201', 1.4], ['Winline', '202', 1.4],
+    ['Fonbet', '200', 1.4], ['Marathonbet', '201', 1.4], ['Winline', '202', 1.4], ['Tennisi', '203', 1.4],
   ]);
   assert.ok(!result.diagnostics.rejected.some(row => row.reason === 'no_line_match'));
   const merged = board.mergeCandidatePrices(board.buildCandidates(

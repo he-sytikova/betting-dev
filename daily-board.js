@@ -23,7 +23,7 @@
   const CANDIDATE_MARKETS = Object.freeze([
     'Голы', 'Угловые', 'ЖК', 'Фолы', 'Удары', 'Удары в створ', 'Лига наций', 'Еврокубки',
   ]);
-  const CANDIDATE_BOOKMAKERS = Object.freeze(['Fonbet', 'Marathonbet', 'Winline']);
+  const CANDIDATE_BOOKMAKERS = Object.freeze(['Fonbet', 'Marathonbet', 'Winline', 'Tennisi']);
 
   function gameSessionForTime(value) {
     const time = value instanceof Date ? value.getTime() : (typeof value === 'number' ? value : Date.parse(value));

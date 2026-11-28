@@ -62,16 +62,16 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install the pinned read-only browser dependency
+      - name: Install the pinned read-only browser and feed dependencies
         if: steps.precheck.outputs.skip != 'true'
         run: |
-          python3 -m pip install --requirement scripts/lines/requirements-winline.txt
+          python3 -m pip install --requirement scripts/lines/requirements-winline.txt --requirement scripts/lines/requirements-tennisi.txt
           python3 -m playwright install --with-deps chromium
 
       - name: Test acquisition, pricing and homepage contracts
         if: steps.precheck.outputs.skip != 'true'
         run: |
-          python3 -m unittest tests.test_odds_acquisition tests.test_winline_acquisition -v
+          python3 -m unittest tests.test_odds_acquisition tests.test_winline_acquisition tests.test_tennisi_acquisition -v
           node --test tests/daily-coupons.test.cjs tests/daily-board.test.cjs
 
       - name: Resolve Moscow game-day start date

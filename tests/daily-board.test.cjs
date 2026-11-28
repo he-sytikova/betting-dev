@@ -363,9 +363,9 @@ test('bookmaker filters stay available without prices and combined filters selec
     null,
   ];
   const snapshot = JSON.parse(JSON.stringify(rows));
-  assert.deepEqual(board.candidateBookmakerNames(rows), ['Fonbet', 'Marathonbet', 'Winline', 'Future BK']);
+  assert.deepEqual(board.candidateBookmakerNames(rows), ['Fonbet', 'Marathonbet', 'Winline', 'Tennisi', 'Future BK']);
   assert.deepEqual(board.candidateBookmakerNames([{ modelLabel: 'Голы', label: 'П1' }]),
-    ['Fonbet', 'Marathonbet', 'Winline']);
+    ['Fonbet', 'Marathonbet', 'Winline', 'Tennisi']);
   assert.deepEqual(board.candidateBookmakerNames([]), []);
   assert.deepEqual(board.candidateBookmakerNames(null), []);
   const corners = board.filterCandidatesByMarket(rows, 'Угловые');

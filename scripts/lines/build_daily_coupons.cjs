@@ -12,7 +12,7 @@ const ntApi = require('../../nt-internal-model.js');
 const euroApi = require('../../euro-internal-model.js');
 const euroStatsApi = require('../../euro-stats-internal-model.js');
 
-const BOOKMAKERS = ['Fonbet', 'Marathonbet', 'Winline'];
+const BOOKMAKERS = ['Fonbet', 'Marathonbet', 'Winline', 'Tennisi'];
 const SINGLE_LIMIT = 5;
 const DOUBLE_LIMIT = 2;
 const DELTA_LIMIT_PP = 15;
