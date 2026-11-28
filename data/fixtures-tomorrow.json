@@ -1,6 +1,6 @@
 {
  "date": "2026-11-29",
- "generatedAt": "2026-11-28T05:53:30.811903+00:00",
+ "generatedAt": "2026-11-28T06:03:31.400775+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.774636529",
@@ -1452,14 +1452,14 @@
    "away": "Maccabi Wien"
   },
   {
-   "eventId": "s9-99.774780156",
+   "eventId": "s9-99.774789416",
    "time": "2026-11-29T11:00:00+00:00",
    "league": "Cambodia. Metfone C-League",
    "home": "Angkor Tiger",
    "away": "Naga World"
   },
   {
-   "eventId": "s9-99.774780159",
+   "eventId": "s9-99.774793441",
    "time": "2026-11-29T11:00:00+00:00",
    "league": "Cambodia. Metfone C-League",
    "home": "Life",
@@ -2530,7 +2530,7 @@
    "away": "Nestos Chrysoupoli"
   },
   {
-   "eventId": "s9-99.774775206",
+   "eventId": "s9-99.774788966",
    "time": "2026-11-29T13:00:00+00:00",
    "league": "India. I-League",
    "home": "Shillong Lajong",
@@ -2752,6 +2752,13 @@
    "league": "France. Youth League",
    "home": "Paris Saint-Germain U19",
    "away": "Rouen U19"
+  },
+  {
+   "eventId": "s9-99.774794430",
+   "time": "2026-11-29T13:30:00+00:00",
+   "league": "France. Youth League",
+   "home": "Stade de Reims U19",
+   "away": "Metz U19"
   },
   {
    "eventId": "s9-99.774783501",
