@@ -1,6 +1,6 @@
 {
  "date": "2026-11-29",
- "generatedAt": "2026-11-28T07:43:28.885049+00:00",
+ "generatedAt": "2026-11-28T07:50:47.600319+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.774636529",
@@ -507,6 +507,13 @@
    "away": "CD Platense Zacatecoluca"
   },
   {
+   "eventId": "s9-99.774514945",
+   "time": "2026-11-29T01:30:00+00:00",
+   "league": "Japan Championship U21",
+   "home": "Tokyo U21",
+   "away": "V-Varen Nagasaki U21"
+  },
+  {
    "eventId": "s9-99.774113477",
    "time": "2026-11-29T01:30:00+00:00",
    "league": "Panama. Liga Panamena de Futbol",
@@ -617,6 +624,20 @@
    "league": "Hong Kong. Division 2",
    "home": "Kwai Tsing",
    "away": "Double Flower"
+  },
+  {
+   "eventId": "s9-99.774770489",
+   "time": "2026-11-29T05:00:00+00:00",
+   "league": "Japan Championship U21",
+   "home": "Fagiano Okayama U21",
+   "away": "Jubilo Iwata U21"
+  },
+  {
+   "eventId": "s9-99.774770492",
+   "time": "2026-11-29T05:00:00+00:00",
+   "league": "Japan Championship U21",
+   "home": "Urawa Red Diamonds U21",
+   "away": "Gamba Osaka U21"
   },
   {
    "eventId": "s9-99.774003210",
@@ -813,6 +834,13 @@
    "league": "Hong Kong. Division 2",
    "home": "Wanchai",
    "away": "Yau Tsim Mong"
+  },
+  {
+   "eventId": "s9-99.774770274",
+   "time": "2026-11-29T06:00:00+00:00",
+   "league": "Japan Championship U21",
+   "home": "Shimizu S Pulse U21",
+   "away": "Nagoya Grampus U21"
   },
   {
    "eventId": "s9-99.774003207",
@@ -1711,6 +1739,20 @@
    "away": "Bollullos"
   },
   {
+   "eventId": "s9-99.774662658",
+   "time": "2026-11-29T11:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 11",
+   "home": "Ibiza Islas Pitiusas",
+   "away": "Llosetense"
+  },
+  {
+   "eventId": "s9-99.774564122",
+   "time": "2026-11-29T11:00:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 14",
+   "home": "Villanovense",
+   "away": "EF Puebla de la Calzada"
+  },
+  {
    "eventId": "s9-99.774712833",
    "time": "2026-11-29T11:00:00+00:00",
    "league": "Spain. Tercera Division RFEF. Group 2",
@@ -1886,6 +1928,13 @@
    "away": "Utrecht"
   },
   {
+   "eventId": "s9-99.774649276",
+   "time": "2026-11-29T11:15:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 11",
+   "home": "CE Andratx",
+   "away": "UD Arenal"
+  },
+  {
    "eventId": "s9-99.773203069",
    "time": "2026-11-29T11:30:00+00:00",
    "league": "Bulgaria. First League",
@@ -1940,6 +1989,13 @@
    "league": "Singapore. Premier League",
    "home": "Young Lions",
    "away": "Lion City Sailors"
+  },
+  {
+   "eventId": "s9-99.774554633",
+   "time": "2026-11-29T11:30:00+00:00",
+   "league": "Spain. Tercera Division RFEF. Group 14",
+   "home": "Jerez",
+   "away": "AD Llerenense"
   },
   {
    "eventId": "s9-99.774706073",
@@ -2768,6 +2824,13 @@
    "away": "WSG Tirol"
   },
   {
+   "eventId": "s9-99.774771588",
+   "time": "2026-11-29T13:30:00+00:00",
+   "league": "Belgium. Amateur League. Second Division",
+   "home": "Entite Manageoise",
+   "away": "Stockay-Warfusee"
+  },
+  {
    "eventId": "s9-99.773717497",
    "time": "2026-11-29T13:30:00+00:00",
    "league": "Czech Republic. 2 Liga",
@@ -3279,11 +3342,25 @@
    "away": "Pogon Szczecin"
   },
   {
-   "eventId": "s9-99.774805738",
+   "eventId": "s9-99.774814408",
    "time": "2026-11-29T13:55:00+00:00",
    "league": "Sultan Qaboos Cup",
    "home": "Ibri Club",
    "away": "Al-Shabab Barka"
+  },
+  {
+   "eventId": "s9-99.774771927",
+   "time": "2026-11-29T14:00:00+00:00",
+   "league": "Belgium. Amateur League. Second Division",
+   "home": "RUS Binche",
+   "away": "Pays Vert Ostiches Ath"
+  },
+  {
+   "eventId": "s9-99.774765634",
+   "time": "2026-11-29T14:00:00+00:00",
+   "league": "Belgium. Amateur League. Second Division",
+   "home": "Vigor Wuitens Hamme",
+   "away": "Mechelen II"
   },
   {
    "eventId": "s9-99.773245681",
@@ -3655,6 +3732,13 @@
    "league": "Armenia. Premier League",
    "home": "Pyunik",
    "away": "Ararat Yerevan"
+  },
+  {
+   "eventId": "s9-99.774195716",
+   "time": "2026-11-29T15:00:00+00:00",
+   "league": "Bahrain. Premier League",
+   "home": "Al-Najma Manama",
+   "away": "Al-Muharraq"
   },
   {
    "eventId": "s9-99.773274823",
@@ -4530,6 +4614,13 @@
    "league": "Spain. Tercera Division RFEF. Group 6",
    "home": "Crevillente Deportivo",
    "away": "Atzeneta"
+  },
+  {
+   "eventId": "s9-99.774010692",
+   "time": "2026-11-29T17:30:00+00:00",
+   "league": "Albania. Superliga",
+   "home": "Egnatia",
+   "away": "AF Elbasani"
   },
   {
    "eventId": "s9-99.773320410",
