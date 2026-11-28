@@ -1,6 +1,6 @@
 {
  "date": "2026-11-29",
- "generatedAt": "2026-11-28T06:03:31.400775+00:00",
+ "generatedAt": "2026-11-28T06:17:14.945280+00:00",
  "fixtures": [
   {
    "eventId": "s9-99.774636529",
@@ -1074,6 +1074,13 @@
    "away": "Myawady"
   },
   {
+   "eventId": "s9-99.774791565",
+   "time": "2026-11-29T09:00:00+00:00",
+   "league": "Myanmar. Premier League",
+   "home": "ISPE",
+   "away": "Chinland"
+  },
+  {
    "eventId": "s9-99.774769894",
    "time": "2026-11-29T09:00:00+00:00",
    "league": "Singapore Championship. Division 1",
@@ -1135,6 +1142,13 @@
    "league": "Hong Kong. Division 2",
    "home": "Fu Moon",
    "away": "Tuen Mun Sports Assn"
+  },
+  {
+   "eventId": "s9-99.774791568",
+   "time": "2026-11-29T09:30:00+00:00",
+   "league": "Myanmar. Premier League",
+   "home": "Dagon Star United",
+   "away": "Yangon United"
   },
   {
    "eventId": "s9-99.773253998",
@@ -1352,6 +1366,13 @@
    "league": "Greece. SuperLeague 2",
    "home": "Ellas Syrou",
    "away": "AEL 1964"
+  },
+  {
+   "eventId": "s9-99.774513024",
+   "time": "2026-11-29T10:30:00+00:00",
+   "league": "Kenya. Premier League",
+   "home": "Shabana",
+   "away": "Ulinzi Stars"
   },
   {
    "eventId": "s9-99.774194068",
@@ -2103,13 +2124,6 @@
    "away": "Nairobi United"
   },
   {
-   "eventId": "s9-99.774513024",
-   "time": "2026-11-29T12:00:00+00:00",
-   "league": "Kenya. Premier League",
-   "home": "Shabana",
-   "away": "Ulinzi Stars"
-  },
-  {
    "eventId": "s9-99.774780869",
    "time": "2026-11-29T12:00:00+00:00",
    "league": "Kenya. Super League",
@@ -2236,6 +2250,13 @@
    "away": "UCSA"
   },
   {
+   "eventId": "s9-99.774790589",
+   "time": "2026-11-29T12:15:00+00:00",
+   "league": "Lebanon. Premier League",
+   "home": "Al Nejmeh",
+   "away": "Sagesse"
+  },
+  {
    "eventId": "s9-99.774786904",
    "time": "2026-11-29T12:15:00+00:00",
    "league": "Lebanon. Premier League",
@@ -2325,6 +2346,20 @@
    "league": "Germany. Regionalliga North",
    "home": "Bremer SV",
    "away": "VfB Lubeck"
+  },
+  {
+   "eventId": "s9-99.774513021",
+   "time": "2026-11-29T12:30:00+00:00",
+   "league": "Kenya. Premier League",
+   "home": "AFC Leopards",
+   "away": "Tusker"
+  },
+  {
+   "eventId": "s9-99.774792488",
+   "time": "2026-11-29T12:30:00+00:00",
+   "league": "Republic of Malawi. Super League",
+   "home": "Kamuzu Barracks",
+   "away": "Dedza Dynamos"
   },
   {
    "eventId": "s9-99.774578435",
@@ -2551,6 +2586,13 @@
    "away": "Al-Nasr Benghazi"
   },
   {
+   "eventId": "s9-99.774791558",
+   "time": "2026-11-29T13:00:00+00:00",
+   "league": "Malaysia. SuperLeague",
+   "home": "Star City Kangar",
+   "away": "Kuala Lumpur"
+  },
+  {
    "eventId": "s9-99.774679551",
    "time": "2026-11-29T13:00:00+00:00",
    "league": "Malta. Challenge League",
@@ -2563,6 +2605,13 @@
    "league": "Malta. Challenge League",
    "home": "Sirens",
    "away": "Victoria Hotspurs"
+  },
+  {
+   "eventId": "s9-99.774795011",
+   "time": "2026-11-29T13:00:00+00:00",
+   "league": "Netherlands. Derde",
+   "home": "EVV Echt",
+   "away": "Blauw Geel"
   },
   {
    "eventId": "s9-99.773640901",
@@ -2682,13 +2731,6 @@
    "league": "Hungary. NB I",
    "home": "Ferencvarosi",
    "away": "Zalaegerszegi"
-  },
-  {
-   "eventId": "s9-99.774513021",
-   "time": "2026-11-29T13:15:00+00:00",
-   "league": "Kenya. Premier League",
-   "home": "AFC Leopards",
-   "away": "Tusker"
   },
   {
    "eventId": "s9-99.769168532",

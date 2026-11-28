@@ -1,46 +1,6 @@
 {
   "schema_version": 1,
   "date": "2026-11-28",
-  "generated_at_utc": "2026-11-28T06:03:24.576852Z",
-  "results": [
-    {
-      "event_id": "s9-99.774703025",
-      "time": "2026-11-27T21:00:00.000Z",
-      "league": "Brazil. Copa Sao Paulo de Futebol Youth. Women",
-      "home": "Sociedade Esportiva Palmeiras U20 (Women)",
-      "away": "Vasco da Gama U20 (Women)",
-      "source": "Euro365",
-      "status": "finished",
-      "home_goals": 2,
-      "away_goals": 2,
-      "total_corners": null,
-      "evidence": "scores_endpoint"
-    },
-    {
-      "event_id": "s9-99.774703027",
-      "time": "2026-11-27T21:00:00.000Z",
-      "league": "Costa Rica Championship U20",
-      "home": "Deportiva San Carlos U20",
-      "away": "Alajuelense U20",
-      "source": "Euro365",
-      "status": "finished",
-      "home_goals": 2,
-      "away_goals": 0,
-      "total_corners": null,
-      "evidence": "scores_endpoint"
-    },
-    {
-      "event_id": "s9-99.774703028",
-      "time": "2026-11-27T21:00:00.000Z",
-      "league": "Spain. Tercera Division RFEF",
-      "home": "Real Union de Tenerife",
-      "away": "UD Anaza",
-      "source": "Euro365",
-      "status": "finished",
-      "home_goals": 1,
-      "away_goals": 1,
-      "total_corners": null,
-      "evidence": "scores_endpoint"
-    }
-  ]
+  "generated_at_utc": "2026-11-28T06:17:05.751222Z",
+  "results": []
 }
