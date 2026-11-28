@@ -17,6 +17,7 @@ on:
 
 permissions:
   contents: write
+  actions: write   # цепочный workflow_dispatch для acquire-bookmaker-lines при позднем утреннем refresh
 
 concurrency:
   group: refresh-dev-fixtures
@@ -76,6 +77,37 @@ jobs:
             console.log('Prediction records:', data.predictions.length);
             console.log('Upcoming fixture records:', future.length);
           "
+
+      - name: Wait for the 07:01:30 Moscow boundary when a game-day flip is pending
+        if: steps.precheck.outputs.fresh != 'true'
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const board = require('./daily-board.js');
+          const now = Date.now();
+          const moscow = new Date(now + 3 * 60 * 60 * 1000);
+          const minute = moscow.getUTCHours() * 60 + moscow.getUTCMinutes();
+          if (minute >= 421) {
+            console.log('07:01 Moscow already passed; no wait.');
+            process.exit(0);
+          }
+          const downloaded = JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP + '/production-data.json', 'utf8'));
+          const existing = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+          const nextGameDay = board.dayKeyMsk(now);
+          if (!(downloaded.date === nextGameDay && existing.date !== nextGameDay)) {
+            console.log(`No pending flip (existing=${existing.date}, downloaded=${downloaded.date}, next=${nextGameDay}); no wait.`);
+            process.exit(0);
+          }
+          const waitMs = (421 * 60 + 30) * 1000 - (minute * 60 + moscow.getUTCSeconds()) * 1000;
+          const capMs = 225 * 60 * 1000; // не держим раннер дольше 3 ч 45 мин (таймаут job — 6 ч)
+          if (waitMs > capMs) {
+            console.log(`Wait of ${(waitMs / 60000).toFixed(0)} min exceeds the 225 min cap; leaving the flip to later triggers.`);
+            process.exit(0);
+          }
+          console.log(`Flip to ${downloaded.date} is pending; sleeping ${(waitMs / 60000).toFixed(1)} min until 07:01:30 Moscow.`);
+          Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, waitMs);
+          console.log('Woke at the 07:01:30 Moscow boundary; proceeding with the flip.');
+          NODE
 
       - name: Keep the active game-day snapshot throughout session 5
         if: steps.precheck.outputs.fresh != 'true'
@@ -163,4 +195,35 @@ jobs:
             git commit -m "chore: refresh dev fixtures and archive results"
             git pull --rebase origin main
             git push
+          fi
+
+      - name: Chain-dispatch coupon acquisition after late morning refreshes
+        if: steps.precheck.outputs.fresh != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          CHAIN=$(node <<'NODE'
+          const fs = require('node:fs');
+          const board = require('./daily-board.js');
+          const now = Date.now();
+          const moscow = new Date(now + 3 * 60 * 60 * 1000);
+          const minute = moscow.getUTCHours() * 60 + moscow.getUTCMinutes();
+          const gameDay = board.gameDayKeyMsk(now);
+          const snapshot = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+          const artifactExists = fs.existsSync(`analysis/doubles_${gameDay}.json`);
+          const should = minute >= 570 && snapshot.date === gameDay && !artifactExists;
+          console.error(`minute=${minute} snapshot=${snapshot.date} gameDay=${gameDay} artifact=${artifactExists} -> chain=${should}`);
+          process.stdout.write(should ? gameDay : '');
+          NODE
+          )
+          if [ -n "$CHAIN" ]; then
+            curl --fail --silent --show-error -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/acquire-bookmaker-lines.yml/dispatches" \
+              -d "{\"ref\":\"main\",\"inputs\":{\"date\":\"$CHAIN\"}}"
+            echo "Chained coupon acquisition for $CHAIN"
+          else
+            echo "No chain dispatch needed"
           fi
