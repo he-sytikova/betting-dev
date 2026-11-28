@@ -45,6 +45,7 @@ from .winline import (
     parse_winline_detail,
     fetch_winline_snapshot,
 )
+from .tennisi import fetch_tennisi_snapshot, tennisi_error_snapshot
 
 BROWSER_HEADERS = {"User-Agent": "Mozilla/5.0", "Accept-Encoding": "identity"}
 
@@ -131,26 +132,28 @@ def match_lines(
     return audit, selected
 
 
-def link_winline_identities(
-    marathon_snapshot: dict[str, Any], winline_snapshot: dict[str, Any]
+def _link_russian_identities(
+    marathon_snapshot: dict[str, Any],
+    target_snapshot: dict[str, Any],
+    canonicalize: Callable[[Any], str],
 ) -> dict[str, int]:
     """Link only exact bilingual event identities; never infer or transliterate names.
 
     Marathonbet publishes Russian display names together with English SEO slugs.
-    A Winline event inherits those slugs only when both team identities and the
+    An event inherits those slugs only when both team identities and the
     kickoff are exact and identify one Marathonbet event. This is an identity
     audit bridge, not an odds source or a consensus calculation.
     """
     marathon_lines = marathon_snapshot.get("matches", [])
     diagnostics = {"linked_events": 0, "ambiguous_events": 0, "unlinked_events": 0}
-    for winline_line in winline_snapshot.get("matches", []):
+    for target_line in target_snapshot.get("matches", []):
         try:
-            start = parse_moment(winline_line["start_time"])
+            start = parse_moment(target_line["start_time"])
         except (KeyError, TypeError, ValueError):
             diagnostics["unlinked_events"] += 1
             continue
-        source_teams = [str(winline_line.get("source_team1") or ""), str(winline_line.get("source_team2") or "")]
-        canonical_teams = [canonical_winline_team(value) for value in source_teams]
+        source_teams = [str(target_line.get("source_team1") or ""), str(target_line.get("source_team2") or "")]
+        canonical_teams = [canonicalize(value) for value in source_teams]
         normalized_sources = [normalize_team(value) for value in source_teams]
         candidates: list[dict[str, Any]] = []
         for marathon_line in marathon_lines:
@@ -179,9 +182,9 @@ def link_winline_identities(
             slug_home = normalize_team(linked.get("slug_team1"))
             slug_away = normalize_team(linked.get("slug_team2"))
             if slug_home and slug_away:
-                winline_line["team1"] = slug_home
-                winline_line["team2"] = slug_away
-                winline_line["identity_link"] = {
+                target_line["team1"] = slug_home
+                target_line["team2"] = slug_away
+                target_line["identity_link"] = {
                     "method": "exact_russian_teams_and_kickoff",
                     "bookmaker": "Marathonbet",
                     "match_id": str(linked.get("match_id") or ""),
@@ -193,6 +196,19 @@ def link_winline_identities(
         else:
             diagnostics["unlinked_events"] += 1
     return diagnostics
+
+
+def link_winline_identities(
+    marathon_snapshot: dict[str, Any], winline_snapshot: dict[str, Any]
+) -> dict[str, int]:
+    return _link_russian_identities(marathon_snapshot, winline_snapshot, canonical_winline_team)
+
+
+def link_tennisi_identities(
+    marathon_snapshot: dict[str, Any], tennisi_snapshot: dict[str, Any]
+) -> dict[str, int]:
+    """Tennisi публикует русские display-имена без латинских слагов; мост тот же."""
+    return _link_russian_identities(marathon_snapshot, tennisi_snapshot, normalize_team)
 
 
 def _error_snapshot(bookmaker: str, target_date: str, error: AcquisitionError) -> dict[str, Any]:
@@ -333,6 +349,17 @@ def _fetch_winline(target_date: str, raw_dir: Path, *, browser: WinlineBrowser) 
     return fetch_winline_snapshot(target_date, raw_dir, browser)
 
 
+def _fetch_tennisi(target_date: str, raw_dir: Path) -> dict[str, Any]:
+    try:
+        return fetch_tennisi_snapshot(target_date, raw_dir)
+    except AcquisitionError as exc:
+        return tennisi_error_snapshot(target_date, exc)
+    except (OSError, TimeoutError) as exc:
+        return tennisi_error_snapshot(
+            target_date, AcquisitionError("source_unavailable", f"Tennisi: {exc}")
+        )
+
+
 def _detail_url(bookmaker: str, line: dict[str, Any], fonbet_host: str | None) -> tuple[str, str]:
     if bookmaker == "Fonbet":
         if not fonbet_host:
@@ -427,8 +454,10 @@ def _acquire_lines(
     fonbet, fonbet_host = _fetch_fonbet(target_date, raw_dir, opener=opener, sleeper=sleeper)
     marathon = _fetch_marathon(target_date, raw_dir, opener=opener, sleeper=sleeper)
     winline = _fetch_winline(target_date, raw_dir, browser=winline_browser)
-    snapshots = {"Fonbet": fonbet, "Marathonbet": marathon, "Winline": winline}
+    tennisi = _fetch_tennisi(target_date, raw_dir)
+    snapshots = {"Fonbet": fonbet, "Marathonbet": marathon, "Winline": winline, "Tennisi": tennisi}
     winline["identity_links"] = link_winline_identities(marathon, winline)
+    tennisi["identity_links"] = link_tennisi_identities(marathon, tennisi)
     for bookmaker, snapshot in snapshots.items():
         write_json(snapshot_dir / f"{bookmaker.lower()}.json", snapshot)
         print(f"{bookmaker}: {snapshot['status']}, matches={len(snapshot.get('matches', []))}", flush=True)
@@ -465,6 +494,21 @@ def _acquire_lines(
             })
             record["deduplicated"] = True
             print(f"detail {bookmaker} {match_id}: {record['status']} (deduplicated)", flush=True)
+            continue
+        if bookmaker == "Tennisi":
+            # One anonymous WS state carries both the event list and every
+            # supported market, so Tennisi needs no per-event detail request
+            # and does not consume the detail request limit.
+            if line.get("markets"):
+                line["detail_status"] = "ok"
+                line["detail_captured_at_utc"] = tennisi.get("captured_at_utc")
+                record.update(status="ok", captured_at_utc=tennisi.get("captured_at_utc"),
+                              message="markets included in snapshot")
+            else:
+                line["detail_status"] = "market_absent"
+                record.update(status="market_absent", message="рынок отсутствует в снимке Tennisi")
+            detail_cache[cache_key] = (line, record)
+            print(f"detail {bookmaker} {match_id}: {record['status']}", flush=True)
             continue
         unique_position = len(detail_cache)
         if limit is not None and unique_position >= limit:

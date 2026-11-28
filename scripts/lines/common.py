@@ -214,6 +214,7 @@ def normalize_team(value: Any) -> str:
         "спортинг лиссабон": "sporting lisbon",
         "манчестер юнайтед": "manchester united",
         "манчестер юнаитед": "manchester united",
+        "брентфорд": "brentford",
         "шахтер д": "shakhtar donetsk",
         "фенербахче": "fenerbahce",
         "атлетико минейро": "atletico mineiro",

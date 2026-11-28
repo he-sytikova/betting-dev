@@ -453,6 +453,7 @@ class MatchingAndIntegrationTests(unittest.TestCase):
             with mock.patch.object(acquisition, "_fetch_fonbet", return_value=(snapshots["Fonbet"], "https://fon.test")), \
                  mock.patch.object(acquisition, "_fetch_marathon", return_value=snapshots["Marathonbet"]), \
                  mock.patch.object(acquisition, "_fetch_winline", return_value={"bookmaker": "Winline", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
+                 mock.patch.object(acquisition, "_fetch_tennisi", return_value={"bookmaker": "Tennisi", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
                  mock.patch.object(acquisition, "request_json", side_effect=fake_detail):
                 summary = acquisition.acquire_lines("2026-11-17", fixture_path, root / "out", sleeper=lambda _: None)
             self.assertEqual(summary["matched_lines"], 2)
@@ -477,6 +478,7 @@ class MatchingAndIntegrationTests(unittest.TestCase):
             with mock.patch.object(acquisition, "_fetch_fonbet", return_value=({"bookmaker": "Fonbet", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}, None)), \
                  mock.patch.object(acquisition, "_fetch_marathon", return_value=snapshots["Marathonbet"]), \
                  mock.patch.object(acquisition, "_fetch_winline", return_value={"bookmaker": "Winline", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
+                 mock.patch.object(acquisition, "_fetch_tennisi", return_value={"bookmaker": "Tennisi", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
                  mock.patch.object(acquisition, "request_json", side_effect=AcquisitionError("source_unavailable", "timeout")):
                 summary = acquisition.acquire_lines("2026-11-17", fixture_path, root / "out")
             self.assertEqual(summary["detail_requests"], 1)
@@ -492,6 +494,7 @@ class MatchingAndIntegrationTests(unittest.TestCase):
             with mock.patch.object(acquisition, "_fetch_fonbet", return_value=({"bookmaker": "Fonbet", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}, None)), \
                  mock.patch.object(acquisition, "_fetch_marathon", return_value=snapshots["Marathonbet"]), \
                  mock.patch.object(acquisition, "_fetch_winline", return_value={"bookmaker": "Winline", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
+                 mock.patch.object(acquisition, "_fetch_tennisi", return_value={"bookmaker": "Tennisi", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
                  mock.patch.object(acquisition, "request_json") as request:
                 summary = acquisition.acquire_lines("2026-11-17", fixture_path, root / "out", limit=0)
             request.assert_not_called()
@@ -555,6 +558,7 @@ class MatchingAndIntegrationTests(unittest.TestCase):
             with mock.patch.object(acquisition, "_fetch_fonbet", return_value=({"bookmaker": "Fonbet", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}, None)), \
                  mock.patch.object(acquisition, "_fetch_marathon", return_value=snapshot), \
                  mock.patch.object(acquisition, "_fetch_winline", return_value={"bookmaker": "Winline", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
+                 mock.patch.object(acquisition, "_fetch_tennisi", return_value={"bookmaker": "Tennisi", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
                  mock.patch.object(acquisition, "request_json", return_value=response) as request:
                 summary = acquisition.acquire_lines(
                     "2026-11-17", fixture_path, root / "out", sleeper=lambda _: None,
@@ -579,6 +583,7 @@ class MatchingAndIntegrationTests(unittest.TestCase):
                  mock.patch.object(acquisition, "_fetch_fonbet", return_value=({"bookmaker": "Fonbet", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}, None)), \
                  mock.patch.object(acquisition, "_fetch_marathon", return_value=snapshot), \
                  mock.patch.object(acquisition, "_fetch_winline", return_value={"bookmaker": "Winline", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
+                 mock.patch.object(acquisition, "_fetch_tennisi", return_value={"bookmaker": "Tennisi", "target_date": "2026-11-17", "status": "source_unavailable", "matches": []}), \
                  mock.patch.object(acquisition, "request_json", return_value=response) as request:
                 summary = acquisition.acquire_lines(
                     "2026-11-17", root / "unused.json", root / "out", sleeper=lambda _: None,
