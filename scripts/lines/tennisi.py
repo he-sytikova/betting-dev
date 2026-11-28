@@ -485,7 +485,31 @@ def fetch_football_state_blob(*, connector: Callable[..., Any] = None, listen_se
         def connector(url: str, **kwargs: Any) -> Any:
             return websockets.connect(url, ssl=ssl_context, **kwargs)
 
-    return asyncio.run(_collect_football_state(connector, listen_seconds=listen_seconds))
+    coroutine = lambda: _collect_football_state(connector, listen_seconds=listen_seconds)  # noqa: E731
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        return asyncio.run(coroutine())
+    # An event loop is already running in this thread (e.g. Playwright's sync
+    # API loop started by WinlineBrowser): run ours in a dedicated thread.
+    import threading
+
+    outcome: dict[str, Any] = {}
+
+    def _runner() -> None:
+        try:
+            outcome["blob"] = asyncio.run(coroutine())
+        except BaseException as exc:  # propagate to the caller thread
+            outcome["error"] = exc
+
+    worker = threading.Thread(target=_runner, name="tennisi-ws", daemon=True)
+    worker.start()
+    worker.join(timeout=listen_seconds + 30)
+    if worker.is_alive():
+        raise AcquisitionError("source_unavailable", "Tennisi: таймаут ожидания состояния линии")
+    if "error" in outcome:
+        raise outcome["error"]
+    return outcome["blob"]
 
 
 def fetch_tennisi_snapshot(

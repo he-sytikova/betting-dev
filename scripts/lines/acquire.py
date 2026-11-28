@@ -358,6 +358,11 @@ def _fetch_tennisi(target_date: str, raw_dir: Path) -> dict[str, Any]:
         return tennisi_error_snapshot(
             target_date, AcquisitionError("source_unavailable", f"Tennisi: {exc}")
         )
+    except Exception as exc:  # websockets/zstd failures must not kill the whole acquisition
+        return tennisi_error_snapshot(
+            target_date,
+            AcquisitionError("source_unavailable", f"Tennisi: {type(exc).__name__}: {exc}"),
+        )
 
 
 def _detail_url(bookmaker: str, line: dict[str, Any], fonbet_host: str | None) -> tuple[str, str]:
