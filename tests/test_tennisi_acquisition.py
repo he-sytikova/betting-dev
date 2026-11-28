@@ -251,6 +251,23 @@ class FetchSnapshotTest(unittest.TestCase):
         self.assertEqual(snapshot["matches"], [])
         self.assertEqual(snapshot["errors"][0]["status"], "source_unavailable")
 
+    def test_fetch_works_when_event_loop_already_running(self):
+        """Playwright's sync API leaves a running loop in the main thread
+        (CI failure 2026-11-28): the fetch must hop to a dedicated thread."""
+        import asyncio
+
+        body = state_payload({2492955: match_state()})
+        blob = self._state_blob(body)
+
+        async def scenario():
+            ws = _FakeWebSocket(["{}", self._push_message(blob)])
+            with tempfile.TemporaryDirectory() as tmp:
+                return fetch_tennisi_snapshot(TARGET_DATE, Path(tmp), connector=_FakeConnector(ws))
+
+        snapshot = asyncio.run(scenario())
+        self.assertEqual(snapshot["status"], "ok")
+        self.assertEqual(len(snapshot["matches"]), 1)
+
 
 class TennisiIdentityBridgeTest(unittest.TestCase):
     """Тот же мост точных идентичностей, что и у Winline: русские имена +
